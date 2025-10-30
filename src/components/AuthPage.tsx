@@ -313,7 +313,7 @@ export default function AuthPage({ onLogin, onSignUp, defaultTab = 'signin' }: A
         <div className="absolute blur-sm -top-37 -right-21 bg-linear-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-100 w-12 rotate-45" />
         <div className="absolute blur-sm -top-37 right-5 bg-linear-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-100 w-12 rotate-45" />
       </div>
-      <div className="w-full max-w-6xl border border-blue-700">
+      <div className="w-full max-w-6xl border border-red-700">
         {/* Header */}
         <div className="text-center mb-8">
           <div className="flex flex-col items-center justify-center gap-3 mb-4">

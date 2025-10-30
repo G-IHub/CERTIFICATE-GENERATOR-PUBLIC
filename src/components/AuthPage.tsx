@@ -300,21 +300,20 @@ export default function AuthPage({ onLogin, onSignUp, defaultTab = 'signin' }: A
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center p-4 bg-linear-to-b from-[#FFCB9E52] to-[#FFFBF8] font-[Poppins] min-h-screen relative overflow-hidden">
-        <div className="">
-          <div className="absolute blur-sm -top-26 -left-30 bg-linear-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-100 w-12 -rotate-45" />
-          <div className="absolute blur-sm top-20 -left-40 bg-linear-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-100 w-12 -rotate-45" />
-          <div className="absolute blur-sm -top-10 -left-33 bg-linear-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-100 w-12 -rotate-45" />
-          <div className="absolute blur-sm -top-37 -left-21 bg-linear-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-100 w-12 -rotate-45" />
-          <div className="absolute blur-sm -top-37 left-5 bg-linear-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-100 w-12 -rotate-45" />
-          <div className="absolute blur-sm -top-26 -right-30 bg-linear-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-100 w-12 rotate-45" />
-          <div className="absolute blur-sm top-20 -right-40 bg-linear-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-100 w-12 rotate-45" />
-          <div className="absolute blur-sm -top-10 -right-33 bg-linear-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-100 w-12 rotate-45" />
-          <div className="absolute blur-sm -top-37 -right-21 bg-linear-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-100 w-12 rotate-45" />
-          <div className="absolute blur-sm -top-37 right-5 bg-linear-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-100 w-12 rotate-45" />
-        </div>
+    <div className="min-h-screen flex items-center justify-center p-4 bg-linear-to-b from-[#FFCB9E52] to-[#FFFBF8] min-h-screen relative border border-red-500">
+      <div className="border border-green-500">
+        <div className="absolute blur-sm -top-26 -left-30 bg-linear-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-100 w-12 -rotate-45" />
+        <div className="absolute blur-sm top-20 -left-40 bg-linear-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-100 w-12 -rotate-45" />
+        <div className="absolute blur-sm -top-10 -left-33 bg-linear-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-100 w-12 -rotate-45" />
+        <div className="absolute blur-sm -top-37 -left-21 bg-linear-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-100 w-12 -rotate-45" />
+        <div className="absolute blur-sm -top-37 left-5 bg-linear-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-100 w-12 -rotate-45" />
+        <div className="absolute blur-sm -top-26 -right-30 bg-linear-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-100 w-12 rotate-45" />
+        <div className="absolute blur-sm top-20 -right-40 bg-linear-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-100 w-12 rotate-45" />
+        <div className="absolute blur-sm -top-10 -right-33 bg-linear-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-100 w-12 rotate-45" />
+        <div className="absolute blur-sm -top-37 -right-21 bg-linear-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-100 w-12 rotate-45" />
+        <div className="absolute blur-sm -top-37 right-5 bg-linear-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-100 w-12 rotate-45" />
       </div>
-      <div className="w-full max-w-6xl">
+      <div className="w-full max-w-6xl border border-blue-700">
         {/* Header */}
         <div className="text-center mb-8">
           <div className="flex flex-col items-center justify-center gap-3 mb-4">
@@ -801,4 +800,137 @@ export default function AuthPage({ onLogin, onSignUp, defaultTab = 'signin' }: A
                       )}
                     </Button>
 
-                    <p class
+                    <p className="text-xs text-gray-500 text-center mt-4">
+                      By signing up, you agree to use this platform responsibly
+                      for certificate management.
+                    </p>
+                  </form>
+                )}
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div className="text-center mt-8">
+          <p className="text-sm text-gray-500">
+            © 2025 Innovation of Genomac Innovation Hub. All Rights Reserved.
+          </p>
+          <p className="text-xs text-gray-400 mt-1 capitalize">
+            Create, manage, and share professional certificates with ease
+          </p>
+        </div>
+
+        {/* Password Reset Modal */}
+        <Dialog open={showForgotPassword} onOpenChange={setShowForgotPassword}>
+          <DialogContent className="sm:max-w-md">
+            <DialogHeader>
+              <DialogTitle className="flex items-center gap-2">
+                <KeyRound className="w-5 h-5 text-indigo-600" />
+                Reset Your Password
+              </DialogTitle>
+              <DialogDescription>
+                Enter your email address and we'll send you a link to reset your
+                password.
+              </DialogDescription>
+            </DialogHeader>
+
+            {!resetSuccess ? (
+              <form onSubmit={handlePasswordReset} className="space-y-4 mt-4">
+                <div className="space-y-2">
+                  <Label htmlFor="reset-email">Email Address</Label>
+                  <div className="relative">
+                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                    <Input
+                      id="reset-email"
+                      type="email"
+                      value={resetEmail}
+                      onChange={(e) => {
+                        setResetEmail(e.target.value);
+                        setResetError(null);
+                      }}
+                      placeholder="your.email@example.com"
+                      disabled={resetLoading}
+                      className="pl-10 h-11"
+                    />
+                  </div>
+                  {resetError && (
+                    <Alert variant="destructive">
+                      <AlertCircle className="h-4 w-4" />
+                      <AlertDescription>{resetError}</AlertDescription>
+                    </Alert>
+                  )}
+                </div>
+
+                <div className="flex gap-2">
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={() => {
+                      setShowForgotPassword(false);
+                      setResetEmail("");
+                      setResetError(null);
+                    }}
+                    disabled={resetLoading}
+                    className="flex-1"
+                  >
+                    <ArrowLeft className="w-4 h-4 mr-2" />
+                    Back
+                  </Button>
+                  <Button
+                    type="submit"
+                    disabled={resetLoading || !resetEmail}
+                    className="flex-1"
+                  >
+                    {resetLoading ? (
+                      <>
+                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2" />
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        <Mail className="w-4 h-4 mr-2" />
+                        Send Reset Link
+                      </>
+                    )}
+                  </Button>
+                </div>
+              </form>
+            ) : (
+              <div className="py-6 text-center space-y-4">
+                <div className="flex justify-center">
+                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
+                    <CheckCircle className="w-8 h-8 text-green-600" />
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <h3 className="font-medium text-gray-900">
+                    Check Your Email
+                  </h3>
+                  <p className="text-sm text-gray-600">
+                    We've sent a password reset link to{" "}
+                    <strong>{resetEmail}</strong>
+                  </p>
+                  <p className="text-xs text-gray-500">
+                    Click the link in the email to reset your password. It may
+                    take a few minutes to arrive.
+                  </p>
+                </div>
+                <Button
+                  onClick={() => {
+                    setShowForgotPassword(false);
+                    setResetSuccess(false);
+                    setResetEmail("");
+                  }}
+                  className="w-full"
+                >
+                  Back to Sign In
+                </Button>
+              </div>
+            )}
+          </DialogContent>
+        </Dialog>
+      </div>
+    </div>
+  );
+}

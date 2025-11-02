@@ -1,24 +1,30 @@
-import { useState, useEffect } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
-import { Button } from './ui/button';
-import { Input } from './ui/input';
-import { Label } from './ui/label';
-import { Badge } from './ui/badge';
-import { Alert, AlertDescription } from './ui/alert';
-import { Separator } from './ui/separator';
-import { 
-  Settings, 
-  DollarSign, 
-  Check, 
-  X, 
-  Eye, 
+import { useState, useEffect } from "react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "./ui/card";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import { Label } from "./ui/label";
+import { Badge } from "./ui/badge";
+import { Alert, AlertDescription } from "./ui/alert";
+import { Separator } from "./ui/separator";
+import {
+  Settings,
+  DollarSign,
+  Check,
+  X,
+  Eye,
   EyeOff,
   AlertCircle,
   CreditCard,
-  Calendar
-} from 'lucide-react';
-import { toast } from 'sonner@2.0.3';
-import { publicAnonKey, projectId } from '../utils/supabase/info';
+  Calendar,
+} from "lucide-react";
+import { toast } from "sonner";
+import { publicAnonKey, projectId } from "../utils/supabase/info";
 
 interface BillingSettingsProps {
   accessToken: string | null;
@@ -45,26 +51,26 @@ export default function BillingSettings({ accessToken }: BillingSettingsProps) {
   const [saving, setSaving] = useState(false);
   const [config, setConfig] = useState<BillingConfig | null>(null);
   const [showSecretKey, setShowSecretKey] = useState(false);
-  
+
   // Form state
-  const [paystackSecretKey, setPaystackSecretKey] = useState('');
-  const [paystackPublicKey, setPaystackPublicKey] = useState('');
-  
+  const [paystackSecretKey, setPaystackSecretKey] = useState("");
+  const [paystackPublicKey, setPaystackPublicKey] = useState("");
+
   // Plan pricing
-  const [monthlyPrice, setMonthlyPrice] = useState('1000');
-  const [yearlyPrice, setYearlyPrice] = useState('10000');
-  const [currency, setCurrency] = useState('USD');
+  const [monthlyPrice, setMonthlyPrice] = useState("1000");
+  const [yearlyPrice, setYearlyPrice] = useState("10000");
+  const [currency, setCurrency] = useState("USD");
 
   // Helper function to format currency display
   const formatCurrency = (amount: string, currencyCode: string) => {
     const numAmount = parseInt(amount) || 0;
     const value = (numAmount / 100).toFixed(2);
     const currencySymbols: Record<string, string> = {
-      'USD': '$',
-      'EUR': '€',
-      'GBP': '£',
-      'NGN': '₦',
-      'GHS': '₵',
+      USD: "$",
+      EUR: "€",
+      GBP: "£",
+      NGN: "₦",
+      GHS: "₵",
     };
     const symbol = currencySymbols[currencyCode.toUpperCase()] || currencyCode;
     return `${symbol}${value}`;
@@ -79,32 +85,36 @@ export default function BillingSettings({ accessToken }: BillingSettingsProps) {
       const response = await fetch(
         `https://${projectId}.supabase.co/functions/v1/make-server-a611b057/admin/billing/settings`,
         {
-          method: 'GET',
+          method: "GET",
           headers: {
-            'Authorization': `Bearer ${accessToken}`,
-            'Content-Type': 'application/json',
+            Authorization: `Bearer ${accessToken}`,
+            "Content-Type": "application/json",
           },
         }
       );
 
       if (!response.ok) {
-        throw new Error('Failed to load billing settings');
+        throw new Error("Failed to load billing settings");
       }
 
       const data = await response.json();
       setConfig(data);
 
       if (data.configured) {
-        setPaystackPublicKey(data.paystackPublicKey || '');
+        setPaystackPublicKey(data.paystackPublicKey || "");
         if (data.plans) {
-          setMonthlyPrice(data.plans.premium_monthly?.price?.toString() || '1000');
-          setYearlyPrice(data.plans.premium_yearly?.price?.toString() || '10000');
-          setCurrency(data.plans.premium_monthly?.currency || 'USD');
+          setMonthlyPrice(
+            data.plans.premium_monthly?.price?.toString() || "1000"
+          );
+          setYearlyPrice(
+            data.plans.premium_yearly?.price?.toString() || "10000"
+          );
+          setCurrency(data.plans.premium_monthly?.currency || "USD");
         }
       }
     } catch (error: any) {
-      console.error('Error loading billing settings:', error);
-      toast.error('Failed to load billing settings');
+      console.error("Error loading billing settings:", error);
+      toast.error("Failed to load billing settings");
       setConfig({ configured: false });
     } finally {
       setLoading(false);
@@ -113,12 +123,12 @@ export default function BillingSettings({ accessToken }: BillingSettingsProps) {
 
   const handleSave = async () => {
     if (!paystackSecretKey && !config?.configured) {
-      toast.error('Please enter Paystack Secret Key');
+      toast.error("Please enter Paystack Secret Key");
       return;
     }
 
     if (!paystackPublicKey) {
-      toast.error('Please enter Paystack Public Key');
+      toast.error("Please enter Paystack Public Key");
       return;
     }
 
@@ -127,56 +137,56 @@ export default function BillingSettings({ accessToken }: BillingSettingsProps) {
       const response = await fetch(
         `https://${projectId}.supabase.co/functions/v1/make-server-a611b057/admin/billing/settings`,
         {
-          method: 'POST',
+          method: "POST",
           headers: {
-            'Authorization': `Bearer ${accessToken}`,
-            'Content-Type': 'application/json',
+            Authorization: `Bearer ${accessToken}`,
+            "Content-Type": "application/json",
           },
           body: JSON.stringify({
             paystackSecretKey: paystackSecretKey || undefined,
             paystackPublicKey,
             plans: {
               premium_monthly: {
-                name: 'Premium Monthly',
+                name: "Premium Monthly",
                 price: parseInt(monthlyPrice),
                 currency,
                 duration: 30,
                 features: [
-                  'Custom Templates',
-                  'Template Builder',
-                  'Unlimited Certificates',
-                  'Priority Support'
-                ]
+                  "Custom Templates",
+                  "Template Builder",
+                  "Unlimited Certificates",
+                  "Priority Support",
+                ],
               },
               premium_yearly: {
-                name: 'Premium Yearly',
+                name: "Premium Yearly",
                 price: parseInt(yearlyPrice),
                 currency,
                 duration: 365,
                 features: [
-                  'Custom Templates',
-                  'Template Builder',
-                  'Unlimited Certificates',
-                  'Priority Support',
-                  '2 Months Free'
-                ]
-              }
-            }
+                  "Custom Templates",
+                  "Template Builder",
+                  "Unlimited Certificates",
+                  "Priority Support",
+                  "2 Months Free",
+                ],
+              },
+            },
           }),
         }
       );
 
       if (!response.ok) {
         const error = await response.json();
-        throw new Error(error.error || 'Failed to save settings');
+        throw new Error(error.error || "Failed to save settings");
       }
 
-      toast.success('Billing settings saved successfully!');
+      toast.success("Billing settings saved successfully!");
       await loadBillingSettings();
-      setPaystackSecretKey(''); // Clear sensitive data after save
+      setPaystackSecretKey(""); // Clear sensitive data after save
     } catch (error: any) {
-      console.error('Error saving billing settings:', error);
-      toast.error(error.message || 'Failed to save billing settings');
+      console.error("Error saving billing settings:", error);
+      toast.error(error.message || "Failed to save billing settings");
     } finally {
       setSaving(false);
     }
@@ -201,15 +211,23 @@ export default function BillingSettings({ accessToken }: BillingSettingsProps) {
           <div className="flex items-center justify-between">
             <div>
               <CardTitle className="text-base">Billing System Status</CardTitle>
-              <CardDescription className="text-xs">Paystack payment integration</CardDescription>
+              <CardDescription className="text-xs">
+                Paystack payment integration
+              </CardDescription>
             </div>
             {config?.configured ? (
-              <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
+              <Badge
+                variant="outline"
+                className="bg-green-50 text-green-700 border-green-200"
+              >
                 <Check className="w-3 h-3 mr-1" />
                 Configured
               </Badge>
             ) : (
-              <Badge variant="outline" className="bg-amber-50 text-amber-700 border-amber-200">
+              <Badge
+                variant="outline"
+                className="bg-amber-50 text-amber-700 border-amber-200"
+              >
                 <AlertCircle className="w-3 h-3 mr-1" />
                 Not Configured
               </Badge>
@@ -230,16 +248,17 @@ export default function BillingSettings({ accessToken }: BillingSettingsProps) {
         <Alert>
           <AlertCircle className="h-4 w-4" />
           <AlertDescription className="text-sm">
-            Configure your Paystack API keys to enable premium billing for organizations.
-            Get your API keys from your{' '}
-            <a 
-              href="https://dashboard.paystack.com/#/settings/developer" 
-              target="_blank" 
+            Configure your Paystack API keys to enable premium billing for
+            organizations. Get your API keys from your{" "}
+            <a
+              href="https://dashboard.paystack.com/#/settings/developer"
+              target="_blank"
               rel="noopener noreferrer"
               className="text-primary hover:underline font-medium"
             >
               Paystack Dashboard
-            </a>.
+            </a>
+            .
           </AlertDescription>
         </Alert>
       )}
@@ -257,14 +276,18 @@ export default function BillingSettings({ accessToken }: BillingSettingsProps) {
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="secretKey" className="text-sm">Secret Key</Label>
+            <Label htmlFor="secretKey" className="text-sm">
+              Secret Key
+            </Label>
             <div className="relative">
               <Input
                 id="secretKey"
-                type={showSecretKey ? 'text' : 'password'}
+                type={showSecretKey ? "text" : "password"}
                 value={paystackSecretKey}
                 onChange={(e) => setPaystackSecretKey(e.target.value)}
-                placeholder={config?.configured ? 'Enter new key to update' : 'sk_test_...'}
+                placeholder={
+                  config?.configured ? "Enter new key to update" : "sk_test_..."
+                }
                 className="pr-10 text-sm h-9"
               />
               <button
@@ -272,7 +295,11 @@ export default function BillingSettings({ accessToken }: BillingSettingsProps) {
                 onClick={() => setShowSecretKey(!showSecretKey)}
                 className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
               >
-                {showSecretKey ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                {showSecretKey ? (
+                  <EyeOff className="w-4 h-4" />
+                ) : (
+                  <Eye className="w-4 h-4" />
+                )}
               </button>
             </div>
             {config?.configured && config.paystackSecretKeyPreview && (
@@ -283,7 +310,9 @@ export default function BillingSettings({ accessToken }: BillingSettingsProps) {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="publicKey" className="text-sm">Public Key</Label>
+            <Label htmlFor="publicKey" className="text-sm">
+              Public Key
+            </Label>
             <Input
               id="publicKey"
               type="text"
@@ -310,7 +339,9 @@ export default function BillingSettings({ accessToken }: BillingSettingsProps) {
         <CardContent className="space-y-4">
           <div className="grid grid-cols-3 gap-3">
             <div className="space-y-2">
-              <Label htmlFor="currency" className="text-sm">Currency</Label>
+              <Label htmlFor="currency" className="text-sm">
+                Currency
+              </Label>
               <Input
                 id="currency"
                 type="text"
@@ -322,7 +353,9 @@ export default function BillingSettings({ accessToken }: BillingSettingsProps) {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="monthlyPrice" className="text-sm">Monthly Price</Label>
+              <Label htmlFor="monthlyPrice" className="text-sm">
+                Monthly Price
+              </Label>
               <Input
                 id="monthlyPrice"
                 type="number"
@@ -334,7 +367,9 @@ export default function BillingSettings({ accessToken }: BillingSettingsProps) {
               <p className="text-xs text-gray-500">In cents (1000 = $10.00)</p>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="yearlyPrice" className="text-sm">Yearly Price</Label>
+              <Label htmlFor="yearlyPrice" className="text-sm">
+                Yearly Price
+              </Label>
               <Input
                 id="yearlyPrice"
                 type="number"
@@ -343,7 +378,9 @@ export default function BillingSettings({ accessToken }: BillingSettingsProps) {
                 placeholder="10000"
                 className="text-sm h-9"
               />
-              <p className="text-xs text-gray-500">In cents (10000 = $100.00)</p>
+              <p className="text-xs text-gray-500">
+                In cents (10000 = $100.00)
+              </p>
             </div>
           </div>
 
@@ -379,7 +416,9 @@ export default function BillingSettings({ accessToken }: BillingSettingsProps) {
             <div className="p-3 bg-gray-50 rounded-lg">
               <div className="flex items-center justify-between mb-2">
                 <h4 className="text-sm font-medium">Premium Yearly</h4>
-                <Badge variant="secondary" className="text-xs">Best Value</Badge>
+                <Badge variant="secondary" className="text-xs">
+                  Best Value
+                </Badge>
               </div>
               <p className="text-lg font-bold text-primary">
                 {formatCurrency(yearlyPrice, currency)}
@@ -414,11 +453,7 @@ export default function BillingSettings({ accessToken }: BillingSettingsProps) {
         >
           Reset
         </Button>
-        <Button
-          onClick={handleSave}
-          disabled={saving}
-          size="sm"
-        >
+        <Button onClick={handleSave} disabled={saving} size="sm">
           {saving ? (
             <>
               <div className="animate-spin rounded-full h-3.5 w-3.5 border-b-2 border-white mr-2"></div>

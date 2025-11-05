@@ -6118,6 +6118,53 @@ app.post("/make-server-a611b057/admin/billing/settings", async (c) => {
   }
 });
 
+// Admin debug endpoint (masked) - shows whether env keys are present and KV billing settings
+app.get("/make-server-a611b057/admin/billing/debug", async (c) => {
+  try {
+    const authHeader = c.req.header("Authorization");
+    if (!(await isPlatformAdmin(authHeader))) {
+      return c.json({ error: "Unauthorized - Admin access required" }, 403);
+    }
+
+    // Check env vars directly
+    const envSecret =
+      Deno.env.get("PAYSTACK_SECRET_KEY") || Deno.env.get("PAYSTACK_SECRET");
+    const envPublic =
+      Deno.env.get("PAYSTACK_PUBLIC_KEY") || Deno.env.get("PAYSTACK_PUBLIC");
+
+    // Read KV (may be null)
+    const kvSettings = await kv.get("billing:settings").catch(() => null);
+
+    const masked = (s: string | undefined | null) => {
+      if (!s) return null;
+      return s.length > 8
+        ? `${s.substring(0, 4)}...${s.substring(s.length - 4)}`
+        : `${s}`;
+    };
+
+    return c.json({
+      env: {
+        paystackSecretPresent: !!envSecret,
+        paystackPublicPresent: !!envPublic,
+        paystackSecretPreview: masked(envSecret),
+        paystackPublicPreview: masked(envPublic),
+      },
+      kv: {
+        present: !!kvSettings,
+        paystackSecretPreview: masked(kvSettings?.paystackSecretKey),
+        paystackPublicPreview: masked(kvSettings?.paystackPublicKey),
+        plans: kvSettings?.plans || {},
+        updatedAt: kvSettings?.updatedAt || null,
+      },
+      effectiveSource:
+        envSecret && envPublic ? "env" : kvSettings ? "kv" : "none",
+    });
+  } catch (err) {
+    console.error("Billing debug error:", err);
+    return c.json({ error: `Debug failed: ${err}` }, 500);
+  }
+});
+
 // ==================== START THE SERVER ====================
 
 console.log("📡 Health endpoint: /make-server-a611b057/health");

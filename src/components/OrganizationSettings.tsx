@@ -26,6 +26,7 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import SettingsSkeleton from "./skeletons/SettingsSkeleton";
+import { Skeleton } from "./ui/skeleton";
 import type { Organization, Signatory, OrganizationSettings } from "../App";
 import { organizationApi } from "../utils/api";
 

@@ -1,19 +1,25 @@
-import React, { useState } from 'react';
-import { Button } from './ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
-import { Badge } from './ui/badge';
-import { 
-  Sparkles, 
+import React, { useState } from "react";
+import { Button } from "./ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "./ui/card";
+import { Badge } from "./ui/badge";
+import {
+  Sparkles,
   ArrowLeft,
   Crown,
   Check,
   Palette,
   Type,
   Layout,
-  Image as ImageIcon
-} from 'lucide-react';
-import TemplateBuilder from './TemplateBuilder';
-import type { Organization } from '../App';
+  Image as ImageIcon,
+} from "lucide-react";
+import TemplateBuilder from "./TemplateBuilder";
+import type { Organization } from "../App";
 
 interface TemplateBuilderPageProps {
   organization: Organization;
@@ -29,19 +35,23 @@ interface CustomTemplateConfig {
   colors: any;
   typography: any;
   elements: any;
+  organizationLogo?: string;
+  signatureUrls?: string[];
 }
 
 const TemplateBuilderPage: React.FC<TemplateBuilderPageProps> = ({
   organization,
   isPremiumUser = false,
-  onBack
+  onBack,
 }) => {
   const [showBuilder, setShowBuilder] = useState(false);
-  const [customTemplates, setCustomTemplates] = useState<CustomTemplateConfig[]>([]);
+  const [customTemplates, setCustomTemplates] = useState<
+    CustomTemplateConfig[]
+  >([]);
 
   const handleSaveTemplate = (template: CustomTemplateConfig) => {
-    setCustomTemplates(prev => {
-      const existing = prev.findIndex(t => t.id === template.id);
+    setCustomTemplates((prev) => {
+      const existing = prev.findIndex((t) => t.id === template.id);
       if (existing >= 0) {
         const updated = [...prev];
         updated[existing] = template;
@@ -102,7 +112,6 @@ const TemplateBuilderPage: React.FC<TemplateBuilderPageProps> = ({
 
       {/* Content */}
       <div className="max-w-7xl mx-auto p-6">
-        
         {/* Feature Overview */}
         {!isPremiumUser && (
           <Card className="mb-6 border-orange-200 bg-orange-50">
@@ -146,7 +155,7 @@ const TemplateBuilderPage: React.FC<TemplateBuilderPageProps> = ({
                   </p>
                 </div>
               </div>
-              
+
               <div className="flex items-center gap-4">
                 <Button size="lg" className="bg-orange-600 hover:bg-orange-700">
                   <Crown className="w-4 h-4 mr-2" />
@@ -184,7 +193,7 @@ const TemplateBuilderPage: React.FC<TemplateBuilderPageProps> = ({
                   Design custom certificate templates to match your brand
                 </CardDescription>
               </div>
-              <Button 
+              <Button
                 onClick={() => setShowBuilder(true)}
                 disabled={!isPremiumUser}
               >
@@ -262,9 +271,9 @@ const TemplateBuilderPage: React.FC<TemplateBuilderPageProps> = ({
                       {template.description}
                     </p>
                     <div className="flex gap-2">
-                      <Button 
-                        size="sm" 
-                        variant="outline" 
+                      <Button
+                        size="sm"
+                        variant="outline"
                         className="flex-1"
                         onClick={() => setShowBuilder(true)}
                       >
@@ -297,9 +306,12 @@ const TemplateBuilderPage: React.FC<TemplateBuilderPageProps> = ({
                     <span className="font-medium text-orange-600">1</span>
                   </div>
                   <div>
-                    <h3 className="font-medium mb-1">Open the Template Builder</h3>
+                    <h3 className="font-medium mb-1">
+                      Open the Template Builder
+                    </h3>
                     <p className="text-sm text-gray-600">
-                      Start from scratch or use one of our preset templates as a starting point
+                      Start from scratch or use one of our preset templates as a
+                      starting point
                     </p>
                   </div>
                 </div>
@@ -309,9 +321,12 @@ const TemplateBuilderPage: React.FC<TemplateBuilderPageProps> = ({
                     <span className="font-medium text-orange-600">2</span>
                   </div>
                   <div>
-                    <h3 className="font-medium mb-1">Customize Your Template</h3>
+                    <h3 className="font-medium mb-1">
+                      Customize Your Template
+                    </h3>
                     <p className="text-sm text-gray-600">
-                      Adjust colors, fonts, layout, borders, and decorative elements with live preview
+                      Adjust colors, fonts, layout, borders, and decorative
+                      elements with live preview
                     </p>
                   </div>
                 </div>
@@ -323,7 +338,8 @@ const TemplateBuilderPage: React.FC<TemplateBuilderPageProps> = ({
                   <div>
                     <h3 className="font-medium mb-1">Save and Use</h3>
                     <p className="text-sm text-gray-600">
-                      Save your template and use it when generating certificates for any program
+                      Save your template and use it when generating certificates
+                      for any program
                     </p>
                   </div>
                 </div>
@@ -335,7 +351,8 @@ const TemplateBuilderPage: React.FC<TemplateBuilderPageProps> = ({
                   <div>
                     <h3 className="font-medium mb-1">Export & Share</h3>
                     <p className="text-sm text-gray-600">
-                      Export templates as JSON files to backup or share across organizations
+                      Export templates as JSON files to backup or share across
+                      organizations
                     </p>
                   </div>
                 </div>

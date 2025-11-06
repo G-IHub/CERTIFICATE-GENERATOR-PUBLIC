@@ -19,6 +19,7 @@ import { organizationApi, authApi, programApi } from "./utils/api";
 import { publicAnonKey, projectId } from "./utils/supabase/info";
 import { toast, Toaster } from "sonner";
 import { isAdminEmail } from "./utils/adminConfig";
+import { isOrgPremium } from "./utils/subscriptionUtils";
 
 // Figma asset imports are not available at runtime in this environment.
 // Use a stable placeholder URL for the default organization logo.
@@ -740,7 +741,7 @@ export default function App() {
                 <div className="min-h-screen bg-gray-50">
                   <TemplateBuilderPage
                     organization={getCurrentUserOrganization()!}
-                    isPremiumUser={true}
+                    isPremiumUser={isOrgPremium(getCurrentUserOrganization())}
                     onBack={() => (window.location.href = "/#/dashboard")}
                     accessToken={accessToken}
                   />

@@ -57,6 +57,7 @@
             "react-router-dom": "*",
             "recharts": "^2.15.2",
             "sonner": "^2.0.3",
+            "supabase": "^2.54.11",
             "tailwind-merge": "*",
             "tailwindcss": "^4.1.16",
             "vaul": "^1.1.2"

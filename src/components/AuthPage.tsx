@@ -1,30 +1,43 @@
-import React, { useState } from 'react';
-import { Button } from './ui/button';
-import { Input } from './ui/input';
-import { Label } from './ui/label';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
-import { Badge } from './ui/badge';
-import { Alert, AlertDescription } from './ui/alert';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from './ui/dialog';
-import { 
-  LogIn, 
-  UserPlus, 
-  Shield, 
-  Eye, 
-  EyeOff, 
+import React, { useState } from "react";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import { Label } from "./ui/label";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "./ui/card";
+import { Badge } from "./ui/badge";
+import { Alert, AlertDescription } from "./ui/alert";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "./ui/dialog";
+import {
+  LogIn,
+  UserPlus,
+  Shield,
+  Eye,
+  EyeOff,
   AlertCircle,
   Award,
   CheckCircle,
   Mail,
   ArrowLeft,
-  KeyRound
-} from 'lucide-react';
-import { toast } from 'sonner';
-import type { UserAccount } from '../App';
-import { authApi } from '../utils/api';
-import { projectId } from '../utils/supabase/info';
-import logo from '../assets/logo.svg';
+  KeyRound,
+} from "lucide-react";
+import { toast } from "sonner";
+import type { UserAccount } from "../App";
+import { authApi } from "../utils/api";
+import { projectId } from "../utils/supabase/info";
+import logo from "../assets/logo.svg";
+import { useNavigate } from "react-router-dom";
 
 interface AuthPageProps {
   onLogin: (user: UserAccount) => void;
@@ -34,40 +47,47 @@ interface AuthPageProps {
     password: string;
     organizationName: string;
   }) => void;
-  defaultTab?: 'signin' | 'signup'; // Optional: which tab to show by default
+  defaultTab?: "signin" | "signup"; // Optional: which tab to show by default
 }
 
-export default function AuthPage({ onLogin, onSignUp, defaultTab = 'signin' }: AuthPageProps) {
-  const [activeTab, setActiveTab] = useState<'signin' | 'signup'>(defaultTab);
+export default function AuthPage({
+  onLogin,
+  onSignUp,
+  defaultTab = "signin",
+}: AuthPageProps) {
+  const [activeTab, setActiveTab] = useState<"signin" | "signup">(defaultTab);
   const [showForgotPassword, setShowForgotPassword] = useState(false);
-  
+  const navigate = useNavigate();
+
   // Sign In State
   const [signInData, setSignInData] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
   const [showSignInPassword, setShowSignInPassword] = useState(false);
-  
+
   // Sign Up State
   const [signUpData, setSignUpData] = useState({
-    fullName: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-    organizationName: '',
+    fullName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    organizationName: "",
   });
   const [showSignUpPassword, setShowSignUpPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  
+
   // Password Reset State
-  const [resetEmail, setResetEmail] = useState('');
+  const [resetEmail, setResetEmail] = useState("");
   const [resetLoading, setResetLoading] = useState(false);
   const [resetSuccess, setResetSuccess] = useState(false);
   const [resetError, setResetError] = useState<string | null>(null);
-  
+
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [errorType, setErrorType] = useState<'validation' | 'network' | 'auth' | null>(null);
+  const [errorType, setErrorType] = useState<
+    "validation" | "network" | "auth" | null
+  >(null);
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
 
   const handleSignIn = async (e: React.FormEvent) => {
@@ -79,27 +99,30 @@ export default function AuthPage({ onLogin, onSignUp, defaultTab = 'signin' }: A
     // Validation
     const errors: Record<string, string> = {};
     if (!signInData.email) {
-      errors.email = 'Email is required';
+      errors.email = "Email is required";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(signInData.email)) {
-      errors.email = 'Please enter a valid email address';
+      errors.email = "Please enter a valid email address";
     }
     if (!signInData.password) {
-      errors.password = 'Password is required';
+      errors.password = "Password is required";
     }
 
     if (Object.keys(errors).length > 0) {
       setFieldErrors(errors);
-      setError('Please fix the errors above');
-      setErrorType('validation');
+      setError("Please fix the errors above");
+      setErrorType("validation");
       return;
     }
 
     setIsLoading(true);
-    
+
     // Show a helpful toast for first-time users
-    toast.info('Connecting to server... (first request may take 30-60 seconds)', {
-      duration: 5000,
-    });
+    toast.info(
+      "Connecting to server... (first request may take 30-60 seconds)",
+      {
+        duration: 5000,
+      }
+    );
 
     try {
       const response = await authApi.signIn({
@@ -108,43 +131,59 @@ export default function AuthPage({ onLogin, onSignUp, defaultTab = 'signin' }: A
       });
 
       // Store access token in localStorage
-      localStorage.setItem('accessToken', response.accessToken);
-      
-      toast.success('Welcome back! Signed in successfully');
+      localStorage.setItem("accessToken", response.accessToken);
+
+      toast.success("Welcome back! Signed in successfully");
       onLogin(response.user);
     } catch (err: any) {
-      console.error('Sign in error:', err);
-      
+      console.error("Sign in error:", err);
+
       // Provide more helpful error messages with error types
-      if (err.name === 'AbortError') {
-        setErrorType('network');
-        setError('⏱️ Connection timed out. The Edge Function may be cold starting (first deployment can take 60+ seconds). Please wait a moment and try again.');
-        toast.error('Connection timed out. Please try again in 30 seconds.', { duration: 6000 });
-      } else if (err.message === 'Failed to fetch') {
-        setErrorType('network');
-        setError('📡 Unable to connect to server. The Edge Function may not be deployed yet or is starting up. This can take 30-60 seconds after deployment. Please wait a moment and try again.');
-        toast.error('Server not responding. It may be deploying. Try again in 30 seconds.', { duration: 6000 });
-      } else if (err.message.includes('Invalid login credentials') || err.message.includes('Invalid email or password')) {
-        setErrorType('auth');
-        setError('Invalid email or password. Please check your credentials and try again.');
-        setFieldErrors({ 
-          email: 'Check your email', 
-          password: 'Check your password' 
+      if (err.name === "AbortError") {
+        setErrorType("network");
+        setError(
+          "⏱️ Connection timed out. The Edge Function may be cold starting (first deployment can take 60+ seconds). Please wait a moment and try again."
+        );
+        toast.error("Connection timed out. Please try again in 30 seconds.", {
+          duration: 6000,
         });
-        toast.error('Invalid credentials');
-      } else if (err.message.includes('User not found')) {
-        setErrorType('auth');
-        setError('No account found with this email. Please sign up first.');
-        setFieldErrors({ email: 'Email not registered' });
-        toast.error('Email not found');
+      } else if (err.message === "Failed to fetch") {
+        setErrorType("network");
+        setError(
+          "📡 Unable to connect to server. The Edge Function may not be deployed yet or is starting up. This can take 30-60 seconds after deployment. Please wait a moment and try again."
+        );
+        toast.error(
+          "Server not responding. It may be deploying. Try again in 30 seconds.",
+          { duration: 6000 }
+        );
+      } else if (
+        err.message.includes("Invalid login credentials") ||
+        err.message.includes("Invalid email or password")
+      ) {
+        setErrorType("auth");
+        setError(
+          "Invalid email or password. Please check your credentials and try again."
+        );
+        setFieldErrors({
+          email: "Check your email",
+          password: "Check your password",
+        });
+        toast.error("Invalid credentials");
+      } else if (err.message.includes("User not found")) {
+        setErrorType("auth");
+        setError("No account found with this email. Please sign up first.");
+        setFieldErrors({ email: "Email not registered" });
+        toast.error("Email not found");
       } else {
-        setErrorType('auth');
-        setError(err.message || 'An error occurred during sign in. Please try again.');
-        toast.error('Sign in failed');
+        setErrorType("auth");
+        setError(
+          err.message || "An error occurred during sign in. Please try again."
+        );
+        toast.error("Sign in failed");
       }
-      
+
       // Log additional debugging info
-      console.log('Full error object:', err);
+      console.log("Full error object:", err);
     } finally {
       setIsLoading(false);
     }
@@ -156,11 +195,11 @@ export default function AuthPage({ onLogin, onSignUp, defaultTab = 'signin' }: A
     setResetSuccess(false);
 
     if (!resetEmail) {
-      setResetError('Please enter your email address');
+      setResetError("Please enter your email address");
       return;
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(resetEmail)) {
-      setResetError('Please enter a valid email address');
+      setResetError("Please enter a valid email address");
       return;
     }
 
@@ -170,9 +209,9 @@ export default function AuthPage({ onLogin, onSignUp, defaultTab = 'signin' }: A
       const response = await fetch(
         `https://${projectId}.supabase.co/functions/v1/make-server-a611b057/auth/reset-password`,
         {
-          method: 'POST',
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           body: JSON.stringify({ email: resetEmail }),
         }
@@ -181,15 +220,17 @@ export default function AuthPage({ onLogin, onSignUp, defaultTab = 'signin' }: A
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || 'Failed to send reset email');
+        throw new Error(data.error || "Failed to send reset email");
       }
 
       setResetSuccess(true);
-      toast.success('Password reset email sent! Check your inbox.');
+      toast.success("Password reset email sent! Check your inbox.");
     } catch (err: any) {
-      console.error('Password reset error:', err);
-      setResetError(err.message || 'Failed to send reset email. Please try again.');
-      toast.error('Failed to send reset email');
+      console.error("Password reset error:", err);
+      setResetError(
+        err.message || "Failed to send reset email. Please try again."
+      );
+      toast.error("Failed to send reset email");
     } finally {
       setResetLoading(false);
     }
@@ -203,51 +244,55 @@ export default function AuthPage({ onLogin, onSignUp, defaultTab = 'signin' }: A
 
     // Validation
     const errors: Record<string, string> = {};
-    
+
     if (!signUpData.fullName) {
-      errors.fullName = 'Full name is required';
+      errors.fullName = "Full name is required";
     } else if (signUpData.fullName.length < 2) {
-      errors.fullName = 'Name must be at least 2 characters';
+      errors.fullName = "Name must be at least 2 characters";
     }
-    
+
     if (!signUpData.email) {
-      errors.email = 'Email is required';
+      errors.email = "Email is required";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(signUpData.email)) {
-      errors.email = 'Please enter a valid email address';
+      errors.email = "Please enter a valid email address";
     }
-    
+
     // Organization name is optional, but if provided, must be at least 2 characters
     if (signUpData.organizationName && signUpData.organizationName.length < 2) {
-      errors.organizationName = 'Organization name must be at least 2 characters';
+      errors.organizationName =
+        "Organization name must be at least 2 characters";
     }
-    
+
     if (!signUpData.password) {
-      errors.password = 'Password is required';
+      errors.password = "Password is required";
     } else if (signUpData.password.length < 8) {
-      errors.password = 'Password must be at least 8 characters long';
+      errors.password = "Password must be at least 8 characters long";
     } else if (!/(?=.*[a-z])(?=.*[A-Z])/.test(signUpData.password)) {
-      errors.password = 'Password must include uppercase and lowercase letters';
+      errors.password = "Password must include uppercase and lowercase letters";
     }
-    
+
     if (!signUpData.confirmPassword) {
-      errors.confirmPassword = 'Please confirm your password';
+      errors.confirmPassword = "Please confirm your password";
     } else if (signUpData.password !== signUpData.confirmPassword) {
-      errors.confirmPassword = 'Passwords do not match';
+      errors.confirmPassword = "Passwords do not match";
     }
 
     if (Object.keys(errors).length > 0) {
       setFieldErrors(errors);
-      setError('Please fix the errors above');
-      setErrorType('validation');
+      setError("Please fix the errors above");
+      setErrorType("validation");
       return;
     }
 
     setIsLoading(true);
-    
+
     // Show a helpful toast for first-time users
-    toast.info('Creating your account... (first request may take 30-60 seconds)', {
-      duration: 5000,
-    });
+    toast.info(
+      "Creating your account... (first request may take 30-60 seconds)",
+      {
+        duration: 5000,
+      }
+    );
 
     try {
       const response = await authApi.signUp({
@@ -258,9 +303,9 @@ export default function AuthPage({ onLogin, onSignUp, defaultTab = 'signin' }: A
       });
 
       // Store access token in localStorage
-      localStorage.setItem('accessToken', response.accessToken);
-      
-      toast.success('Account created successfully! Welcome aboard!');
+      localStorage.setItem("accessToken", response.accessToken);
+
+      toast.success("Account created successfully! Welcome aboard!");
       onSignUp({
         fullName: signUpData.fullName,
         email: signUpData.email,
@@ -268,31 +313,47 @@ export default function AuthPage({ onLogin, onSignUp, defaultTab = 'signin' }: A
         organizationName: signUpData.organizationName,
       });
     } catch (err: any) {
-      console.error('Sign up error:', err);
-      
+      console.error("Sign up error:", err);
+
       // Provide more helpful error messages with error types
-      if (err.name === 'AbortError') {
-        setErrorType('network');
-        setError('⏱️ Connection timed out. The Edge Function may be cold starting (first deployment can take 60+ seconds). Please wait a moment and try again.');
-        toast.error('Connection timed out. Please try again in 30 seconds.', { duration: 6000 });
-      } else if (err.message === 'Failed to fetch') {
-        setErrorType('network');
-        setError('📡 Unable to connect to server. The Edge Function may not be deployed yet or is starting up. This can take 30-60 seconds after deployment. Please wait a moment and try again.');
-        toast.error('Server not responding. It may be deploying. Try again in 30 seconds.', { duration: 6000 });
-      } else if (err.message.includes('already registered') || err.message.includes('User already exists')) {
-        setErrorType('auth');
-        setError('This email is already registered. Please sign in instead or use a different email.');
-        setFieldErrors({ email: 'Email already in use' });
-        toast.error('Email already registered');
-      } else if (err.message.includes('invalid email')) {
-        setErrorType('validation');
-        setError('Please enter a valid email address');
-        setFieldErrors({ email: 'Invalid email format' });
-        toast.error('Invalid email');
+      if (err.name === "AbortError") {
+        setErrorType("network");
+        setError(
+          "⏱️ Connection timed out. The Edge Function may be cold starting (first deployment can take 60+ seconds). Please wait a moment and try again."
+        );
+        toast.error("Connection timed out. Please try again in 30 seconds.", {
+          duration: 6000,
+        });
+      } else if (err.message === "Failed to fetch") {
+        setErrorType("network");
+        setError(
+          "📡 Unable to connect to server. The Edge Function may not be deployed yet or is starting up. This can take 30-60 seconds after deployment. Please wait a moment and try again."
+        );
+        toast.error(
+          "Server not responding. It may be deploying. Try again in 30 seconds.",
+          { duration: 6000 }
+        );
+      } else if (
+        err.message.includes("already registered") ||
+        err.message.includes("User already exists")
+      ) {
+        setErrorType("auth");
+        setError(
+          "This email is already registered. Please sign in instead or use a different email."
+        );
+        setFieldErrors({ email: "Email already in use" });
+        toast.error("Email already registered");
+      } else if (err.message.includes("invalid email")) {
+        setErrorType("validation");
+        setError("Please enter a valid email address");
+        setFieldErrors({ email: "Invalid email format" });
+        toast.error("Invalid email");
       } else {
-        setErrorType('auth');
-        setError(err.message || 'An error occurred during sign up. Please try again.');
-        toast.error('Sign up failed');
+        setErrorType("auth");
+        setError(
+          err.message || "An error occurred during sign up. Please try again."
+        );
+        toast.error("Sign up failed");
       }
     } finally {
       setIsLoading(false);
@@ -300,22 +361,22 @@ export default function AuthPage({ onLogin, onSignUp, defaultTab = 'signin' }: A
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-linear-to-b from-[#FFCB9E52] to-[#FFFBF8] min-h-screen relative border border-red-500">
-      <div className="border border-green-500">
-        <div className="absolute blur-sm -top-26 -left-30 bg-linear-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-100 w-12 -rotate-45" />
-        <div className="absolute blur-sm top-20 -left-40 bg-linear-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-100 w-12 -rotate-45" />
-        <div className="absolute blur-sm -top-10 -left-33 bg-linear-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-100 w-12 -rotate-45" />
-        <div className="absolute blur-sm -top-37 -left-21 bg-linear-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-100 w-12 -rotate-45" />
-        <div className="absolute blur-sm -top-37 left-5 bg-linear-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-100 w-12 -rotate-45" />
-        <div className="absolute blur-sm -top-26 -right-30 bg-linear-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-100 w-12 rotate-45" />
-        <div className="absolute blur-sm top-20 -right-40 bg-linear-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-100 w-12 rotate-45" />
-        <div className="absolute blur-sm -top-10 -right-33 bg-linear-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-100 w-12 rotate-45" />
-        <div className="absolute blur-sm -top-37 -right-21 bg-linear-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-100 w-12 rotate-45" />
-        <div className="absolute blur-sm -top-37 right-5 bg-linear-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-100 w-12 rotate-45" />
+    <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-b from-[#FFCB9E52] to-[#FFFBF8] relative">
+      <div className="">
+        <div className="absolute blur-sm -top-[26px] -left-[30px] bg-gradient-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-[100px] w-12 -rotate-45" />
+        <div className="absolute blur-sm top-20 -left-[40px] bg-gradient-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-[100px] w-12 -rotate-45" />
+        <div className="absolute blur-sm -top-[10px] -left-[33px] bg-gradient-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-[100px] w-12 -rotate-45" />
+        <div className="absolute blur-sm -top-[37px] -left-[21px] bg-gradient-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-[100px] w-12 -rotate-45" />
+        <div className="absolute blur-sm -top-[37px] left-5 bg-gradient-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-[100px] w-12 -rotate-45" />
+        <div className="absolute blur-sm -top-[26px] -right-[30px] bg-gradient-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-[100px] w-12 rotate-45" />
+        <div className="absolute blur-sm top-20 -right-[40px] bg-gradient-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-[100px] w-12 rotate-45" />
+        <div className="absolute blur-sm -top-[10px] -right-[33px] bg-gradient-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-[100px] w-12 rotate-45" />
+        <div className="absolute blur-sm -top-[37px] -right-[21px] bg-gradient-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-[100px] w-12 rotate-45" />
+        <div className="absolute blur-sm -top-[37px] right-5 bg-gradient-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-[100px] w-12 rotate-45" />
       </div>
-      <div className="w-full max-w-6xl border border-red-700">
+      <div className="w-full max-w-6xl">
         {/* Header */}
-        <div className="text-center mb-8">
+        <div className="text-center mb-8  ">
           <div className="flex flex-col items-center justify-center gap-3 mb-4">
             <div className="p-3 rounded-lg shadow-sm ">
               <img src={logo} alt="Certifyer Logo" className="w-12 h-12" />
@@ -484,9 +545,9 @@ export default function AuthPage({ onLogin, onSignUp, defaultTab = 'signin' }: A
                             <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2" />
                             Signing In...
                           </div>
-                          <span className="text-xs opacity-75">
+                          {/* <span className="text-xs opacity-75">
                             First request may take 30-60 seconds
-                          </span>
+                          </span> */}
                         </div>
                       ) : (
                         <>
@@ -494,6 +555,14 @@ export default function AuthPage({ onLogin, onSignUp, defaultTab = 'signin' }: A
                           Sign In
                         </>
                       )}
+                    </Button>
+                    <Button
+                      type="button"
+                      onClick={() => navigate("/")}
+                      className="w-full h-11 bg-orange-500 rounded-sm text-white px-5 py-2 cursor-pointer z-50"
+                      aria-label="Back to home"
+                    >
+                      ← Back to Home
                     </Button>
 
                     <div className="text-center mt-4">
@@ -788,9 +857,6 @@ export default function AuthPage({ onLogin, onSignUp, defaultTab = 'signin' }: A
                             <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2" />
                             Creating Account...
                           </div>
-                          <span className="text-xs opacity-75">
-                            First request may take 30-60 seconds
-                          </span>
                         </div>
                       ) : (
                         <>
@@ -799,10 +865,17 @@ export default function AuthPage({ onLogin, onSignUp, defaultTab = 'signin' }: A
                         </>
                       )}
                     </Button>
+                    <Button
+                      type="button"
+                      onClick={() => navigate("/")}
+                      className="w-full h-11 bg-orange-500 rounded-sm text-white px-5 py-2 cursor-pointer z-50"
+                      aria-label="Back to home"
+                    >
+                      ← Back to Home
+                    </Button>
 
                     <p className="text-xs text-gray-500 text-center mt-4">
-                      By signing up, you agree to use this platform responsibly
-                      for certificate management.
+                      By signing up, you agree to use this platform responsibly, and Genomac Innovation Hub reserves their rights.
                     </p>
                   </form>
                 )}
@@ -865,14 +938,13 @@ export default function AuthPage({ onLogin, onSignUp, defaultTab = 'signin' }: A
                 <div className="flex gap-2">
                   <Button
                     type="button"
-                    variant="outline"
                     onClick={() => {
                       setShowForgotPassword(false);
                       setResetEmail("");
                       setResetError(null);
                     }}
                     disabled={resetLoading}
-                    className="flex-1"
+                    className="flex-1 border border-gray-200"
                   >
                     <ArrowLeft className="w-4 h-4 mr-2" />
                     Back

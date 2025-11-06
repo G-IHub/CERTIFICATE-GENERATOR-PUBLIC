@@ -1,19 +1,31 @@
-import React, { useState, useRef } from 'react';
-import { Button } from './ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
-import { Input } from './ui/input';
-import { Label } from './ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
-import { Slider } from './ui/slider';
-import { Switch } from './ui/switch';
-import { Badge } from './ui/badge';
-import { Separator } from './ui/separator';
-import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
-import { 
-  Palette, 
-  Type, 
-  Sparkles, 
-  Save, 
+import React, { useState, useRef } from "react";
+import { Button } from "./ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "./ui/card";
+import { Input } from "./ui/input";
+import { Label } from "./ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./ui/select";
+import { Slider } from "./ui/slider";
+import { Switch } from "./ui/switch";
+import { Badge } from "./ui/badge";
+import { Separator } from "./ui/separator";
+import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
+import {
+  Palette,
+  Type,
+  Sparkles,
+  Save,
   Eye,
   Crown,
   Award,
@@ -28,29 +40,29 @@ import {
   X,
   Plus,
   Image as ImageIcon,
-  Edit2
-} from 'lucide-react';
-import { toast } from 'sonner';
-import type { Organization, Program } from '../App';
+  Edit2,
+} from "lucide-react";
+import { toast } from "sonner";
+import type { Organization, Program } from "../App";
 
 interface CustomTemplateConfig {
   id: string;
   name: string;
   description: string;
-  
+
   // Layout
   layout: {
     margins: number;
     padding: number;
     borderWidth: number;
-    borderStyle: 'solid' | 'double' | 'dashed' | 'dotted';
+    borderStyle: "solid" | "double" | "dashed" | "dotted";
     borderRadius: number;
   };
-  
+
   // Colors
   colors: {
     background: string;
-    backgroundType: 'solid' | 'gradient';
+    backgroundType: "solid" | "gradient";
     gradientFrom?: string;
     gradientTo?: string;
     gradientDirection?: string;
@@ -58,7 +70,7 @@ interface CustomTemplateConfig {
     textColor: string;
     borderColor: string;
   };
-  
+
   // Typography
   typography: {
     headingFont: string;
@@ -68,7 +80,7 @@ interface CustomTemplateConfig {
     headingWeight: string;
     bodyWeight: string;
   };
-  
+
   // Content - Editable text
   content: {
     title: string;
@@ -76,7 +88,7 @@ interface CustomTemplateConfig {
     recipientLabel: string;
     completionText: string;
   };
-  
+
   // Elements - Toggle features
   elements: {
     showLogo: boolean;
@@ -84,11 +96,14 @@ interface CustomTemplateConfig {
     showSeal: boolean;
     showWatermark: boolean;
     cornerStyle: string;
-    sealIcon: 'award' | 'shield' | 'star' | 'crown' | 'hexagon';
-    sealPosition: 'bottom-right' | 'bottom-left' | 'top-right' | 'center';
+    sealIcon: "award" | "shield" | "star" | "crown" | "hexagon";
+    sealPosition: "bottom-right" | "bottom-left" | "top-right" | "center";
     watermarkOpacity: number;
     signatureCount: 1 | 2 | 3;
   };
+  // Assets
+  organizationLogo?: string;
+  signatureUrls?: string[];
 }
 
 interface TemplateBuilderProps {
@@ -104,46 +119,47 @@ const TemplateBuilder: React.FC<TemplateBuilderProps> = ({
   onSave,
   onCancel,
   existingTemplate,
-  isPremiumUser = false
+  isPremiumUser = false,
 }) => {
   // Default configuration
   const defaultConfig: CustomTemplateConfig = {
     id: existingTemplate?.id || `custom-${Date.now()}`,
-    name: existingTemplate?.name || 'My Custom Template',
-    description: existingTemplate?.description || 'A custom certificate template',
+    name: existingTemplate?.name || "My Custom Template",
+    description:
+      existingTemplate?.description || "A custom certificate template",
     layout: {
       margins: 40,
       padding: 60,
       borderWidth: 4,
-      borderStyle: 'solid',
+      borderStyle: "solid",
       borderRadius: 12,
       ...existingTemplate?.layout,
     },
     colors: {
-      background: '#ffffff',
-      backgroundType: 'gradient',
-      gradientFrom: '#dbeafe',
-      gradientTo: '#bfdbfe',
-      gradientDirection: 'to-br',
-      accentColor: '#ea580c',
-      textColor: '#1f2937',
-      borderColor: '#d1d5db',
+      background: "#ffffff",
+      backgroundType: "gradient",
+      gradientFrom: "#dbeafe",
+      gradientTo: "#bfdbfe",
+      gradientDirection: "to-br",
+      accentColor: "#ea580c",
+      textColor: "#1f2937",
+      borderColor: "#d1d5db",
       ...existingTemplate?.colors,
     },
     typography: {
-      headingFont: 'serif',
-      bodyFont: 'sans-serif',
-      headingSize: '3xl',
-      bodySize: 'base',
-      headingWeight: '700',
-      bodyWeight: '400',
+      headingFont: "serif",
+      bodyFont: "sans-serif",
+      headingSize: "3xl",
+      bodySize: "base",
+      headingWeight: "700",
+      bodyWeight: "400",
       ...existingTemplate?.typography,
     },
     content: {
-      title: 'CERTIFICATE OF COMPLETION',
-      subtitle: 'This is to certify that',
-      recipientLabel: 'has successfully completed',
-      completionText: 'Sample Program',
+      title: "CERTIFICATE OF COMPLETION",
+      subtitle: "This is to certify that",
+      recipientLabel: "has successfully completed",
+      completionText: "Sample Program",
       ...existingTemplate?.content,
     },
     elements: {
@@ -151,13 +167,17 @@ const TemplateBuilder: React.FC<TemplateBuilderProps> = ({
       showCorners: true,
       showSeal: true,
       showWatermark: false,
-      cornerStyle: 'rounded',
-      sealIcon: 'award',
-      sealPosition: 'bottom-right',
+      cornerStyle: "rounded",
+      sealIcon: "award",
+      sealPosition: "bottom-right",
       watermarkOpacity: 5,
       signatureCount: 2,
       ...existingTemplate?.elements,
     },
+    // Assets
+    organizationLogo:
+      existingTemplate?.organizationLogo || organization?.logo || "",
+    signatureUrls: existingTemplate?.signatureUrls || [],
   };
 
   const [config, setConfig] = useState<CustomTemplateConfig>(defaultConfig);
@@ -166,22 +186,22 @@ const TemplateBuilder: React.FC<TemplateBuilderProps> = ({
 
   // Sample program for preview
   const sampleProgram: Program = {
-    id: 'sample-1',
+    id: "sample-1",
     name: config.content.completionText,
-    template: 'modern',
+    template: "modern",
     certificates: 0,
     testimonials: 0,
-    description: 'This is a preview of your custom template',
+    description: "This is a preview of your custom template",
   };
 
   // Update config helper
   const updateConfig = (section: keyof CustomTemplateConfig, updates: any) => {
-    setConfig(prev => ({
+    setConfig((prev) => ({
       ...prev,
       [section]: {
         ...prev[section as keyof typeof prev],
-        ...updates
-      }
+        ...updates,
+      },
     }));
     setSaved(false);
   };
@@ -192,19 +212,19 @@ const TemplateBuilder: React.FC<TemplateBuilderProps> = ({
       onSave(config);
     }
     setSaved(true);
-    toast.success('Template saved successfully!');
+    toast.success("Template saved successfully!");
   };
 
   // Handle export
   const handleExport = () => {
     const dataStr = JSON.stringify(config, null, 2);
-    const dataBlob = new Blob([dataStr], { type: 'application/json' });
+    const dataBlob = new Blob([dataStr], { type: "application/json" });
     const url = URL.createObjectURL(dataBlob);
-    const link = document.createElement('a');
+    const link = document.createElement("a");
     link.href = url;
-    link.download = `${config.name.replace(/\s+/g, '-').toLowerCase()}.json`;
+    link.download = `${config.name.replace(/\s+/g, "-").toLowerCase()}.json`;
     link.click();
-    toast.success('Template exported!');
+    toast.success("Template exported!");
   };
 
   // Handle import
@@ -217,9 +237,9 @@ const TemplateBuilder: React.FC<TemplateBuilderProps> = ({
       try {
         const imported = JSON.parse(event.target?.result as string);
         setConfig(imported);
-        toast.success('Template imported!');
+        toast.success("Template imported!");
       } catch (error) {
-        toast.error('Failed to import template');
+        toast.error("Failed to import template");
       }
     };
     reader.readAsText(file);
@@ -227,12 +247,12 @@ const TemplateBuilder: React.FC<TemplateBuilderProps> = ({
 
   // Preset color schemes
   const colorPresets = [
-    { name: 'Ocean', from: '#dbeafe', to: '#bfdbfe', accent: '#3b82f6' },
-    { name: 'Sunset', from: '#fed7aa', to: '#fdba74', accent: '#ea580c' },
-    { name: 'Forest', from: '#d1fae5', to: '#a7f3d0', accent: '#059669' },
-    { name: 'Royal', from: '#e9d5ff', to: '#d8b4fe', accent: '#9333ea' },
-    { name: 'Rose', from: '#fce7f3', to: '#fbcfe8', accent: '#ec4899' },
-    { name: 'Minimal', from: '#f9fafb', to: '#f3f4f6', accent: '#1f2937' },
+    { name: "Ocean", from: "#dbeafe", to: "#bfdbfe", accent: "#3b82f6" },
+    { name: "Sunset", from: "#fed7aa", to: "#fdba74", accent: "#ea580c" },
+    { name: "Forest", from: "#d1fae5", to: "#a7f3d0", accent: "#059669" },
+    { name: "Royal", from: "#e9d5ff", to: "#d8b4fe", accent: "#9333ea" },
+    { name: "Rose", from: "#fce7f3", to: "#fbcfe8", accent: "#ec4899" },
+    { name: "Minimal", from: "#f9fafb", to: "#f3f4f6", accent: "#1f2937" },
   ];
 
   return (
@@ -275,7 +295,11 @@ const TemplateBuilder: React.FC<TemplateBuilderProps> = ({
                   onChange={handleImport}
                 />
               </label>
-              <Button variant="outline" size="sm" onClick={() => setConfig(defaultConfig)}>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setConfig(defaultConfig)}
+              >
                 <RotateCcw className="w-4 h-4 mr-2" />
                 Reset
               </Button>
@@ -296,7 +320,6 @@ const TemplateBuilder: React.FC<TemplateBuilderProps> = ({
       {/* Main Content - Side by Side */}
       <div className="max-w-7xl mx-auto p-6">
         <div className="grid lg:grid-cols-[400px,1fr] gap-6">
-          
           {/* Quick Settings Panel */}
           <div className="space-y-4">
             <Card>
@@ -308,7 +331,9 @@ const TemplateBuilder: React.FC<TemplateBuilderProps> = ({
                   <Label>Template Name</Label>
                   <Input
                     value={config.name}
-                    onChange={(e) => setConfig(prev => ({ ...prev, name: e.target.value }))}
+                    onChange={(e) =>
+                      setConfig((prev) => ({ ...prev, name: e.target.value }))
+                    }
                     placeholder="My Custom Template"
                   />
                 </div>
@@ -316,8 +341,42 @@ const TemplateBuilder: React.FC<TemplateBuilderProps> = ({
                   <Label>Description</Label>
                   <Input
                     value={config.description}
-                    onChange={(e) => setConfig(prev => ({ ...prev, description: e.target.value }))}
+                    onChange={(e) =>
+                      setConfig((prev) => ({
+                        ...prev,
+                        description: e.target.value,
+                      }))
+                    }
                     placeholder="Template description"
+                  />
+                </div>
+                <div>
+                  <Label>Organization Logo URL</Label>
+                  <Input
+                    value={config.organizationLogo || ""}
+                    onChange={(e) =>
+                      setConfig((prev) => ({
+                        ...prev,
+                        organizationLogo: e.target.value,
+                      }))
+                    }
+                    placeholder="https://cdn.example.com/logo.png"
+                  />
+                </div>
+                <div>
+                  <Label>Signature URLs (comma separated)</Label>
+                  <Input
+                    value={(config.signatureUrls || []).join(",")}
+                    onChange={(e) =>
+                      setConfig((prev) => ({
+                        ...prev,
+                        signatureUrls: e.target.value
+                          .split(",")
+                          .map((s) => s.trim())
+                          .filter(Boolean),
+                      }))
+                    }
+                    placeholder="https://.../sig1.png, https://.../sig2.png"
                   />
                 </div>
               </CardContent>
@@ -332,25 +391,27 @@ const TemplateBuilder: React.FC<TemplateBuilderProps> = ({
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-2 gap-2">
-                  {colorPresets.map(preset => (
+                  {colorPresets.map((preset) => (
                     <Button
                       key={preset.name}
                       variant="outline"
                       size="sm"
-                      onClick={() => updateConfig('colors', {
-                        backgroundType: 'gradient',
-                        gradientFrom: preset.from,
-                        gradientTo: preset.to,
-                        accentColor: preset.accent,
-                      })}
+                      onClick={() =>
+                        updateConfig("colors", {
+                          backgroundType: "gradient",
+                          gradientFrom: preset.from,
+                          gradientTo: preset.to,
+                          accentColor: preset.accent,
+                        })
+                      }
                       className="h-auto py-3 flex flex-col items-center gap-1"
                     >
                       <div className="flex gap-1 mb-1">
-                        <div 
+                        <div
                           className="w-4 h-4 rounded-full border"
                           style={{ background: preset.from }}
                         />
-                        <div 
+                        <div
                           className="w-4 h-4 rounded-full border"
                           style={{ background: preset.to }}
                         />
@@ -372,40 +433,56 @@ const TemplateBuilder: React.FC<TemplateBuilderProps> = ({
                   <Label className="text-sm">Organization Logo</Label>
                   <Switch
                     checked={config.elements.showLogo}
-                    onCheckedChange={(checked) => updateConfig('elements', { showLogo: checked })}
+                    onCheckedChange={(checked) =>
+                      updateConfig("elements", { showLogo: checked })
+                    }
                   />
                 </div>
                 <div className="flex items-center justify-between">
                   <Label className="text-sm">Decorative Corners</Label>
                   <Switch
                     checked={config.elements.showCorners}
-                    onCheckedChange={(checked) => updateConfig('elements', { showCorners: checked })}
+                    onCheckedChange={(checked) =>
+                      updateConfig("elements", { showCorners: checked })
+                    }
                   />
                 </div>
                 <div className="flex items-center justify-between">
                   <Label className="text-sm">Certificate Seal</Label>
                   <Switch
                     checked={config.elements.showSeal}
-                    onCheckedChange={(checked) => updateConfig('elements', { showSeal: checked })}
+                    onCheckedChange={(checked) =>
+                      updateConfig("elements", { showSeal: checked })
+                    }
                   />
                 </div>
                 {config.elements.showSeal && (
                   <div>
                     <Label className="text-xs text-gray-500">Seal Icon</Label>
                     <div className="grid grid-cols-5 gap-1 mt-2">
-                      {(['award', 'shield', 'star', 'crown', 'hexagon'] as const).map(icon => (
+                      {(
+                        ["award", "shield", "star", "crown", "hexagon"] as const
+                      ).map((icon) => (
                         <Button
                           key={icon}
-                          variant={config.elements.sealIcon === icon ? 'default' : 'outline'}
+                          variant={
+                            config.elements.sealIcon === icon
+                              ? "default"
+                              : "outline"
+                          }
                           size="sm"
-                          onClick={() => updateConfig('elements', { sealIcon: icon })}
+                          onClick={() =>
+                            updateConfig("elements", { sealIcon: icon })
+                          }
                           className="p-2 h-auto"
                         >
-                          {icon === 'award' && <Award className="w-4 h-4" />}
-                          {icon === 'shield' && <Shield className="w-4 h-4" />}
-                          {icon === 'star' && <Star className="w-4 h-4" />}
-                          {icon === 'crown' && <Crown className="w-4 h-4" />}
-                          {icon === 'hexagon' && <Hexagon className="w-4 h-4" />}
+                          {icon === "award" && <Award className="w-4 h-4" />}
+                          {icon === "shield" && <Shield className="w-4 h-4" />}
+                          {icon === "star" && <Star className="w-4 h-4" />}
+                          {icon === "crown" && <Crown className="w-4 h-4" />}
+                          {icon === "hexagon" && (
+                            <Hexagon className="w-4 h-4" />
+                          )}
                         </Button>
                       ))}
                     </div>
@@ -415,12 +492,18 @@ const TemplateBuilder: React.FC<TemplateBuilderProps> = ({
                 <div>
                   <Label className="text-sm">Number of Signatures</Label>
                   <div className="grid grid-cols-3 gap-2 mt-2">
-                    {[1, 2, 3].map(num => (
+                    {[1, 2, 3].map((num) => (
                       <Button
                         key={num}
-                        variant={config.elements.signatureCount === num ? 'default' : 'outline'}
+                        variant={
+                          config.elements.signatureCount === num
+                            ? "default"
+                            : "outline"
+                        }
                         size="sm"
-                        onClick={() => updateConfig('elements', { signatureCount: num })}
+                        onClick={() =>
+                          updateConfig("elements", { signatureCount: num })
+                        }
                       >
                         {num}
                       </Button>
@@ -436,10 +519,14 @@ const TemplateBuilder: React.FC<TemplateBuilderProps> = ({
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
-                  <Label className="text-sm">Border Width: {config.layout.borderWidth}px</Label>
+                  <Label className="text-sm">
+                    Border Width: {config.layout.borderWidth}px
+                  </Label>
                   <Slider
                     value={[config.layout.borderWidth]}
-                    onValueChange={([value]) => updateConfig('layout', { borderWidth: value })}
+                    onValueChange={([value]) =>
+                      updateConfig("layout", { borderWidth: value })
+                    }
                     min={0}
                     max={20}
                     step={1}
@@ -447,10 +534,14 @@ const TemplateBuilder: React.FC<TemplateBuilderProps> = ({
                   />
                 </div>
                 <div>
-                  <Label className="text-sm">Border Radius: {config.layout.borderRadius}px</Label>
+                  <Label className="text-sm">
+                    Border Radius: {config.layout.borderRadius}px
+                  </Label>
                   <Slider
                     value={[config.layout.borderRadius]}
-                    onValueChange={([value]) => updateConfig('layout', { borderRadius: value })}
+                    onValueChange={([value]) =>
+                      updateConfig("layout", { borderRadius: value })
+                    }
                     min={0}
                     max={50}
                     step={2}
@@ -476,7 +567,7 @@ const TemplateBuilder: React.FC<TemplateBuilderProps> = ({
               <CardContent>
                 <div className="bg-gray-100 p-6 rounded-lg">
                   {/* Certificate Preview */}
-                  <div 
+                  <div
                     className="bg-white rounded-lg shadow-xl overflow-hidden relative"
                     style={{
                       margin: `${config.layout.margins}px`,
@@ -485,30 +576,31 @@ const TemplateBuilder: React.FC<TemplateBuilderProps> = ({
                       borderStyle: config.layout.borderStyle,
                       borderColor: config.colors.borderColor,
                       borderRadius: `${config.layout.borderRadius}px`,
-                      background: config.colors.backgroundType === 'gradient'
-                        ? `linear-gradient(${config.colors.gradientDirection}, ${config.colors.gradientFrom}, ${config.colors.gradientTo})`
-                        : config.colors.background,
+                      background:
+                        config.colors.backgroundType === "gradient"
+                          ? `linear-gradient(${config.colors.gradientDirection}, ${config.colors.gradientFrom}, ${config.colors.gradientTo})`
+                          : config.colors.background,
                     }}
                   >
                     {/* Decorative Corners */}
                     {config.elements.showCorners && (
                       <>
-                        <div 
-                          className="absolute top-4 left-4 w-12 h-12 opacity-20"
-                        >
-                          <div 
+                        <div className="absolute top-4 left-4 w-12 h-12 opacity-20">
+                          <div
                             className={`w-full h-full border-t-4 border-l-4 ${
-                              config.elements.cornerStyle === 'rounded' ? 'rounded-tl-2xl' : ''
+                              config.elements.cornerStyle === "rounded"
+                                ? "rounded-tl-2xl"
+                                : ""
                             }`}
                             style={{ borderColor: config.colors.accentColor }}
                           />
                         </div>
-                        <div 
-                          className="absolute top-4 right-4 w-12 h-12 opacity-20"
-                        >
-                          <div 
+                        <div className="absolute top-4 right-4 w-12 h-12 opacity-20">
+                          <div
                             className={`w-full h-full border-t-4 border-r-4 ${
-                              config.elements.cornerStyle === 'rounded' ? 'rounded-tr-2xl' : ''
+                              config.elements.cornerStyle === "rounded"
+                                ? "rounded-tr-2xl"
+                                : ""
                             }`}
                             style={{ borderColor: config.colors.accentColor }}
                           />
@@ -521,8 +613,8 @@ const TemplateBuilder: React.FC<TemplateBuilderProps> = ({
                       <div className="mb-6">
                         {config.elements.showLogo && organization.logo ? (
                           <div className="relative group">
-                            <img 
-                              src={organization.logo} 
+                            <img
+                              src={organization.logo}
                               alt={organization.name}
                               className="h-12 w-auto mx-auto mb-3"
                             />
@@ -531,7 +623,9 @@ const TemplateBuilder: React.FC<TemplateBuilderProps> = ({
                                 size="sm"
                                 variant="destructive"
                                 className="h-6 w-6 p-0 rounded-full"
-                                onClick={() => updateConfig('elements', { showLogo: false })}
+                                onClick={() =>
+                                  updateConfig("elements", { showLogo: false })
+                                }
                               >
                                 <X className="w-3 h-3" />
                               </Button>
@@ -539,25 +633,29 @@ const TemplateBuilder: React.FC<TemplateBuilderProps> = ({
                           </div>
                         ) : (
                           config.elements.showLogo && (
-                            <div 
-                              onClick={() => toast.info('Upload a logo in Organization Settings')}
+                            <div
+                              onClick={() =>
+                                toast.info(
+                                  "Upload a logo in Organization Settings"
+                                )
+                              }
                               className="h-12 w-32 mx-auto mb-3 border-2 border-dashed border-gray-300 rounded flex items-center justify-center cursor-pointer hover:border-orange-400 transition-colors"
                             >
                               <ImageIcon className="w-6 h-6 text-gray-400" />
                             </div>
                           )
                         )}
-                        
+
                         {/* Organization Name - Editable */}
                         <Popover>
                           <PopoverTrigger asChild>
-                            <h2 
+                            <h2
                               className="cursor-pointer hover:opacity-75 transition-opacity group relative"
-                              style={{ 
+                              style={{
                                 fontFamily: config.typography.headingFont,
                                 fontSize: `var(--text-${config.typography.headingSize})`,
                                 fontWeight: config.typography.headingWeight,
-                                color: config.colors.textColor
+                                color: config.colors.textColor,
                               }}
                             >
                               {organization.name}
@@ -571,15 +669,23 @@ const TemplateBuilder: React.FC<TemplateBuilderProps> = ({
                                 <Label className="text-xs">Font Family</Label>
                                 <Select
                                   value={config.typography.headingFont}
-                                  onValueChange={(value) => updateConfig('typography', { headingFont: value })}
+                                  onValueChange={(value) =>
+                                    updateConfig("typography", {
+                                      headingFont: value,
+                                    })
+                                  }
                                 >
                                   <SelectTrigger className="h-8 text-sm">
                                     <SelectValue />
                                   </SelectTrigger>
                                   <SelectContent>
                                     <SelectItem value="serif">Serif</SelectItem>
-                                    <SelectItem value="sans-serif">Sans Serif</SelectItem>
-                                    <SelectItem value="monospace">Monospace</SelectItem>
+                                    <SelectItem value="sans-serif">
+                                      Sans Serif
+                                    </SelectItem>
+                                    <SelectItem value="monospace">
+                                      Monospace
+                                    </SelectItem>
                                   </SelectContent>
                                 </Select>
                               </div>
@@ -591,15 +697,20 @@ const TemplateBuilder: React.FC<TemplateBuilderProps> = ({
                       {/* Certificate Content */}
                       <div className="space-y-4">
                         {/* Title - Editable */}
-                        <Popover open={editingText === 'title'} onOpenChange={(open) => setEditingText(open ? 'title' : null)}>
+                        <Popover
+                          open={editingText === "title"}
+                          onOpenChange={(open) =>
+                            setEditingText(open ? "title" : null)
+                          }
+                        >
                           <PopoverTrigger asChild>
-                            <h1 
+                            <h1
                               className="cursor-pointer hover:bg-gray-100/50 px-4 py-2 rounded transition-all group relative"
-                              style={{ 
+                              style={{
                                 fontFamily: config.typography.headingFont,
                                 fontSize: `var(--text-${config.typography.headingSize})`,
                                 fontWeight: config.typography.headingWeight,
-                                color: config.colors.accentColor
+                                color: config.colors.accentColor,
                               }}
                             >
                               {config.content.title}
@@ -611,14 +722,22 @@ const TemplateBuilder: React.FC<TemplateBuilderProps> = ({
                               <h4>Edit Title</h4>
                               <Input
                                 value={config.content.title}
-                                onChange={(e) => updateConfig('content', { title: e.target.value })}
+                                onChange={(e) =>
+                                  updateConfig("content", {
+                                    title: e.target.value,
+                                  })
+                                }
                                 placeholder="CERTIFICATE OF COMPLETION"
                               />
                               <div>
                                 <Label className="text-xs">Font Size</Label>
                                 <Select
                                   value={config.typography.headingSize}
-                                  onValueChange={(value) => updateConfig('typography', { headingSize: value })}
+                                  onValueChange={(value) =>
+                                    updateConfig("typography", {
+                                      headingSize: value,
+                                    })
+                                  }
                                 >
                                   <SelectTrigger className="h-8 text-sm">
                                     <SelectValue />
@@ -637,24 +756,33 @@ const TemplateBuilder: React.FC<TemplateBuilderProps> = ({
                                 <Input
                                   type="color"
                                   value={config.colors.accentColor}
-                                  onChange={(e) => updateConfig('colors', { accentColor: e.target.value })}
+                                  onChange={(e) =>
+                                    updateConfig("colors", {
+                                      accentColor: e.target.value,
+                                    })
+                                  }
                                   className="h-10"
                                 />
                               </div>
                             </div>
                           </PopoverContent>
                         </Popover>
-                        
+
                         {/* Subtitle - Editable */}
-                        <Popover open={editingText === 'subtitle'} onOpenChange={(open) => setEditingText(open ? 'subtitle' : null)}>
+                        <Popover
+                          open={editingText === "subtitle"}
+                          onOpenChange={(open) =>
+                            setEditingText(open ? "subtitle" : null)
+                          }
+                        >
                           <PopoverTrigger asChild>
-                            <p 
+                            <p
                               className="cursor-pointer hover:bg-gray-100/50 px-4 py-1 rounded transition-all group"
-                              style={{ 
+                              style={{
                                 fontFamily: config.typography.bodyFont,
                                 fontSize: `var(--text-${config.typography.bodySize})`,
                                 fontWeight: config.typography.bodyWeight,
-                                color: config.colors.textColor
+                                color: config.colors.textColor,
                               }}
                             >
                               {config.content.subtitle}
@@ -666,17 +794,21 @@ const TemplateBuilder: React.FC<TemplateBuilderProps> = ({
                               <h4>Edit Subtitle</h4>
                               <Input
                                 value={config.content.subtitle}
-                                onChange={(e) => updateConfig('content', { subtitle: e.target.value })}
+                                onChange={(e) =>
+                                  updateConfig("content", {
+                                    subtitle: e.target.value,
+                                  })
+                                }
                                 placeholder="This is to certify that"
                               />
                             </div>
                           </PopoverContent>
                         </Popover>
-                        
+
                         {/* Recipient Name */}
-                        <h2 
+                        <h2
                           className="text-gray-400 italic"
-                          style={{ 
+                          style={{
                             fontFamily: config.typography.headingFont,
                             fontSize: `var(--text-${config.typography.headingSize})`,
                             fontWeight: config.typography.headingWeight,
@@ -684,17 +816,22 @@ const TemplateBuilder: React.FC<TemplateBuilderProps> = ({
                         >
                           [Recipient Name]
                         </h2>
-                        
+
                         {/* Completion Label - Editable */}
-                        <Popover open={editingText === 'completion'} onOpenChange={(open) => setEditingText(open ? 'completion' : null)}>
+                        <Popover
+                          open={editingText === "completion"}
+                          onOpenChange={(open) =>
+                            setEditingText(open ? "completion" : null)
+                          }
+                        >
                           <PopoverTrigger asChild>
-                            <p 
+                            <p
                               className="cursor-pointer hover:bg-gray-100/50 px-4 py-1 rounded transition-all group"
-                              style={{ 
+                              style={{
                                 fontFamily: config.typography.bodyFont,
                                 fontSize: `var(--text-${config.typography.bodySize})`,
                                 fontWeight: config.typography.bodyWeight,
-                                color: config.colors.textColor
+                                color: config.colors.textColor,
                               }}
                             >
                               {config.content.recipientLabel}
@@ -706,22 +843,31 @@ const TemplateBuilder: React.FC<TemplateBuilderProps> = ({
                               <h4>Edit Completion Label</h4>
                               <Input
                                 value={config.content.recipientLabel}
-                                onChange={(e) => updateConfig('content', { recipientLabel: e.target.value })}
+                                onChange={(e) =>
+                                  updateConfig("content", {
+                                    recipientLabel: e.target.value,
+                                  })
+                                }
                                 placeholder="has successfully completed"
                               />
                             </div>
                           </PopoverContent>
                         </Popover>
-                        
+
                         {/* Program Name - Editable */}
-                        <Popover open={editingText === 'program'} onOpenChange={(open) => setEditingText(open ? 'program' : null)}>
+                        <Popover
+                          open={editingText === "program"}
+                          onOpenChange={(open) =>
+                            setEditingText(open ? "program" : null)
+                          }
+                        >
                           <PopoverTrigger asChild>
-                            <h3 
+                            <h3
                               className="cursor-pointer hover:bg-gray-100/50 px-4 py-1 rounded transition-all group"
-                              style={{ 
+                              style={{
                                 fontFamily: config.typography.headingFont,
                                 fontWeight: config.typography.headingWeight,
-                                color: config.colors.accentColor
+                                color: config.colors.accentColor,
                               }}
                             >
                               {config.content.completionText}
@@ -733,7 +879,11 @@ const TemplateBuilder: React.FC<TemplateBuilderProps> = ({
                               <h4>Edit Program/Course Name</h4>
                               <Input
                                 value={config.content.completionText}
-                                onChange={(e) => updateConfig('content', { completionText: e.target.value })}
+                                onChange={(e) =>
+                                  updateConfig("content", {
+                                    completionText: e.target.value,
+                                  })
+                                }
                                 placeholder="Professional Development Program"
                               />
                             </div>
@@ -742,15 +892,24 @@ const TemplateBuilder: React.FC<TemplateBuilderProps> = ({
                       </div>
 
                       {/* Signatures */}
-                      <div className={`mt-12 grid gap-8 ${
-                        config.elements.signatureCount === 1 ? 'grid-cols-1' :
-                        config.elements.signatureCount === 2 ? 'grid-cols-2' :
-                        'grid-cols-3'
-                      }`}>
-                        {Array.from({ length: config.elements.signatureCount }).map((_, i) => (
+                      <div
+                        className={`mt-12 grid gap-8 ${
+                          config.elements.signatureCount === 1
+                            ? "grid-cols-1"
+                            : config.elements.signatureCount === 2
+                            ? "grid-cols-2"
+                            : "grid-cols-3"
+                        }`}
+                      >
+                        {Array.from({
+                          length: config.elements.signatureCount,
+                        }).map((_, i) => (
                           <div key={i} className="text-center">
                             <div className="border-t-2 border-gray-800 w-full mb-2"></div>
-                            <p className="text-xs" style={{ color: config.colors.textColor }}>
+                            <p
+                              className="text-xs"
+                              style={{ color: config.colors.textColor }}
+                            >
                               Signature {i + 1}
                             </p>
                           </div>
@@ -761,26 +920,55 @@ const TemplateBuilder: React.FC<TemplateBuilderProps> = ({
                       {config.elements.showSeal && (
                         <Popover>
                           <PopoverTrigger asChild>
-                            <div 
+                            <div
                               className={`absolute cursor-move hover:ring-2 hover:ring-orange-400 rounded-full transition-all ${
-                                config.elements.sealPosition === 'bottom-right' ? 'bottom-4 right-4' :
-                                config.elements.sealPosition === 'bottom-left' ? 'bottom-4 left-4' :
-                                config.elements.sealPosition === 'top-right' ? 'top-4 right-4' :
-                                'bottom-4 right-1/2 translate-x-1/2'
+                                config.elements.sealPosition === "bottom-right"
+                                  ? "bottom-4 right-4"
+                                  : config.elements.sealPosition ===
+                                    "bottom-left"
+                                  ? "bottom-4 left-4"
+                                  : config.elements.sealPosition === "top-right"
+                                  ? "top-4 right-4"
+                                  : "bottom-4 right-1/2 translate-x-1/2"
                               }`}
                             >
-                              <div 
+                              <div
                                 className="w-16 h-16 rounded-full flex items-center justify-center border-4"
-                                style={{ 
+                                style={{
                                   backgroundColor: `${config.colors.accentColor}15`,
-                                  borderColor: config.colors.accentColor 
+                                  borderColor: config.colors.accentColor,
                                 }}
                               >
-                                {config.elements.sealIcon === 'award' && <Award className="w-8 h-8" style={{ color: config.colors.accentColor }} />}
-                                {config.elements.sealIcon === 'shield' && <Shield className="w-8 h-8" style={{ color: config.colors.accentColor }} />}
-                                {config.elements.sealIcon === 'star' && <Star className="w-8 h-8" style={{ color: config.colors.accentColor }} />}
-                                {config.elements.sealIcon === 'crown' && <Crown className="w-8 h-8" style={{ color: config.colors.accentColor }} />}
-                                {config.elements.sealIcon === 'hexagon' && <Hexagon className="w-8 h-8" style={{ color: config.colors.accentColor }} />}
+                                {config.elements.sealIcon === "award" && (
+                                  <Award
+                                    className="w-8 h-8"
+                                    style={{ color: config.colors.accentColor }}
+                                  />
+                                )}
+                                {config.elements.sealIcon === "shield" && (
+                                  <Shield
+                                    className="w-8 h-8"
+                                    style={{ color: config.colors.accentColor }}
+                                  />
+                                )}
+                                {config.elements.sealIcon === "star" && (
+                                  <Star
+                                    className="w-8 h-8"
+                                    style={{ color: config.colors.accentColor }}
+                                  />
+                                )}
+                                {config.elements.sealIcon === "crown" && (
+                                  <Crown
+                                    className="w-8 h-8"
+                                    style={{ color: config.colors.accentColor }}
+                                  />
+                                )}
+                                {config.elements.sealIcon === "hexagon" && (
+                                  <Hexagon
+                                    className="w-8 h-8"
+                                    style={{ color: config.colors.accentColor }}
+                                  />
+                                )}
                               </div>
                             </div>
                           </PopoverTrigger>
@@ -789,30 +977,64 @@ const TemplateBuilder: React.FC<TemplateBuilderProps> = ({
                               <h4>Seal Position</h4>
                               <div className="grid grid-cols-2 gap-2">
                                 <Button
-                                  variant={config.elements.sealPosition === 'bottom-right' ? 'default' : 'outline'}
+                                  variant={
+                                    config.elements.sealPosition ===
+                                    "bottom-right"
+                                      ? "default"
+                                      : "outline"
+                                  }
                                   size="sm"
-                                  onClick={() => updateConfig('elements', { sealPosition: 'bottom-right' })}
+                                  onClick={() =>
+                                    updateConfig("elements", {
+                                      sealPosition: "bottom-right",
+                                    })
+                                  }
                                 >
                                   Bottom Right
                                 </Button>
                                 <Button
-                                  variant={config.elements.sealPosition === 'bottom-left' ? 'default' : 'outline'}
+                                  variant={
+                                    config.elements.sealPosition ===
+                                    "bottom-left"
+                                      ? "default"
+                                      : "outline"
+                                  }
                                   size="sm"
-                                  onClick={() => updateConfig('elements', { sealPosition: 'bottom-left' })}
+                                  onClick={() =>
+                                    updateConfig("elements", {
+                                      sealPosition: "bottom-left",
+                                    })
+                                  }
                                 >
                                   Bottom Left
                                 </Button>
                                 <Button
-                                  variant={config.elements.sealPosition === 'top-right' ? 'default' : 'outline'}
+                                  variant={
+                                    config.elements.sealPosition === "top-right"
+                                      ? "default"
+                                      : "outline"
+                                  }
                                   size="sm"
-                                  onClick={() => updateConfig('elements', { sealPosition: 'top-right' })}
+                                  onClick={() =>
+                                    updateConfig("elements", {
+                                      sealPosition: "top-right",
+                                    })
+                                  }
                                 >
                                   Top Right
                                 </Button>
                                 <Button
-                                  variant={config.elements.sealPosition === 'center' ? 'default' : 'outline'}
+                                  variant={
+                                    config.elements.sealPosition === "center"
+                                      ? "default"
+                                      : "outline"
+                                  }
                                   size="sm"
-                                  onClick={() => updateConfig('elements', { sealPosition: 'center' })}
+                                  onClick={() =>
+                                    updateConfig("elements", {
+                                      sealPosition: "center",
+                                    })
+                                  }
                                 >
                                   Center
                                 </Button>
@@ -821,7 +1043,9 @@ const TemplateBuilder: React.FC<TemplateBuilderProps> = ({
                                 variant="destructive"
                                 size="sm"
                                 className="w-full"
-                                onClick={() => updateConfig('elements', { showSeal: false })}
+                                onClick={() =>
+                                  updateConfig("elements", { showSeal: false })
+                                }
                               >
                                 <X className="w-3 h-3 mr-1" />
                                 Remove Seal
@@ -836,14 +1060,15 @@ const TemplateBuilder: React.FC<TemplateBuilderProps> = ({
 
                 <div className="mt-4 p-4 bg-blue-50 rounded-lg">
                   <p className="text-sm text-blue-800">
-                    <strong>💡 Interactive Editor:</strong> Click on any text to edit it. Click on the seal to move it. 
-                    Use the toggles on the left to show/hide elements like logo, corners, and signatures.
+                    <strong>💡 Interactive Editor:</strong> Click on any text to
+                    edit it. Click on the seal to move it. Use the toggles on
+                    the left to show/hide elements like logo, corners, and
+                    signatures.
                   </p>
                 </div>
               </CardContent>
             </Card>
           </div>
-
         </div>
       </div>
     </div>

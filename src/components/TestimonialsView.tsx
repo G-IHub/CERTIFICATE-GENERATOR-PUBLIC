@@ -1,17 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
-import { Badge } from './ui/badge';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
-import { 
-  MessageSquare, 
-  User, 
+import React, { useState, useEffect } from "react";
+import TestimonialsSkeleton from "./skeletons/TestimonialsSkeleton";
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { Badge } from "./ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
+import {
+  MessageSquare,
+  User,
   Calendar,
   Award,
   TrendingUp,
-  Filter
-} from 'lucide-react';
-import { testimonialApi } from '../utils/api';
-import { toast } from 'sonner@2.0.3';
+  Filter,
+} from "lucide-react";
+import { testimonialApi } from "../utils/api";
+import { toast } from "sonner";
 
 interface Testimonial {
   id: string;
@@ -29,11 +30,16 @@ interface TestimonialsViewProps {
   accessToken: string | null;
 }
 
-const TestimonialsView: React.FC<TestimonialsViewProps> = ({ organizationId, accessToken }) => {
+const TestimonialsView: React.FC<TestimonialsViewProps> = ({
+  organizationId,
+  accessToken,
+}) => {
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
-  const [testimonialsByCourse, setTestimonialsByCourse] = useState<Record<string, Testimonial[]>>({});
+  const [testimonialsByCourse, setTestimonialsByCourse] = useState<
+    Record<string, Testimonial[]>
+  >({});
   const [loading, setLoading] = useState(true);
-  const [selectedCourse, setSelectedCourse] = useState<string>('all');
+  const [selectedCourse, setSelectedCourse] = useState<string>("all");
 
   useEffect(() => {
     loadTestimonials();
@@ -47,41 +53,38 @@ const TestimonialsView: React.FC<TestimonialsViewProps> = ({ organizationId, acc
 
     try {
       setLoading(true);
-      const response = await testimonialApi.getForOrganization(accessToken, organizationId);
+      const response = await testimonialApi.getForOrganization(
+        accessToken,
+        organizationId
+      );
       setTestimonials(response.testimonials || []);
       setTestimonialsByCourse(response.testimonialsByCourse || {});
     } catch (error: any) {
-      console.error('Failed to load testimonials:', error);
-      toast.error('Failed to load testimonials');
+      console.error("Failed to load testimonials:", error);
+      toast.error("Failed to load testimonials");
     } finally {
       setLoading(false);
     }
   };
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
+    return new Date(dateString).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
     });
   };
 
   const courses = Object.keys(testimonialsByCourse);
-  const displayedTestimonials = selectedCourse === 'all' 
-    ? testimonials 
-    : testimonialsByCourse[selectedCourse] || [];
+  const displayedTestimonials =
+    selectedCourse === "all"
+      ? testimonials
+      : testimonialsByCourse[selectedCourse] || [];
 
   if (loading) {
-    return (
-      <div className="flex items-center justify-center p-12">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading testimonials...</p>
-        </div>
-      </div>
-    );
+    return <TestimonialsSkeleton />;
   }
 
   if (testimonials.length === 0) {
@@ -89,9 +92,12 @@ const TestimonialsView: React.FC<TestimonialsViewProps> = ({ organizationId, acc
       <Card>
         <CardContent className="flex flex-col items-center justify-center p-12">
           <MessageSquare className="w-16 h-16 text-gray-400 mb-4" />
-          <h3 className="text-xl font-semibold text-gray-900 mb-2">No Testimonials Yet</h3>
+          <h3 className="text-xl font-semibold text-gray-900 mb-2">
+            No Testimonials Yet
+          </h3>
           <p className="text-gray-600 text-center max-w-md">
-            When students submit their feedback along with their certificates, their testimonials will appear here.
+            When students submit their feedback along with their certificates,
+            their testimonials will appear here.
           </p>
         </CardContent>
       </Card>
@@ -107,7 +113,9 @@ const TestimonialsView: React.FC<TestimonialsViewProps> = ({ organizationId, acc
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Total Testimonials</p>
-                <p className="text-3xl font-bold text-gray-900 mt-1">{testimonials.length}</p>
+                <p className="text-3xl font-bold text-gray-900 mt-1">
+                  {testimonials.length}
+                </p>
               </div>
               <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
                 <MessageSquare className="w-6 h-6 text-primary" />
@@ -121,7 +129,9 @@ const TestimonialsView: React.FC<TestimonialsViewProps> = ({ organizationId, acc
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Courses with Feedback</p>
-                <p className="text-3xl font-bold text-gray-900 mt-1">{courses.length}</p>
+                <p className="text-3xl font-bold text-gray-900 mt-1">
+                  {courses.length}
+                </p>
               </div>
               <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
                 <Award className="w-6 h-6 text-primary" />
@@ -136,7 +146,9 @@ const TestimonialsView: React.FC<TestimonialsViewProps> = ({ organizationId, acc
               <div>
                 <p className="text-sm text-gray-600">Avg per Course</p>
                 <p className="text-3xl font-bold text-gray-900 mt-1">
-                  {courses.length > 0 ? (testimonials.length / courses.length).toFixed(1) : '0'}
+                  {courses.length > 0
+                    ? (testimonials.length / courses.length).toFixed(1)
+                    : "0"}
                 </p>
               </div>
               <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
@@ -160,16 +172,16 @@ const TestimonialsView: React.FC<TestimonialsViewProps> = ({ organizationId, acc
         <CardContent>
           <div className="flex flex-wrap gap-2">
             <Badge
-              variant={selectedCourse === 'all' ? 'default' : 'outline'}
+              variant={selectedCourse === "all" ? "default" : "outline"}
               className="cursor-pointer px-4 py-2"
-              onClick={() => setSelectedCourse('all')}
+              onClick={() => setSelectedCourse("all")}
             >
               All Courses ({testimonials.length})
             </Badge>
             {courses.map((course) => (
               <Badge
                 key={course}
-                variant={selectedCourse === course ? 'default' : 'outline'}
+                variant={selectedCourse === course ? "default" : "outline"}
                 className="cursor-pointer px-4 py-2"
                 onClick={() => setSelectedCourse(course)}
               >
@@ -183,7 +195,10 @@ const TestimonialsView: React.FC<TestimonialsViewProps> = ({ organizationId, acc
       {/* Testimonials List */}
       <div className="grid grid-cols-1 gap-4">
         {displayedTestimonials.map((testimonial) => (
-          <Card key={testimonial.id} className="hover:shadow-md transition-shadow">
+          <Card
+            key={testimonial.id}
+            className="hover:shadow-md transition-shadow"
+          >
             <CardContent className="p-6">
               <div className="flex items-start justify-between mb-4">
                 <div className="flex items-center gap-3">
@@ -191,7 +206,9 @@ const TestimonialsView: React.FC<TestimonialsViewProps> = ({ organizationId, acc
                     <User className="w-5 h-5 text-primary" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900">{testimonial.studentName}</h4>
+                    <h4 className="font-semibold text-gray-900">
+                      {testimonial.studentName}
+                    </h4>
                     <p className="text-sm text-gray-600 flex items-center gap-1">
                       <Award className="w-3 h-3" />
                       {testimonial.courseName}
@@ -203,9 +220,11 @@ const TestimonialsView: React.FC<TestimonialsViewProps> = ({ organizationId, acc
                   {formatDate(testimonial.submittedAt)}
                 </div>
               </div>
-              
+
               <div className="bg-gray-50 rounded-lg p-4 border-l-4 border-primary">
-                <p className="text-gray-700 italic">"{testimonial.testimonial}"</p>
+                <p className="text-gray-700 italic">
+                  "{testimonial.testimonial}"
+                </p>
               </div>
 
               <div className="mt-4 flex items-center gap-2">

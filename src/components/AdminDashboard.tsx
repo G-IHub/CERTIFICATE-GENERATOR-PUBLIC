@@ -28,6 +28,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "./ui/tooltip";
+import { isOrgPremium } from "../utils/subscriptionUtils";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "./ui/sheet";
 import {
   Dialog,
@@ -37,7 +38,6 @@ import {
   DialogTitle,
 } from "./ui/dialog";
 import { useIsMobile } from "./ui/use-mobile";
-import BillingPage from "./BillingPage";
 import {
   LayoutDashboard,
   FileText,
@@ -98,11 +98,19 @@ import {
 import CertificateTemplate from "./CertificateTemplate";
 import CertificateRenderer from "./CertificateRenderer";
 import TemplatesPage from "./TemplatesPage";
-import TemplateBuilderPage from "./TemplateBuilderPage";
 import CertificateGenerationModal from "./CertificateGenerationModal";
-import TestimonialsView from "./TestimonialsView";
-import AnalyticsView from "./AnalyticsView";
-import OrganizationSettings from "./OrganizationSettings";
+import { Skeleton } from "./ui/skeleton";
+import TestimonialsSkeleton from "./skeletons/TestimonialsSkeleton";
+import AnalyticsSkeleton from "./skeletons/AnalyticsSkeleton";
+import SettingsSkeleton from "./skeletons/SettingsSkeleton";
+import BillingSkeleton from "./skeletons/BillingSkeleton";
+
+// Lazy-load heavy/dashboard tab components to improve initial render performance
+const BillingPage = React.lazy(() => import("./BillingPage"));
+const TemplateBuilderPage = React.lazy(() => import("./TemplateBuilderPage"));
+const TestimonialsView = React.lazy(() => import("./TestimonialsView"));
+const AnalyticsView = React.lazy(() => import("./AnalyticsView"));
+const OrganizationSettings = React.lazy(() => import("./OrganizationSettings"));
 import type { Program, Subsidiary, UserProfile } from "../App";
 import {
   LineChart,
@@ -126,6 +134,8 @@ import {
   buildFullCertificateUrl,
   normalizeCertificateUrl,
 } from "../utils/certificateUtils";
+import logo from "../assets/logo.svg";
+// import Footer from "../components/landing/Footer";
 
 // Organization is the new name for Subsidiary
 type Organization = Subsidiary;
@@ -134,8 +144,7 @@ type Organization = Subsidiary;
 // Use stable placeholder URLs for the logos. Replace with local public assets
 // (for example '/images/default-org-logo.png') if you add them to the public folder.
 const defaultOrgLogo = "https://via.placeholder.com/256x256.png?text=Org+Logo";
-const certifyerLogo =
-  "https://via.placeholder.com/300x80.png?text=Certifyer+Logo";
+const certifyerLogo = logo;
 
 interface AdminDashboardProps {
   user: UserProfile;
@@ -2215,12 +2224,10 @@ export default function AdminDashboard({
                               <Card className="bg-gradient-to-br from-indigo-50 to-purple-50 border-2 border-indigo-200">
                                 <CardContent className="p-4">
                                   <div className="bg-white rounded-lg overflow-hidden shadow-sm">
-                                    <div
-                                      className="transform scale-50 origin-top-left"
-                                      style={{
-                                        width: "200%",
-                                        height: "200%",
-                                      }}
+                                    <PreviewWrapper
+                                      scale={0.4}
+                                      origin="center"
+                                      wrapperSize={2}
                                     >
                                       <CertificateRenderer
                                         templateId={genSelectedTemplate}
@@ -2231,8 +2238,17 @@ export default function AdminDashboard({
                                         recipientName="Sample Student Name"
                                         isPreview={true}
                                         mode="template-selection"
+                                        organizationName={
+                                          currentOrganization.name
+                                        }
+                                        organizationLogo={
+                                          currentOrganization.logo
+                                        }
+                                        customTemplateConfig={
+                                          genCustomTemplateConfig
+                                        }
                                       />
-                                    </div>
+                                    </PreviewWrapper>
                                   </div>
                                   <p className="text-xs text-gray-600 mt-3 text-center">
                                     This is how the certificate will appear to
@@ -2438,7 +2454,7 @@ export default function AdminDashboard({
                 organization={currentOrganization}
                 showBuilderButton={true}
                 accessToken={accessToken}
-                isPremiumUser={true}
+                isPremiumUser={isOrgPremium(currentOrganization)}
               />
             )}
 
@@ -2695,43 +2711,35 @@ export default function AdminDashboard({
             )}
 
             {activeTab === "testimonials" && currentOrganization && (
-              <TestimonialsView
-                organizationId={currentOrganization.id}
-                accessToken={accessToken}
-              />
+              <React.Suspense fallback={<TestimonialsSkeleton />}>
+                <TestimonialsView
+                  organizationId={currentOrganization.id}
+                  accessToken={accessToken}
+                />
+              </React.Suspense>
             )}
 
             {activeTab === "analytics" && currentOrganization && (
-              <AnalyticsView
-                organizationId={currentOrganization.id}
-                accessToken={accessToken}
-              />
+              <React.Suspense fallback={<AnalyticsSkeleton />}>
+                <AnalyticsView
+                  organizationId={currentOrganization.id}
+                  accessToken={accessToken}
+                />
+              </React.Suspense>
             )}
 
-            {activeTab === "templates" && currentOrganization && (
-              <>
-                {console.log("🎨 Rendering TemplatesPage in AdminDashboard", {
-                  activeTab,
-                  hasCurrentOrganization: !!currentOrganization,
-                  organizationName: currentOrganization?.name,
-                })}
-                <TemplatesPage
-                  onSelectTemplate={handleTemplateSelection}
-                  organization={currentOrganization}
-                  accessToken={accessToken}
-                  isPremiumUser={true}
-                />
-              </>
-            )}
+            {/* Templates tab is rendered above inside the Tabs component; avoid duplicate rendering here. */}
 
             {activeTab === "settings" && currentOrganization && (
-              <div className="px-4 md:px-8 py-6">
-                <OrganizationSettings
-                  organization={currentOrganization}
-                  accessToken={accessToken!}
-                  onSettingsUpdated={onUpdateOrganization}
-                />
-              </div>
+              <React.Suspense fallback={<SettingsSkeleton />}>
+                <div className="px-4 md:px-8 py-6">
+                  <OrganizationSettings
+                    organization={currentOrganization}
+                    accessToken={accessToken!}
+                    onSettingsUpdated={onUpdateOrganization}
+                  />
+                </div>
+              </React.Suspense>
             )}
 
             {activeTab === "settings" && !currentOrganization && (
@@ -2762,12 +2770,14 @@ export default function AdminDashboard({
 
             {/* Billing Tab */}
             {activeTab === "billing" && currentOrganization && (
-              <BillingPage
-                organizationId={currentOrganization.id}
-                organizationName={currentOrganization.name}
-                userEmail={user.id}
-                accessToken={accessToken}
-              />
+              <React.Suspense fallback={<BillingSkeleton />}>
+                <BillingPage
+                  organizationId={currentOrganization.id}
+                  organizationName={currentOrganization.name}
+                  userEmail={user.id}
+                  accessToken={accessToken}
+                />
+              </React.Suspense>
             )}
 
             {/* Billing Tab - No Organization */}
@@ -2798,15 +2808,24 @@ export default function AdminDashboard({
 
             {/* Template Builder Tab */}
             {activeTab === "template-builder" && currentOrganization && (
-              <TemplateBuilderPage
-                organization={currentOrganization}
-                isPremiumUser={
-                  currentOrganization?.tier === "premium" ||
-                  currentOrganization?.subscriptionStatus === "active"
+              <React.Suspense
+                fallback={
+                  <div className="p-6">Loading template builder...</div>
                 }
-                onBack={() => setActiveTab("overview")}
-              />
+              >
+                <TemplateBuilderPage
+                  organization={currentOrganization}
+                  isPremiumUser={isOrgPremium(currentOrganization)}
+                  onBack={() => setActiveTab("overview")}
+                />
+              </React.Suspense>
             )}
+          </div>
+          <div className="flex-1 md:flex-none bg-black text-white p-6 mr-6 ">
+            <img src={certifyerLogo} alt="Certifyer Logo" />
+            <p className="text-sm md:text-base mt-2">
+              Empowering educators to create and manage certificates with ease.
+            </p>
           </div>
         </main>
 
@@ -2842,7 +2861,7 @@ export default function AdminDashboard({
                   organization={currentOrganization}
                   showBuilderButton={false}
                   accessToken={accessToken}
-                  isPremiumUser={true}
+                  isPremiumUser={isOrgPremium(currentOrganization)}
                 />
               )}
             </div>

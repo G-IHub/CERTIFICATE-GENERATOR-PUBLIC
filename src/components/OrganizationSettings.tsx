@@ -1,26 +1,34 @@
-import React, { useState, useEffect } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
-import { Button } from './ui/button';
-import { Input } from './ui/input';
-import { Label } from './ui/label';
-import { Textarea } from './ui/textarea';
-import { Alert, AlertDescription } from './ui/alert';
-import { 
-  Upload, 
-  Trash2, 
-  Plus, 
-  Save, 
-  Palette, 
+import React, { useState, useEffect } from "react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "./ui/card";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import { Label } from "./ui/label";
+import { Textarea } from "./ui/textarea";
+import { Alert, AlertDescription } from "./ui/alert";
+import {
+  Upload,
+  Trash2,
+  Plus,
+  Save,
+  Palette,
   Building2,
   User,
   ImageIcon,
   AlertCircle,
   CheckCircle2,
-  Loader2
-} from 'lucide-react';
-import { toast } from 'sonner';
-import type { Organization, Signatory, OrganizationSettings } from '../App';
-import { organizationApi } from '../utils/api';
+  Loader2,
+} from "lucide-react";
+import { toast } from "sonner";
+import SettingsSkeleton from "./skeletons/SettingsSkeleton";
+import { Skeleton } from "./ui/skeleton";
+import type { Organization, Signatory, OrganizationSettings } from "../App";
+import { organizationApi } from "../utils/api";
 
 // For compatibility, keep the existing interface name
 interface OrganizationSettingsData extends OrganizationSettings {}
@@ -28,26 +36,33 @@ interface OrganizationSettingsData extends OrganizationSettings {}
 interface OrganizationSettingsProps {
   organization: Organization;
   accessToken: string;
-  onSettingsUpdated: (organizationId: string, updates: Partial<Organization>) => void;
+  onSettingsUpdated: (
+    organizationId: string,
+    updates: Partial<Organization>
+  ) => void;
 }
 
-export default function OrganizationSettings({ 
-  organization, 
+export default function OrganizationSettings({
+  organization,
   accessToken,
-  onSettingsUpdated 
+  onSettingsUpdated,
 }: OrganizationSettingsProps) {
   const [settings, setSettings] = useState<OrganizationSettingsData>({
-    logo: organization.logo || '',
-    primaryColor: organization.primaryColor || '#ea580c',
+    logo: organization.logo || "",
+    primaryColor: organization.primaryColor || "#ea580c",
     signatories: [],
   });
-  
-  const [organizationName, setOrganizationName] = useState(organization.name || '');
-  
+
+  const [organizationName, setOrganizationName] = useState(
+    organization.name || ""
+  );
+
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
   const [uploadingLogo, setUploadingLogo] = useState(false);
-  const [uploadingSignature, setUploadingSignature] = useState<string | null>(null);
+  const [uploadingSignature, setUploadingSignature] = useState<string | null>(
+    null
+  );
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
 
   // Load settings from backend
@@ -57,19 +72,22 @@ export default function OrganizationSettings({
 
   // Update local organization name when organization prop changes
   useEffect(() => {
-    setOrganizationName(organization.name || '');
+    setOrganizationName(organization.name || "");
   }, [organization.name]);
 
   const loadSettings = async () => {
     try {
       setIsLoading(true);
-      const data = await organizationApi.getSettings(accessToken, organization.id);
+      const data = await organizationApi.getSettings(
+        accessToken,
+        organization.id
+      );
       setSettings(data.settings);
-      setOrganizationName(organization.name || '');
+      setOrganizationName(organization.name || "");
       setHasUnsavedChanges(false);
     } catch (error) {
-      console.error('Error loading settings:', error);
-      toast.error('Failed to load organization settings');
+      console.error("Error loading settings:", error);
+      toast.error("Failed to load organization settings");
     } finally {
       setIsLoading(false);
     }
@@ -80,65 +98,78 @@ export default function OrganizationSettings({
     if (!file) return;
 
     // Validate file type
-    if (!file.type.startsWith('image/')) {
-      toast.error('Please upload an image file');
+    if (!file.type.startsWith("image/")) {
+      toast.error("Please upload an image file");
       return;
     }
 
     // Validate file size (max 5MB)
     if (file.size > 5 * 1024 * 1024) {
-      toast.error('File size must be less than 5MB');
+      toast.error("File size must be less than 5MB");
       return;
     }
 
     try {
       setUploadingLogo(true);
-      
-      const data = await organizationApi.uploadFile(accessToken, file, 'logo', organization.id);
-      setSettings(prev => ({ ...prev, logo: data.url }));
+
+      const data = await organizationApi.uploadFile(
+        accessToken,
+        file,
+        "logo",
+        organization.id
+      );
+      setSettings((prev) => ({ ...prev, logo: data.url }));
       setHasUnsavedChanges(true);
-      toast.success('Logo uploaded successfully');
+      toast.success("Logo uploaded successfully");
     } catch (error) {
-      console.error('Error uploading logo:', error);
-      toast.error('Failed to upload logo');
+      console.error("Error uploading logo:", error);
+      toast.error("Failed to upload logo");
     } finally {
       setUploadingLogo(false);
     }
   };
 
-  const handleSignatureUpload = async (signatoryId: string, e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSignatureUpload = async (
+    signatoryId: string,
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
     // Validate file type
-    if (!file.type.startsWith('image/')) {
-      toast.error('Please upload an image file');
+    if (!file.type.startsWith("image/")) {
+      toast.error("Please upload an image file");
       return;
     }
 
     // Validate file size (max 2MB)
     if (file.size > 2 * 1024 * 1024) {
-      toast.error('File size must be less than 2MB');
+      toast.error("File size must be less than 2MB");
       return;
     }
 
     try {
       setUploadingSignature(signatoryId);
-      
-      const data = await organizationApi.uploadFile(accessToken, file, 'signature', organization.id);
-      
-      setSettings(prev => ({
+
+      const data = await organizationApi.uploadFile(
+        accessToken,
+        file,
+        "signature",
+        organization.id
+      );
+
+      setSettings((prev) => ({
         ...prev,
-        signatories: prev.signatories.map(s => 
+        signatories: prev.signatories.map((s) =>
           s.id === signatoryId ? { ...s, signatureUrl: data.url } : s
         ),
       }));
-      
+
       setHasUnsavedChanges(true);
-      toast.success('Signature uploaded successfully');
+      toast.success("Signature uploaded successfully");
     } catch (error) {
-      console.error('Error uploading signature:', error);
-      toast.error('Failed to upload signature');
+      console.error("Error uploading signature:", error);
+      toast.error("Failed to upload signature");
     } finally {
       setUploadingSignature(null);
     }
@@ -147,50 +178,58 @@ export default function OrganizationSettings({
   const addSignatory = () => {
     const newSignatory: Signatory = {
       id: `sig-${Date.now()}`,
-      name: '',
-      title: '',
-      signatureUrl: '',
+      name: "",
+      title: "",
+      signatureUrl: "",
     };
-    
-    setSettings(prev => ({
+
+    setSettings((prev) => ({
       ...prev,
       signatories: [...prev.signatories, newSignatory],
     }));
-    
+
     setHasUnsavedChanges(true);
   };
 
   const removeSignatory = (signatoryId: string) => {
-    setSettings(prev => ({
+    setSettings((prev) => ({
       ...prev,
-      signatories: prev.signatories.filter(s => s.id !== signatoryId),
+      signatories: prev.signatories.filter((s) => s.id !== signatoryId),
     }));
-    
+
     setHasUnsavedChanges(true);
   };
 
-  const updateSignatory = (signatoryId: string, field: keyof Signatory, value: string) => {
-    setSettings(prev => ({
+  const updateSignatory = (
+    signatoryId: string,
+    field: keyof Signatory,
+    value: string
+  ) => {
+    setSettings((prev) => ({
       ...prev,
-      signatories: prev.signatories.map(s => 
+      signatories: prev.signatories.map((s) =>
         s.id === signatoryId ? { ...s, [field]: value } : s
       ),
     }));
-    
+
     setHasUnsavedChanges(true);
   };
 
   const handleColorChange = (color: string) => {
-    setSettings(prev => ({ ...prev, primaryColor: color }));
+    setSettings((prev) => ({ ...prev, primaryColor: color }));
     setHasUnsavedChanges(true);
   };
 
   const handleSaveSettings = async () => {
     try {
       setIsSaving(true);
-      
-      const data = await organizationApi.updateSettings(accessToken, organization.id, settings);
-      
+
+      const data = await organizationApi.updateSettings(
+        accessToken,
+        organization.id,
+        settings
+      );
+
       // Update parent component with all changes including organization name
       onSettingsUpdated(organization.id, {
         name: organizationName,
@@ -198,34 +237,30 @@ export default function OrganizationSettings({
         primaryColor: settings.primaryColor,
         settings: data.settings,
       });
-      
+
       setHasUnsavedChanges(false);
-      toast.success('Settings saved successfully!');
+      toast.success("Settings saved successfully!");
     } catch (error) {
-      console.error('Error saving settings:', error);
-      toast.error('Failed to save settings');
+      console.error("Error saving settings:", error);
+      toast.error("Failed to save settings");
     } finally {
       setIsSaving(false);
     }
   };
 
   const predefinedColors = [
-    { name: 'Orange', value: '#ea580c' },
-    { name: 'Blue', value: '#3b82f6' },
-    { name: 'Teal', value: '#14b8a6' },
-    { name: 'Emerald', value: '#10b981' },
-    { name: 'Black', value: '#171717' },
-    { name: 'Amber', value: '#f59e0b' },
-    { name: 'Red', value: '#ef4444' },
-    { name: 'Pink', value: '#ec4899' },
+    { name: "Orange", value: "#ea580c" },
+    { name: "Blue", value: "#3b82f6" },
+    { name: "Teal", value: "#14b8a6" },
+    { name: "Emerald", value: "#10b981" },
+    { name: "Black", value: "#171717" },
+    { name: "Amber", value: "#f59e0b" },
+    { name: "Red", value: "#ef4444" },
+    { name: "Pink", value: "#ec4899" },
   ];
 
   if (isLoading) {
-    return (
-      <div className="flex items-center justify-center p-12">
-        <Loader2 className="w-8 h-8 animate-spin text-primary" />
-      </div>
-    );
+    return <SettingsSkeleton />;
   }
 
   return (
@@ -247,7 +282,8 @@ export default function OrganizationSettings({
             Organization Information
           </CardTitle>
           <CardDescription>
-            Basic information about your organization that will appear on certificates.
+            Basic information about your organization that will appear on
+            certificates.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
@@ -265,7 +301,8 @@ export default function OrganizationSettings({
               className="max-w-md"
             />
             <p className="text-xs text-gray-500">
-              This will be displayed on all certificates issued by your organization
+              This will be displayed on all certificates issued by your
+              organization
             </p>
           </div>
         </CardContent>
@@ -279,15 +316,16 @@ export default function OrganizationSettings({
             Organization Logo
           </CardTitle>
           <CardDescription>
-            Upload your organization's logo. This will appear on all certificates.
+            Upload your organization's logo. This will appear on all
+            certificates.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="flex items-center gap-6">
             <div className="w-32 h-32 bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden border-2 border-gray-200">
               {settings.logo ? (
-                <img 
-                  src={settings.logo} 
+                <img
+                  src={settings.logo}
                   alt="Organization logo"
                   className="w-full h-full object-contain p-2"
                 />
@@ -295,18 +333,20 @@ export default function OrganizationSettings({
                 <ImageIcon className="w-12 h-12 text-gray-400" />
               )}
             </div>
-            
+
             <div className="flex-1 space-y-2">
               <Label htmlFor="logo-upload">Upload Logo</Label>
               <div className="flex gap-2">
                 <Button
                   variant="outline"
                   disabled={uploadingLogo}
-                  onClick={() => document.getElementById('logo-upload')?.click()}
+                  onClick={() =>
+                    document.getElementById("logo-upload")?.click()
+                  }
                 >
                   {uploadingLogo ? (
                     <>
-                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                      <Skeleton className="h-4 w-4 mr-2 rounded-full inline-block" />
                       Uploading...
                     </>
                   ) : (
@@ -320,7 +360,7 @@ export default function OrganizationSettings({
                   <Button
                     variant="ghost"
                     onClick={() => {
-                      setSettings(prev => ({ ...prev, logo: '' }));
+                      setSettings((prev) => ({ ...prev, logo: "" }));
                       setHasUnsavedChanges(true);
                     }}
                   >
@@ -352,7 +392,8 @@ export default function OrganizationSettings({
             Brand Color
           </CardTitle>
           <CardDescription>
-            Choose a primary color for your certificates. This will be used for borders, accents, and text highlights.
+            Choose a primary color for your certificates. This will be used for
+            borders, accents, and text highlights.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
@@ -365,7 +406,11 @@ export default function OrganizationSettings({
                   onClick={() => handleColorChange(color.value)}
                   className={`
                     relative h-16 rounded-lg border-2 transition-all hover:scale-105
-                    ${settings.primaryColor === color.value ? 'border-gray-900 ring-2 ring-gray-400' : 'border-gray-200'}
+                    ${
+                      settings.primaryColor === color.value
+                        ? "border-gray-900 ring-2 ring-gray-400"
+                        : "border-gray-200"
+                    }
                   `}
                   style={{ backgroundColor: color.value }}
                 >
@@ -406,17 +451,25 @@ export default function OrganizationSettings({
           </div>
 
           {/* Color Preview */}
-          <div className="p-4 rounded-lg border-2" style={{ borderColor: settings.primaryColor }}>
+          <div
+            className="p-4 rounded-lg border-2"
+            style={{ borderColor: settings.primaryColor }}
+          >
             <div className="flex items-center gap-2">
-              <div 
+              <div
                 className="w-8 h-8 rounded-full"
                 style={{ backgroundColor: settings.primaryColor }}
               />
               <div>
-                <p className="text-sm font-medium" style={{ color: settings.primaryColor }}>
+                <p
+                  className="text-sm font-medium"
+                  style={{ color: settings.primaryColor }}
+                >
                   Certificate Preview
                 </p>
-                <p className="text-xs text-gray-500">This is how your brand color will appear</p>
+                <p className="text-xs text-gray-500">
+                  This is how your brand color will appear
+                </p>
               </div>
             </div>
           </div>
@@ -431,7 +484,8 @@ export default function OrganizationSettings({
             Certificate Signatories
           </CardTitle>
           <CardDescription>
-            Add authorized signatories who will appear on certificates. You can upload their signature images.
+            Add authorized signatories who will appear on certificates. You can
+            upload their signature images.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
@@ -447,7 +501,10 @@ export default function OrganizationSettings({
           ) : (
             <>
               {settings.signatories.map((signatory, index) => (
-                <div key={signatory.id} className="p-4 border rounded-lg space-y-4">
+                <div
+                  key={signatory.id}
+                  className="p-4 border rounded-lg space-y-4"
+                >
                   <div className="flex items-center justify-between">
                     <h4 className="font-medium">Signatory {index + 1}</h4>
                     <Button
@@ -464,7 +521,9 @@ export default function OrganizationSettings({
                       <Label>Full Name</Label>
                       <Input
                         value={signatory.name}
-                        onChange={(e) => updateSignatory(signatory.id, 'name', e.target.value)}
+                        onChange={(e) =>
+                          updateSignatory(signatory.id, "name", e.target.value)
+                        }
                         placeholder="Dr. Jane Smith"
                       />
                     </div>
@@ -473,7 +532,9 @@ export default function OrganizationSettings({
                       <Label>Title / Position</Label>
                       <Input
                         value={signatory.title}
-                        onChange={(e) => updateSignatory(signatory.id, 'title', e.target.value)}
+                        onChange={(e) =>
+                          updateSignatory(signatory.id, "title", e.target.value)
+                        }
                         placeholder="Program Director"
                       />
                     </div>
@@ -484,45 +545,51 @@ export default function OrganizationSettings({
                     <div className="flex items-center gap-4">
                       {signatory.signatureUrl && (
                         <div className="w-32 h-16 bg-gray-50 rounded border flex items-center justify-center overflow-hidden">
-                          <img 
-                            src={signatory.signatureUrl} 
+                          <img
+                            src={signatory.signatureUrl}
                             alt="Signature"
                             className="max-w-full max-h-full object-contain"
                           />
                         </div>
                       )}
-                      
+
                       <div className="flex gap-2">
                         <Button
                           variant="outline"
                           size="sm"
                           disabled={uploadingSignature === signatory.id}
-                          onClick={() => document.getElementById(`signature-${signatory.id}`)?.click()}
+                          onClick={() =>
+                            document
+                              .getElementById(`signature-${signatory.id}`)
+                              ?.click()
+                          }
                         >
                           {uploadingSignature === signatory.id ? (
                             <>
-                              <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                              <Skeleton className="h-4 w-4 mr-2 rounded-full inline-block" />
                               Uploading...
                             </>
                           ) : (
                             <>
                               <Upload className="w-4 h-4 mr-2" />
-                              {signatory.signatureUrl ? 'Change' : 'Upload'}
+                              {signatory.signatureUrl ? "Change" : "Upload"}
                             </>
                           )}
                         </Button>
-                        
+
                         {signatory.signatureUrl && (
                           <Button
                             variant="ghost"
                             size="sm"
-                            onClick={() => updateSignatory(signatory.id, 'signatureUrl', '')}
+                            onClick={() =>
+                              updateSignatory(signatory.id, "signatureUrl", "")
+                            }
                           >
                             <Trash2 className="w-4 h-4" />
                           </Button>
                         )}
                       </div>
-                      
+
                       <input
                         id={`signature-${signatory.id}`}
                         type="file"
@@ -538,7 +605,11 @@ export default function OrganizationSettings({
                 </div>
               ))}
 
-              <Button onClick={addSignatory} variant="outline" className="w-full">
+              <Button
+                onClick={addSignatory}
+                variant="outline"
+                className="w-full"
+              >
                 <Plus className="w-4 h-4 mr-2" />
                 Add Another Signatory
               </Button>
@@ -550,10 +621,7 @@ export default function OrganizationSettings({
       {/* Save Button */}
       <div className="flex justify-end gap-3 sticky bottom-0 bg-gradient-to-t from-white via-white to-transparent pt-6 pb-4">
         {hasUnsavedChanges && (
-          <Button
-            variant="outline"
-            onClick={loadSettings}
-          >
+          <Button variant="outline" onClick={loadSettings}>
             Discard Changes
           </Button>
         )}
@@ -563,7 +631,7 @@ export default function OrganizationSettings({
         >
           {isSaving ? (
             <>
-              <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+              <Skeleton className="h-4 w-4 mr-2 rounded-full inline-block" />
               Saving...
             </>
           ) : (

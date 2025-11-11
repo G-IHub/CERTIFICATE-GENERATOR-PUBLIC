@@ -10,9 +10,17 @@ import {
   Award,
   TrendingUp,
   Filter,
+  Download,
 } from "lucide-react";
 import { testimonialApi } from "../utils/api";
 import { toast } from "sonner";
+import { Button } from "./ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu";
 
 interface Testimonial {
   id: string;
@@ -82,6 +90,89 @@ const TestimonialsView: React.FC<TestimonialsViewProps> = ({
     selectedCourse === "all"
       ? testimonials
       : testimonialsByCourse[selectedCourse] || [];
+
+  const downloadAsCSV = () => {
+    try {
+      // CSV Header
+      const headers = [
+        "Student Name",
+        "Course Name",
+        "Testimonial",
+        "Certificate ID",
+        "Submitted Date",
+      ];
+
+      // CSV Rows
+      const rows = displayedTestimonials.map((t) => [
+        t.studentName,
+        t.courseName,
+        `"${t.testimonial.replace(/"/g, '""')}"`, // Escape quotes in testimonial text
+        t.certificateId,
+        formatDate(t.submittedAt),
+      ]);
+
+      // Combine headers and rows
+      const csvContent = [
+        headers.join(","),
+        ...rows.map((row) => row.join(",")),
+      ].join("\n");
+
+      // Create and download file
+      const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+      const link = document.createElement("a");
+      const url = URL.createObjectURL(blob);
+      link.setAttribute("href", url);
+      link.setAttribute(
+        "download",
+        `testimonials_${selectedCourse === "all" ? "all" : selectedCourse}_${new Date().toISOString().split("T")[0]}.csv`
+      );
+      link.style.visibility = "hidden";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      toast.success("Testimonials exported as CSV");
+    } catch (error) {
+      console.error("Failed to download CSV:", error);
+      toast.error("Failed to download CSV");
+    }
+  };
+
+  const downloadAsJSON = () => {
+    try {
+      const data = displayedTestimonials.map((t) => ({
+        studentName: t.studentName,
+        courseName: t.courseName,
+        testimonial: t.testimonial,
+        certificateId: t.certificateId,
+        submittedAt: t.submittedAt,
+        formattedDate: formatDate(t.submittedAt),
+      }));
+
+      const jsonContent = JSON.stringify(data, null, 2);
+
+      // Create and download file
+      const blob = new Blob([jsonContent], {
+        type: "application/json;charset=utf-8;",
+      });
+      const link = document.createElement("a");
+      const url = URL.createObjectURL(blob);
+      link.setAttribute("href", url);
+      link.setAttribute(
+        "download",
+        `testimonials_${selectedCourse === "all" ? "all" : selectedCourse}_${new Date().toISOString().split("T")[0]}.json`
+      );
+      link.style.visibility = "hidden";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      toast.success("Testimonials exported as JSON");
+    } catch (error) {
+      console.error("Failed to download JSON:", error);
+      toast.error("Failed to download JSON");
+    }
+  };
 
   if (loading) {
     return <TestimonialsSkeleton />;
@@ -167,6 +258,24 @@ const TestimonialsView: React.FC<TestimonialsViewProps> = ({
               <Filter className="w-5 h-5" />
               Filter by Course
             </CardTitle>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" size="sm" className="gap-2">
+                  <Download className="w-4 h-4" />
+                  Export
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem onClick={downloadAsCSV}>
+                  <Download className="w-4 h-4 mr-2" />
+                  Download as CSV
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={downloadAsJSON}>
+                  <Download className="w-4 h-4 mr-2" />
+                  Download as JSON
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </CardHeader>
         <CardContent>

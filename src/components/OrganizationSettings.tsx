@@ -506,7 +506,9 @@ export default function OrganizationSettings({
                   className="p-4 border rounded-lg space-y-4"
                 >
                   <div className="flex items-center justify-between">
-                    <h4 className="font-medium">Signatory {index + 1}</h4>
+                    <h4 className="font-medium">
+                      {signatory.name.trim() || `Signatory ${index + 1}`}
+                    </h4>
                     <Button
                       variant="ghost"
                       size="sm"

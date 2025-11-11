@@ -97,6 +97,7 @@ import {
 } from "lucide-react";
 import CertificateTemplate from "./CertificateTemplate";
 import CertificateRenderer from "./CertificateRenderer";
+import PreviewWrapper from "./PreviewWrapper";
 import TemplatesPage from "./TemplatesPage";
 import CertificateGenerationModal from "./CertificateGenerationModal";
 import { Skeleton } from "./ui/skeleton";
@@ -269,6 +270,10 @@ export default function AdminDashboard({
   >([]); // Current session only
   const [allCertificates, setAllCertificates] = useState<any[]>([]); // Full history from backend
   const [genIsGenerating, setGenIsGenerating] = useState(false);
+  
+  // Signatory states for Generation tab
+  const [genAvailableSignatories, setGenAvailableSignatories] = useState<any[]>([]);
+  const [genSelectedSignatories, setGenSelectedSignatories] = useState<string[]>([]);
   const [genShowTemplateSelector, setGenShowTemplateSelector] = useState(false);
   const [genGenerationType, setGenGenerationType] = useState<
     "individual" | "bulk"
@@ -362,6 +367,47 @@ export default function AdminDashboard({
   useEffect(() => {
     setHasLoadedCertificates(false);
   }, [currentOrganization?.id]);
+
+  // Sync currentOrganization with organizations prop when it changes
+  useEffect(() => {
+    if (currentOrganization && organizations.length > 0) {
+      // Find the updated version of the current organization
+      const updatedOrg = organizations.find((org) => org.id === currentOrganization.id);
+      if (updatedOrg) {
+        // Only update if the organization data has actually changed
+        if (JSON.stringify(updatedOrg) !== JSON.stringify(currentOrganization)) {
+          console.log('🔄 Syncing currentOrganization with updated organization data');
+          setCurrentOrganization(updatedOrg);
+        }
+      }
+    }
+  }, [organizations]);
+
+  // Load signatories for Generation tab
+  useEffect(() => {
+    const loadSignatories = async () => {
+      console.log("🔍 DEBUG: Checking for signatories...");
+      console.log("   - currentOrganization?.settings?.signatories:", currentOrganization?.settings?.signatories);
+      
+      if (!currentOrganization) {
+        console.log("❌ No currentOrganization");
+        setGenAvailableSignatories([]);
+        return;
+      }
+      
+      if (!currentOrganization.settings?.signatories || currentOrganization.settings.signatories.length === 0) {
+        setGenAvailableSignatories([]);
+        console.log("📝 No signatories found in organization");
+        return;
+      }
+
+      console.log("✅ Loading signatories for Generation tab:", currentOrganization.settings.signatories);
+      console.log("   - Count:", currentOrganization.settings.signatories.length);
+      setGenAvailableSignatories(currentOrganization.settings.signatories || []);
+    };
+
+    loadSignatories();
+  }, [currentOrganization]);
 
   // Load subscription status
   useEffect(() => {
@@ -804,6 +850,18 @@ export default function AdminDashboard({
         template: genSelectedTemplate,
       });
 
+      // Prepare signatories data
+      const signatories = genSelectedSignatories
+        .filter(id => id && id !== "none")
+        .map(id => genAvailableSignatories.find((s: any) => s.id === id))
+        .filter(Boolean);
+
+      console.log("✍️ Including signatories in certificate generation:", {
+        selectedIds: genSelectedSignatories,
+        signatoryCount: signatories.length,
+        signatories: signatories,
+      });
+
       const response = await certificateApi.generate(accessToken, {
         organizationId: genCurrentUserOrganization.id,
         programId: undefined,
@@ -812,6 +870,7 @@ export default function AdminDashboard({
         courseDescription: genProgramDescription.trim(),
         completionDate: genCompletionDate,
         template: genSelectedTemplate, // Add template
+        signatories: signatories.length > 0 ? signatories : undefined,
         students: undefined,
       } as any);
 
@@ -986,6 +1045,12 @@ export default function AdminDashboard({
         // Save to backend if we have an access token and organization
         if (accessToken && genCurrentUserOrganization?.id) {
           try {
+            // Prepare signatories data
+            const signatories = genSelectedSignatories
+              .filter(id => id && id !== "none")
+              .map(id => genAvailableSignatories.find((s: any) => s.id === id))
+              .filter(Boolean);
+
             // Use the generate API with students array
             const response = await certificateApi.generate(accessToken, {
               organizationId: genCurrentUserOrganization.id,
@@ -995,6 +1060,7 @@ export default function AdminDashboard({
               completionDate: genCompletionDate,
               template: genSelectedTemplate,
               customTemplateConfig: genCustomTemplateConfig,
+              signatories: signatories.length > 0 ? signatories : undefined,
               students: students.map((s) => ({
                 name: s.name,
                 email: s.email,
@@ -2053,7 +2119,7 @@ export default function AdminDashboard({
                         <div className="space-y-2">
                           <Label>Certificate Template *</Label>
                           <div
-                            onClick={() => setGenShowTemplateSelector(true)}
+                            onClick={() => setActiveTab("templates")}
                             className="flex items-center gap-3 p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-indigo-400 hover:bg-indigo-50/30 cursor-pointer transition-all group"
                           >
                             {genSelectedTemplate ? (
@@ -2076,7 +2142,7 @@ export default function AdminDashboard({
                                   size="sm"
                                   onClick={(e) => {
                                     e.stopPropagation();
-                                    setGenShowTemplateSelector(true);
+                                    setActiveTab("templates");
                                   }}
                                   className="text-indigo-600 hover:text-indigo-700 hover:bg-indigo-50"
                                 >
@@ -2187,6 +2253,90 @@ export default function AdminDashboard({
                           </p>
                         </div>
 
+                        {/* Signatory Selection */}
+                        <div className="space-y-4">
+                          <div className="flex items-center justify-between">
+                            <Label>Signatories (optional)</Label>
+                            <Button
+                              type="button"
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => setActiveTab("settings")}
+                              className="text-xs text-indigo-600 hover:text-indigo-700"
+                            >
+                              <Plus className="w-3 h-3 mr-1" />
+                              Manage Signatories
+                            </Button>
+                          </div>
+
+                          {genAvailableSignatories.length > 0 ? (
+                            <div className="space-y-3">
+                              {/* Primary Signatory */}
+                              <div className="space-y-2">
+                                <Label htmlFor="genSignatory1" className="text-sm">
+                                  Primary Signatory
+                                </Label>
+                                <Select
+                                  value={genSelectedSignatories[0] || ""}
+                                  onValueChange={(value) => {
+                                    const newSignatories = [...genSelectedSignatories];
+                                    newSignatories[0] = value;
+                                    setGenSelectedSignatories(newSignatories);
+                                    console.log("✍️ Primary signatory selected:", value);
+                                  }}
+                                >
+                                  <SelectTrigger id="genSignatory1">
+                                    <SelectValue placeholder="Select primary signatory" />
+                                  </SelectTrigger>
+                                  <SelectContent>
+                                    <SelectItem value="none">None</SelectItem>
+                                    {genAvailableSignatories.map((sig: any) => (
+                                      <SelectItem key={sig.id} value={sig.id}>
+                                        {sig.name} - {sig.title}
+                                      </SelectItem>
+                                    ))}
+                                  </SelectContent>
+                                </Select>
+                              </div>
+
+                              {/* Secondary Signatory */}
+                              <div className="space-y-2">
+                                <Label htmlFor="genSignatory2" className="text-sm">
+                                  Secondary Signatory
+                                </Label>
+                                <Select
+                                  value={genSelectedSignatories[1] || ""}
+                                  onValueChange={(value) => {
+                                    const newSignatories = [...genSelectedSignatories];
+                                    newSignatories[1] = value;
+                                    setGenSelectedSignatories(newSignatories);
+                                    console.log("✍️ Secondary signatory selected:", value);
+                                  }}
+                                >
+                                  <SelectTrigger id="genSignatory2">
+                                    <SelectValue placeholder="Select secondary signatory" />
+                                  </SelectTrigger>
+                                  <SelectContent>
+                                    <SelectItem value="none">None</SelectItem>
+                                    {genAvailableSignatories.map((sig: any) => (
+                                      <SelectItem key={sig.id} value={sig.id}>
+                                        {sig.name} - {sig.title}
+                                      </SelectItem>
+                                    ))}
+                                  </SelectContent>
+                                </Select>
+                              </div>
+                            </div>
+                          ) : (
+                            <Alert>
+                              <AlertCircle className="h-4 w-4" />
+                              <AlertDescription>
+                                No signatories configured. Go to Settings to add signatories.
+                              </AlertDescription>
+                            </Alert>
+                          )}
+                        </div>
+
                         {/* Completion Date */}
                         <div className="space-y-2">
                           <Label htmlFor="genCompletionDateGen">
@@ -2205,8 +2355,7 @@ export default function AdminDashboard({
                             The date when the program was completed
                           </p>
                         </div>
-
-                        {/* Live Certificate Preview */}
+{/* Live Certificate Preview */}
                         {genProgramName &&
                           genSelectedTemplate &&
                           currentOrganization && (
@@ -2223,11 +2372,11 @@ export default function AdminDashboard({
                               </div>
                               <Card className="bg-gradient-to-br from-indigo-50 to-purple-50 border-2 border-indigo-200">
                                 <CardContent className="p-4">
-                                  <div className="bg-white rounded-lg overflow-hidden shadow-sm">
+                                  <div className="bg-white rounded-lg shadow-sm overflow-auto flex items-center justify-center min-h-[300px]">
                                     <PreviewWrapper
-                                      scale={0.4}
+                                      scale={0.35}
                                       origin="center"
-                                      wrapperSize={2}
+                                      wrapperSize={2.5}
                                     >
                                       <CertificateRenderer
                                         templateId={genSelectedTemplate}
@@ -2247,6 +2396,12 @@ export default function AdminDashboard({
                                         customTemplateConfig={
                                           genCustomTemplateConfig
                                         }
+                                        signatoryName1={genAvailableSignatories.find((s: any) => s.id === genSelectedSignatories[0])?.name}
+                                        signatoryTitle1={genAvailableSignatories.find((s: any) => s.id === genSelectedSignatories[0])?.title}
+                                        signatureUrl1={genAvailableSignatories.find((s: any) => s.id === genSelectedSignatories[0])?.signatureUrl}
+                                        signatoryName2={genAvailableSignatories.find((s: any) => s.id === genSelectedSignatories[1])?.name}
+                                        signatoryTitle2={genAvailableSignatories.find((s: any) => s.id === genSelectedSignatories[1])?.title}
+                                        signatureUrl2={genAvailableSignatories.find((s: any) => s.id === genSelectedSignatories[1])?.signatureUrl}
                                       />
                                     </PreviewWrapper>
                                   </div>

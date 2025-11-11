@@ -1,46 +1,26 @@
-import React, { useState } from "react";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "./ui/dialog";
-import { Button } from "./ui/button";
-import { Input } from "./ui/input";
-import { Label } from "./ui/label";
-import { Textarea } from "./ui/textarea";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "./ui/select";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "./ui/card";
-import { Badge } from "./ui/badge";
-import { Alert, AlertDescription } from "./ui/alert";
-import {
-  Award,
-  Plus,
-  Building2,
+import React, { useState } from 'react';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from './ui/dialog';
+import { Button } from './ui/button';
+import { Input } from './ui/input';
+import { Label } from './ui/label';
+import { Textarea } from './ui/textarea';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
+import { Badge } from './ui/badge';
+import { Alert, AlertDescription } from './ui/alert';
+import { 
+  Award, 
+  Plus, 
+  Building2, 
   FileText,
   Palette,
   CheckCircle,
   AlertCircle,
   Users,
   Briefcase,
-  GraduationCap,
-} from "lucide-react";
-import { toast } from "sonner";
-import CertificateRenderer from "./CertificateRenderer";
-import PreviewWrapper from "./PreviewWrapper";
+  GraduationCap
+} from 'lucide-react';
+import { toast } from 'sonner';
 
 interface NewProgramModalProps {
   isOpen: boolean;
@@ -54,87 +34,56 @@ interface NewProgramModalProps {
 // Simplified certificate templates - only 3 options
 const certificateTemplates = [
   {
-    id: "impact",
-    name: "Impact",
-    description:
-      "Designed for free programs and impact initiatives that create social or environmental change",
+    id: 'impact',
+    name: 'Impact',
+    description: 'Designed for free programs and impact initiatives that create social or environmental change',
     icon: Users,
-    previewTemplateId: "1",
-    features: [
-      "Community focus",
-      "Social impact design",
-      "Accessibility emphasis",
-    ],
-    useCases: [
-      "Free courses",
-      "Community outreach",
-      "Social impact programs",
-      "Volunteer recognition",
-    ],
+    preview: 'https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?w=300&h=200&fit=crop',
+    features: ['Community focus', 'Social impact design', 'Accessibility emphasis'],
+    useCases: ['Free courses', 'Community outreach', 'Social impact programs', 'Volunteer recognition']
   },
   {
-    id: "professional",
-    name: "Professional",
-    description:
-      "Perfect for workshops, training sessions, and capacity building programs",
+    id: 'professional',
+    name: 'Professional',
+    description: 'Perfect for workshops, training sessions, and capacity building programs',
     icon: Briefcase,
-    previewTemplateId: "2",
-    features: [
-      "Professional layout",
-      "Business-ready design",
-      "Skills-focused",
-    ],
-    useCases: [
-      "Workshops",
-      "Training programs",
-      "Capacity building",
-      "Professional development",
-    ],
+    preview: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=200&fit=crop',
+    features: ['Professional layout', 'Business-ready design', 'Skills-focused'],
+    useCases: ['Workshops', 'Training programs', 'Capacity building', 'Professional development']
   },
   {
-    id: "advanced",
-    name: "Advanced",
-    description:
-      "Sophisticated design for research programs, certificates, diplomas, and advanced studies",
+    id: 'advanced',
+    name: 'Advanced',
+    description: 'Sophisticated design for research programs, certificates, diplomas, and advanced studies',
     icon: GraduationCap,
-    previewTemplateId: "3",
-    features: ["Academic excellence", "Research-focused", "Premium appearance"],
-    useCases: [
-      "Research programs",
-      "Certificate courses",
-      "Diploma programs",
-      "Advanced studies",
-    ],
-  },
+    preview: 'https://images.unsplash.com/photo-1523050854058-8df90110c9d1?w=300&h=200&fit=crop',
+    features: ['Academic excellence', 'Research-focused', 'Premium appearance'],
+    useCases: ['Research programs', 'Certificate courses', 'Diploma programs', 'Advanced studies']
+  }
 ];
 
-export default function NewProgramModal({
-  isOpen,
-  onClose,
-  user,
-  subsidiaries: organizations,
+export default function NewProgramModal({ 
+  isOpen, 
+  onClose, 
+  user, 
+  subsidiaries: organizations, 
   currentSubsidiary: currentOrganization,
-  onAddProgram,
+  onAddProgram 
 }: NewProgramModalProps) {
-  const [selectedOrganization, setSelectedOrganization] = useState(
-    currentOrganization?.id || ""
-  );
-  const [programName, setProgramName] = useState("");
-  const [programDescription, setProgramDescription] = useState("");
-  const [selectedTemplate, setSelectedTemplate] = useState("");
-  const [duration, setDuration] = useState("");
-  const [prerequisites, setPrerequisites] = useState("");
+  const [selectedOrganization, setSelectedOrganization] = useState(currentOrganization?.id || '');
+  const [programName, setProgramName] = useState('');
+  const [programDescription, setProgramDescription] = useState('');
+  const [selectedTemplate, setSelectedTemplate] = useState('');
+  const [duration, setDuration] = useState('');
+  const [prerequisites, setPrerequisites] = useState('');
   const [isCreating, setIsCreating] = useState(false);
   const [showTemplatePreview, setShowTemplatePreview] = useState(false);
 
   // Get user's organization
-  const currentUserOrganization =
-    currentOrganization || (organizations.length > 0 ? organizations[0] : null);
+  const currentUserOrganization = currentOrganization || (organizations.length > 0 ? organizations[0] : null);
 
   // Get selected organization data
-  const selectedOrganizationData =
-    organizations.find((o) => o.id === selectedOrganization) ||
-    currentUserOrganization;
+  const selectedOrganizationData = organizations.find(o => o.id === selectedOrganization) || currentUserOrganization;
 
   // Generate unique program ID
   const generateProgramId = () => {
@@ -146,50 +95,43 @@ export default function NewProgramModal({
   // Create new program
   const createProgram = () => {
     const orgId = selectedOrganization || currentUserOrganization?.id;
-    if (
-      !orgId ||
-      !programName.trim() ||
-      !programDescription.trim() ||
-      !selectedTemplate
-    ) {
-      toast.error("Please fill in all required fields");
+    if (!orgId || !programName.trim() || !programDescription.trim() || !selectedTemplate) {
+      toast.error('Please fill in all required fields');
       return;
     }
 
     // Check if program name already exists in the organization
     const existingProgram = selectedOrganizationData?.programs.find(
-      (p: any) => p.name.toLowerCase() === programName.trim().toLowerCase()
+      p => p.name.toLowerCase() === programName.trim().toLowerCase()
     );
-
+    
     if (existingProgram) {
-      toast.error(
-        "A program with this name already exists in your organization"
-      );
+      toast.error('A program with this name already exists in your organization');
       return;
     }
 
     setIsCreating(true);
-
+    
     // Simulate API call delay
     setTimeout(() => {
       const newProgram = {
         id: generateProgramId(),
         name: programName.trim(),
         description: programDescription.trim(),
-        template: selectedTemplate as "impact" | "professional" | "advanced",
+        template: selectedTemplate as 'impact' | 'professional' | 'advanced',
         certificates: 0,
         testimonials: 0,
         duration: duration.trim(),
         prerequisites: prerequisites.trim(),
         createdAt: new Date().toISOString(),
-        createdBy: user.username,
+        createdBy: user.username
       };
 
       onAddProgram(orgId, newProgram);
-
+      
       setIsCreating(false);
       toast.success(`Program "${programName}" created successfully!`);
-
+      
       // Reset form and close modal
       resetForm();
       onClose();
@@ -198,12 +140,12 @@ export default function NewProgramModal({
 
   // Reset form
   const resetForm = () => {
-    setSelectedOrganization(currentOrganization?.id || "");
-    setProgramName("");
-    setProgramDescription("");
-    setSelectedTemplate("");
-    setDuration("");
-    setPrerequisites("");
+    setSelectedOrganization(currentOrganization?.id || '');
+    setProgramName('');
+    setProgramDescription('');
+    setSelectedTemplate('');
+    setDuration('');
+    setPrerequisites('');
     setShowTemplatePreview(false);
   };
 
@@ -212,9 +154,7 @@ export default function NewProgramModal({
     onClose();
   };
 
-  const selectedTemplateData = certificateTemplates.find(
-    (t) => t.id === selectedTemplate
-  );
+  const selectedTemplateData = certificateTemplates.find(t => t.id === selectedTemplate);
 
   return (
     <Dialog open={isOpen} onOpenChange={handleClose}>
@@ -235,9 +175,7 @@ export default function NewProgramModal({
             <Alert>
               <Building2 className="h-4 w-4" />
               <AlertDescription>
-                Creating program for{" "}
-                <strong>{selectedOrganizationData.name}</strong> - Currently has{" "}
-                {selectedOrganizationData.programs.length} active programs
+                Creating program for <strong>{selectedOrganizationData.name}</strong> - Currently has {selectedOrganizationData.programs.length} active programs
               </AlertDescription>
             </Alert>
           )}
@@ -249,9 +187,7 @@ export default function NewProgramModal({
                 <FileText className="w-4 h-4" />
                 Program Information
               </CardTitle>
-              <CardDescription>
-                Basic details about your certificate program
-              </CardDescription>
+              <CardDescription>Basic details about your certificate program</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-2">
@@ -265,9 +201,7 @@ export default function NewProgramModal({
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="programDescription">
-                  Program Description *
-                </Label>
+                <Label htmlFor="programDescription">Program Description *</Label>
                 <Textarea
                   id="programDescription"
                   value={programDescription}
@@ -288,9 +222,7 @@ export default function NewProgramModal({
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="prerequisites">
-                    Prerequisites (optional)
-                  </Label>
+                  <Label htmlFor="prerequisites">Prerequisites (optional)</Label>
                   <Input
                     id="prerequisites"
                     value={prerequisites}
@@ -309,9 +241,7 @@ export default function NewProgramModal({
                 <Palette className="w-4 h-4" />
                 Certificate Template *
               </CardTitle>
-              <CardDescription>
-                Choose the appropriate template based on your program type
-              </CardDescription>
+              <CardDescription>Choose the appropriate template based on your program type</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -326,70 +256,42 @@ export default function NewProgramModal({
                       }}
                       className={`p-4 border rounded-lg text-left transition-all hover:shadow-md ${
                         selectedTemplate === template.id
-                          ? "border-indigo-500 bg-indigo-50 shadow-md"
-                          : "border-gray-200 hover:border-gray-300 hover:bg-gray-50"
+                          ? 'border-indigo-500 bg-indigo-50 shadow-md'
+                          : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
                       }`}
                     >
                       <div className="flex items-center gap-3 mb-3">
-                        <div
-                          className={`p-2 rounded-lg ${
-                            selectedTemplate === template.id
-                              ? "bg-indigo-100"
-                              : "bg-gray-100"
-                          }`}
-                        >
-                          <IconComponent
-                            className={`w-5 h-5 ${
-                              selectedTemplate === template.id
-                                ? "text-indigo-600"
-                                : "text-gray-600"
-                            }`}
-                          />
+                        <div className={`p-2 rounded-lg ${
+                          selectedTemplate === template.id ? 'bg-indigo-100' : 'bg-gray-100'
+                        }`}>
+                          <IconComponent className={`w-5 h-5 ${
+                            selectedTemplate === template.id ? 'text-indigo-600' : 'text-gray-600'
+                          }`} />
                         </div>
                         <h4 className="font-semibold">{template.name}</h4>
                       </div>
-
-                      <div className="aspect-video bg-gray-100 rounded mb-3 overflow-hidden flex items-center justify-center">
-                        <PreviewWrapper
-                          scale={0.4}
-                          origin="center"
-                          wrapperSize={2}
-                        >
-                          <CertificateRenderer
-                            templateId={template.previewTemplateId}
-                            header="Certificate of Completion"
-                            courseTitle="Sample Course"
-                            description={template.description}
-                            date="22nd January 2025"
-                            recipientName="John Doe"
-                            isPreview={true}
-                            mode="template-selection"
-                            organizationName={selectedOrganizationData?.name}
-                            organizationLogo={selectedOrganizationData?.logo}
-                          />
-                        </PreviewWrapper>
+                      
+                      <div className="aspect-video bg-gray-100 rounded mb-3 overflow-hidden">
+                        <img 
+                          src={template.preview} 
+                          alt={template.name}
+                          className="w-full h-full object-cover"
+                        />
                       </div>
-
-                      <p className="text-sm text-gray-600 mb-3">
-                        {template.description}
-                      </p>
-
+                      
+                      <p className="text-sm text-gray-600 mb-3">{template.description}</p>
+                      
                       <div className="space-y-2">
                         <div className="flex flex-wrap gap-1">
                           {template.features.map((feature, index) => (
-                            <Badge
-                              key={index}
-                              variant="secondary"
-                              className="text-xs"
-                            >
+                            <Badge key={index} variant="secondary" className="text-xs">
                               {feature}
                             </Badge>
                           ))}
                         </div>
-
+                        
                         <div className="text-xs text-gray-500">
-                          <strong>Best for:</strong>{" "}
-                          {template.useCases.join(", ")}
+                          <strong>Best for:</strong> {template.useCases.join(', ')}
                         </div>
                       </div>
                     </button>
@@ -401,9 +303,7 @@ export default function NewProgramModal({
                 <Alert className="mt-4">
                   <CheckCircle className="h-4 w-4" />
                   <AlertDescription>
-                    Selected template:{" "}
-                    <strong>{selectedTemplateData.name}</strong> -{" "}
-                    {selectedTemplateData.description}
+                    Selected template: <strong>{selectedTemplateData.name}</strong> - {selectedTemplateData.description}
                   </AlertDescription>
                 </Alert>
               )}
@@ -415,29 +315,22 @@ export default function NewProgramModal({
             <Card>
               <CardHeader>
                 <CardTitle className="text-base">Program Preview</CardTitle>
-                <CardDescription>
-                  How this program will appear in your dashboard
-                </CardDescription>
+                <CardDescription>How this program will appear in your dashboard</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="flex items-center justify-between p-4 border rounded-lg bg-gray-50">
                   <div className="flex items-center gap-4">
-                    <div
+                    <div 
                       className="w-12 h-12 rounded-lg flex items-center justify-center"
-                      style={{
-                        background: `linear-gradient(135deg, ${selectedOrganizationData.primaryColor}40, ${selectedOrganizationData.primaryColor}60)`,
+                      style={{ 
+                        background: `linear-gradient(135deg, ${selectedOrganizationData.primaryColor}40, ${selectedOrganizationData.primaryColor}60)` 
                       }}
                     >
-                      <Award
-                        className="w-6 h-6"
-                        style={{ color: selectedOrganizationData.primaryColor }}
-                      />
+                      <Award className="w-6 h-6" style={{ color: selectedOrganizationData.primaryColor }} />
                     </div>
                     <div>
                       <h3 className="font-semibold">{programName}</h3>
-                      <p className="text-sm text-gray-600 mb-1">
-                        {programDescription}
-                      </p>
+                      <p className="text-sm text-gray-600 mb-1">{programDescription}</p>
                       <div className="flex items-center gap-4 text-sm text-gray-500">
                         <span>0 certificates</span>
                         <span>0 testimonials</span>
@@ -457,15 +350,9 @@ export default function NewProgramModal({
             <Button variant="outline" onClick={handleClose}>
               Cancel
             </Button>
-            <Button
+            <Button 
               onClick={createProgram}
-              disabled={
-                isCreating ||
-                !selectedOrganization ||
-                !programName.trim() ||
-                !programDescription.trim() ||
-                !selectedTemplate
-              }
+              disabled={isCreating || !selectedOrganization || !programName.trim() || !programDescription.trim() || !selectedTemplate}
             >
               {isCreating ? (
                 <>

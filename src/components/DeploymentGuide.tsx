@@ -1,25 +1,13 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "./ui/card";
-import { Button } from "./ui/button";
-import { Badge } from "./ui/badge";
-import {
-  AlertCircle,
-  CheckCircle,
-  Copy,
-  ExternalLink,
-  Terminal,
-} from "lucide-react";
-import { toast } from "sonner";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
+import { Button } from './ui/button';
+import { Badge } from './ui/badge';
+import { AlertCircle, CheckCircle, Copy, ExternalLink, Terminal } from 'lucide-react';
+import { toast } from 'sonner@2.0.3';
 
 export default function DeploymentGuide() {
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
-    toast.success("Copied to clipboard!");
+    toast.success('Copied to clipboard!');
   };
 
   return (
@@ -32,8 +20,7 @@ export default function DeploymentGuide() {
           </div>
           <h1 className="text-3xl">Edge Function Not Deployed</h1>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Your Certificate Generator Platform backend needs to be deployed to
-            Supabase. This is a one-time setup that takes about 2 minutes.
+            Your Certificate Generator Platform backend needs to be deployed to Supabase. This is a one-time setup that takes about 2 minutes.
           </p>
         </div>
 
@@ -42,9 +29,7 @@ export default function DeploymentGuide() {
           <CardHeader>
             <div className="flex items-center gap-2">
               <Terminal className="w-5 h-5 text-orange-600" />
-              <CardTitle className="text-orange-900">
-                ⚡ Quick Fix - One Command
-              </CardTitle>
+              <CardTitle className="text-orange-900">⚡ Quick Fix - One Command</CardTitle>
             </div>
             <CardDescription>Run this command in your terminal</CardDescription>
           </CardHeader>
@@ -54,9 +39,7 @@ export default function DeploymentGuide() {
               <Button
                 size="sm"
                 variant="ghost"
-                onClick={() =>
-                  copyToClipboard("supabase functions deploy server")
-                }
+                onClick={() => copyToClipboard('supabase functions deploy server')}
                 className="text-green-400 hover:text-green-300 hover:bg-gray-800"
               >
                 <Copy className="w-4 h-4" />
@@ -67,9 +50,7 @@ export default function DeploymentGuide() {
                 1
               </div>
               <div>
-                <p className="text-gray-900">
-                  Wait 60 seconds for deployment to complete
-                </p>
+                <p className="text-gray-900">Wait 60 seconds for deployment to complete</p>
               </div>
             </div>
             <div className="flex items-start gap-3 text-sm">
@@ -85,9 +66,7 @@ export default function DeploymentGuide() {
                 <CheckCircle className="w-4 h-4" />
               </div>
               <div>
-                <p className="text-green-700">
-                  You're ready to use the platform! 🎉
-                </p>
+                <p className="text-green-700">You're ready to use the platform! 🎉</p>
               </div>
             </div>
           </CardContent>
@@ -111,7 +90,7 @@ export default function DeploymentGuide() {
                 <Button
                   size="sm"
                   variant="ghost"
-                  onClick={() => copyToClipboard("npm install -g supabase")}
+                  onClick={() => copyToClipboard('npm install -g supabase')}
                   className="text-green-400 hover:text-green-300 hover:bg-gray-800"
                 >
                   <Copy className="w-4 h-4" />
@@ -130,7 +109,7 @@ export default function DeploymentGuide() {
                 <Button
                   size="sm"
                   variant="ghost"
-                  onClick={() => copyToClipboard("supabase login")}
+                  onClick={() => copyToClipboard('supabase login')}
                   className="text-green-400 hover:text-green-300 hover:bg-gray-800"
                 >
                   <Copy className="w-4 h-4" />
@@ -149,19 +128,14 @@ export default function DeploymentGuide() {
                 <Button
                   size="sm"
                   variant="ghost"
-                  onClick={() =>
-                    copyToClipboard(
-                      "supabase link --project-ref YOUR_PROJECT_ID"
-                    )
-                  }
+                  onClick={() => copyToClipboard('supabase link --project-ref YOUR_PROJECT_ID')}
                   className="text-green-400 hover:text-green-300 hover:bg-gray-800"
                 >
                   <Copy className="w-4 h-4" />
                 </Button>
               </div>
               <p className="text-xs text-gray-500 ml-1">
-                Replace YOUR_PROJECT_ID with your actual project ID from
-                Supabase Dashboard
+                Replace YOUR_PROJECT_ID with your actual project ID from Supabase Dashboard
               </p>
             </div>
 
@@ -176,9 +150,7 @@ export default function DeploymentGuide() {
                 <Button
                   size="sm"
                   variant="ghost"
-                  onClick={() =>
-                    copyToClipboard("supabase functions deploy server")
-                  }
+                  onClick={() => copyToClipboard('supabase functions deploy server')}
                   className="text-green-400 hover:text-green-300 hover:bg-gray-800"
                 >
                   <Copy className="w-4 h-4" />
@@ -198,7 +170,7 @@ export default function DeploymentGuide() {
               <Button
                 variant="outline"
                 className="justify-between"
-                onClick={() => window.open("/START_HERE.md", "_blank")}
+                onClick={() => window.open('/START_HERE.md', '_blank')}
               >
                 <span>Quick Start Guide</span>
                 <ExternalLink className="w-4 h-4" />
@@ -206,7 +178,7 @@ export default function DeploymentGuide() {
               <Button
                 variant="outline"
                 className="justify-between"
-                onClick={() => window.open("/DEPLOY_NOW.md", "_blank")}
+                onClick={() => window.open('/DEPLOY_NOW.md', '_blank')}
               >
                 <span>Deployment Guide</span>
                 <ExternalLink className="w-4 h-4" />
@@ -214,7 +186,7 @@ export default function DeploymentGuide() {
               <Button
                 variant="outline"
                 className="justify-between"
-                onClick={() => window.open("/VISUAL_DEPLOY_GUIDE.md", "_blank")}
+                onClick={() => window.open('/VISUAL_DEPLOY_GUIDE.md', '_blank')}
               >
                 <span>Visual Guide</span>
                 <ExternalLink className="w-4 h-4" />
@@ -222,7 +194,7 @@ export default function DeploymentGuide() {
               <Button
                 variant="outline"
                 className="justify-between"
-                onClick={() => window.open("/#/health-check", "_blank")}
+                onClick={() => window.open('/#/health-check', '_blank')}
               >
                 <span>Health Check</span>
                 <ExternalLink className="w-4 h-4" />
@@ -234,12 +206,8 @@ export default function DeploymentGuide() {
         {/* What You'll Get */}
         <Card className="border-green-200 bg-green-50/50">
           <CardHeader>
-            <CardTitle className="text-green-900">
-              What You'll Get After Deployment
-            </CardTitle>
-            <CardDescription>
-              Features included in this platform
-            </CardDescription>
+            <CardTitle className="text-green-900">What You'll Get After Deployment</CardTitle>
+            <CardDescription>Features included in this platform</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">

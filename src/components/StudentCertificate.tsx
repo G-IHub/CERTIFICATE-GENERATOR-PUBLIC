@@ -71,6 +71,11 @@ interface CertificateData {
   organizationId?: string;
   customTemplateConfig?: any; // Custom template configuration
   template?: string; // Template name/style
+  signatories?: {
+    name: string;
+    title: string;
+    signatureUrl: string;
+  }[];
 }
 
 const StudentCertificate: React.FC<StudentCertificateProps> = ({
@@ -238,6 +243,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
             organizationId: cert.organizationId,
             template: cert.template, // Template ID from backend
             customTemplateConfig: cert.customTemplateConfig, // Custom template config if exists
+            signatories: cert.signatories || [], // Signatories from backend
           };
 
           console.log("📋 Template Info:", {
@@ -376,6 +382,12 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
             organizationName={orgData?.name}
             organizationLogo={orgData?.logo}
             customTemplateConfig={certificate!.customTemplateConfig}
+            signatoryName1={certificate!.signatories?.[0]?.name}
+            signatoryTitle1={certificate!.signatories?.[0]?.title}
+            signatureUrl1={certificate!.signatories?.[0]?.signatureUrl}
+            signatoryName2={certificate!.signatories?.[1]?.name}
+            signatoryTitle2={certificate!.signatories?.[1]?.title}
+            signatureUrl2={certificate!.signatories?.[1]?.signatureUrl}
           />
         </div>
       );
@@ -389,6 +401,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
         logging: false,
         useCORS: true,
         allowTaint: true,
+        foreignObjectRendering: false,
         onclone: (clonedDoc) => {
           try {
             // Remove cloned stylesheets and <style> tags so html2canvas won't parse CSS
@@ -397,60 +410,6 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
               'link[rel="stylesheet"], style'
             );
             styleEls.forEach((el) => el.parentNode?.removeChild(el));
-
-            const cloned = clonedDoc.getElementById(container.id!);
-            if (!cloned) return;
-            const originals = container.querySelectorAll<HTMLElement>("*");
-            const clones = cloned.querySelectorAll<HTMLElement>("*");
-            const length = Math.min(originals.length, clones.length);
-            for (let i = 0; i < length; i++) {
-              const o = originals[i];
-              const c = clones[i];
-              const cs = window.getComputedStyle(o);
-
-              // Copy resolved styles for a broader set of properties that html2canvas may parse
-              const props = [
-                "color",
-                "background",
-                "background-color",
-                "background-image",
-                "background-position",
-                "background-size",
-                "background-repeat",
-                "border-top-color",
-                "border-right-color",
-                "border-bottom-color",
-                "border-left-color",
-                "box-shadow",
-                "outline-color",
-                "fill",
-                "stroke",
-              ];
-
-              props.forEach((p) => {
-                const value = cs.getPropertyValue(p as any);
-                if (value) c.style.setProperty(p, value, "important");
-              });
-
-              // Sanitize attributes that might include raw CSS functions (e.g., SVG stop-color="oklch(...)")
-              try {
-                const attrs = o.getAttributeNames ? o.getAttributeNames() : [];
-                for (const attr of attrs) {
-                  const val = o.getAttribute(attr);
-                  if (val && val.includes("oklch(")) {
-                    // Try to replace with a sensible resolved value from computed style
-                    const fallback =
-                      cs.getPropertyValue(attr) ||
-                      cs.getPropertyValue("color") ||
-                      cs.getPropertyValue("fill") ||
-                      "transparent";
-                    c.setAttribute(attr, fallback);
-                  }
-                }
-              } catch (attrErr) {
-                // ignore attribute copy errors
-              }
-            }
           } catch (err) {
             // Best-effort: if cloning modifications fail, continue without them
             // eslint-disable-next-line no-console
@@ -537,6 +496,12 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
             organizationName={orgData?.name}
             organizationLogo={orgData?.logo}
             customTemplateConfig={certificate!.customTemplateConfig}
+            signatoryName1={certificate!.signatories?.[0]?.name}
+            signatoryTitle1={certificate!.signatories?.[0]?.title}
+            signatureUrl1={certificate!.signatories?.[0]?.signatureUrl}
+            signatoryName2={certificate!.signatories?.[1]?.name}
+            signatoryTitle2={certificate!.signatories?.[1]?.title}
+            signatureUrl2={certificate!.signatories?.[1]?.signatureUrl}
           />
         </div>
       );
@@ -986,6 +951,12 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
                       organizationName={orgData?.name}
                       organizationLogo={orgData?.logo}
                       customTemplateConfig={certificate.customTemplateConfig}
+                      signatoryName1={certificate.signatories?.[0]?.name}
+                      signatoryTitle1={certificate.signatories?.[0]?.title}
+                      signatureUrl1={certificate.signatories?.[0]?.signatureUrl}
+                      signatoryName2={certificate.signatories?.[1]?.name}
+                      signatoryTitle2={certificate.signatories?.[1]?.title}
+                      signatureUrl2={certificate.signatories?.[1]?.signatureUrl}
                     />
                   </div>
                 </CardContent>

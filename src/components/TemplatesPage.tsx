@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Loader2, Crown, Eye, Check, AlertCircle, Lock } from "lucide-react";
-import TemplatesSkeleton from "./skeletons/TemplatesSkeleton";
+import TemplatesSkeleton from "./skeletons/TemplatesSkeletons";
 import { templateApi } from "../utils/api";
 import { toast } from "sonner";
 import { revalidateOrgPremium, isOrgPremium } from "../utils/subscriptionUtils";
@@ -173,11 +173,7 @@ export default function TemplatesPage({
 
             {/* Preview area */}
             <div
-              className={`bg-gray-50 p-4 aspect-[4/3] flex items-center justify-center overflow-hidden ${
-                template.type === "premium" && !isPremiumUser
-                  ? "opacity-80"
-                  : ""
-              }`}
+              className={`bg-gray-50 p-4 aspect-[4/3] flex items-center justify-center overflow-hidden`}
             >
               <TemplateErrorBoundary>
                 <PreviewWrapper scale={0.4} origin="center" wrapperSize={2}>
@@ -257,6 +253,7 @@ export default function TemplatesPage({
                       toast.error(
                         "This is a premium template. Upgrade to use premium templates."
                       );
+                      navigate("/billing");
                       return;
                     }
                     handleSelect(template);
@@ -277,24 +274,6 @@ export default function TemplatesPage({
                 </Button>
               </div>
             </div>
-
-            {/* Lock overlay for non-premium */}
-            {template.type === "premium" && !isOrgPremium(organization) && (
-              <div className="absolute inset-0 bg-black/20 backdrop-blur-sm z-10 flex items-center justify-center p-4">
-                <div className="bg-white/95 rounded-lg p-4 shadow-lg text-center max-w-[220px]">
-                  <Lock className="w-8 h-8 text-primary mx-auto mb-2" />
-                  <p className="text-sm font-medium mb-1">Premium Template</p>
-                  <p className="text-xs text-gray-600 mb-3">
-                    Upgrade to unlock
-                  </p>
-                  <div className="flex justify-center">
-                    <Button size="sm" onClick={() => navigate("/billing")}>
-                      Upgrade
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            )}
           </div>
         ))}
       </div>

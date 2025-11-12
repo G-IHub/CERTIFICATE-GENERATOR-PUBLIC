@@ -70,7 +70,7 @@ export default function CertificateTemplate2({
     : "min-w-[1056px] flex justify-center items-center";
 
   const certificateClass = isPreview
-    ? "flex flex-col justify-center items-center relative shadow-2xl"
+    ? "flex flex-col justify-center items-center relative w-[100px] shadow-lg"
     : "flex flex-col justify-center items-center relative";
 
   return (
@@ -83,7 +83,7 @@ export default function CertificateTemplate2({
         className={certificateClass}
         style={{ backgroundColor: "#FEFEFD" }}
       >
-        <div className="flex justify-center bg-[#FEFEFD] items-center shadow-md w-3xl px-16 py-10 rounded-lg relative overflow-hidden text-[#4D4D4D]">
+        <div className="flex justify-center bg-[#FEFEFD] items-center shadow-md px-16 py-10 rounded-lg relative overflow-hidden text-[#4D4D4D]">
           {/* Repeating wavy background */}
           <div className="z-0 relative w-full h-full">
             {Array.from({ length: 30 }).map((_, i) => (
@@ -105,7 +105,7 @@ export default function CertificateTemplate2({
             <div className="absolute top-0 -right-12">
               <img src={rect} alt="" className="w-11/12" />
             </div>
-            <div className="absolute bottom-0 -right-2">
+            <div className="absolute bottom-0 -right-8">
               <img src={rect2} alt="" className="w-11/12" />
             </div>
             <div className="absolute bottom-0 left-0">
@@ -152,8 +152,8 @@ export default function CertificateTemplate2({
                   fontWeight: 700,
                   borderBottom: "2px solid #000",
                   paddingBottom: "8px",
-                  paddingLeft: "160px",
-                  paddingRight: "160px",
+                  paddingLeft: "220px",
+                  paddingRight: "220px",
                 }}
               >
                 {recipientName}
@@ -170,29 +170,28 @@ export default function CertificateTemplate2({
                     <div className="border-b-2 w-40 text-center" />
                     <p className="mt-2">{date}</p>
                   </div>
-                  <div className="text-center">
+                  {/* <div className="text-center">
                     <div className="border-b-2 w-40 text-center" />
-                    <p className="mt-2">{signatoryName1 || "SIGNATURE"}</p>
-                  </div>
-                </div>
+                    <p className="mt-2">{signatureUrl1 || "SIGNATURE"}</p>
+                  </div> */}
 
-                <div className="flex gap-4 items-center">
-                  {/* small round placeholders */}
-                  {[signatureUrl1, signatureUrl2, undefined].map((src, idx) =>
-                    src ? (
-                      <img
-                        key={idx}
-                        src={src}
-                        alt={`sig-${idx}`}
-                        className="w-10 h-10 rounded-full object-cover"
-                      />
-                    ) : (
-                      <div
-                        key={idx}
-                        className="w-10 h-10 rounded-full bg-gray-600"
-                      />
-                    )
-                  )}
+                  <div className="flex gap-4 items-center">
+                    {[signatureUrl1, signatureUrl2].map((src, idx) =>
+                      src ? (
+                        <img
+                          key={idx}
+                          src={src}
+                          alt={`sig-${idx}`}
+                          className="w-10 h-10 rounded-full object-cover"
+                        />
+                      ) : (
+                        <div
+                          key={idx}
+                          className="w-10 h-10 rounded-full bg-gray-600"
+                        />
+                      )
+                    )}
+                  </div>
                 </div>
               </div>
             </div>

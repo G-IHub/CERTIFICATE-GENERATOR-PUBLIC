@@ -10,6 +10,7 @@ import { Badge } from "./ui/badge";
 import CertificateRenderer from "./CertificateRenderer";
 import PreviewWrapper from "./PreviewWrapper";
 import type { Organization } from "../App";
+import TemplateReseedButton from "./TemplateReseedButton";
 
 // Simple error boundary for preview rendering
 class TemplateErrorBoundary extends React.Component<
@@ -276,6 +277,10 @@ export default function TemplatesPage({
             </div>
           </div>
         ))}
+      </div>
+
+      <div>
+        <TemplateReseedButton />
       </div>
 
       {/* Preview Modal */}

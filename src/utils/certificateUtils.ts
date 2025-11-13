@@ -96,23 +96,13 @@ export const normalizeCertificateUrl = (url: string): string => {
  * @returns Full URL with hash routing
  */
 export const buildFullCertificateUrl = (certificateUrl: string | undefined): string => {
-  console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-  console.log('🔗 buildFullCertificateUrl called');
-  console.log('   - Input certificateUrl:', certificateUrl);
-  console.log('   - Type:', typeof certificateUrl);
-  console.log('   - Is undefined?', certificateUrl === undefined);
-  console.log('   - Is empty?', certificateUrl === '');
+
   
   if (!certificateUrl || certificateUrl.trim() === '') {
-    console.error('❌ ERROR: Certificate URL is empty or undefined!');
-    console.log('   - Returning fallback URL: #/');
-    console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
     return '#/';
   }
   
   const normalized = normalizeCertificateUrl(certificateUrl);
   const fullUrl = `${window.location.origin}/#/${normalized}`;
-  console.log('✅ Full URL built successfully:', fullUrl);
-  console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
   return fullUrl;
 };

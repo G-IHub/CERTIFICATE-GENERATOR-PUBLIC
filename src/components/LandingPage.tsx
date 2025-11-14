@@ -28,10 +28,18 @@ export default function LandingPage() {
         <Navbar />
         <Hero />
         <About />
-        <CoreFeatures />
-        <Work />
-        <Price />
-        <Testimonial />
+        <section id="features">
+          <CoreFeatures />
+        </section>
+        <section id="work">
+          <Work />
+        </section>
+        <section id="prices">
+          <Price />
+        </section>
+        <section id="testimonials">
+          <Testimonial />
+        </section>
         <FAQ />
         <Footer />
       </div>

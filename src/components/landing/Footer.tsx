@@ -20,7 +20,7 @@ const Footer: React.FC = () => {
             >
               Support
             </a>
-            <a
+            {/* <a
               href="/slack"
               className="block text-white/70 hover:text-white transition-colors"
             >
@@ -37,7 +37,7 @@ const Footer: React.FC = () => {
               className="block text-white/70 hover:text-white transition-colors"
             >
               Cookies
-            </a>
+            </a> */}
             <a
               href="/terms"
               className="block text-white/70 hover:text-white transition-colors"
@@ -73,12 +73,12 @@ const Footer: React.FC = () => {
             >
               Pricing
             </a>
-            <a
+            {/* <a
               href="/tools"
               className="block text-white/70 hover:text-white transition-colors"
             >
               Tools and Intergration
-            </a>
+            </a> */}
           </div>
         </div>
         <div>
@@ -90,23 +90,24 @@ const Footer: React.FC = () => {
             >
               Our Story
             </a>
-            <a
+            {/* <a
               href="/mediakit"
               className="block text-white/70 hover:text-white transition-colors"
             >
               Media Kit
-            </a>
-            <a
+            </a> */}
+            {/* <a
               href="/blog"
               className="block text-white/70 hover:text-white transition-colors"
             >
               Blog
-            </a>
+            </a> */}
           </div>
         </div>
         <div className="space-y-4">
-          <img src={logo} alt="logo" className="w-24 mb-4" />
-          <p className="text-sm text-white/70">
+          <img src={logo} alt="logo" className="w-30 mb-4" />
+          <p className="text-white/70">Empowering educators to create and manage certificates with ease</p>
+          {/* <p className="text-sm text-white/70">
             Get the latest updates about Designership's new features and product
             updates.
           </p>
@@ -119,7 +120,7 @@ const Footer: React.FC = () => {
             <button className="text-white bg-orange-500 px-4 py-2.5 rounded-md hover:bg-orange-600 transition-colors">
               Send
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
 
@@ -141,7 +142,7 @@ const Footer: React.FC = () => {
           >
             Privacy Policy
           </a>
-          <a
+          {/* <a
             href="/security"
             className="block text-white/70 hover:text-white transition-colors"
           >
@@ -152,7 +153,7 @@ const Footer: React.FC = () => {
             className="block text-white/70 hover:text-white transition-colors"
           >
             Sitemap
-          </a>
+          </a> */}
         </div>
       </div>
     </div>

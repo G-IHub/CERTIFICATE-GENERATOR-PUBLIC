@@ -1,27 +1,8 @@
-import React from "react";
-
-// Optional ribbon assets
-let ribbon1: string | null = null;
-let ribbon2: string | null = null;
-try {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  ribbon1 = require("../../assets/Ribbon (1).svg");
-} catch (e) {
-  ribbon1 = null;
-}
-try {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  ribbon2 = require("../../assets/Ribbon 2.svg");
-} catch (e) {
-  ribbon2 = null;
-}
-let medal: string | null = null;
-try {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  medal = require("../../assets/Medal.svg");
-} catch (e) {
-  medal = null;
-}
+import React, { useEffect } from "react";
+// Import ribbon and medal assets directly so the bundler resolves them correctly
+import ribbon1 from "../../assets/Ribbon (1).svg";
+import ribbon2 from "../../assets/Ribbon 2.svg";
+import medal from "../../assets/Medal.svg";
 
 interface CertificateTemplate4Props {
   header?: string;
@@ -54,6 +35,18 @@ export default function CertificateTemplate4({
 }: CertificateTemplate4Props) {
   const previewMode = isPreview || mode === "template-selection";
 
+  // Ensure the Rakkas font is loaded for this template
+  useEffect(() => {
+    const id = "rakkas-font";
+    if (!document.getElementById(id)) {
+      const link = document.createElement("link");
+      link.id = id;
+      link.rel = "stylesheet";
+      link.href = "https://fonts.googleapis.com/css2?family=Rakkas&display=swap";
+      document.head.appendChild(link);
+    }
+  }, []);
+
   const mainBoxStyle: React.CSSProperties = previewMode
     ? {
         width: "100%",
@@ -66,7 +59,7 @@ export default function CertificateTemplate4({
   return (
     <div style={{ backgroundColor: "transparent" }} className="w-full mx-auto">
       <div
-        className="flex justify-center bg-white items-center shadow-md rounded-sm relative"
+        className="flex justify-center bg-white items-center shadow-md w-3xl p-6 rounded-sm relative overflow-hidden"
         style={mainBoxStyle}
       >
         <div>
@@ -75,8 +68,7 @@ export default function CertificateTemplate4({
             <img
               src={String(ribbon1)}
               alt="ribbon1"
-              className="absolute z-10"
-              style={{ top: 0, left: 0 }}
+              className="absolute z-10 -top-5 left-0"
             />
           )}
           {ribbon2 && (
@@ -84,20 +76,17 @@ export default function CertificateTemplate4({
             <img
               src={String(ribbon2)}
               alt="ribbon2"
-              className="absolute z-10"
-              style={{ bottom: 0, right: 0 }}
+              className="absolute z-10 -bottom-6 right-0"
             />
           )}
         </div>
 
-        <div className="bg-white border-4 border-[#314E854D] p-2">
+        <div className="bg-white border-4 border-[#314E854D] p-2 w-full">
           <div className="bg-white border-2 border-[#314E854D] px-8 py-10 relative">
             <div className="p-6 w-full flex flex-col items-center gap-10">
               <div className="flex flex-col items-center gap-2">
-                <h2
-                  className="text-5xl tracking-wider font-bold"
-                  style={{ fontFamily: "Rakkas, serif" }}
-                >
+                <h2 className="text-5xl tracking-wider font-bold"
+                style={{ fontFamily: "'Rakkas', serif" }}>
                   CERTIFICATE
                 </h2>
                 <p className="uppercase text-center text-[#314E85]">

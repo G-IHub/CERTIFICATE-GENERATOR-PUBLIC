@@ -93,7 +93,7 @@ export default function CertificateTemplate2({
         className={certificateClass}
         style={{ backgroundColor: "#FEFEFD" }}
       >
-        <div className="flex justify-center bg-[#FEFEFD] items-center shadow-md px-16 py-10 rounded-lg relative overflow-hidden text-[#4D4D4D]">
+        <div className="flex justify-center bg-[#FEFEFD] items-center w-3xl shadow-md px-16 py-10 rounded-lg relative overflow-hidden text-[#4D4D4D]">
           {/* Repeating wavy background */}
           <div className="z-0 relative w-full h-full">
             {Array.from({ length: 30 }).map((_, i) => (
@@ -110,22 +110,22 @@ export default function CertificateTemplate2({
           {/* Corner decorations */}
           <div className="z-10">
             <div className="absolute top-0 left-0">
-              <img src={rect4} alt="" className="w-11/12" />
+              <img src={rect4} alt="" className="w-80" />
             </div>
-            <div className="absolute top-0 -right-12">
-              <img src={rect} alt="" className="w-11/12" />
+            <div className="absolute top-0 right-0">
+              <img src={rect} alt="" className="w-80" />
             </div>
-            <div className="absolute bottom-0 -right-8">
-              <img src={rect2} alt="" className="w-11/12" />
+            <div className="absolute bottom-0 right-0">
+              <img src={rect2} alt="" className="w-80" />
             </div>
             <div className="absolute bottom-0 left-0">
-              <img src={rect3} alt="" className="w-11/12" />
+              <img src={rect3} alt="" className="w-80" />
             </div>
           </div>
 
           <div className="bg-transparent rounded p-6 w-full z-40">
             <div className="flex flex-col items-center gap-6">
-              <div className="flex gap-1 items-center">
+              <div className="flex gap-10 items-center">
                 <div className="flex items-center justify-center w-24 h-auto rounded-full overflow-hidden">
                   {organizationLogo ? (
                     <img
@@ -156,7 +156,7 @@ export default function CertificateTemplate2({
               </p>
 
               <p
-                className="text-xl text-center mx-20"
+                className="text-4xl text-center"
                 style={{
                   fontFamily: "'Tangerine', cursive",
                   fontWeight: 700,
@@ -166,7 +166,7 @@ export default function CertificateTemplate2({
                   paddingRight: "220px",
                 }}
               >
-                {recipientName}
+                {/* {recipientName} */}John Doe
               </p>
 
               <p className="text-center max-w-2xl px-8">

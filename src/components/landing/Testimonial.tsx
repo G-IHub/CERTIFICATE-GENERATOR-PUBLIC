@@ -34,7 +34,7 @@ const Testimonial: React.FC = () => {
           What Our Users Say
         </h2>
         <p className="text-sm md:text-base text-gray-500">
-          Here is what our previous student think
+          Here is what our previous users think
         </p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">

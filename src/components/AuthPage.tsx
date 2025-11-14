@@ -361,7 +361,7 @@ export default function AuthPage({
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-b from-[#FFCB9E52] to-[#FFFBF8] relative">
+    <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-b from-[#FFCB9E52] to-[#FFFBF8] relative overflow-hidden">
       <div className="">
         <div className="absolute blur-sm -top-[26px] -left-[30px] bg-gradient-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-[100px] w-12 -rotate-45" />
         <div className="absolute blur-sm top-20 -left-[40px] bg-gradient-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-[100px] w-12 -rotate-45" />

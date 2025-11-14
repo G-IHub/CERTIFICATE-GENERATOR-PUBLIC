@@ -1,13 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
+import secondaryAsset from "../../assets/2nd.svg";
 
-// Make the secondary SVG optional (filename contains spaces in original HTML)
-let secondaryAsset: string | null = null;
-try {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  secondaryAsset = require("../../assets/2nd 1.svg");
-} catch (e) {
-  secondaryAsset = null;
-}
 
 interface CertificateTemplate5Props {
   header?: string;
@@ -44,12 +37,23 @@ export default function CertificateTemplate5({
     ? "w-full mx-auto origin-center overflow-visible"
     : "min-w-[1056px] flex justify-center items-center";
 
+    useEffect(() => {
+        const id = "rakkas-font";
+        if (!document.getElementById(id)) {
+          const link = document.createElement("link");
+          link.id = id;
+          link.rel = "stylesheet";
+          link.href = "https://fonts.googleapis.com/css2?family=Montserrat&display=swap";
+          document.head.appendChild(link);
+        }
+      }, []);
+
   return (
     <div
       className={containerClass}
       style={{ transform: `scale(${scale})`, backgroundColor: "transparent" }}
     >
-      <div className="flex justify-center bg-gradient-to-l from-[#161BA0] to-[#AC06F2] items-center shadow-md w-3xl p-10 rounded-sm relative text-[#4D4D4D] font-[Montserrat] overflow-hidden">
+      <div className="flex justify-center bg-gradient-to-l from-[#161BA0] to-[#AC06F2] items-center shadow-md w-3xl p-10 rounded-sm relative text-[#4D4D4D] font-['Montserrat'] overflow-hidden">
         <div>
           <div className="w-20 h-20 border-2 [border-image:linear-gradient(to_bottom,#DDB4FB,#6E21E0)_1] absolute left-0 bottom-0 rotate-45 z-40" />
           <div className="w-10 h-10 border-2 [border-image:linear-gradient(to_bottom,#DDB4FB,#6E21E0)_1] absolute left-0 bottom-12 rotate-45 z-40" />

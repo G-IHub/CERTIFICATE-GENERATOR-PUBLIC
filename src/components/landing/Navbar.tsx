@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.svg";
 import { IoIosMenu } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
+import { Link } from "react-scroll";
 
 const Navbar: React.FC = () => {
   const navigate = useNavigate();
@@ -41,7 +42,9 @@ const Navbar: React.FC = () => {
       <nav
         ref={navRef}
         className={`fixed top-0 left-0 w-full transition-all duration-300 ${
-          isScrolled ? "p-0" : "p-0 md:py-6 md:px-28"
+          isScrolled
+            ? "bg-white md:fixed p-0"
+            : "p-0 md:py-6 md:px-28 md:sticky"
         } z-50`}
       >
         <div className="flex justify-between items-center md:rounded-lg px-4 py-5 h-14 bg-white md:bg-[#FFFFFF66] border-2 border-[#FFFFFF1F] text-sm">
@@ -62,18 +65,42 @@ const Navbar: React.FC = () => {
           </button>
 
           <div className="hidden md:flex gap-12 items-center">
-            <a href="" className="hover:text-orange-500">
+            <Link
+              to="work"
+              smooth={true}
+              duration={500}
+              offset={-50}
+              className="hover:text-orange-500 cursor-pointer"
+            >
               How It Works
-            </a>
-            <a href="" className="hover:text-orange-500">
-              Case studies
-            </a>
-            <a href="" className="hover:text-orange-500">
+            </Link>
+            <Link
+              to="features"
+              smooth={true}
+              duration={500}
+              offset={-50}
+              className="hover:text-orange-500 cursor-pointer"
+            >
+              Features
+            </Link>
+            <Link
+              to="testimonials"
+              smooth={true}
+              duration={500}
+              offset={-50}
+              className="hover:text-orange-500 cursor-pointer"
+            >
               Testimonials
-            </a>
-            <a href="" className="hover:text-orange-500">
+            </Link>
+            <Link
+              to="prices"
+              smooth={true}
+              duration={500}
+              offset={-50}
+              className="hover:text-orange-500 cursor-pointer"
+            >
               Pricing
-            </a>
+            </Link>
           </div>
 
           <div className="hidden md:flex gap-8 items-center">
@@ -95,40 +122,53 @@ const Navbar: React.FC = () => {
           </div>
         </div>
 
+        {/* Mobile Menu */}
         {isMenuOpen && (
           <div
             className="transition ease-in duration-300 md:hidden right-0 bg-white shadow-lg p-4 w-2/3 h-full fixed"
             style={{ top: navHeight }}
           >
             <div className="flex flex-col gap-10">
-              <a
-                href=""
+              <Link
+                to="work"
+                smooth={true}
+                duration={500}
+                offset={-50}
                 className="hover:text-orange-500"
                 onClick={() => setIsMenuOpen(false)}
               >
                 How It Works
-              </a>
-              <a
-                href=""
+              </Link>
+              <Link
+                to="features"
+                smooth={true}
+                duration={500}
+                offset={-50}
                 className="hover:text-orange-500"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Case studies
-              </a>
-              <a
-                href=""
+                Features
+              </Link>
+              <Link
+                to="testimonials"
+                smooth={true}
+                duration={500}
+                offset={-50}
                 className="hover:text-orange-500"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Testimonials
-              </a>
-              <a
-                href=""
+              </Link>
+              <Link
+                to="prices"
+                smooth={true}
+                duration={500}
+                offset={-50}
                 className="hover:text-orange-500"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Pricing
-              </a>
+              </Link>
 
               <a
                 href=""

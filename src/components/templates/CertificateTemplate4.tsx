@@ -75,7 +75,7 @@ export default function CertificateTemplate4({
               src={String(ribbon1)}
               alt="ribbon1"
               className="absolute z-10 -top-2 left-0"
-              style={{width: "30%"}}
+              style={{ width: "30%" }}
             />
           )}
           {ribbon2 && (
@@ -83,7 +83,7 @@ export default function CertificateTemplate4({
               src={String(ribbon2)}
               alt="ribbon2"
               className="absolute z-10 bottom-0 right-0"
-              style={{width: "30%"}}
+              style={{ width: "30%" }}
             />
           )}
         </div>
@@ -184,14 +184,14 @@ export default function CertificateTemplate4({
                   {/* Date display */}
                   {date && (
                     <div className="flex flex-col items-center text-center">
-                      <div className="w-32 mt-5 mb-2" />
+                      <div className="w-32 mt-8 mb-2" />
+                      <div className="text-xs font-bold ">Date</div>
                       <div
                         className="text-sm font-medium"
                         style={{ color: "#4D4D4D" }}
                       >
                         {formattedDate || "DATE"}
                       </div>
-                      <div className="text-xs font-bold ">Date</div>
                     </div>
                   )}
                 </div>

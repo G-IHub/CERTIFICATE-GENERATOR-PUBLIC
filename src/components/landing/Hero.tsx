@@ -8,12 +8,12 @@ const Hero: React.FC = () => {
 
 
   return (
-    <section className="flex flex-col justify-center mt-40 md:mb-10 items-center md:mt-0 md:flex-row py-6 px-10 md:px-28">
+    <section className="flex flex-col justify-center mt-8 md:mt-0 md:mb-12 items-center md:flex-row px-10 md:px-28">
       <div className="space-y-3 max-w-lg md:max-w-md">
-        <h2 className="font-medium text-3xl md:text-5xl tracking-tight">
+        <h2 className="font-medium text-4xl md:text-5xl tracking-tight">
           Generate, Issue & Manage Your Certificates with Ease.
         </h2>
-        <p className="text-[#696969] text-base md:text-lg">
+        <p className="text-[#696969] text-xl md:text-lg">
           A modern multi-tenant platform for organizations and educators to
           issue branded digital certificates, collect testimonials, and track
           performance.
@@ -22,7 +22,7 @@ const Hero: React.FC = () => {
           onClick={() => navigate("/signup")}
           className="mt-4 bg-linear-to-r from-[#DC8FFF] via-[#77C3FF] to-[#89F4D8] p-0.5 rounded-full cursor-pointer hover:scale-105 transition duration-300"
         >
-          <span className="flex items-center space-x-2 bg-linear-to-b from-[#151515] to-[#2E2D2D] text-white rounded-full px-4 py-2 text-sm">
+          <span className="flex items-center space-x-2 bg-linear-to-b from-[#151515] to-[#2E2D2D] text-white rounded-full px-4 py-2 text-lg">
             <span>Try For Free</span>
             <div className="bg-white/90 w-4 h-4 rounded-full flex items-center justify-center">
               <TbLocationFilled className="size-2 text-orange-500" />

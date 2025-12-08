@@ -18,6 +18,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "./ui/dialog";
+import { Sheet, SheetContent, SheetHeader, SheetTitle } from "./ui/sheet";
 import { Label } from "./ui/label";
 import {
   Select,
@@ -50,9 +51,11 @@ import {
   Crown,
   MessageCircle,
 } from "lucide-react";
-import { toast } from "sonner";
+import { toast } from "sonner@2.0.3";
 import { publicAnonKey, projectId } from "../utils/supabase/info";
 import BillingSettings from "./BillingSettings";
+import AdminEmailsView from "./AdminEmailsView";
+import PlatformAnalytics from "./PlatformAnalytics";
 
 interface PlatformAdminPanelProps {
   adminEmail: string;
@@ -119,8 +122,9 @@ export default function PlatformAdminPanel({
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeView, setActiveView] = useState<
-    "overview" | "organizations" | "analytics" | "billing"
+    "overview" | "organizations" | "analytics" | "billing" | "emails"
   >("overview");
   const [stats, setStats] = useState<PlatformStats>({
     totalOrganizations: 0,
@@ -165,6 +169,11 @@ export default function PlatformAdminPanel({
 
       const data = await response.json();
 
+      console.log("🔍 ADMIN DEBUG - Raw platform data:", data);
+      console.log(
+        "🔍 ADMIN DEBUG - Organizations count:",
+        data.organizations?.length
+      );
 
       // Process organizations - ensure all fields have defaults and unique IDs
       const orgs: Organization[] = (data.organizations || [])
@@ -544,16 +553,17 @@ export default function PlatformAdminPanel({
       count: filteredOrganizations.length,
     },
     { id: "billing", label: "Billing Settings", icon: CreditCard },
+    { id: "emails", label: "Email Addresses", icon: Mail },
     { id: "analytics", label: "Analytics", icon: BarChart3 },
   ];
 
   return (
     <div className="flex h-screen bg-gray-50 overflow-hidden">
-      {/* Sidebar */}
+      {/* Desktop Sidebar - Hidden on Mobile */}
       <aside
-        className={`bg-white border-r border-gray-200 transition-all duration-300 ${
+        className={`hidden md:flex bg-white border-r border-gray-200 transition-all duration-300 ${
           sidebarOpen ? "w-56" : "w-16"
-        } flex flex-col`}
+        } flex-col`}
       >
         {/* Sidebar Header */}
         <div className="h-14 border-b border-gray-200 flex items-center justify-between px-3">
@@ -656,31 +666,121 @@ export default function PlatformAdminPanel({
         </div>
       </aside>
 
+      {/* Mobile Navigation Sheet */}
+      <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+        <SheetContent side="left" className="w-72 p-0">
+          <div className="flex flex-col h-full bg-white">
+            {/* Logo and Header */}
+            <div className="p-6 border-b border-gray-200">
+              <div className="flex items-center gap-2 mb-4">
+                <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <Shield className="w-4 h-4 text-primary" />
+                </div>
+                <span className="text-gray-900 text-sm">Platform Admin</span>
+              </div>
+              <div className="text-xs text-gray-500">{adminEmail}</div>
+            </div>
+
+            {/* Navigation */}
+            <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
+              {menuItems.map((item) => {
+                const Icon = item.icon;
+                const isActive = activeView === item.id;
+                return (
+                  <button
+                    key={item.id}
+                    onClick={() => {
+                      setActiveView(item.id as any);
+                      setMobileMenuOpen(false);
+                    }}
+                    className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors ${
+                      isActive
+                        ? "bg-primary/10 text-primary"
+                        : "text-gray-700 hover:bg-gray-100"
+                    }`}
+                  >
+                    <Icon className="w-4 h-4 flex-shrink-0" />
+                    <span className="flex-1 text-left">{item.label}</span>
+                    {item.count !== undefined && (
+                      <Badge variant="secondary" className="ml-auto text-xs">
+                        {item.count}
+                      </Badge>
+                    )}
+                  </button>
+                );
+              })}
+            </nav>
+
+            <Separator />
+
+            {/* Actions */}
+            <div className="p-4 space-y-2 border-t border-gray-200">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => {
+                  handleRefresh();
+                  setMobileMenuOpen(false);
+                }}
+                disabled={refreshing}
+                className="w-full justify-start text-sm"
+              >
+                <RefreshCw
+                  className={`w-4 h-4 mr-2 ${refreshing ? "animate-spin" : ""}`}
+                />
+                Refresh
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={onLogout}
+                className="w-full justify-start text-sm text-red-600 hover:text-red-700 hover:bg-red-50"
+              >
+                <LogOut className="w-4 h-4 mr-2" />
+                Logout
+              </Button>
+            </div>
+          </div>
+        </SheetContent>
+      </Sheet>
+
       {/* Main Content */}
       <main className="flex-1 overflow-auto">
         {/* Header */}
-        <header className="bg-white border-b border-gray-200 px-6 py-3">
+        <header className="bg-white border-b border-gray-200 px-4 md:px-6 py-3">
           <div className="flex items-center justify-between">
-            <div>
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setMobileMenuOpen(true)}
+              className="md:hidden p-2 -ml-2 rounded-lg hover:bg-gray-100 transition-colors"
+              aria-label="Open menu"
+            >
+              <Menu className="w-6 h-6 text-gray-600" />
+            </button>
+
+            <div className="flex-1">
               <h1 className="text-gray-900 mb-0.5 text-lg">
                 {activeView === "overview" && "Dashboard Overview"}
                 {activeView === "organizations" && "Organizations"}
                 {activeView === "billing" && "Billing Settings"}
+                {activeView === "emails" && "Email Addresses"}
                 {activeView === "analytics" && "Analytics"}
               </h1>
-              <p className="text-gray-500 text-sm">
+              <p className="text-gray-500 text-sm hidden md:block">
                 {activeView === "overview" &&
                   "Platform-wide statistics and recent activity"}
                 {activeView === "organizations" &&
                   "Manage all organizations on the platform"}
                 {activeView === "billing" &&
                   "Configure payment system and pricing"}
+                {activeView === "emails" &&
+                  "Collected student email addresses from testimonials"}
                 {activeView === "analytics" &&
                   "Platform analytics and insights"}
               </p>
             </div>
             {activeView === "organizations" && (
-              <div className="relative w-72">
+              <div className="relative w-72 hidden md:block">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
                 <Input
                   placeholder={`Search ${activeView}...`}
@@ -1138,158 +1238,12 @@ export default function PlatformAdminPanel({
             <BillingSettings accessToken={accessToken} />
           )}
 
+          {activeView === "emails" && (
+            <AdminEmailsView accessToken={accessToken} />
+          )}
+
           {activeView === "analytics" && (
-            <div className="space-y-5">
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <Card>
-                  <CardHeader className="pb-2">
-                    <CardTitle className="text-sm">Organizations</CardTitle>
-                    <CardDescription className="text-xs">
-                      Total organizations
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="pt-1">
-                    <div className="text-2xl text-gray-900">
-                      {adminStats?.totalOrganizations ??
-                        stats.totalOrganizations}
-                    </div>
-                    <p className="text-xs text-gray-500 mt-1">
-                      Total organizations on platform
-                    </p>
-                  </CardContent>
-                </Card>
-
-                <Card>
-                  <CardHeader className="pb-2">
-                    <CardTitle className="text-sm">Certificates</CardTitle>
-                    <CardDescription className="text-xs">
-                      Total certificates issued
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="pt-1">
-                    <div className="text-2xl text-gray-900">
-                      {adminStats?.totalCertificates ?? stats.totalCertificates}
-                    </div>
-                    <p className="text-xs text-gray-500 mt-1">
-                      Certificates generated across platform
-                    </p>
-                  </CardContent>
-                </Card>
-
-                <Card>
-                  <CardHeader className="pb-2">
-                    <CardTitle className="text-sm">Testimonials</CardTitle>
-                    <CardDescription className="text-xs">
-                      Total testimonials submitted
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="pt-1">
-                    <div className="text-2xl text-gray-900">
-                      {adminStats?.totalTestimonials ?? 0}
-                    </div>
-                    <p className="text-xs text-gray-500 mt-1">
-                      All-time testimonials collected
-                    </p>
-                  </CardContent>
-                </Card>
-
-                <Card>
-                  <CardHeader className="pb-2">
-                    <CardTitle className="text-sm">Revenue</CardTitle>
-                    <CardDescription className="text-xs">
-                      Total payments received
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="pt-1">
-                    <div className="text-2xl text-gray-900">
-                      {typeof adminStats?.totalRevenue === "number"
-                        ? adminStats.totalRevenue.toLocaleString()
-                        : "$0"}
-                    </div>
-                    <p className="text-xs text-gray-500 mt-1">
-                      Reported revenue (raw units)
-                    </p>
-                  </CardContent>
-                </Card>
-              </div>
-
-              <Card>
-                <CardHeader className="pb-3">
-                  <CardTitle className="text-base">Platform Insights</CardTitle>
-                  <CardDescription className="text-xs">
-                    Key metrics and trends
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                      <div>
-                        <p className="text-sm text-gray-900">Templates</p>
-                        <p className="text-xl text-gray-500">
-                          {adminStats?.totalTemplates ?? 0}
-                        </p>
-                      </div>
-                      <FileText className="w-5 h-5 text-primary" />
-                    </div>
-                    <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                      <div>
-                        <p className="text-sm text-gray-900">
-                          Premium Organizations
-                        </p>
-                        <p className="text-xl text-gray-500">
-                          {adminStats?.premiumUsers ??
-                            organizations.filter((o) => o.isPremium).length}
-                        </p>
-                      </div>
-                      <Crown className="w-5 h-5 text-primary" />
-                    </div>
-                    <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                      <div>
-                        <p className="text-sm text-gray-900">
-                          Free Organizations
-                        </p>
-                        <p className="text-xl text-gray-500">
-                          {adminStats?.freeUsers ??
-                            organizations.filter((o) => !o.isPremium).length}
-                        </p>
-                      </div>
-                      <Building2 className="w-5 h-5 text-gray-400" />
-                    </div>
-                    <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                      <div>
-                        <p className="text-sm text-gray-900">
-                          Total Testimonials
-                        </p>
-                        <p className="text-xl text-gray-500">
-                          {adminStats?.totalTestimonials ??
-                            stats.totalTestimonials ??
-                            0}
-                        </p>
-                      </div>
-                      <MessageCircle className="w-5 h-5 text-primary" />
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-              {/* Debug: show raw adminStats for troubleshooting (remove in production) */}
-              {/* {adminStats && (
-                <Card>
-                  <CardHeader className="pb-2">
-                    <CardTitle className="text-sm">
-                      Debug: Raw adminStats
-                    </CardTitle>
-                    <CardDescription className="text-xs">
-                      Server-provided analytics payload
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <pre className="text-xs text-gray-700 overflow-auto max-h-48">
-                      {JSON.stringify(adminStats, null, 2)}
-                    </pre>
-                  </CardContent>
-                </Card>
-              )} */}
-            </div>
+            <PlatformAnalytics accessToken={accessToken} />
           )}
         </div>
       </main>

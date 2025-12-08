@@ -143,7 +143,10 @@ export default function CertificateTemplate16({
               {/* Recipient Name */}
               <p
                 className="text-2xl border-b border-[#7E7F79] pb-4 text-gray-600"
-                style={{ fontFamily: "'Momo Signature', cursive", marginTop: -20 }}
+                style={{
+                  fontFamily: "'Momo Signature', cursive",
+                  marginTop: -20,
+                }}
               >
                 {recipientName}
               </p>
@@ -156,7 +159,9 @@ export default function CertificateTemplate16({
               </p>
 
               {/* Description */}
-              <p className="text-xs uppercase" style={{marginTop: -30}} >{description}</p>
+              <p className="text-xs uppercase" style={{ marginTop: -30 }}>
+                {description}
+              </p>
             </div>
 
             {/* Signatures Section */}
@@ -221,14 +226,14 @@ export default function CertificateTemplate16({
                 {/* Date display */}
                 {date && (
                   <div className="flex flex-col items-center text-center">
-                    <div className="w-32 mt-5 mb-2" />
+                    <div className="w-32 mt-8 mb-2" />
+                    <div className="text-xs font-bold ">Date</div>
                     <div
                       className="text-sm font-medium"
                       style={{ color: "#4D4D4D" }}
                     >
-                      {formattedDate}
+                      {formattedDate || "DATE"}
                     </div>
-                    <div className="text-xs font-bold ">Date</div>
                   </div>
                 )}
               </div>

@@ -124,7 +124,13 @@ export default function CertificateTemplate13({
                 {recipientName}
               </p>
               <img src={wrapper} alt="" />
-              <p className="font-medium text-2xl" style={{fontFamily: 'cursive'}} > {courseTitle || "Course Title"} </p>
+              <p
+                className="font-medium text-2xl"
+                style={{ fontFamily: "cursive" }}
+              >
+                {" "}
+                {courseTitle || "Course Title"}{" "}
+              </p>
             </div>
 
             {/* Description */}
@@ -195,14 +201,14 @@ export default function CertificateTemplate13({
               {/* Date display */}
               {date && (
                 <div className="flex flex-col items-center text-center">
-                  <div className="w-32 mt-5 mb-2" />
+                  <div className="w-32 mt-8 mb-2" />
+                  <div className="text-xs font-bold ">Date</div>
                   <div
                     className="text-sm font-medium"
                     style={{ color: "#4D4D4D" }}
                   >
-                    {formattedDate}
+                    {formattedDate || "DATE"}
                   </div>
-                  <div className="text-xs font-bold ">Date</div>
                 </div>
               )}
             </div>

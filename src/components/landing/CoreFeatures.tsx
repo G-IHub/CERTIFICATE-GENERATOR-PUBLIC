@@ -1,6 +1,6 @@
 import React from "react";
 import certificate from "../../assets/certificate.svg";
-import kaban from "../../assets/kaban.svg";
+// import kaban from "../../assets/kaban.svg";
 import airplay from "../../assets/airplay.svg";
 import gauge from "../../assets/gauge.svg";
 import shield from "../../assets/shield.svg"
@@ -24,7 +24,7 @@ const CoreFeatures: React.FC = () => {
       ],
     },
     {
-      icon: kaban,
+      icon: airplay,
       title: "Organization Management",
       checklist: [
         "Support for multiple organizations",

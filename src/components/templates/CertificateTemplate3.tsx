@@ -150,8 +150,10 @@ export default function CertificateTemplate3({
           </p>
 
           <div className="mt-10 flex justify-between items-end w-full">
-            <div className="flex w-full justify-between items-center"
-            style={{justifyContent: "space-between"}}>
+            <div
+              className="flex w-full justify-between items-center"
+              style={{ justifyContent: "space-between" }}
+            >
               {/* Signature 1 - Always show if name is provided */}
               {signatoryName1 && (
                 <div
@@ -213,14 +215,14 @@ export default function CertificateTemplate3({
               {/* Date display */}
               {date && (
                 <div className="flex flex-col items-center text-center">
-                  <div className="w-32 mt-5 mb-2" />
+                  <div className="w-32 mt-8 mb-2" />
+                  <div className="text-xs font-bold ">Date</div>
                   <div
                     className="text-sm font-medium"
                     style={{ color: "#4D4D4D" }}
                   >
                     {formattedDate || "DATE"}
                   </div>
-                  <div className="text-xs font-bold ">Date</div>
                 </div>
               )}
             </div>

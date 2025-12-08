@@ -316,12 +316,11 @@ export default function OrganizationSettings({
             Organization Logo
           </CardTitle>
           <CardDescription>
-            Upload your organization's logo. This will appear on all
-            certificates.
+            Upload your organization's logo.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="flex items-center gap-6">
+          <div className="flex flex-col md:flex-row items-center gap-6">
             <div className="w-32 h-32 bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden border-2 border-gray-200">
               {settings.logo ? (
                 <img
@@ -377,7 +376,7 @@ export default function OrganizationSettings({
                 onChange={handleLogoUpload}
               />
               <p className="text-xs text-gray-500">
-                Recommended: PNG or SVG, max 5MB
+                Recommended: PNG or SVG, max 5MB with transparent background.
               </p>
             </div>
           </div>
@@ -389,11 +388,11 @@ export default function OrganizationSettings({
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Palette className="w-5 h-5" />
-            Brand Color
+            App Color
           </CardTitle>
           <CardDescription>
-            Choose a primary color for your certificates. This will be used for
-            borders, accents, and text highlights.
+            Choose a primary color for your app experience. This color will be
+            used in various elements throughout the application.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
@@ -448,30 +447,6 @@ export default function OrganizationSettings({
             <p className="text-xs text-gray-500">
               Or enter a custom hex color code
             </p>
-          </div>
-
-          {/* Color Preview */}
-          <div
-            className="p-4 rounded-lg border-2"
-            style={{ borderColor: settings.primaryColor }}
-          >
-            <div className="flex items-center gap-2">
-              <div
-                className="w-8 h-8 rounded-full"
-                style={{ backgroundColor: settings.primaryColor }}
-              />
-              <div>
-                <p
-                  className="text-sm font-medium"
-                  style={{ color: settings.primaryColor }}
-                >
-                  Certificate Preview
-                </p>
-                <p className="text-xs text-gray-500">
-                  This is how your brand color will appear
-                </p>
-              </div>
-            </div>
           </div>
         </CardContent>
       </Card>

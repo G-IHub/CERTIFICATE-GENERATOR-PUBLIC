@@ -17,6 +17,7 @@ import TemplateBuilderPage from "./components/TemplateBuilderPage";
 import QueryPremiumOrgs from "./components/QueryPremiumOrgs";
 import Terms from "./components/landing/Terms";
 import Privacy from "./components/landing/Privacy";
+import PasswordReset from "./components/PasswordReset";
 import { organizationApi, authApi, programApi } from "./utils/api";
 import { publicAnonKey, projectId } from "./utils/supabase/info";
 import { toast, Toaster } from "sonner";
@@ -843,6 +844,9 @@ export default function App() {
           {/* Terms and Privacy pages */}
           <Route path="/terms" element={<Terms />} />
           <Route path="/privacy" element={<Privacy />} />
+
+          {/* Password Reset - public */}
+          <Route path="/reset-password" element={<PasswordReset />} />
 
           {/* Query Premium Organizations - public */}
           <Route path="/query-premium" element={<QueryPremiumOrgs />} />

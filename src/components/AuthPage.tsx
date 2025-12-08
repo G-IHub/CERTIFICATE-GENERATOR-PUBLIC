@@ -35,7 +35,7 @@ import {
 import { toast } from "sonner";
 import type { UserAccount } from "../App";
 import { authApi } from "../utils/api";
-import { projectId } from "../utils/supabase/info";
+import { projectId, publicAnonKey } from "../utils/supabase/info";
 import logo from "../assets/logo.png";
 import { useNavigate } from "react-router-dom";
 
@@ -206,21 +206,42 @@ export default function AuthPage({
     setResetLoading(true);
 
     try {
-      const response = await fetch(
-        `https://${projectId}.supabase.co/functions/v1/make-server-a611b057/auth/reset-password`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email: resetEmail }),
-        }
-      );
+      const resetUrl = `https://${projectId}.supabase.co/functions/v1/make-server-a611b057/auth/reset-password`;
+      console.log("Sending password reset request to:", resetUrl);
 
-      const data = await response.json();
+      const response = await fetch(resetUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${publicAnonKey}`,
+        },
+        body: JSON.stringify({ email: resetEmail }),
+        credentials: "omit", // Don't send cookies/credentials
+      });
+
+      console.log("Password reset response status:", response.status);
+      console.log("Response headers:", {
+        contentType: response.headers.get("content-type"),
+        contentLength: response.headers.get("content-length"),
+      });
+
+      let data: any = {};
+      try {
+        data = await response.json();
+      } catch (parseErr) {
+        console.error("Failed to parse response:", parseErr);
+      }
 
       if (!response.ok) {
-        throw new Error(data.error || "Failed to send reset email");
+        console.error(
+          "Password reset failed with status",
+          response.status,
+          ":",
+          data
+        );
+        throw new Error(
+          data.error || `Failed to send reset email (${response.status})`
+        );
       }
 
       setResetSuccess(true);

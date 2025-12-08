@@ -15,10 +15,8 @@ import DeploymentGuide from "./components/DeploymentGuide";
 import NotFound from "./components/NotFound";
 import TemplateBuilderPage from "./components/TemplateBuilderPage";
 import QueryPremiumOrgs from "./components/QueryPremiumOrgs";
-import Terms from "./components/landing/Terms";
-import Privacy from "./components/landing/Privacy";
-import Story from "./components/landing/Story";
-import PasswordReset from "./components/PasswordReset";
+import AdminUtilities from "./components/AdminUtilities";
+import ResetPasswordPage from "./components/ResetPasswordPage";
 import { organizationApi, authApi, programApi } from "./utils/api";
 import { publicAnonKey, projectId } from "./utils/supabase/info";
 import { toast, Toaster } from "sonner";
@@ -692,6 +690,9 @@ export default function App() {
           {/* Legacy /auth route - redirect to /login for backwards compatibility */}
           <Route path="/auth" element={<Navigate to="/login" replace />} />
 
+          {/* Password Reset route - Public */}
+          <Route path="/reset-password" element={<ResetPasswordPage />} />
+
           {/* Platform Admin Panel - protected, admin only */}
           <Route
             path="/platform-admin"
@@ -749,6 +750,22 @@ export default function App() {
                     onBack={() => (window.location.href = "/#/dashboard")}
                     accessToken={accessToken}
                   />
+                </div>
+              ) : currentUser && isPlatformAdmin ? (
+                <Navigate to="/platform-admin" replace />
+              ) : (
+                <Navigate to="/auth" replace />
+              )
+            }
+          />
+
+          {/* Admin Utilities route - protected, regular users only */}
+          <Route
+            path="/admin-utilities"
+            element={
+              currentUser && !isPlatformAdmin ? (
+                <div className="min-h-screen bg-gray-50">
+                  <AdminUtilities />
                 </div>
               ) : currentUser && isPlatformAdmin ? (
                 <Navigate to="/platform-admin" replace />
@@ -841,14 +858,6 @@ export default function App() {
 
           {/* Deployment guide - public */}
           <Route path="/deploy-guide" element={<DeploymentGuide />} />
-
-          {/* Terms and Privacy pages */}
-          <Route path="/terms" element={<Terms />} />
-          <Route path="/privacy" element={<Privacy />} />
-          <Route path="/story" element={<Story />} />
-
-          {/* Password Reset - public */}
-          <Route path="/reset-password" element={<PasswordReset />} />
 
           {/* Query Premium Organizations - public */}
           <Route path="/query-premium" element={<QueryPremiumOrgs />} />

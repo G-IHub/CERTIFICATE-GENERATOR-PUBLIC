@@ -721,8 +721,14 @@ app.post("/make-server-a611b057/auth/reset-password", async (c) => {
 
     // First, try with Supabase JS client
     try {
-      const baseUrl = c.req.header("origin") || "http://localhost:5173";
-      const redirectTo = `${baseUrl}/#/reset-password`;
+      // Prefer explicit FRONTEND_URL env var (set this in production),
+      // otherwise fall back to request origin or localhost for dev.
+      const frontendUrl = (
+        Deno.env.get("FRONTEND_URL") ||
+        c.req.header("origin") ||
+        "http://localhost:5173"
+      ).replace(/\/+$/, "");
+      const redirectTo = `${frontendUrl}/#/reset-password`;
 
       console.log(`📍 Redirect URL: ${redirectTo}`);
 
@@ -744,8 +750,12 @@ app.post("/make-server-a611b057/auth/reset-password", async (c) => {
       // If JS client fails, try REST API directly
       console.log("📡 Trying Supabase REST API directly...");
       try {
-        const baseUrl = c.req.header("origin") || "http://localhost:5173";
-        const redirectUrl = `${baseUrl}/#/reset-password`;
+        const frontendUrl = (
+          Deno.env.get("FRONTEND_URL") ||
+          c.req.header("origin") ||
+          "http://localhost:5173"
+        ).replace(/\/+$/, "");
+        const redirectUrl = `${frontendUrl}/#/reset-password`;
 
         const restResponse = await fetch(`${supabaseUrl}/auth/v1/recover`, {
           method: "POST",

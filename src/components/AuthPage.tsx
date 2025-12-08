@@ -117,12 +117,12 @@ export default function AuthPage({
     setIsLoading(true);
 
     // Show a helpful toast for first-time users
-    // toast.info(
-    //   "Connecting to server... (first request may take 30-60 seconds)",
-    //   {
-    //     duration: 5000,
-    //   }
-    // );
+    toast.info(
+      "Connecting to server... (first request may take 30-60 seconds)",
+      {
+        duration: 5000,
+      }
+    );
 
     try {
       const response = await authApi.signIn({
@@ -206,42 +206,23 @@ export default function AuthPage({
     setResetLoading(true);
 
     try {
-      const resetUrl = `https://${projectId}.supabase.co/functions/v1/make-server-a611b057/auth/reset-password`;
-      console.log("Sending password reset request to:", resetUrl);
+      const response = await fetch(
+        `https://${projectId}.supabase.co/functions/v1/make-server-a611b057/auth/reset-password`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${publicAnonKey}`,
+            apikey: publicAnonKey,
+          },
+          body: JSON.stringify({ email: resetEmail }),
+        }
+      );
 
-      const response = await fetch(resetUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${publicAnonKey}`,
-        },
-        body: JSON.stringify({ email: resetEmail }),
-        credentials: "omit", // Don't send cookies/credentials
-      });
-
-      console.log("Password reset response status:", response.status);
-      console.log("Response headers:", {
-        contentType: response.headers.get("content-type"),
-        contentLength: response.headers.get("content-length"),
-      });
-
-      let data: any = {};
-      try {
-        data = await response.json();
-      } catch (parseErr) {
-        console.error("Failed to parse response:", parseErr);
-      }
+      const data = await response.json();
 
       if (!response.ok) {
-        console.error(
-          "Password reset failed with status",
-          response.status,
-          ":",
-          data
-        );
-        throw new Error(
-          data.error || `Failed to send reset email (${response.status})`
-        );
+        throw new Error(data.error || "Failed to send reset email");
       }
 
       setResetSuccess(true);
@@ -382,7 +363,7 @@ export default function AuthPage({
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-b from-[#FFCB9E52] to-[#FFFBF8] relative overflow-hidden">
+    <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-b from-[#FFCB9E52] to-[#FFFBF8] relative">
       <div className="">
         <div className="absolute blur-sm -top-[26px] -left-[30px] bg-gradient-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-[100px] w-12 -rotate-45" />
         <div className="absolute blur-sm top-20 -left-[40px] bg-gradient-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-[100px] w-12 -rotate-45" />

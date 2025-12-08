@@ -18,6 +18,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "./ui/dialog";
+import { Sheet, SheetContent, SheetHeader, SheetTitle } from "./ui/sheet";
 import { Label } from "./ui/label";
 import {
   Select,
@@ -121,6 +122,7 @@ export default function PlatformAdminPanel({
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeView, setActiveView] = useState<
     "overview" | "organizations" | "analytics" | "billing" | "emails"
   >("overview");
@@ -557,11 +559,11 @@ export default function PlatformAdminPanel({
 
   return (
     <div className="flex h-screen bg-gray-50 overflow-hidden">
-      {/* Sidebar */}
+      {/* Desktop Sidebar - Hidden on Mobile */}
       <aside
-        className={`bg-white border-r border-gray-200 transition-all duration-300 ${
+        className={`hidden md:flex bg-white border-r border-gray-200 transition-all duration-300 ${
           sidebarOpen ? "w-56" : "w-16"
-        } flex flex-col`}
+        } flex-col`}
       >
         {/* Sidebar Header */}
         <div className="h-14 border-b border-gray-200 flex items-center justify-between px-3">
@@ -664,12 +666,99 @@ export default function PlatformAdminPanel({
         </div>
       </aside>
 
+      {/* Mobile Navigation Sheet */}
+      <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+        <SheetContent side="left" className="w-72 p-0">
+          <div className="flex flex-col h-full bg-white">
+            {/* Logo and Header */}
+            <div className="p-6 border-b border-gray-200">
+              <div className="flex items-center gap-2 mb-4">
+                <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <Shield className="w-4 h-4 text-primary" />
+                </div>
+                <span className="text-gray-900 text-sm">Platform Admin</span>
+              </div>
+              <div className="text-xs text-gray-500">{adminEmail}</div>
+            </div>
+
+            {/* Navigation */}
+            <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
+              {menuItems.map((item) => {
+                const Icon = item.icon;
+                const isActive = activeView === item.id;
+                return (
+                  <button
+                    key={item.id}
+                    onClick={() => {
+                      setActiveView(item.id as any);
+                      setMobileMenuOpen(false);
+                    }}
+                    className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors ${
+                      isActive
+                        ? "bg-primary/10 text-primary"
+                        : "text-gray-700 hover:bg-gray-100"
+                    }`}
+                  >
+                    <Icon className="w-4 h-4 flex-shrink-0" />
+                    <span className="flex-1 text-left">{item.label}</span>
+                    {item.count !== undefined && (
+                      <Badge variant="secondary" className="ml-auto text-xs">
+                        {item.count}
+                      </Badge>
+                    )}
+                  </button>
+                );
+              })}
+            </nav>
+
+            <Separator />
+
+            {/* Actions */}
+            <div className="p-4 space-y-2 border-t border-gray-200">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => {
+                  handleRefresh();
+                  setMobileMenuOpen(false);
+                }}
+                disabled={refreshing}
+                className="w-full justify-start text-sm"
+              >
+                <RefreshCw
+                  className={`w-4 h-4 mr-2 ${refreshing ? "animate-spin" : ""}`}
+                />
+                Refresh
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={onLogout}
+                className="w-full justify-start text-sm text-red-600 hover:text-red-700 hover:bg-red-50"
+              >
+                <LogOut className="w-4 h-4 mr-2" />
+                Logout
+              </Button>
+            </div>
+          </div>
+        </SheetContent>
+      </Sheet>
+
       {/* Main Content */}
       <main className="flex-1 overflow-auto">
         {/* Header */}
-        <header className="bg-white border-b border-gray-200 px-6 py-3">
+        <header className="bg-white border-b border-gray-200 px-4 md:px-6 py-3">
           <div className="flex items-center justify-between">
-            <div>
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setMobileMenuOpen(true)}
+              className="md:hidden p-2 -ml-2 rounded-lg hover:bg-gray-100 transition-colors"
+              aria-label="Open menu"
+            >
+              <Menu className="w-6 h-6 text-gray-600" />
+            </button>
+
+            <div className="flex-1">
               <h1 className="text-gray-900 mb-0.5 text-lg">
                 {activeView === "overview" && "Dashboard Overview"}
                 {activeView === "organizations" && "Organizations"}
@@ -677,7 +766,7 @@ export default function PlatformAdminPanel({
                 {activeView === "emails" && "Email Addresses"}
                 {activeView === "analytics" && "Analytics"}
               </h1>
-              <p className="text-gray-500 text-sm">
+              <p className="text-gray-500 text-sm hidden md:block">
                 {activeView === "overview" &&
                   "Platform-wide statistics and recent activity"}
                 {activeView === "organizations" &&
@@ -691,7 +780,7 @@ export default function PlatformAdminPanel({
               </p>
             </div>
             {activeView === "organizations" && (
-              <div className="relative w-72">
+              <div className="relative w-72 hidden md:block">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
                 <Input
                   placeholder={`Search ${activeView}...`}

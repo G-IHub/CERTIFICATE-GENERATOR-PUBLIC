@@ -648,35 +648,137 @@ app.post("/make-server-a611b057/auth/signin", async (c) => {
   }
 });
 
+// Health check endpoint for auth routes
+app.get("/make-server-a611b057/auth/health", (c) => {
+  console.log("✅ Auth health check endpoint called");
+  return c.json({
+    status: "ok",
+    message: "Auth service is operational",
+    hasEnvUrl: !!Deno.env.get("SUPABASE_URL"),
+    hasEnvAnonKey: !!Deno.env.get("SUPABASE_ANON_KEY"),
+    hasEnvServiceKey: !!Deno.env.get("SUPABASE_SERVICE_ROLE_KEY"),
+    timestamp: new Date().toISOString(),
+  });
+});
+
 // Password reset request
 app.post("/make-server-a611b057/auth/reset-password", async (c) => {
   try {
-    const { email } = await c.req.json();
+    console.log("🔄 Password reset endpoint called");
+    console.log("📊 Headers:", {
+      contentType: c.req.header("content-type"),
+      origin: c.req.header("origin"),
+    });
+
+    // Check environment variables
+    const supabaseUrl = Deno.env.get("SUPABASE_URL");
+    const anonKey = Deno.env.get("SUPABASE_ANON_KEY");
+
+    console.log("🔑 Environment check:", {
+      urlSet: !!supabaseUrl,
+      keySet: !!anonKey,
+      urlPrefix: supabaseUrl?.substring(0, 20),
+      keyPrefix: anonKey?.substring(0, 20),
+    });
+
+    if (!supabaseUrl || !anonKey) {
+      console.error("❌ Missing Supabase configuration:", {
+        urlSet: !!supabaseUrl,
+        keySet: !!anonKey,
+      });
+      return c.json(
+        { error: "Server configuration error - missing credentials" },
+        500
+      );
+    }
+
+    let email: string;
+    try {
+      const body = await c.req.json();
+      email = body.email;
+      console.log(`📧 Email from request: ${email}`);
+    } catch (parseErr) {
+      console.error("❌ Error parsing request body:", parseErr);
+      return c.json({ error: "Invalid request format" }, 400);
+    }
 
     if (!email) {
       return c.json({ error: "Email is required" }, 400);
     }
 
-    const supabase = createClient(
-      Deno.env.get("SUPABASE_URL")!,
-      Deno.env.get("SUPABASE_ANON_KEY")!
-    );
-
-    // Send password reset email
-    // Note: Supabase will handle sending the email with a magic link
-    const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: `${
-        c.req.header("origin") || "http://localhost:5173"
-      }/reset-password`,
-    });
-
-    if (error) {
-      console.log("Password reset error:", error);
-      // Don't reveal if email exists or not for security
-      // Always return success to prevent email enumeration
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return c.json({ error: "Invalid email format" }, 400);
     }
 
-    console.log(`Password reset email requested for: ${email}`);
+    console.log(`🔐 Creating Supabase client with URL: ${supabaseUrl}`);
+    const supabase = createClient(supabaseUrl, anonKey);
+
+    console.log(`📧 Attempting password reset for: ${email}`);
+
+    // Try both the JS client method and REST API as fallback
+    let success = false;
+    let errorMsg = "";
+
+    // First, try with Supabase JS client
+    try {
+      const baseUrl = c.req.header("origin") || "http://localhost:5173";
+      const redirectTo = `${baseUrl}/#/reset-password`;
+
+      console.log(`📍 Redirect URL: ${redirectTo}`);
+
+      const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
+        redirectTo,
+      });
+
+      if (error) {
+        console.warn(`⚠️ JS client error: ${error.message}`);
+        errorMsg = error.message;
+      } else {
+        console.log(`✅ Password reset email sent via JS client for: ${email}`);
+        success = true;
+      }
+    } catch (jsErr: any) {
+      console.warn(`⚠️ JS client exception: ${jsErr?.message}`);
+      errorMsg = jsErr?.message;
+
+      // If JS client fails, try REST API directly
+      console.log("📡 Trying Supabase REST API directly...");
+      try {
+        const baseUrl = c.req.header("origin") || "http://localhost:5173";
+        const redirectUrl = `${baseUrl}/#/reset-password`;
+
+        const restResponse = await fetch(`${supabaseUrl}/auth/v1/recover`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            apikey: anonKey,
+          },
+          body: JSON.stringify({
+            email,
+            gotrue_meta_security: {},
+          }),
+        });
+
+        console.log(`📬 REST API response status: ${restResponse.status}`);
+
+        if (restResponse.ok) {
+          console.log(
+            `✅ Password reset email sent via REST API for: ${email}`
+          );
+          success = true;
+        } else {
+          const restErr = await restResponse.json();
+          console.error(`❌ REST API error: ${restResponse.status}`, restErr);
+          errorMsg =
+            restErr?.error_description ||
+            restErr?.error ||
+            "Password reset failed";
+        }
+      } catch (restErr: any) {
+        console.error(`❌ REST API exception: ${restErr?.message}`);
+        errorMsg = restErr?.message || "Unable to process password reset";
+      }
+    }
 
     // Always return success (security best practice - don't reveal if email exists)
     return c.json({
@@ -685,9 +787,78 @@ app.post("/make-server-a611b057/auth/reset-password", async (c) => {
         "If an account exists with this email, you will receive a password reset link.",
     });
   } catch (error) {
-    console.log("Error in password reset:", error);
+    console.error("❌ Unexpected error in password reset:", error);
+    // Log full stack trace
+    if (error instanceof Error) {
+      console.error("Stack:", error.stack);
+    }
     return c.json(
-      { error: `Server error during password reset: ${error}` },
+      {
+        error: `Server error during password reset: ${
+          error instanceof Error ? error.message : String(error)
+        }`,
+      },
+      500
+    );
+  }
+});
+
+// Confirm password reset with token
+app.post("/make-server-a611b057/auth/confirm-password-reset", async (c) => {
+  try {
+    const { token, newPassword } = await c.req.json();
+
+    if (!token || !newPassword) {
+      return c.json({ error: "Token and password are required" }, 400);
+    }
+
+    if (newPassword.length < 8) {
+      return c.json({ error: "Password must be at least 8 characters" }, 400);
+    }
+
+    const supabase = createClient(
+      Deno.env.get("SUPABASE_URL")!,
+      Deno.env.get("SUPABASE_ANON_KEY")!
+    );
+
+    // Use the token to authenticate and then update the password
+    // First, create a session from the recovery token
+    const { data, error: sessionError } = await supabase.auth.verifyOtp({
+      token,
+      type: "recovery",
+    });
+
+    if (sessionError || !data.session) {
+      console.log("Token verification failed:", sessionError);
+      return c.json({ error: "Invalid or expired password reset link" }, 400);
+    }
+
+    // Now update the password using the verified session
+    const adminSupabase = createClient(
+      Deno.env.get("SUPABASE_URL")!,
+      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!
+    );
+
+    const { error: updateError } =
+      await adminSupabase.auth.admin.updateUserById(data.user!.id, {
+        password: newPassword,
+      });
+
+    if (updateError) {
+      console.log("Password update failed:", updateError);
+      return c.json({ error: "Failed to update password" }, 500);
+    }
+
+    console.log(`Password updated for user: ${data.user!.id}`);
+
+    return c.json({
+      success: true,
+      message: "Password has been reset successfully",
+    });
+  } catch (error) {
+    console.log("Error in confirm password reset:", error);
+    return c.json(
+      { error: `Server error during password reset confirmation: ${error}` },
       500
     );
   }

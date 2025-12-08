@@ -1652,7 +1652,8 @@ export default function AdminDashboard({
                       {user.username}
                     </p>
                     <div className="flex items-center gap-1">
-                      <Building2 className="w-3 h-3 text-primary flex-shrink-0" />
+                      {/* <Building2 className="w-3 h-3 text-primary flex-shrink-0" /> */}
+                      <img src={currentOrganization?.logo} alt="logo" className="w-6 h-6" />
                       <p className="text-xs text-gray-500 truncate">
                         {currentOrganization?.name || user.company}
                       </p>
@@ -1756,7 +1757,7 @@ export default function AdminDashboard({
                 <Menu className="w-6 h-6 text-gray-600" />
               </button>
 
-              <div className="flex-1 md:flex-none">
+              {/* <div className="flex-1 md:flex-none">
                 <h2 className="text-lg md:text-2xl font-bold text-gray-900 truncate">
                   {activeTab === "overview" && "Dashboard Overview"}
                   {activeTab === "templates" && "Certificate Templates"}
@@ -1767,12 +1768,13 @@ export default function AdminDashboard({
                   {activeTab === "settings" && "Platform Settings"}
                 </h2>
                 <p className="text-xs md:text-sm text-gray-500 mt-1 truncate">
+                  <img src={currentOrganization?.logo} alt="logo" className="w-6 h-6" />
                   {currentOrganization?.name || "Loading..."}
                 </p>
-              </div>
+              </div> */}
 
               {currentOrganization && (
-                <div className="hidden md:flex items-center gap-2">
+                <div className="flex items-center">
                   <img
                     src={currentOrganization.logo}
                     alt={currentOrganization.name}
@@ -1825,7 +1827,8 @@ export default function AdminDashboard({
                         <Tooltip>
                           <TooltipTrigger asChild>
                             <div className="cursor-default hidden md:block">
-                              <Award className="w-16 h-16 text-primary opacity-10" />
+                              {/* <Award className="w-16 h-16 text-primary opacity-100" /> */}
+                              <img src={currentOrganization?.logo} alt="Logo" className="w-20 h-20" />
                             </div>
                           </TooltipTrigger>
                           <TooltipContent>
@@ -2529,8 +2532,7 @@ export default function AdminDashboard({
                                     </h4>
                                   </div>
                                   <Badge variant="outline" className="text-xs">
-                                    {genSelectedTemplateName ||
-                                      genSelectedTemplate}
+                                    {genCertificateHeader}
                                   </Badge>
                                 </div>
                                 <Card className="bg-gradient-to-br from-indigo-50 to-purple-50 border-2 border-indigo-200">
@@ -2614,7 +2616,7 @@ export default function AdminDashboard({
                             )}
 
                           {/* Action Buttons */}
-                          <div className="flex gap-3 pt-4 border-t">
+                          <div className="flex flex-col md:flex-row gap-3 pt-4 border-t">
                             <Button
                               variant="outline"
                               onClick={() => {
@@ -2655,7 +2657,7 @@ export default function AdminDashboard({
                     <TabsContent value="results" className="space-y-6 mt-6">
                       <Card>
                         <CardHeader>
-                          <div className="flex items-center justify-between">
+                          <div className="flex flex-col space-y-4 md:flex-row text-center md:text-left items-center justify-between">
                             <div>
                               <CardTitle className="flex items-center gap-2">
                                 <CheckCircle className="w-5 h-5 text-green-600" />
@@ -2663,18 +2665,18 @@ export default function AdminDashboard({
                               </CardTitle>
                               <CardDescription>
                                 {genGeneratedCertificates.length} certificate
-                                link(s) created. Share these with students to
+                                link created. Share these with students to
                                 access their certificates.
                               </CardDescription>
                             </div>
                             <div className="flex gap-2">
-                              <Button
+                              {/* <Button
                                 variant="outline"
                                 onClick={genExportCertificateList}
                               >
                                 <Download className="w-4 h-4 mr-2" />
                                 Export List
-                              </Button>
+                              </Button> */}
                               <Button
                                 onClick={() => {
                                   setGenActiveTab("setup");
@@ -2705,7 +2707,7 @@ export default function AdminDashboard({
                             {genGeneratedCertificates.map((cert, index) => (
                               <Card key={cert.id}>
                                 <CardContent className="p-4">
-                                  <div className="flex items-center justify-between gap-4">
+                                  <div className="flex flex-col md:flex-row text-center md:text-left items-center justify-between gap-4">
                                     <div className="flex-1 min-w-0">
                                       <h3 className="font-bold truncate">
                                         {cert.courseName}
@@ -2817,13 +2819,13 @@ export default function AdminDashboard({
               {activeTab === "certificates" && (
                 <div className="space-y-6">
                   {/* Certificate Management Header */}
-                  <div className="flex items-center justify-between">
+                  <div className="flex flex-col md:flex-row items-center justify-between">
                     <div>
                       <div className="flex items-center gap-2">
                         <FileText className="w-5 h-5" />
                         <h2 className="text-xl">Certificate Management</h2>
                       </div>
-                      <p className="text-sm text-gray-600 mt-1">
+                      <p className="text-sm text-gray-600 mt-1 mb-4 md:mb-0">
                         View, manage, and track all issued certificates
                       </p>
                     </div>

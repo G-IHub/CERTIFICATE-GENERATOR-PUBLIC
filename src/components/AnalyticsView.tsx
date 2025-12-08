@@ -110,14 +110,14 @@ export default function AnalyticsView({
     <div className="space-y-6">
       {/* Analytics Header */}
       <Card>
-        <CardHeader>
+        <CardHeader className="p-5" >
           <CardTitle className="flex items-center gap-2">
             <BarChart3 className="w-5 h-5" />
             Analytics Dashboard
           </CardTitle>
           <CardDescription>
             Comprehensive insights into certificate generation and student
-            engagement
+            engagement.
           </CardDescription>
         </CardHeader>
       </Card>
@@ -188,7 +188,7 @@ export default function AnalyticsView({
                   Monthly Certificate Trend
                 </CardTitle>
                 <CardDescription>
-                  Certificate generation and testimonial submission over time
+                  Certificate generation and testimonial submission over time.
                 </CardDescription>
               </CardHeader>
               <CardContent>

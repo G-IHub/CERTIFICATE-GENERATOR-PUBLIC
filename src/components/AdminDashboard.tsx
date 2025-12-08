@@ -1611,15 +1611,12 @@ export default function AdminDashboard({
                       navCollapsed ? "" : "mr-2"
                     } flex-shrink-0`}
                   />
-<<<<<<< HEAD
                   {!navCollapsed && <span className="text-white">Sign Out</span>}
-=======
                   {!navCollapsed && (
                     <span className="text-white hover:text-black">
                       Sign Out
                     </span>
                   )}
->>>>>>> b1f469c4ceca960cbb9682ea40c467bad951769f
                 </Button>
               </TooltipTrigger>
               <TooltipContent side="right">

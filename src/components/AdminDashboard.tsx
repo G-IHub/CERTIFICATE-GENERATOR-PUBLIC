@@ -1592,9 +1592,11 @@ export default function AdminDashboard({
               <TooltipTrigger asChild>
                 <Button
                   variant="outline"
-                  className={`w-full text-gray-600 bg-black hover:text-red-600 hover:border-red-300 hover:bg-red-50 transition-colors ${
+                  
+                  className={`w-full bg-black cursor-pointer hover:border-black hover:text-black border-2 border-white hover:bg-black ${
                     navCollapsed ? "px-2" : ""
                   }`}
+                  style={{ borderColor: "var(--primary)" }}
                   onClick={() => {
                     if (window.confirm("Are you sure you want to sign out?")) {
                       toast.success("Signing out...");
@@ -1605,15 +1607,19 @@ export default function AdminDashboard({
                   }}
                 >
                   <LogOut
-                    className={`w-4 h-4 text-white hover:text-black ${
+                    className={`w-4 h-4 text-white ${
                       navCollapsed ? "" : "mr-2"
                     } flex-shrink-0`}
                   />
+<<<<<<< HEAD
+                  {!navCollapsed && <span className="text-white">Sign Out</span>}
+=======
                   {!navCollapsed && (
                     <span className="text-white hover:text-black">
                       Sign Out
                     </span>
                   )}
+>>>>>>> b1f469c4ceca960cbb9682ea40c467bad951769f
                 </Button>
               </TooltipTrigger>
               <TooltipContent side="right">
@@ -3184,7 +3190,7 @@ export default function AdminDashboard({
           </div>
 
           {/* Footer - Sticky at bottom */}
-          <footer className="bg-black text-white px-4 md:px-8 py-3 flex-shrink-0">
+          <footer className="bg-black text-white px-4 md:px-8 py-3 flex-shrink-0 h-16">
             <div className="flex items-center justify-between gap-4">
               <div className="flex items-center gap-2">
                 <img src={logo} alt="logo" className="w-10" />

@@ -20,7 +20,7 @@ const Hero: React.FC = () => {
         </p>
         <button
           onClick={() => navigate("/signup")}
-          className="mt-4 bg-linear-to-r from-[#DC8FFF] via-[#77C3FF] to-[#89F4D8] p-0.5 rounded-full cursor-pointer hover:scale-105 transition- duration-300"
+          className="mt-4 bg-linear-to-r from-[#DC8FFF] via-[#77C3FF] to-[#89F4D8] p-0.5 rounded-full cursor-pointer hover:scale-105 transition duration-300"
         >
           <span className="flex items-center space-x-2 bg-linear-to-b from-[#151515] to-[#2E2D2D] text-white rounded-full px-4 py-2 text-lg">
             <span>Try For Free</span>

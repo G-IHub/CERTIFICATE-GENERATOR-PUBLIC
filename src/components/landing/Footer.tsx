@@ -3,7 +3,6 @@ import logo from "../../assets/logo.png";
 import { Link as RouterLink } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
 
-
 const Footer: React.FC = () => {
   return (
     <div className="px-4 py-8 md:py-16 md:px-28 bg-black space-y-16">
@@ -12,13 +11,13 @@ const Footer: React.FC = () => {
           <h4 className="font-semibold text-white">Resources</h4>
           <div className="space-y-3 mt-4 text-sm">
             <a
-              href="/learn"
+              href=""
               className="block text-white/70 hover:text-white transition-colors"
             >
               Learn
             </a>
             <a
-              href="/support"
+              href=""
               className="block text-white/70 hover:text-white transition-colors"
             >
               Support
@@ -76,12 +75,12 @@ const Footer: React.FC = () => {
             >
               How It Works
             </ScrollLink>
-            <a
+            {/* <a
               href="/pricing"
               className="block text-white/70 hover:text-white transition-colors"
             >
               Pricing
-            </a>
+            </a> */}
             {/* <a
               href="/tools"
               className="block text-white/70 hover:text-white transition-colors"
@@ -93,12 +92,12 @@ const Footer: React.FC = () => {
         <div>
           <h4 className="font-semibold text-white">About</h4>
           <div className="space-y-3 mt-4 text-sm">
-            <a
-              href="/ourstory"
+            <RouterLink
+              to="/story"
               className="block text-white/70 hover:text-white transition-colors"
             >
               Our Story
-            </a>
+            </RouterLink>
             {/* <a
               href="/mediakit"
               className="block text-white/70 hover:text-white transition-colors"
@@ -146,18 +145,18 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="flex gap-4 text-sm">
-           <RouterLink
-              to="/terms"
-              className="block text-white/70 hover:text-white transition-colors"
-            >
-              Terms of Service
-            </RouterLink>
-            <RouterLink
-              to="/privacy"
-              className="block text-white/70 hover:text-white transition-colors"
-            >
-              Privacy Policy
-            </RouterLink>
+          <RouterLink
+            to="/terms"
+            className="block text-white/70 hover:text-white transition-colors"
+          >
+            Terms of Service
+          </RouterLink>
+          <RouterLink
+            to="/privacy"
+            className="block text-white/70 hover:text-white transition-colors"
+          >
+            Privacy Policy
+          </RouterLink>
           {/* <a
             href="/security"
             className="block text-white/70 hover:text-white transition-colors"

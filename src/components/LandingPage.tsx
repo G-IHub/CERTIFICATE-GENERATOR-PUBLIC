@@ -8,6 +8,7 @@ import Price from "./landing/Price";
 import Testimonial from "./landing/Testimonial";
 import FAQ from "./landing/FAQ";
 import Footer from "./landing/Footer";
+import Partners from "./landing/Partners";
 
 export default function LandingPage() {
   return (
@@ -35,6 +36,9 @@ export default function LandingPage() {
         </section>
         <section id="work">
           <Work />
+        </section>
+        <section id="partners">
+          <Partners />
         </section>
         {/* <section id="prices">
           <Price />

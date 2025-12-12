@@ -195,14 +195,34 @@ export default function ResetPasswordPage() {
   // Invalid token UI
   if (tokenValid === false) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-gray-50 flex items-center justify-center p-4">
+      <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-b from-[#FFCB9E52] to-[#FFFBF8] relative">
+        <div className="">
+          <div className="absolute blur-sm -top-[26px] -left-[30px] bg-gradient-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-[100px] w-12 -rotate-45" />
+          <div className="absolute blur-sm top-20 -left-[40px] bg-gradient-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-[100px] w-12 -rotate-45" />
+          <div className="absolute blur-sm -top-[10px] -left-[33px] bg-gradient-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-[100px] w-12 -rotate-45" />
+          <div className="absolute blur-sm -top-[37px] -left-[21px] bg-gradient-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-[100px] w-12 -rotate-45" />
+          <div className="absolute blur-sm -top-[37px] left-5 bg-gradient-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-[100px] w-12 -rotate-45" />
+          <div className="absolute blur-sm -top-[26px] -right-[30px] bg-gradient-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-[100px] w-12 rotate-45" />
+          <div className="absolute blur-sm top-20 -right-[40px] bg-gradient-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-[100px] w-12 rotate-45" />
+          <div className="absolute blur-sm -top-[10px] -right-[33px] bg-gradient-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-[100px] w-12 rotate-45" />
+          <div className="absolute blur-sm -top-[37px] -right-[21px] bg-gradient-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-[100px] w-12 rotate-45" />
+          <div className="absolute blur-sm -top-[37px] right-5 bg-gradient-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-[100px] w-12 rotate-45" />
+        </div>
         <div className="w-full max-w-md">
-          <div className="text-center mb-8">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-white rounded-2xl shadow-lg mb-4">
-              <img src={logo} alt="Logo" className="w-10 h-10" />
+          <div className="text-center mb-8  ">
+            <div className="flex flex-col items-center justify-center gap-3 mb-4">
+              <div className="p-3 rounded-lg shadow-sm ">
+                <img src={logo} alt="Certifyer Logo" className="w-12 h-12" />
+              </div>
+              <div className="text-left">
+                <h1 className="text-4xl font-bold text-gray-900 text-center ">
+                  Certifyer
+                </h1>
+                <p className="text-md text-center text-gray-600">
+                  Reset Your Password
+                </p>
+              </div>
             </div>
-            <h1 className="text-gray-900 mb-2">Certificate Generator</h1>
-            <p className="text-sm text-gray-500">Reset Your Password</p>
           </div>
 
           <Card className="border-gray-200 shadow-xl">

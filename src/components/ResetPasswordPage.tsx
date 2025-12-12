@@ -1,9 +1,8 @@
-import { toast } from "sonner";
-import { projectId, publicAnonKey } from "../utils/supabase/info";
-import { createClient } from "@supabase/supabase-js";
-import logo from "../assets/logo.png";
-import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import { Label } from "./ui/label";
 import {
   Card,
   CardContent,
@@ -11,14 +10,20 @@ import {
   CardHeader,
   CardTitle,
 } from "./ui/card";
-import { AlertCircle } from "lucide-react";
 import { Alert, AlertDescription } from "./ui/alert";
-import { Button } from "./ui/button";
-import { ArrowLeft } from "lucide-react";
-import { CheckCircle } from "lucide-react";
-import { Label } from "./ui/label";
-
-
+import {
+  Eye,
+  EyeOff,
+  AlertCircle,
+  CheckCircle,
+  KeyRound,
+  Lock,
+  ArrowLeft,
+} from "lucide-react";
+import { toast } from "sonner";
+import { projectId, publicAnonKey } from "../utils/supabase/info";
+import { createClient } from "@supabase/supabase-js";
+import logo from "../assets/logo.png";
 
 export default function ResetPasswordPage() {
   const navigate = useNavigate();
@@ -181,9 +186,7 @@ export default function ResetPasswordPage() {
                 <h1 className="text-3xl font-bold text-gray-900 text-center ">
                   Certifyer
                 </h1>
-                <p className="text-l text-gray-600">
-                  Reset Your Password
-                </p>
+                <p className="text-l text-gray-600">Reset Your Password</p>
               </div>
             </div>
           </div>

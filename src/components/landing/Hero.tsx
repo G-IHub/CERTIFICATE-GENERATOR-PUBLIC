@@ -8,7 +8,7 @@ const Hero: React.FC = () => {
 
 
   return (
-    <section className="flex flex-col justify-center mt-8 md:mt-0 md:mb-12 items-center md:flex-row px-10 md:px-28">
+    <section className="flex flex-col justify-center mt-8 md:mt-0 md:mb-12 items-center md:flex-row px-6 md:px-28">
       <div className="space-y-3 max-w-lg md:max-w-md">
         <h2 className="font-medium text-4xl md:text-5xl tracking-tight">
           Generate, Issue & Manage Your Certificates with Ease.

@@ -71,7 +71,7 @@ const CoreFeatures: React.FC = () => {
   ];
 
   return (
-    <section className="bg-white py-10 px-4 md:px-28 md:py-16">
+    <section className="bg-white py-10 px-6 md:px-28 md:py-16">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-8 md:mb-12">
           <h2 className="font-extrabold text-2xl sm:text-3xl md:text-4xl">

@@ -28,7 +28,7 @@ const About: React.FC = () => {
   ];
 
   return (
-    <section className="bg-[#FAFAFA] py-10 md:py-16 px-4 md:px-28">
+    <section className="bg-[#FAFAFA] py-10 md:py-16 px-6 md:px-28">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center md:items-start gap-10">
         <div className="w-full md:w-1/2 space-y-6">
           <div className="space-y-4">

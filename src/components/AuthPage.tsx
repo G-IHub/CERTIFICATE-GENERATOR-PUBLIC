@@ -118,7 +118,7 @@ export default function AuthPage({
 
     // Show a helpful toast for first-time users
     toast.info(
-      "Connecting to server... (first request may take 30-60 seconds)",
+      "Connecting to server...",
       {
         duration: 5000,
       }
@@ -290,7 +290,7 @@ export default function AuthPage({
 
     // Show a helpful toast for first-time users
     toast.info(
-      "Creating your account... (first request may take 30-60 seconds)",
+      "Creating your account...",
       {
         duration: 5000,
       }

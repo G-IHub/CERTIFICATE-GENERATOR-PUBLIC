@@ -3,7 +3,7 @@ import work from "../../assets/work.svg";
 
 const Work: React.FC = () => {
   return (
-    <section className="py-10 px-4 md:px-28 md:py-16 bg-[#F9F9F9]">
+    <section className="py-10 px-6 md:px-28 md:py-16 bg-[#F9F9F9]">
       <div className="text-center md:space-y-4 mb-4 md:mb-12">
         <h2 className="font-extrabold text-3xl md:text-4xl">How It Works</h2>
         <p className="leading-6 text-sm md:text-base text-gray-700">

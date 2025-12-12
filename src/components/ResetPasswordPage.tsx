@@ -2,6 +2,23 @@ import { toast } from "sonner";
 import { projectId, publicAnonKey } from "../utils/supabase/info";
 import { createClient } from "@supabase/supabase-js";
 import logo from "../assets/logo.png";
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "./ui/card";
+import { AlertCircle } from "lucide-react";
+import { Alert, AlertDescription } from "./ui/alert";
+import { Button } from "./ui/button";
+import { ArrowLeft } from "lucide-react";
+import { CheckCircle } from "lucide-react";
+import { Label } from "./ui/label";
+
+
 
 export default function ResetPasswordPage() {
   const navigate = useNavigate();
@@ -155,12 +172,20 @@ export default function ResetPasswordPage() {
     return (
       <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-gray-50 flex items-center justify-center p-4">
         <div className="w-full max-w-md">
-          <div className="text-center mb-8">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-white rounded-2xl shadow-lg mb-4">
-              <img src={logo} alt="Logo" className="w-10 h-10" />
+          <div className="text-center mb-8  ">
+            <div className="flex flex-col items-center justify-center gap-3 mb-4">
+              <div className="p-3 rounded-lg shadow-sm ">
+                <img src={logo} alt="Certifyer Logo" className="w-12 h-12" />
+              </div>
+              <div className="text-left">
+                <h1 className="text-3xl font-bold text-gray-900 text-center ">
+                  Certifyer
+                </h1>
+                <p className="text-l text-gray-600">
+                  Reset Your Password
+                </p>
+              </div>
             </div>
-            <h1 className="text-gray-900 mb-2">Certificate Generator</h1>
-            <p className="text-sm text-gray-500">Reset Your Password</p>
           </div>
 
           <Card className="border-gray-200 shadow-xl">

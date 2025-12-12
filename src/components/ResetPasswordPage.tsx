@@ -22,7 +22,7 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { projectId } from "../utils/supabase/info";
-import logo from "../assets/logo.png";
+import logo from "../assets/logo.svg";
 
 export default function ResetPasswordPage() {
   const navigate = useNavigate();
@@ -39,9 +39,28 @@ export default function ResetPasswordPage() {
 
   // Extract access token from URL hash (Supabase magic link format)
   useEffect(() => {
-    const hash = window.location.hash;
-    const params = new URLSearchParams(hash.substring(1));
-    const token = params.get("access_token");
+    // First try to get from search params (passed by PasswordResetRedirect)
+    const searchParams = new URLSearchParams(location.search);
+    let token = searchParams.get("access_token");
+
+    // If not in search params, try to get from hash (direct Supabase redirect)
+    if (!token) {
+      const hash = window.location.hash;
+      const hashParams = new URLSearchParams(hash.substring(1));
+      token = hashParams.get("access_token");
+    }
+
+    // Also check location.pathname for tokens (HashRouter edge case)
+    if (!token && location.pathname.includes("access_token=")) {
+      const pathParams = new URLSearchParams(location.pathname.substring(1));
+      token = pathParams.get("access_token");
+    }
+
+    console.log("🔍 Checking for reset token...");
+    console.log("  - location.search:", location.search);
+    console.log("  - location.hash:", location.hash);
+    console.log("  - location.pathname:", location.pathname);
+    console.log("  - token found:", token ? "YES" : "NO");
 
     if (token) {
       setAccessToken(token);

@@ -4,6 +4,8 @@ import {
   Routes,
   Route,
   Navigate,
+  useNavigate,
+  useLocation,
 } from "react-router-dom";
 import LandingPage from "./components/LandingPage";
 import AuthPage from "./components/AuthPage";
@@ -23,10 +25,6 @@ import { toast, Toaster } from "sonner";
 import { isAdminEmail } from "./utils/adminConfig";
 import { isOrgPremium } from "./utils/subscriptionUtils";
 
-// Figma asset imports are not available at runtime in this environment.
-// Use a stable placeholder URL for the default organization logo.
-// If you have a local asset, replace the URL below with a path under /public and
-// use that path (for example: const defaultOrgLogo = '/images/default-org-logo.png')
 const defaultOrgLogo = "https://via.placeholder.com/256x256.png?text=Org+Logo";
 
 // TypeScript interfaces
@@ -98,6 +96,41 @@ export type {
 
 // For backwards compatibility with existing components that expect "Subsidiary"
 export type Subsidiary = Organization;
+
+// Password Reset Redirect Component
+function PasswordResetRedirect() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    // Check if there's a recovery token in the URL
+    // With HashRouter, tokens appear in the pathname like: /access_token=...&type=recovery
+    const fullPath = location.pathname + location.search + location.hash;
+
+    // Check if this looks like a password reset URL
+    const hasAccessToken = fullPath.includes("access_token=");
+    const hasRecoveryType = fullPath.includes("type=recovery");
+
+    if (hasAccessToken && hasRecoveryType) {
+      console.log(
+        "🔐 Recovery token detected in path, redirecting to reset password page"
+      );
+      console.log("📍 Current location:", {
+        pathname: location.pathname,
+        search: location.search,
+        hash: location.hash,
+      });
+
+      // Extract the full hash parameters and navigate with them
+      const hashParams = fullPath.startsWith("/")
+        ? fullPath.substring(1)
+        : fullPath;
+      navigate(`/reset-password?${hashParams}`);
+    }
+  }, [navigate, location]);
+
+  return null;
+}
 
 export default function App() {
   // Authentication state
@@ -300,6 +333,7 @@ export default function App() {
             : `${legacyUser.id}@example.com`,
           organizationName: legacyUser.subsidiary?.name,
           organizationId: legacyUser.subsidiary?.id,
+          userType: "company",
           createdAt: new Date().toISOString(),
         };
         setCurrentUser(userAccount);
@@ -591,6 +625,7 @@ export default function App() {
 
   return (
     <Router>
+      <PasswordResetRedirect />
       <div className="min-h-screen">
         {/* Toast Notifications */}
         <Toaster position="top-right" richColors closeButton />

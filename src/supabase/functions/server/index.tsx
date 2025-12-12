@@ -787,7 +787,7 @@ app.post("/make-server-a611b057/auth/reset-password", async (c) => {
           <p>We received a request to reset your password for your Certifyer account. Click the button below to create a new password:</p>
           
           <div style="text-align: center; color: #ffffff;">
-            <a href="${resetLink}" class="button">Reset Password</a>
+            <a href="${resetLink}" class="button" style="color: #ffffff;">Reset Password</a>
           </div>
           
           <div class="warning">

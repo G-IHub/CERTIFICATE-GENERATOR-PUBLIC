@@ -13,7 +13,6 @@ import AdminDashboard from "./components/AdminDashboard";
 import PlatformAdminPanel from "./components/PlatformAdminPanel";
 import StudentCertificate from "./components/StudentCertificate";
 import ShortLinkRedirect from "./components/ShortLinkRedirect";
-import ShortLinkTest from "./components/ShortLinkTest";
 import BackendHealthCheck from "./components/BackendHealthCheck";
 import DeploymentGuide from "./components/DeploymentGuide";
 import NotFound from "./components/NotFound";

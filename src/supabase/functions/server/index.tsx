@@ -342,7 +342,7 @@ const DEFAULT_TEMPLATES = [
     isDefault: true,
     createdAt: new Date().toISOString(),
   },
-
+  
   {
     id: "template8",
     name: "Academic Participation",
@@ -378,8 +378,7 @@ const DEFAULT_TEMPLATES = [
   {
     id: "template10",
     name: "Certificate of Achievement",
-    description:
-      "Modern design with corner decorations, orange accents, and elegant Playfair Display typography",
+    description: "Modern design with corner decorations, orange accents, and elegant Playfair Display typography",
     config: {
       layout: "modern",
       colors: {
@@ -395,8 +394,7 @@ const DEFAULT_TEMPLATES = [
   {
     id: "template11",
     name: "Certificate of Excellence",
-    description:
-      "Distinguished design with decorative left border, gradient orange accent, and Cormorant Garamond font",
+    description: "Distinguished design with decorative left border, gradient orange accent, and Cormorant Garamond font",
     config: {
       layout: "distinguished",
       colors: {
@@ -412,8 +410,7 @@ const DEFAULT_TEMPLATES = [
   {
     id: "template12",
     name: "Certificate of Completion",
-    description:
-      "Professional design with double border frame, diagonal backgrounds, and Libre Baskerville typography",
+    description: "Professional design with double border frame, diagonal backgrounds, and Libre Baskerville typography",
     config: {
       layout: "professional",
       colors: {
@@ -429,8 +426,7 @@ const DEFAULT_TEMPLATES = [
   {
     id: "template13",
     name: "Certificate of Achievement",
-    description:
-      "Modern gradient design with purple and indigo tones, decorative corners, and Playfair Display font",
+    description: "Modern gradient design with purple and indigo tones, decorative corners, and Playfair Display font",
     config: {
       layout: "modern-gradient",
       colors: {
@@ -446,8 +442,7 @@ const DEFAULT_TEMPLATES = [
   {
     id: "template14",
     name: "Certificate of Excellence",
-    description:
-      "Elegant emerald design with double border frames, decorative flourishes, and Cinzel serif typography",
+    description: "Elegant emerald design with double border frames, decorative flourishes, and Cinzel serif typography",
     config: {
       layout: "elegant-emerald",
       colors: {
@@ -463,8 +458,7 @@ const DEFAULT_TEMPLATES = [
   {
     id: "template15",
     name: "Certificate of Recognition",
-    description:
-      "Bold geometric design with orange header, diagonal accents, and Raleway modern typography",
+    description: "Bold geometric design with orange header, diagonal accents, and Raleway modern typography",
     config: {
       layout: "geometric-modern",
       colors: {
@@ -480,8 +474,7 @@ const DEFAULT_TEMPLATES = [
   {
     id: "template16",
     name: "Certificate of Distinction",
-    description:
-      "Professional blue design with gradient background, decorative badge, and Merriweather typography",
+    description: "Professional blue design with gradient background, decorative badge, and Merriweather typography",
     config: {
       layout: "professional-blue",
       colors: {
@@ -648,227 +641,416 @@ app.post("/make-server-a611b057/auth/signin", async (c) => {
   }
 });
 
-// Health check endpoint for auth routes
-app.get("/make-server-a611b057/auth/health", (c) => {
-  console.log("✅ Auth health check endpoint called");
-  return c.json({
-    status: "ok",
-    message: "Auth service is operational",
-    hasEnvUrl: !!Deno.env.get("SUPABASE_URL"),
-    hasEnvAnonKey: !!Deno.env.get("SUPABASE_ANON_KEY"),
-    hasEnvServiceKey: !!Deno.env.get("SUPABASE_SERVICE_ROLE_KEY"),
-    timestamp: new Date().toISOString(),
-  });
-});
-
 // Password reset request
+// Using Mailtrap API for reliable email delivery (no SMTP configuration needed!)
 app.post("/make-server-a611b057/auth/reset-password", async (c) => {
   try {
-    console.log("🔄 Password reset endpoint called");
-    console.log("📊 Headers:", {
-      contentType: c.req.header("content-type"),
-      origin: c.req.header("origin"),
-    });
-
-    // Check environment variables
-    const supabaseUrl = Deno.env.get("SUPABASE_URL");
-    const anonKey = Deno.env.get("SUPABASE_ANON_KEY");
-
-    console.log("🔑 Environment check:", {
-      urlSet: !!supabaseUrl,
-      keySet: !!anonKey,
-      urlPrefix: supabaseUrl?.substring(0, 20),
-      keyPrefix: anonKey?.substring(0, 20),
-    });
-
-    if (!supabaseUrl || !anonKey) {
-      console.error("❌ Missing Supabase configuration:", {
-        urlSet: !!supabaseUrl,
-        keySet: !!anonKey,
-      });
-      return c.json(
-        { error: "Server configuration error - missing credentials" },
-        500
-      );
-    }
-
-    let email: string;
-    try {
-      const body = await c.req.json();
-      email = body.email;
-      console.log(`📧 Email from request: ${email}`);
-    } catch (parseErr) {
-      console.error("❌ Error parsing request body:", parseErr);
-      return c.json({ error: "Invalid request format" }, 400);
-    }
+    const { email } = await c.req.json();
 
     if (!email) {
       return c.json({ error: "Email is required" }, 400);
     }
 
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      return c.json({ error: "Invalid email format" }, 400);
-    }
+    // Create Supabase admin client to generate reset token
+    const supabaseAdmin = createClient(
+      Deno.env.get("SUPABASE_URL")!,
+      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!
+    );
 
-    console.log(`🔐 Creating Supabase client with URL: ${supabaseUrl}`);
-    const supabase = createClient(supabaseUrl, anonKey);
+    console.log(`🔐 Password reset requested for: ${email}`);
 
-    console.log(`📧 Attempting password reset for: ${email}`);
+    // Check if user exists (using admin client to avoid enumeration attacks)
+    const { data: userData, error: userError } = await supabaseAdmin.auth.admin.listUsers();
+    const userExists = userData?.users?.some(user => user.email === email);
 
-    // Try both the JS client method and REST API as fallback
-    let success = false;
-    let errorMsg = "";
-
-    // First, try with Supabase JS client
-    try {
-      // Prefer explicit FRONTEND_URL env var (set this in production),
-      // otherwise fall back to request origin or localhost for dev.
-      const frontendUrl = (
-        Deno.env.get("FRONTEND_URL") ||
-        c.req.header("origin") ||
-        "http://localhost:5173"
-      ).replace(/\/+$/, "");
-      const redirectTo = `${frontendUrl}/#/reset-password`;
-
-      console.log(`📍 Redirect URL: ${redirectTo}`);
-
-      const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo,
+    if (!userExists) {
+      console.log(`⚠️  User not found: ${email} (returning generic success for security)`);
+      // Return success anyway to prevent email enumeration
+      return c.json({
+        success: true,
+        message: "If an account exists with this email, you will receive a password reset link.",
       });
-
-      if (error) {
-        console.warn(`⚠️ JS client error: ${error.message}`);
-        errorMsg = error.message;
-      } else {
-        console.log(`✅ Password reset email sent via JS client for: ${email}`);
-        success = true;
-      }
-    } catch (jsErr: any) {
-      console.warn(`⚠️ JS client exception: ${jsErr?.message}`);
-      errorMsg = jsErr?.message;
-
-      // If JS client fails, try REST API directly
-      console.log("📡 Trying Supabase REST API directly...");
-      try {
-        const frontendUrl = (
-          Deno.env.get("FRONTEND_URL") ||
-          c.req.header("origin") ||
-          "http://localhost:5173"
-        ).replace(/\/+$/, "");
-        const redirectUrl = `${frontendUrl}/#/reset-password`;
-
-        const restResponse = await fetch(`${supabaseUrl}/auth/v1/recover`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            apikey: anonKey,
-          },
-          body: JSON.stringify({
-            email,
-            gotrue_meta_security: {},
-          }),
-        });
-
-        console.log(`📬 REST API response status: ${restResponse.status}`);
-
-        if (restResponse.ok) {
-          console.log(
-            `✅ Password reset email sent via REST API for: ${email}`
-          );
-          success = true;
-        } else {
-          const restErr = await restResponse.json();
-          console.error(`❌ REST API error: ${restResponse.status}`, restErr);
-          errorMsg =
-            restErr?.error_description ||
-            restErr?.error ||
-            "Password reset failed";
-        }
-      } catch (restErr: any) {
-        console.error(`❌ REST API exception: ${restErr?.message}`);
-        errorMsg = restErr?.message || "Unable to process password reset";
-      }
     }
 
-    // Always return success (security best practice - don't reveal if email exists)
+    // Get frontend URL from environment (for redirect after reset)
+    const frontendUrl = Deno.env.get("FRONTEND_URL") || "http://localhost:3000";
+    console.log(`🌐 Using redirect URL: ${frontendUrl}`);
+    
+    // Generate password reset token with correct redirect URL
+    // Note: Redirecting to root URL - the app will detect recovery token and redirect to /reset-password
+    const { data: resetData, error: resetError } = await supabaseAdmin.auth.admin.generateLink({
+      type: 'recovery',
+      email: email,
+      options: {
+        redirectTo: `${frontendUrl}`,
+      },
+    });
+
+    if (resetError || !resetData) {
+      console.error("❌ Failed to generate reset token:", resetError);
+      throw new Error(`Failed to generate reset token: ${resetError?.message || 'Unknown error'}`);
+    }
+
+    const resetLink = resetData.properties.action_link;
+    console.log(`✅ Generated reset link for: ${email}`);
+
+    // Get Resend API key from environment
+    const resendApiKey = Deno.env.get("RESEND_API_KEY");
+    if (!resendApiKey) {
+      console.error("❌ RESEND_API_KEY not configured!");
+      throw new Error("EMAIL_SERVICE_NOT_CONFIGURED");
+    }
+
+    console.log(`📧 Sending password reset email via Resend to: ${email}`);
+
+    // Send email via Resend API
+    const resendResponse = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${resendApiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from: "Certifyer <noreply@certifyer.online>",
+        to: [email],
+        subject: "Reset Your Certifyer Password",
+        html: `
+          <!DOCTYPE html>
+          <html>
+          <head>
+            <style>
+              body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+                line-height: 1.6;
+                color: #333;
+                max-width: 600px;
+                margin: 0 auto;
+                padding: 20px;
+              }
+              .container {
+                background: #ffffff;
+                border-radius: 8px;
+                padding: 40px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+              }
+              .logo {
+                text-align: center;
+                margin-bottom: 30px;
+              }
+              .logo h1 {
+                color: #FF6B35;
+                margin: 0;
+                font-size: 32px;
+              }
+              .button {
+                display: inline-block;
+                background: #FF6B35;
+                color: #ffffff;
+                text-decoration: none;
+                padding: 14px 30px;
+                border-radius: 6px;
+                margin: 25px 0;
+                font-weight: 600;
+              }
+              .footer {
+                margin-top: 40px;
+                padding-top: 20px;
+                border-top: 1px solid #eee;
+                font-size: 14px;
+                color: #666;
+                text-align: center;
+              }
+              .warning {
+                background: #FFF3CD;
+                border-left: 4px solid #FFC107;
+                padding: 15px;
+                margin: 20px 0;
+                border-radius: 4px;
+              }
+            </style>
+          </head>
+          <body>
+            <div class="container">
+              <div class="logo">
+                <h1>🎓 Certifyer</h1>
+              </div>
+              
+              <h2>Reset Your Password</h2>
+              
+              <p>Hi there,</p>
+              
+              <p>We received a request to reset your password for your Certifyer account. Click the button below to create a new password:</p>
+              
+              <div style="text-align: center;">
+                <a href="${resetLink}" class="button">Reset Password</a>
+              </div>
+              
+              <div class="warning">
+                <strong>⏰ This link expires in 1 hour</strong><br>
+                For security reasons, this password reset link will only work once and expires in 60 minutes.
+              </div>
+              
+              <p>If you didn't request a password reset, you can safely ignore this email. Your password will remain unchanged.</p>
+              
+              <p>If the button doesn't work, copy and paste this link into your browser:</p>
+              <p style="word-break: break-all; color: #0066cc; font-size: 12px;">${resetLink}</p>
+              
+              <div class="footer">
+                <p><strong>Certifyer - Certificate Generation Platform</strong></p>
+                <p>This is an automated email. Please do not reply to this message.</p>
+                <p>If you need help, contact our support team.</p>
+              </div>
+            </div>
+          </body>
+          </html>
+        `,
+        text: `Reset Your Certifyer Password
+
+Hi there,
+
+We received a request to reset your password for your Certifyer account.
+
+To reset your password, click this link:
+${resetLink}
+
+This link expires in 1 hour and can only be used once.
+
+If you didn't request a password reset, you can safely ignore this email.
+
+---
+Certifyer - Certificate Generation Platform`
+      }),
+    });
+
+    if (!resendResponse.ok) {
+      const errorData = await resendResponse.text();
+      console.error("❌ Resend API error:", errorData);
+      console.error(`❌ Status: ${resendResponse.status}`);
+      
+      // Parse the error response
+      let parsedError;
+      try {
+        parsedError = JSON.parse(errorData);
+      } catch (e) {
+        parsedError = { message: errorData };
+      }
+      
+      // Check for domain verification error (403 validation_error)
+      if (resendResponse.status === 403 && parsedError.name === "validation_error") {
+        console.error("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+        console.error("⚠️ RESEND DOMAIN VERIFICATION REQUIRED");
+        console.error("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+        console.error("Error:", parsedError.message);
+        console.error("");
+        console.error("📌 Issue:");
+        console.error("   Free Resend accounts can only send emails to your verified email.");
+        console.error("   To send to any email address, you need to verify a domain.");
+        console.error("");
+        console.error("🔧 Solutions:");
+        console.error("");
+        console.error("   Option 1 - Verify a Domain (Production Ready):");
+        console.error("   1. Go to: https://resend.com/domains");
+        console.error("   2. Click 'Add Domain'");
+        console.error("   3. Enter your domain (e.g., certifyer.com)");
+        console.error("   4. Add the DNS records shown");
+        console.error("   5. Wait for verification (usually 5-10 minutes)");
+        console.error("   6. Update 'from' email to: noreply@yourdomain.com");
+        console.error("");
+        console.error("   Option 2 - Testing Only (Temporary):");
+        console.error("   Use your verified email for testing password resets");
+        console.error("   Verified email: genomacinnovationhub@gmail.com");
+        console.error("");
+        console.error("📚 Documentation: https://resend.com/docs/dashboard/domains/introduction");
+        console.error("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+        
+        return c.json(
+          { 
+            error: "Resend domain verification required. Free accounts can only send to verified email addresses.",
+            isConfigError: true,
+            errorType: "resend_domain_verification_required",
+            details: parsedError.message,
+            verifiedEmail: "genomacinnovationhub@gmail.com",
+            solution: {
+              production: "Verify a domain at https://resend.com/domains to send to any email address",
+              testing: "For testing, use your verified email address (genomacinnovationhub@gmail.com)"
+            }
+          },
+          403
+        );
+      }
+      
+      // Check for API key errors (401)
+      if (resendResponse.status === 401) {
+        throw new Error("RESEND_API_KEY_INVALID");
+      }
+      
+      throw new Error(`Resend API error: ${resendResponse.status} - ${errorData}`);
+    }
+
+    const resendData = await resendResponse.json();
+    console.log(`✅ Password reset email sent successfully via Resend:`, resendData);
+
+    // Always return success to prevent email enumeration
     return c.json({
       success: true,
-      message:
-        "If an account exists with this email, you will receive a password reset link.",
+      message: "If an account exists with this email, you will receive a password reset link.",
     });
   } catch (error) {
-    console.error("❌ Unexpected error in password reset:", error);
-    // Log full stack trace
-    if (error instanceof Error) {
-      console.error("Stack:", error.stack);
+    console.error("❌ Server error in password reset:", error);
+    
+    // Check if it's a Resend API key error
+    if (error instanceof Error && error.message === "RESEND_API_KEY_INVALID") {
+      return c.json(
+        { 
+          error: "Email service authentication failed. Please check API key configuration.",
+          isConfigError: true,
+          errorType: "resend_api_key_invalid"
+        },
+        401
+      );
     }
+    
+    // Check if it's a configuration error
+    if (error instanceof Error && error.message === "EMAIL_SERVICE_NOT_CONFIGURED") {
+      return c.json(
+        { 
+          error: "Email service is not configured. Please add RESEND_API_KEY.",
+          isConfigError: true 
+        },
+        500
+      );
+    }
+    
+    // For other errors, return generic message
     return c.json(
-      {
-        error: `Server error during password reset: ${
-          error instanceof Error ? error.message : String(error)
-        }`,
-      },
+      { error: `Failed to process password reset request. Please try again later.` },
       500
     );
   }
 });
 
-// Confirm password reset with token
-app.post("/make-server-a611b057/auth/confirm-password-reset", async (c) => {
+// Test endpoint to verify Resend API key
+app.get("/make-server-a611b057/test/resend-api-key", async (c) => {
   try {
-    const { token, newPassword } = await c.req.json();
-
-    if (!token || !newPassword) {
-      return c.json({ error: "Token and password are required" }, 400);
+    const apiKey = Deno.env.get("RESEND_API_KEY");
+    
+    if (!apiKey) {
+      return c.json({
+        status: "error",
+        message: "RESEND_API_KEY environment variable is not set",
+        solution: "Add RESEND_API_KEY in Supabase Edge Function secrets",
+        setup: "Get your API key from: https://resend.com/api-keys"
+      });
     }
 
-    if (newPassword.length < 8) {
-      return c.json({ error: "Password must be at least 8 characters" }, 400);
-    }
+    const keyInfo = {
+      status: "key_found",
+      length: apiKey.length,
+      prefix: apiKey.substring(0, 7),
+      hasPrefix: apiKey.startsWith("re_"),
+    };
 
-    const supabase = createClient(
-      Deno.env.get("SUPABASE_URL")!,
-      Deno.env.get("SUPABASE_ANON_KEY")!
-    );
+    console.log("🔍 API Key Analysis:", keyInfo);
 
-    // Use the token to authenticate and then update the password
-    // First, create a session from the recovery token
-    const { data, error: sessionError } = await supabase.auth.verifyOtp({
-      token,
-      type: "recovery",
+    // Test the key with Resend API (just check authentication, don't actually send)
+    const testResponse = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from: "Certifyer <onboarding@resend.dev>",
+        to: ["test@example.com"],
+        subject: "API Key Test",
+        text: "Testing API key validity"
+      }),
     });
 
-    if (sessionError || !data.session) {
-      console.log("Token verification failed:", sessionError);
-      return c.json({ error: "Invalid or expired password reset link" }, 400);
+    const responseText = await testResponse.text();
+    const isValid = testResponse.ok || testResponse.status === 422; // 422 = validation error (key is valid, just bad email)
+    
+    return c.json({
+      keyInfo,
+      apiTest: {
+        status: testResponse.status,
+        statusText: testResponse.statusText,
+        ok: testResponse.ok,
+        response: responseText,
+      },
+      verdict: testResponse.status === 401 || testResponse.status === 403
+        ? "❌ API KEY IS INVALID - Get new key from https://resend.com/api-keys"
+        : isValid
+        ? "✅ API KEY IS VALID!"
+        : `⚠️ Unexpected status: ${testResponse.status}`,
+      instructions: testResponse.status === 401 || testResponse.status === 403
+        ? "Go to https://resend.com/api-keys, create new API key, and update RESEND_API_KEY"
+        : isValid
+        ? "API key is working correctly!"
+        : "Check the response for more details"
+    });
+  } catch (error) {
+    console.error("❌ API key test error:", error);
+    return c.json({
+      status: "error",
+      message: error instanceof Error ? error.message : "Unknown error",
+    }, 500);
+  }
+});
+
+// Update password (used after clicking reset link)
+app.post("/make-server-a611b057/auth/update-password", async (c) => {
+  try {
+    const { newPassword } = await c.req.json();
+    const authHeader = c.req.header("Authorization");
+
+    if (!newPassword) {
+      return c.json({ error: "New password is required" }, 400);
     }
 
-    // Now update the password using the verified session
-    const adminSupabase = createClient(
+    if (!authHeader) {
+      return c.json({ error: "Authorization header is required" }, 401);
+    }
+
+    // Extract the access token from the Authorization header
+    const accessToken = authHeader.replace("Bearer ", "");
+
+    // Create Supabase client with the user's access token
+    const supabase = createClient(
       Deno.env.get("SUPABASE_URL")!,
-      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!
+      Deno.env.get("SUPABASE_ANON_KEY")!,
+      {
+        global: {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        },
+      }
     );
 
-    const { error: updateError } =
-      await adminSupabase.auth.admin.updateUserById(data.user!.id, {
-        password: newPassword,
-      });
+    // Update the user's password
+    const { data, error } = await supabase.auth.updateUser({
+      password: newPassword,
+    });
 
-    if (updateError) {
-      console.log("Password update failed:", updateError);
-      return c.json({ error: "Failed to update password" }, 500);
+    if (error) {
+      console.log("Password update error:", error);
+      return c.json(
+        { error: error.message || "Failed to update password" },
+        400
+      );
     }
 
-    console.log(`Password updated for user: ${data.user!.id}`);
+    console.log(`Password updated successfully for user: ${data.user?.email}`);
 
     return c.json({
       success: true,
-      message: "Password has been reset successfully",
+      message: "Password updated successfully",
     });
   } catch (error) {
-    console.log("Error in confirm password reset:", error);
+    console.log("Error in password update:", error);
     return c.json(
-      { error: `Server error during password reset confirmation: ${error}` },
+      { error: `Server error during password update: ${error}` },
       500
     );
   }
@@ -1657,12 +1839,13 @@ app.delete("/make-server-a611b057/certificates", async (c) => {
 app.post("/make-server-a611b057/certificates/:id/testimonial", async (c) => {
   try {
     const certificateId = c.req.param("id");
-    const { studentName, testimonial, courseName, organizationId, programId } =
+    const { studentName, email, testimonial, courseName, organizationId, programId } =
       await c.req.json();
 
     console.log("💬 Testimonial submission:", {
       certificateId,
       studentName,
+      email,
       hasTestimonial: !!testimonial,
       courseName,
       organizationId,
@@ -1695,6 +1878,7 @@ app.post("/make-server-a611b057/certificates/:id/testimonial", async (c) => {
       id: testimonialId,
       certificateId,
       studentName,
+      email: email || undefined, // Store email if provided
       testimonial,
       courseName,
       organizationId,
@@ -3487,71 +3671,60 @@ app.get("/make-server-a611b057/admin/stats", async (c) => {
       return c.json({ error: "Unauthorized - Admin access required" }, 403);
     }
 
-    // Helper to normalize kv.getByPrefix results (some helpers return {key,value}, others return values directly)
-    const normalizePrefix = (arr: any[]) => {
-      if (!Array.isArray(arr)) return [];
-      if (arr.length === 0) return [];
-      if (arr[0] && Object.prototype.hasOwnProperty.call(arr[0], "value")) {
-        return arr
-          .map((it: any) => it.value)
-          .filter((v: any) => v && typeof v === "object");
-      }
-      return arr.filter((v: any) => v && typeof v === "object");
-    };
-
     // Get all organizations - filter out null/undefined values
     const allOrgs = await kv.getByPrefix("org:");
-    const organizations = normalizePrefix(allOrgs);
+    console.log("📊 Admin Stats - Raw orgs from KV:", allOrgs.length);
+    const organizations = allOrgs.filter((org) => org && org.id);
+    console.log("📊 Admin Stats - Valid organizations:", organizations.length);
 
     // Get all certificates - filter out null/undefined values
     const allCerts = await kv.getByPrefix("cert:");
-    const certificates = normalizePrefix(allCerts);
+    console.log("📊 Admin Stats - Raw certs from KV:", allCerts.length);
+    const certificates = allCerts.filter((cert) => cert && cert.id);
+    console.log("📊 Admin Stats - Valid certificates:", certificates.length);
 
     // Get all templates - filter out null/undefined values
     const allTemplates = await kv.getByPrefix("globaltemplate:");
-    const templates = normalizePrefix(allTemplates);
+    console.log("📊 Admin Stats - Raw templates from KV:", allTemplates.length);
+    const templates = allTemplates.filter(
+      (template) => template && template.id
+    );
+    console.log("📊 Admin Stats - Valid templates:", templates.length);
 
     // Get all payments - filter out null/undefined values
     const allPayments = await kv.getByPrefix("payment:");
-    const payments = normalizePrefix(allPayments);
+    console.log("📊 Admin Stats - Raw payments from KV:", allPayments.length);
+    const payments = allPayments.filter((payment) => payment && payment.id);
+    console.log("📊 Admin Stats - Valid payments:", payments.length);
 
     // Get all testimonials - filter out null/undefined values
     const allTestimonials = await kv.getByPrefix("testimonial:");
-    const testimonials = normalizePrefix(allTestimonials);
-
-    // Debug: log counts and a sample item for each collection
-    try {
-      console.log("admin/stats - organizations.count:", organizations.length);
-      console.log("admin/stats - certificates.count:", certificates.length);
-      console.log("admin/stats - templates.count:", templates.length);
-      console.log("admin/stats - payments.count:", payments.length);
-      console.log("admin/stats - testimonials.count:", testimonials.length);
-      if (organizations.length > 0)
-        console.log(
-          "admin/stats - sample org:",
-          JSON.stringify(organizations[0]).slice(0, 1000)
-        );
-      if (certificates.length > 0)
-        console.log(
-          "admin/stats - sample cert:",
-          JSON.stringify(certificates[0]).slice(0, 1000)
-        );
-      if (testimonials.length > 0)
-        console.log(
-          "admin/stats - sample testimonial:",
-          JSON.stringify(testimonials[0]).slice(0, 1000)
-        );
-    } catch (e) {
-      console.log("admin/stats - debug logging failed", e?.message || e);
-    }
+    console.log(
+      "📊 Admin Stats - Raw testimonials from KV:",
+      allTestimonials.length
+    );
+    const testimonials = allTestimonials.filter(
+      (testimonial) => testimonial && testimonial.id
+    );
+    console.log("📊 Admin Stats - Valid testimonials:", testimonials.length);
 
     // Calculate stats with safe access
-    const premiumOrgs = organizations.filter(
-      (org) => org && org.plan === "premium"
-    ).length;
-    const freeOrgs = organizations.filter(
-      (org) => org && (org.plan === "free" || !org.plan)
-    ).length;
+    // Check for premium using subscription data
+    const premiumOrgs = await Promise.all(
+      organizations.map(async (org) => {
+        const subscription = await kv.get(`subscription:org:${org.id}`);
+        return (
+          subscription &&
+          subscription.status === "active" &&
+          subscription.plan !== "free"
+        );
+      })
+    );
+    const premiumCount = premiumOrgs.filter(Boolean).length;
+    const freeCount = organizations.length - premiumCount;
+    
+    console.log("📊 Admin Stats - Premium orgs:", premiumCount);
+    console.log("📊 Admin Stats - Free orgs:", freeCount);
     const totalRevenue = payments
       .filter((p) => p && p.status === "success")
       .reduce((sum, p) => sum + (p.amount || 0), 0);
@@ -3559,12 +3732,14 @@ app.get("/make-server-a611b057/admin/stats", async (c) => {
     const stats = {
       totalOrganizations: organizations.length,
       totalCertificates: certificates.length,
+      totalTestimonials: testimonials.length,
       totalRevenue: totalRevenue,
       totalTemplates: templates.length,
-      totalTestimonials: testimonials.length,
-      premiumUsers: premiumOrgs,
-      freeUsers: freeOrgs,
+      premiumUsers: premiumCount,
+      freeUsers: freeCount,
     };
+
+    console.log("📊 Admin Stats - Final stats:", stats);
 
     return c.json({ stats });
   } catch (error) {
@@ -5181,6 +5356,199 @@ app.delete("/make-server-a611b057/certificates/:certificateId", async (c) => {
   }
 });
 
+// ==================== SHORT LINK ROUTES ====================
+
+// Generate a short link for a certificate (6-character code)
+function generateShortCode(): string {
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let code = '';
+  for (let i = 0; i < 6; i++) {
+    code += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return code;
+}
+
+// Create short link for a certificate
+app.post("/make-server-a611b057/short/create", async (c) => {
+  try {
+    const body = await c.req.json();
+    const { organizationId, programId, certificateId, certificateData } = body;
+
+    if (!organizationId || !programId || !certificateId) {
+      return c.json({ error: "Missing required parameters" }, 400);
+    }
+
+    console.log(`🔗 Creating short link for certificate: ${certificateId}`);
+
+    // Generate unique short code
+    let shortCode = generateShortCode();
+    let attempts = 0;
+    
+    // Ensure uniqueness (retry if code already exists)
+    while (await kv.get(`short:${shortCode}`) && attempts < 10) {
+      shortCode = generateShortCode();
+      attempts++;
+    }
+
+    if (attempts >= 10) {
+      return c.json({ error: "Failed to generate unique short code" }, 500);
+    }
+
+    // Store short link mapping
+    const shortLinkData = {
+      code: shortCode,
+      organizationId,
+      programId,
+      certificateId,
+      certificateData: certificateData || null,
+      createdAt: new Date().toISOString(),
+      clicks: 0,
+    };
+
+    await kv.set(`short:${shortCode}`, shortLinkData);
+    
+    // Initialize click tracking
+    await kv.set(`clicks:${shortCode}`, []);
+
+    console.log(`✅ Short link created: ${shortCode} → ${certificateId}`);
+
+    return c.json({
+      success: true,
+      shortCode,
+      shortUrl: `/c/${shortCode}`,
+      fullShortUrl: `${Deno.env.get("FRONTEND_URL") || "http://localhost:3000"}/#/c/${shortCode}`,
+    });
+  } catch (error) {
+    console.error("Create short link error:", error);
+    return c.json({ error: `Failed to create short link: ${error}` }, 500);
+  }
+});
+
+// Resolve short link and track click
+app.get("/make-server-a611b057/short/:code", async (c) => {
+  try {
+    const code = c.req.param("code");
+    console.log(`🔍 Resolving short link: ${code}`);
+
+    const shortLinkData = await kv.get(`short:${code}`);
+
+    if (!shortLinkData) {
+      console.log(`❌ Short link not found: ${code}`);
+      return c.json({ error: "Short link not found" }, 404);
+    }
+
+    // Track the click
+    const clickData = {
+      timestamp: new Date().toISOString(),
+      userAgent: c.req.header("User-Agent") || "Unknown",
+      referer: c.req.header("Referer") || "Direct",
+      ip: c.req.header("X-Forwarded-For") || c.req.header("CF-Connecting-IP") || "Unknown",
+    };
+
+    // Get existing clicks
+    const existingClicks = (await kv.get(`clicks:${code}`)) || [];
+    existingClicks.push(clickData);
+    await kv.set(`clicks:${code}`, existingClicks);
+
+    // Update click count
+    shortLinkData.clicks = (shortLinkData.clicks || 0) + 1;
+    shortLinkData.lastClickedAt = clickData.timestamp;
+    await kv.set(`short:${code}`, shortLinkData);
+
+    console.log(`✅ Short link resolved: ${code} → ${shortLinkData.certificateId} (Click #${shortLinkData.clicks})`);
+
+    return c.json({
+      success: true,
+      organizationId: shortLinkData.organizationId,
+      programId: shortLinkData.programId,
+      certificateId: shortLinkData.certificateId,
+      certificateData: shortLinkData.certificateData,
+    });
+  } catch (error) {
+    console.error("Resolve short link error:", error);
+    return c.json({ error: `Failed to resolve short link: ${error}` }, 500);
+  }
+});
+
+// Get analytics for a short link (for admin dashboard)
+app.get("/make-server-a611b057/short/:code/analytics", async (c) => {
+  try {
+    const code = c.req.param("code");
+    console.log(`📊 Fetching analytics for short link: ${code}`);
+
+    const shortLinkData = await kv.get(`short:${code}`);
+    const clicks = (await kv.get(`clicks:${code}`)) || [];
+
+    if (!shortLinkData) {
+      return c.json({ error: "Short link not found" }, 404);
+    }
+
+    return c.json({
+      success: true,
+      analytics: {
+        code,
+        certificateId: shortLinkData.certificateId,
+        organizationId: shortLinkData.organizationId,
+        createdAt: shortLinkData.createdAt,
+        totalClicks: shortLinkData.clicks || 0,
+        lastClickedAt: shortLinkData.lastClickedAt || null,
+        clicks: clicks.map((click: any) => ({
+          timestamp: click.timestamp,
+          userAgent: click.userAgent,
+          referer: click.referer,
+        })),
+      },
+    });
+  } catch (error) {
+    console.error("Get analytics error:", error);
+    return c.json({ error: `Failed to get analytics: ${error}` }, 500);
+  }
+});
+
+// Get all short links for an organization (for admin dashboard)
+app.get("/make-server-a611b057/short/org/:organizationId/links", async (c) => {
+  try {
+    const { user, error } = await verifyUser(c.req.header("Authorization"));
+    if (error) {
+      return c.json({ error }, 401);
+    }
+
+    const organizationId = c.req.param("organizationId");
+    console.log(`📊 Fetching all short links for organization: ${organizationId}`);
+
+    // Get all short links
+    const allShortLinks = await kv.getByPrefix("short:");
+    
+    // Filter by organization
+    const orgShortLinks = allShortLinks
+      .filter((item: any) => item.value?.organizationId === organizationId)
+      .map((item: any) => item.value);
+
+    // Enrich with click data
+    const enrichedLinks = await Promise.all(
+      orgShortLinks.map(async (link: any) => {
+        const clicks = (await kv.get(`clicks:${link.code}`)) || [];
+        return {
+          ...link,
+          clickDetails: clicks,
+        };
+      })
+    );
+
+    console.log(`✅ Found ${enrichedLinks.length} short links for organization`);
+
+    return c.json({
+      success: true,
+      shortLinks: enrichedLinks,
+      totalLinks: enrichedLinks.length,
+      totalClicks: enrichedLinks.reduce((sum: number, link: any) => sum + (link.clicks || 0), 0),
+    });
+  } catch (error) {
+    console.error("Get organization short links error:", error);
+    return c.json({ error: `Failed to get short links: ${error}` }, 500);
+  }
+});
+
 // ==================== ADMIN SEED ENDPOINT ====================
 
 // Seed default templates (admin only)
@@ -5245,10 +5613,15 @@ app.get("/make-server-a611b057/admin/platform-data", async (c) => {
     const allSubscriptions = await kv.getByPrefix("subscription:");
     console.log("💳 Total subscriptions:", allSubscriptions.length);
 
+    // Get all testimonials
+    const allTestimonials = await kv.getByPrefix("testimonial:");
+    console.log("💬 Total testimonials:", allTestimonials.length);
+
     // Filter out invalid data and ensure unique IDs
     const validOrgs = allOrgs.filter((org) => org && org.id);
     const validUsers = allUsers.filter((user) => user && user.id);
     const validCerts = allCerts.filter((cert) => cert && cert.id);
+    const validTestimonials = allTestimonials.filter((testimonial) => testimonial && testimonial.id);
 
     // Enrich organizations with owner email and subscription data
     const enrichedOrgs = await Promise.all(
@@ -5305,16 +5678,30 @@ app.get("/make-server-a611b057/admin/platform-data", async (c) => {
       verificationUrl: cert.verificationUrl || "",
     }));
 
+    // Format testimonials with defaults
+    const formattedTestimonials = validTestimonials.map((testimonial) => ({
+      id: testimonial.id,
+      studentName: testimonial.studentName || "Anonymous",
+      testimonial: testimonial.testimonial || "",
+      courseName: testimonial.courseName || "",
+      organizationId: testimonial.organizationId || "",
+      programId: testimonial.programId || null,
+      certificateId: testimonial.certificateId || "",
+      submittedAt: testimonial.submittedAt || new Date().toISOString(),
+    }));
+
     console.log("✅ Returning:", {
       organizations: enrichedOrgs.length,
       users: formattedUsers.length,
       certificates: formattedCerts.length,
+      testimonials: formattedTestimonials.length,
     });
 
     return c.json({
       organizations: enrichedOrgs,
       users: formattedUsers,
       certificates: formattedCerts,
+      testimonials: formattedTestimonials,
       timestamp: new Date().toISOString(),
     });
   } catch (error) {
@@ -5946,11 +6333,246 @@ app.get("/make-server-a611b057/admin/billing/debug", async (c) => {
   }
 });
 
+// Admin: Get all collected email addresses from testimonials
+app.get("/make-server-a611b057/admin/emails", async (c) => {
+  try {
+    const authHeader = c.req.header("Authorization");
+
+    // Check if authorization header is present
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      return c.json(
+        { error: "Unauthorized: Missing or invalid authorization header" },
+        401
+      );
+    }
+
+    console.log("📧 Fetching all collected email addresses...");
+
+    // Get all testimonials from the KV store
+    const allTestimonials = await kv.getByPrefix("testimonial:");
+    console.log(`📊 Total testimonials found: ${allTestimonials.length}`);
+
+    // Filter testimonials that have email addresses and extract relevant data
+    const emailData = allTestimonials
+      .filter((testimonial) => testimonial.email) // Only include testimonials with email
+      .map((testimonial) => ({
+        email: testimonial.email,
+        studentName: testimonial.studentName || "Unknown",
+        courseName: testimonial.courseName || "Unknown Course",
+        organizationId: testimonial.organizationId || "",
+        submittedAt: testimonial.submittedAt || new Date().toISOString(),
+      }));
+
+    console.log(`✅ Email addresses collected: ${emailData.length}`);
+
+    return c.json({
+      emails: emailData,
+      count: emailData.length,
+    });
+  } catch (error) {
+    console.error("❌ Error fetching email addresses:", error);
+    return c.json(
+      { error: `Server error fetching email addresses: ${error}` },
+      500
+    );
+  }
+});
+
+// Get platform analytics data for admin dashboard
+app.get("/make-server-a611b057/admin/analytics", async (c) => {
+  try {
+    console.log("📊 Analytics request");
+
+    // Get all data from KV store
+    const allOrgs = (await kv.getByPrefix("org:")).filter((org) => org && org.id);
+    const allUsers = (await kv.getByPrefix("user:")).filter((user) => user && user.id);
+    const allCerts = (await kv.getByPrefix("cert:")).filter((cert) => cert && cert.id);
+    const allTestimonials = (await kv.getByPrefix("testimonial:")).filter((t) => t && t.id);
+
+    console.log(`📊 Data loaded: ${allOrgs.length} orgs, ${allUsers.length} users, ${allCerts.length} certs`);
+
+    // Calculate time ranges
+    const now = new Date();
+    const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+    const monthAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
+
+    // Template usage breakdown
+    const templateUsage: { [key: string]: number } = {};
+    let topTemplate = "";
+    let maxTemplateCount = 0;
+
+    allCerts.forEach((cert: any) => {
+      const template = cert.template || "unknown";
+      templateUsage[template] = (templateUsage[template] || 0) + 1;
+      if (templateUsage[template] > maxTemplateCount) {
+        maxTemplateCount = templateUsage[template];
+        topTemplate = template;
+      }
+    });
+
+    // Organization analytics
+    const organizationAnalytics = allOrgs.map((org: any) => {
+      const orgCerts = allCerts.filter((cert: any) => cert.organizationId === org.id);
+      const orgTestimonials = allTestimonials.filter((t: any) => t.organizationId === org.id);
+      const orgPrograms = org.programs || [];
+
+      // Template usage for this org
+      const orgTemplateUsage: { [key: string]: number } = {};
+      orgCerts.forEach((cert: any) => {
+        const template = cert.template || "unknown";
+        orgTemplateUsage[template] = (orgTemplateUsage[template] || 0) + 1;
+      });
+
+      // Most used template
+      let mostUsedTemplate = "";
+      let maxCount = 0;
+      Object.entries(orgTemplateUsage).forEach(([template, count]) => {
+        if (count > maxCount) {
+          maxCount = count;
+          mostUsedTemplate = template;
+        }
+      });
+
+      // Time-based metrics
+      const certsThisWeek = orgCerts.filter((cert: any) => {
+        const certDate = new Date(cert.createdAt || cert.generatedAt || 0);
+        return certDate >= weekAgo;
+      }).length;
+
+      const certsThisMonth = orgCerts.filter((cert: any) => {
+        const certDate = new Date(cert.createdAt || cert.generatedAt || 0);
+        return certDate >= monthAgo;
+      }).length;
+
+      // Calculate days active
+      const createdDate = new Date(org.createdAt || now);
+      const daysActive = Math.max(1, Math.floor((now.getTime() - createdDate.getTime()) / (1000 * 60 * 60 * 24)));
+
+      // Last active (most recent certificate or creation date)
+      let lastActive = org.createdAt || now.toISOString();
+      if (orgCerts.length > 0) {
+        const sortedCerts = orgCerts.sort((a: any, b: any) => {
+          const dateA = new Date(a.createdAt || a.generatedAt || 0).getTime();
+          const dateB = new Date(b.createdAt || b.generatedAt || 0).getTime();
+          return dateB - dateA;
+        });
+        lastActive = sortedCerts[0].createdAt || sortedCerts[0].generatedAt || lastActive;
+      }
+
+      return {
+        id: org.id,
+        name: org.name,
+        shortName: org.shortName,
+        logo: org.logo,
+        ownerEmail: org.ownerEmail || "",
+        createdAt: org.createdAt,
+        isPremium: org.subscription?.status === "active" && org.subscription?.plan !== "free",
+        totalCertificates: orgCerts.length,
+        totalPrograms: orgPrograms.length,
+        totalTestimonials: orgTestimonials.length,
+        mostUsedTemplate,
+        templateUsage: orgTemplateUsage,
+        lastActive,
+        daysActive,
+        certificatesThisWeek: certsThisWeek,
+        certificatesThisMonth: certsThisMonth,
+        averageCertificatesPerDay: orgCerts.length / daysActive,
+        growthRate: daysActive > 7 ? ((certsThisWeek / Math.min(7, daysActive)) * 100) : 0,
+      };
+    });
+
+    // User analytics
+    const userAnalytics = allUsers.map((user: any) => {
+      const userCerts = allCerts.filter((cert: any) => cert.createdBy === user.id);
+      const userOrg = allOrgs.find((org: any) => org.id === user.organizationId);
+      
+      // Programs created by user
+      const userPrograms = userOrg?.programs?.filter((prog: any) => prog.createdBy === user.id) || [];
+
+      // Time-based metrics
+      const certsThisWeek = userCerts.filter((cert: any) => {
+        const certDate = new Date(cert.createdAt || cert.generatedAt || 0);
+        return certDate >= weekAgo;
+      }).length;
+
+      const certsThisMonth = userCerts.filter((cert: any) => {
+        const certDate = new Date(cert.createdAt || cert.generatedAt || 0);
+        return certDate >= monthAgo;
+      }).length;
+
+      // Calculate days active
+      const createdDate = new Date(user.createdAt || now);
+      const daysActive = Math.max(1, Math.floor((now.getTime() - createdDate.getTime()) / (1000 * 60 * 60 * 24)));
+
+      // Last login (use last certificate creation or user creation)
+      let lastLogin = user.createdAt || now.toISOString();
+      if (userCerts.length > 0) {
+        const sortedCerts = userCerts.sort((a: any, b: any) => {
+          const dateA = new Date(a.createdAt || a.generatedAt || 0).getTime();
+          const dateB = new Date(b.createdAt || b.generatedAt || 0).getTime();
+          return dateB - dateA;
+        });
+        lastLogin = sortedCerts[0].createdAt || sortedCerts[0].generatedAt || lastLogin;
+      }
+
+      return {
+        id: user.id,
+        fullName: user.fullName || user.name || "Unknown User",
+        email: user.email,
+        organizationName: userOrg?.name || "Unknown Organization",
+        organizationLogo: userOrg?.logo || "",
+        createdAt: user.createdAt,
+        totalCertificatesGenerated: userCerts.length,
+        totalProgramsCreated: userPrograms.length,
+        lastLogin,
+        daysActive,
+        certificatesThisWeek: certsThisWeek,
+        certificatesThisMonth: certsThisMonth,
+        mostActiveDay: "N/A", // Could be calculated with more detailed tracking
+      };
+    });
+
+    // Platform stats
+    const activeOrgsThisWeek = organizationAnalytics.filter(org => org.certificatesThisWeek > 0).length;
+    const activeUsersThisWeek = userAnalytics.filter(user => user.certificatesThisWeek > 0).length;
+    const avgCertificatesPerOrg = allOrgs.length > 0 ? allCerts.length / allOrgs.length : 0;
+    const avgCertificatesPerUser = allUsers.length > 0 ? allCerts.length / allUsers.length : 0;
+
+    const platformStats = {
+      totalOrganizations: allOrgs.length,
+      totalUsers: allUsers.length,
+      totalCertificates: allCerts.length,
+      avgCertificatesPerOrg,
+      avgCertificatesPerUser,
+      activeOrganizationsThisWeek: activeOrgsThisWeek,
+      activeUsersThisWeek: activeUsersThisWeek,
+      topTemplate,
+      templateBreakdown: templateUsage,
+    };
+
+    console.log(`✅ Analytics generated: ${organizationAnalytics.length} orgs, ${userAnalytics.length} users`);
+
+    return c.json({
+      organizations: organizationAnalytics,
+      users: userAnalytics,
+      platformStats,
+    });
+  } catch (error) {
+    console.error("❌ Error generating analytics:", error);
+    return c.json(
+      { error: `Server error generating analytics: ${error}` },
+      500
+    );
+  }
+});
+
 // ==================== START THE SERVER ====================
 
 console.log("📡 Health endpoint: /make-server-a611b057/health");
 console.log("🔐 Admin endpoint: /make-server-a611b057/admin/platform-data");
+console.log("📊 Analytics endpoint: /make-server-a611b057/admin/analytics");
 console.log("💳 Billing endpoints: /make-server-a611b057/billing/*");
+console.log("📧 Admin emails endpoint: /make-server-a611b057/admin/emails");
 console.log("✅ Server is ready to accept requests");
 
 Deno.serve(app.fetch);

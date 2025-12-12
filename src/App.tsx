@@ -12,6 +12,7 @@ import AuthPage from "./components/AuthPage";
 import AdminDashboard from "./components/AdminDashboard";
 import PlatformAdminPanel from "./components/PlatformAdminPanel";
 import StudentCertificate from "./components/StudentCertificate";
+import ShortLinkRedirect from "./components/ShortLinkRedirect";
 import BackendHealthCheck from "./components/BackendHealthCheck";
 import DeploymentGuide from "./components/DeploymentGuide";
 import NotFound from "./components/NotFound";
@@ -24,7 +25,6 @@ import { publicAnonKey, projectId } from "./utils/supabase/info";
 import { toast, Toaster } from "sonner";
 import { isAdminEmail } from "./utils/adminConfig";
 import { isOrgPremium } from "./utils/subscriptionUtils";
-
 const defaultOrgLogo = "https://via.placeholder.com/256x256.png?text=Org+Logo";
 
 // TypeScript interfaces
@@ -119,13 +119,23 @@ function PasswordResetRedirect() {
         pathname: location.pathname,
         search: location.search,
         hash: location.hash,
+        fullPath,
       });
 
-      // Extract the full hash parameters and navigate with them
-      const hashParams = fullPath.startsWith("/")
-        ? fullPath.substring(1)
-        : fullPath;
-      navigate(`/reset-password?${hashParams}`);
+      // Extract the access token from the path
+      const tokenMatch = fullPath.match(/access_token=([^&]+)/);
+      const token = tokenMatch ? tokenMatch[1] : null;
+
+      if (token) {
+        console.log("✅ Token extracted, length:", token.length);
+        // Navigate to reset password page with token in React Router state
+        navigate("/reset-password", {
+          state: { resetToken: token },
+          replace: true,
+        });
+      } else {
+        console.log("❌ Could not extract token from path");
+      }
     }
   }, [navigate, location]);
 
@@ -887,6 +897,9 @@ export default function App() {
             path="/certificate/*"
             element={<StudentCertificate subsidiaries={organizations} />}
           />
+
+          {/* Short link redirect - public */}
+          <Route path="/c/:code" element={<ShortLinkRedirect />} />
 
           {/* Backend health check - public */}
           <Route path="/health-check" element={<BackendHealthCheck />} />

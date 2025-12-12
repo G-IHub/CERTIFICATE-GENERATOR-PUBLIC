@@ -56,6 +56,7 @@ import { publicAnonKey, projectId } from "../utils/supabase/info";
 import BillingSettings from "./BillingSettings";
 import AdminEmailsView from "./AdminEmailsView";
 import PlatformAnalytics from "./PlatformAnalytics";
+import logo from "../assets/logo.png";
 
 interface PlatformAdminPanelProps {
   adminEmail: string;
@@ -570,10 +571,10 @@ export default function PlatformAdminPanel({
           {sidebarOpen ? (
             <>
               <div className="flex items-center gap-2">
-                <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center">
-                  <Shield className="w-4 h-4 text-primary" />
+                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <img src={logo} alt="Logo" className="w-6 h-6" />
                 </div>
-                <span className="text-gray-900 text-sm">Platform Admin</span>
+                <span className="text-gray-900 text-sm">Certifyer Admin</span>
               </div>
               <Button
                 variant="ghost"

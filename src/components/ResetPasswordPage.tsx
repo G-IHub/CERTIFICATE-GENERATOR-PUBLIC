@@ -39,7 +39,17 @@ export default function ResetPasswordPage() {
 
   // Extract access token from URL hash (Supabase magic link format)
   useEffect(() => {
-    // First try to get from search params (passed by PasswordResetRedirect)
+    // First try to get from React Router state (passed by PasswordResetRedirect)
+    const stateToken = (location.state as any)?.resetToken;
+
+    if (stateToken) {
+      console.log("✅ Reset token found in Router state");
+      setAccessToken(stateToken);
+      setTokenValid(true);
+      return;
+    }
+
+    // Fallback: Try to get from search params
     const searchParams = new URLSearchParams(location.search);
     let token = searchParams.get("access_token");
 
@@ -57,6 +67,7 @@ export default function ResetPasswordPage() {
     }
 
     console.log("🔍 Checking for reset token...");
+    console.log("  - location.state:", location.state);
     console.log("  - location.search:", location.search);
     console.log("  - location.hash:", location.hash);
     console.log("  - location.pathname:", location.pathname);
@@ -68,7 +79,7 @@ export default function ResetPasswordPage() {
       console.log("✅ Reset token found in URL");
     } else {
       setTokenValid(false);
-      console.log("❌ No reset token found in URL");
+      console.log("❌ No reset token found in URL or state");
     }
   }, [location]);
 

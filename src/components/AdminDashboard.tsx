@@ -69,6 +69,7 @@ import {
   Play,
   CheckCircle,
   ExternalLink,
+  Link2,
   PieChart,
   Calendar,
   Clock,
@@ -134,7 +135,12 @@ import {
   generateCertificateId,
   buildFullCertificateUrl,
   normalizeCertificateUrl,
+  generateShortCertificateUrl,
 } from "../utils/certificateUtils";
+import {
+  createShortLink,
+  getOrganizationShortLinks,
+} from "../utils/shortLinkApi";
 import logo from "../assets/logo.png";
 // import Footer from "../components/landing/Footer";
 
@@ -339,6 +345,10 @@ export default function AdminDashboard({
     useState(false);
   const [hasLoadedCertificates, setHasLoadedCertificates] = useState(false);
   const [hasLoadedTestimonials, setHasLoadedTestimonials] = useState(false);
+
+  // Short Links & Analytics
+  const [shortLinksData, setShortLinksData] = useState<any[]>([]);
+  const [isLoadingShortLinks, setIsLoadingShortLinks] = useState(false);
 
   // Auto-load testimonials for overview stats (separate from TestimonialsView)
   useEffect(() => {
@@ -1072,6 +1082,35 @@ export default function AdminDashboard({
       );
       console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 
+      // Create short link for easier sharing
+      console.log("🔗 Creating short link for certificate...");
+      try {
+        const shortLinkResult = await createShortLink(
+          backendCert.organizationId,
+          programSlug,
+          backendCert.id,
+          certificate
+        );
+
+        if (shortLinkResult.success && shortLinkResult.shortCode) {
+          console.log(`✅ Short link created: ${shortLinkResult.fullShortUrl}`);
+
+          // Add short link to certificate object
+          certificate.shortCode = shortLinkResult.shortCode;
+          certificate.shortUrl = `c/${shortLinkResult.shortCode}`;
+          certificate.fullShortUrl = shortLinkResult.fullShortUrl;
+
+          toast.success(
+            `Certificate generated! Short link: ${shortLinkResult.fullShortUrl}`
+          );
+        } else {
+          console.warn("⚠️ Failed to create short link, using encrypted URL");
+        }
+      } catch (error) {
+        console.error("Error creating short link:", error);
+        // Continue with encrypted URL if short link fails
+      }
+
       // Add to current session results (for Results tab)
       console.log("💾 Adding certificate to genGeneratedCertificates state");
       setGenGeneratedCertificates([certificate]);
@@ -1080,7 +1119,6 @@ export default function AdminDashboard({
       setHasLoadedCertificates(true); // Mark as loaded since we just added it
 
       setGenIsGenerating(false);
-      toast.success("Certificate link generated successfully!");
       setGenActiveTab("results");
 
       setGenProgramName("");
@@ -1197,10 +1235,52 @@ export default function AdminDashboard({
             // Use backend-confirmed data
             const savedCertificates = response.certificates || certificates;
 
+            // Create short links for all certificates
+            console.log(
+              `🔗 Creating short links for ${savedCertificates.length} certificates...`
+            );
+            const certificatesWithShortLinks = await Promise.all(
+              savedCertificates.map(async (cert: any) => {
+                try {
+                  const programSlug = genProgramName
+                    .trim()
+                    .toLowerCase()
+                    .replace(/\s+/g, "-");
+                  const shortLinkResult = await createShortLink(
+                    cert.organizationId,
+                    programSlug,
+                    cert.id,
+                    cert
+                  );
+
+                  if (shortLinkResult.success && shortLinkResult.shortCode) {
+                    console.log(
+                      `✅ Short link created for ${cert.studentName}: ${shortLinkResult.fullShortUrl}`
+                    );
+                    return {
+                      ...cert,
+                      shortCode: shortLinkResult.shortCode,
+                      shortUrl: `c/${shortLinkResult.shortCode}`,
+                      fullShortUrl: shortLinkResult.fullShortUrl,
+                    };
+                  }
+                } catch (error) {
+                  console.error(
+                    `Failed to create short link for ${cert.studentName}:`,
+                    error
+                  );
+                }
+                return cert;
+              })
+            );
+
             // Add to current session results (for Results tab)
-            setGenGeneratedCertificates(savedCertificates);
+            setGenGeneratedCertificates(certificatesWithShortLinks);
             // Also add to full history (for Certificates tab)
-            setAllCertificates((prev) => [...savedCertificates, ...prev]);
+            setAllCertificates((prev) => [
+              ...certificatesWithShortLinks,
+              ...prev,
+            ]);
             setHasLoadedCertificates(true);
           } catch (error: any) {
             console.error("❌ Failed to save certificates to backend:", error);
@@ -1241,11 +1321,13 @@ export default function AdminDashboard({
     setTimeout(generateAndSave, 2000);
   };
 
-  const genCopyCertificateUrl = async (url: string) => {
-    const fullUrl = buildFullCertificateUrl(url);
-    const success = await copyToClipboard(fullUrl);
+  const genCopyCertificateUrl = async (url: string, cert?: any) => {
+    // Prefer short URL if available
+    const urlToCopy = cert?.fullShortUrl || buildFullCertificateUrl(url);
+    const success = await copyToClipboard(urlToCopy);
     if (success) {
-      toast.success("Certificate URL copied to clipboard!");
+      const linkType = cert?.fullShortUrl ? "Short link" : "Certificate URL";
+      toast.success(`${linkType} copied to clipboard!`);
     } else {
       toast.error("Failed to copy URL");
     }
@@ -1253,13 +1335,15 @@ export default function AdminDashboard({
 
   const genExportCertificateList = () => {
     const csvHeader =
-      "Student Name,Email,Certificate ID,Certificate URL,Generated At\n";
+      "Student Name,Email,Certificate ID,Short Link,Full URL,Generated At\n";
     const csvRows = genGeneratedCertificates
       .map(
         (cert) =>
           `"${cert.studentName}","${cert.email}","${cert.id}","${
-            cert.certificateUrl
-          }","${new Date(cert.generatedAt).toLocaleString()}"`
+            cert.fullShortUrl || "N/A"
+          }","${buildFullCertificateUrl(cert.certificateUrl)}","${new Date(
+            cert.generatedAt
+          ).toLocaleString()}"`
       )
       .join("\n");
 
@@ -1592,11 +1676,9 @@ export default function AdminDashboard({
               <TooltipTrigger asChild>
                 <Button
                   variant="outline"
-                  
-                  className={`w-full bg-black cursor-pointer hover:border-black hover:text-black border-2 border-white hover:bg-black ${
+                  className={`w-full text-gray-600 bg-black hover:text-red-600 hover:border-red-300 hover:bg-red-50 transition-colors ${
                     navCollapsed ? "px-2" : ""
                   }`}
-                  style={{ borderColor: "var(--primary)" }}
                   onClick={() => {
                     if (window.confirm("Are you sure you want to sign out?")) {
                       toast.success("Signing out...");
@@ -1607,11 +1689,10 @@ export default function AdminDashboard({
                   }}
                 >
                   <LogOut
-                    className={`w-4 h-4 text-white ${
+                    className={`w-4 h-4 text-white hover:text-black ${
                       navCollapsed ? "" : "mr-2"
                     } flex-shrink-0`}
                   />
-                  {!navCollapsed && <span className="text-white">Sign Out</span>}
                   {!navCollapsed && (
                     <span className="text-white hover:text-black">
                       Sign Out
@@ -1655,8 +1736,7 @@ export default function AdminDashboard({
                       {user.username}
                     </p>
                     <div className="flex items-center gap-1">
-                      {/* <Building2 className="w-3 h-3 text-primary flex-shrink-0" /> */}
-                      <img src={currentOrganization?.logo} alt="logo" className="w-6 h-6" />
+                      <Building2 className="w-3 h-3 text-primary flex-shrink-0" />
                       <p className="text-xs text-gray-500 truncate">
                         {currentOrganization?.name || user.company}
                       </p>
@@ -1760,7 +1840,7 @@ export default function AdminDashboard({
                 <Menu className="w-6 h-6 text-gray-600" />
               </button>
 
-              {/* <div className="flex-1 md:flex-none">
+              <div className="flex-1 md:flex-none">
                 <h2 className="text-lg md:text-2xl font-bold text-gray-900 truncate">
                   {activeTab === "overview" && "Dashboard Overview"}
                   {activeTab === "templates" && "Certificate Templates"}
@@ -1771,13 +1851,12 @@ export default function AdminDashboard({
                   {activeTab === "settings" && "Platform Settings"}
                 </h2>
                 <p className="text-xs md:text-sm text-gray-500 mt-1 truncate">
-                  <img src={currentOrganization?.logo} alt="logo" className="w-6 h-6" />
                   {currentOrganization?.name || "Loading..."}
                 </p>
-              </div> */}
+              </div>
 
               {currentOrganization && (
-                <div className="flex items-center">
+                <div className="hidden md:flex items-center gap-2">
                   <img
                     src={currentOrganization.logo}
                     alt={currentOrganization.name}
@@ -1830,8 +1909,7 @@ export default function AdminDashboard({
                         <Tooltip>
                           <TooltipTrigger asChild>
                             <div className="cursor-default hidden md:block">
-                              {/* <Award className="w-16 h-16 text-primary opacity-100" /> */}
-                              <img src={currentOrganization?.logo} alt="Logo" className="w-20 h-20" />
+                              <Award className="w-16 h-16 text-primary opacity-10" />
                             </div>
                           </TooltipTrigger>
                           <TooltipContent>
@@ -2242,6 +2320,51 @@ export default function AdminDashboard({
                     </TabsList>
 
                     <TabsContent value="setup" className="space-y-6 mt-6">
+                      {/* Short Link Info Banner */}
+                      <Card className="border-l-4 border-l-green-500 bg-gradient-to-r from-green-50 to-emerald-50">
+                        <CardContent className="pt-6">
+                          <div className="flex items-start gap-4">
+                            <div className="flex-shrink-0 w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                              <Link2 className="w-6 h-6 text-green-600" />
+                            </div>
+                            <div className="flex-1">
+                              <h4 className="font-semibold text-gray-900 mb-2">
+                                ✨ Smart Short Links Enabled
+                              </h4>
+                              <p className="text-sm text-gray-700 mb-3">
+                                All certificates now include easy-to-share short
+                                links that are <strong>60% shorter</strong> than
+                                standard URLs!
+                              </p>
+                              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+                                <div className="bg-white p-3 rounded border border-green-200">
+                                  <p className="text-gray-500 mb-1">
+                                    Before (150+ characters):
+                                  </p>
+                                  <code className="text-red-700 break-all">
+                                    https://certifyer.online/#/certificate/eyJvcmdJZCI6Im9yZ18xMjM...
+                                  </code>
+                                </div>
+                                <div className="bg-white p-3 rounded border border-green-200">
+                                  <p className="text-gray-500 mb-1">
+                                    After (60 characters):
+                                  </p>
+                                  <code className="text-green-700 font-semibold">
+                                    https://certifyer.online/#/c/Ab3xY9
+                                  </code>
+                                </div>
+                              </div>
+                              <div className="flex items-center gap-2 mt-3 text-xs text-gray-600">
+                                <CheckCircle className="w-4 h-4 text-green-600" />
+                                <span>Click tracking enabled</span>
+                                <Eye className="w-4 h-4 text-green-600 ml-2" />
+                                <span>View analytics in Analytics tab</span>
+                              </div>
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+
                       {/* Choose Template */}
                       <Card>
                         <CardHeader>
@@ -2535,7 +2658,8 @@ export default function AdminDashboard({
                                     </h4>
                                   </div>
                                   <Badge variant="outline" className="text-xs">
-                                    {genCertificateHeader}
+                                    {genSelectedTemplateName ||
+                                      genSelectedTemplate}
                                   </Badge>
                                 </div>
                                 <Card className="bg-gradient-to-br from-indigo-50 to-purple-50 border-2 border-indigo-200">
@@ -2619,7 +2743,7 @@ export default function AdminDashboard({
                             )}
 
                           {/* Action Buttons */}
-                          <div className="flex flex-col md:flex-row gap-3 pt-4 border-t">
+                          <div className="flex gap-3 pt-4 border-t">
                             <Button
                               variant="outline"
                               onClick={() => {
@@ -2660,7 +2784,7 @@ export default function AdminDashboard({
                     <TabsContent value="results" className="space-y-6 mt-6">
                       <Card>
                         <CardHeader>
-                          <div className="flex flex-col space-y-4 md:flex-row text-center md:text-left items-center justify-between">
+                          <div className="flex items-center justify-between">
                             <div>
                               <CardTitle className="flex items-center gap-2">
                                 <CheckCircle className="w-5 h-5 text-green-600" />
@@ -2668,18 +2792,18 @@ export default function AdminDashboard({
                               </CardTitle>
                               <CardDescription>
                                 {genGeneratedCertificates.length} certificate
-                                link created. Share these with students to
+                                link(s) created. Share these with students to
                                 access their certificates.
                               </CardDescription>
                             </div>
                             <div className="flex gap-2">
-                              {/* <Button
+                              <Button
                                 variant="outline"
                                 onClick={genExportCertificateList}
                               >
                                 <Download className="w-4 h-4 mr-2" />
                                 Export List
-                              </Button> */}
+                              </Button>
                               <Button
                                 onClick={() => {
                                   setGenActiveTab("setup");
@@ -2710,17 +2834,28 @@ export default function AdminDashboard({
                             {genGeneratedCertificates.map((cert, index) => (
                               <Card key={cert.id}>
                                 <CardContent className="p-4">
-                                  <div className="flex flex-col md:flex-row text-center md:text-left items-center justify-between gap-4">
+                                  <div className="flex items-start justify-between gap-4">
                                     <div className="flex-1 min-w-0">
                                       <h3 className="font-bold truncate">
-                                        {cert.courseName}
+                                        {cert.studentName || cert.courseName}
                                       </h3>
                                       <p className="text-sm text-muted-foreground truncate">
-                                        {cert.certificateHeader}
+                                        {cert.email || cert.certificateHeader}
                                       </p>
-                                      <p className="text-xs text-muted-foreground mt-1">
-                                        Certificate ID: {cert.id}
-                                      </p>
+                                      {cert.fullShortUrl ? (
+                                        <div className="mt-2 p-2 bg-green-50 border border-green-200 rounded-lg">
+                                          <p className="text-xs text-green-800 font-medium mb-1">
+                                            🔗 Short Link (Easy to Share!)
+                                          </p>
+                                          <code className="text-xs text-green-700 break-all">
+                                            {cert.fullShortUrl}
+                                          </code>
+                                        </div>
+                                      ) : (
+                                        <p className="text-xs text-muted-foreground mt-1">
+                                          Certificate ID: {cert.id}
+                                        </p>
+                                      )}
                                     </div>
                                     <div className="flex gap-2 flex-shrink-0">
                                       <Button
@@ -2733,20 +2868,25 @@ export default function AdminDashboard({
                                               id: cert.id,
                                               certificateUrl:
                                                 cert.certificateUrl,
+                                              shortUrl: cert.fullShortUrl,
                                             }
                                           );
                                           genCopyCertificateUrl(
-                                            cert.certificateUrl
+                                            cert.certificateUrl,
+                                            cert
                                           );
                                         }}
                                       >
                                         <Copy className="w-4 h-4 mr-2" />
-                                        Copy URL
+                                        {cert.fullShortUrl
+                                          ? "Copy Short Link"
+                                          : "Copy URL"}
                                       </Button>
                                       <Button
                                         size="sm"
                                         onClick={(e) => {
                                           const fullUrl =
+                                            cert.fullShortUrl ||
                                             buildFullCertificateUrl(
                                               cert.certificateUrl
                                             );
@@ -2764,8 +2904,8 @@ export default function AdminDashboard({
                                             cert
                                           );
                                           console.log(
-                                            "🔗 Certificate URL field:",
-                                            cert.certificateUrl
+                                            "🔗 Short URL:",
+                                            cert.fullShortUrl
                                           );
                                           console.log("🌐 Full URL:", fullUrl);
                                           console.log(
@@ -2822,13 +2962,13 @@ export default function AdminDashboard({
               {activeTab === "certificates" && (
                 <div className="space-y-6">
                   {/* Certificate Management Header */}
-                  <div className="flex flex-col md:flex-row items-center justify-between">
+                  <div className="flex items-center justify-between">
                     <div>
                       <div className="flex items-center gap-2">
                         <FileText className="w-5 h-5" />
                         <h2 className="text-xl">Certificate Management</h2>
                       </div>
-                      <p className="text-sm text-gray-600 mt-1 mb-4 md:mb-0">
+                      <p className="text-sm text-gray-600 mt-1">
                         View, manage, and track all issued certificates
                       </p>
                     </div>
@@ -3187,7 +3327,7 @@ export default function AdminDashboard({
           </div>
 
           {/* Footer - Sticky at bottom */}
-          <footer className="bg-black text-white px-4 md:px-8 py-3 flex-shrink-0 h-16">
+          <footer className="bg-black text-white px-4 md:px-8 py-3 flex-shrink-0">
             <div className="flex items-center justify-between gap-4">
               <div className="flex items-center gap-2">
                 <img src={logo} alt="logo" className="w-10" />

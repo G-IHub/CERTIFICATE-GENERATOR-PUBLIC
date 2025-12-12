@@ -52,7 +52,7 @@ interface StudentCertificateProps {
 
 // Platform promo settings (change the URL and name as needed)
 const PLATFORM_NAME = "Certifyer";
-const PLATFORM_URL = "https://";
+const PLATFORM_URL = "https://certifyer.online";
 
 interface CertificateData {
   id: string;

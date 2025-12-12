@@ -22,7 +22,7 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { projectId } from "../utils/supabase/info";
-import logo from "../assets/logo.svg";
+import logo from "../assets/logo.png";
 
 export default function ResetPasswordPage() {
   const navigate = useNavigate();

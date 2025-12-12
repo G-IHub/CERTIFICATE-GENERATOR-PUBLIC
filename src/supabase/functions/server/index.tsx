@@ -707,125 +707,128 @@ app.post("/make-server-a611b057/auth/reset-password", async (c) => {
     const resendResponse = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
-        "Authorization": `Bearer ${resendApiKey}`,
-        "Content-Type": "application/json",
+      "Authorization": `Bearer ${resendApiKey}`,
+      "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: "Certifyer <noreply@certifyer.online>",
-        to: [email],
-        subject: "Reset Your Certifyer Password",
-        html: `
-          <!DOCTYPE html>
-          <html>
-          <head>
-            <style>
-              body {
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-                line-height: 1.6;
-                color: #333;
-                max-width: 600px;
-                margin: 0 auto;
-                padding: 20px;
-              }
-              .container {
-                background: #ffffff;
-                border-radius: 8px;
-                padding: 40px;
-                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-              }
-              .logo {
-                text-align: center;
-                margin-bottom: 30px;
-              }
-              .logo h1 {
-                color: #FF6B35;
-                margin: 0;
-                font-size: 32px;
-              }
-              .button {
-                display: inline-block;
-                background: #FF6B35;
-                color: #ffffff;
-                text-decoration: none;
-                padding: 14px 30px;
-                border-radius: 6px;
-                margin: 25px 0;
-                font-weight: 600;
-              }
-              .footer {
-                margin-top: 40px;
-                padding-top: 20px;
-                border-top: 1px solid #eee;
-                font-size: 14px;
-                color: #666;
-                text-align: center;
-              }
-              .warning {
-                background: #FFF3CD;
-                border-left: 4px solid #FFC107;
-                padding: 15px;
-                margin: 20px 0;
-                border-radius: 4px;
-              }
-            </style>
-          </head>
-          <body>
-            <div class="container">
-              <div class="logo">
-                <h1>🎓 Certifyer</h1>
-              </div>
-              
-              <h2>Reset Your Password</h2>
-              
-              <p>Hi there,</p>
-              
-              <p>We received a request to reset your password for your Certifyer account. Click the button below to create a new password:</p>
-              
-              <div style="text-align: center;">
-                <a href="${resetLink}" class="button">Reset Password</a>
-              </div>
-              
-              <div class="warning">
-                <strong>⏰ This link expires in 1 hour</strong><br>
-                For security reasons, this password reset link will only work once and expires in 60 minutes.
-              </div>
-              
-              <p>If you didn't request a password reset, you can safely ignore this email. Your password will remain unchanged.</p>
-              
-              <p>If the button doesn't work, copy and paste this link into your browser:</p>
-              <p style="word-break: break-all; color: #0066cc; font-size: 12px;">${resetLink}</p>
-              
-              <div class="footer">
-                <p><strong>Certifyer - Certificate Generation Platform</strong></p>
-                <p>This is an automated email. Please do not reply to this message.</p>
-                <p>If you need help, contact our support team.</p>
-              </div>
-            </div>
-          </body>
-          </html>
-        `,
-        text: `Reset Your Certifyer Password
+      from: "Certifyer <noreply@certifyer.online>",
+      to: [email],
+      subject: "Reset Your Certifyer Password",
+      html: `
+        <!DOCTYPE html>
+        <html>
+        <head>
+        <style>
+          body {
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+          line-height: 1.6;
+          color: #333;
+          max-width: 600px;
+          margin: 0 auto;
+          padding: 20px;
+          }
+          .container {
+          background: #ffffff;
+          border-radius: 8px;
+          padding: 40px;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          }
+          .logo {
+          text-align: center;
+          margin-bottom: 30px;
+          }
+          .logo img {
+          max-width: 120px;
+          height: auto;
+          }
+          .logo h1 {
+          color: #FF6B35;
+          margin: 10px 0 0 0;
+          font-size: 32px;
+          }
+          .button {
+          display: inline-block;
+          background: #FF6B35;
+          color: #ffffff;
+          text-decoration: none;
+          padding: 14px 30px;
+          border-radius: 6px;
+          margin: 25px 0;
+          font-weight: 600;
+          }
+          .footer {
+          margin-top: 40px;
+          padding-top: 20px;
+          border-top: 1px solid #eee;
+          font-size: 14px;
+          color: #666;
+          text-align: center;
+          }
+          .warning {
+          background: #FFF3CD;
+          border-left: 4px solid #FFC107;
+          padding: 15px;
+          margin: 20px 0;
+          border-radius: 4px;
+          }
+        </style>
+        </head>
+        <body>
+        <div class="container">
+          <div class="logo">
+            <img src="https://certifyer.online/logo.png" alt="Certifyer Logo">
+            <h1>Certifyer</h1>
+          </div>
+          
+          <h2>Reset Your Password</h2>
+          
+          <p>Hi there,</p>
+          
+          <p>We received a request to reset your password for your Certifyer account. Click the button below to create a new password:</p>
+          
+          <div style="text-align: center; color: #ffffff;">
+            <a href="${resetLink}" class="button">Reset Password</a>
+          </div>
+          
+          <div class="warning">
+            <strong>This link expires in 1 hour</strong><br>
+            For security reasons, this password reset link will only work once and expires in 60 minutes.
+          </div>
+          
+          <p>If you didn't request a password reset, you can safely ignore this email. Your password will remain unchanged.</p>
+          
+          <p>If the button doesn't work, copy and paste this link into your browser:</p>
+          <p style="word-break: break-all; color: #0066cc; font-size: 12px;">${resetLink}</p>
+          
+          <div class="footer">
+          <p><strong>Certifyer - Certificate Generation Platform</strong></p>
+          <p>This is an automated email. Please do not reply to this message.</p>
+          <p>If you need help, contact our support team.</p>
+          </div>
+        </div>
+        </body>
+        </html>
+      `,
+      text: `Reset Your Certifyer Password
 
-Hi there,
+  Hi there,
 
-We received a request to reset your password for your Certifyer account.
+  We received a request to reset your password for your Certifyer account.
 
-To reset your password, click this link:
-${resetLink}
+  To reset your password, click this link:
+  ${resetLink}
 
-This link expires in 1 hour and can only be used once.
+  This link expires in 1 hour and can only be used once.
 
-If you didn't request a password reset, you can safely ignore this email.
+  If you didn't request a password reset, you can safely ignore this email.
 
----
-Certifyer - Certificate Generation Platform`
+  ---
+  Certifyer - Certificate Generation Platform`
       }),
     });
 
     if (!resendResponse.ok) {
       const errorData = await resendResponse.text();
-      console.error("❌ Resend API error:", errorData);
-      console.error(`❌ Status: ${resendResponse.status}`);
       
       // Parse the error response
       let parsedError;
@@ -837,32 +840,6 @@ Certifyer - Certificate Generation Platform`
       
       // Check for domain verification error (403 validation_error)
       if (resendResponse.status === 403 && parsedError.name === "validation_error") {
-        console.error("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-        console.error("⚠️ RESEND DOMAIN VERIFICATION REQUIRED");
-        console.error("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-        console.error("Error:", parsedError.message);
-        console.error("");
-        console.error("📌 Issue:");
-        console.error("   Free Resend accounts can only send emails to your verified email.");
-        console.error("   To send to any email address, you need to verify a domain.");
-        console.error("");
-        console.error("🔧 Solutions:");
-        console.error("");
-        console.error("   Option 1 - Verify a Domain (Production Ready):");
-        console.error("   1. Go to: https://resend.com/domains");
-        console.error("   2. Click 'Add Domain'");
-        console.error("   3. Enter your domain (e.g., certifyer.com)");
-        console.error("   4. Add the DNS records shown");
-        console.error("   5. Wait for verification (usually 5-10 minutes)");
-        console.error("   6. Update 'from' email to: noreply@yourdomain.com");
-        console.error("");
-        console.error("   Option 2 - Testing Only (Temporary):");
-        console.error("   Use your verified email for testing password resets");
-        console.error("   Verified email: genomacinnovationhub@gmail.com");
-        console.error("");
-        console.error("📚 Documentation: https://resend.com/docs/dashboard/domains/introduction");
-        console.error("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-        
         return c.json(
           { 
             error: "Resend domain verification required. Free accounts can only send to verified email addresses.",
@@ -6566,13 +6543,5 @@ app.get("/make-server-a611b057/admin/analytics", async (c) => {
   }
 });
 
-// ==================== START THE SERVER ====================
-
-console.log("📡 Health endpoint: /make-server-a611b057/health");
-console.log("🔐 Admin endpoint: /make-server-a611b057/admin/platform-data");
-console.log("📊 Analytics endpoint: /make-server-a611b057/admin/analytics");
-console.log("💳 Billing endpoints: /make-server-a611b057/billing/*");
-console.log("📧 Admin emails endpoint: /make-server-a611b057/admin/emails");
-console.log("✅ Server is ready to accept requests");
 
 Deno.serve(app.fetch);

@@ -1,27 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
-import { Button } from "./ui/button";
-import { Input } from "./ui/input";
-import { Label } from "./ui/label";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "./ui/card";
-import { Alert, AlertDescription } from "./ui/alert";
-import {
-  Eye,
-  EyeOff,
-  AlertCircle,
-  CheckCircle,
-  KeyRound,
-  Lock,
-  ArrowLeft,
-} from "lucide-react";
 import { toast } from "sonner";
-import { projectId } from "../utils/supabase/info";
+import { projectId, publicAnonKey } from "../utils/supabase/info";
+import { createClient } from "@supabase/supabase-js";
 import logo from "../assets/logo.png";
 
 export default function ResetPasswordPage() {
@@ -128,23 +107,32 @@ export default function ResetPasswordPage() {
     setIsLoading(true);
 
     try {
-      const response = await fetch(
-        `https://${projectId}.supabase.co/functions/v1/make-server-a611b057/auth/update-password`,
+      // Use Supabase client directly with the access token
+      const supabase = createClient(
+        `https://${projectId}.supabase.co`,
+        publicAnonKey,
         {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${accessToken}`,
+          global: {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
           },
-          body: JSON.stringify({ newPassword }),
         }
       );
 
-      const data = await response.json();
+      console.log("🔐 Attempting password update with Supabase client...");
 
-      if (!response.ok) {
-        throw new Error(data.error || "Failed to reset password");
+      // Update the user's password
+      const { data, error: updateError } = await supabase.auth.updateUser({
+        password: newPassword,
+      });
+
+      if (updateError) {
+        console.error("❌ Supabase password update error:", updateError);
+        throw new Error(updateError.message || "Failed to reset password");
       }
+
+      console.log("✅ Password updated successfully:", data);
 
       setSuccess(true);
       toast.success("Password reset successfully!");
@@ -154,7 +142,7 @@ export default function ResetPasswordPage() {
         navigate("/login");
       }, 3000);
     } catch (error: any) {
-      console.error("Error resetting password:", error);
+      console.error("❌ Error resetting password:", error);
       setError(error.message || "Failed to reset password");
       toast.error(error.message || "Failed to reset password");
     } finally {

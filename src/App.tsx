@@ -916,9 +916,6 @@ export default function App() {
           {/* Short link redirect - public */}
           <Route path="/c/:code" element={<ShortLinkRedirect />} />
 
-          {/* Short link test - public */}
-          <Route path="/short-link-test" element={<ShortLinkTest />} />
-
           {/* Backend health check - public */}
           <Route path="/health-check" element={<BackendHealthCheck />} />
 

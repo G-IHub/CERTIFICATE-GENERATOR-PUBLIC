@@ -13,6 +13,7 @@ import AdminDashboard from "./components/AdminDashboard";
 import PlatformAdminPanel from "./components/PlatformAdminPanel";
 import StudentCertificate from "./components/StudentCertificate";
 import ShortLinkRedirect from "./components/ShortLinkRedirect";
+import ShortLinkTest from "./components/ShortLinkTest";
 import BackendHealthCheck from "./components/BackendHealthCheck";
 import DeploymentGuide from "./components/DeploymentGuide";
 import NotFound from "./components/NotFound";
@@ -25,6 +26,7 @@ import { publicAnonKey, projectId } from "./utils/supabase/info";
 import { toast, Toaster } from "sonner";
 import { isAdminEmail } from "./utils/adminConfig";
 import { isOrgPremium } from "./utils/subscriptionUtils";
+
 const defaultOrgLogo = "https://via.placeholder.com/256x256.png?text=Org+Logo";
 
 // TypeScript interfaces
@@ -122,19 +124,33 @@ function PasswordResetRedirect() {
         fullPath,
       });
 
-      // Extract the access token from the path
-      const tokenMatch = fullPath.match(/access_token=([^&]+)/);
-      const token = tokenMatch ? tokenMatch[1] : null;
+      // Extract the access token and refresh token from the path
+      const accessTokenMatch = fullPath.match(/access_token=([^&]+)/);
+      const refreshTokenMatch = fullPath.match(/refresh_token=([^&]+)/);
 
-      if (token) {
-        console.log("✅ Token extracted, length:", token.length);
-        // Navigate to reset password page with token in React Router state
+      const accessToken = accessTokenMatch ? accessTokenMatch[1] : null;
+      const refreshToken = refreshTokenMatch ? refreshTokenMatch[1] : null;
+
+      if (accessToken) {
+        console.log("✅ Access token extracted, length:", accessToken.length);
+        if (refreshToken) {
+          console.log(
+            "✅ Refresh token extracted, length:",
+            refreshToken.length
+          );
+        } else {
+          console.log("⚠️ No refresh token found");
+        }
+        // Navigate to reset password page with both tokens in React Router state
         navigate("/reset-password", {
-          state: { resetToken: token },
+          state: {
+            resetToken: accessToken,
+            refreshToken: refreshToken,
+          },
           replace: true,
         });
       } else {
-        console.log("❌ Could not extract token from path");
+        console.log("❌ Could not extract access token from path");
       }
     }
   }, [navigate, location]);
@@ -900,6 +916,9 @@ export default function App() {
 
           {/* Short link redirect - public */}
           <Route path="/c/:code" element={<ShortLinkRedirect />} />
+
+          {/* Short link test - public */}
+          <Route path="/short-link-test" element={<ShortLinkTest />} />
 
           {/* Backend health check - public */}
           <Route path="/health-check" element={<BackendHealthCheck />} />

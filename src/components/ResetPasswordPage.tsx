@@ -29,6 +29,7 @@ export default function ResetPasswordPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const [accessToken, setAccessToken] = useState<string | null>(null);
+  const [refreshToken, setRefreshToken] = useState<string | null>(null);
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showNewPassword, setShowNewPassword] = useState(false);
@@ -38,14 +39,18 @@ export default function ResetPasswordPage() {
   const [success, setSuccess] = useState(false);
   const [tokenValid, setTokenValid] = useState<boolean | null>(null);
 
-  // Extract access token from URL hash (Supabase magic link format)
+  // Extract access token and refresh token from URL hash (Supabase magic link format)
   useEffect(() => {
     // First try to get from React Router state (passed by PasswordResetRedirect)
     const stateToken = (location.state as any)?.resetToken;
+    const stateRefreshToken = (location.state as any)?.refreshToken;
 
     if (stateToken) {
       console.log("✅ Reset token found in Router state");
       setAccessToken(stateToken);
+      if (stateRefreshToken) {
+        setRefreshToken(stateRefreshToken);
+      }
       setTokenValid(true);
       return;
     }
@@ -53,18 +58,21 @@ export default function ResetPasswordPage() {
     // Fallback: Try to get from search params
     const searchParams = new URLSearchParams(location.search);
     let token = searchParams.get("access_token");
+    let refresh = searchParams.get("refresh_token");
 
     // If not in search params, try to get from hash (direct Supabase redirect)
     if (!token) {
       const hash = window.location.hash;
       const hashParams = new URLSearchParams(hash.substring(1));
       token = hashParams.get("access_token");
+      refresh = hashParams.get("refresh_token");
     }
 
     // Also check location.pathname for tokens (HashRouter edge case)
     if (!token && location.pathname.includes("access_token=")) {
       const pathParams = new URLSearchParams(location.pathname.substring(1));
       token = pathParams.get("access_token");
+      refresh = pathParams.get("refresh_token");
     }
 
     console.log("🔍 Checking for reset token...");
@@ -72,10 +80,14 @@ export default function ResetPasswordPage() {
     console.log("  - location.search:", location.search);
     console.log("  - location.hash:", location.hash);
     console.log("  - location.pathname:", location.pathname);
-    console.log("  - token found:", token ? "YES" : "NO");
+    console.log("  - access_token found:", token ? "YES" : "NO");
+    console.log("  - refresh_token found:", refresh ? "YES" : "NO");
 
     if (token) {
       setAccessToken(token);
+      if (refresh) {
+        setRefreshToken(refresh);
+      }
       setTokenValid(true);
       console.log("✅ Reset token found in URL");
     } else {
@@ -129,22 +141,30 @@ export default function ResetPasswordPage() {
     setIsLoading(true);
 
     try {
-      // Use Supabase client directly with the access token
+      // Create Supabase client
       const supabase = createClient(
         `https://${projectId}.supabase.co`,
-        publicAnonKey,
-        {
-          global: {
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-            },
-          },
-        }
+        publicAnonKey
       );
 
-      console.log("🔐 Attempting password update with Supabase client...");
+      console.log("🔐 Step 1: Setting session with access token...");
 
-      // Update the user's password
+      // First, establish the session using the tokens from the reset link
+      const { data: sessionData, error: sessionError } =
+        await supabase.auth.setSession({
+          access_token: accessToken,
+          refresh_token: refreshToken || "", // Use refresh token if available
+        });
+
+      if (sessionError) {
+        console.error("❌ Failed to set session:", sessionError);
+        throw new Error(sessionError.message || "Failed to authenticate");
+      }
+
+      console.log("✅ Session established successfully");
+      console.log("🔐 Step 2: Updating password...");
+
+      // Now update the user's password
       const { data, error: updateError } = await supabase.auth.updateUser({
         password: newPassword,
       });
@@ -177,18 +197,12 @@ export default function ResetPasswordPage() {
     return (
       <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-gray-50 flex items-center justify-center p-4">
         <div className="w-full max-w-md">
-          <div className="text-center mb-8  ">
-            <div className="flex flex-col items-center justify-center gap-3 mb-4">
-              <div className="p-3 rounded-lg shadow-sm ">
-                <img src={logo} alt="Certifyer Logo" className="w-12 h-12" />
-              </div>
-              <div className="text-left">
-                <h1 className="text-3xl font-bold text-gray-900 text-center ">
-                  Certifyer
-                </h1>
-                <p className="text-l text-gray-600">Reset Your Password</p>
-              </div>
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-white rounded-2xl shadow-lg mb-4">
+              <img src={logo} alt="Logo" className="w-10 h-10" />
             </div>
+            <h1 className="text-gray-900 mb-2">Certificate Generator</h1>
+            <p className="text-sm text-gray-500">Reset Your Password</p>
           </div>
 
           <Card className="border-gray-200 shadow-xl">

@@ -750,12 +750,6 @@ export default function AdminDashboard({
     );
   };
 
-  // ==================== REAL DATA - NO MOCK DATA ====================
-  // All certificates are loaded from backend via useEffect (lines 290-380)
-  // which fetches from certificateApi.getForOrganization() and stores in allCertificates
-
-  // Testimonials are loaded via TestimonialsView component which fetches from backend
-  // Programs and stats are from organizations prop which comes from backend
 
   // Filter real certificate data based on user permissions and search/filter criteria
   const getFilteredCertificates = () => {
@@ -1006,11 +1000,6 @@ export default function AdminDashboard({
         students: undefined,
       } as any);
 
-      console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-      console.log("✅ CERTIFICATE GENERATION SUCCESSFUL");
-      console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━���━━━━━━━");
-      console.log("📦 Response:", response);
-      console.log("📊 Certificate count:", response.certificates?.length || 0);
 
       // Check if response has certificates
       if (!response.certificates || response.certificates.length === 0) {
@@ -1080,7 +1069,6 @@ export default function AdminDashboard({
         "   - Full URL:",
         buildFullCertificateUrl(certificate.certificateUrl)
       );
-      console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 
       // Create short link for easier sharing
       console.log("🔗 Creating short link for certificate...");
@@ -1676,8 +1664,8 @@ export default function AdminDashboard({
               <TooltipTrigger asChild>
                 <Button
                   variant="outline"
-                  className={`w-full text-gray-600 bg-black hover:text-red-600 hover:border-red-300 hover:bg-red-50 transition-colors ${
-                    navCollapsed ? "px-2" : ""
+                  className={`w-full text-gray-600 bg-black hover:text-red-600 hover:border-red-300 hover:bg-black transition-colors hover:cursor-pointer ${
+                    navCollapsed ? "px-2 hover:cursor-pointer" : ""
                   }`}
                   onClick={() => {
                     if (window.confirm("Are you sure you want to sign out?")) {
@@ -1701,7 +1689,7 @@ export default function AdminDashboard({
                 </Button>
               </TooltipTrigger>
               <TooltipContent side="right">
-                <p>Sign out of admin dashboard</p>
+                <p>Sign out of Admin Dashboard</p>
               </TooltipContent>
             </Tooltip>
           </div>
@@ -1840,7 +1828,7 @@ export default function AdminDashboard({
                 <Menu className="w-6 h-6 text-gray-600" />
               </button>
 
-              <div className="flex-1 md:flex-none">
+              {/* <div className="flex-1 md:flex-none">
                 <h2 className="text-lg md:text-2xl font-bold text-gray-900 truncate">
                   {activeTab === "overview" && "Dashboard Overview"}
                   {activeTab === "templates" && "Certificate Templates"}
@@ -1853,10 +1841,10 @@ export default function AdminDashboard({
                 <p className="text-xs md:text-sm text-gray-500 mt-1 truncate">
                   {currentOrganization?.name || "Loading..."}
                 </p>
-              </div>
+              </div> */}
 
               {currentOrganization && (
-                <div className="hidden md:flex items-center gap-2">
+                <div className="flex items-center gap-2">
                   <img
                     src={currentOrganization.logo}
                     alt={currentOrganization.name}
@@ -1909,7 +1897,12 @@ export default function AdminDashboard({
                         <Tooltip>
                           <TooltipTrigger asChild>
                             <div className="cursor-default hidden md:block">
-                              <Award className="w-16 h-16 text-primary opacity-10" />
+                              {/* <Award className="w-16 h-16 text-primary opacity-10" /> */}
+                              <img
+                                src={currentOrganization?.logo}
+                                alt="Logo"
+                                className="w-16 h-16"
+                              />
                             </div>
                           </TooltipTrigger>
                           <TooltipContent>

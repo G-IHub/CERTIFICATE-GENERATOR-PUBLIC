@@ -16,6 +16,7 @@ import ShortLinkRedirect from "./components/ShortLinkRedirect";
 import BackendHealthCheck from "./components/BackendHealthCheck";
 import DeploymentGuide from "./components/DeploymentGuide";
 import NotFound from "./components/NotFound";
+import Story from "./components/landing/Story";
 import TemplateBuilderPage from "./components/TemplateBuilderPage";
 import QueryPremiumOrgs from "./components/QueryPremiumOrgs";
 import AdminUtilities from "./components/AdminUtilities";
@@ -911,6 +912,11 @@ export default function App() {
           <Route
             path="/certificate/*"
             element={<StudentCertificate subsidiaries={organizations} />}
+          />
+
+          <Route
+            path="/story"
+            element={<Story />}
           />
 
           {/* Short link redirect - public */}

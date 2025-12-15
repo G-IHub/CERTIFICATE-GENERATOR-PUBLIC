@@ -91,7 +91,6 @@ export default function BillingPage({ organizationId, organizationName, userEmai
     const reference = urlParams.get('reference') || urlParams.get('trxref');
     
     if (reference && accessToken) {
-      console.log('🔄 Payment callback detected, verifying reference:', reference);
       toast.info('Verifying your payment...');
       verifyPayment(reference);
       
@@ -155,15 +154,12 @@ export default function BillingPage({ organizationId, organizationName, userEmai
 
       if (configResponse.ok) {
         const configData = await configResponse.json();
-        console.log('📊 Billing config received:', configData);
         setBillingConfigured(configData.configured);
         // Override with admin-configured plans if they exist
         if (configData.plans && Object.keys(configData.plans).length > 0) {
-          console.log('✅ Using admin-configured plans');
           setPlans(configData.plans);
         } else {
-          console.log('⚠️ No admin plans found, using defaults');
-        }
+          }
       } else {
         console.error('❌ Failed to fetch billing config:', configResponse.status);
       }
@@ -255,14 +251,7 @@ export default function BillingPage({ organizationId, organizationName, userEmai
             
             // Add to the beginning of the transactions array
             loadedTransactions = [syntheticTransaction, ...loadedTransactions];
-            console.log('📝 Added subscription to payment history:', {
-              planId: activePlanId,
-              planName: currentSubscription.planName,
-              status: currentSubscription.status,
-              startDate: displayStartDate,
-              note: 'Included for complete billing history, regardless of status'
-            });
-          }
+            }
         }
       }
       
@@ -282,9 +271,7 @@ export default function BillingPage({ organizationId, organizationName, userEmai
       if (activitiesResponse.ok) {
         const activitiesData = await activitiesResponse.json();
         setBillingActivities(activitiesData.activities || []);
-        console.log('📋 Loaded billing activities:', activitiesData.activities?.length || 0);
-      } else {
-        console.log('️ No billing activities found or failed to fetch');
+        } else {
         setBillingActivities([]);
       }
     } catch (error) {
@@ -305,12 +292,9 @@ export default function BillingPage({ organizationId, organizationName, userEmai
       return;
     }
 
-    console.log('💳 Initiating payment:', { organizationId, planId, billingConfigured });
     setIsProcessingPayment(true);
     try {
       const url = `https://${projectId}.supabase.co/functions/v1/make-server-a611b057/billing/initialize`;
-      console.log('📤 Sending request to:', url);
-      
       const response = await fetch(url, {
         method: 'POST',
         headers: {
@@ -323,10 +307,7 @@ export default function BillingPage({ organizationId, organizationName, userEmai
         }),
       });
 
-      console.log('📥 Response status:', response.status, response.statusText);
       const data = await response.json();
-      console.log('📦 Response data:', data);
-
       if (!response.ok) {
         console.error('❌ Payment initialization failed:', data);
         if (data.requiresSetup) {
@@ -339,7 +320,6 @@ export default function BillingPage({ organizationId, organizationName, userEmai
 
       // Redirect to Paystack checkout
       if (data.authorizationUrl) {
-        console.log('✅ Redirecting to:', data.authorizationUrl);
         toast.success('Redirecting to payment page...');
         window.location.href = data.authorizationUrl;
       } else {
@@ -361,7 +341,6 @@ export default function BillingPage({ organizationId, organizationName, userEmai
     }
 
     try {
-      console.log('🔄 Verifying payment with backend...');
       const response = await fetch(
         `https://${projectId}.supabase.co/functions/v1/make-server-a611b057/billing/verify`,
         {
@@ -375,10 +354,7 @@ export default function BillingPage({ organizationId, organizationName, userEmai
       );
 
       const data = await response.json();
-      console.log('✅ Verification response:', data);
-
       if (response.ok && data.success) {
-        console.log('🎉 Payment verified successfully!');
         toast.success('🎉 Payment verified! Your Premium subscription is now active!', {
           duration: 5000,
         });
@@ -649,20 +625,13 @@ export default function BillingPage({ organizationId, organizationName, userEmai
                 }> = [];
 
                 // Debug logging
-                console.log('🔍 Building billing activity timeline:', {
-                  backendActivities: billingActivities.length,
-                  transactions: transactions.length,
-                  subscription: subscription?.status
-                });
-
                 // Add all backend activities
                 billingActivities.forEach(activity => {
                   mergedActivities.push({
                     ...activity,
                     source: 'backend',
                   });
-                  console.log('✅ Added backend activity:', activity.type, activity.timestamp);
-                });
+                  });
 
                 // Compute activities from transactions (for backward compatibility)
                 // Only add if not already covered by backend activities
@@ -675,13 +644,6 @@ export default function BillingPage({ organizationId, organizationName, userEmai
                 transactions.forEach(tx => {
                   // Only add transaction-based activities if they're not already logged in backend
                   const alreadyLogged = backendReferences.has(tx.reference);
-                  
-                  console.log(`🔄 Processing transaction ${tx.reference}:`, {
-                    status: tx.status,
-                    planId: tx.planId,
-                    alreadyLogged,
-                    amount: tx.amount
-                  });
                   
                   if (!alreadyLogged) {
                     // Add payment activity
@@ -699,8 +661,6 @@ export default function BillingPage({ organizationId, organizationName, userEmai
                       },
                       source: 'computed',
                     });
-                    console.log('✅ Added computed payment activity:', tx.reference);
-
                     // Add activation if successful
                     if (tx.status === 'success' && tx.verifiedAt) {
                       mergedActivities.push({
@@ -714,15 +674,8 @@ export default function BillingPage({ organizationId, organizationName, userEmai
                         },
                         source: 'computed',
                       });
-                      console.log('✅ Added computed activation activity:', tx.reference);
-                    }
+                      }
                   }
-                });
-
-                console.log('📊 Merged activities summary:', {
-                  total: mergedActivities.length,
-                  backend: mergedActivities.filter(a => a.source === 'backend').length,
-                  computed: mergedActivities.filter(a => a.source === 'computed').length
                 });
 
                 // Add cancellation if not already in backend activities

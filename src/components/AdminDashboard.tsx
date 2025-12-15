@@ -358,19 +358,9 @@ export default function AdminDashboard({
       }
 
       try {
-        console.log(
-          "📜 Loading testimonials from backend for org:",
-          currentOrganization.id
-        );
-
         const response = await testimonialApi.getForOrganization(
           accessToken,
           currentOrganization.id
-        );
-
-        console.log(
-          "✅ Loaded testimonials from backend:",
-          response.testimonials?.length || 0
         );
 
         if (response.testimonials) {
@@ -405,19 +395,9 @@ export default function AdminDashboard({
       setIsRefreshingCertificates(true);
 
       try {
-        console.log(
-          "📜 Loading certificates from backend for org:",
-          currentOrganization.id
-        );
-
         const response = await certificateApi.getForOrganization(
           accessToken,
           currentOrganization.id
-        );
-
-        console.log(
-          "✅ Loaded certificates from backend:",
-          response.certificates?.length || 0
         );
 
         if (response.certificates) {
@@ -488,9 +468,6 @@ export default function AdminDashboard({
         if (
           JSON.stringify(updatedOrg) !== JSON.stringify(currentOrganization)
         ) {
-          console.log(
-            "🔄 Syncing currentOrganization with updated organization data"
-          );
           setCurrentOrganization(updatedOrg);
         }
       }
@@ -500,14 +477,7 @@ export default function AdminDashboard({
   // Load signatories for Generation tab
   useEffect(() => {
     const loadSignatories = async () => {
-      console.log("🔍 DEBUG: Checking for signatories...");
-      console.log(
-        "   - currentOrganization?.settings?.signatories:",
-        currentOrganization?.settings?.signatories
-      );
-
       if (!currentOrganization) {
-        console.log("❌ No currentOrganization");
         setGenAvailableSignatories([]);
         return;
       }
@@ -517,18 +487,9 @@ export default function AdminDashboard({
         currentOrganization.settings.signatories.length === 0
       ) {
         setGenAvailableSignatories([]);
-        console.log("📝 No signatories found in organization");
         return;
       }
 
-      console.log(
-        "✅ Loading signatories for Generation tab:",
-        currentOrganization.settings.signatories
-      );
-      console.log(
-        "   - Count:",
-        currentOrganization.settings.signatories.length
-      );
       setGenAvailableSignatories(
         currentOrganization.settings.signatories || []
       );
@@ -590,23 +551,11 @@ export default function AdminDashboard({
     // Check sessionStorage for pending template selection
     const pendingSelection = sessionStorage.getItem("pendingTemplateSelection");
 
-    console.log(
-      "🔍 AdminDashboard mounted - checking for pending template selection..."
-    );
-    console.log("   SessionStorage value:", pendingSelection);
-
     if (pendingSelection) {
       try {
         const data = JSON.parse(pendingSelection);
 
-        console.log("   Parsed data:", data);
-
         if (data.openGenerate && data.selectedTemplate) {
-          console.log(
-            "✅ Template Builder: Applying pending template selection",
-            data
-          );
-
           // Switch to generate tab
           setActiveTab("generate");
 
@@ -618,14 +567,11 @@ export default function AdminDashboard({
 
           // If template has a config, store it
           if (data.templateConfig) {
-            console.log("   Loading template config:", data.templateConfig);
             setGenCustomTemplateConfig(data.templateConfig);
           }
 
           // Clear the pending selection
           sessionStorage.removeItem("pendingTemplateSelection");
-          console.log("   ✅ Cleared sessionStorage");
-
           // Show success message
           toast.success(`Template "${data.selectedTemplateName}" selected!`);
         }
@@ -634,13 +580,11 @@ export default function AdminDashboard({
         sessionStorage.removeItem("pendingTemplateSelection");
       }
     } else {
-      console.log("   No pending template selection found");
-    }
+      }
 
     // Also check location.state for react-router navigation (backup method)
     const state = location.state as any;
     if (state?.openGenerate && state?.selectedTemplate) {
-      console.log("📝 Using location.state fallback method");
       // Switch to generate tab
       setActiveTab("generate");
 
@@ -663,7 +607,6 @@ export default function AdminDashboard({
 
     // If we have a payment reference and tab=billing, switch to billing tab
     if (reference && tabParam === "billing") {
-      console.log("💳 Payment callback detected - switching to billing tab");
       setActiveTab("billing");
 
       // Clean up URL params after a short delay to allow BillingPage to detect them
@@ -683,19 +626,13 @@ export default function AdminDashboard({
 
     // For custom templates, store the full config
     if (template.type === "custom" && template.config) {
-      console.log("   - Storing custom template config");
       setGenCustomTemplateConfig(template.config);
     }
     // For default templates, extract templateStyle from config
     else if (template.config?.templateStyle) {
-      console.log(
-        "   - Using default template style:",
-        template.config.templateStyle
-      );
       setGenCustomTemplateConfig(null); // Clear custom config
       // The template.id will be fetched later to get the templateStyle
     } else {
-      console.log("   - No special config needed");
       setGenCustomTemplateConfig(null);
     }
 
@@ -726,8 +663,6 @@ export default function AdminDashboard({
 
   // Handle template selection from Templates tab (CRITICAL FIX - was missing!)
   const handleTemplateSelection = (template: any) => {
-    console.log("🎨 Template selected in Templates tab:", template);
-
     // Show success message
     toast.success(
       `Template "${template.name}" selected! You can now use it to generate certificates.`
@@ -969,24 +904,11 @@ export default function AdminDashboard({
     setGenIsGenerating(true);
 
     try {
-      console.log("🔄 Generating certificate with data:", {
-        organizationId: genCurrentUserOrganization.id,
-        courseName: genProgramName.trim(),
-        certificateHeader: genCertificateHeader.trim(),
-        template: genSelectedTemplate,
-      });
-
       // Prepare signatories data
       const signatories = genSelectedSignatories
         .filter((id) => id && id !== "none")
         .map((id) => genAvailableSignatories.find((s: any) => s.id === id))
         .filter(Boolean);
-
-      console.log("✍️ Including signatories in certificate generation:", {
-        selectedIds: genSelectedSignatories,
-        signatoryCount: signatories.length,
-        signatories: signatories,
-      });
 
       const response = await certificateApi.generate(accessToken, {
         organizationId: genCurrentUserOrganization.id,
@@ -1007,13 +929,6 @@ export default function AdminDashboard({
       }
 
       const backendCert = response.certificates[0];
-      console.log("📄 Backend certificate data:");
-      console.log("   - ID:", backendCert.id);
-      console.log("   - URL (backend):", backendCert.certificateUrl);
-      console.log("   - Template:", backendCert.template);
-      console.log("   - Course Name:", backendCert.courseName);
-      console.log("   - Organization ID:", backendCert.organizationId);
-
       // Generate encrypted certificate URL for better security
       const programSlug = genProgramName
         .trim()
@@ -1031,8 +946,6 @@ export default function AdminDashboard({
         `${window.location.origin}/#/`,
         ""
       );
-      console.log("🔐 Generated encrypted URL path:", encryptedPath);
-
       const certificate = {
         ...response.certificates[0],
         certificateUrl: encryptedPath, // Use encrypted URL instead of plain backend URL
@@ -1050,28 +963,7 @@ export default function AdminDashboard({
         organization: genCurrentUserOrganization,
       };
 
-      console.log("📝 Final certificate object for UI:");
-      console.log("   - ID:", certificate.id);
-      console.log("   - Certificate URL:", certificate.certificateUrl);
-      console.log(
-        "   - Certificate URL type:",
-        typeof certificate.certificateUrl
-      );
-      console.log(
-        "   - Certificate URL length:",
-        certificate.certificateUrl?.length || 0
-      );
-      console.log(
-        "   - Full certificate object:",
-        JSON.stringify(certificate, null, 2)
-      );
-      console.log(
-        "   - Full URL:",
-        buildFullCertificateUrl(certificate.certificateUrl)
-      );
-
       // Create short link for easier sharing
-      console.log("🔗 Creating short link for certificate...");
       try {
         const shortLinkResult = await createShortLink(
           backendCert.organizationId,
@@ -1081,8 +973,6 @@ export default function AdminDashboard({
         );
 
         if (shortLinkResult.success && shortLinkResult.shortCode) {
-          console.log(`✅ Short link created: ${shortLinkResult.fullShortUrl}`);
-
           // Add short link to certificate object
           certificate.shortCode = shortLinkResult.shortCode;
           certificate.shortUrl = `c/${shortLinkResult.shortCode}`;
@@ -1100,7 +990,6 @@ export default function AdminDashboard({
       }
 
       // Add to current session results (for Results tab)
-      console.log("💾 Adding certificate to genGeneratedCertificates state");
       setGenGeneratedCertificates([certificate]);
       // Also add to full history (for Certificates tab)
       setAllCertificates((prev) => [certificate, ...prev]);
@@ -1185,11 +1074,6 @@ export default function AdminDashboard({
           };
         });
 
-        console.log("💾 Saving certificates to backend...", {
-          count: certificates.length,
-          organizationId: genCurrentUserOrganization?.id,
-        });
-
         // Save to backend if we have an access token and organization
         if (accessToken && genCurrentUserOrganization?.id) {
           try {
@@ -1218,15 +1102,10 @@ export default function AdminDashboard({
               })),
             });
 
-            console.log("✅ Certificates saved to backend:", response);
-
             // Use backend-confirmed data
             const savedCertificates = response.certificates || certificates;
 
             // Create short links for all certificates
-            console.log(
-              `🔗 Creating short links for ${savedCertificates.length} certificates...`
-            );
             const certificatesWithShortLinks = await Promise.all(
               savedCertificates.map(async (cert: any) => {
                 try {
@@ -1242,9 +1121,6 @@ export default function AdminDashboard({
                   );
 
                   if (shortLinkResult.success && shortLinkResult.shortCode) {
-                    console.log(
-                      `✅ Short link created for ${cert.studentName}: ${shortLinkResult.fullShortUrl}`
-                    );
                     return {
                       ...cert,
                       shortCode: shortLinkResult.shortCode,
@@ -1280,10 +1156,6 @@ export default function AdminDashboard({
             setHasLoadedCertificates(true);
           }
         } else {
-          console.log(
-            "⚠️ No access token or organization - certificates not saved to backend"
-          );
-
           // Add to local state only
           setGenGeneratedCertificates(certificates);
           setAllCertificates((prev) => [...certificates, ...prev]);
@@ -1378,7 +1250,6 @@ export default function AdminDashboard({
     }
 
     try {
-      console.log("🗑️ Deleting certificate:", certId);
       await certificateApi.delete(accessToken, certId);
 
       // Update local state after successful deletion
@@ -1386,7 +1257,6 @@ export default function AdminDashboard({
       setSelectedCertificates((prev) => prev.filter((id) => id !== certId));
       setHasLoadedCertificates(true); // Keep as loaded since we just updated it
 
-      console.log("✅ Certificate deleted successfully");
       toast.success("Certificate deleted successfully");
     } catch (error: any) {
       console.error("❌ Error deleting certificate:", error);
@@ -1414,13 +1284,10 @@ export default function AdminDashboard({
     }
 
     try {
-      console.log("🗑️ Bulk deleting certificates:", selectedCertificates);
       const response = await certificateApi.deleteBulk(
         accessToken,
         selectedCertificates
       );
-
-      console.log("✅ Bulk delete response:", response);
 
       // Update local state after successful deletion
       setAllCertificates((prev) =>
@@ -1462,27 +1329,17 @@ export default function AdminDashboard({
     setIsRefreshingCertificates(true);
 
     try {
-      console.log(
-        "🔄 Manually refreshing certificates for organization:",
-        currentOrganization.id
-      );
       const response = await certificateApi.getForOrganization(
         accessToken,
         currentOrganization.id
       );
-      console.log("🔄 Refresh response:", response);
-
       if (response.certificates) {
-        console.log(
-          `🔄 Loaded ${response.certificates.length} certificate(s) from backend`
-        );
         setAllCertificates(response.certificates); // Use allCertificates for full history
         setHasLoadedCertificates(true);
         toast.success(
           `Refreshed! Found ${response.certificates.length} certificate(s)`
         );
       } else {
-        console.log("🔄 No certificates in response");
         setAllCertificates([]); // Use allCertificates for full history
         setHasLoadedCertificates(true);
         toast.success("Refreshed! No certificates found");
@@ -2543,11 +2400,7 @@ export default function AdminDashboard({
                                       ];
                                       newSignatories[0] = value;
                                       setGenSelectedSignatories(newSignatories);
-                                      console.log(
-                                        "✍️ Primary signatory selected:",
-                                        value
-                                      );
-                                    }}
+                                      }}
                                   >
                                     <SelectTrigger id="genSignatory1">
                                       <SelectValue placeholder="Select primary signatory" />
@@ -2584,11 +2437,7 @@ export default function AdminDashboard({
                                       ];
                                       newSignatories[1] = value;
                                       setGenSelectedSignatories(newSignatories);
-                                      console.log(
-                                        "✍️ Secondary signatory selected:",
-                                        value
-                                      );
-                                    }}
+                                      }}
                                   >
                                     <SelectTrigger id="genSignatory2">
                                       <SelectValue placeholder="Select secondary signatory" />
@@ -2855,15 +2704,6 @@ export default function AdminDashboard({
                                         size="sm"
                                         variant="outline"
                                         onClick={() => {
-                                          console.log(
-                                            "📋 Copy URL clicked for cert:",
-                                            {
-                                              id: cert.id,
-                                              certificateUrl:
-                                                cert.certificateUrl,
-                                              shortUrl: cert.fullShortUrl,
-                                            }
-                                          );
                                           genCopyCertificateUrl(
                                             cert.certificateUrl,
                                             cert
@@ -2883,31 +2723,6 @@ export default function AdminDashboard({
                                             buildFullCertificateUrl(
                                               cert.certificateUrl
                                             );
-                                          console.log(
-                                            "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-                                          );
-                                          console.log(
-                                            "🖱️ VIEW BUTTON CLICKED (Results Tab)"
-                                          );
-                                          console.log(
-                                            "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-                                          );
-                                          console.log(
-                                            "📄 Certificate object:",
-                                            cert
-                                          );
-                                          console.log(
-                                            "🔗 Short URL:",
-                                            cert.fullShortUrl
-                                          );
-                                          console.log("🌐 Full URL:", fullUrl);
-                                          console.log(
-                                            "🌐 Navigating directly with window.location.href..."
-                                          );
-                                          console.log(
-                                            "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-                                          );
-
                                           // Navigate in the same tab - hash routing works this way!
                                           window.location.href = fullUrl;
                                         }}
@@ -2932,7 +2747,6 @@ export default function AdminDashboard({
               {activeTab === "templates" && currentOrganization && (
                 <TemplatesPage
                   onSelectTemplate={(template) => {
-                    console.log("📋 Template selected:", template);
                     // Store selected template for certificate generation
                     setGenSelectedTemplate(template.id);
                     setGenSelectedTemplateName(template.name);
@@ -3126,31 +2940,6 @@ export default function AdminDashboard({
                                         const fullUrl = buildFullCertificateUrl(
                                           cert.certificateUrl
                                         );
-                                        console.log(
-                                          "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-                                        );
-                                        console.log(
-                                          "🖱️ VIEW BUTTON CLICKED (Certificates Tab)"
-                                        );
-                                        console.log(
-                                          "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-                                        );
-                                        console.log(
-                                          "📄 Certificate object:",
-                                          cert
-                                        );
-                                        console.log(
-                                          "🔗 Certificate URL field:",
-                                          cert.certificateUrl
-                                        );
-                                        console.log("🌐 Full URL:", fullUrl);
-                                        console.log(
-                                          "🌐 Navigating directly with window.location.href..."
-                                        );
-                                        console.log(
-                                          "━━━━━━━━━━━━━━━━���━━━━━━━��━━━━━━━━━━━━━━━━━━━━━━"
-                                        );
-
                                         // Navigate in the same tab - hash routing works this way!
                                         window.location.href = fullUrl;
                                       }}

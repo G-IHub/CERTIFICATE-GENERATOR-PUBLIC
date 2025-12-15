@@ -36,11 +36,7 @@ const CertificateTemplate: React.FC<CertificateTemplateProps> = ({
 }) => {
   // Log custom template config for debugging
   if (customTemplateConfig) {
-    console.log(
-      "🎨 CertificateTemplate: Using custom template config:",
-      customTemplateConfig
-    );
-  }
+    }
 
   // Define formatDate BEFORE early return so it's available to renderCustomTemplate
   const formatDate = (dateString: string) => {
@@ -54,8 +50,6 @@ const CertificateTemplate: React.FC<CertificateTemplateProps> = ({
   // Render custom template using configuration from Template Builder
   const renderCustomTemplate = () => {
     const config = customTemplateConfig;
-    console.log("🎨 Rendering custom template with config:", config);
-
     // Build background style
     const backgroundStyle: React.CSSProperties = {};
     if (config.colors?.backgroundType === "gradient") {

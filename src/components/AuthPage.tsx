@@ -183,8 +183,7 @@ export default function AuthPage({
       }
 
       // Log additional debugging info
-      console.log("Full error object:", err);
-    } finally {
+      } finally {
       setIsLoading(false);
     }
   };

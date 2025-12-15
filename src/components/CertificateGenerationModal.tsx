@@ -60,19 +60,7 @@ export default function CertificateGenerationModal({
   customTemplateConfig
 }: CertificateGenerationModalProps) {
   // Debug: Verify new version is loaded
-  console.log('✅ CertificateGenerationModal v2.0 loaded - Simplified 3-step flow');
-  console.log('📋 Custom template config:', customTemplateConfig);
-  
   // IMMEDIATE DEBUG - Log what props are received
-  console.log('🔍 MODAL PROPS DEBUG:');
-  console.log('  - isOpen:', isOpen);
-  console.log('  - organizations (subsidiaries):', organizations);
-  console.log('  - currentOrganization (currentSubsidiary):', currentOrganization);
-  console.log('  - organizations.length:', organizations?.length);
-  console.log('  - currentOrganization?.id:', currentOrganization?.id);
-  console.log('  - currentOrganization?.settings:', currentOrganization?.settings);
-  console.log('  - currentOrganization?.settings?.signatories:', currentOrganization?.settings?.signatories);
-  
   const [activeTab, setActiveTab] = useState('setup');
   const [certificateHeader, setCertificateHeader] = useState('Certificate of Completion');
   const [courseName, setCourseName] = useState('');
@@ -98,21 +86,9 @@ export default function CertificateGenerationModal({
   const availableSignatories = currentUserOrganization?.settings?.signatories || [];
   
   // IMMEDIATE DEBUG - Log signatory state
-  console.log('🔥 SIGNATORY DEBUG - availableSignatories:', availableSignatories);
-  console.log('🔥 SIGNATORY DEBUG - availableSignatories.length:', availableSignatories.length);
-  console.log('🔥 SIGNATORY DEBUG - Will render signatory UI?', availableSignatories.length > 0);
-  
   // Debug logging
   useEffect(() => {
-    console.log('=== CERTIFICATE GENERATION MODAL DEBUG ===');
-    console.log('currentOrganization:', currentOrganization);
-    console.log('organizations array:', organizations);
-    console.log('currentUserOrganization:', currentUserOrganization);
-    console.log('currentUserOrganization.settings:', currentUserOrganization?.settings);
-    console.log('availableSignatories:', availableSignatories);
-    console.log('availableSignatories.length:', availableSignatories.length);
-    console.log('==========================================');
-  }, [currentOrganization, organizations, currentUserOrganization, availableSignatories]);
+    }, [currentOrganization, organizations, currentUserOrganization, availableSignatories]);
   
   // Note: generateCertificateId, normalizeCertificateUrl, and buildFullCertificateUrl are now imported from utils/certificateUtils
   
@@ -159,9 +135,6 @@ export default function CertificateGenerationModal({
 
   // Handle template selection from TemplatesPage (Global Template Library)
   const handleTemplateFromBrowser = (template: any) => {
-    console.log('🎨 Template selected from global library:', template);
-    console.log('🎨 Template config:', template.config);
-    
     // Store the template ID, name, AND config
     setSelectedTemplate(template.id); // Store template ID (e.g., "template1", "template2")
     setSelectedTemplateName(template.name);
@@ -212,9 +185,6 @@ export default function CertificateGenerationModal({
       // Save certificate to backend
       // Use selectedTemplateConfig (from template picker) OR customTemplateConfig (from modal prop)
       const templateConfig = selectedTemplateConfig || customTemplateConfig || null;
-      console.log('💾 Saving certificate to backend with template config:', templateConfig);
-      console.log('💾 Selected signatories:', selectedSignatories);
-      
       // Get full signatory details for selected IDs
       const selectedSignatoryDetails = availableSignatories.filter((sig: any) => 
         selectedSignatories.includes(sig.id)
@@ -231,8 +201,6 @@ export default function CertificateGenerationModal({
         signatories: selectedSignatoryDetails,
       });
 
-      console.log('✅ Certificate saved to backend:', response);
-      
       if (response.certificates && response.certificates.length > 0) {
         const backendCert = response.certificates[0];
         

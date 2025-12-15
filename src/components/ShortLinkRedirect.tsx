@@ -19,8 +19,6 @@ export default function ShortLinkRedirect() {
         return;
       }
 
-      console.log(`🔗 Resolving short link: ${code}`);
-
       try {
         const response = await fetch(
           `https://${projectId}.supabase.co/functions/v1/make-server-a611b057/short/${code}`
@@ -39,13 +37,9 @@ export default function ShortLinkRedirect() {
           return;
         }
 
-        console.log("✅ Short link resolved:", data);
-
         // Redirect to the actual certificate page
         // Format: /certificate/organizationId/programId/certificateId
         const certificatePath = `/certificate/${data.organizationId}/${data.programId}/${data.certificateId}`;
-        console.log(`🚀 Redirecting to: ${certificatePath}`);
-
         navigate(certificatePath, { replace: true });
       } catch (error) {
         console.error("Error resolving short link:", error);

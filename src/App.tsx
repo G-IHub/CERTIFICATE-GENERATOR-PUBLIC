@@ -114,16 +114,6 @@ function PasswordResetRedirect() {
     const hasRecoveryType = fullPath.includes("type=recovery");
 
     if (hasAccessToken && hasRecoveryType) {
-      console.log(
-        "🔐 Recovery token detected in path, redirecting to reset password page"
-      );
-      console.log("📍 Current location:", {
-        pathname: location.pathname,
-        search: location.search,
-        hash: location.hash,
-        fullPath,
-      });
-
       // Extract the access token and refresh token from the path
       const accessTokenMatch = fullPath.match(/access_token=([^&]+)/);
       const refreshTokenMatch = fullPath.match(/refresh_token=([^&]+)/);
@@ -132,15 +122,9 @@ function PasswordResetRedirect() {
       const refreshToken = refreshTokenMatch ? refreshTokenMatch[1] : null;
 
       if (accessToken) {
-        console.log("✅ Access token extracted, length:", accessToken.length);
         if (refreshToken) {
-          console.log(
-            "✅ Refresh token extracted, length:",
-            refreshToken.length
-          );
-        } else {
-          console.log("⚠️ No refresh token found");
-        }
+          } else {
+          }
         // Navigate to reset password page with both tokens in React Router state
         navigate("/reset-password", {
           state: {
@@ -150,8 +134,7 @@ function PasswordResetRedirect() {
           replace: true,
         });
       } else {
-        console.log("❌ Could not extract access token from path");
-      }
+        }
     }
   }, [navigate, location]);
 

@@ -59,6 +59,12 @@ import react from '@vitejs/plugin-react-swc';
     build: {
       target: 'esnext',
       outDir: 'build',
+      minify: 'terser',
+      terserOptions: {
+        compress: {
+          drop_console: true,
+        },
+      },
     },
     server: {
       port: 3000,

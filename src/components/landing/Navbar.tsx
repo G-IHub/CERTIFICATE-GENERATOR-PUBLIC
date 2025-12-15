@@ -4,6 +4,7 @@ import logo from "../../assets/logo.png";
 import { IoIosMenu } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
 import { Link } from "react-scroll";
+import { Button } from "@headlessui/react";
 
 const Navbar: React.FC = () => {
   const navigate = useNavigate();
@@ -180,14 +181,19 @@ const Navbar: React.FC = () => {
                 Pricing
               </Link> */}
 
-              <a
-                href=""
+              <button
+                onClick={() => {
+                  navigate("/login");
+                  setIsMenuOpen(false);
+                }}
                 className="text-orange-500"
-                onClick={() => setIsMenuOpen(false)}
               >
                 Log In
-              </a>
-              <button className="bg-orange-500 rounded-full text-white px-5 py-2 cursor-pointer">
+              </button>
+              <button
+                onClick={() => navigate("/signup")}
+                className="bg-orange-500 rounded-full text-white px-5 py-2 cursor-pointer"
+              >
                 Get Started
               </button>
             </div>

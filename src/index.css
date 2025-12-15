@@ -1,4 +1,47 @@
 /*! tailwindcss v4.1.3 | MIT License | https://tailwindcss.com */
+
+/* Define custom keyframes */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* You might need this extra CSS for the marquee effect to loop seamlessly */
+.marquee-content {
+  /* This ensures the content is doubled up for a smooth loop */
+  content-visibility: auto;
+  display: inline-flex;
+  gap: 1rem;
+  min-width: fit-content;
+  animation: marquee 60s linear infinite;
+  will-change: transform;
+}
+
+/* Pause marquee when user hovers or focuses inside (accessibility + UX) */
+.marquee-content:hover,
+.marquee-content:focus-within {
+  animation-play-state: paused;
+}
+
+/* Respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-content {
+    animation: none;
+    transform: none !important;
+  }
+}
+
+.marquee-content > * {
+  /* Ensures the duplicated items behave correctly */
+  flex: 0 0 auto;
+  min-width: 120px; /* sensible default; override with utility classes if needed */
+}
+
+
 @layer properties {
   @supports (((-webkit-hyphens: none)) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color: rgb(from red r g b)))) {
     *, :before, :after, ::backdrop {

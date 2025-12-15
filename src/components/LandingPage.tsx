@@ -31,14 +31,14 @@ export default function LandingPage() {
           <Hero />
         </section>
         <About />
+        <section id="partners">
+          <Partners />
+        </section>
         <section id="features">
           <CoreFeatures />
         </section>
         <section id="work">
           <Work />
-        </section>
-        <section id="partners">
-          <Partners />
         </section>
         {/* <section id="prices">
           <Price />

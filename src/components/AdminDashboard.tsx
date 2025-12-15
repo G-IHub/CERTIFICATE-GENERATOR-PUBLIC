@@ -69,6 +69,7 @@ import {
   Play,
   CheckCircle,
   ExternalLink,
+  Link2,
   PieChart,
   Calendar,
   Clock,
@@ -127,15 +128,20 @@ import {
   Cell,
 } from "recharts";
 import { copyToClipboard } from "../utils/clipboard";
-import { certificateApi } from "../utils/api";
+import { certificateApi, testimonialApi } from "../utils/api";
 import { projectId } from "../utils/supabase/info";
 import {
   generateSecureCertificateUrl,
   generateCertificateId,
   buildFullCertificateUrl,
   normalizeCertificateUrl,
+  generateShortCertificateUrl,
 } from "../utils/certificateUtils";
-import logo from "../assets/logo.svg";
+import {
+  createShortLink,
+  getOrganizationShortLinks,
+} from "../utils/shortLinkApi";
+import logo from "../assets/logo.png";
 // import Footer from "../components/landing/Footer";
 
 // Organization is the new name for Subsidiary
@@ -236,6 +242,58 @@ export default function AdminDashboard({
     useState<boolean>(false);
   const isMobile = useIsMobile();
 
+  // Apply organization theming to CSS variables so the whole app picks up the org color
+  useEffect(() => {
+    const applyTheme = (hexColor?: string) => {
+      const root = document.documentElement;
+      const defaultHex = "#ea580c"; // orange default
+      const color = hexColor || defaultHex;
+
+      // Normalize hex and compute rgb components
+      const toRgb = (h: string) => {
+        const hex = h.replace("#", "");
+        const bigint = parseInt(
+          hex.length === 3
+            ? hex
+                .split("")
+                .map((c) => c + c)
+                .join("")
+            : hex,
+          16
+        );
+        const r = (bigint >> 16) & 255;
+        const g = (bigint >> 8) & 255;
+        const b = bigint & 255;
+        return `${r}, ${g}, ${b}`;
+      };
+
+      try {
+        const rgb = toRgb(color);
+        root.style.setProperty("--primary", color);
+        root.style.setProperty("--primary-rgb", rgb);
+        root.style.setProperty("--ring", color);
+        root.style.setProperty("--chart-1", color);
+        root.style.setProperty("--sidebar-primary", color);
+        root.style.setProperty("--sidebar-ring", color);
+      } catch (e) {
+        // Fallback to default if parsing fails
+        root.style.setProperty("--primary", defaultHex);
+        root.style.setProperty("--primary-rgb", "234, 88, 12");
+        root.style.setProperty("--ring", defaultHex);
+        root.style.setProperty("--chart-1", defaultHex);
+        root.style.setProperty("--sidebar-primary", defaultHex);
+        root.style.setProperty("--sidebar-ring", defaultHex);
+      }
+    };
+
+    applyTheme(
+      currentOrganization?.primaryColor || user.subsidiary?.primaryColor
+    );
+
+    // Reset to default when unmounting
+    return () => applyTheme(undefined);
+  }, [currentOrganization, user.subsidiary]);
+
   // Subscription state
   const [subscription, setSubscription] = useState<any>(null);
   const [loadingSubscription, setLoadingSubscription] = useState(true);
@@ -269,11 +327,16 @@ export default function AdminDashboard({
     any[]
   >([]); // Current session only
   const [allCertificates, setAllCertificates] = useState<any[]>([]); // Full history from backend
+  const [allTestimonials, setAllTestimonials] = useState<TestimonialData[]>([]);
   const [genIsGenerating, setGenIsGenerating] = useState(false);
-  
+
   // Signatory states for Generation tab
-  const [genAvailableSignatories, setGenAvailableSignatories] = useState<any[]>([]);
-  const [genSelectedSignatories, setGenSelectedSignatories] = useState<string[]>([]);
+  const [genAvailableSignatories, setGenAvailableSignatories] = useState<any[]>(
+    []
+  );
+  const [genSelectedSignatories, setGenSelectedSignatories] = useState<
+    string[]
+  >([]);
   const [genShowTemplateSelector, setGenShowTemplateSelector] = useState(false);
   const [genGenerationType, setGenGenerationType] = useState<
     "individual" | "bulk"
@@ -281,6 +344,50 @@ export default function AdminDashboard({
   const [isRefreshingCertificates, setIsRefreshingCertificates] =
     useState(false);
   const [hasLoadedCertificates, setHasLoadedCertificates] = useState(false);
+  const [hasLoadedTestimonials, setHasLoadedTestimonials] = useState(false);
+
+  // Short Links & Analytics
+  const [shortLinksData, setShortLinksData] = useState<any[]>([]);
+  const [isLoadingShortLinks, setIsLoadingShortLinks] = useState(false);
+
+  // Auto-load testimonials for overview stats (separate from TestimonialsView)
+  useEffect(() => {
+    const loadTestimonials = async () => {
+      if (!accessToken || !currentOrganization || hasLoadedTestimonials) {
+        return;
+      }
+
+      try {
+        console.log(
+          "📜 Loading testimonials from backend for org:",
+          currentOrganization.id
+        );
+
+        const response = await testimonialApi.getForOrganization(
+          accessToken,
+          currentOrganization.id
+        );
+
+        console.log(
+          "✅ Loaded testimonials from backend:",
+          response.testimonials?.length || 0
+        );
+
+        if (response.testimonials) {
+          setAllTestimonials(response.testimonials);
+          setHasLoadedTestimonials(true);
+        } else {
+          setAllTestimonials([]);
+          setHasLoadedTestimonials(true);
+        }
+      } catch (error: any) {
+        console.error("Failed to load testimonials:", error);
+        setHasLoadedTestimonials(true); // mark as loaded to avoid retries
+      }
+    };
+
+    loadTestimonials();
+  }, [accessToken, currentOrganization, hasLoadedTestimonials]);
 
   // Auto-load certificates when component mounts or when switching to certificates tab
   useEffect(() => {
@@ -366,17 +473,24 @@ export default function AdminDashboard({
   // Reset hasLoadedCertificates when organization changes to force reload
   useEffect(() => {
     setHasLoadedCertificates(false);
+    setHasLoadedTestimonials(false);
   }, [currentOrganization?.id]);
 
   // Sync currentOrganization with organizations prop when it changes
   useEffect(() => {
     if (currentOrganization && organizations.length > 0) {
       // Find the updated version of the current organization
-      const updatedOrg = organizations.find((org) => org.id === currentOrganization.id);
+      const updatedOrg = organizations.find(
+        (org) => org.id === currentOrganization.id
+      );
       if (updatedOrg) {
         // Only update if the organization data has actually changed
-        if (JSON.stringify(updatedOrg) !== JSON.stringify(currentOrganization)) {
-          console.log('🔄 Syncing currentOrganization with updated organization data');
+        if (
+          JSON.stringify(updatedOrg) !== JSON.stringify(currentOrganization)
+        ) {
+          console.log(
+            "🔄 Syncing currentOrganization with updated organization data"
+          );
           setCurrentOrganization(updatedOrg);
         }
       }
@@ -387,23 +501,37 @@ export default function AdminDashboard({
   useEffect(() => {
     const loadSignatories = async () => {
       console.log("🔍 DEBUG: Checking for signatories...");
-      console.log("   - currentOrganization?.settings?.signatories:", currentOrganization?.settings?.signatories);
-      
+      console.log(
+        "   - currentOrganization?.settings?.signatories:",
+        currentOrganization?.settings?.signatories
+      );
+
       if (!currentOrganization) {
         console.log("❌ No currentOrganization");
         setGenAvailableSignatories([]);
         return;
       }
-      
-      if (!currentOrganization.settings?.signatories || currentOrganization.settings.signatories.length === 0) {
+
+      if (
+        !currentOrganization.settings?.signatories ||
+        currentOrganization.settings.signatories.length === 0
+      ) {
         setGenAvailableSignatories([]);
         console.log("📝 No signatories found in organization");
         return;
       }
 
-      console.log("✅ Loading signatories for Generation tab:", currentOrganization.settings.signatories);
-      console.log("   - Count:", currentOrganization.settings.signatories.length);
-      setGenAvailableSignatories(currentOrganization.settings.signatories || []);
+      console.log(
+        "✅ Loading signatories for Generation tab:",
+        currentOrganization.settings.signatories
+      );
+      console.log(
+        "   - Count:",
+        currentOrganization.settings.signatories.length
+      );
+      setGenAvailableSignatories(
+        currentOrganization.settings.signatories || []
+      );
     };
 
     loadSignatories();
@@ -622,12 +750,6 @@ export default function AdminDashboard({
     );
   };
 
-  // ==================== REAL DATA - NO MOCK DATA ====================
-  // All certificates are loaded from backend via useEffect (lines 290-380)
-  // which fetches from certificateApi.getForOrganization() and stores in allCertificates
-
-  // Testimonials are loaded via TestimonialsView component which fetches from backend
-  // Programs and stats are from organizations prop which comes from backend
 
   // Filter real certificate data based on user permissions and search/filter criteria
   const getFilteredCertificates = () => {
@@ -693,30 +815,34 @@ export default function AdminDashboard({
       };
     }
 
-    return {
-      totalCertificates: targetOrg.programs.reduce(
-        (sum: number, p: Program) => sum + p.certificates,
-        0
-      ),
-      totalTestimonials: targetOrg.programs.reduce(
-        (sum: number, p: Program) => sum + p.testimonials,
-        0
-      ),
-      totalPrograms: targetOrg.programs.length,
-      averageEngagement: Math.floor(
-        (targetOrg.programs.reduce(
+    // Prefer using the real certificate records if they've been loaded
+    // (more accurate than relying on aggregated program counts).
+    const totalCertificates = hasLoadedCertificates
+      ? allCertificates.filter((cert) => cert.organizationId === targetOrg.id)
+          .length
+      : targetOrg.programs.reduce(
+          (sum: number, p: Program) => sum + p.certificates,
+          0
+        );
+
+    const totalTestimonials = hasLoadedTestimonials
+      ? allTestimonials.filter((t) => t.organizationId === targetOrg.id).length
+      : targetOrg.programs.reduce(
           (sum: number, p: Program) => sum + p.testimonials,
           0
-        ) /
-          Math.max(
-            targetOrg.programs.reduce(
-              (sum: number, p: Program) => sum + p.certificates,
-              0
-            ),
-            1
-          )) *
-          100
-      ),
+        );
+
+    const totalPrograms = targetOrg.programs.length;
+
+    const averageEngagement = Math.floor(
+      (totalTestimonials / Math.max(totalCertificates, 1)) * 100
+    );
+
+    return {
+      totalCertificates,
+      totalTestimonials,
+      totalPrograms,
+      averageEngagement,
     };
   };
 
@@ -852,8 +978,8 @@ export default function AdminDashboard({
 
       // Prepare signatories data
       const signatories = genSelectedSignatories
-        .filter(id => id && id !== "none")
-        .map(id => genAvailableSignatories.find((s: any) => s.id === id))
+        .filter((id) => id && id !== "none")
+        .map((id) => genAvailableSignatories.find((s: any) => s.id === id))
         .filter(Boolean);
 
       console.log("✍️ Including signatories in certificate generation:", {
@@ -874,11 +1000,6 @@ export default function AdminDashboard({
         students: undefined,
       } as any);
 
-      console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-      console.log("✅ CERTIFICATE GENERATION SUCCESSFUL");
-      console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━���━━━━━━━");
-      console.log("📦 Response:", response);
-      console.log("📊 Certificate count:", response.certificates?.length || 0);
 
       // Check if response has certificates
       if (!response.certificates || response.certificates.length === 0) {
@@ -948,7 +1069,35 @@ export default function AdminDashboard({
         "   - Full URL:",
         buildFullCertificateUrl(certificate.certificateUrl)
       );
-      console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+
+      // Create short link for easier sharing
+      console.log("🔗 Creating short link for certificate...");
+      try {
+        const shortLinkResult = await createShortLink(
+          backendCert.organizationId,
+          programSlug,
+          backendCert.id,
+          certificate
+        );
+
+        if (shortLinkResult.success && shortLinkResult.shortCode) {
+          console.log(`✅ Short link created: ${shortLinkResult.fullShortUrl}`);
+
+          // Add short link to certificate object
+          certificate.shortCode = shortLinkResult.shortCode;
+          certificate.shortUrl = `c/${shortLinkResult.shortCode}`;
+          certificate.fullShortUrl = shortLinkResult.fullShortUrl;
+
+          toast.success(
+            `Certificate generated! Short link: ${shortLinkResult.fullShortUrl}`
+          );
+        } else {
+          console.warn("⚠️ Failed to create short link, using encrypted URL");
+        }
+      } catch (error) {
+        console.error("Error creating short link:", error);
+        // Continue with encrypted URL if short link fails
+      }
 
       // Add to current session results (for Results tab)
       console.log("💾 Adding certificate to genGeneratedCertificates state");
@@ -958,7 +1107,6 @@ export default function AdminDashboard({
       setHasLoadedCertificates(true); // Mark as loaded since we just added it
 
       setGenIsGenerating(false);
-      toast.success("Certificate link generated successfully!");
       setGenActiveTab("results");
 
       setGenProgramName("");
@@ -1047,8 +1195,10 @@ export default function AdminDashboard({
           try {
             // Prepare signatories data
             const signatories = genSelectedSignatories
-              .filter(id => id && id !== "none")
-              .map(id => genAvailableSignatories.find((s: any) => s.id === id))
+              .filter((id) => id && id !== "none")
+              .map((id) =>
+                genAvailableSignatories.find((s: any) => s.id === id)
+              )
               .filter(Boolean);
 
             // Use the generate API with students array
@@ -1073,10 +1223,52 @@ export default function AdminDashboard({
             // Use backend-confirmed data
             const savedCertificates = response.certificates || certificates;
 
+            // Create short links for all certificates
+            console.log(
+              `🔗 Creating short links for ${savedCertificates.length} certificates...`
+            );
+            const certificatesWithShortLinks = await Promise.all(
+              savedCertificates.map(async (cert: any) => {
+                try {
+                  const programSlug = genProgramName
+                    .trim()
+                    .toLowerCase()
+                    .replace(/\s+/g, "-");
+                  const shortLinkResult = await createShortLink(
+                    cert.organizationId,
+                    programSlug,
+                    cert.id,
+                    cert
+                  );
+
+                  if (shortLinkResult.success && shortLinkResult.shortCode) {
+                    console.log(
+                      `✅ Short link created for ${cert.studentName}: ${shortLinkResult.fullShortUrl}`
+                    );
+                    return {
+                      ...cert,
+                      shortCode: shortLinkResult.shortCode,
+                      shortUrl: `c/${shortLinkResult.shortCode}`,
+                      fullShortUrl: shortLinkResult.fullShortUrl,
+                    };
+                  }
+                } catch (error) {
+                  console.error(
+                    `Failed to create short link for ${cert.studentName}:`,
+                    error
+                  );
+                }
+                return cert;
+              })
+            );
+
             // Add to current session results (for Results tab)
-            setGenGeneratedCertificates(savedCertificates);
+            setGenGeneratedCertificates(certificatesWithShortLinks);
             // Also add to full history (for Certificates tab)
-            setAllCertificates((prev) => [...savedCertificates, ...prev]);
+            setAllCertificates((prev) => [
+              ...certificatesWithShortLinks,
+              ...prev,
+            ]);
             setHasLoadedCertificates(true);
           } catch (error: any) {
             console.error("❌ Failed to save certificates to backend:", error);
@@ -1117,11 +1309,13 @@ export default function AdminDashboard({
     setTimeout(generateAndSave, 2000);
   };
 
-  const genCopyCertificateUrl = async (url: string) => {
-    const fullUrl = buildFullCertificateUrl(url);
-    const success = await copyToClipboard(fullUrl);
+  const genCopyCertificateUrl = async (url: string, cert?: any) => {
+    // Prefer short URL if available
+    const urlToCopy = cert?.fullShortUrl || buildFullCertificateUrl(url);
+    const success = await copyToClipboard(urlToCopy);
     if (success) {
-      toast.success("Certificate URL copied to clipboard!");
+      const linkType = cert?.fullShortUrl ? "Short link" : "Certificate URL";
+      toast.success(`${linkType} copied to clipboard!`);
     } else {
       toast.error("Failed to copy URL");
     }
@@ -1129,13 +1323,15 @@ export default function AdminDashboard({
 
   const genExportCertificateList = () => {
     const csvHeader =
-      "Student Name,Email,Certificate ID,Certificate URL,Generated At\n";
+      "Student Name,Email,Certificate ID,Short Link,Full URL,Generated At\n";
     const csvRows = genGeneratedCertificates
       .map(
         (cert) =>
           `"${cert.studentName}","${cert.email}","${cert.id}","${
-            cert.certificateUrl
-          }","${new Date(cert.generatedAt).toLocaleString()}"`
+            cert.fullShortUrl || "N/A"
+          }","${buildFullCertificateUrl(cert.certificateUrl)}","${new Date(
+            cert.generatedAt
+          ).toLocaleString()}"`
       )
       .join("\n");
 
@@ -1356,7 +1552,10 @@ export default function AdminDashboard({
                     {user.username}
                   </p>
                   <div className="flex items-center gap-1">
-                    <Building2 className="w-3 h-3 text-primary flex-shrink-0" />
+                    <img
+                      src={currentOrganization?.logo}
+                      className="w-8 mt-1 "
+                    />
                     <p className="text-xs text-gray-500 truncate">
                       {currentOrganization?.name || user.company}
                     </p>
@@ -1420,11 +1619,11 @@ export default function AdminDashboard({
                 name: "Analytics",
                 icon: BarChart3,
               },
-              {
-                id: "billing",
-                name: "Billing",
-                icon: CreditCard,
-              },
+              // {
+              //   id: "billing",
+              //   name: "Billing",
+              //   icon: CreditCard,
+              // },
               {
                 id: "settings",
                 name: "Settings",
@@ -1460,13 +1659,13 @@ export default function AdminDashboard({
           </nav>
 
           {/* Sign Out Button */}
-          <div className="p-4 border-t border-gray-200">
+          <div className="p-4 border-t border-gray-200 h-16 bg-black">
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button
                   variant="outline"
-                  className={`w-full text-gray-600 hover:text-red-600 hover:border-red-300 hover:bg-red-50 transition-colors ${
-                    navCollapsed ? "px-2" : ""
+                  className={`w-full text-gray-600 bg-black hover:text-red-600 hover:border-red-300 hover:bg-black transition-colors hover:cursor-pointer ${
+                    navCollapsed ? "px-2 hover:cursor-pointer" : ""
                   }`}
                   onClick={() => {
                     if (window.confirm("Are you sure you want to sign out?")) {
@@ -1478,15 +1677,19 @@ export default function AdminDashboard({
                   }}
                 >
                   <LogOut
-                    className={`w-4 h-4 ${
+                    className={`w-4 h-4 text-white hover:text-black ${
                       navCollapsed ? "" : "mr-2"
                     } flex-shrink-0`}
                   />
-                  {!navCollapsed && <span>Sign Out</span>}
+                  {!navCollapsed && (
+                    <span className="text-white hover:text-black">
+                      Sign Out
+                    </span>
+                  )}
                 </Button>
               </TooltipTrigger>
               <TooltipContent side="right">
-                <p>Sign out of admin dashboard</p>
+                <p>Sign out of Admin Dashboard</p>
               </TooltipContent>
             </Tooltip>
           </div>
@@ -1558,11 +1761,11 @@ export default function AdminDashboard({
                     name: "Analytics",
                     icon: BarChart3,
                   },
-                  {
-                    id: "billing",
-                    name: "Billing",
-                    icon: CreditCard,
-                  },
+                  // {
+                  //   id: "billing",
+                  //   name: "Billing",
+                  //   icon: CreditCard,
+                  // },
                   {
                     id: "settings",
                     name: "Settings",
@@ -1613,11 +1816,10 @@ export default function AdminDashboard({
         </Sheet>
 
         {/* Main Content Area */}
-        <main className="flex-1 overflow-auto">
+        <main className="flex-1 flex flex-col overflow-hidden">
           {/* Top Header Bar */}
-          <header className="bg-white border-b border-gray-200 px-4 md:px-8 py-4 sticky top-0 z-50">
+          <header className="bg-white border-b border-gray-200 px-4 md:px-8 py-4 flex-shrink-0">
             <div className="flex items-center justify-between">
-              {/* Mobile Menu Button */}
               <button
                 onClick={() => setMobileMenuOpen(true)}
                 className="md:hidden p-2 -ml-2 rounded-lg hover:bg-gray-100 transition-colors"
@@ -1626,7 +1828,7 @@ export default function AdminDashboard({
                 <Menu className="w-6 h-6 text-gray-600" />
               </button>
 
-              <div className="flex-1 md:flex-none">
+              {/* <div className="flex-1 md:flex-none">
                 <h2 className="text-lg md:text-2xl font-bold text-gray-900 truncate">
                   {activeTab === "overview" && "Dashboard Overview"}
                   {activeTab === "templates" && "Certificate Templates"}
@@ -1639,10 +1841,10 @@ export default function AdminDashboard({
                 <p className="text-xs md:text-sm text-gray-500 mt-1 truncate">
                   {currentOrganization?.name || "Loading..."}
                 </p>
-              </div>
+              </div> */}
 
               {currentOrganization && (
-                <div className="hidden md:flex items-center gap-2">
+                <div className="flex items-center gap-2">
                   <img
                     src={currentOrganization.logo}
                     alt={currentOrganization.name}
@@ -1653,892 +1855,1272 @@ export default function AdminDashboard({
             </div>
           </header>
 
-          {/* Content */}
-          <div className="p-4 md:p-8">
-            {/* Tab Content */}
-            {activeTab === "overview" && (
-              <div className="space-y-4 md:space-y-6">
-                {/* Welcome Card */}
-                <Card className="border-l-4 border-l-primary">
-                  <CardContent className="pt-6">
-                    <div className="flex items-center justify-between gap-4">
-                      <div className="flex-1 min-w-0">
-                        <h2 className="text-xl md:text-2xl font-bold mb-2 truncate">
-                          Welcome, {user.username}
-                        </h2>
-                        <p className="text-muted-foreground mb-2 text-sm md:text-base">
-                          {currentOrganization
-                            ? `Managing certificate programs for ${currentOrganization.name}`
-                            : organizations.length > 0
-                            ? `Managing certificate programs for your organization`
-                            : "Get started by creating your organization and first program"}
-                        </p>
-                        {currentOrganization && (
-                          <div className="flex items-center gap-2 text-muted-foreground">
-                            <Tooltip>
-                              <TooltipTrigger asChild>
-                                <div className="cursor-default">
-                                  <Shield className="w-4 h-4" />
-                                </div>
-                              </TooltipTrigger>
-                              <TooltipContent>
-                                <p>Organization administrator access</p>
-                              </TooltipContent>
-                            </Tooltip>
-                            <span className="text-xs md:text-sm">
-                              Organization Administrator
-                            </span>
-                          </div>
-                        )}
-                      </div>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <div className="cursor-default hidden md:block">
-                            <Award className="w-16 h-16 text-primary opacity-10" />
-                          </div>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Certificate Management System</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                {/* Organization Setup Prompt - Only show if user has no organization */}
-                {!currentOrganization && (
-                  <Card className="border-2 border-primary/20 bg-gradient-to-br from-primary/5 to-primary/10">
+          {/* Scrollable Content */}
+          <div className="flex-1 overflow-y-auto">
+            <div className="p-4 md:p-8">
+              {/* Tab Content */}
+              {activeTab === "overview" && (
+                <div className="space-y-4 md:space-y-6">
+                  {/* Welcome Card */}
+                  <Card className="border-l-4 border-l-primary">
                     <CardContent className="pt-6">
-                      <div className="flex flex-col md:flex-row items-center gap-4">
-                        <div className="flex-shrink-0">
-                          <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
-                            <Building2 className="w-8 h-8 text-primary" />
-                          </div>
-                        </div>
-                        <div className="flex-1 text-center md:text-left">
-                          <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                            Complete Your Setup
-                          </h3>
-                          <p className="text-sm text-gray-600 mb-4">
-                            Add your organization name to get started with
-                            creating certificate programs and issuing
-                            professional certificates.
+                      <div className="flex items-center justify-between gap-4">
+                        <div className="flex-1 min-w-0">
+                          <h2 className="text-xl md:text-2xl font-bold mb-2 truncate">
+                            Welcome, {user.username}
+                          </h2>
+                          <p className="text-muted-foreground mb-2 text-sm md:text-base">
+                            {currentOrganization
+                              ? `Managing certificate programs for ${currentOrganization.name}`
+                              : organizations.length > 0
+                              ? `Managing certificate programs for your organization`
+                              : "Get started by creating your organization and first program"}
                           </p>
-                          <Button
-                            onClick={() => setActiveTab("settings")}
-                            className="bg-primary hover:bg-primary/90"
-                          >
-                            <Building2 className="w-4 h-4 mr-2" />
-                            Add Organization Name
-                          </Button>
+                          {currentOrganization && (
+                            <div className="flex items-center gap-2 text-muted-foreground">
+                              <Tooltip>
+                                <TooltipTrigger asChild>
+                                  <div className="cursor-default">
+                                    <Shield className="w-4 h-4" />
+                                  </div>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                  <p>Organization administrator access</p>
+                                </TooltipContent>
+                              </Tooltip>
+                              <span className="text-xs md:text-sm">
+                                Organization Administrator
+                              </span>
+                            </div>
+                          )}
                         </div>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <div className="cursor-default hidden md:block">
+                              {/* <Award className="w-16 h-16 text-primary opacity-10" /> */}
+                              <img
+                                src={currentOrganization?.logo}
+                                alt="Logo"
+                                className="w-16 h-16"
+                              />
+                            </div>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>Certificate Management System</p>
+                          </TooltipContent>
+                        </Tooltip>
                       </div>
-                    </CardContent>
-                  </Card>
-                )}
-
-                {/* Stats and Quick Actions Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
-                  {/* Stats Cards */}
-                  <Card>
-                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 p-3 md:p-6">
-                      <CardTitle className="text-xs md:text-sm font-medium truncate">
-                        Total Certificates
-                      </CardTitle>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <div className="cursor-default flex-shrink-0">
-                            <Award className="h-3 w-3 md:h-4 md:w-4 text-muted-foreground" />
-                          </div>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Total certificates issued</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </CardHeader>
-                    <CardContent className="p-3 md:p-6 pt-0">
-                      <div className="text-xl md:text-2xl font-bold">
-                        {stats.totalCertificates.toLocaleString()}
-                      </div>
-                      <p className="text-xs text-muted-foreground truncate">
-                        {currentOrganization
-                          ? "Your organization"
-                          : "Your certificates"}
-                      </p>
                     </CardContent>
                   </Card>
 
-                  <Card>
-                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 p-3 md:p-6">
-                      <CardTitle className="text-xs md:text-sm font-medium truncate">
-                        Testimonials
-                      </CardTitle>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <div className="cursor-default flex-shrink-0">
-                            <MessageSquare className="h-3 w-3 md:h-4 md:w-4 text-muted-foreground" />
+                  {/* Organization Setup Prompt - Only show if user has no organization */}
+                  {!currentOrganization && (
+                    <Card className="border-2 border-primary/20 bg-gradient-to-br from-primary/5 to-primary/10">
+                      <CardContent className="pt-6">
+                        <div className="flex flex-col md:flex-row items-center gap-4">
+                          <div className="flex-shrink-0">
+                            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
+                              <Building2 className="w-8 h-8 text-primary" />
+                            </div>
                           </div>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Student feedback received</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </CardHeader>
-                    <CardContent className="p-3 md:p-6 pt-0">
-                      <div className="text-xl md:text-2xl font-bold">
-                        {stats.totalTestimonials.toLocaleString()}
-                      </div>
-                      <p className="text-xs text-muted-foreground truncate">
-                        {Math.floor(
-                          (stats.totalTestimonials /
-                            Math.max(stats.totalCertificates, 1)) *
-                            100
-                        )}
-                        % response rate
-                      </p>
-                    </CardContent>
-                  </Card>
+                          <div className="flex-1 text-center md:text-left">
+                            <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                              Complete Your Setup
+                            </h3>
+                            <p className="text-sm text-gray-600 mb-4">
+                              Add your organization name to get started with
+                              creating certificate programs and issuing
+                              professional certificates.
+                            </p>
+                            <Button
+                              onClick={() => setActiveTab("settings")}
+                              className="bg-primary hover:bg-primary/90"
+                            >
+                              <Building2 className="w-4 h-4 mr-2" />
+                              Add Organization Name
+                            </Button>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  )}
+
+                  {/* Stats and Quick Actions Grid */}
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+                    {/* Stats Cards */}
+                    <Card>
+                      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 p-3 md:p-6">
+                        <CardTitle className="text-xs md:text-sm font-medium truncate">
+                          Total Certificates
+                        </CardTitle>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <div className="cursor-default flex-shrink-0">
+                              <Award className="h-3 w-3 md:h-4 md:w-4 text-muted-foreground" />
+                            </div>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>Total certificates issued</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </CardHeader>
+                      <CardContent className="p-3 md:p-6 pt-0">
+                        <div className="text-xl md:text-2xl font-bold">
+                          {stats.totalCertificates.toLocaleString()}
+                        </div>
+                        <p className="text-xs text-muted-foreground truncate">
+                          {currentOrganization
+                            ? "Your organization"
+                            : "Your certificates"}
+                        </p>
+                      </CardContent>
+                    </Card>
+
+                    <Card>
+                      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 p-3 md:p-6">
+                        <CardTitle className="text-xs md:text-sm font-medium truncate">
+                          Testimonials
+                        </CardTitle>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <div className="cursor-default flex-shrink-0">
+                              <MessageSquare className="h-3 w-3 md:h-4 md:w-4 text-muted-foreground" />
+                            </div>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>Student feedback received</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </CardHeader>
+                      <CardContent className="p-3 md:p-6 pt-0">
+                        <div className="text-xl md:text-2xl font-bold">
+                          {stats.totalTestimonials.toLocaleString()}
+                        </div>
+                        <p className="text-xs text-muted-foreground truncate">
+                          {Math.floor(
+                            (stats.totalTestimonials /
+                              Math.max(stats.totalCertificates, 1)) *
+                              100
+                          )}
+                          % response rate
+                        </p>
+                      </CardContent>
+                    </Card>
+
+                    {/* Quick Actions */}
+                    <Card>
+                      <CardHeader>
+                        <CardTitle className="flex items-center gap-2 text-xs md:text-sm">
+                          <Tooltip>
+                            <TooltipTrigger asChild>
+                              <div className="cursor-default">
+                                <Zap className="w-4 h-4 md:w-5 md:h-5" />
+                              </div>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p>Quick actions and shortcuts</p>
+                            </TooltipContent>
+                          </Tooltip>
+                          Quick Actions
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent className="space-y-2">
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Button
+                              onClick={navigateToGenerate}
+                              className="w-full h-12 flex items-center justify-center gap-2"
+                              size="sm"
+                              style={{
+                                background:
+                                  "linear-gradient(135deg, rgba(var(--primary-rgb),0.9), rgba(var(--primary-rgb),1))",
+                              }}
+                            >
+                              <Award className="w-4 h-4" />
+                              Generate Certificates
+                            </Button>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>Generate new certificates for students</p>
+                          </TooltipContent>
+                        </Tooltip>
+
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Button
+                              variant="outline"
+                              onClick={() => setActiveTab("analytics")}
+                              className="w-full h-12 flex items-center justify-center gap-2"
+                              size="sm"
+                            >
+                              <BarChart3 className="w-4 h-4" />
+                              View Analytics
+                            </Button>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>View detailed analytics and reports</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </CardContent>
+                    </Card>
+                  </div>
 
                   {/* Quick Actions */}
                   <Card>
                     <CardHeader>
-                      <CardTitle className="flex items-center gap-2 text-xs md:text-sm">
+                      <CardTitle>Quick Actions</CardTitle>
+                      <CardDescription>
+                        Get started with common tasks
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        {/* Generate Certificate */}
                         <Tooltip>
                           <TooltipTrigger asChild>
-                            <div className="cursor-default">
-                              <Zap className="w-4 h-4 md:w-5 md:h-5" />
-                            </div>
+                            <button
+                              onClick={navigateToGenerate}
+                              className="flex flex-col items-center gap-3 p-6 border-2 border-dashed rounded-lg hover:border-primary hover:bg-primary/5 transition-all group"
+                            >
+                              <div
+                                className="w-12 h-12 rounded-lg flex items-center justify-center"
+                                style={{
+                                  background: `linear-gradient(135deg, ${
+                                    (currentOrganization || user.subsidiary)
+                                      ?.primaryColor || "#6366f1"
+                                  }40, ${
+                                    (currentOrganization || user.subsidiary)
+                                      ?.primaryColor || "#6366f1"
+                                  }60)`,
+                                }}
+                              >
+                                <Zap
+                                  className="w-6 h-6"
+                                  style={{
+                                    color:
+                                      (currentOrganization || user.subsidiary)
+                                        ?.primaryColor || "#6366f1",
+                                  }}
+                                />
+                              </div>
+                              <div className="text-center">
+                                <h3 className="font-semibold mb-1">
+                                  Generate Certificate
+                                </h3>
+                                <p className="text-sm text-gray-600">
+                                  Create new certificates
+                                </p>
+                              </div>
+                            </button>
                           </TooltipTrigger>
                           <TooltipContent>
-                            <p>Quick actions and shortcuts</p>
+                            <p>Generate certificates for your students</p>
                           </TooltipContent>
                         </Tooltip>
-                        Quick Actions
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent className="space-y-2">
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <Button
-                            onClick={navigateToGenerate}
-                            className="w-full h-12 flex items-center justify-center gap-2 bg-[rgba(196,117,76,0.915)] bg-[rgb(246,98,20)]"
-                            size="sm"
-                          >
-                            <Award className="w-4 h-4" />
-                            Generate Certificates
-                          </Button>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Generate new certificates for students</p>
-                        </TooltipContent>
-                      </Tooltip>
 
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <Button
-                            variant="outline"
-                            onClick={() => setActiveTab("analytics")}
-                            className="w-full h-12 flex items-center justify-center gap-2"
-                            size="sm"
-                          >
-                            <BarChart3 className="w-4 h-4" />
-                            View Analytics
-                          </Button>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>View detailed analytics and reports</p>
-                        </TooltipContent>
-                      </Tooltip>
+                        {/* Browse Templates */}
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <button
+                              onClick={() => setActiveTab("templates")}
+                              className="flex flex-col items-center gap-3 p-6 border-2 border-dashed rounded-lg hover:border-primary hover:bg-primary/5 transition-all group"
+                            >
+                              <div
+                                className="w-12 h-12 rounded-lg flex items-center justify-center"
+                                style={{
+                                  background: `linear-gradient(135deg, ${
+                                    (currentOrganization || user.subsidiary)
+                                      ?.primaryColor || "#6366f1"
+                                  }40, ${
+                                    (currentOrganization || user.subsidiary)
+                                      ?.primaryColor || "#6366f1"
+                                  }60)`,
+                                }}
+                              >
+                                <FileText
+                                  className="w-6 h-6"
+                                  style={{
+                                    color:
+                                      (currentOrganization || user.subsidiary)
+                                        ?.primaryColor || "#6366f1",
+                                  }}
+                                />
+                              </div>
+                              <div className="text-center">
+                                <h3 className="font-semibold mb-1">
+                                  Browse Templates
+                                </h3>
+                                <p className="text-sm text-gray-600">
+                                  Explore certificate designs
+                                </p>
+                              </div>
+                            </button>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>View and select certificate templates</p>
+                          </TooltipContent>
+                        </Tooltip>
+
+                        {/* Create Custom Template */}
+                        {/* <Tooltip>
+                          <TooltipTrigger asChild>
+                            <button
+                              disabled
+                              className="flex flex-col items-center gap-3 p-6 border-2 border-dashed rounded-lg relative overflow-hidden opacity-60 cursor-not-allowed"
+                            >
+                              <div className="absolute inset-0 bg-gradient-to-br from-gray-900/80 to-gray-800/80 backdrop-blur-sm flex items-center justify-center z-10">
+                                <div className="text-center">
+                                  <Sparkles className="w-8 h-8 text-orange-400 mx-auto mb-2" />
+                                  <p className="text-white font-semibold text-lg">
+                                    Coming Soon
+                                  </p>
+                                  <p className="text-gray-300 text-xs mt-1">
+                                    In Development
+                                  </p>
+                                </div>
+                              </div>
+                              <div className="absolute top-2 right-2">
+                                <Badge className="bg-gradient-to-r from-amber-500 to-orange-600 text-white text-xs px-2 py-0.5">
+                                  Premium
+                                </Badge>
+                              </div>
+                              <div
+                                className="w-12 h-12 rounded-lg flex items-center justify-center"
+                                style={{
+                                  background: `linear-gradient(135deg, ${
+                                    (currentOrganization || user.subsidiary)
+                                      ?.primaryColor || "#6366f1"
+                                  }40, ${
+                                    (currentOrganization || user.subsidiary)
+                                      ?.primaryColor || "#6366f1"
+                                  }60)`,
+                                }}
+                              >
+                                <Palette
+                                  className="w-6 h-6"
+                                  style={{
+                                    color:
+                                      (currentOrganization || user.subsidiary)
+                                        ?.primaryColor || "#6366f1",
+                                  }}
+                                />
+                              </div>
+                              <div className="text-center">
+                                <h3 className="font-semibold mb-1">
+                                  Create Custom Template
+                                </h3>
+                                <p className="text-sm text-gray-600">
+                                  Design your own certificate
+                                </p>
+                              </div>
+                            </button>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>
+                              Build a custom certificate template with our
+                              visual editor
+                            </p>
+                          </TooltipContent>
+                        </Tooltip> */}
+
+                        {/* View Analytics */}
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <button
+                              onClick={() => setActiveTab("certificates")}
+                              className="flex flex-col items-center gap-3 p-6 border-2 border-dashed rounded-lg hover:border-primary hover:bg-primary/5 transition-all group"
+                            >
+                              <div
+                                className="w-12 h-12 rounded-lg flex items-center justify-center"
+                                style={{
+                                  background: `linear-gradient(135deg, ${
+                                    (currentOrganization || user.subsidiary)
+                                      ?.primaryColor || "#6366f1"
+                                  }40, ${
+                                    (currentOrganization || user.subsidiary)
+                                      ?.primaryColor || "#6366f1"
+                                  }60)`,
+                                }}
+                              >
+                                <Award
+                                  className="w-6 h-6"
+                                  style={{
+                                    color:
+                                      (currentOrganization || user.subsidiary)
+                                        ?.primaryColor || "#6366f1",
+                                  }}
+                                />
+                              </div>
+                              <div className="text-center">
+                                <h3 className="font-semibold mb-1">
+                                  View Certificates
+                                </h3>
+                                <p className="text-sm text-gray-600">
+                                  Browse all certificates
+                                </p>
+                              </div>
+                            </button>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>View certificate generation statistics</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </div>
                     </CardContent>
                   </Card>
                 </div>
+              )}
 
-                {/* Quick Actions */}
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Quick Actions</CardTitle>
-                    <CardDescription>
-                      Get started with common tasks
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                      {/* Generate Certificate */}
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <button
-                            onClick={navigateToGenerate}
-                            className="flex flex-col items-center gap-3 p-6 border-2 border-dashed rounded-lg hover:border-primary hover:bg-primary/5 transition-all group"
-                          >
-                            <div
-                              className="w-12 h-12 rounded-lg flex items-center justify-center"
-                              style={{
-                                background: `linear-gradient(135deg, ${
-                                  (currentOrganization || user.subsidiary)
-                                    ?.primaryColor || "#6366f1"
-                                }40, ${
-                                  (currentOrganization || user.subsidiary)
-                                    ?.primaryColor || "#6366f1"
-                                }60)`,
-                              }}
-                            >
-                              <Zap
-                                className="w-6 h-6"
-                                style={{
-                                  color:
-                                    (currentOrganization || user.subsidiary)
-                                      ?.primaryColor || "#6366f1",
-                                }}
-                              />
+              {activeTab === "generate" && (
+                <div className="space-y-4 md:space-y-6">
+                  {/* Page Header */}
+                  <Card className="border-l-4 border-l-primary">
+                    <CardContent className="pt-6">
+                      <div className="flex items-center justify-between gap-4">
+                        <div className="flex-1 min-w-0">
+                          <h2 className="text-xl md:text-2xl font-bold mb-2 truncate">
+                            Generate Certificates
+                          </h2>
+                          <p className="text-muted-foreground mb-2 text-sm md:text-base">
+                            Create beautiful, professional certificates for your
+                            students
+                          </p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  {/* Certificate Generation Workflow */}
+                  <Tabs
+                    value={genActiveTab}
+                    onValueChange={setGenActiveTab}
+                    className="w-full"
+                  >
+                    <TabsList className="grid w-full grid-cols-3">
+                      <TabsTrigger value="setup">Setup</TabsTrigger>
+                      <TabsTrigger
+                        value="generation"
+                        disabled={!genSelectedTemplate}
+                      >
+                        Generation
+                      </TabsTrigger>
+                      <TabsTrigger
+                        value="results"
+                        disabled={genGeneratedCertificates.length === 0}
+                      >
+                        Results
+                      </TabsTrigger>
+                    </TabsList>
+
+                    <TabsContent value="setup" className="space-y-6 mt-6">
+                      {/* Short Link Info Banner */}
+                      <Card className="border-l-4 border-l-green-500 bg-gradient-to-r from-green-50 to-emerald-50">
+                        <CardContent className="pt-6">
+                          <div className="flex items-start gap-4">
+                            <div className="flex-shrink-0 w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                              <Link2 className="w-6 h-6 text-green-600" />
                             </div>
-                            <div className="text-center">
-                              <h3 className="font-semibold mb-1">
-                                Generate Certificate
-                              </h3>
-                              <p className="text-sm text-gray-600">
-                                Create new certificates
+                            <div className="flex-1">
+                              <h4 className="font-semibold text-gray-900 mb-2">
+                                ✨ Smart Short Links Enabled
+                              </h4>
+                              <p className="text-sm text-gray-700 mb-3">
+                                All certificates now include easy-to-share short
+                                links that are <strong>60% shorter</strong> than
+                                standard URLs!
                               </p>
-                            </div>
-                          </button>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Generate certificates for your students</p>
-                        </TooltipContent>
-                      </Tooltip>
-
-                      {/* Browse Templates */}
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <button
-                            onClick={() => setActiveTab("templates")}
-                            className="flex flex-col items-center gap-3 p-6 border-2 border-dashed rounded-lg hover:border-primary hover:bg-primary/5 transition-all group"
-                          >
-                            <div
-                              className="w-12 h-12 rounded-lg flex items-center justify-center"
-                              style={{
-                                background: `linear-gradient(135deg, ${
-                                  (currentOrganization || user.subsidiary)
-                                    ?.primaryColor || "#6366f1"
-                                }40, ${
-                                  (currentOrganization || user.subsidiary)
-                                    ?.primaryColor || "#6366f1"
-                                }60)`,
-                              }}
-                            >
-                              <FileText
-                                className="w-6 h-6"
-                                style={{
-                                  color:
-                                    (currentOrganization || user.subsidiary)
-                                      ?.primaryColor || "#6366f1",
-                                }}
-                              />
-                            </div>
-                            <div className="text-center">
-                              <h3 className="font-semibold mb-1">
-                                Browse Templates
-                              </h3>
-                              <p className="text-sm text-gray-600">
-                                Explore certificate designs
-                              </p>
-                            </div>
-                          </button>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>View and select certificate templates</p>
-                        </TooltipContent>
-                      </Tooltip>
-
-                      {/* Create Custom Template */}
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <button
-                            disabled
-                            className="flex flex-col items-center gap-3 p-6 border-2 border-dashed rounded-lg relative overflow-hidden opacity-60 cursor-not-allowed"
-                          >
-                            {/* Coming Soon overlay */}
-                            <div className="absolute inset-0 bg-gradient-to-br from-gray-900/80 to-gray-800/80 backdrop-blur-sm flex items-center justify-center z-10">
-                              <div className="text-center">
-                                <Sparkles className="w-8 h-8 text-orange-400 mx-auto mb-2" />
-                                <p className="text-white font-semibold text-lg">
-                                  Coming Soon
-                                </p>
-                                <p className="text-gray-300 text-xs mt-1">
-                                  In Development
-                                </p>
+                              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+                                <div className="bg-white p-3 rounded border border-green-200">
+                                  <p className="text-gray-500 mb-1">
+                                    Before (150+ characters):
+                                  </p>
+                                  <code className="text-red-700 break-all">
+                                    https://certifyer.online/#/certificate/eyJvcmdJZCI6Im9yZ18xMjM...
+                                  </code>
+                                </div>
+                                <div className="bg-white p-3 rounded border border-green-200">
+                                  <p className="text-gray-500 mb-1">
+                                    After (60 characters):
+                                  </p>
+                                  <code className="text-green-700 font-semibold">
+                                    https://certifyer.online/#/c/Ab3xY9
+                                  </code>
+                                </div>
+                              </div>
+                              <div className="flex items-center gap-2 mt-3 text-xs text-gray-600">
+                                <CheckCircle className="w-4 h-4 text-green-600" />
+                                <span>Click tracking enabled</span>
+                                <Eye className="w-4 h-4 text-green-600 ml-2" />
+                                <span>View analytics in Analytics tab</span>
                               </div>
                             </div>
-
-                            {/* Premium badge */}
-                            <div className="absolute top-2 right-2">
-                              <Badge className="bg-gradient-to-r from-amber-500 to-orange-600 text-white text-xs px-2 py-0.5">
-                                Premium
-                              </Badge>
-                            </div>
-                            <div
-                              className="w-12 h-12 rounded-lg flex items-center justify-center"
-                              style={{
-                                background: `linear-gradient(135deg, ${
-                                  (currentOrganization || user.subsidiary)
-                                    ?.primaryColor || "#6366f1"
-                                }40, ${
-                                  (currentOrganization || user.subsidiary)
-                                    ?.primaryColor || "#6366f1"
-                                }60)`,
-                              }}
-                            >
-                              <Palette
-                                className="w-6 h-6"
-                                style={{
-                                  color:
-                                    (currentOrganization || user.subsidiary)
-                                      ?.primaryColor || "#6366f1",
-                                }}
-                              />
-                            </div>
-                            <div className="text-center">
-                              <h3 className="font-semibold mb-1">
-                                Create Custom Template
-                              </h3>
-                              <p className="text-sm text-gray-600">
-                                Design your own certificate
-                              </p>
-                            </div>
-                          </button>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>
-                            Build a custom certificate template with our visual
-                            editor
-                          </p>
-                        </TooltipContent>
-                      </Tooltip>
-
-                      {/* View Analytics */}
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <button
-                            onClick={() => setActiveTab("certificates")}
-                            className="flex flex-col items-center gap-3 p-6 border-2 border-dashed rounded-lg hover:border-primary hover:bg-primary/5 transition-all group"
-                          >
-                            <div
-                              className="w-12 h-12 rounded-lg flex items-center justify-center"
-                              style={{
-                                background: `linear-gradient(135deg, ${
-                                  (currentOrganization || user.subsidiary)
-                                    ?.primaryColor || "#6366f1"
-                                }40, ${
-                                  (currentOrganization || user.subsidiary)
-                                    ?.primaryColor || "#6366f1"
-                                }60)`,
-                              }}
-                            >
-                              <Award
-                                className="w-6 h-6"
-                                style={{
-                                  color:
-                                    (currentOrganization || user.subsidiary)
-                                      ?.primaryColor || "#6366f1",
-                                }}
-                              />
-                            </div>
-                            <div className="text-center">
-                              <h3 className="font-semibold mb-1">
-                                View Certificates
-                              </h3>
-                              <p className="text-sm text-gray-600">
-                                Browse all certificates
-                              </p>
-                            </div>
-                          </button>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>View certificate generation statistics</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-            )}
-
-            {activeTab === "generate" && (
-              <div className="space-y-4 md:space-y-6">
-                {/* Page Header */}
-                <Card className="border-l-4 border-l-primary">
-                  <CardContent className="pt-6">
-                    <div className="flex items-center justify-between gap-4">
-                      <div className="flex-1 min-w-0">
-                        <h2 className="text-xl md:text-2xl font-bold mb-2 truncate">
-                          Generate Certificates
-                        </h2>
-                        <p className="text-muted-foreground mb-2 text-sm md:text-base">
-                          Create beautiful, professional certificates for your
-                          students
-                        </p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                {/* Certificate Generation Workflow */}
-                <Tabs
-                  value={genActiveTab}
-                  onValueChange={setGenActiveTab}
-                  className="w-full"
-                >
-                  <TabsList className="grid w-full grid-cols-3">
-                    <TabsTrigger value="setup">Setup</TabsTrigger>
-                    <TabsTrigger
-                      value="generation"
-                      disabled={!genSelectedTemplate}
-                    >
-                      Generation
-                    </TabsTrigger>
-                    <TabsTrigger
-                      value="results"
-                      disabled={genGeneratedCertificates.length === 0}
-                    >
-                      Results
-                    </TabsTrigger>
-                  </TabsList>
-
-                  <TabsContent value="setup" className="space-y-6 mt-6">
-                    {/* Choose Template */}
-                    <Card>
-                      <CardHeader>
-                        <CardTitle className="flex items-center gap-2">
-                          <Award className="w-5 h-5 text-indigo-600" />
-                          Choose Template
-                        </CardTitle>
-                        <CardDescription>
-                          Select a certificate template to get started
-                        </CardDescription>
-                      </CardHeader>
-                      <CardContent className="space-y-4">
-                        <div className="space-y-2">
-                          <Label>Certificate Template *</Label>
-                          <div
-                            onClick={() => setActiveTab("templates")}
-                            className="flex items-center gap-3 p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-indigo-400 hover:bg-indigo-50/30 cursor-pointer transition-all group"
-                          >
-                            {genSelectedTemplate ? (
-                              <>
-                                <div className="flex-shrink-0 w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center group-hover:bg-indigo-200 transition-colors">
-                                  <FileText className="w-6 h-6 text-indigo-600" />
-                                </div>
-                                <div className="flex-1 min-w-0">
-                                  <p className="font-semibold text-gray-900">
-                                    {genSelectedTemplateName ||
-                                      "Selected Template"}
-                                  </p>
-                                  <p className="text-sm text-gray-500 capitalize">
-                                    {genSelectedTemplate} style
-                                  </p>
-                                </div>
-                                <Button
-                                  type="button"
-                                  variant="ghost"
-                                  size="sm"
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    setActiveTab("templates");
-                                  }}
-                                  className="text-indigo-600 hover:text-indigo-700 hover:bg-indigo-50"
-                                >
-                                  Change
-                                </Button>
-                              </>
-                            ) : (
-                              <>
-                                <div className="flex-shrink-0 w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center group-hover:bg-indigo-100 transition-colors">
-                                  <Upload className="w-6 h-6 text-gray-400 group-hover:text-indigo-600 transition-colors" />
-                                </div>
-                                <div className="flex-1">
-                                  <p className="font-semibold text-gray-900">
-                                    Choose a certificate template
-                                  </p>
-                                  <p className="text-sm text-gray-500">
-                                    Select from previously used or browse all
-                                    templates
-                                  </p>
-                                </div>
-                              </>
-                            )}
                           </div>
-                        </div>
+                        </CardContent>
+                      </Card>
 
-                        <div className="flex justify-end">
-                          <Button
-                            onClick={() => {
-                              setGenActiveTab("generation");
-                              // Clear previous results when starting new generation
-                              setGenGeneratedCertificates([]);
-                            }}
-                            disabled={!genSelectedTemplate}
-                          >
-                            Next: Enter Certificate Details
-                          </Button>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </TabsContent>
-
-                  <TabsContent value="generation" className="space-y-6 mt-6">
-                    {/* Certificate Information */}
-                    <Card>
-                      <CardHeader>
-                        <CardTitle className="flex items-center gap-2">
-                          <FileText className="w-5 h-5 text-indigo-600" />
-                          Certificate Information
-                        </CardTitle>
-                        <CardDescription>
-                          Enter all the details for the certificate - these will
-                          be displayed on the generated certificates
-                        </CardDescription>
-                      </CardHeader>
-                      <CardContent className="space-y-6">
-                        {/* Certificate Header */}
-                        <div className="space-y-2">
-                          <Label htmlFor="genCertificateHeader">
-                            Certificate Header{" "}
-                            <span className="text-red-500">*</span>
-                          </Label>
-                          <Input
-                            id="genCertificateHeader"
-                            value={genCertificateHeader}
-                            onChange={(e) =>
-                              setGenCertificateHeader(e.target.value)
-                            }
-                            placeholder="e.g., Certificate of Completion"
-                          />
-                          <p className="text-xs text-gray-500">
-                            The main title that appears on the certificate
-                          </p>
-                        </div>
-
-                        {/* Program/Course Name */}
-                        <div className="space-y-2">
-                          <Label htmlFor="genCourseTitle">
-                            Program/Course Name{" "}
-                            <span className="text-red-500">*</span>
-                          </Label>
-                          <Input
-                            id="genCourseTitle"
-                            value={genProgramName}
-                            onChange={(e) => setGenProgramName(e.target.value)}
-                            placeholder="e.g., Advanced Data Analytics Program"
-                          />
-                          <p className="text-xs text-gray-500">
-                            The name of the program or course
-                          </p>
-                        </div>
-
-                        {/* Description */}
-                        <div className="space-y-2">
-                          <Label htmlFor="genDescription">
-                            Description (optional)
-                          </Label>
-                          <Textarea
-                            id="genDescription"
-                            value={genProgramDescription}
-                            onChange={(e) =>
-                              setGenProgramDescription(e.target.value)
-                            }
-                            placeholder="Additional details about the achievement or program..."
-                            rows={3}
-                          />
-                          <p className="text-xs text-gray-500">
-                            Optional additional information about the program
-                          </p>
-                        </div>
-
-                        {/* Signatory Selection */}
-                        <div className="space-y-4">
-                          <div className="flex items-center justify-between">
-                            <Label>Signatories (optional)</Label>
-                            <Button
-                              type="button"
-                              variant="ghost"
-                              size="sm"
-                              onClick={() => setActiveTab("settings")}
-                              className="text-xs text-indigo-600 hover:text-indigo-700"
+                      {/* Choose Template */}
+                      <Card>
+                        <CardHeader>
+                          <CardTitle className="flex items-center gap-2">
+                            <Award className="w-5 h-5 text-indigo-600" />
+                            Choose Template
+                          </CardTitle>
+                          <CardDescription>
+                            Select a certificate template to get started
+                          </CardDescription>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
+                          <div className="space-y-2">
+                            <Label>Certificate Template *</Label>
+                            <div
+                              onClick={() => setActiveTab("templates")}
+                              className="flex items-center gap-3 p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-indigo-400 hover:bg-indigo-50/30 cursor-pointer transition-all group"
                             >
-                              <Plus className="w-3 h-3 mr-1" />
-                              Manage Signatories
+                              {genSelectedTemplate ? (
+                                <>
+                                  <div className="flex-shrink-0 w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center group-hover:bg-indigo-200 transition-colors">
+                                    <FileText className="w-6 h-6 text-indigo-600" />
+                                  </div>
+                                  <div className="flex-1 min-w-0">
+                                    <p className="font-semibold text-gray-900">
+                                      {genSelectedTemplateName ||
+                                        "Selected Template"}
+                                    </p>
+                                    <p className="text-sm text-gray-500 capitalize">
+                                      {genSelectedTemplate} style
+                                    </p>
+                                  </div>
+                                  <Button
+                                    type="button"
+                                    variant="ghost"
+                                    size="sm"
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      setActiveTab("templates");
+                                    }}
+                                    className="text-indigo-600 hover:text-indigo-700 hover:bg-indigo-50"
+                                  >
+                                    Change
+                                  </Button>
+                                </>
+                              ) : (
+                                <>
+                                  <div className="flex-shrink-0 w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center group-hover:bg-indigo-100 transition-colors">
+                                    <Upload className="w-6 h-6 text-gray-400 group-hover:text-indigo-600 transition-colors" />
+                                  </div>
+                                  <div className="flex-1">
+                                    <p className="font-semibold text-gray-900">
+                                      Choose a certificate template
+                                    </p>
+                                    <p className="text-sm text-gray-500">
+                                      Select from previously used or browse all
+                                      templates
+                                    </p>
+                                  </div>
+                                </>
+                              )}
+                            </div>
+                          </div>
+
+                          <div className="flex justify-end">
+                            <Button
+                              onClick={() => {
+                                setGenActiveTab("generation");
+                                // Clear previous results when starting new generation
+                                setGenGeneratedCertificates([]);
+                              }}
+                              disabled={!genSelectedTemplate}
+                            >
+                              Next: Enter Certificate Details
                             </Button>
                           </div>
+                        </CardContent>
+                      </Card>
+                    </TabsContent>
 
-                          {genAvailableSignatories.length > 0 ? (
-                            <div className="space-y-3">
-                              {/* Primary Signatory */}
-                              <div className="space-y-2">
-                                <Label htmlFor="genSignatory1" className="text-sm">
-                                  Primary Signatory
-                                </Label>
-                                <Select
-                                  value={genSelectedSignatories[0] || ""}
-                                  onValueChange={(value) => {
-                                    const newSignatories = [...genSelectedSignatories];
-                                    newSignatories[0] = value;
-                                    setGenSelectedSignatories(newSignatories);
-                                    console.log("✍️ Primary signatory selected:", value);
-                                  }}
-                                >
-                                  <SelectTrigger id="genSignatory1">
-                                    <SelectValue placeholder="Select primary signatory" />
-                                  </SelectTrigger>
-                                  <SelectContent>
-                                    <SelectItem value="none">None</SelectItem>
-                                    {genAvailableSignatories.map((sig: any) => (
-                                      <SelectItem key={sig.id} value={sig.id}>
-                                        {sig.name} - {sig.title}
-                                      </SelectItem>
-                                    ))}
-                                  </SelectContent>
-                                </Select>
-                              </div>
+                    <TabsContent value="generation" className="space-y-6 mt-6">
+                      {/* Certificate Information */}
+                      <Card>
+                        <CardHeader>
+                          <CardTitle className="flex items-center gap-2">
+                            <FileText className="w-5 h-5 text-indigo-600" />
+                            Certificate Information
+                          </CardTitle>
+                          <CardDescription>
+                            Enter all the details for the certificate - these
+                            will be displayed on the generated certificates
+                          </CardDescription>
+                        </CardHeader>
+                        <CardContent className="space-y-6">
+                          {/* Certificate Header */}
+                          <div className="space-y-2">
+                            <Label htmlFor="genCertificateHeader">
+                              Certificate Header{" "}
+                              <span className="text-red-500">*</span>
+                            </Label>
+                            <Input
+                              id="genCertificateHeader"
+                              value={genCertificateHeader}
+                              onChange={(e) =>
+                                setGenCertificateHeader(e.target.value)
+                              }
+                              placeholder="e.g., Certificate of Completion"
+                            />
+                            <p className="text-xs text-gray-500">
+                              The main title that appears on the certificate
+                            </p>
+                          </div>
 
-                              {/* Secondary Signatory */}
-                              <div className="space-y-2">
-                                <Label htmlFor="genSignatory2" className="text-sm">
-                                  Secondary Signatory
-                                </Label>
-                                <Select
-                                  value={genSelectedSignatories[1] || ""}
-                                  onValueChange={(value) => {
-                                    const newSignatories = [...genSelectedSignatories];
-                                    newSignatories[1] = value;
-                                    setGenSelectedSignatories(newSignatories);
-                                    console.log("✍️ Secondary signatory selected:", value);
-                                  }}
-                                >
-                                  <SelectTrigger id="genSignatory2">
-                                    <SelectValue placeholder="Select secondary signatory" />
-                                  </SelectTrigger>
-                                  <SelectContent>
-                                    <SelectItem value="none">None</SelectItem>
-                                    {genAvailableSignatories.map((sig: any) => (
-                                      <SelectItem key={sig.id} value={sig.id}>
-                                        {sig.name} - {sig.title}
-                                      </SelectItem>
-                                    ))}
-                                  </SelectContent>
-                                </Select>
-                              </div>
+                          {/* Program/Course Name */}
+                          <div className="space-y-2">
+                            <Label htmlFor="genCourseTitle">
+                              Program/Course Name{" "}
+                              <span className="text-red-500">*</span>
+                            </Label>
+                            <Input
+                              id="genCourseTitle"
+                              value={genProgramName}
+                              onChange={(e) =>
+                                setGenProgramName(e.target.value)
+                              }
+                              placeholder="e.g., Advanced Data Analytics Program"
+                            />
+                            <p className="text-xs text-gray-500">
+                              The name of the program or course
+                            </p>
+                          </div>
+
+                          {/* Description */}
+                          <div className="space-y-2">
+                            <Label htmlFor="genDescription">
+                              Description (optional)
+                            </Label>
+                            <Textarea
+                              id="genDescription"
+                              value={genProgramDescription}
+                              onChange={(e) =>
+                                setGenProgramDescription(e.target.value)
+                              }
+                              placeholder="Additional details about the achievement or program..."
+                              rows={3}
+                            />
+                            <p className="text-xs text-gray-500">
+                              Optional additional information about the program
+                            </p>
+                          </div>
+
+                          {/* Signatory Selection */}
+                          <div className="space-y-4">
+                            <div className="flex items-center justify-between">
+                              <Label>Signatories (optional)</Label>
+                              <Button
+                                type="button"
+                                variant="ghost"
+                                size="sm"
+                                onClick={() => setActiveTab("settings")}
+                                className="text-xs text-indigo-600 hover:text-indigo-700"
+                              >
+                                <Plus className="w-3 h-3 mr-1" />
+                                Manage Signatories
+                              </Button>
                             </div>
-                          ) : (
-                            <Alert>
-                              <AlertCircle className="h-4 w-4" />
-                              <AlertDescription>
-                                No signatories configured. Go to Settings to add signatories.
-                              </AlertDescription>
-                            </Alert>
-                          )}
-                        </div>
 
-                        {/* Completion Date */}
-                        <div className="space-y-2">
-                          <Label htmlFor="genCompletionDateGen">
-                            Completion Date{" "}
-                            <span className="text-red-500">*</span>
-                          </Label>
-                          <Input
-                            id="genCompletionDateGen"
-                            type="date"
-                            value={genCompletionDate}
-                            onChange={(e) =>
-                              setGenCompletionDate(e.target.value)
-                            }
-                          />
-                          <p className="text-xs text-gray-500">
-                            The date when the program was completed
-                          </p>
-                        </div>
-{/* Live Certificate Preview */}
-                        {genProgramName &&
-                          genSelectedTemplate &&
-                          currentOrganization && (
-                            <div className="pt-6">
-                              <div className="flex items-center justify-between mb-3">
-                                <div className="flex items-center gap-2">
-                                  <Eye className="w-4 h-4 text-indigo-600" />
-                                  <h4 className="font-medium">Live Preview</h4>
+                            {genAvailableSignatories.length > 0 ? (
+                              <div className="space-y-3">
+                                {/* Primary Signatory */}
+                                <div className="space-y-2">
+                                  <Label
+                                    htmlFor="genSignatory1"
+                                    className="text-sm"
+                                  >
+                                    Primary Signatory
+                                  </Label>
+                                  <Select
+                                    value={genSelectedSignatories[0] || ""}
+                                    onValueChange={(value) => {
+                                      const newSignatories = [
+                                        ...genSelectedSignatories,
+                                      ];
+                                      newSignatories[0] = value;
+                                      setGenSelectedSignatories(newSignatories);
+                                      console.log(
+                                        "✍️ Primary signatory selected:",
+                                        value
+                                      );
+                                    }}
+                                  >
+                                    <SelectTrigger id="genSignatory1">
+                                      <SelectValue placeholder="Select primary signatory" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                      <SelectItem value="none">None</SelectItem>
+                                      {genAvailableSignatories.map(
+                                        (sig: any) => (
+                                          <SelectItem
+                                            key={sig.id}
+                                            value={sig.id}
+                                          >
+                                            {sig.name} - {sig.title}
+                                          </SelectItem>
+                                        )
+                                      )}
+                                    </SelectContent>
+                                  </Select>
                                 </div>
-                                <Badge variant="outline" className="text-xs">
-                                  {genSelectedTemplateName ||
-                                    genSelectedTemplate}
-                                </Badge>
+
+                                {/* Secondary Signatory */}
+                                <div className="space-y-2">
+                                  <Label
+                                    htmlFor="genSignatory2"
+                                    className="text-sm"
+                                  >
+                                    Secondary Signatory
+                                  </Label>
+                                  <Select
+                                    value={genSelectedSignatories[1] || ""}
+                                    onValueChange={(value) => {
+                                      const newSignatories = [
+                                        ...genSelectedSignatories,
+                                      ];
+                                      newSignatories[1] = value;
+                                      setGenSelectedSignatories(newSignatories);
+                                      console.log(
+                                        "✍️ Secondary signatory selected:",
+                                        value
+                                      );
+                                    }}
+                                  >
+                                    <SelectTrigger id="genSignatory2">
+                                      <SelectValue placeholder="Select secondary signatory" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                      <SelectItem value="none">None</SelectItem>
+                                      {genAvailableSignatories.map(
+                                        (sig: any) => (
+                                          <SelectItem
+                                            key={sig.id}
+                                            value={sig.id}
+                                          >
+                                            {sig.name} - {sig.title}
+                                          </SelectItem>
+                                        )
+                                      )}
+                                    </SelectContent>
+                                  </Select>
+                                </div>
                               </div>
-                              <Card className="bg-gradient-to-br from-indigo-50 to-purple-50 border-2 border-indigo-200">
-                                <CardContent className="p-4">
-                                  <div className="bg-white rounded-lg shadow-sm overflow-auto flex items-center justify-center min-h-[300px]">
-                                    <PreviewWrapper
-                                      scale={0.35}
-                                      origin="center"
-                                      wrapperSize={2.5}
-                                    >
-                                      <CertificateRenderer
-                                        templateId={genSelectedTemplate}
-                                        header={genCertificateHeader}
-                                        courseTitle={genProgramName}
-                                        description={genProgramDescription}
-                                        date={genCompletionDate}
-                                        recipientName="Sample Student Name"
-                                        isPreview={true}
-                                        mode="template-selection"
-                                        organizationName={
-                                          currentOrganization.name
-                                        }
-                                        organizationLogo={
-                                          currentOrganization.logo
-                                        }
-                                        customTemplateConfig={
-                                          genCustomTemplateConfig
-                                        }
-                                        signatoryName1={genAvailableSignatories.find((s: any) => s.id === genSelectedSignatories[0])?.name}
-                                        signatoryTitle1={genAvailableSignatories.find((s: any) => s.id === genSelectedSignatories[0])?.title}
-                                        signatureUrl1={genAvailableSignatories.find((s: any) => s.id === genSelectedSignatories[0])?.signatureUrl}
-                                        signatoryName2={genAvailableSignatories.find((s: any) => s.id === genSelectedSignatories[1])?.name}
-                                        signatoryTitle2={genAvailableSignatories.find((s: any) => s.id === genSelectedSignatories[1])?.title}
-                                        signatureUrl2={genAvailableSignatories.find((s: any) => s.id === genSelectedSignatories[1])?.signatureUrl}
-                                      />
-                                    </PreviewWrapper>
+                            ) : (
+                              <Alert>
+                                <AlertCircle className="h-4 w-4" />
+                                <AlertDescription>
+                                  No signatories configured. Go to Settings to
+                                  add signatories.
+                                </AlertDescription>
+                              </Alert>
+                            )}
+                          </div>
+
+                          {/* Completion Date */}
+                          <div className="space-y-2">
+                            <Label htmlFor="genCompletionDateGen">
+                              Completion Date{" "}
+                              <span className="text-red-500">*</span>
+                            </Label>
+                            <Input
+                              id="genCompletionDateGen"
+                              type="date"
+                              value={genCompletionDate}
+                              onChange={(e) =>
+                                setGenCompletionDate(e.target.value)
+                              }
+                            />
+                            <p className="text-xs text-gray-500">
+                              The date when the program was completed
+                            </p>
+                          </div>
+                          {/* Live Certificate Preview */}
+                          {genProgramName &&
+                            genSelectedTemplate &&
+                            currentOrganization && (
+                              <div className="pt-6">
+                                <div className="flex items-center justify-between mb-3">
+                                  <div className="flex items-center gap-2">
+                                    <Eye className="w-4 h-4 text-indigo-600" />
+                                    <h4 className="font-medium">
+                                      Live Preview
+                                    </h4>
                                   </div>
-                                  <p className="text-xs text-gray-600 mt-3 text-center">
-                                    This is how the certificate will appear to
-                                    students
-                                  </p>
+                                  <Badge variant="outline" className="text-xs">
+                                    {genSelectedTemplateName ||
+                                      genSelectedTemplate}
+                                  </Badge>
+                                </div>
+                                <Card className="bg-gradient-to-br from-indigo-50 to-purple-50 border-2 border-indigo-200">
+                                  <CardContent className="p-4">
+                                    <div className="bg-white rounded-lg shadow-sm overflow-auto flex items-center justify-center min-h-[300px]">
+                                      <PreviewWrapper
+                                        scale={0.35}
+                                        origin="center"
+                                        wrapperSize={2.5}
+                                      >
+                                        <CertificateRenderer
+                                          templateId={genSelectedTemplate}
+                                          header={genCertificateHeader}
+                                          courseTitle={genProgramName}
+                                          description={genProgramDescription}
+                                          date={genCompletionDate}
+                                          recipientName="Sample Student Name"
+                                          isPreview={true}
+                                          mode="template-selection"
+                                          organizationName={
+                                            currentOrganization.name
+                                          }
+                                          organizationLogo={
+                                            currentOrganization.logo
+                                          }
+                                          customTemplateConfig={
+                                            genCustomTemplateConfig
+                                          }
+                                          signatoryName1={
+                                            genAvailableSignatories.find(
+                                              (s: any) =>
+                                                s.id ===
+                                                genSelectedSignatories[0]
+                                            )?.name
+                                          }
+                                          signatoryTitle1={
+                                            genAvailableSignatories.find(
+                                              (s: any) =>
+                                                s.id ===
+                                                genSelectedSignatories[0]
+                                            )?.title
+                                          }
+                                          signatureUrl1={
+                                            genAvailableSignatories.find(
+                                              (s: any) =>
+                                                s.id ===
+                                                genSelectedSignatories[0]
+                                            )?.signatureUrl
+                                          }
+                                          signatoryName2={
+                                            genAvailableSignatories.find(
+                                              (s: any) =>
+                                                s.id ===
+                                                genSelectedSignatories[1]
+                                            )?.name
+                                          }
+                                          signatoryTitle2={
+                                            genAvailableSignatories.find(
+                                              (s: any) =>
+                                                s.id ===
+                                                genSelectedSignatories[1]
+                                            )?.title
+                                          }
+                                          signatureUrl2={
+                                            genAvailableSignatories.find(
+                                              (s: any) =>
+                                                s.id ===
+                                                genSelectedSignatories[1]
+                                            )?.signatureUrl
+                                          }
+                                        />
+                                      </PreviewWrapper>
+                                    </div>
+                                    <p className="text-xs text-gray-600 mt-3 text-center">
+                                      This is how the certificate will appear to
+                                      students
+                                    </p>
+                                  </CardContent>
+                                </Card>
+                              </div>
+                            )}
+
+                          {/* Action Buttons */}
+                          <div className="flex gap-3 pt-4 border-t">
+                            <Button
+                              variant="outline"
+                              onClick={() => {
+                                setGenActiveTab("setup");
+                                // Clear previous results when going back to start new generation
+                                setGenGeneratedCertificates([]);
+                              }}
+                              className="flex-1"
+                            >
+                              Back to Template
+                            </Button>
+                            <Button
+                              onClick={genGenerateIndividualCertificate}
+                              disabled={
+                                genIsGenerating ||
+                                !genCertificateHeader.trim() ||
+                                !genProgramName.trim()
+                              }
+                              className="flex-1"
+                            >
+                              {genIsGenerating ? (
+                                <>
+                                  <RefreshCw className="w-4 h-4 mr-2 animate-spin" />
+                                  Generating...
+                                </>
+                              ) : (
+                                <>
+                                  <Award className="w-4 h-4 mr-2" />
+                                  Generate Certificate Link
+                                </>
+                              )}
+                            </Button>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </TabsContent>
+
+                    <TabsContent value="results" className="space-y-6 mt-6">
+                      <Card>
+                        <CardHeader>
+                          <div className="flex items-center justify-between">
+                            <div>
+                              <CardTitle className="flex items-center gap-2">
+                                <CheckCircle className="w-5 h-5 text-green-600" />
+                                Certificate Links Generated Successfully
+                              </CardTitle>
+                              <CardDescription>
+                                {genGeneratedCertificates.length} certificate
+                                link(s) created. Share these with students to
+                                access their certificates.
+                              </CardDescription>
+                            </div>
+                            <div className="flex gap-2">
+                              <Button
+                                variant="outline"
+                                onClick={genExportCertificateList}
+                              >
+                                <Download className="w-4 h-4 mr-2" />
+                                Export List
+                              </Button>
+                              <Button
+                                onClick={() => {
+                                  setGenActiveTab("setup");
+                                  setGenGeneratedCertificates([]);
+                                  setGenCertificateHeader(
+                                    "Certificate of Completion"
+                                  );
+                                  setGenProgramName("");
+                                  setGenProgramDescription("");
+                                  setGenCompletionDate(
+                                    new Date().toISOString().split("T")[0]
+                                  );
+                                  setGenSelectedTemplate("");
+                                  setGenSelectedTemplateName("");
+                                  setGenStudentName("");
+                                  setGenStudentEmail("");
+                                  setGenBulkStudents("");
+                                }}
+                              >
+                                <Plus className="w-4 h-4 mr-2" />
+                                Generate More
+                              </Button>
+                            </div>
+                          </div>
+                        </CardHeader>
+                        <CardContent>
+                          <div className="space-y-4">
+                            {genGeneratedCertificates.map((cert, index) => (
+                              <Card key={cert.id}>
+                                <CardContent className="p-4">
+                                  <div className="flex items-start justify-between gap-4">
+                                    <div className="flex-1 min-w-0">
+                                      <h3 className="font-bold truncate">
+                                        {cert.studentName || cert.courseName}
+                                      </h3>
+                                      <p className="text-sm text-muted-foreground truncate">
+                                        {cert.email || cert.certificateHeader}
+                                      </p>
+                                      {cert.fullShortUrl ? (
+                                        <div className="mt-2 p-2 bg-green-50 border border-green-200 rounded-lg">
+                                          <p className="text-xs text-green-800 font-medium mb-1">
+                                            🔗 Short Link (Easy to Share!)
+                                          </p>
+                                          <code className="text-xs text-green-700 break-all">
+                                            {cert.fullShortUrl}
+                                          </code>
+                                        </div>
+                                      ) : (
+                                        <p className="text-xs text-muted-foreground mt-1">
+                                          Certificate ID: {cert.id}
+                                        </p>
+                                      )}
+                                    </div>
+                                    <div className="flex gap-2 flex-shrink-0">
+                                      <Button
+                                        size="sm"
+                                        variant="outline"
+                                        onClick={() => {
+                                          console.log(
+                                            "📋 Copy URL clicked for cert:",
+                                            {
+                                              id: cert.id,
+                                              certificateUrl:
+                                                cert.certificateUrl,
+                                              shortUrl: cert.fullShortUrl,
+                                            }
+                                          );
+                                          genCopyCertificateUrl(
+                                            cert.certificateUrl,
+                                            cert
+                                          );
+                                        }}
+                                      >
+                                        <Copy className="w-4 h-4 mr-2" />
+                                        {cert.fullShortUrl
+                                          ? "Copy Short Link"
+                                          : "Copy URL"}
+                                      </Button>
+                                      <Button
+                                        size="sm"
+                                        onClick={(e) => {
+                                          const fullUrl =
+                                            cert.fullShortUrl ||
+                                            buildFullCertificateUrl(
+                                              cert.certificateUrl
+                                            );
+                                          console.log(
+                                            "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+                                          );
+                                          console.log(
+                                            "🖱️ VIEW BUTTON CLICKED (Results Tab)"
+                                          );
+                                          console.log(
+                                            "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+                                          );
+                                          console.log(
+                                            "📄 Certificate object:",
+                                            cert
+                                          );
+                                          console.log(
+                                            "🔗 Short URL:",
+                                            cert.fullShortUrl
+                                          );
+                                          console.log("🌐 Full URL:", fullUrl);
+                                          console.log(
+                                            "🌐 Navigating directly with window.location.href..."
+                                          );
+                                          console.log(
+                                            "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+                                          );
+
+                                          // Navigate in the same tab - hash routing works this way!
+                                          window.location.href = fullUrl;
+                                        }}
+                                      >
+                                        <ExternalLink className="w-4 h-4 mr-2" />
+                                        View
+                                      </Button>
+                                    </div>
+                                  </div>
                                 </CardContent>
                               </Card>
-                            </div>
-                          )}
+                            ))}
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </TabsContent>
+                  </Tabs>
+                </div>
+              )}
 
-                        {/* Action Buttons */}
-                        <div className="flex gap-3 pt-4 border-t">
+              {/* Templates Tab */}
+              {activeTab === "templates" && currentOrganization && (
+                <TemplatesPage
+                  onSelectTemplate={(template) => {
+                    console.log("📋 Template selected:", template);
+                    // Store selected template for certificate generation
+                    setGenSelectedTemplate(template.id);
+                    setGenSelectedTemplateName(template.name);
+                    if (!template.isDefault) {
+                      setGenCustomTemplateConfig(template.config);
+                    } else {
+                      setGenCustomTemplateConfig(null);
+                    }
+                    toast.success(`Template "${template.name}" selected!`);
+                    // Optionally navigate to generate tab
+                    setActiveTab("generate");
+                  }}
+                  organization={currentOrganization}
+                  showBuilderButton={true}
+                  accessToken={accessToken}
+                  isPremiumUser={isOrgPremium(currentOrganization)}
+                />
+              )}
+
+              {activeTab === "certificates" && (
+                <div className="space-y-6">
+                  {/* Certificate Management Header */}
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <FileText className="w-5 h-5" />
+                        <h2 className="text-xl">Certificate Management</h2>
+                      </div>
+                      <p className="text-sm text-gray-600 mt-1">
+                        View, manage, and track all issued certificates
+                      </p>
+                    </div>
+                    <Button onClick={() => setActiveTab("generate")}>
+                      <Plus className="w-4 h-4 mr-2" />
+                      Generate Certificates
+                    </Button>
+                  </div>
+
+                  <Card>
+                    <CardContent className="p-6">
+                      {/* Search and Action Bar */}
+                      <div className="flex flex-col sm:flex-row gap-3 mb-6 items-center justify-between">
+                        <div className="relative flex-1 w-full">
+                          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                          <Input
+                            placeholder="Search certificates..."
+                            value={certificateSearch}
+                            onChange={(e) =>
+                              setCertificateSearch(e.target.value)
+                            }
+                            className="pl-10"
+                          />
+                        </div>
+                        <div className="flex gap-2 w-full sm:w-auto">
                           <Button
                             variant="outline"
-                            onClick={() => {
-                              setGenActiveTab("setup");
-                              // Clear previous results when going back to start new generation
-                              setGenGeneratedCertificates([]);
-                            }}
-                            className="flex-1"
+                            size="sm"
+                            onClick={refreshCertificates}
+                            disabled={isRefreshingCertificates}
                           >
-                            Back to Template
+                            <RefreshCw
+                              className={`w-4 h-4 mr-2 ${
+                                isRefreshingCertificates ? "animate-spin" : ""
+                              }`}
+                            />
+                            {isRefreshingCertificates
+                              ? "Refreshing..."
+                              : "Refresh"}
                           </Button>
                           <Button
-                            onClick={genGenerateIndividualCertificate}
-                            disabled={
-                              genIsGenerating ||
-                              !genCertificateHeader.trim() ||
-                              !genProgramName.trim()
-                            }
-                            className="flex-1"
+                            variant="outline"
+                            size="sm"
+                            onClick={() => setActiveTab("generate")}
                           >
-                            {genIsGenerating ? (
-                              <>
-                                <RefreshCw className="w-4 h-4 mr-2 animate-spin" />
-                                Generating...
-                              </>
-                            ) : (
-                              <>
-                                <Award className="w-4 h-4 mr-2" />
-                                Generate Certificate Link
-                              </>
-                            )}
+                            <Plus className="w-4 h-4 mr-2" />
+                            New Certificate
                           </Button>
                         </div>
-                      </CardContent>
-                    </Card>
-                  </TabsContent>
+                      </div>
 
-                  <TabsContent value="results" className="space-y-6 mt-6">
-                    <Card>
-                      <CardHeader>
-                        <div className="flex items-center justify-between">
-                          <div>
-                            <CardTitle className="flex items-center gap-2">
-                              <CheckCircle className="w-5 h-5 text-green-600" />
-                              Certificate Links Generated Successfully
-                            </CardTitle>
-                            <CardDescription>
-                              {genGeneratedCertificates.length} certificate
-                              link(s) created. Share these with students to
-                              access their certificates.
-                            </CardDescription>
+                      {/* Bulk Actions Bar */}
+                      {allCertificates.length > 0 && (
+                        <div className="flex flex-col sm:flex-row gap-3 mb-6 items-center justify-between p-3 bg-gray-50 rounded-lg">
+                          <div className="flex gap-2 items-center">
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={deleteSelectedCertificates}
+                              disabled={selectedCertificates.length === 0}
+                            >
+                              <Trash2 className="w-4 h-4 mr-2" />
+                              Delete Selected ({selectedCertificates.length})
+                            </Button>
                           </div>
                           <div className="flex gap-2">
                             <Button
-                              variant="outline"
-                              onClick={genExportCertificateList}
+                              variant="ghost"
+                              size="sm"
+                              onClick={selectAllCertificates}
                             >
-                              <Download className="w-4 h-4 mr-2" />
-                              Export List
+                              Select All
                             </Button>
                             <Button
-                              onClick={() => {
-                                setGenActiveTab("setup");
-                                setGenGeneratedCertificates([]);
-                                setGenCertificateHeader(
-                                  "Certificate of Completion"
-                                );
-                                setGenProgramName("");
-                                setGenProgramDescription("");
-                                setGenCompletionDate(
-                                  new Date().toISOString().split("T")[0]
-                                );
-                                setGenSelectedTemplate("");
-                                setGenSelectedTemplateName("");
-                                setGenStudentName("");
-                                setGenStudentEmail("");
-                                setGenBulkStudents("");
-                              }}
+                              variant="ghost"
+                              size="sm"
+                              onClick={clearCertificateSelection}
                             >
-                              <Plus className="w-4 h-4 mr-2" />
-                              Generate More
+                              Clear
                             </Button>
                           </div>
                         </div>
-                      </CardHeader>
-                      <CardContent>
-                        <div className="space-y-4">
-                          {genGeneratedCertificates.map((cert, index) => (
-                            <Card key={cert.id}>
-                              <CardContent className="p-4">
-                                <div className="flex items-center justify-between gap-4">
-                                  <div className="flex-1 min-w-0">
-                                    <h3 className="font-bold truncate">
-                                      {cert.courseName}
-                                    </h3>
-                                    <p className="text-sm text-muted-foreground truncate">
-                                      {cert.certificateHeader}
-                                    </p>
-                                    <p className="text-xs text-muted-foreground mt-1">
-                                      Certificate ID: {cert.id}
-                                    </p>
+                      )}
+
+                      {/* Certificate Grid */}
+                      {allCertificates.length > 0 ? (
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                          {allCertificates
+                            .filter(
+                              (cert) =>
+                                cert.courseName
+                                  ?.toLowerCase()
+                                  .includes(certificateSearch.toLowerCase()) ||
+                                cert.certificateHeader
+                                  ?.toLowerCase()
+                                  .includes(certificateSearch.toLowerCase()) ||
+                                cert.studentName
+                                  ?.toLowerCase()
+                                  .includes(certificateSearch.toLowerCase()) ||
+                                cert.email
+                                  ?.toLowerCase()
+                                  .includes(certificateSearch.toLowerCase()) ||
+                                cert.id
+                                  .toLowerCase()
+                                  .includes(certificateSearch.toLowerCase())
+                            )
+                            .map((cert) => (
+                              <Card
+                                key={cert.id}
+                                className="relative hover:shadow-md transition-shadow"
+                              >
+                                <CardContent className="p-5">
+                                  {/* Checkbox in top right */}
+                                  <div className="absolute top-4 right-4">
+                                    <input
+                                      type="checkbox"
+                                      checked={selectedCertificates.includes(
+                                        cert.id
+                                      )}
+                                      onChange={() =>
+                                        toggleCertificateSelection(cert.id)
+                                      }
+                                      className="w-4 h-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 cursor-pointer"
+                                    />
                                   </div>
-                                  <div className="flex gap-2 flex-shrink-0">
+
+                                  {/* Certificate Info */}
+                                  <div className="space-y-3 pr-6">
+                                    <div>
+                                      <h3 className="font-semibold text-gray-900">
+                                        {cert.courseName ||
+                                          cert.program?.name ||
+                                          "Certificate of Completion"}
+                                      </h3>
+                                      <p className="text-sm text-gray-500 mt-1">
+                                        {cert.certificateHeader ||
+                                          cert.studentName ||
+                                          "Certificate Link"}
+                                      </p>
+                                    </div>
+
+                                    <div className="flex items-center gap-1 text-xs text-gray-500">
+                                      <Calendar className="w-3 h-3" />
+                                      <span>
+                                        {new Date(
+                                          cert.generatedAt
+                                        ).toLocaleDateString("en-US", {
+                                          month: "numeric",
+                                          day: "numeric",
+                                          year: "numeric",
+                                        })}
+                                      </span>
+                                    </div>
+                                  </div>
+
+                                  {/* Actions */}
+                                  <div className="flex gap-2 mt-4 pt-4 border-t border-gray-100">
                                     <Button
-                                      size="sm"
                                       variant="outline"
-                                      onClick={() => {
-                                        console.log(
-                                          "📋 Copy URL clicked for cert:",
-                                          {
-                                            id: cert.id,
-                                            certificateUrl: cert.certificateUrl,
-                                          }
-                                        );
-                                        genCopyCertificateUrl(
-                                          cert.certificateUrl
-                                        );
-                                      }}
-                                    >
-                                      <Copy className="w-4 h-4 mr-2" />
-                                      Copy URL
-                                    </Button>
-                                    <Button
                                       size="sm"
                                       onClick={(e) => {
                                         const fullUrl = buildFullCertificateUrl(
@@ -2548,7 +3130,7 @@ export default function AdminDashboard({
                                           "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
                                         );
                                         console.log(
-                                          "🖱️ VIEW BUTTON CLICKED (Results Tab)"
+                                          "🖱️ VIEW BUTTON CLICKED (Certificates Tab)"
                                         );
                                         console.log(
                                           "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
@@ -2566,422 +3148,192 @@ export default function AdminDashboard({
                                           "🌐 Navigating directly with window.location.href..."
                                         );
                                         console.log(
-                                          "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+                                          "━━━━━━━━━━━━━━━━���━━━━━━━��━━━━━━━━━━━━━━━━━━━━━━"
                                         );
 
                                         // Navigate in the same tab - hash routing works this way!
                                         window.location.href = fullUrl;
                                       }}
                                     >
-                                      <ExternalLink className="w-4 h-4 mr-2" />
+                                      <ExternalLink className="w-3 h-3 mr-1" />
                                       View
                                     </Button>
-                                  </div>
-                                </div>
-                              </CardContent>
-                            </Card>
-                          ))}
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </TabsContent>
-                </Tabs>
-              </div>
-            )}
-
-            {/* Templates Tab */}
-            {activeTab === "templates" && currentOrganization && (
-              <TemplatesPage
-                onSelectTemplate={(template) => {
-                  console.log("📋 Template selected:", template);
-                  // Store selected template for certificate generation
-                  setGenSelectedTemplate(template.id);
-                  setGenSelectedTemplateName(template.name);
-                  if (!template.isDefault) {
-                    setGenCustomTemplateConfig(template.config);
-                  } else {
-                    setGenCustomTemplateConfig(null);
-                  }
-                  toast.success(`Template "${template.name}" selected!`);
-                  // Optionally navigate to generate tab
-                  setActiveTab("generate");
-                }}
-                organization={currentOrganization}
-                showBuilderButton={true}
-                accessToken={accessToken}
-                isPremiumUser={isOrgPremium(currentOrganization)}
-              />
-            )}
-
-            {activeTab === "certificates" && (
-              <div className="space-y-6">
-                {/* Certificate Management Header */}
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="flex items-center gap-2">
-                      <FileText className="w-5 h-5" />
-                      <h2 className="text-xl">Certificate Management</h2>
-                    </div>
-                    <p className="text-sm text-gray-600 mt-1">
-                      View, manage, and track all issued certificates
-                    </p>
-                  </div>
-                  <Button onClick={() => setActiveTab("generate")}>
-                    <Plus className="w-4 h-4 mr-2" />
-                    Generate Certificates
-                  </Button>
-                </div>
-
-                <Card>
-                  <CardContent className="p-6">
-                    {/* Search and Action Bar */}
-                    <div className="flex flex-col sm:flex-row gap-3 mb-6 items-center justify-between">
-                      <div className="relative flex-1 w-full">
-                        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-                        <Input
-                          placeholder="Search certificates..."
-                          value={certificateSearch}
-                          onChange={(e) => setCertificateSearch(e.target.value)}
-                          className="pl-10"
-                        />
-                      </div>
-                      <div className="flex gap-2 w-full sm:w-auto">
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={refreshCertificates}
-                          disabled={isRefreshingCertificates}
-                        >
-                          <RefreshCw
-                            className={`w-4 h-4 mr-2 ${
-                              isRefreshingCertificates ? "animate-spin" : ""
-                            }`}
-                          />
-                          {isRefreshingCertificates
-                            ? "Refreshing..."
-                            : "Refresh"}
-                        </Button>
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={() => setActiveTab("generate")}
-                        >
-                          <Plus className="w-4 h-4 mr-2" />
-                          New Certificate
-                        </Button>
-                      </div>
-                    </div>
-
-                    {/* Bulk Actions Bar */}
-                    {allCertificates.length > 0 && (
-                      <div className="flex flex-col sm:flex-row gap-3 mb-6 items-center justify-between p-3 bg-gray-50 rounded-lg">
-                        <div className="flex gap-2 items-center">
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={deleteSelectedCertificates}
-                            disabled={selectedCertificates.length === 0}
-                          >
-                            <Trash2 className="w-4 h-4 mr-2" />
-                            Delete Selected ({selectedCertificates.length})
-                          </Button>
-                        </div>
-                        <div className="flex gap-2">
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={selectAllCertificates}
-                          >
-                            Select All
-                          </Button>
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={clearCertificateSelection}
-                          >
-                            Clear
-                          </Button>
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Certificate Grid */}
-                    {allCertificates.length > 0 ? (
-                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        {allCertificates
-                          .filter(
-                            (cert) =>
-                              cert.courseName
-                                ?.toLowerCase()
-                                .includes(certificateSearch.toLowerCase()) ||
-                              cert.certificateHeader
-                                ?.toLowerCase()
-                                .includes(certificateSearch.toLowerCase()) ||
-                              cert.studentName
-                                ?.toLowerCase()
-                                .includes(certificateSearch.toLowerCase()) ||
-                              cert.email
-                                ?.toLowerCase()
-                                .includes(certificateSearch.toLowerCase()) ||
-                              cert.id
-                                .toLowerCase()
-                                .includes(certificateSearch.toLowerCase())
-                          )
-                          .map((cert) => (
-                            <Card
-                              key={cert.id}
-                              className="relative hover:shadow-md transition-shadow"
-                            >
-                              <CardContent className="p-5">
-                                {/* Checkbox in top right */}
-                                <div className="absolute top-4 right-4">
-                                  <input
-                                    type="checkbox"
-                                    checked={selectedCertificates.includes(
-                                      cert.id
-                                    )}
-                                    onChange={() =>
-                                      toggleCertificateSelection(cert.id)
-                                    }
-                                    className="w-4 h-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 cursor-pointer"
-                                  />
-                                </div>
-
-                                {/* Certificate Info */}
-                                <div className="space-y-3 pr-6">
-                                  <div>
-                                    <h3 className="font-semibold text-gray-900">
-                                      {cert.courseName ||
-                                        cert.program?.name ||
-                                        "Certificate of Completion"}
-                                    </h3>
-                                    <p className="text-sm text-gray-500 mt-1">
-                                      {cert.certificateHeader ||
-                                        cert.studentName ||
-                                        "Certificate Link"}
-                                    </p>
-                                  </div>
-
-                                  <div className="flex items-center gap-1 text-xs text-gray-500">
-                                    <Calendar className="w-3 h-3" />
-                                    <span>
-                                      {new Date(
-                                        cert.generatedAt
-                                      ).toLocaleDateString("en-US", {
-                                        month: "numeric",
-                                        day: "numeric",
-                                        year: "numeric",
-                                      })}
-                                    </span>
-                                  </div>
-                                </div>
-
-                                {/* Actions */}
-                                <div className="flex gap-2 mt-4 pt-4 border-t border-gray-100">
-                                  <Button
-                                    variant="outline"
-                                    size="sm"
-                                    onClick={(e) => {
-                                      const fullUrl = buildFullCertificateUrl(
-                                        cert.certificateUrl
-                                      );
-                                      console.log(
-                                        "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-                                      );
-                                      console.log(
-                                        "🖱️ VIEW BUTTON CLICKED (Certificates Tab)"
-                                      );
-                                      console.log(
-                                        "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-                                      );
-                                      console.log(
-                                        "📄 Certificate object:",
-                                        cert
-                                      );
-                                      console.log(
-                                        "🔗 Certificate URL field:",
-                                        cert.certificateUrl
-                                      );
-                                      console.log("🌐 Full URL:", fullUrl);
-                                      console.log(
-                                        "🌐 Navigating directly with window.location.href..."
-                                      );
-                                      console.log(
-                                        "━━━━━━━━━━━━━━━━���━━━━━━━��━━━━━━━━━━━━━━━━━━━━━━"
-                                      );
-
-                                      // Navigate in the same tab - hash routing works this way!
-                                      window.location.href = fullUrl;
-                                    }}
-                                  >
-                                    <ExternalLink className="w-3 h-3 mr-1" />
-                                    View
-                                  </Button>
-                                  <Button
-                                    variant="outline"
-                                    size="sm"
-                                    className="flex-1"
-                                    onClick={() =>
-                                      copyCertificateLink(
-                                        buildFullCertificateUrl(
-                                          cert.certificateUrl
+                                    <Button
+                                      variant="outline"
+                                      size="sm"
+                                      className="flex-1"
+                                      onClick={() =>
+                                        copyCertificateLink(
+                                          buildFullCertificateUrl(
+                                            cert.certificateUrl
+                                          )
                                         )
-                                      )
-                                    }
-                                  >
-                                    <Copy className="w-3 h-3 mr-1" />
-                                    Copy
-                                  </Button>
-                                  <Button
-                                    variant="outline"
-                                    size="sm"
-                                    className="text-red-600 hover:text-red-700 hover:bg-red-50"
-                                    onClick={() => deleteCertificate(cert.id)}
-                                  >
-                                    <Trash2 className="w-4 h-4" />
-                                  </Button>
-                                </div>
-                              </CardContent>
-                            </Card>
-                          ))}
-                      </div>
-                    ) : (
-                      <div className="text-center py-12">
-                        <FileText className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-                        <h3 className="text-lg font-semibold mb-2 text-gray-900">
-                          No Certificates Yet
-                        </h3>
-                        <p className="text-gray-600 mb-6">
-                          Get started by generating your first certificate
-                        </p>
-                        <Button onClick={() => setActiveTab("generate")}>
-                          <Plus className="w-4 h-4 mr-2" />
-                          Generate Certificate
-                        </Button>
-                      </div>
-                    )}
-                  </CardContent>
-                </Card>
-              </div>
-            )}
-
-            {activeTab === "testimonials" && currentOrganization && (
-              <React.Suspense fallback={<TestimonialsSkeleton />}>
-                <TestimonialsView
-                  organizationId={currentOrganization.id}
-                  accessToken={accessToken}
-                />
-              </React.Suspense>
-            )}
-
-            {activeTab === "analytics" && currentOrganization && (
-              <React.Suspense fallback={<AnalyticsSkeleton />}>
-                <AnalyticsView
-                  organizationId={currentOrganization.id}
-                  accessToken={accessToken}
-                />
-              </React.Suspense>
-            )}
-
-            {/* Templates tab is rendered above inside the Tabs component; avoid duplicate rendering here. */}
-
-            {activeTab === "settings" && currentOrganization && (
-              <React.Suspense fallback={<SettingsSkeleton />}>
-                <div className="px-4 md:px-8 py-6">
-                  <OrganizationSettings
-                    organization={currentOrganization}
-                    accessToken={accessToken!}
-                    onSettingsUpdated={onUpdateOrganization}
-                  />
+                                      }
+                                    >
+                                      <Copy className="w-3 h-3 mr-1" />
+                                      Copy
+                                    </Button>
+                                    <Button
+                                      variant="outline"
+                                      size="sm"
+                                      className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                                      onClick={() => deleteCertificate(cert.id)}
+                                    >
+                                      <Trash2 className="w-4 h-4" />
+                                    </Button>
+                                  </div>
+                                </CardContent>
+                              </Card>
+                            ))}
+                        </div>
+                      ) : (
+                        <div className="text-center py-12">
+                          <FileText className="w-16 h-16 text-gray-300 mx-auto mb-4" />
+                          <h3 className="text-lg font-semibold mb-2 text-gray-900">
+                            No Certificates Yet
+                          </h3>
+                          <p className="text-gray-600 mb-6">
+                            Get started by generating your first certificate
+                          </p>
+                          <Button onClick={() => setActiveTab("generate")}>
+                            <Plus className="w-4 h-4 mr-2" />
+                            Generate Certificate
+                          </Button>
+                        </div>
+                      )}
+                    </CardContent>
+                  </Card>
                 </div>
-              </React.Suspense>
-            )}
+              )}
 
-            {activeTab === "settings" && !currentOrganization && (
-              <div className="px-4 md:px-8 py-6">
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                      <Settings className="w-5 h-5" />
-                      Organization Settings
-                    </CardTitle>
-                    <CardDescription>
-                      Create an organization to customize certificates with your
-                      logo and signatures
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <Alert>
-                      <Building2 className="h-4 w-4" />
-                      <AlertDescription>
-                        You need to create an organization to access settings.
-                        Create one from the Overview tab.
-                      </AlertDescription>
-                    </Alert>
-                  </CardContent>
-                </Card>
-              </div>
-            )}
+              {activeTab === "testimonials" && currentOrganization && (
+                <React.Suspense fallback={<TestimonialsSkeleton />}>
+                  <TestimonialsView
+                    organizationId={currentOrganization.id}
+                    accessToken={accessToken}
+                  />
+                </React.Suspense>
+              )}
 
-            {/* Billing Tab */}
-            {activeTab === "billing" && currentOrganization && (
-              <React.Suspense fallback={<BillingSkeleton />}>
-                <BillingPage
-                  organizationId={currentOrganization.id}
-                  organizationName={currentOrganization.name}
-                  userEmail={user.id}
-                  accessToken={accessToken}
-                />
-              </React.Suspense>
-            )}
+              {activeTab === "analytics" && currentOrganization && (
+                <React.Suspense fallback={<AnalyticsSkeleton />}>
+                  <AnalyticsView
+                    organizationId={currentOrganization.id}
+                    accessToken={accessToken}
+                  />
+                </React.Suspense>
+              )}
 
-            {/* Billing Tab - No Organization */}
-            {activeTab === "billing" && !currentOrganization && (
-              <div className="px-4 md:px-8 py-6">
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                      <CreditCard className="w-5 h-5" />
-                      Billing & Subscription
-                    </CardTitle>
-                    <CardDescription>
-                      Manage your premium subscription and payment methods
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <Alert>
-                      <Building2 className="h-4 w-4" />
-                      <AlertDescription>
-                        You need to create an organization to access billing
-                        features. Create one from the Overview tab.
-                      </AlertDescription>
-                    </Alert>
-                  </CardContent>
-                </Card>
-              </div>
-            )}
+              {/* Templates tab is rendered above inside the Tabs component; avoid duplicate rendering here. */}
 
-            {/* Template Builder Tab */}
-            {activeTab === "template-builder" && currentOrganization && (
-              <React.Suspense
-                fallback={
-                  <div className="p-6">Loading template builder...</div>
-                }
-              >
-                <TemplateBuilderPage
-                  organization={currentOrganization}
-                  isPremiumUser={isOrgPremium(currentOrganization)}
-                  onBack={() => setActiveTab("overview")}
-                />
-              </React.Suspense>
-            )}
+              {activeTab === "settings" && currentOrganization && (
+                <React.Suspense fallback={<SettingsSkeleton />}>
+                  <div className="px-4 md:px-8 py-6">
+                    <OrganizationSettings
+                      organization={currentOrganization}
+                      accessToken={accessToken!}
+                      onSettingsUpdated={onUpdateOrganization}
+                    />
+                  </div>
+                </React.Suspense>
+              )}
+
+              {activeTab === "settings" && !currentOrganization && (
+                <div className="px-4 md:px-8 py-6">
+                  <Card>
+                    <CardHeader>
+                      <CardTitle className="flex items-center gap-2">
+                        <Settings className="w-5 h-5" />
+                        Organization Settings
+                      </CardTitle>
+                      <CardDescription>
+                        Create an organization to customize certificates with
+                        your logo and signatures
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <Alert>
+                        <Building2 className="h-4 w-4" />
+                        <AlertDescription>
+                          You need to create an organization to access settings.
+                          Create one from the Overview tab.
+                        </AlertDescription>
+                      </Alert>
+                    </CardContent>
+                  </Card>
+                </div>
+              )}
+
+              {/* Billing Tab */}
+              {activeTab === "billing" && currentOrganization && (
+                <React.Suspense fallback={<BillingSkeleton />}>
+                  <BillingPage
+                    organizationId={currentOrganization.id}
+                    organizationName={currentOrganization.name}
+                    userEmail={user.id}
+                    accessToken={accessToken}
+                  />
+                </React.Suspense>
+              )}
+
+              {/* Billing Tab - No Organization */}
+              {activeTab === "billing" && !currentOrganization && (
+                <div className="px-4 md:px-8 py-6">
+                  <Card>
+                    <CardHeader>
+                      <CardTitle className="flex items-center gap-2">
+                        <CreditCard className="w-5 h-5" />
+                        Billing & Subscription
+                      </CardTitle>
+                      <CardDescription>
+                        Manage your premium subscription and payment methods
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <Alert>
+                        <Building2 className="h-4 w-4" />
+                        <AlertDescription>
+                          You need to create an organization to access billing
+                          features. Create one from the Overview tab.
+                        </AlertDescription>
+                      </Alert>
+                    </CardContent>
+                  </Card>
+                </div>
+              )}
+
+              {/* Template Builder Tab */}
+              {activeTab === "template-builder" && currentOrganization && (
+                <React.Suspense
+                  fallback={
+                    <div className="p-6">Loading template builder...</div>
+                  }
+                >
+                  <TemplateBuilderPage
+                    organization={currentOrganization}
+                    isPremiumUser={isOrgPremium(currentOrganization)}
+                    onBack={() => setActiveTab("overview")}
+                  />
+                </React.Suspense>
+              )}
+            </div>
           </div>
-          <div className="flex-1 md:flex-none bg-black text-white p-6 mr-6 ">
-            <img src={certifyerLogo} alt="Certifyer Logo" />
-            <p className="text-sm md:text-base mt-2">
-              Empowering educators to create and manage certificates with ease.
-            </p>
-          </div>
+
+          {/* Footer - Sticky at bottom */}
+          <footer className="bg-black text-white px-4 md:px-8 py-3 flex-shrink-0">
+            <div className="flex items-center justify-between gap-4">
+              <div className="flex items-center gap-2">
+                <img src={logo} alt="logo" className="w-10" />
+                <p className="text-orange-500 font-medium hidden md:block md:text-xl">
+                  Certifyer
+                </p>
+              </div>
+              <p className="text-sm md:text-base">
+                Empowering educators to create and manage certificates with
+                ease.
+              </p>
+            </div>
+          </footer>
         </main>
 
         {/* Modals */}

@@ -8,6 +8,7 @@ import Price from "./landing/Price";
 import Testimonial from "./landing/Testimonial";
 import FAQ from "./landing/FAQ";
 import Footer from "./landing/Footer";
+import Partners from "./landing/Partners";
 
 export default function LandingPage() {
   return (
@@ -26,12 +27,25 @@ export default function LandingPage() {
       </div>
       <div className="relative z-40">
         <Navbar />
-        <Hero />
+        <section id="hero">
+          <Hero />
+        </section>
         <About />
-        <CoreFeatures />
-        <Work />
-        <Price />
-        <Testimonial />
+        <section id="partners">
+          <Partners />
+        </section>
+        <section id="features">
+          <CoreFeatures />
+        </section>
+        <section id="work">
+          <Work />
+        </section>
+        {/* <section id="prices">
+          <Price />
+        </section> */}
+        <section id="testimonials">
+          <Testimonial />
+        </section>
         <FAQ />
         <Footer />
       </div>

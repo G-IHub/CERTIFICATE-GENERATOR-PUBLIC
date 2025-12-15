@@ -4,27 +4,28 @@ import {
   Routes,
   Route,
   Navigate,
+  useNavigate,
+  useLocation,
 } from "react-router-dom";
 import LandingPage from "./components/LandingPage";
 import AuthPage from "./components/AuthPage";
 import AdminDashboard from "./components/AdminDashboard";
 import PlatformAdminPanel from "./components/PlatformAdminPanel";
 import StudentCertificate from "./components/StudentCertificate";
+import ShortLinkRedirect from "./components/ShortLinkRedirect";
 import BackendHealthCheck from "./components/BackendHealthCheck";
 import DeploymentGuide from "./components/DeploymentGuide";
 import NotFound from "./components/NotFound";
 import TemplateBuilderPage from "./components/TemplateBuilderPage";
 import QueryPremiumOrgs from "./components/QueryPremiumOrgs";
+import AdminUtilities from "./components/AdminUtilities";
+import ResetPasswordPage from "./components/ResetPasswordPage";
 import { organizationApi, authApi, programApi } from "./utils/api";
 import { publicAnonKey, projectId } from "./utils/supabase/info";
 import { toast, Toaster } from "sonner";
 import { isAdminEmail } from "./utils/adminConfig";
 import { isOrgPremium } from "./utils/subscriptionUtils";
 
-// Figma asset imports are not available at runtime in this environment.
-// Use a stable placeholder URL for the default organization logo.
-// If you have a local asset, replace the URL below with a path under /public and
-// use that path (for example: const defaultOrgLogo = '/images/default-org-logo.png')
 const defaultOrgLogo = "https://via.placeholder.com/256x256.png?text=Org+Logo";
 
 // TypeScript interfaces
@@ -96,6 +97,65 @@ export type {
 
 // For backwards compatibility with existing components that expect "Subsidiary"
 export type Subsidiary = Organization;
+
+// Password Reset Redirect Component
+function PasswordResetRedirect() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    // Check if there's a recovery token in the URL
+    // With HashRouter, tokens appear in the pathname like: /access_token=...&type=recovery
+    const fullPath = location.pathname + location.search + location.hash;
+
+    // Check if this looks like a password reset URL
+    const hasAccessToken = fullPath.includes("access_token=");
+    const hasRecoveryType = fullPath.includes("type=recovery");
+
+    if (hasAccessToken && hasRecoveryType) {
+      console.log(
+        "🔐 Recovery token detected in path, redirecting to reset password page"
+      );
+      console.log("📍 Current location:", {
+        pathname: location.pathname,
+        search: location.search,
+        hash: location.hash,
+        fullPath,
+      });
+
+      // Extract the access token and refresh token from the path
+      const accessTokenMatch = fullPath.match(/access_token=([^&]+)/);
+      const refreshTokenMatch = fullPath.match(/refresh_token=([^&]+)/);
+
+      const accessToken = accessTokenMatch ? accessTokenMatch[1] : null;
+      const refreshToken = refreshTokenMatch ? refreshTokenMatch[1] : null;
+
+      if (accessToken) {
+        console.log("✅ Access token extracted, length:", accessToken.length);
+        if (refreshToken) {
+          console.log(
+            "✅ Refresh token extracted, length:",
+            refreshToken.length
+          );
+        } else {
+          console.log("⚠️ No refresh token found");
+        }
+        // Navigate to reset password page with both tokens in React Router state
+        navigate("/reset-password", {
+          state: {
+            resetToken: accessToken,
+            refreshToken: refreshToken,
+          },
+          replace: true,
+        });
+      } else {
+        console.log("❌ Could not extract access token from path");
+      }
+    }
+  }, [navigate, location]);
+
+  return null;
+}
 
 export default function App() {
   // Authentication state
@@ -298,6 +358,7 @@ export default function App() {
             : `${legacyUser.id}@example.com`,
           organizationName: legacyUser.subsidiary?.name,
           organizationId: legacyUser.subsidiary?.id,
+          userType: "company",
           createdAt: new Date().toISOString(),
         };
         setCurrentUser(userAccount);
@@ -589,6 +650,7 @@ export default function App() {
 
   return (
     <Router>
+      <PasswordResetRedirect />
       <div className="min-h-screen">
         {/* Toast Notifications */}
         <Toaster position="top-right" richColors closeButton />
@@ -688,6 +750,9 @@ export default function App() {
           {/* Legacy /auth route - redirect to /login for backwards compatibility */}
           <Route path="/auth" element={<Navigate to="/login" replace />} />
 
+          {/* Password Reset route - Public */}
+          <Route path="/reset-password" element={<ResetPasswordPage />} />
+
           {/* Platform Admin Panel - protected, admin only */}
           <Route
             path="/platform-admin"
@@ -745,6 +810,22 @@ export default function App() {
                     onBack={() => (window.location.href = "/#/dashboard")}
                     accessToken={accessToken}
                   />
+                </div>
+              ) : currentUser && isPlatformAdmin ? (
+                <Navigate to="/platform-admin" replace />
+              ) : (
+                <Navigate to="/auth" replace />
+              )
+            }
+          />
+
+          {/* Admin Utilities route - protected, regular users only */}
+          <Route
+            path="/admin-utilities"
+            element={
+              currentUser && !isPlatformAdmin ? (
+                <div className="min-h-screen bg-gray-50">
+                  <AdminUtilities />
                 </div>
               ) : currentUser && isPlatformAdmin ? (
                 <Navigate to="/platform-admin" replace />
@@ -831,6 +912,9 @@ export default function App() {
             path="/certificate/*"
             element={<StudentCertificate subsidiaries={organizations} />}
           />
+
+          {/* Short link redirect - public */}
+          <Route path="/c/:code" element={<ShortLinkRedirect />} />
 
           {/* Backend health check - public */}
           <Route path="/health-check" element={<BackendHealthCheck />} />

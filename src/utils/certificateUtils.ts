@@ -57,6 +57,17 @@ export const generateSecureCertificateUrl = (
 };
 
 /**
+ * Generate SHORT certificate URL (6-character code) - NEW!
+ * This creates a much shorter, more shareable URL
+ * @param shortCode - The 6-character short code
+ * @returns Complete short certificate URL
+ * @example https://certifyer.online/#/c/Ab3xY9
+ */
+export const generateShortCertificateUrl = (shortCode: string): string => {
+  return `${window.location.origin}/#/c/${shortCode}`;
+};
+
+/**
  * Validate if a string looks like a nanoid-based certificate ID
  * @param id - The ID to validate
  * @returns true if it looks like a valid certificate ID
@@ -96,13 +107,23 @@ export const normalizeCertificateUrl = (url: string): string => {
  * @returns Full URL with hash routing
  */
 export const buildFullCertificateUrl = (certificateUrl: string | undefined): string => {
-
+  console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+  console.log('🔗 buildFullCertificateUrl called');
+  console.log('   - Input certificateUrl:', certificateUrl);
+  console.log('   - Type:', typeof certificateUrl);
+  console.log('   - Is undefined?', certificateUrl === undefined);
+  console.log('   - Is empty?', certificateUrl === '');
   
   if (!certificateUrl || certificateUrl.trim() === '') {
+    console.error('❌ ERROR: Certificate URL is empty or undefined!');
+    console.log('   - Returning fallback URL: #/');
+    console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
     return '#/';
   }
   
   const normalized = normalizeCertificateUrl(certificateUrl);
   const fullUrl = `${window.location.origin}/#/${normalized}`;
+  console.log('✅ Full URL built successfully:', fullUrl);
+  console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
   return fullUrl;
 };

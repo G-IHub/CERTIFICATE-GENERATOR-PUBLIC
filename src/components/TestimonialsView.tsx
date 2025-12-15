@@ -26,6 +26,7 @@ interface Testimonial {
   id: string;
   certificateId: string;
   studentName: string;
+  email?: string;
   testimonial: string;
   courseName: string;
   organizationId: string;
@@ -96,6 +97,7 @@ const TestimonialsView: React.FC<TestimonialsViewProps> = ({
       // CSV Header
       const headers = [
         "Student Name",
+        "Email",
         "Course Name",
         "Testimonial",
         "Certificate ID",
@@ -105,6 +107,7 @@ const TestimonialsView: React.FC<TestimonialsViewProps> = ({
       // CSV Rows
       const rows = displayedTestimonials.map((t) => [
         t.studentName,
+        t.email || "N/A",
         t.courseName,
         `"${t.testimonial.replace(/"/g, '""')}"`, // Escape quotes in testimonial text
         t.certificateId,
@@ -124,7 +127,9 @@ const TestimonialsView: React.FC<TestimonialsViewProps> = ({
       link.setAttribute("href", url);
       link.setAttribute(
         "download",
-        `testimonials_${selectedCourse === "all" ? "all" : selectedCourse}_${new Date().toISOString().split("T")[0]}.csv`
+        `testimonials_${selectedCourse === "all" ? "all" : selectedCourse}_${
+          new Date().toISOString().split("T")[0]
+        }.csv`
       );
       link.style.visibility = "hidden";
       document.body.appendChild(link);
@@ -142,6 +147,7 @@ const TestimonialsView: React.FC<TestimonialsViewProps> = ({
     try {
       const data = displayedTestimonials.map((t) => ({
         studentName: t.studentName,
+        email: t.email || "N/A",
         courseName: t.courseName,
         testimonial: t.testimonial,
         certificateId: t.certificateId,
@@ -160,7 +166,9 @@ const TestimonialsView: React.FC<TestimonialsViewProps> = ({
       link.setAttribute("href", url);
       link.setAttribute(
         "download",
-        `testimonials_${selectedCourse === "all" ? "all" : selectedCourse}_${new Date().toISOString().split("T")[0]}.json`
+        `testimonials_${selectedCourse === "all" ? "all" : selectedCourse}_${
+          new Date().toISOString().split("T")[0]
+        }.json`
       );
       link.style.visibility = "hidden";
       document.body.appendChild(link);
@@ -318,6 +326,11 @@ const TestimonialsView: React.FC<TestimonialsViewProps> = ({
                     <h4 className="font-semibold text-gray-900">
                       {testimonial.studentName}
                     </h4>
+                    {testimonial.email && (
+                      <p className="text-xs text-gray-500">
+                        {testimonial.email}
+                      </p>
+                    )}
                     <p className="text-sm text-gray-600 flex items-center gap-1">
                       <Award className="w-3 h-3" />
                       {testimonial.courseName}

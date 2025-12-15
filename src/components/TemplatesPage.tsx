@@ -118,33 +118,71 @@ export default function TemplatesPage({
   const handleReseed = async () => {
     setIsReseeding(true);
     try {
-      const response = await fetch(
-        `https://${projectId}.supabase.co/functions/v1/make-server-a611b057/templates/force-reseed`,
-        {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${publicAnonKey}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      // Try primary functions endpoint (project .supabase.co/functions/v1)
+      const primaryUrl = `https://${projectId}.supabase.co/functions/v1/make-server-a611b057/templates/force-reseed`;
+      // Fallback: functions subdomain
+      const fallbackUrl = `https://${projectId}.functions.supabase.co/make-server-a611b057/templates/force-reseed`;
 
-      const data = await response.json();
+      const doFetch = async (url: string) => {
+        try {
+          const res = await fetch(url, {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${publicAnonKey}`,
+              "Content-Type": "application/json",
+            },
+          });
+          return res;
+        } catch (err) {
+          // Network-level failure (CORS, DNS, connectivity)
+          console.error("Network error calling function:", url, err);
+          throw err;
+        }
+      };
+
+      let response;
+      try {
+        response = await doFetch(primaryUrl);
+      } catch (err) {
+        // Try fallback URL once
+        try {
+          response = await doFetch(fallbackUrl);
+        } catch (err2) {
+          throw err2;
+        }
+      }
+
+      // Safely parse response body (handle non-JSON responses)
+      let data: any = null;
+      try {
+        data = await response.json();
+      } catch (parseErr) {
+        const text = await response.text().catch(() => "");
+        data = { message: text || "(no body)" };
+      }
 
       if (response.ok) {
         toast.success(
           `✅ ${data.message || "Templates reseeded successfully!"} (${
-            data.count
+            data.count || "?"
           } templates)`
         );
         // Reload templates after reseeding
         await loadTemplates();
       } else {
-        toast.error(data.error || "Failed to reseed templates");
+        console.error("Reseed failed", response.status, data);
+        toast.error(
+          data.error ||
+            data.message ||
+            `Failed to reseed (status ${response.status})`
+        );
       }
     } catch (error) {
-      console.error("Error reseeding templates:", error);
-      toast.error(`Error: ${error}`);
+      console.error("Error reseeding templates (caught):", error);
+      // Show user-friendly guidance
+      toast.error(
+        "Reseed failed — check browser DevTools Network tab or run the reseed command manually. See console for details."
+      );
     } finally {
       setIsReseeding(false);
     }
@@ -203,26 +241,7 @@ export default function TemplatesPage({
           </p>
         </div>
 
-        {/* Reseed Templates Button */}
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={handleReseed}
-          disabled={isReseeding}
-          className="flex-shrink-0"
-        >
-          {isReseeding ? (
-            <>
-              <RefreshCw className="w-4 h-4 mr-2 animate-spin" />
-              Reseeding...
-            </>
-          ) : (
-            <>
-              <RefreshCw className="w-4 h-4 mr-2" />
-              Reseed Templates
-            </>
-          )}
-        </Button>
+        {/* Reseed Templates Button removed per user request. */}
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -382,7 +401,7 @@ export default function TemplatesPage({
 
             <div className="p-8 bg-gray-50 flex items-center justify-center">
               <TemplateErrorBoundary>
-                <PreviewWrapper scale={0.4} origin="center" wrapperSize={2}>
+                <PreviewWrapper scale={1} origin="center" wrapperSize={2}>
                   <CertificateRenderer
                     templateId={preview.id}
                     header="Certificate of Completion"

@@ -1,6 +1,6 @@
 import React from "react";
 import certificate from "../../assets/certificate.svg";
-import kaban from "../../assets/kaban.svg";
+// import kaban from "../../assets/kaban.svg";
 import airplay from "../../assets/airplay.svg";
 import gauge from "../../assets/gauge.svg";
 import shield from "../../assets/shield.svg"
@@ -19,34 +19,34 @@ const CoreFeatures: React.FC = () => {
       title: "Certificate Templates",
       checklist: [
         "Impact, Professional, and Advanced templates",
-        "Custom logos, colors, and signatories",
-        "Future upgrades: PDF download, QR code generation",
+        "Custom logos, signatories, PDF downloads",
+        "Future upgrades: Template builder, bulk generation, QR code generation",
       ],
     },
     {
-      icon: kaban,
+      icon: airplay,
       title: "Organization Management",
       checklist: [
-        "Support for multiple organizations per account",
+        "Support for multiple organizations",
         "Centralized branding control",
-        "Signatory and color configuration",
+        "Signatory, name, and color configuration",
       ],
     },
     {
       icon: certificate,
       title: "Certificate Generation",
       checklist: [
-        "Single or bulk issuance",
+        "Fast issuance",
         "Auto-assigned unique IDs",
-        "Publicly verifiable URLs",
+        "Publicly verifiable and secure URLs",
       ],
     },
     {
       icon: airplay,
       title: "Testimonial System",
       checklist: [
-        "Star ratings and text feedback",
-        "Optional image/video uploads",
+        "Text feedback",
+        "Option to download testimonials as JSON or CSV",
         "Admin dashboard for moderation",
       ],
     },
@@ -63,7 +63,7 @@ const CoreFeatures: React.FC = () => {
       icon: shield,
       title: "Security & Authentication",
       checklist: [
-        "Supabase Auth (email & social login)",
+        // "Supabase Auth (email & social login)",
         "JWT-based API protection",
         "Role-based access control",
       ],
@@ -71,7 +71,7 @@ const CoreFeatures: React.FC = () => {
   ];
 
   return (
-    <section className="bg-white py-10 px-4 md:px-28 md:py-16">
+    <section className="bg-white py-10 px-6 md:px-28 md:py-16">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-8 md:mb-12">
           <h2 className="font-extrabold text-2xl sm:text-3xl md:text-4xl">

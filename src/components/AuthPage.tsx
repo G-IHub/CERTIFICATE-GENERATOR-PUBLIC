@@ -35,8 +35,8 @@ import {
 import { toast } from "sonner";
 import type { UserAccount } from "../App";
 import { authApi } from "../utils/api";
-import { projectId } from "../utils/supabase/info";
-import logo from "../assets/logo.svg";
+import { projectId, publicAnonKey } from "../utils/supabase/info";
+import logo from "../assets/logo.png";
 import { useNavigate } from "react-router-dom";
 
 interface AuthPageProps {
@@ -118,7 +118,7 @@ export default function AuthPage({
 
     // Show a helpful toast for first-time users
     toast.info(
-      "Connecting to server... (first request may take 30-60 seconds)",
+      "Connecting to server...",
       {
         duration: 5000,
       }
@@ -212,6 +212,8 @@ export default function AuthPage({
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${publicAnonKey}`,
+            apikey: publicAnonKey,
           },
           body: JSON.stringify({ email: resetEmail }),
         }
@@ -288,7 +290,7 @@ export default function AuthPage({
 
     // Show a helpful toast for first-time users
     toast.info(
-      "Creating your account... (first request may take 30-60 seconds)",
+      "Creating your account...",
       {
         duration: 5000,
       }
@@ -875,7 +877,8 @@ export default function AuthPage({
                     </Button>
 
                     <p className="text-xs text-gray-500 text-center mt-4">
-                      By signing up, you agree to use this platform responsibly, and Genomac Innovation Hub reserves their rights.
+                      By signing up, you agree to use this platform responsibly,
+                      and Genomac Innovation Hub reserves their rights.
                     </p>
                   </form>
                 )}

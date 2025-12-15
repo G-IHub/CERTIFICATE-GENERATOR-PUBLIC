@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import logo from "../../assets/logo.svg";
+import logo from "../../assets/logo.png";
 import { IoIosMenu } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
+import { Link } from "react-scroll";
+import { Button } from "@headlessui/react";
 
 const Navbar: React.FC = () => {
   const navigate = useNavigate();
@@ -41,12 +43,24 @@ const Navbar: React.FC = () => {
       <nav
         ref={navRef}
         className={`fixed top-0 left-0 w-full transition-all duration-300 ${
-          isScrolled ? "p-0" : "p-0 md:py-6 md:px-28"
+          isScrolled
+            ? "bg-white md:fixed p-3"
+            : "p-5 md:py-6 md:px-28 md:sticky"
         } z-50`}
       >
-        <div className="flex justify-between items-center md:rounded-lg px-4 py-5 h-14 bg-white md:bg-[#FFFFFF66] border-2 border-[#FFFFFF1F] text-sm">
-          <div>
-            <img src={logo} alt="logo" className="w-20 md:w-24" />
+        <div className="flex justify-between items-center rounded-lg px-4 py-8 w-[450px] h-14 bg-white md:bg-[#FFFFFF66] border-2 border-[#FFFFFF1F] text-sm">
+          <div className="flex items-center gap-2">
+            <Link
+              to="hero"
+              smooth={true}
+              duration={500}
+              className="flex items-center cursor-pointer"
+            >
+              <img src={logo} alt="logo" className="w-12" />
+              <p className="text-orange-500 font-medium hidden md:block md:text-2xl">
+                Certifyer
+              </p>
+            </Link>
           </div>
 
           <button
@@ -61,19 +75,43 @@ const Navbar: React.FC = () => {
             )}
           </button>
 
-          <div className="hidden md:flex gap-12 items-center">
-            <a href="" className="hover:text-orange-500">
+          <div className="hidden text-lg md:flex gap-12 items-center">
+            <Link
+              to="features"
+              smooth={true}
+              duration={500}
+              offset={-50}
+              className="hover:text-orange-500 cursor-pointer"
+            >
+              Features
+            </Link>
+            <Link
+              to="work"
+              smooth={true}
+              duration={500}
+              offset={-50}
+              className="hover:text-orange-500 cursor-pointer"
+            >
               How It Works
-            </a>
-            <a href="" className="hover:text-orange-500">
-              Case studies
-            </a>
-            <a href="" className="hover:text-orange-500">
+            </Link>
+            <Link
+              to="testimonials"
+              smooth={true}
+              duration={500}
+              offset={-50}
+              className="hover:text-orange-500 cursor-pointer"
+            >
               Testimonials
-            </a>
-            <a href="" className="hover:text-orange-500">
+            </Link>
+            {/* <Link
+              to="prices"
+              smooth={true}
+              duration={500}
+              offset={-50}
+              className="hover:text-orange-500 cursor-pointer"
+            >
               Pricing
-            </a>
+            </Link> */}
           </div>
 
           <div className="hidden md:flex gap-8 items-center">
@@ -82,62 +120,80 @@ const Navbar: React.FC = () => {
                 navigate("/login");
                 setIsMenuOpen(false);
               }}
-              className="text-orange-500 text-left cursor-pointer"
+              className="text-orange-500 text-left text-lg cursor-pointer"
             >
               Log In
             </button>
             <button
               onClick={() => navigate("/signup")}
-              className="bg-orange-500 rounded-full text-white px-5 py-2 cursor-pointer"
+              className="bg-orange-500 rounded-full text-lg text-white px-5 py-2 cursor-pointer"
             >
               Get Started
             </button>
           </div>
         </div>
 
+        {/* Mobile Menu */}
         {isMenuOpen && (
           <div
             className="transition ease-in duration-300 md:hidden right-0 bg-white shadow-lg p-4 w-2/3 h-full fixed"
             style={{ top: navHeight }}
           >
             <div className="flex flex-col gap-10">
-              <a
-                href=""
+              <Link
+                to="features"
+                smooth={true}
+                duration={500}
+                offset={-50}
+                className="hover:text-orange-500"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Features
+              </Link>
+              <Link
+                to="work"
+                smooth={true}
+                duration={500}
+                offset={-50}
                 className="hover:text-orange-500"
                 onClick={() => setIsMenuOpen(false)}
               >
                 How It Works
-              </a>
-              <a
-                href=""
-                className="hover:text-orange-500"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Case studies
-              </a>
-              <a
-                href=""
+              </Link>
+              <Link
+                to="testimonials"
+                smooth={true}
+                duration={500}
+                offset={-50}
                 className="hover:text-orange-500"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Testimonials
-              </a>
-              <a
-                href=""
+              </Link>
+              {/* <Link
+                to="prices"
+                smooth={true}
+                duration={500}
+                offset={-50}
                 className="hover:text-orange-500"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Pricing
-              </a>
+              </Link> */}
 
-              <a
-                href=""
+              <button
+                onClick={() => {
+                  navigate("/login");
+                  setIsMenuOpen(false);
+                }}
                 className="text-orange-500"
-                onClick={() => setIsMenuOpen(false)}
               >
                 Log In
-              </a>
-              <button className="bg-orange-500 rounded-full text-white px-5 py-2 cursor-pointer">
+              </button>
+              <button
+                onClick={() => navigate("/signup")}
+                className="bg-orange-500 rounded-full text-white px-5 py-2 cursor-pointer"
+              >
                 Get Started
               </button>
             </div>

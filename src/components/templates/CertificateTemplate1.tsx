@@ -1,5 +1,5 @@
 import { useRef, useEffect } from "react";
-import vector2 from "../../assets/Vector (2).svg";
+import badge from "../../assets/best.svg";
 import vecto from "../../assets/Vecto.svg";
 
 interface CertificateTemplate1Props {
@@ -31,18 +31,18 @@ export default function CertificateTemplate1({
   organizationName = "Your Organization",
   organizationLogo,
   organizationSlogan = "slogan text here",
-  signatoryName1 = "John Smith",
-  signatoryTitle1 = "Director",
+  signatoryName1,
+  signatoryTitle1,
   signatureUrl1,
-  signatoryName2 = "Sammi Smith",
-  signatoryTitle2 = "President",
+  signatoryName2,
+  signatoryTitle2,
   signatureUrl2,
   mode = "student",
 }: CertificateTemplate1Props) {
   const ref = useRef<HTMLDivElement>(null);
-  const scale = mode === "student" ? 0.3 : 1;
+  const scale = mode === "student" ? "transform-scale-[0.3]" : "transform-scale-100";
+  // const scale = mode === "student" ? 0.3 : isPreview ? 2.5 : 1;
 
-  // Load Cinzel Decorative font (Google Fonts) once when this component mounts
   useEffect(() => {
     const id = "cinzel-decorative-font";
     if (!document.getElementById(id)) {
@@ -55,13 +55,15 @@ export default function CertificateTemplate1({
     }
   }, []);
 
-  const containerClass = isPreview
-    ? "w-full mx-auto origin-center overflow-visible"
-    : "min-w-[1056px] flex justify-center items-center ";
+  const formattedDate = new Date(date).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
 
-  const certificateClass = isPreview
-    ? "flex flex-col justify-center items-center relative shadow-lg"
-    : "flex flex-col justify-center items-center relative";
+  const containerClass = isPreview
+    ? "w-full mx-auto origin-center overflow-visible flex justify-center"
+    : "min-w-[1056px] flex justify-center items-center ";
 
   return (
     <div
@@ -70,106 +72,154 @@ export default function CertificateTemplate1({
     >
       <div
         ref={ref}
-        className={certificateClass}
-        style={{ backgroundColor: "#faf8f3" }}
+        className="shadow-sm bg-white py-10 rounded-sm flex items-center justify-center relative"
+        style={{
+          width: "1056px",
+          height: "600px",
+          paddingLeft: "64px",
+          paddingRight: "64px",
+        }}
       >
         {/* Main Certificate Container - Landscape A4 proportions */}
-        <div className="shadow-xl w-3xl px-20 space-y-4 py-10 rounded-lg mt-10">
-          <div className="flex justify-between items-center p-4">
-            <img src={vector2} alt="" className="w-40" style={ {width: 80} } />
-            <div className="flex flex-col items-end text-[#5D5D5D]">
-              <h2
-                className="font-bold text-3xl uppercase"
-                style={{ fontFamily: "'Cinzel Decorative', serif" }}
-              >
-                Certificate
-              </h2>
-              <p className="text-lg font-semibold">Appreciation</p>
-            </div>
+        <div className="flex flex-col h-full" style={{ gap: "32px" }}>
+          <div className="flex gap-4 justify-between items-center">
+            <img src={badge} alt="" className="" style={{ width: "20%" }} />
+            <h2
+              className="font-bold text-3xl uppercase text-center text-gray-600"
+              style={{ fontFamily: "'Cinzel Decorative', serif" }}
+            >
+              {header || "Certificate of Completion"}
+            </h2>
             <div className="flex flex-col items-center text-[#BE8C2C]">
-              <img
-                src={organizationLogo || vecto}
-                className="w-40" style={{width: 30}}
-                alt={organizationName}
-              />
-              <h3 className="font-bold text-lg">{organizationName}</h3>
-              {/* <small>{organizationSlogan}</small> */}
+              <div className="flex flex-col items-center">
+                <img
+                  src={organizationLogo || vecto}
+                  className="w-52"
+                  style={{ width: 50 }}
+                  alt={organizationName}
+                />
+                <h3 className="font-bold text-xs text-center ">
+                  {organizationName}
+                </h3>
+              </div>
             </div>
           </div>
 
-          <p className="text-center font-bold uppercase text-[#5d5d5d]">
-            This Certificate is proudly presented <br /> for honourable
-            achievement to
-          </p>
-
-          <p
-            className="text-[#9B6327] uppercase text-center text-2xl border-b-2 pb-2"
-            style={{ fontFamily: "'Cinzel Decorative', serif" }}
-          >
-            {recipientName}
-          </p>
-            <p className="text-center font-bold uppercase text-sm text-[#5d5d5d]">
-                for successfully completing the course <br /> titled
+          <div className="flex flex-col gap-4">
+            <p
+              className="text-center font-bold uppercase"
+              style={{ color: "#5d5d5d" }}
+            >
+              This Certificate is proudly presented <br /> for honourable
+              achievement to
             </p>
 
-          <p
-            className="text-center text-xl font-semibold"
-            style={{ fontFamily: "'Cinzel Decorative', serif" }}
+            <p
+              className="uppercase text-center text-2xl pb-2 tracking-wider"
+              style={{
+                fontFamily: "'Cinzel Decorative', serif",
+                color: "#9B6327",
+                borderBottom: "solid #9B6327",
+              }}
+            >
+              {recipientName}
+            </p>
+            <p className="text-center text-xs" style={{ color: "#5d5d5d" }}>
+              for successfully completing the course titled
+            </p>
+
+            <p
+              className="text-center text-xl font-semibold"
+              style={{ fontFamily: "'Cinzel Decorative', serif" }}
+            >
+              {courseTitle}
+            </p>
+
+            <p
+              className="text-center text-xs"
+              style={{ marginLeft: 10, marginRight: 10 }}
+            >
+              {description ||
+                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio commodi incidunt harum, doloremque reprehenderit voluptas aspernatu"}
+            </p>
+          </div>
+
+          <div
+            className="flex justify-between items-end"
+            style={{ marginTop: "32px" }}
           >
-            {courseTitle}
-          </p>
-
-          <p className="text-center mb-40 ">
-            {description ||
-              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio commodi incidunt harum, doloremque reprehenderit voluptas aspernatu"}
-          </p>
-
-          <div className="mt-20 flex justify-between px-52 items-end">
-            <div className="space-y-4 text-center">
-              <div className="border-b-2 w-40 mx-auto" />
-              <p className="text-center text-sm font-medium">{date}</p>
-            </div>
-
-            <div className="space-y-6 text-center">
-              {/* Primary signature block */}
-              <div>
-                <div className="w-40 mx-auto">
-                  {signatureUrl1 ? (
+            <div className="flex gap-8 justify-center items-center">
+              {/* Signature 1 - Always show if name is provided */}
+              {signatoryName1 && (
+                <div
+                  className="flex flex-col items-center text-center"
+                  style={{ marginTop: -20 }}
+                >
+                  {signatureUrl1 && (
                     <img
                       src={signatureUrl1}
                       alt={signatoryName1}
-                      className="w-full object-contain"
+                      className="w-24 h-16 object-contain"
+                      style={{ marginBottom: -12 }}
                     />
-                  ) : (
-                    <div className="border-b-2 w-full" />
                   )}
-                </div>
-                <p className="text-center text-sm font-medium mt-2">
-                  {signatoryName1}
-                </p>
-              </div>
-
-              {/* Optional second signature */}
-              {/* {signatoryName2 || signatureUrl2 ? (
-                <div>
-                  <div className="w-40 mx-auto">
-                    {signatureUrl2 ? (
-                      <img
-                        src={signatureUrl2}
-                        alt={signatoryName2}
-                        className="w-full object-contain"
-                      />
-                    ) : (
-                      <div className="border-b-2 w-full" />
-                    )}
+                  {!signatureUrl1 && (
+                    <div className="w-32 border-b-2 border-gray-400 mb-2" />
+                  )}
+                  <div
+                    className="text-sm font-bold"
+                    style={{ color: "#4D4D4D" }}
+                  >
+                    {signatoryName1}
                   </div>
-                  {signatoryName2 && (
-                    <p className="text-center text-sm font-medium mt-2">
-                      {signatoryName2}
-                    </p>
+                  {signatoryTitle1 && (
+                    <div className="text-xs font-medium">{signatoryTitle1}</div>
                   )}
                 </div>
-              ) : null} */}
+              )}
+
+              {/* Signature 2 - Always show if name is provided */}
+              {signatoryName2 && (
+                <div
+                  className="flex flex-col items-center text-center"
+                  style={{ marginTop: -20 }}
+                >
+                  {signatureUrl2 && (
+                    <img
+                      src={signatureUrl2}
+                      alt={signatoryName2}
+                      className="w-24 h-16 object-contain"
+                      style={{ marginBottom: -12 }}
+                    />
+                  )}
+                  {!signatureUrl2 && (
+                    <div className="w-32 border-b-2 border-gray-400 mb-2" />
+                  )}
+                  <div
+                    className="text-sm font-bold"
+                    style={{ color: "#4D4D4D" }}
+                  >
+                    {signatoryName2}
+                  </div>
+                  {signatoryTitle2 && (
+                    <div className="text-xs font-medium">{signatoryTitle2}</div>
+                  )}
+                </div>
+              )}
+
+              {/* Date display */}
+              {date && (
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-32 mt-8 mb-2" />
+                  <div className="text-xs font-bold ">Date</div>
+                  <div
+                    className="text-sm font-medium"
+                    style={{ color: "#4D4D4D" }}
+                  >
+                    {formattedDate || "DATE"}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>

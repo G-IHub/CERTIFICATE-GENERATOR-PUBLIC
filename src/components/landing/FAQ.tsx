@@ -8,7 +8,7 @@ import { ChevronDownIcon } from "@heroicons/react/20/solid";
 
 const FAQ: React.FC = () => {
   return (
-    <section className="bg-white px-4 sm:px-6 md:px-28 py-8 md:py-16">
+    <section className="bg-white px-6 sm:px-6 md:px-28 py-8 md:py-16">
       <div className="max-w-7xl mx-auto">
         <div className="text-center space-y-4 mb-8 md:mb-12">
           <h2 className="font-extrabold text-2xl sm:text-3xl md:text-4xl leading-tight">
@@ -49,7 +49,7 @@ const FAQ: React.FC = () => {
               transition
               className="mt-3 text-sm sm:text-base text-gray-600 origin-top transition duration-200 ease-out"
             >
-              Certificates can be downloaded as PDFs and shared via unique
+              Certificates can be downloaded as PNGs and shared via unique
               links. You can also embed them in emails or post them to social
               media.
             </DisclosurePanel>
@@ -73,6 +73,18 @@ const FAQ: React.FC = () => {
           </Disclosure>
 
           <Disclosure as="div" className="p-4 sm:p-6">
+            <DisclosureButton className="group flex w-full items-center justify-between text-left" >
+              <span className="leading-6 font-medium text-sm sm:text-base" >
+                Can I get feedback from my students?
+              </span>
+              <ChevronDownIcon className="h-5 w-5 sm:h-6 sm:w-6 text-gray-500 group-data-open:rotate-180 transform transition duration-200" />
+            </DisclosureButton>
+            <DisclosurePanel transition className="mt-3 text-sm sm:text-base text-gray-600 origin-top transition duration-200 ease-out">
+              Yes. Students can optionally send feedback on a course, and you can retrieve and consequently download them for other uses in the Testimonials tab.
+            </DisclosurePanel>
+          </Disclosure>
+
+          {/* <Disclosure as="div" className="p-4 sm:p-6">
             <DisclosureButton className="group flex w-full items-center justify-between text-left">
               <span className="leading-6 font-medium text-sm sm:text-base">
                 Can I integrate this with my LMS or event platform?
@@ -87,7 +99,7 @@ const FAQ: React.FC = () => {
               certificate system to learning management systems, event tools, or
               CRMs.
             </DisclosurePanel>
-          </Disclosure>
+          </Disclosure> */}
 
           {/* <Disclosure as="div" className="p-4 sm:p-6">
             <DisclosureButton className="group flex w-full items-center justify-between text-left">

@@ -1,5 +1,7 @@
 import React from "react";
-import logo from "../../assets/logo.svg";
+import logo from "../../assets/logo.png";
+import { Link as RouterLink } from "react-router-dom";
+import { Link as ScrollLink } from "react-scroll";
 
 const Footer: React.FC = () => {
   return (
@@ -9,18 +11,18 @@ const Footer: React.FC = () => {
           <h4 className="font-semibold text-white">Resources</h4>
           <div className="space-y-3 mt-4 text-sm">
             <a
-              href="/learn"
+              href=""
               className="block text-white/70 hover:text-white transition-colors"
             >
               Learn
             </a>
             <a
-              href="/support"
+              href=""
               className="block text-white/70 hover:text-white transition-colors"
             >
               Support
             </a>
-            <a
+            {/* <a
               href="/slack"
               className="block text-white/70 hover:text-white transition-colors"
             >
@@ -37,76 +39,90 @@ const Footer: React.FC = () => {
               className="block text-white/70 hover:text-white transition-colors"
             >
               Cookies
-            </a>
-            <a
-              href="/terms"
+            </a> */}
+            <RouterLink
+              to="/terms"
               className="block text-white/70 hover:text-white transition-colors"
             >
               Terms of Service
-            </a>
-            <a
-              href="/privacy"
+            </RouterLink>
+            <RouterLink
+              to="/privacy"
               className="block text-white/70 hover:text-white transition-colors"
             >
               Privacy Policy
-            </a>
+            </RouterLink>
           </div>
         </div>
         <div>
           <h4 className="font-semibold text-white">Products</h4>
           <div className="space-y-3 mt-4 text-sm">
-            <a
-              href="/howitworks"
-              className="block text-white/70 hover:text-white transition-colors"
-            >
-              How it works
-            </a>
-            <a
-              href="/features"
+            <ScrollLink
+              to="features"
+              smooth={true}
+              duration={500}
+              offset={-50}
               className="block text-white/70 hover:text-white transition-colors"
             >
               Features
-            </a>
-            <a
+            </ScrollLink>
+            <ScrollLink
+              to="work"
+              smooth={true}
+              duration={500}
+              offset={-50}
+              className="block text-white/70 hover:text-white transition-colors"
+            >
+              How It Works
+            </ScrollLink>
+            {/* <a
               href="/pricing"
               className="block text-white/70 hover:text-white transition-colors"
             >
               Pricing
-            </a>
-            <a
+            </a> */}
+            {/* <a
               href="/tools"
               className="block text-white/70 hover:text-white transition-colors"
             >
               Tools and Intergration
-            </a>
+            </a> */}
           </div>
         </div>
         <div>
           <h4 className="font-semibold text-white">About</h4>
           <div className="space-y-3 mt-4 text-sm">
-            <a
-              href="/ourstory"
+            <RouterLink
+              to="/story"
               className="block text-white/70 hover:text-white transition-colors"
             >
               Our Story
-            </a>
-            <a
+            </RouterLink>
+            {/* <a
               href="/mediakit"
               className="block text-white/70 hover:text-white transition-colors"
             >
               Media Kit
-            </a>
-            <a
+            </a> */}
+            {/* <a
               href="/blog"
               className="block text-white/70 hover:text-white transition-colors"
             >
               Blog
-            </a>
+            </a> */}
           </div>
         </div>
-        <div className="space-y-4">
-          <img src={logo} alt="logo" className="w-24 mb-4" />
-          <p className="text-sm text-white/70">
+        <div className="flex flex-col items-start space-y-4">
+          <div className="flex items-center gap-2">
+            <img src={logo} alt="logo" className="w-10" />
+            <p className="text-orange-500 font-medium hidden md:block md:text-xl">
+              Certifyer
+            </p>
+          </div>
+          <p className="text-white/70">
+            Empowering educators to create and manage certificates with ease
+          </p>
+          {/* <p className="text-sm text-white/70">
             Get the latest updates about Designership's new features and product
             updates.
           </p>
@@ -119,29 +135,29 @@ const Footer: React.FC = () => {
             <button className="text-white bg-orange-500 px-4 py-2.5 rounded-md hover:bg-orange-600 transition-colors">
               Send
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
 
-      <div className="flex flex-col gap-4 md:flex-row justify-between items-center border-t-2 pt-4 md:pt-12 border-white/70">
+      <div className="flex flex-col gap-4 md:flex-row justify-between items-center border-t pt-4 md:pt-12 border-white/70">
         <div className="text-white/70">
           <span>@2025 Genomac Innovation Hub. All rights reserved.</span>
         </div>
 
         <div className="flex gap-4 text-sm">
-          <a
-            href="/term"
+          <RouterLink
+            to="/terms"
             className="block text-white/70 hover:text-white transition-colors"
           >
             Terms of Service
-          </a>
-          <a
-            href="/privacy"
+          </RouterLink>
+          <RouterLink
+            to="/privacy"
             className="block text-white/70 hover:text-white transition-colors"
           >
             Privacy Policy
-          </a>
-          <a
+          </RouterLink>
+          {/* <a
             href="/security"
             className="block text-white/70 hover:text-white transition-colors"
           >
@@ -152,7 +168,7 @@ const Footer: React.FC = () => {
             className="block text-white/70 hover:text-white transition-colors"
           >
             Sitemap
-          </a>
+          </a> */}
         </div>
       </div>
     </div>

@@ -4,14 +4,6 @@ import { useLocation } from "react-router-dom";
 export default function NotFound() {
   const location = useLocation();
 
-  console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-  console.log("❌ 404 NOT FOUND PAGE RENDERED");
-  console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-  console.log("📍 URL:", window.location.href);
-  console.log("📍 Pathname:", location.pathname);
-  console.log("📍 Search:", location.search);
-  console.log("📍 Hash:", location.hash);
-  console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
@@ -39,22 +31,12 @@ export default function NotFound() {
           The page you're looking for doesn't exist or couldn't be loaded.
         </p>
 
-        <div className="bg-gray-50 rounded-lg p-4 mb-6 text-left">
-          <p className="text-sm font-medium text-gray-700 mb-2">Debug Info:</p>
-          <p className="text-xs text-gray-600 break-all">
-            <strong>URL:</strong> {window.location.href}
-          </p>
-          <p className="text-xs text-gray-600 break-all mt-1">
-            <strong>Path:</strong> {location.pathname}
-          </p>
-        </div>
-
         <div className="flex gap-3">
           <button
-            onClick={() => (window.location.href = "/#/dashboard")}
+            onClick={() => (window.location.href = "/")}
             className="flex-1 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
           >
-            Go to Dashboard
+            Go Back Home
           </button>
           <button
             onClick={() => window.location.reload()}
@@ -63,10 +45,6 @@ export default function NotFound() {
             Reload Page
           </button>
         </div>
-
-        <p className="text-xs text-gray-500 mt-4">
-          Check the browser console for detailed error logs
-        </p>
       </div>
     </div>
   );

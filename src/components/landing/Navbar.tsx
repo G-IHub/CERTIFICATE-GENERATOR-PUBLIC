@@ -75,7 +75,7 @@ const Navbar: React.FC = () => {
             )}
           </button>
 
-          <div className="hidden text-lg md:flex gap-12 items-center">
+          <div className="hidden text-lg lg:flex gap-12 items-center">
             <Link
               to="features"
               smooth={true}

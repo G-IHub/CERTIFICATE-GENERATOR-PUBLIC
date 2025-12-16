@@ -114,43 +114,23 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
 
       // Try to decrypt if we have a single encrypted parameter
       if (wildcardParam && !subsidiaryId && !programId) {
-        console.log("🔐 Attempting to decrypt certificate URL...");
-        console.log("   - Raw wildcardParam:", wildcardParam);
-        console.log("   - wildcardParam length:", wildcardParam.length);
-        console.log("   - Has % characters:", wildcardParam.includes("%"));
-        console.log("   - Has + characters:", wildcardParam.includes("+"));
-        console.log("   - First 50 chars:", wildcardParam.substring(0, 50));
-
         // React Router may have already decoded the URL, so we need to check
         // If it contains %, it's still encoded. If not, it's already decoded.
         const isAlreadyDecoded = !wildcardParam.includes("%");
-        console.log(
-          "   - Already URL-decoded by React Router?",
-          isAlreadyDecoded
-        );
-
         // Pass the parameter as-is if already decoded, or pass it encoded
         const paramToDecrypt = isAlreadyDecoded
           ? encodeURIComponent(wildcardParam)
           : wildcardParam;
-        console.log("   - Param to decrypt:", paramToDecrypt.substring(0, 50));
-
         decryptedData = decryptCertificateData(paramToDecrypt);
 
         if (decryptedData) {
-          console.log("✅ Successfully decrypted certificate data:");
-          console.log("   - Organization ID:", decryptedData.organizationId);
-          console.log("   - Program ID:", decryptedData.programId);
-          console.log("   - Certificate ID:", decryptedData.certificateId);
-
           // Check expiration
           const timeRemaining = getCertificateLinkTimeRemaining(wildcardParam);
           if (timeRemaining !== null) {
             const daysRemaining = Math.floor(
               timeRemaining / (1000 * 60 * 60 * 24)
             );
-            console.log(`⏰ Link valid for ${daysRemaining} more days`);
-          }
+            }
 
           actualCertificateId = decryptedData.certificateId;
         } else {
@@ -163,16 +143,8 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
         }
       } else if (certificateId) {
         // Legacy format: /certificate/{orgId}/{programId}/{certId}
-        console.log("📄 Using legacy URL format");
         actualCertificateId = certificateId;
       } else {
-        console.log("⚠️ No certificate ID or encrypted data provided");
-        console.log("⚠️ URL params:", {
-          subsidiaryId,
-          programId,
-          certificateId,
-          wildcardParam,
-        });
         setLoading(false);
         return;
       }
@@ -183,38 +155,15 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
         return;
       }
 
-      console.log("🔍 Fetching certificate ID:", actualCertificateId);
       setLoading(true);
 
       try {
         // Fetch certificate from backend
-        console.log("📡 Calling API to get certificate...");
         const response = await certificateApi.getById(actualCertificateId);
-        console.log("📡 API Response received:");
-        console.log("   - Has certificate:", !!response.certificate);
-        console.log("   - Has organization:", !!response.organization);
-        console.log("   - Has program:", !!response.program);
-
         if (response.certificate) {
-          console.log("✅ Certificate data received from backend");
           const cert = response.certificate;
           const org = response.organization;
           const prog = response.program;
-          console.log("📄 Certificate details:");
-          console.log("   - ID:", cert.id);
-          console.log(
-            "   - Student Name:",
-            cert.studentName || "(none - will prompt)"
-          );
-          console.log("   - Course Name:", cert.courseName);
-          console.log("   - Certificate Header:", cert.certificateHeader);
-          console.log("   - Template:", cert.template);
-          console.log("   - Organization ID:", cert.organizationId);
-          console.log("   - Organization Name:", org?.name || "(not found)");
-          console.log("   - Program ID:", cert.programId);
-          console.log("   - Program Name:", prog?.name || "(not found)");
-          console.log("   - Completion Date:", cert.completionDate);
-
           // Map backend response to CertificateData format
           const certificateData: CertificateData = {
             id: cert.id,
@@ -240,39 +189,16 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
             signatories: cert.signatories || [], // Signatories from backend
           };
 
-          console.log("📋 Template Info:", {
-            templateId: cert.template,
-            hasCustomConfig: !!cert.customTemplateConfig,
-          });
-
           setCertificate(certificateData);
           if (cert.customTemplateConfig) {
-            console.log(
-              "🎨 Certificate has customTemplateConfig - using saved design"
-            );
-            console.log(
-              "🎨 Custom config keys:",
-              Object.keys(cert.customTemplateConfig)
-            );
-            console.log(
-              "⚠️ NOT loading template from global library (would overwrite)"
-            );
             // Don't load from global library - certificate already has the config
           } else if (cert.template && cert.template.match(/^template\d+$/)) {
             // Only load from global library if no customTemplateConfig
-            console.log(
-              "📋 No customTemplateConfig - loading template from backend:",
-              cert.template
-            );
             try {
               const templateResponse = await templateApi.getById(cert.template);
               if (templateResponse.template) {
                 setTemplateConfig(templateResponse.template.config);
-                console.log(
-                  "✅ Template config loaded from global library:",
-                  templateResponse.template.name
-                );
-              }
+                }
             } catch (error) {
               console.error("❌ Failed to load template config:", error);
               // Not critical - will fall back to default
@@ -281,14 +207,9 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
 
           // Check if this is a new format certificate without a student name
           if (!cert.studentName) {
-            console.log("📝 No student name - showing name entry form");
             setShowNameForm(true);
           } else {
-            console.log("✅ Student name present:", cert.studentName);
-            console.log(
-              "📄 Will display certificate directly (no name entry needed)"
-            );
-          }
+            }
         } else {
           toast.error(
             "Certificate not found - this certificate may not exist in the database"
@@ -960,8 +881,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
           });
 
           if (response.success) {
-            console.log("✅ Testimonial saved successfully");
-          }
+            }
         }
 
         setShowNameForm(false);

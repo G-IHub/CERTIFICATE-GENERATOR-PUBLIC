@@ -95,11 +95,7 @@ export default function TemplatesPage({
       // Debug: log template ids/types to help trace preview issues
       try {
         // eslint-disable-next-line no-console
-        console.log(
-          "TemplatesPage: loaded templates",
-          loaded.map((t: any) => ({ id: t.id, type: t.type }))
-        );
-      } catch (e) {}
+        } catch (e) {}
       setTemplates(loaded);
     } catch (e: any) {
       console.error("Failed to load templates", e);

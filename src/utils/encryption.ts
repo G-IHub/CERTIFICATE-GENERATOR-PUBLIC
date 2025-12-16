@@ -63,14 +63,6 @@ export const decryptCertificateData = (encryptedData: string): CertificateData |
     const data: CertificateData = JSON.parse(dataString);
     const now = Date.now();
 
-    console.log('🔓 Decrypted certificate data:', {
-      organizationId: data.organizationId,
-      programId: data.programId,
-      certificateId: data.certificateId,
-      expiresAt: new Date(data.expiresAt).toLocaleString(),
-      isExpired: now > data.expiresAt
-    });
-
     // Check if expired
     if (now > data.expiresAt) {
       console.warn('⚠️ Certificate link has expired');

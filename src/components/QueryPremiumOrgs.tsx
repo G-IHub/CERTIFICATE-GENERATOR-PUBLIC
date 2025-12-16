@@ -33,13 +33,7 @@ export default function QueryPremiumOrgs() {
       setData(result);
       
       // Log to console for easy inspection
-      console.log('📊 FULL RESPONSE:', result);
-      console.log('🏢 All Organizations:', result.organizations);
-      console.log('💳 Organizations with Premium:', 
-        result.organizations.filter((org: any) => org.subscription?.status === 'active')
-      );
-      
-    } catch (err: any) {
+      } catch (err: any) {
       setError(err.message);
       console.error('❌ Query error:', err);
     } finally {

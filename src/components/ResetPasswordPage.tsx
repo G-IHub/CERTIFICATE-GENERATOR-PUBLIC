@@ -46,7 +46,6 @@ export default function ResetPasswordPage() {
     const stateRefreshToken = (location.state as any)?.refreshToken;
 
     if (stateToken) {
-      console.log("✅ Reset token found in Router state");
       setAccessToken(stateToken);
       if (stateRefreshToken) {
         setRefreshToken(stateRefreshToken);
@@ -75,25 +74,15 @@ export default function ResetPasswordPage() {
       refresh = pathParams.get("refresh_token");
     }
 
-    console.log("🔍 Checking for reset token...");
-    console.log("  - location.state:", location.state);
-    console.log("  - location.search:", location.search);
-    console.log("  - location.hash:", location.hash);
-    console.log("  - location.pathname:", location.pathname);
-    console.log("  - access_token found:", token ? "YES" : "NO");
-    console.log("  - refresh_token found:", refresh ? "YES" : "NO");
-
     if (token) {
       setAccessToken(token);
       if (refresh) {
         setRefreshToken(refresh);
       }
       setTokenValid(true);
-      console.log("✅ Reset token found in URL");
-    } else {
+      } else {
       setTokenValid(false);
-      console.log("❌ No reset token found in URL or state");
-    }
+      }
   }, [location]);
 
   const validatePassword = (password: string): string | null => {
@@ -147,8 +136,6 @@ export default function ResetPasswordPage() {
         publicAnonKey
       );
 
-      console.log("🔐 Step 1: Setting session with access token...");
-
       // First, establish the session using the tokens from the reset link
       const { data: sessionData, error: sessionError } =
         await supabase.auth.setSession({
@@ -161,9 +148,6 @@ export default function ResetPasswordPage() {
         throw new Error(sessionError.message || "Failed to authenticate");
       }
 
-      console.log("✅ Session established successfully");
-      console.log("🔐 Step 2: Updating password...");
-
       // Now update the user's password
       const { data, error: updateError } = await supabase.auth.updateUser({
         password: newPassword,
@@ -173,8 +157,6 @@ export default function ResetPasswordPage() {
         console.error("❌ Supabase password update error:", updateError);
         throw new Error(updateError.message || "Failed to reset password");
       }
-
-      console.log("✅ Password updated successfully:", data);
 
       setSuccess(true);
       toast.success("Password reset successfully!");

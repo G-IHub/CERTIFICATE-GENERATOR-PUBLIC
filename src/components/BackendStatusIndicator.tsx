@@ -19,9 +19,6 @@ export default function BackendStatusIndicator({ className = '' }: BackendStatus
     
     try {
       const healthUrl = `https://${projectId}.supabase.co/functions/v1/make-server-a611b057/health`;
-      console.log('🏥 Checking backend health:', healthUrl);
-      console.log('🔑 Using public anon key:', publicAnonKey ? 'Present' : 'Missing');
-      
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 15000); // 15 second timeout (allows for cold starts)
       
@@ -38,7 +35,6 @@ export default function BackendStatusIndicator({ className = '' }: BackendStatus
       
       if (response.ok) {
         const data = await response.json();
-        console.log('✅ Backend health check passed:', data);
         setStatus('online');
         setLastCheck(new Date());
       } else {

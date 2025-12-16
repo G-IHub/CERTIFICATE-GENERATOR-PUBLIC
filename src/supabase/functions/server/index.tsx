@@ -13,13 +13,8 @@ import * as kv from "./kv_store.tsx";
 /*
 try {
   await import("https://deno.land/std@0.203.0/dotenv/load.ts");
-  console.log("✅ Loaded .env into Deno.env (if present)");
-} catch (err) {
-  console.log(
-    "ℹ️ .env loader not applied (ok in production):",
-    err?.message || err
-  );
-}
+  } catch (err) {
+  }
 */
 
 const app = new Hono();
@@ -77,7 +72,6 @@ const verifyUser = async (authHeader: string | null) => {
 // ==================== HEALTH CHECK ====================
 // Root endpoint for basic connectivity test
 app.get("/make-server-a611b057", (c) => {
-  console.log("Root endpoint called");
   return c.json({
     status: "online",
     message: "Certificate Generator API",
@@ -99,7 +93,6 @@ app.options("/make-server-a611b057/health", (c) => {
 });
 
 app.get("/make-server-a611b057/health", (c) => {
-  console.log("Health check called");
   return c.json({
     status: "healthy",
     timestamp: new Date().toISOString(),
@@ -518,7 +511,6 @@ app.post("/make-server-a611b057/auth/signup", async (c) => {
       });
 
     if (authError) {
-      console.log("Auth error during sign up:", authError);
       return c.json({ error: `Sign up failed: ${authError.message}` }, 400);
     }
 
@@ -553,8 +545,6 @@ app.post("/make-server-a611b057/auth/signup", async (c) => {
     };
 
     await kv.set(`org:${organizationId}`, organization);
-    console.log(`✅ Auto-created organization for user ${email}: ${orgName}`);
-
     // Create user account with organization
     const userAccount = {
       id: userId,
@@ -576,7 +566,6 @@ app.post("/make-server-a611b057/auth/signup", async (c) => {
       });
 
     if (sessionError) {
-      console.log("Session error after sign up:", sessionError);
       return c.json({ error: "User created but sign in failed" }, 500);
     }
 
@@ -586,7 +575,6 @@ app.post("/make-server-a611b057/auth/signup", async (c) => {
       accessToken: sessionData.session?.access_token,
     });
   } catch (error) {
-    console.log("Error in signup:", error);
     return c.json({ error: `Server error during sign up: ${error}` }, 500);
   }
 });
@@ -614,7 +602,6 @@ app.post("/make-server-a611b057/auth/signin", async (c) => {
     });
 
     if (error) {
-      console.log("Sign in error:", error);
       return c.json({ error: `Sign in failed: ${error.message}` }, 401);
     }
 
@@ -636,7 +623,6 @@ app.post("/make-server-a611b057/auth/signin", async (c) => {
       accessToken: session.access_token,
     });
   } catch (error) {
-    console.log("Error in signin:", error);
     return c.json({ error: `Server error during sign in: ${error}` }, 500);
   }
 });
@@ -657,14 +643,11 @@ app.post("/make-server-a611b057/auth/reset-password", async (c) => {
       Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!
     );
 
-    console.log(`🔐 Password reset requested for: ${email}`);
-
     // Check if user exists (using admin client to avoid enumeration attacks)
     const { data: userData, error: userError } = await supabaseAdmin.auth.admin.listUsers();
     const userExists = userData?.users?.some(user => user.email === email);
 
     if (!userExists) {
-      console.log(`⚠️  User not found: ${email} (returning generic success for security)`);
       // Return success anyway to prevent email enumeration
       return c.json({
         success: true,
@@ -674,8 +657,6 @@ app.post("/make-server-a611b057/auth/reset-password", async (c) => {
 
     // Get frontend URL from environment (for redirect after reset)
     const frontendUrl = Deno.env.get("FRONTEND_URL") || "http://localhost:3000";
-    console.log(`🌐 Using redirect URL: ${frontendUrl}`);
-    
     // Generate password reset token with correct redirect URL
     // Note: Redirecting to root URL - the app will detect recovery token and redirect to /reset-password
     const { data: resetData, error: resetError } = await supabaseAdmin.auth.admin.generateLink({
@@ -692,16 +673,12 @@ app.post("/make-server-a611b057/auth/reset-password", async (c) => {
     }
 
     const resetLink = resetData.properties.action_link;
-    console.log(`✅ Generated reset link for: ${email}`);
-
     // Get Resend API key from environment
     const resendApiKey = Deno.env.get("RESEND_API_KEY");
     if (!resendApiKey) {
       console.error("❌ RESEND_API_KEY not configured!");
       throw new Error("EMAIL_SERVICE_NOT_CONFIGURED");
     }
-
-    console.log(`📧 Sending password reset email via Resend to: ${email}`);
 
     // Send email via Resend API
     const resendResponse = await fetch("https://api.resend.com/emails", {
@@ -865,8 +842,6 @@ app.post("/make-server-a611b057/auth/reset-password", async (c) => {
     }
 
     const resendData = await resendResponse.json();
-    console.log(`✅ Password reset email sent successfully via Resend:`, resendData);
-
     // Always return success to prevent email enumeration
     return c.json({
       success: true,
@@ -926,8 +901,6 @@ app.get("/make-server-a611b057/test/resend-api-key", async (c) => {
       prefix: apiKey.substring(0, 7),
       hasPrefix: apiKey.startsWith("re_"),
     };
-
-    console.log("🔍 API Key Analysis:", keyInfo);
 
     // Test the key with Resend API (just check authentication, don't actually send)
     const testResponse = await fetch("https://api.resend.com/emails", {
@@ -1011,21 +984,17 @@ app.post("/make-server-a611b057/auth/update-password", async (c) => {
     });
 
     if (error) {
-      console.log("Password update error:", error);
       return c.json(
         { error: error.message || "Failed to update password" },
         400
       );
     }
 
-    console.log(`Password updated successfully for user: ${data.user?.email}`);
-
     return c.json({
       success: true,
       message: "Password updated successfully",
     });
   } catch (error) {
-    console.log("Error in password update:", error);
     return c.json(
       { error: `Server error during password update: ${error}` },
       500
@@ -1046,7 +1015,6 @@ app.post("/make-server-a611b057/auth/signout", async (c) => {
 
     return c.json({ message: "Signed out successfully" });
   } catch (error) {
-    console.log("Error in signout:", error);
     return c.json({ error: `Server error during sign out: ${error}` }, 500);
   }
 });
@@ -1056,25 +1024,21 @@ app.get("/make-server-a611b057/auth/session", async (c) => {
   try {
     const { user, error } = await verifyUser(c.req.header("Authorization"));
     if (error) {
-      console.log("Session verification failed:", error);
       return c.json({ error }, 401);
     }
 
     if (!user) {
-      console.log("No user found in session check");
       return c.json({ error: "User not found" }, 401);
     }
 
     const userAccount = await kv.get(`user:${user.id}`);
 
     if (!userAccount) {
-      console.log("User account not found in KV store for user:", user.id);
       return c.json({ error: "User account not found" }, 404);
     }
 
     return c.json({ user: userAccount });
   } catch (error) {
-    console.log("Error getting session:", error);
     return c.json({ error: `Server error getting session: ${error}` }, 500);
   }
 });
@@ -1125,7 +1089,6 @@ app.post("/make-server-a611b057/organizations", async (c) => {
 
     return c.json({ organization });
   } catch (error) {
-    console.log("Error creating organization:", error);
     return c.json(
       { error: `Server error creating organization: ${error}` },
       500
@@ -1138,19 +1101,12 @@ app.get("/make-server-a611b057/organizations", async (c) => {
   try {
     const { user, error } = await verifyUser(c.req.header("Authorization"));
     if (error) {
-      console.log("❌ Authorization error when fetching organizations");
       return c.json({ error }, 401);
     }
 
-    console.log("📊 Fetching organizations for user:", user.id);
-
     // Get all organizations owned by user
     const allOrgs = await kv.getByPrefix("org:");
-    console.log("📊 Total organizations in database:", allOrgs.length);
-
     const userOrgs = allOrgs.filter((org) => org.ownerId === user.id);
-    console.log("��� User owns", userOrgs.length, "organization(s)");
-
     // Load settings for each organization
     for (const org of userOrgs) {
       const settingsKey = `org:${org.id}:settings`;
@@ -1161,21 +1117,10 @@ app.get("/make-server-a611b057/organizations", async (c) => {
     }
 
     if (userOrgs.length > 0) {
-      console.log(
-        "📊 Organization details:",
-        userOrgs.map((o) => ({
-          id: o.id,
-          name: o.name,
-          programs: o.programs?.length || 0,
-          ownerId: o.ownerId,
-          hasSettings: !!o.settings,
-        }))
-      );
-    }
+      }
 
     return c.json({ organizations: userOrgs });
   } catch (error) {
-    console.log("❌ Error getting organizations:", error);
     return c.json(
       { error: `Server error getting organizations: ${error}` },
       500
@@ -1209,7 +1154,6 @@ app.put("/make-server-a611b057/organizations/:id", async (c) => {
 
     return c.json({ organization: updatedOrganization });
   } catch (error) {
-    console.log("Error updating organization:", error);
     return c.json(
       { error: `Server error updating organization: ${error}` },
       500
@@ -1264,7 +1208,6 @@ app.post("/make-server-a611b057/programs", async (c) => {
 
     return c.json({ program: newProgram });
   } catch (error) {
-    console.log("Error creating program:", error);
     return c.json({ error: `Server error creating program: ${error}` }, 500);
   }
 });
@@ -1313,7 +1256,6 @@ app.put(
 
       return c.json({ program: organization.programs[programIndex] });
     } catch (error) {
-      console.log("Error updating program:", error);
       return c.json({ error: `Server error updating program: ${error}` }, 500);
     }
   }
@@ -1324,21 +1266,10 @@ app.put(
 // Generate certificates
 app.post("/make-server-a611b057/certificates", async (c) => {
   try {
-    console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-    console.log("📜 CERTIFICATE GENERATION REQUEST RECEIVED");
-    console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-
     const { user, error } = await verifyUser(c.req.header("Authorization"));
     if (error) {
-      console.log("❌ Authorization error:", error);
-      console.log(
-        "❌ Auth header:",
-        c.req.header("Authorization") ? "Present" : "Missing"
-      );
       return c.json({ error: `Authorization failed: ${error}` }, 401);
     }
-    console.log("✅ User authorized:", user.id);
-
     const requestBody = await c.req.json();
     const {
       organizationId,
@@ -1353,35 +1284,18 @@ app.post("/make-server-a611b057/certificates", async (c) => {
       signatories,
     } = requestBody;
 
-    console.log("📋 Request data:", {
-      organizationId: organizationId || "MISSING",
-      programId: programId || "none",
-      courseName: courseName || "MISSING",
-      certificateHeader: certificateHeader || "MISSING",
-      template: template || "none",
-      hasCustomTemplate: !!customTemplateConfig,
-      hasStudents: !!students,
-      studentCount: students?.length || 0,
-      isNewFormat: !students,
-      userId: user.id,
-      signatoryCount: signatories?.length || 0,
-    });
-
     // Support both old format (with students array) and new format (without students)
     const isNewFormat = !students;
 
     if (isNewFormat) {
       // New format: Generate a single certificate link without student details
       if (!organizationId) {
-        console.log("❌ Missing organizationId");
         return c.json({ error: "Organization ID is required" }, 400);
       }
       if (!courseName) {
-        console.log("❌ Missing courseName");
         return c.json({ error: "Course name is required" }, 400);
       }
       if (!certificateHeader) {
-        console.log("❌ Missing certificateHeader");
         return c.json({ error: "Certificate header is required" }, 400);
       }
     } else {
@@ -1392,7 +1306,6 @@ app.post("/make-server-a611b057/certificates", async (c) => {
         !students ||
         !Array.isArray(students)
       ) {
-        console.log("❌ Missing required fields for old format");
         return c.json(
           {
             error:
@@ -1403,42 +1316,30 @@ app.post("/make-server-a611b057/certificates", async (c) => {
       }
     }
 
-    console.log("🔍 Looking up organization:", organizationId);
     const organization = await kv.get(`org:${organizationId}`);
 
     if (!organization) {
-      console.log("❌ Organization not found in database");
       return c.json(
         { error: `Organization not found: ${organizationId}` },
         404
       );
     }
-    console.log("��� Organization found:", organization.name);
-
     if (organization.ownerId !== user.id) {
-      console.log("❌ User not authorized for this organization");
-      console.log("   - Organization owner:", organization.ownerId);
-      console.log("   - Current user:", user.id);
       return c.json(
         { error: "Unauthorized: You do not own this organization" },
         403
       );
     }
-    console.log("✅ User owns this organization");
-
     // Validate premium template access
     if (template) {
-      console.log("🔍 Checking template access for template:", template);
       const templateData = await kv.get(`globaltemplate:${template}`);
 
       if (templateData && templateData.type === "premium") {
-        console.log("🔒 Premium template detected, checking user access...");
         const isPremiumOrg =
           organization.tier === "premium" ||
           organization.subscriptionStatus === "active";
 
         if (!isPremiumOrg) {
-          console.log("❌ Organization does not have premium access");
           return c.json(
             {
               error:
@@ -1449,23 +1350,18 @@ app.post("/make-server-a611b057/certificates", async (c) => {
             403
           );
         }
-        console.log("✅ Organization has premium access");
-      }
+        }
     }
 
     const certificates = [];
 
     if (isNewFormat) {
       // New workflow: Generate a certificate link without student name
-      console.log("✨ Generating NEW FORMAT certificate (shareable link)");
       const certificateId = `CERT-${Date.now()}-${Math.random()
         .toString(36)
         .substr(2, 9)
         .toUpperCase()}`;
       const programSlug = courseName.toLowerCase().replace(/\s+/g, "-");
-      console.log("📝 Certificate ID:", certificateId);
-      console.log("📝 Program Slug:", programSlug);
-
       const certificate = {
         id: certificateId,
         courseName,
@@ -1484,33 +1380,20 @@ app.post("/make-server-a611b057/certificates", async (c) => {
       };
 
       await kv.set(`cert:${certificateId}`, certificate);
-      console.log(
-        "✅ Certificate saved to KV store with key: cert:" + certificateId
-      );
       certificates.push(certificate);
 
       // Update program certificate count if program exists
       if (programId) {
-        console.log(
-          "📊 Attempting to update program statistics for programId:",
-          programId
-        );
         const program = organization.programs.find((p) => p.id === programId);
         if (program) {
-          console.log("✅ Program found, updating certificate count");
           program.certificates += 1;
           await kv.set(`org:${organizationId}`, organization);
         } else {
-          console.log("⚠️ Program not found in organization");
-        }
+          }
       } else {
-        console.log(
-          "ℹ️ No programId provided, skipping program statistics update"
-        );
-      }
+        }
     } else {
       // Old workflow: Generate certificates with student details
-      console.log("🔄 Generating OLD FORMAT certificates (with student names)");
       const program = organization.programs.find((p) => p.id === programId);
 
       if (!program) {
@@ -1551,14 +1434,8 @@ app.post("/make-server-a611b057/certificates", async (c) => {
       await kv.set(`org:${organizationId}`, organization);
     }
 
-    console.log(
-      "✅ Successfully generated",
-      certificates.length,
-      "certificate(s)"
-    );
     return c.json({ certificates, count: certificates.length });
   } catch (error) {
-    console.log("❌ Error generating certificates:", error);
     return c.json(
       { error: `Server error generating certificates: ${error}` },
       500
@@ -1570,53 +1447,31 @@ app.post("/make-server-a611b057/certificates", async (c) => {
 app.get("/make-server-a611b057/certificates/:id", async (c) => {
   try {
     const certificateId = c.req.param("id");
-    console.log("📜 Certificate lookup request for ID:", certificateId);
-
     const certificate = await kv.get(`cert:${certificateId}`);
-    console.log("📜 Certificate found:", certificate ? "YES" : "NO");
-
     if (!certificate) {
-      console.log("❌ Certificate not found in KV store");
       return c.json({ error: "Certificate not found" }, 404);
     }
 
     // Get organization and program details
-    console.log("📜 Fetching organization:", certificate.organizationId);
     const organization = await kv.get(`org:${certificate.organizationId}`);
-    console.log("📜 Organization found:", organization ? "YES" : "NO");
-
     // Get organization settings
     if (organization) {
       const settingsKey = `org:${certificate.organizationId}:settings`;
       const settings = await kv.get(settingsKey);
       if (settings) {
         organization.settings = settings;
-        console.log(
-          "📜 Organization settings loaded:",
-          settings.signatories?.length || 0,
-          "signatories"
-        );
-      }
+        }
     }
 
     const program = organization?.programs.find(
       (p) => p.id === certificate.programId
     );
-    console.log(
-      "📜 Program found:",
-      program
-        ? "YES (ID: " + program.id + ")"
-        : "NO (searching for: " + certificate.programId + ")"
-    );
-
-    console.log("✅ Returning certificate data");
     return c.json({
       certificate,
       organization,
       program,
     });
   } catch (error) {
-    console.log("Error getting certificate:", error);
     return c.json({ error: `Server error getting certificate: ${error}` }, 500);
   }
 });
@@ -1626,24 +1481,17 @@ app.get("/make-server-a611b057/organizations/:id/certificates", async (c) => {
   try {
     const { user, error } = await verifyUser(c.req.header("Authorization"));
     if (error) {
-      console.log("❌ Authorization error when fetching certificates");
       return c.json({ error }, 401);
     }
 
     const organizationId = c.req.param("id");
-    console.log("📜 Fetching certificates for organization:", organizationId);
-
     const organization = await kv.get(`org:${organizationId}`);
 
     if (!organization) {
-      console.log("❌ Organization not found:", organizationId);
       return c.json({ error: "Organization not found" }, 404);
     }
 
     if (organization.ownerId !== user.id) {
-      console.log(
-        "❌ User not authorized to view certificates for this organization"
-      );
       return c.json(
         { error: "Unauthorized to view certificates for this organization" },
         403
@@ -1651,25 +1499,15 @@ app.get("/make-server-a611b057/organizations/:id/certificates", async (c) => {
     }
 
     // Get all certificates for this organization
-    console.log("📊 Searching for certificates with prefix: cert:");
     const allCerts = await kv.getByPrefix("cert:");
-    console.log("📊 Total certificates in database:", allCerts.length);
-
     const orgCerts = allCerts.filter(
       (cert) => cert.organizationId === organizationId
     );
-    console.log("📊 Certificates for this organization:", orgCerts.length);
-
     if (orgCerts.length > 0) {
-      console.log(
-        "📜 Certificate IDs:",
-        orgCerts.map((c) => c.id)
-      );
-    }
+      }
 
     return c.json({ certificates: orgCerts });
   } catch (error) {
-    console.log("❌ Error getting organization certificates:", error);
     return c.json(
       { error: `Server error getting certificates: ${error}` },
       500
@@ -1682,17 +1520,13 @@ app.delete("/make-server-a611b057/certificates/:id", async (c) => {
   try {
     const { user, error } = await verifyUser(c.req.header("Authorization"));
     if (error) {
-      console.log("❌ Authorization error when deleting certificate");
       return c.json({ error }, 401);
     }
 
     const certificateId = c.req.param("id");
-    console.log("🗑️ Delete certificate request for ID:", certificateId);
-
     const certificate = await kv.get(`cert:${certificateId}`);
 
     if (!certificate) {
-      console.log("❌ Certificate not found:", certificateId);
       return c.json({ error: "Certificate not found" }, 404);
     }
 
@@ -1700,14 +1534,11 @@ app.delete("/make-server-a611b057/certificates/:id", async (c) => {
     const organization = await kv.get(`org:${certificate.organizationId}`);
 
     if (!organization || organization.ownerId !== user.id) {
-      console.log("��� User not authorized to delete this certificate");
       return c.json({ error: "Unauthorized to delete this certificate" }, 403);
     }
 
     // Delete the certificate
     await kv.del(`cert:${certificateId}`);
-    console.log("✅ Certificate deleted successfully:", certificateId);
-
     // Update program certificate count if applicable
     if (certificate.programId) {
       const program = organization.programs.find(
@@ -1716,13 +1547,11 @@ app.delete("/make-server-a611b057/certificates/:id", async (c) => {
       if (program && program.certificates > 0) {
         program.certificates -= 1;
         await kv.set(`org:${certificate.organizationId}`, organization);
-        console.log("✅ Updated program certificate count");
-      }
+        }
     }
 
     return c.json({ message: "Certificate deleted successfully" });
   } catch (error) {
-    console.log("❌ Error deleting certificate:", error);
     return c.json(
       { error: `Server error deleting certificate: ${error}` },
       500
@@ -1735,7 +1564,6 @@ app.delete("/make-server-a611b057/certificates", async (c) => {
   try {
     const { user, error } = await verifyUser(c.req.header("Authorization"));
     if (error) {
-      console.log("❌ Authorization error when deleting certificates");
       return c.json({ error }, 401);
     }
 
@@ -1748,12 +1576,6 @@ app.delete("/make-server-a611b057/certificates", async (c) => {
     ) {
       return c.json({ error: "Certificate IDs array is required" }, 400);
     }
-
-    console.log(
-      "🗑️ Bulk delete request for",
-      certificateIds.length,
-      "certificates"
-    );
 
     let deletedCount = 0;
     const errors = [];
@@ -1794,17 +1616,12 @@ app.delete("/make-server-a611b057/certificates", async (c) => {
       }
     }
 
-    console.log(
-      `✅ Deleted ${deletedCount} certificate(s), ${errors.length} error(s)`
-    );
-
     return c.json({
       deletedCount,
       errors: errors.length > 0 ? errors : undefined,
       message: `Successfully deleted ${deletedCount} certificate(s)`,
     });
   } catch (error) {
-    console.log("❌ Error in bulk certificate deletion:", error);
     return c.json(
       { error: `Server error deleting certificates: ${error}` },
       500
@@ -1819,16 +1636,6 @@ app.post("/make-server-a611b057/certificates/:id/testimonial", async (c) => {
     const { studentName, email, testimonial, courseName, organizationId, programId } =
       await c.req.json();
 
-    console.log("💬 Testimonial submission:", {
-      certificateId,
-      studentName,
-      email,
-      hasTestimonial: !!testimonial,
-      courseName,
-      organizationId,
-      programId,
-    });
-
     if (!studentName || !testimonial || !courseName || !organizationId) {
       return c.json(
         {
@@ -1842,7 +1649,6 @@ app.post("/make-server-a611b057/certificates/:id/testimonial", async (c) => {
     // Verify certificate exists
     const certificate = await kv.get(`cert:${certificateId}`);
     if (!certificate) {
-      console.log("❌ Certificate not found for testimonial submission");
       return c.json({ error: "Certificate not found" }, 404);
     }
 
@@ -1872,15 +1678,12 @@ app.post("/make-server-a611b057/certificates/:id/testimonial", async (c) => {
       testimonialData
     );
 
-    console.log("✅ Testimonial saved successfully:", testimonialId);
-
     return c.json({
       success: true,
       testimonial: testimonialData,
       message: "Thank you for your feedback!",
     });
   } catch (error) {
-    console.log("❌ Error submitting testimonial:", error);
     return c.json(
       { error: `Server error submitting testimonial: ${error}` },
       500
@@ -1893,24 +1696,17 @@ app.get("/make-server-a611b057/organizations/:id/testimonials", async (c) => {
   try {
     const { user, error } = await verifyUser(c.req.header("Authorization"));
     if (error) {
-      console.log("❌ Authorization error when fetching testimonials");
       return c.json({ error }, 401);
     }
 
     const organizationId = c.req.param("id");
-    console.log("💬 Fetching testimonials for organization:", organizationId);
-
     const organization = await kv.get(`org:${organizationId}`);
 
     if (!organization) {
-      console.log("❌ Organization not found:", organizationId);
       return c.json({ error: "Organization not found" }, 404);
     }
 
     if (organization.ownerId !== user.id) {
-      console.log(
-        "❌ User not authorized to view testimonials for this organization"
-      );
       return c.json(
         { error: "Unauthorized to view testimonials for this organization" },
         403
@@ -1918,15 +1714,9 @@ app.get("/make-server-a611b057/organizations/:id/testimonials", async (c) => {
     }
 
     // Get all testimonials for this organization
-    console.log(
-      "📊 Searching for testimonials with prefix: org_testimonial:" +
-        organizationId
-    );
     const testimonials = await kv.getByPrefix(
       `org_testimonial:${organizationId}`
     );
-    console.log("📊 Found", testimonials.length, "testimonial(s)");
-
     // Group testimonials by course
     const testimonialsByCourse = {};
     for (const test of testimonials) {
@@ -1943,7 +1733,6 @@ app.get("/make-server-a611b057/organizations/:id/testimonials", async (c) => {
       count: testimonials.length,
     });
   } catch (error) {
-    console.log("❌ Error fetching testimonials:", error);
     return c.json(
       { error: `Server error fetching testimonials: ${error}` },
       500
@@ -1956,25 +1745,18 @@ app.delete("/make-server-a611b057/programs/:orgId/:progId", async (c) => {
   try {
     const { user, error } = await verifyUser(c.req.header("Authorization"));
     if (error) {
-      console.log("❌ Authorization error when deleting program");
       return c.json({ error }, 401);
     }
 
     const organizationId = c.req.param("orgId");
     const programId = c.req.param("progId");
-    console.log("🗑️ Delete program request:", { organizationId, programId });
-
     const organization = await kv.get(`org:${organizationId}`);
 
     if (!organization) {
-      console.log("❌ Organization not found");
       return c.json({ error: "Organization not found" }, 404);
     }
 
     if (organization.ownerId !== user.id) {
-      console.log(
-        "❌ User not authorized to delete programs in this organization"
-      );
       return c.json(
         { error: "Unauthorized to delete programs in this organization" },
         403
@@ -1987,18 +1769,14 @@ app.delete("/make-server-a611b057/programs/:orgId/:progId", async (c) => {
     );
 
     if (programIndex === -1) {
-      console.log("❌ Program not found");
       return c.json({ error: "Program not found" }, 404);
     }
 
     organization.programs.splice(programIndex, 1);
     await kv.set(`org:${organizationId}`, organization);
 
-    console.log("✅ Program deleted successfully:", programId);
-
     return c.json({ message: "Program deleted successfully", organization });
   } catch (error) {
-    console.log("❌ Error deleting program:", error);
     return c.json({ error: `Server error deleting program: ${error}` }, 500);
   }
 });
@@ -2017,7 +1795,6 @@ app.post("/make-server-a611b057/upload", async (c) => {
     try {
       formData = await c.req.formData();
     } catch (formError) {
-      console.log("Error parsing form data:", formError);
       return c.json({ error: "Invalid form data" }, 400);
     }
 
@@ -2063,7 +1840,6 @@ app.post("/make-server-a611b057/upload", async (c) => {
       );
 
       if (createBucketError) {
-        console.log("Error creating bucket:", createBucketError);
         return c.json({ error: "Failed to create storage bucket" }, 500);
       }
     }
@@ -2085,7 +1861,6 @@ app.post("/make-server-a611b057/upload", async (c) => {
       });
 
     if (uploadError) {
-      console.log("Upload error:", uploadError);
       return c.json(
         { error: `Failed to upload file: ${uploadError.message}` },
         500
@@ -2099,7 +1874,6 @@ app.post("/make-server-a611b057/upload", async (c) => {
         .createSignedUrl(fileName, 31536000); // 1 year in seconds
 
     if (signedUrlError) {
-      console.log("Error creating signed URL:", signedUrlError);
       return c.json({ error: "Failed to create signed URL" }, 500);
     }
 
@@ -2108,7 +1882,6 @@ app.post("/make-server-a611b057/upload", async (c) => {
       path: fileName,
     });
   } catch (error) {
-    console.log("Error in upload:", error);
     return c.json({ error: `Server error during upload: ${error}` }, 500);
   }
 });
@@ -2152,7 +1925,6 @@ app.get("/make-server-a611b057/organizations/:id/settings", async (c) => {
 
     return c.json({ settings });
   } catch (error) {
-    console.log("Error getting organization settings:", error);
     return c.json({ error: `Server error getting settings: ${error}` }, 500);
   }
 });
@@ -2194,7 +1966,6 @@ app.put("/make-server-a611b057/organizations/:id/settings", async (c) => {
 
     return c.json({ settings });
   } catch (error) {
-    console.log("Error updating organization settings:", error);
     return c.json({ error: `Server error updating settings: ${error}` }, 500);
   }
 });
@@ -2252,7 +2023,6 @@ app.post("/make-server-a611b057/testimonials", async (c) => {
 
     return c.json({ testimonial });
   } catch (error) {
-    console.log("Error creating testimonial:", error);
     return c.json(
       { error: `Server error creating testimonial: ${error}` },
       500
@@ -2290,7 +2060,6 @@ app.get("/make-server-a611b057/organizations/:id/testimonials", async (c) => {
 
     return c.json({ testimonials: orgTestimonials });
   } catch (error) {
-    console.log("Error getting testimonials:", error);
     return c.json(
       { error: `Server error getting testimonials: ${error}` },
       500
@@ -2309,19 +2078,13 @@ app.get("/make-server-a611b057/organizations/:id/analytics", async (c) => {
     }
 
     const organizationId = c.req.param("id");
-    console.log("📊 Fetching analytics for organization:", organizationId);
-
     const organization = await kv.get(`org:${organizationId}`);
 
     if (!organization) {
-      console.log("❌ Organization not found:", organizationId);
       return c.json({ error: "Organization not found" }, 404);
     }
 
     if (organization.ownerId !== user.id) {
-      console.log(
-        "❌ User not authorized to view analytics for this organization"
-      );
       return c.json(
         { error: "Unauthorized to view analytics for this organization" },
         403
@@ -2332,14 +2095,10 @@ app.get("/make-server-a611b057/organizations/:id/analytics", async (c) => {
     const allCertificates = await kv.getByPrefix(
       `org_certificate:${organizationId}`
     );
-    console.log("📊 Found", allCertificates.length, "certificate(s)");
-
     // Get all testimonials for this organization
     const allTestimonials = await kv.getByPrefix(
       `org_testimonial:${organizationId}`
     );
-    console.log("📊 Found", allTestimonials.length, "testimonial(s)");
-
     // Calculate statistics
     const totalCertificates = allCertificates.length;
     const totalTestimonials = allTestimonials.length;
@@ -2434,8 +2193,6 @@ app.get("/make-server-a611b057/organizations/:id/analytics", async (c) => {
       )
       .slice(0, 10);
 
-    console.log("📊 Analytics calculated successfully");
-
     return c.json({
       analytics: {
         totalCertificates,
@@ -2447,7 +2204,6 @@ app.get("/make-server-a611b057/organizations/:id/analytics", async (c) => {
       },
     });
   } catch (error) {
-    console.log("❌ Error fetching analytics:", error);
     return c.json({ error: `Server error fetching analytics: ${error}` }, 500);
   }
 });
@@ -2458,8 +2214,6 @@ app.get("/make-server-a611b057/organizations/:id/analytics", async (c) => {
 // This endpoint returns ALL templates in the system, not just for one organization
 app.get("/make-server-a611b057/templates", async (c) => {
   try {
-    console.log("📂 Fetching all templates from global library");
-
     // Get all templates with prefix 'globaltemplate:'
     const allTemplates = await kv.getByPrefix("globaltemplate:");
 
@@ -2474,23 +2228,6 @@ app.get("/make-server-a611b057/templates", async (c) => {
     );
     const combinedTemplates = [...freeTemplates, ...premiumTemplates];
 
-    console.log(
-      "✅ Found",
-      combinedTemplates.length,
-      "template(s) in global library"
-    );
-    console.log(
-      "   📗 Free:",
-      freeTemplates.length,
-      "|",
-      "👑 Premium:",
-      premiumTemplates.length
-    );
-    console.log(
-      "📋 Template IDs:",
-      combinedTemplates.map((t) => t.id).join(", ")
-    );
-
     return c.json({
       templates: combinedTemplates,
       count: combinedTemplates.length,
@@ -2498,7 +2235,6 @@ app.get("/make-server-a611b057/templates", async (c) => {
       premiumCount: premiumTemplates.length,
     });
   } catch (error) {
-    console.log("❌ Error getting templates:", error);
     return c.json({ error: `Server error getting templates: ${error}` }, 500);
   }
 });
@@ -2507,20 +2243,14 @@ app.get("/make-server-a611b057/templates", async (c) => {
 app.get("/make-server-a611b057/templates/:id", async (c) => {
   try {
     const templateId = c.req.param("id");
-    console.log("📄 Get template request:", templateId);
-
     const template = await kv.get(`globaltemplate:${templateId}`);
 
     if (!template) {
-      console.log("❌ Template not found:", templateId);
       return c.json({ error: "Template not found" }, 404);
     }
 
-    console.log("✅ Template found:", template.name);
-
     return c.json({ template });
   } catch (error) {
-    console.log("❌ Error getting template:", error);
     return c.json({ error: `Server error getting template: ${error}` }, 500);
   }
 });
@@ -2530,7 +2260,6 @@ app.post("/make-server-a611b057/templates", async (c) => {
   try {
     const { user, error } = await verifyUser(c.req.header("Authorization"));
     if (error) {
-      console.log("❌ Authorization error when creating template");
       return c.json({ error }, 401);
     }
 
@@ -2539,8 +2268,6 @@ app.post("/make-server-a611b057/templates", async (c) => {
     if (!template || !template.name) {
       return c.json({ error: "Template data with name is required" }, 400);
     }
-
-    console.log("📝 Create template request:", template.name);
 
     // Get next template number
     const allTemplates = await kv.getByPrefix("globaltemplate:");
@@ -2565,11 +2292,8 @@ app.post("/make-server-a611b057/templates", async (c) => {
     // Store template in global library
     await kv.set(`globaltemplate:${templateId}`, templateData);
 
-    console.log("✅ Template created successfully:", templateId);
-
     return c.json({ template: templateData });
   } catch (error) {
-    console.log("❌ Error creating template:", error);
     return c.json({ error: `Server error creating template: ${error}` }, 500);
   }
 });
@@ -2584,8 +2308,6 @@ app.put("/make-server-a611b057/templates/:id", async (c) => {
 
     const templateId = c.req.param("id");
     const updates = await c.req.json();
-
-    console.log("📝 Update template request:", templateId);
 
     const template = await kv.get(`globaltemplate:${templateId}`);
 
@@ -2614,11 +2336,8 @@ app.put("/make-server-a611b057/templates/:id", async (c) => {
 
     await kv.set(`globaltemplate:${templateId}`, updatedTemplate);
 
-    console.log("✅ Template updated successfully:", templateId);
-
     return c.json({ template: updatedTemplate });
   } catch (error) {
-    console.log("❌ Error updating template:", error);
     return c.json({ error: `Server error updating template: ${error}` }, 500);
   }
 });
@@ -2632,8 +2351,6 @@ app.delete("/make-server-a611b057/templates/:id", async (c) => {
     }
 
     const templateId = c.req.param("id");
-    console.log("🗑️ Delete template request:", templateId);
-
     const template = await kv.get(`globaltemplate:${templateId}`);
 
     if (!template) {
@@ -2653,11 +2370,8 @@ app.delete("/make-server-a611b057/templates/:id", async (c) => {
     // Delete template
     await kv.del(`globaltemplate:${templateId}`);
 
-    console.log("✅ Template deleted successfully:", templateId);
-
     return c.json({ message: "Template deleted successfully" });
   } catch (error) {
-    console.log("❌ Error deleting template:", error);
     return c.json({ error: `Server error deleting template: ${error}` }, 500);
   }
 });
@@ -2665,15 +2379,10 @@ app.delete("/make-server-a611b057/templates/:id", async (c) => {
 // Initialize default templates (call this once to seed the database)
 app.post("/make-server-a611b057/templates/seed", async (c) => {
   try {
-    console.log("🌱 Seeding default templates...");
-
     // IMPORTANT: This seed endpoint only runs if no templates exist
     // Use /templates/force-reseed to clear and reseed all templates
     const existing = await kv.getByPrefix("globaltemplate:");
     if (existing.length > 0) {
-      console.log(
-        "⚠️ Templates already exist, skipping seed. Use /templates/force-reseed to reset."
-      );
       return c.json({
         message: "Templates already seeded",
         count: existing.length,
@@ -2689,15 +2398,12 @@ app.post("/make-server-a611b057/templates/seed", async (c) => {
       await kv.set(`globaltemplate:${template.id}`, template);
     }
 
-    console.log("✅ Seeded", defaultTemplates.length, "default template(s)");
-
     return c.json({
       message: "Default templates seeded successfully",
       count: defaultTemplates.length,
       templates: defaultTemplates,
     });
   } catch (error) {
-    console.log("❌ Error seeding templates:", error);
     return c.json({ error: `Server error seeding templates: ${error}` }, 500);
   }
 });
@@ -2705,17 +2411,12 @@ app.post("/make-server-a611b057/templates/seed", async (c) => {
 // Force reseed - clears existing templates and reseeds
 app.post("/make-server-a611b057/templates/force-reseed", async (c) => {
   try {
-    console.log("🔄 Force reseeding templates...");
-
     // Step 1: Delete all existing templates
     const existing = await kv.getByPrefix("globaltemplate:");
-    console.log(`🗑️ Deleting ${existing.length} existing templates...`);
-
     if (existing.length > 0) {
       const templatesToDelete = existing.map((t) => `globaltemplate:${t.id}`);
       await kv.mdel(templatesToDelete);
-      console.log("✅ Existing templates deleted");
-    }
+      }
 
     // Step 2: Define all default templates (1-3)
     const defaultTemplates = DEFAULT_TEMPLATES;
@@ -2725,19 +2426,12 @@ app.post("/make-server-a611b057/templates/force-reseed", async (c) => {
       await kv.set(`globaltemplate:${template.id}`, template);
     }
 
-    console.log(
-      "✅ Force reseeded",
-      defaultTemplates.length,
-      "default template(s) (Templates 1-5)"
-    );
-
     return c.json({
       message: "Templates 1-5 force reseeded successfully",
       count: defaultTemplates.length,
       templates: defaultTemplates,
     });
   } catch (error) {
-    console.log("❌ Error seeding templates:", error);
     return c.json({ error: `Server error seeding templates: ${error}` }, 500);
   }
 });
@@ -2745,17 +2439,12 @@ app.post("/make-server-a611b057/templates/force-reseed", async (c) => {
 // NUCLEAR OPTION: Purge ALL templates and reseed with ONLY Template 1
 app.post("/make-server-a611b057/templates/purge-and-reset", async (c) => {
   try {
-    console.log("🔥 PURGING ALL TEMPLATES - Keeping only Template 1...");
-
     // Step 1: Delete ALL existing templates
     const existing = await kv.getByPrefix("globaltemplate:");
-    console.log(`🗑️ Found ${existing.length} templates to delete...`);
-
     if (existing.length > 0) {
       const templatesToDelete = existing.map((t) => `globaltemplate:${t.id}`);
       await kv.mdel(templatesToDelete);
-      console.log("✅ All old templates deleted");
-    }
+      }
 
     // Step 2: Seed ONLY Template 1
     const template1 = {
@@ -2801,15 +2490,12 @@ app.post("/make-server-a611b057/templates/purge-and-reset", async (c) => {
 
     await kv.set(`globaltemplate:${template1.id}`, template1);
 
-    console.log("✅ System reset complete - Only Template 1 exists");
-
     return c.json({
       message:
         "All old templates purged. Only Template 1 (Certificate of Appreciation) remains.",
       template: template1,
     });
   } catch (error) {
-    console.log("❌ Error purging templates:", error);
     return c.json({ error: `Server error purging templates: ${error}` }, 500);
   }
 });
@@ -2839,7 +2525,6 @@ async function getBillingSettings() {
       Deno.env.get("PAYSTACK_PUBLIC_KEY") || Deno.env.get("PAYSTACK_PUBLIC");
 
     if (secret && pub) {
-      console.log("🔐 Using Paystack keys from environment variables");
       // Keep plans in KV if present, but env-based keys take precedence
       const kvSettings = await kv.get("billing:settings").catch(() => null);
       return {
@@ -2861,7 +2546,6 @@ async function getBillingSettings() {
 }
 
 // Start the server
-console.log("🚀 Certificate Generator API Server Starting...");
 // ==================== BILLING ROUTES (PAYSTACK INTEGRATION) ====================
 // Note: Billing settings routes are defined later in the file (after line 5330)
 
@@ -2875,7 +2559,6 @@ app.get("/make-server-a611b057/billing/config", async (c) => {
       plans: settings?.plans || {},
     });
   } catch (error) {
-    console.log("❌ Error getting billing config:", error);
     return c.json({ error: `Server error: ${error}` }, 500);
   }
 });
@@ -2897,7 +2580,6 @@ app.post("/make-server-a611b057/billing/initialize", async (c) => {
     // Get billing settings (env vars take precedence)
     const settings = await getBillingSettings();
     if (!settings || !settings.paystackSecretKey) {
-      console.log("⚠️ Paystack not configured");
       return c.json(
         {
           error:
@@ -2953,7 +2635,6 @@ app.post("/make-server-a611b057/billing/initialize", async (c) => {
     const data = await response.json();
 
     if (!response.ok || !data.status) {
-      console.log("❌ Paystack initialization failed:", data);
       return c.json({ error: "Failed to initialize payment" }, 500);
     }
 
@@ -2982,15 +2663,12 @@ app.post("/make-server-a611b057/billing/initialize", async (c) => {
       },
     });
 
-    console.log("✅ Payment initialized:", data.data.reference);
-
     return c.json({
       authorizationUrl: data.data.authorization_url,
       reference: data.data.reference,
       accessCode: data.data.access_code,
     });
   } catch (error) {
-    console.log("❌ Error initializing payment:", error);
     return c.json({ error: `Server error: ${error}` }, 500);
   }
 });
@@ -3029,7 +2707,6 @@ app.post("/make-server-a611b057/billing/verify", async (c) => {
     const data = await response.json();
 
     if (!response.ok || !data.status) {
-      console.log("❌ Paystack verification failed:", data);
       return c.json({ error: "Payment verification failed" }, 400);
     }
 
@@ -3106,8 +2783,6 @@ app.post("/make-server-a611b057/billing/verify", async (c) => {
       },
     });
 
-    console.log("✅ Payment verified and subscription activated:", reference);
-
     return c.json({
       success: true,
       subscription: {
@@ -3118,7 +2793,6 @@ app.post("/make-server-a611b057/billing/verify", async (c) => {
       },
     });
   } catch (error) {
-    console.log("❌ Error verifying payment:", error);
     return c.json({ error: `Server error: ${error}` }, 500);
   }
 });
@@ -3143,13 +2817,10 @@ app.post("/make-server-a611b057/billing/webhook", async (c) => {
       .digest("hex");
 
     if (hash !== signature) {
-      console.log("⚠️ Invalid webhook signature");
       return c.json({ error: "Invalid signature" }, 401);
     }
 
     const event = JSON.parse(body);
-    console.log("📩 Paystack webhook received:", event.event);
-
     if (event.event === "charge.success") {
       const reference = event.data.reference;
       const transaction = await kv.get(`transaction:${reference}`);
@@ -3206,13 +2877,11 @@ app.post("/make-server-a611b057/billing/webhook", async (c) => {
           },
         });
 
-        console.log("✅ Webhook processed: subscription activated");
-      }
+        }
     }
 
     return c.json({ success: true });
   } catch (error) {
-    console.log("❌ Error processing webhook:", error);
     return c.json({ error: `Server error: ${error}` }, 500);
   }
 });
@@ -3247,10 +2916,7 @@ const logBillingActivity = async (
     timestamp,
   });
 
-  console.log(
-    `📝 Billing activity logged: ${activity.type} for org ${organizationId}`
-  );
-};
+  };
 
 // Get billing activities for an organization
 app.get(
@@ -3284,7 +2950,6 @@ app.get(
 
       return c.json({ activities });
     } catch (error) {
-      console.log("❌ Error getting billing activities:", error);
       return c.json({ error: `Server error: ${error}` }, 500);
     }
   }
@@ -3342,7 +3007,6 @@ app.get(
 
       return c.json(subscription);
     } catch (error) {
-      console.log("❌ Error getting subscription:", error);
       return c.json({ error: `Server error: ${error}` }, 500);
     }
   }
@@ -3378,7 +3042,6 @@ app.get(
 
       return c.json({ transactions: orgTransactions });
     } catch (error) {
-      console.log("❌ Error getting transactions:", error);
       return c.json({ error: `Server error: ${error}` }, 500);
     }
   }
@@ -3434,15 +3097,12 @@ app.post(
         },
       });
 
-      console.log("✅ Subscription cancelled:", organizationId);
-
       return c.json({
         success: true,
         message: "Subscription cancelled successfully",
         subscription: updatedSubscription,
       });
     } catch (error) {
-      console.log("❌ Error cancelling subscription:", error);
       return c.json({ error: `Server error: ${error}` }, 500);
     }
   }
@@ -3468,7 +3128,6 @@ app.get("/make-server-a611b057/admin/billing/transactions", async (c) => {
 
     return c.json({ transactions });
   } catch (error) {
-    console.log("❌ Error getting all transactions:", error);
     return c.json({ error: `Server error: ${error}` }, 500);
   }
 });
@@ -3482,8 +3141,6 @@ app.get("/make-server-a611b057/admin/billing/activities", async (c) => {
       return c.json({ error: "Unauthorized - Admin access required" }, 403);
     }
 
-    console.log("📊 Admin: Fetching all billing activities across platform...");
-
     // Get all billing activities
     const allActivities = await kv.getByPrefix("activity:org:");
     const activities = allActivities
@@ -3493,8 +3150,6 @@ app.get("/make-server-a611b057/admin/billing/activities", async (c) => {
         (a, b) =>
           new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
       );
-
-    console.log(`✅ Found ${activities.length} billing activities`);
 
     // Enrich with organization names
     const enrichedActivities = [];
@@ -3520,7 +3175,6 @@ app.get("/make-server-a611b057/admin/billing/activities", async (c) => {
       count: enrichedActivities.length,
     });
   } catch (error) {
-    console.log("❌ Error getting all billing activities:", error);
     return c.json({ error: `Server error: ${error}` }, 500);
   }
 });
@@ -3533,8 +3187,6 @@ app.get("/make-server-a611b057/admin/billing/subscriptions", async (c) => {
     if (!(await isPlatformAdmin(authHeader))) {
       return c.json({ error: "Unauthorized - Admin access required" }, 403);
     }
-
-    console.log("📊 Admin: Fetching all subscriptions across platform...");
 
     // Get all subscriptions
     const allSubscriptions = await kv.getByPrefix("subscription:org:");
@@ -3578,14 +3230,11 @@ app.get("/make-server-a611b057/admin/billing/subscriptions", async (c) => {
         new Date(a.startDate || 0).getTime()
     );
 
-    console.log(`✅ Found ${subscriptions.length} subscriptions`);
-
     return c.json({
       subscriptions,
       count: subscriptions.length,
     });
   } catch (error) {
-    console.log("❌ Error getting all subscriptions:", error);
     return c.json({ error: `Server error: ${error}` }, 500);
   }
 });
@@ -3595,7 +3244,6 @@ app.get("/make-server-a611b057/admin/billing/subscriptions", async (c) => {
 // Helper to check if user is a platform admin
 const isPlatformAdmin = async (authHeader: string | null): Promise<boolean> => {
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
-    console.log("❌ isPlatformAdmin: Missing or invalid auth header");
     return false;
   }
 
@@ -3614,12 +3262,10 @@ const isPlatformAdmin = async (authHeader: string | null): Promise<boolean> => {
   } = await supabase.auth.getUser(token);
 
   if (error) {
-    console.log("❌ isPlatformAdmin: Error verifying token:", error.message);
     return false;
   }
 
   if (!user) {
-    console.log("❌ isPlatformAdmin: No user found for token");
     return false;
   }
 
@@ -3634,8 +3280,6 @@ const isPlatformAdmin = async (authHeader: string | null): Promise<boolean> => {
   ];
 
   const isAdmin = adminEmails.includes(user.email?.toLowerCase() || "");
-  console.log(`✅ isPlatformAdmin: User ${user.email} - isAdmin: ${isAdmin}`);
-
   return isAdmin;
 };
 
@@ -3650,41 +3294,23 @@ app.get("/make-server-a611b057/admin/stats", async (c) => {
 
     // Get all organizations - filter out null/undefined values
     const allOrgs = await kv.getByPrefix("org:");
-    console.log("📊 Admin Stats - Raw orgs from KV:", allOrgs.length);
     const organizations = allOrgs.filter((org) => org && org.id);
-    console.log("📊 Admin Stats - Valid organizations:", organizations.length);
-
     // Get all certificates - filter out null/undefined values
     const allCerts = await kv.getByPrefix("cert:");
-    console.log("📊 Admin Stats - Raw certs from KV:", allCerts.length);
     const certificates = allCerts.filter((cert) => cert && cert.id);
-    console.log("📊 Admin Stats - Valid certificates:", certificates.length);
-
     // Get all templates - filter out null/undefined values
     const allTemplates = await kv.getByPrefix("globaltemplate:");
-    console.log("📊 Admin Stats - Raw templates from KV:", allTemplates.length);
     const templates = allTemplates.filter(
       (template) => template && template.id
     );
-    console.log("📊 Admin Stats - Valid templates:", templates.length);
-
     // Get all payments - filter out null/undefined values
     const allPayments = await kv.getByPrefix("payment:");
-    console.log("📊 Admin Stats - Raw payments from KV:", allPayments.length);
     const payments = allPayments.filter((payment) => payment && payment.id);
-    console.log("📊 Admin Stats - Valid payments:", payments.length);
-
     // Get all testimonials - filter out null/undefined values
     const allTestimonials = await kv.getByPrefix("testimonial:");
-    console.log(
-      "📊 Admin Stats - Raw testimonials from KV:",
-      allTestimonials.length
-    );
     const testimonials = allTestimonials.filter(
       (testimonial) => testimonial && testimonial.id
     );
-    console.log("📊 Admin Stats - Valid testimonials:", testimonials.length);
-
     // Calculate stats with safe access
     // Check for premium using subscription data
     const premiumOrgs = await Promise.all(
@@ -3700,8 +3326,6 @@ app.get("/make-server-a611b057/admin/stats", async (c) => {
     const premiumCount = premiumOrgs.filter(Boolean).length;
     const freeCount = organizations.length - premiumCount;
     
-    console.log("📊 Admin Stats - Premium orgs:", premiumCount);
-    console.log("📊 Admin Stats - Free orgs:", freeCount);
     const totalRevenue = payments
       .filter((p) => p && p.status === "success")
       .reduce((sum, p) => sum + (p.amount || 0), 0);
@@ -3715,8 +3339,6 @@ app.get("/make-server-a611b057/admin/stats", async (c) => {
       premiumUsers: premiumCount,
       freeUsers: freeCount,
     };
-
-    console.log("📊 Admin Stats - Final stats:", stats);
 
     return c.json({ stats });
   } catch (error) {
@@ -3734,28 +3356,15 @@ app.get("/make-server-a611b057/admin/organizations", async (c) => {
       return c.json({ error: "Unauthorized - Admin access required" }, 403);
     }
 
-    console.log("🔍 Admin fetching all organizations...");
-
     // Get all organizations
     const allOrgs = await kv.getByPrefix("org:");
-    console.log(`📦 Found ${allOrgs.length} items with 'org:' prefix`);
-
     const organizations = [];
 
     for (const item of allOrgs) {
       const org = item.value;
 
-      console.log(`📋 Processing org:`, {
-        key: item.key,
-        hasValue: !!org,
-        type: typeof org,
-        hasId: org?.id,
-        name: org?.name,
-      });
-
       // Skip null/undefined/invalid values
       if (!org || typeof org !== "object" || !org.id) {
-        console.log(`⚠️ Skipping invalid org from key ${item.key}`);
         continue;
       }
 
@@ -3801,13 +3410,9 @@ app.get("/make-server-a611b057/admin/organizations", async (c) => {
         isPremium: isPremium || false,
       };
 
-      console.log(
-        `✅ Added organization: ${orgData.name} (${orgData.id}) - Owner: ${ownerEmail}`
-      );
       organizations.push(orgData);
     }
 
-    console.log(`✅ Returning ${organizations.length} organizations to admin`);
     return c.json({ organizations });
   } catch (error) {
     console.error("❌ Admin organizations error:", error);
@@ -3852,27 +3457,17 @@ app.post(
   "/make-server-a611b057/admin/organizations/:organizationId/membership",
   async (c) => {
     try {
-      console.log("🔍 Received grant premium request");
-
       const authHeader = c.req.header("Authorization");
-      console.log("🔐 Auth header present:", !!authHeader);
-
       const isAdmin = await isPlatformAdmin(authHeader);
-      console.log("👮 Is admin:", isAdmin);
-
       if (!isAdmin) {
-        console.log("❌ Unauthorized: Not a platform admin");
         return c.json({ error: "Unauthorized - Admin access required" }, 403);
       }
 
       const organizationId = c.req.param("organizationId");
-      console.log("🏢 Organization ID:", organizationId);
-
       let requestBody;
       try {
         requestBody = await c.req.json();
-        console.log("📦 Request body:", requestBody);
-      } catch (e) {
+        } catch (e) {
         console.error("❌ Failed to parse request body:", e);
         return c.json({ error: "Invalid request body" }, 400);
       }
@@ -3884,17 +3479,9 @@ app.post(
         return c.json({ error: "Invalid duration months" }, 400);
       }
 
-      console.log(
-        `👑 Admin granting premium to org ${organizationId} for ${durationMonths} months`
-      );
-
       // Get the organization
       const orgKey = `org:${organizationId}`;
-      console.log("🔍 Looking for org with key:", orgKey);
-
       const org = await kv.get(orgKey);
-      console.log("📊 Organization found:", !!org, org ? `(${org.name})` : "");
-
       if (!org) {
         console.error(`❌ Organization not found with key: ${orgKey}`);
         return c.json(
@@ -3907,8 +3494,6 @@ app.post(
       const now = new Date();
       const expiryDate = new Date(now);
       expiryDate.setMonth(expiryDate.getMonth() + parseInt(durationMonths));
-      console.log("📅 Expiry date calculated:", expiryDate.toISOString());
-
       // Create subscription record
       const subscription = {
         organizationId,
@@ -3925,16 +3510,10 @@ app.post(
 
       // Save subscription
       const subKey = `subscription:org:${organizationId}`;
-      console.log("💾 Saving subscription with key:", subKey);
       await kv.set(subKey, subscription);
-      console.log("✅ Subscription saved");
-
       // Update organization plan
       org.plan = "premium";
-      console.log("💾 Updating organization plan to premium");
       await kv.set(orgKey, org);
-      console.log("✅ Organization updated");
-
       // Log to billing activity
       const activityLogKey = `billing_activity_log:${Date.now()}:${Math.random()
         .toString(36)
@@ -3953,14 +3532,7 @@ app.post(
           planName,
         },
       };
-      console.log("💾 Logging to billing activity");
       await kv.set(activityLogKey, activityEntry);
-      console.log("✅ Billing activity logged");
-
-      console.log(
-        `✅ Premium granted to ${org.name} until ${expiryDate.toISOString()}`
-      );
-
       return c.json({
         success: true,
         subscription,
@@ -3990,31 +3562,16 @@ app.delete(
   "/make-server-a611b057/admin/organizations/:organizationId/membership",
   async (c) => {
     try {
-      console.log("🔍 Received revoke premium request");
-
       const authHeader = c.req.header("Authorization");
-      console.log("🔐 Auth header present:", !!authHeader);
-
       const isAdmin = await isPlatformAdmin(authHeader);
-      console.log("👮 Is admin:", isAdmin);
-
       if (!isAdmin) {
-        console.log("❌ Unauthorized: Not a platform admin");
         return c.json({ error: "Unauthorized - Admin access required" }, 403);
       }
 
       const organizationId = c.req.param("organizationId");
-      console.log("🏢 Organization ID:", organizationId);
-
-      console.log(`🚫 Admin revoking premium from org ${organizationId}`);
-
       // Get the organization
       const orgKey = `org:${organizationId}`;
-      console.log("🔍 Looking for org with key:", orgKey);
-
       const org = await kv.get(orgKey);
-      console.log("📊 Organization found:", !!org, org ? `(${org.name})` : "");
-
       if (!org) {
         console.error(`❌ Organization not found with key: ${orgKey}`);
         return c.json(
@@ -4025,26 +3582,18 @@ app.delete(
 
       // Get existing subscription
       const subKey = `subscription:org:${organizationId}`;
-      console.log("🔍 Looking for subscription with key:", subKey);
       const subscription = await kv.get(subKey);
-      console.log("📊 Subscription found:", !!subscription);
-
       // Update subscription to cancelled
       if (subscription) {
         subscription.status = "cancelled";
         subscription.cancelledAt = new Date().toISOString();
         subscription.cancelledByAdmin = true;
-        console.log("💾 Updating subscription to cancelled");
         await kv.set(subKey, subscription);
-        console.log("✅ Subscription updated");
-      }
+        }
 
       // Update organization plan to free
       org.plan = "free";
-      console.log("💾 Updating organization plan to free");
       await kv.set(orgKey, org);
-      console.log("✅ Organization updated");
-
       // Log to billing activity
       const now = new Date();
       const activityLogKey = `billing_activity_log:${Date.now()}:${Math.random()
@@ -4061,12 +3610,7 @@ app.delete(
           reason: "Admin revoked access",
         },
       };
-      console.log("💾 Logging to billing activity");
       await kv.set(activityLogKey, activityEntry);
-      console.log("✅ Billing activity logged");
-
-      console.log(`✅ Premium revoked from ${org.name}`);
-
       return c.json({
         success: true,
         message: "Premium access revoked successfully",
@@ -4099,8 +3643,6 @@ app.get("/make-server-a611b057/admin/debug-keys", async (c) => {
       return c.json({ error: "Unauthorized - Admin access required" }, 403);
     }
 
-    console.log("🔍 Admin debug: Fetching all database keys...");
-
     // Get all keys by common prefixes
     const prefixes = [
       "org:",
@@ -4128,8 +3670,7 @@ app.get("/make-server-a611b057/admin/debug-keys", async (c) => {
             }
           : null,
       }));
-      console.log(`📦 ${prefix}: ${items.length} items`);
-    }
+      }
 
     const summary = {
       totalKeys: Object.values(keysByPrefix).reduce(
@@ -4143,8 +3684,6 @@ app.get("/make-server-a611b057/admin/debug-keys", async (c) => {
         ])
       ),
     };
-
-    console.log("✅ Database summary:", summary);
 
     return c.json({
       summary,
@@ -4216,8 +3755,6 @@ app.get("/make-server-a611b057/admin/organizations/paid", async (c) => {
       return c.json({ error: "Unauthorized - Admin access required" }, 403);
     }
 
-    console.log("💳 Admin fetching paid organizations...");
-
     // Get all organizations
     const allOrgs = await kv.getByPrefix("org:");
     const paidOrganizations = [];
@@ -4271,7 +3808,6 @@ app.get("/make-server-a611b057/admin/organizations/paid", async (c) => {
       }
     }
 
-    console.log(`✅ Found ${paidOrganizations.length} paid organizations`);
     return c.json({ organizations: paidOrganizations });
   } catch (error) {
     console.error("❌ Admin paid organizations error:", error);
@@ -4282,30 +3818,16 @@ app.get("/make-server-a611b057/admin/organizations/paid", async (c) => {
 // Get combined users/organizations data (admin only)
 app.get("/make-server-a611b057/admin/users-organizations", async (c) => {
   try {
-    console.log("🔍 Admin users-organizations endpoint called");
     const authHeader = c.req.header("Authorization");
-    console.log("🔑 Auth header present:", !!authHeader);
-
     const isAdmin = await isPlatformAdmin(authHeader);
-    console.log("👤 Is platform admin:", isAdmin);
-
     if (!isAdmin) {
-      console.log("❌ Access denied - not an admin");
       return c.json({ error: "Unauthorized - Admin access required" }, 403);
     }
 
-    console.log("👥 Admin fetching all users/organizations...");
-
     // Get all users
     const allUsers = await kv.getByPrefix("user:");
-    console.log(`📋 Found ${allUsers.length} user entries in KV store`);
-
     if (allUsers.length > 0) {
-      console.log(
-        "📝 Sample user keys:",
-        allUsers.slice(0, 3).map((item) => item.key)
-      );
-    }
+      }
 
     const usersOrganizations = [];
 
@@ -4371,7 +3893,6 @@ app.get("/make-server-a611b057/admin/users-organizations", async (c) => {
       });
     }
 
-    console.log(`✅ Found ${usersOrganizations.length} users/organizations`);
     return c.json({ usersOrganizations });
   } catch (error) {
     console.error("❌ Admin users/organizations error:", error);
@@ -4391,20 +3912,11 @@ app.get("/make-server-a611b057/admin/debug/kv-data", async (c) => {
       return c.json({ error: "Unauthorized - Admin access required" }, 403);
     }
 
-    console.log("🔍 Admin requesting KV debug data...");
-
     // Get all data by prefix
     const allUsers = await kv.getByPrefix("user:");
     const allOrgs = await kv.getByPrefix("org:");
     const allSubscriptions = await kv.getByPrefix("subscription:");
     const allTransactions = await kv.getByPrefix("transaction:");
-
-    console.log(`📊 KV Data Summary:
-      - Users: ${allUsers.length}
-      - Organizations: ${allOrgs.length}
-      - Subscriptions: ${allSubscriptions.length}
-      - Transactions: ${allTransactions.length}
-    `);
 
     // Return detailed info about what's in the database
     return c.json({
@@ -4455,10 +3967,6 @@ app.post(
       const organizationId = c.req.param("organizationId");
       const { planId, planName, durationMonths } = await c.req.json();
 
-      console.log(
-        `👑 Admin granting membership to org ${organizationId}: ${planName} for ${durationMonths} months`
-      );
-
       // Check if organization exists
       const organization = await kv.get(`org:${organizationId}`);
       if (!organization) {
@@ -4499,7 +4007,6 @@ app.post(
         },
       });
 
-      console.log(`✅ Membership granted successfully`);
       return c.json({
         success: true,
         subscription,
@@ -4524,8 +4031,6 @@ app.delete(
       }
 
       const organizationId = c.req.param("organizationId");
-
-      console.log(`🚫 Admin cancelling membership for org ${organizationId}`);
 
       // Check if organization exists
       const organization = await kv.get(`org:${organizationId}`);
@@ -4561,7 +4066,6 @@ app.delete(
         },
       });
 
-      console.log(`✅ Membership cancelled successfully`);
       return c.json({
         success: true,
         message: "Membership cancelled successfully",
@@ -4586,8 +4090,6 @@ app.put(
 
       const organizationId = c.req.param("organizationId");
       const { status, expiryDate, planName } = await c.req.json();
-
-      console.log(`✏️ Admin updating subscription for org ${organizationId}`);
 
       // Check if organization exists
       const organization = await kv.get(`org:${organizationId}`);
@@ -4624,7 +4126,6 @@ app.put(
         },
       });
 
-      console.log(`✅ Subscription updated successfully`);
       return c.json({
         success: true,
         subscription: updatedSubscription,
@@ -4647,8 +4148,6 @@ app.get("/make-server-a611b057/admin/users/access-control", async (c) => {
     if (!(await isPlatformAdmin(authHeader))) {
       return c.json({ error: "Unauthorized - Admin access required" }, 403);
     }
-
-    console.log("👥 Admin: Fetching all users with access control info...");
 
     // Get all users
     const allUsers = await kv.getByPrefix("user:");
@@ -4693,14 +4192,11 @@ app.get("/make-server-a611b057/admin/users/access-control", async (c) => {
         new Date(a.createdAt || 0).getTime()
     );
 
-    console.log(`✅ Found ${users.length} users`);
-
     return c.json({
       users,
       count: users.length,
     });
   } catch (error) {
-    console.log("❌ Error getting users for access control:", error);
     return c.json({ error: `Server error: ${error}` }, 500);
   }
 });
@@ -4722,10 +4218,6 @@ app.post("/make-server-a611b057/admin/users/grant-premium", async (c) => {
         400
       );
     }
-
-    console.log(
-      `🎁 Admin: Granting premium access to org ${organizationId} for ${durationDays} days...`
-    );
 
     // Verify organization exists
     const org = await kv.get(`org:${organizationId}`);
@@ -4765,7 +4257,6 @@ app.post("/make-server-a611b057/admin/users/grant-premium", async (c) => {
       },
     });
 
-    console.log(`✅ Premium access granted successfully`);
     return c.json({
       success: true,
       subscription,
@@ -4794,10 +4285,6 @@ app.post("/make-server-a611b057/admin/users/extend-premium", async (c) => {
         400
       );
     }
-
-    console.log(
-      `⏰ Admin: Extending premium access for org ${organizationId} by ${additionalDays} days...`
-    );
 
     // Get current subscription
     const subscription = await kv.get(`subscription:org:${organizationId}`);
@@ -4832,7 +4319,6 @@ app.post("/make-server-a611b057/admin/users/extend-premium", async (c) => {
       },
     });
 
-    console.log(`✅ Premium access extended successfully`);
     return c.json({
       success: true,
       subscription: updatedSubscription,
@@ -4858,10 +4344,6 @@ app.post("/make-server-a611b057/admin/users/revoke-premium", async (c) => {
     if (!organizationId) {
       return c.json({ error: "Organization ID is required" }, 400);
     }
-
-    console.log(
-      `🚫 Admin: Revoking premium access for org ${organizationId} with ${gracePeriodDays} day grace period...`
-    );
 
     // Get current subscription
     const subscription = await kv.get(`subscription:org:${organizationId}`);
@@ -4898,7 +4380,6 @@ app.post("/make-server-a611b057/admin/users/revoke-premium", async (c) => {
       },
     });
 
-    console.log(`✅ Premium access revoked successfully`);
     return c.json({
       success: true,
       subscription: revokedSubscription,
@@ -5153,10 +4634,6 @@ app.post("/make-server-a611b057/certificates", async (c) => {
       savedCertificate
     );
 
-    console.log(
-      `✅ Certificate saved: ${savedCertificate.id} for org ${organizationId}`
-    );
-
     return c.json({ certificate: savedCertificate });
   } catch (error) {
     console.error("Create certificate error:", error);
@@ -5210,10 +4687,6 @@ app.post("/make-server-a611b057/certificates/bulk", async (c) => {
       savedCertificates.push(savedCertificate);
     }
 
-    console.log(
-      `✅ Bulk save: ${savedCertificates.length} certificates for org ${organizationId}`
-    );
-
     return c.json({
       certificates: savedCertificates,
       count: savedCertificates.length,
@@ -5248,10 +4721,6 @@ app.get("/make-server-a611b057/certificates/:organizationId", async (c) => {
         const dateB = new Date(b.generatedAt || 0).getTime();
         return dateB - dateA;
       });
-
-    console.log(
-      `📜 Retrieved ${certificates.length} certificates for org ${organizationId}`
-    );
 
     return c.json({ certificates });
   } catch (error) {
@@ -5321,8 +4790,6 @@ app.delete("/make-server-a611b057/certificates/:certificateId", async (c) => {
       `certificate:${existingCertificate.organizationId}:${certificateId}`
     );
 
-    console.log(`🗑️ Certificate deleted: ${certificateId}`);
-
     return c.json({
       success: true,
       message: "Certificate deleted successfully",
@@ -5355,8 +4822,6 @@ app.post("/make-server-a611b057/short/create", async (c) => {
       return c.json({ error: "Missing required parameters" }, 400);
     }
 
-    console.log(`🔗 Creating short link for certificate: ${certificateId}`);
-
     // Generate unique short code
     let shortCode = generateShortCode();
     let attempts = 0;
@@ -5387,8 +4852,6 @@ app.post("/make-server-a611b057/short/create", async (c) => {
     // Initialize click tracking
     await kv.set(`clicks:${shortCode}`, []);
 
-    console.log(`✅ Short link created: ${shortCode} → ${certificateId}`);
-
     return c.json({
       success: true,
       shortCode,
@@ -5405,12 +4868,9 @@ app.post("/make-server-a611b057/short/create", async (c) => {
 app.get("/make-server-a611b057/short/:code", async (c) => {
   try {
     const code = c.req.param("code");
-    console.log(`🔍 Resolving short link: ${code}`);
-
     const shortLinkData = await kv.get(`short:${code}`);
 
     if (!shortLinkData) {
-      console.log(`❌ Short link not found: ${code}`);
       return c.json({ error: "Short link not found" }, 404);
     }
 
@@ -5432,8 +4892,6 @@ app.get("/make-server-a611b057/short/:code", async (c) => {
     shortLinkData.lastClickedAt = clickData.timestamp;
     await kv.set(`short:${code}`, shortLinkData);
 
-    console.log(`✅ Short link resolved: ${code} → ${shortLinkData.certificateId} (Click #${shortLinkData.clicks})`);
-
     return c.json({
       success: true,
       organizationId: shortLinkData.organizationId,
@@ -5451,8 +4909,6 @@ app.get("/make-server-a611b057/short/:code", async (c) => {
 app.get("/make-server-a611b057/short/:code/analytics", async (c) => {
   try {
     const code = c.req.param("code");
-    console.log(`📊 Fetching analytics for short link: ${code}`);
-
     const shortLinkData = await kv.get(`short:${code}`);
     const clicks = (await kv.get(`clicks:${code}`)) || [];
 
@@ -5491,8 +4947,6 @@ app.get("/make-server-a611b057/short/org/:organizationId/links", async (c) => {
     }
 
     const organizationId = c.req.param("organizationId");
-    console.log(`📊 Fetching all short links for organization: ${organizationId}`);
-
     // Get all short links
     const allShortLinks = await kv.getByPrefix("short:");
     
@@ -5511,8 +4965,6 @@ app.get("/make-server-a611b057/short/org/:organizationId/links", async (c) => {
         };
       })
     );
-
-    console.log(`✅ Found ${enrichedLinks.length} short links for organization`);
 
     return c.json({
       success: true,
@@ -5537,20 +4989,13 @@ app.post("/make-server-a611b057/admin/seed-templates", async (c) => {
       return c.json({ error: "Unauthorized - Admin access required" }, 403);
     }
 
-    console.log("🌱 Seeding default templates...");
-
     // Use canonical DEFAULT_TEMPLATES
     const defaultTemplates = DEFAULT_TEMPLATES;
 
     // Store each template
     for (const template of defaultTemplates) {
       await kv.set(`globaltemplate:${template.id}`, template);
-      console.log(`✅ Seeded template: ${template.name} (${template.id})`);
-    }
-
-    console.log(
-      `✅ Successfully seeded ${defaultTemplates.length} default templates`
-    );
+      }
 
     return c.json({
       success: true,
@@ -5572,28 +5017,16 @@ app.post("/make-server-a611b057/admin/seed-templates", async (c) => {
 // Get all platform data for admin dashboard (no auth required for now - can add admin check later)
 app.get("/make-server-a611b057/admin/platform-data", async (c) => {
   try {
-    console.log("🔐 Platform admin data request");
-
     // Get all organizations
     const allOrgs = await kv.getByPrefix("org:");
-    console.log("📊 Total organizations:", allOrgs.length);
-
     // Get all users
     const allUsers = await kv.getByPrefix("user:");
-    console.log("👥 Total users:", allUsers.length);
-
     // Get all certificates
     const allCerts = await kv.getByPrefix("cert:");
-    console.log("🎓 Total certificates:", allCerts.length);
-
     // Get all subscriptions
     const allSubscriptions = await kv.getByPrefix("subscription:");
-    console.log("💳 Total subscriptions:", allSubscriptions.length);
-
     // Get all testimonials
     const allTestimonials = await kv.getByPrefix("testimonial:");
-    console.log("💬 Total testimonials:", allTestimonials.length);
-
     // Filter out invalid data and ensure unique IDs
     const validOrgs = allOrgs.filter((org) => org && org.id);
     const validUsers = allUsers.filter((user) => user && user.id);
@@ -5610,12 +5043,7 @@ app.get("/make-server-a611b057/admin/platform-data", async (c) => {
         const subscription = await kv.get(`subscription:org:${org.id}`);
 
         if (subscription) {
-          console.log(`✅ Found subscription for ${org.name}:`, {
-            plan: subscription.plan,
-            status: subscription.status,
-            expiryDate: subscription.expiryDate,
-          });
-        }
+          }
 
         return {
           id: org.id,
@@ -5667,13 +5095,6 @@ app.get("/make-server-a611b057/admin/platform-data", async (c) => {
       submittedAt: testimonial.submittedAt || new Date().toISOString(),
     }));
 
-    console.log("✅ Returning:", {
-      organizations: enrichedOrgs.length,
-      users: formattedUsers.length,
-      certificates: formattedCerts.length,
-      testimonials: formattedTestimonials.length,
-    });
-
     return c.json({
       organizations: enrichedOrgs,
       users: formattedUsers,
@@ -5682,7 +5103,6 @@ app.get("/make-server-a611b057/admin/platform-data", async (c) => {
       timestamp: new Date().toISOString(),
     });
   } catch (error) {
-    console.log("❌ Error getting platform data:", error);
     return c.json({ error: `Server error: ${error}` }, 500);
   }
 });
@@ -5692,8 +5112,6 @@ app.get("/make-server-a611b057/admin/platform-data", async (c) => {
 // Check if billing is configured (public endpoint - no auth required)
 app.get("/make-server-a611b057/billing/config", async (c) => {
   try {
-    console.log("📊 Billing config check");
-
     // Get billing settings (env vars take precedence)
     const billingSettings = await getBillingSettings();
 
@@ -5702,14 +5120,11 @@ app.get("/make-server-a611b057/billing/config", async (c) => {
       !billingSettings.paystackSecretKey ||
       !billingSettings.paystackPublicKey
     ) {
-      console.log("⚠️ Billing not configured");
       return c.json({
         configured: false,
         plans: {},
       });
     }
-
-    console.log("✅ Billing is configured");
 
     // Return configuration with plans (without sensitive keys)
     return c.json({
@@ -5736,13 +5151,10 @@ app.get(
       }
 
       const organizationId = c.req.param("organizationId");
-      console.log(`📊 Getting subscription for org: ${organizationId}`);
-
       // Get subscription from KV store
       const subscription = await kv.get(`subscription:${organizationId}`);
 
       if (!subscription) {
-        console.log("⚠️ No subscription found, returning free plan");
         return c.json({
           organizationId,
           plan: "free",
@@ -5762,7 +5174,6 @@ app.get(
         subscription.expiryDate &&
         new Date(subscription.expiryDate) < new Date()
       ) {
-        console.log("⏰ Subscription expired");
         return c.json({
           ...subscription,
           status: "expired",
@@ -5771,7 +5182,6 @@ app.get(
         });
       }
 
-      console.log("✅ Active subscription found");
       return c.json(subscription);
     } catch (error) {
       console.error("Get subscription error:", error);
@@ -5791,8 +5201,6 @@ app.get(
       }
 
       const organizationId = c.req.param("organizationId");
-      console.log(`📊 Getting transactions for org: ${organizationId}`);
-
       // Get all transactions for this organization
       const allTransactions = await kv.getByPrefix(
         `transaction:${organizationId}:`
@@ -5806,7 +5214,6 @@ app.get(
             new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
         );
 
-      console.log(`✅ Found ${transactions.length} transactions`);
       return c.json({ transactions });
     } catch (error) {
       console.error("Get transactions error:", error);
@@ -5824,10 +5231,6 @@ app.post("/make-server-a611b057/billing/initialize", async (c) => {
     }
 
     const { organizationId, planId } = await c.req.json();
-    console.log(
-      `💳 Initializing payment for org: ${organizationId}, plan: ${planId}`
-    );
-
     if (!organizationId || !planId) {
       return c.json({ error: "Organization ID and plan ID are required" }, 400);
     }
@@ -5919,8 +5322,6 @@ app.post("/make-server-a611b057/billing/initialize", async (c) => {
 
     await kv.set(`transaction:${organizationId}:${reference}`, transaction);
 
-    console.log(`✅ Payment initialized: ${reference}`);
-
     return c.json({
       authorizationUrl: paystackData.data.authorization_url,
       accessCode: paystackData.data.access_code,
@@ -5941,8 +5342,6 @@ app.post("/make-server-a611b057/billing/verify", async (c) => {
     }
 
     const { reference } = await c.req.json();
-    console.log(`🔍 Verifying payment: ${reference}`);
-
     if (!reference) {
       return c.json({ error: "Reference is required" }, 400);
     }
@@ -6024,8 +5423,6 @@ app.post("/make-server-a611b057/billing/verify", async (c) => {
 
     await kv.set(`subscription:${organizationId}`, subscription);
 
-    console.log(`✅ Subscription activated for org: ${organizationId}`);
-
     return c.json({
       success: true,
       subscription,
@@ -6039,13 +5436,9 @@ app.post("/make-server-a611b057/billing/verify", async (c) => {
 // Webhook endpoint for Paystack (public - no auth)
 app.post("/make-server-a611b057/billing/webhook", async (c) => {
   try {
-    console.log("🔔 Webhook received from Paystack");
-
     const body = await c.req.json();
     const event = body.event;
     const data = body.data;
-
-    console.log(`📨 Webhook event: ${event}`);
 
     if (event === "charge.success") {
       const reference = data.reference;
@@ -6103,10 +5496,7 @@ app.post("/make-server-a611b057/billing/webhook", async (c) => {
 
       await kv.set(`subscription:${organizationId}`, subscription);
 
-      console.log(
-        `✅ Webhook: Subscription activated for org ${organizationId}`
-      );
-    }
+      }
 
     return c.json({ success: true });
   } catch (error) {
@@ -6124,12 +5514,9 @@ app.get("/make-server-a611b057/admin/billing/settings", async (c) => {
       return c.json({ error: "Unauthorized - Admin access required" }, 403);
     }
 
-    console.log("📊 Admin: Getting billing settings");
-
     const settings = await getBillingSettings();
 
     if (!settings) {
-      console.log("⚠️ No billing settings found - returning defaults");
       return c.json({
         configured: false,
         paystackSecretKey: "",
@@ -6164,7 +5551,6 @@ app.get("/make-server-a611b057/admin/billing/settings", async (c) => {
       });
     }
 
-    console.log("✅ Billing settings retrieved");
     // Hide secret key in response; indicate source when keys are from env
     return c.json({
       configured: true,
@@ -6192,15 +5578,11 @@ app.post("/make-server-a611b057/admin/billing/settings", async (c) => {
     }
 
     const settings = await c.req.json();
-    console.log("💾 Admin: Saving billing settings");
     // Determine current source of billing keys
     const current = await getBillingSettings();
 
     // If keys are provided via environment, disallow updating the keys via this admin endpoint
     if (current?.fromEnv) {
-      console.log(
-        "⚠️ Attempt to change keys, but keys are set via environment variables"
-      );
       return c.json(
         {
           error:
@@ -6251,7 +5633,6 @@ app.post("/make-server-a611b057/admin/billing/settings", async (c) => {
     // Save to KV store
     await kv.set("billing:settings", billingData);
 
-    console.log("✅ Billing settings saved successfully");
     return c.json({
       success: true,
       message: "Billing settings saved successfully",
@@ -6323,12 +5704,8 @@ app.get("/make-server-a611b057/admin/emails", async (c) => {
       );
     }
 
-    console.log("📧 Fetching all collected email addresses...");
-
     // Get all testimonials from the KV store
     const allTestimonials = await kv.getByPrefix("testimonial:");
-    console.log(`📊 Total testimonials found: ${allTestimonials.length}`);
-
     // Filter testimonials that have email addresses and extract relevant data
     const emailData = allTestimonials
       .filter((testimonial) => testimonial.email) // Only include testimonials with email
@@ -6339,8 +5716,6 @@ app.get("/make-server-a611b057/admin/emails", async (c) => {
         organizationId: testimonial.organizationId || "",
         submittedAt: testimonial.submittedAt || new Date().toISOString(),
       }));
-
-    console.log(`✅ Email addresses collected: ${emailData.length}`);
 
     return c.json({
       emails: emailData,
@@ -6358,15 +5733,11 @@ app.get("/make-server-a611b057/admin/emails", async (c) => {
 // Get platform analytics data for admin dashboard
 app.get("/make-server-a611b057/admin/analytics", async (c) => {
   try {
-    console.log("📊 Analytics request");
-
     // Get all data from KV store
     const allOrgs = (await kv.getByPrefix("org:")).filter((org) => org && org.id);
     const allUsers = (await kv.getByPrefix("user:")).filter((user) => user && user.id);
     const allCerts = (await kv.getByPrefix("cert:")).filter((cert) => cert && cert.id);
     const allTestimonials = (await kv.getByPrefix("testimonial:")).filter((t) => t && t.id);
-
-    console.log(`📊 Data loaded: ${allOrgs.length} orgs, ${allUsers.length} users, ${allCerts.length} certs`);
 
     // Calculate time ranges
     const now = new Date();
@@ -6526,8 +5897,6 @@ app.get("/make-server-a611b057/admin/analytics", async (c) => {
       topTemplate,
       templateBreakdown: templateUsage,
     };
-
-    console.log(`✅ Analytics generated: ${organizationAnalytics.length} orgs, ${userAnalytics.length} users`);
 
     return c.json({
       organizations: organizationAnalytics,

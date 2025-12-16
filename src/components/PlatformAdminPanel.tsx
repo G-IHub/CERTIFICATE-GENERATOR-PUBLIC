@@ -170,12 +170,6 @@ export default function PlatformAdminPanel({
 
       const data = await response.json();
 
-      console.log("🔍 ADMIN DEBUG - Raw platform data:", data);
-      console.log(
-        "🔍 ADMIN DEBUG - Organizations count:",
-        data.organizations?.length
-      );
-
       // Process organizations - ensure all fields have defaults and unique IDs
       const orgs: Organization[] = (data.organizations || [])
         .filter((org: any) => org && org.id) // Only include items with IDs
@@ -198,13 +192,7 @@ export default function PlatformAdminPanel({
         .map((org: Organization) => {
           // Debug each organization's subscription and premium status
           if (org.subscription) {
-            console.log(`🔍 ORG DEBUG - ${org.name}:`, {
-              subscription: org.subscription,
-              isPremium: org.isPremium,
-              status: org.subscription.status,
-              plan: org.subscription.plan,
-            });
-          }
+            }
           return org;
         });
 
@@ -314,12 +302,6 @@ export default function PlatformAdminPanel({
   const loadAdminStats = async () => {
     try {
       const authHeader = accessToken ?? publicAnonKey;
-      console.log(
-        "🔐 loadAdminStats: adminEmail=",
-        adminEmail,
-        "hasAccessToken=",
-        !!accessToken
-      );
       const res = await fetch(
         `https://${projectId}.supabase.co/functions/v1/make-server-a611b057/admin/stats`,
         {
@@ -330,7 +312,6 @@ export default function PlatformAdminPanel({
           },
         }
       );
-      console.log("📡 Admin stats response status:", res.status);
       if (!res.ok) {
         let errData: any = null;
         try {
@@ -346,8 +327,6 @@ export default function PlatformAdminPanel({
       }
 
       const data = await res.json();
-      console.log("✅ Admin stats fetched:", data);
-      console.log("➡️ adminStats payload:", data?.stats);
       if (data?.stats) {
         setAdminStats(data.stats);
       } else {
@@ -386,13 +365,8 @@ export default function PlatformAdminPanel({
       return;
     }
 
-    console.log("🚀 Granting premium to:", selectedOrg.id, selectedOrg.name);
-    console.log("📅 Duration:", premiumDuration, "months");
-
     try {
       const url = `https://${projectId}.supabase.co/functions/v1/make-server-a611b057/admin/organizations/${selectedOrg.id}/membership`;
-      console.log("🌐 Calling:", url);
-
       const response = await fetch(url, {
         method: "POST",
         headers: {
@@ -406,8 +380,6 @@ export default function PlatformAdminPanel({
         }),
       });
 
-      console.log("📡 Response status:", response.status);
-
       if (!response.ok) {
         const errorData = await response
           .json()
@@ -419,8 +391,6 @@ export default function PlatformAdminPanel({
       }
 
       const result = await response.json();
-      console.log("✅ Success:", result);
-
       toast.success(
         `Premium access granted to ${selectedOrg.name} for ${premiumDuration} months`
       );
@@ -449,12 +419,8 @@ export default function PlatformAdminPanel({
       return;
     }
 
-    console.log("🚫 Revoking premium for:", org.id, org.name);
-
     try {
       const url = `https://${projectId}.supabase.co/functions/v1/make-server-a611b057/admin/organizations/${org.id}/membership`;
-      console.log("🌐 Calling:", url);
-
       const response = await fetch(url, {
         method: "DELETE",
         headers: {
@@ -462,8 +428,6 @@ export default function PlatformAdminPanel({
           "Content-Type": "application/json",
         },
       });
-
-      console.log("📡 Response status:", response.status);
 
       if (!response.ok) {
         const errorData = await response
@@ -476,8 +440,6 @@ export default function PlatformAdminPanel({
       }
 
       const result = await response.json();
-      console.log("✅ Success:", result);
-
       toast.success(`Premium access revoked for ${org.name}`);
       await loadPlatformData(); // Reload to show updated status
     } catch (error: any) {

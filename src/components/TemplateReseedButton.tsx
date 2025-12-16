@@ -26,7 +26,6 @@ export default function TemplateReseedButton() {
 
     try {
       const result = await templateApi.forceReseed();
-      console.log("✅ Reseed successful:", result);
       toast.success(
         `Success! ${result.count} templates reseeded. Please refresh the page.`
       );

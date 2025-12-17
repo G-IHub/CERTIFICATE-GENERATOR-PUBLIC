@@ -2099,32 +2099,6 @@ export default function AdminDashboard({
                     </TabsList>
 
                     <TabsContent value="setup" className="space-y-6 mt-6">
-                      <Card className="border-l-4 border-l-blue-500 bg-gradient-to-r from-blue-50 to-sky-50">
-                        <CardContent className="pt-6">
-                          {/* <div className="flex items-start gap-4">
-                            <div className="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                              <Link2 className="w-6 h-6 text-blue-600" />
-                            </div>
-                            <div className="flex-1">
-                              <h4 className="font-semibold text-gray-900 mb-2">
-                                ✨ Short Links Disabled
-                              </h4>
-                              <p className="text-sm text-gray-700 mb-3">
-                                Short, shareable links have been disabled.
-                                Generated certificates will use full secure URLs
-                                by default.
-                              </p>
-                            </div>
-                            <div className="flex items-center gap-2 mt-3 text-xs text-gray-600">
-                              <CheckCircle className="w-4 h-4 text-green-600" />
-                              <span>Click tracking enabled</span>
-                              <Eye className="w-4 h-4 text-green-600 ml-2" />
-                              <span>View analytics in Analytics tab</span>
-                            </div>
-                          </div> */}
-                        </CardContent>
-                      </Card>
-
                       {/* Choose Template */}
                       <Card>
                         <CardHeader>

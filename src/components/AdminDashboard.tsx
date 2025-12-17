@@ -1130,9 +1130,9 @@ export default function AdminDashboard({
         (cert) =>
           `"${cert.studentName}","${cert.email}","${
             cert.id
-          }","${buildFullCertificateUrl(
-            cert.certificateUrl
-          )}","${new Date(cert.generatedAt).toLocaleString()}"`
+          }","${buildFullCertificateUrl(cert.certificateUrl)}","${new Date(
+            cert.generatedAt
+          ).toLocaleString()}"`
       )
       .join("\n");
 
@@ -2110,15 +2110,17 @@ export default function AdminDashboard({
                                 ✨ Short Links Disabled
                               </h4>
                               <p className="text-sm text-gray-700 mb-3">
-                                Short, shareable links have been disabled. Generated certificates will use full secure URLs by default.
+                                Short, shareable links have been disabled.
+                                Generated certificates will use full secure URLs
+                                by default.
                               </p>
-                              </div>
-                              <div className="flex items-center gap-2 mt-3 text-xs text-gray-600">
-                                <CheckCircle className="w-4 h-4 text-green-600" />
-                                <span>Click tracking enabled</span>
-                                <Eye className="w-4 h-4 text-green-600 ml-2" />
-                                <span>View analytics in Analytics tab</span>
-                              </div>
+                            </div>
+                            <div className="flex items-center gap-2 mt-3 text-xs text-gray-600">
+                              <CheckCircle className="w-4 h-4 text-green-600" />
+                              <span>Click tracking enabled</span>
+                              <Eye className="w-4 h-4 text-green-600 ml-2" />
+                              <span>View analytics in Analytics tab</span>
+                            </div>
                           </div>
                         </CardContent>
                       </Card>

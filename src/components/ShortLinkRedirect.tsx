@@ -13,41 +13,8 @@ export default function ShortLinkRedirect() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const resolveShortLink = async () => {
-      if (!code) {
-        setError("Invalid short link - no code provided");
-        return;
-      }
-
-      try {
-        const response = await fetch(
-          `https://${projectId}.supabase.co/functions/v1/make-server-a611b057/short/${code}`
-        );
-
-        if (!response.ok) {
-          console.error("❌ Failed to resolve short link:", response.status);
-          setError("This certificate link is invalid or has expired");
-          return;
-        }
-
-        const data = await response.json();
-
-        if (!data.success) {
-          setError("Failed to load certificate");
-          return;
-        }
-
-        // Redirect to the actual certificate page
-        // Format: /certificate/organizationId/programId/certificateId
-        const certificatePath = `/certificate/${data.organizationId}/${data.programId}/${data.certificateId}`;
-        navigate(certificatePath, { replace: true });
-      } catch (error) {
-        console.error("Error resolving short link:", error);
-        setError("Failed to load certificate. Please try again.");
-      }
-    };
-
-    resolveShortLink();
+    // Short links are disabled — show a clear error instead of resolving
+    setError("Short links are disabled");
   }, [code, navigate]);
 
   // Loading state

@@ -64,6 +64,8 @@ export default function AnalyticsView({
   const [analytics, setAnalytics] = useState<Analytics | null>(null);
   const [loading, setLoading] = useState(true);
   // Short links disabled: analytics focused on certificates only
+  const shortLinksData: any = { totalLinks: 0, totalClicks: 0, shortLinks: [] };
+  const loadingShortLinks = false;
 
   useEffect(() => {
     const fetchAnalytics = async () => {

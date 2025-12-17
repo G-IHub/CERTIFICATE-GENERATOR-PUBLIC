@@ -341,9 +341,7 @@ export default function AdminDashboard({
   const [hasLoadedCertificates, setHasLoadedCertificates] = useState(false);
   const [hasLoadedTestimonials, setHasLoadedTestimonials] = useState(false);
 
-  // Short Links & Analytics
-  const [shortLinksData, setShortLinksData] = useState<any[]>([]);
-  const [isLoadingShortLinks, setIsLoadingShortLinks] = useState(false);
+  // Short links feature disabled
 
   // Auto-load testimonials for overview stats (separate from TestimonialsView)
   useEffect(() => {
@@ -1126,13 +1124,13 @@ export default function AdminDashboard({
 
   const genExportCertificateList = () => {
     const csvHeader =
-      "Student Name,Email,Certificate ID,Short Link,Full URL,Generated At\n";
+      "Student Name,Email,Certificate ID,Full URL,Generated At\n";
     const csvRows = genGeneratedCertificates
       .map(
         (cert) =>
           `"${cert.studentName}","${cert.email}","${
             cert.id
-          }","${"N/A"}","${buildFullCertificateUrl(
+          }","${buildFullCertificateUrl(
             cert.certificateUrl
           )}","${new Date(cert.generatedAt).toLocaleString()}"`
       )
@@ -2101,39 +2099,19 @@ export default function AdminDashboard({
                     </TabsList>
 
                     <TabsContent value="setup" className="space-y-6 mt-6">
-                      {/* Short Link Info Banner */}
-                      <Card className="border-l-4 border-l-green-500 bg-gradient-to-r from-green-50 to-emerald-50">
+                      <Card className="border-l-4 border-l-blue-500 bg-gradient-to-r from-blue-50 to-sky-50">
                         <CardContent className="pt-6">
                           <div className="flex items-start gap-4">
-                            <div className="flex-shrink-0 w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                              <Link2 className="w-6 h-6 text-green-600" />
+                            <div className="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                              <Link2 className="w-6 h-6 text-blue-600" />
                             </div>
                             <div className="flex-1">
                               <h4 className="font-semibold text-gray-900 mb-2">
-                                ✨ Smart Short Links Enabled
+                                ✨ Short Links Disabled
                               </h4>
                               <p className="text-sm text-gray-700 mb-3">
-                                All certificates now include easy-to-share short
-                                links that are <strong>60% shorter</strong> than
-                                standard URLs!
+                                Short, shareable links have been disabled. Generated certificates will use full secure URLs by default.
                               </p>
-                              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
-                                <div className="bg-white p-3 rounded border border-green-200">
-                                  <p className="text-gray-500 mb-1">
-                                    Before (150+ characters):
-                                  </p>
-                                  <code className="text-red-700 break-all">
-                                    https://certifyer.online/#/certificate/eyJvcmdJZCI6Im9yZ18xMjM...
-                                  </code>
-                                </div>
-                                <div className="bg-white p-3 rounded border border-green-200">
-                                  <p className="text-gray-500 mb-1">
-                                    After (60 characters):
-                                  </p>
-                                  <code className="text-green-700 font-semibold">
-                                    https://certifyer.online/#/c/Ab3xY9
-                                  </code>
-                                </div>
                               </div>
                               <div className="flex items-center gap-2 mt-3 text-xs text-gray-600">
                                 <CheckCircle className="w-4 h-4 text-green-600" />
@@ -2141,7 +2119,6 @@ export default function AdminDashboard({
                                 <Eye className="w-4 h-4 text-green-600 ml-2" />
                                 <span>View analytics in Analytics tab</span>
                               </div>
-                            </div>
                           </div>
                         </CardContent>
                       </Card>

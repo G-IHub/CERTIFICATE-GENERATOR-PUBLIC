@@ -2101,7 +2101,7 @@ export default function AdminDashboard({
                     <TabsContent value="setup" className="space-y-6 mt-6">
                       <Card className="border-l-4 border-l-blue-500 bg-gradient-to-r from-blue-50 to-sky-50">
                         <CardContent className="pt-6">
-                          <div className="flex items-start gap-4">
+                          {/* <div className="flex items-start gap-4">
                             <div className="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
                               <Link2 className="w-6 h-6 text-blue-600" />
                             </div>
@@ -2121,7 +2121,7 @@ export default function AdminDashboard({
                               <Eye className="w-4 h-4 text-green-600 ml-2" />
                               <span>View analytics in Analytics tab</span>
                             </div>
-                          </div>
+                          </div> */}
                         </CardContent>
                       </Card>
 

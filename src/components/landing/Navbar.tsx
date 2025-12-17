@@ -4,6 +4,7 @@ import logo from "../../assets/logo.png";
 import { IoIosMenu } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
 import { Link } from "react-scroll";
+import { Link as RouterLink } from "react-router-dom";
 import { Button } from "@headlessui/react";
 
 const Navbar: React.FC = () => {
@@ -48,8 +49,8 @@ const Navbar: React.FC = () => {
             : "p-5 md:py-6 md:px-28 md:sticky"
         } z-50`}
       >
-        <div className="flex justify-between items-center rounded-lg px-4 py-8 w-[450px] h-14 bg-white md:bg-[#FFFFFF66] border-2 border-[#FFFFFF1F] text-sm">
-          <div className="flex items-center gap-2">
+        <div className="flex justify-between items-center rounded-lg px-4 py-2 w-full max-w-6xl mx-auto bg-white md:bg-[#FFFFFF66] border-2 border-[#FFFFFF1F] text-sm">
+          <div className="flex items-center gap-2 flex-none">
             <Link
               to="hero"
               smooth={true}
@@ -58,7 +59,7 @@ const Navbar: React.FC = () => {
               className="flex items-center cursor-pointer"
             >
               <img src={logo} alt="logo" className="w-12" />
-              <p className="text-orange-500 font-medium hidden md:block md:text-2xl">
+              <p className="text-orange-500 font-medium hidden lg:block lg:text-2xl">
                 Certifyer
               </p>
             </Link>
@@ -70,13 +71,13 @@ const Navbar: React.FC = () => {
             aria-label="Toggle menu"
           >
             {isMenuOpen ? (
-              <IoClose className="size-8" />
+              <IoClose className="w-8 h-8" />
             ) : (
-              <IoIosMenu className="size-8" />
+              <IoIosMenu className="w-8 h-8" />
             )}
           </button>
 
-          <div className="hidden text-lg md:flex gap-12 items-center">
+          <div className="hidden text-lg md:flex gap-12 items-center flex-1 justify-center min-w-0 z-20 text-gray-800 dark:text-white">
             <Link
               to="features"
               smooth={true}
@@ -104,18 +105,15 @@ const Navbar: React.FC = () => {
             >
               Testimonials
             </Link>
-            {/* <Link
-              to="prices"
-              smooth={true}
-              duration={500}
-              offset={-50}
+            <RouterLink
+              to="/story"
               className="hover:text-orange-500 cursor-pointer"
             >
-              Pricing
-            </Link> */}
+              Our Story
+            </RouterLink>
           </div>
 
-          <div className="hidden md:flex gap-8 items-center">
+          <div className="hidden md:flex gap-8 items-center justify-end flex-none">
             <button
               onClick={() => {
                 navigate("/login");
@@ -171,16 +169,13 @@ const Navbar: React.FC = () => {
               >
                 Testimonials
               </Link>
-              {/* <Link
-                to="prices"
-                smooth={true}
-                duration={500}
-                offset={-50}
+              <RouterLink
+                to="/story"
                 className="hover:text-orange-500"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Pricing
-              </Link> */}
+                Our Story
+              </RouterLink>
 
               <button
                 onClick={() => {

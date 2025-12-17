@@ -4812,77 +4812,15 @@ function generateShortCode(): string {
   return code;
 }
 
-// Create short link for a certificate
+// Create short link for a certificate - DISABLED
 app.post("/make-server-a611b057/short/create", async (c) => {
-  try {
-    const body = await c.req.json();
-    const { organizationId, programId, certificateId, certificateData } = body;
-
-    if (!organizationId || !programId || !certificateId) {
-      return c.json({ error: "Missing required parameters" }, 400);
-    }
-
-    // Generate unique short code
-    let shortCode = generateShortCode();
-    let attempts = 0;
-    
-    // Ensure uniqueness (retry if code already exists)
-    while (await kv.get(`short:${shortCode}`) && attempts < 10) {
-      shortCode = generateShortCode();
-      attempts++;
-    }
-
-    if (attempts >= 10) {
-      return c.json({ error: "Failed to generate unique short code" }, 500);
-    }
-
-    // Store short link mapping
-    const shortLinkData = {
-      code: shortCode,
-      organizationId,
-      programId,
-      certificateId,
-      certificateData: certificateData || null,
-      createdAt: new Date().toISOString(),
-      clicks: 0,
-    };
-
-    await kv.set(`short:${shortCode}`, shortLinkData);
-    
-    // Initialize click tracking
-    await kv.set(`clicks:${shortCode}`, []);
-
-    return c.json({
-      success: true,
-      shortCode,
-      shortUrl: `/c/${shortCode}`,
-      fullShortUrl: `${Deno.env.get("FRONTEND_URL") || "http://localhost:3000"}/#/c/${shortCode}`,
-    });
-  } catch (error) {
-    console.error("Create short link error:", error);
-    return c.json({ error: `Failed to create short link: ${error}` }, 500);
-  }
+  return c.json({ success: false, error: "Short links are disabled" }, 410);
 });
 
-// Resolve short link and track click
+// Resolve short link and track click - DISABLED
 app.get("/make-server-a611b057/short/:code", async (c) => {
-  try {
-    const code = c.req.param("code");
-    const shortLinkData = await kv.get(`short:${code}`);
-
-    if (!shortLinkData) {
-      return c.json({ error: "Short link not found" }, 404);
-    }
-
-    // Track the click
-    const clickData = {
-      timestamp: new Date().toISOString(),
-      userAgent: c.req.header("User-Agent") || "Unknown",
-      referer: c.req.header("Referer") || "Direct",
-      ip: c.req.header("X-Forwarded-For") || c.req.header("CF-Connecting-IP") || "Unknown",
-    };
-
-    // Get existing clicks
+  return c.json({ success: false, error: "Short links are disabled" }, 410);
+});
     const existingClicks = (await kv.get(`clicks:${code}`)) || [];
     existingClicks.push(clickData);
     await kv.set(`clicks:${code}`, existingClicks);
@@ -4905,77 +4843,14 @@ app.get("/make-server-a611b057/short/:code", async (c) => {
   }
 });
 
-// Get analytics for a short link (for admin dashboard)
+// Get analytics for a short link (for admin dashboard) - DISABLED
 app.get("/make-server-a611b057/short/:code/analytics", async (c) => {
-  try {
-    const code = c.req.param("code");
-    const shortLinkData = await kv.get(`short:${code}`);
-    const clicks = (await kv.get(`clicks:${code}`)) || [];
-
-    if (!shortLinkData) {
-      return c.json({ error: "Short link not found" }, 404);
-    }
-
-    return c.json({
-      success: true,
-      analytics: {
-        code,
-        certificateId: shortLinkData.certificateId,
-        organizationId: shortLinkData.organizationId,
-        createdAt: shortLinkData.createdAt,
-        totalClicks: shortLinkData.clicks || 0,
-        lastClickedAt: shortLinkData.lastClickedAt || null,
-        clicks: clicks.map((click: any) => ({
-          timestamp: click.timestamp,
-          userAgent: click.userAgent,
-          referer: click.referer,
-        })),
-      },
-    });
-  } catch (error) {
-    console.error("Get analytics error:", error);
-    return c.json({ error: `Failed to get analytics: ${error}` }, 500);
-  }
+  return c.json({ success: false, error: "Short links are disabled" }, 410);
 });
 
-// Get all short links for an organization (for admin dashboard)
+// Get all short links for an organization (for admin dashboard) - DISABLED
 app.get("/make-server-a611b057/short/org/:organizationId/links", async (c) => {
-  try {
-    const { user, error } = await verifyUser(c.req.header("Authorization"));
-    if (error) {
-      return c.json({ error }, 401);
-    }
-
-    const organizationId = c.req.param("organizationId");
-    // Get all short links
-    const allShortLinks = await kv.getByPrefix("short:");
-    
-    // Filter by organization
-    const orgShortLinks = allShortLinks
-      .filter((item: any) => item.value?.organizationId === organizationId)
-      .map((item: any) => item.value);
-
-    // Enrich with click data
-    const enrichedLinks = await Promise.all(
-      orgShortLinks.map(async (link: any) => {
-        const clicks = (await kv.get(`clicks:${link.code}`)) || [];
-        return {
-          ...link,
-          clickDetails: clicks,
-        };
-      })
-    );
-
-    return c.json({
-      success: true,
-      shortLinks: enrichedLinks,
-      totalLinks: enrichedLinks.length,
-      totalClicks: enrichedLinks.reduce((sum: number, link: any) => sum + (link.clicks || 0), 0),
-    });
-  } catch (error) {
-    console.error("Get organization short links error:", error);
-    return c.json({ error: `Failed to get short links: ${error}` }, 500);
-  }
+  return c.json({ success: false, error: "Short links are disabled" }, 410);
 });
 
 // ==================== ADMIN SEED ENDPOINT ====================

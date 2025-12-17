@@ -17,38 +17,12 @@ export async function createShortLink(
   fullShortUrl?: string;
   error?: string;
 }> {
-  try {
-    const response = await fetch(`${API_BASE}/short/create`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${publicAnonKey}`,
-      },
-      body: JSON.stringify({
-        organizationId,
-        programId,
-        certificateId,
-        certificateData,
-      }),
-    });
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      return {
-        success: false,
-        error: data.error || "Failed to create short link",
-      };
-    }
-
-    return data;
-  } catch (error) {
-    console.error("Create short link error:", error);
-    return {
-      success: false,
-      error: error instanceof Error ? error.message : "Unknown error",
-    };
-  }
+  // Short links have been disabled. Return a clear error to callers.
+  console.warn("Short links are disabled in this deployment");
+  return {
+    success: false,
+    error: "Short links are disabled",
+  };
 }
 
 /**
@@ -71,30 +45,8 @@ export async function getShortLinkAnalytics(code: string): Promise<{
   };
   error?: string;
 }> {
-  try {
-    const response = await fetch(`${API_BASE}/short/${code}/analytics`, {
-      headers: {
-        Authorization: `Bearer ${publicAnonKey}`,
-      },
-    });
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      return {
-        success: false,
-        error: data.error || "Failed to get analytics",
-      };
-    }
-
-    return data;
-  } catch (error) {
-    console.error("Get analytics error:", error);
-    return {
-      success: false,
-      error: error instanceof Error ? error.message : "Unknown error",
-    };
-  }
+  console.warn("Short link analytics requested but short links are disabled");
+  return { success: false, error: "Short links disabled" };
 }
 
 /**
@@ -110,31 +62,6 @@ export async function getOrganizationShortLinks(
   totalClicks?: number;
   error?: string;
 }> {
-  try {
-    const response = await fetch(
-      `${API_BASE}/short/org/${organizationId}/links`,
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      }
-    );
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      return {
-        success: false,
-        error: data.error || "Failed to get short links",
-      };
-    }
-
-    return data;
-  } catch (error) {
-    console.error("Get organization short links error:", error);
-    return {
-      success: false,
-      error: error instanceof Error ? error.message : "Unknown error",
-    };
-  }
+  console.warn("Organization short links requested but short links are disabled");
+  return { success: false, error: "Short links disabled" };
 }

@@ -12,7 +12,7 @@ import AuthPage from "./components/AuthPage";
 import AdminDashboard from "./components/AdminDashboard";
 import PlatformAdminPanel from "./components/PlatformAdminPanel";
 import StudentCertificate from "./components/StudentCertificate";
-import ShortLinkRedirect from "./components/ShortLinkRedirect";
+
 import BackendHealthCheck from "./components/BackendHealthCheck";
 import DeploymentGuide from "./components/DeploymentGuide";
 import NotFound from "./components/NotFound";
@@ -123,8 +123,8 @@ function PasswordResetRedirect() {
 
       if (accessToken) {
         if (refreshToken) {
-          } else {
-          }
+        } else {
+        }
         // Navigate to reset password page with both tokens in React Router state
         navigate("/reset-password", {
           state: {
@@ -134,7 +134,7 @@ function PasswordResetRedirect() {
           replace: true,
         });
       } else {
-        }
+      }
     }
   }, [navigate, location]);
 
@@ -897,13 +897,17 @@ export default function App() {
             element={<StudentCertificate subsidiaries={organizations} />}
           />
 
-          <Route
-            path="/story"
-            element={<Story />}
-          />
+          <Route path="/story" element={<Story />} />
 
-          {/* Short link redirect - public */}
-          <Route path="/c/:code" element={<ShortLinkRedirect />} />
+          {/* Short link redirect - disabled */}
+          <Route
+            path="/c/:code"
+            element={
+              <div className="min-h-screen flex items-center justify-center">
+                Short links are disabled
+              </div>
+            }
+          />
 
           {/* Backend health check - public */}
           <Route path="/health-check" element={<BackendHealthCheck />} />

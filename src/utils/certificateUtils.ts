@@ -63,7 +63,8 @@ export const generateSecureCertificateUrl = (
  * @example https://certifyer.online/#/c/Ab3xY9
  */
 export const generateShortCertificateUrl = (shortCode: string): string => {
-  return `${window.location.origin}/#/c/${shortCode}`;
+  console.warn('generateShortCertificateUrl called but short links are disabled');
+  return '#/';
 };
 
 /**

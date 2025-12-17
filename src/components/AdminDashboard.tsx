@@ -135,12 +135,7 @@ import {
   generateCertificateId,
   buildFullCertificateUrl,
   normalizeCertificateUrl,
-  generateShortCertificateUrl,
 } from "../utils/certificateUtils";
-import {
-  createShortLink,
-  getOrganizationShortLinks,
-} from "../utils/shortLinkApi";
 import logo from "../assets/logo.png";
 // import Footer from "../components/landing/Footer";
 
@@ -580,7 +575,7 @@ export default function AdminDashboard({
         sessionStorage.removeItem("pendingTemplateSelection");
       }
     } else {
-      }
+    }
 
     // Also check location.state for react-router navigation (backup method)
     const state = location.state as any;
@@ -684,7 +679,6 @@ export default function AdminDashboard({
       "Navigate to Generate tab to create certificates with this template"
     );
   };
-
 
   // Filter real certificate data based on user permissions and search/filter criteria
   const getFilteredCertificates = () => {
@@ -922,7 +916,6 @@ export default function AdminDashboard({
         students: undefined,
       } as any);
 
-
       // Check if response has certificates
       if (!response.certificates || response.certificates.length === 0) {
         throw new Error("No certificate data returned from server");
@@ -963,31 +956,7 @@ export default function AdminDashboard({
         organization: genCurrentUserOrganization,
       };
 
-      // Create short link for easier sharing
-      try {
-        const shortLinkResult = await createShortLink(
-          backendCert.organizationId,
-          programSlug,
-          backendCert.id,
-          certificate
-        );
-
-        if (shortLinkResult.success && shortLinkResult.shortCode) {
-          // Add short link to certificate object
-          certificate.shortCode = shortLinkResult.shortCode;
-          certificate.shortUrl = `c/${shortLinkResult.shortCode}`;
-          certificate.fullShortUrl = shortLinkResult.fullShortUrl;
-
-          toast.success(
-            `Certificate generated! Short link: ${shortLinkResult.fullShortUrl}`
-          );
-        } else {
-          console.warn("⚠️ Failed to create short link, using encrypted URL");
-        }
-      } catch (error) {
-        console.error("Error creating short link:", error);
-        // Continue with encrypted URL if short link fails
-      }
+      // Short links are disabled — keep only the secure encrypted URL
 
       // Add to current session results (for Results tab)
       setGenGeneratedCertificates([certificate]);
@@ -1105,46 +1074,9 @@ export default function AdminDashboard({
             // Use backend-confirmed data
             const savedCertificates = response.certificates || certificates;
 
-            // Create short links for all certificates
-            const certificatesWithShortLinks = await Promise.all(
-              savedCertificates.map(async (cert: any) => {
-                try {
-                  const programSlug = genProgramName
-                    .trim()
-                    .toLowerCase()
-                    .replace(/\s+/g, "-");
-                  const shortLinkResult = await createShortLink(
-                    cert.organizationId,
-                    programSlug,
-                    cert.id,
-                    cert
-                  );
-
-                  if (shortLinkResult.success && shortLinkResult.shortCode) {
-                    return {
-                      ...cert,
-                      shortCode: shortLinkResult.shortCode,
-                      shortUrl: `c/${shortLinkResult.shortCode}`,
-                      fullShortUrl: shortLinkResult.fullShortUrl,
-                    };
-                  }
-                } catch (error) {
-                  console.error(
-                    `Failed to create short link for ${cert.studentName}:`,
-                    error
-                  );
-                }
-                return cert;
-              })
-            );
-
-            // Add to current session results (for Results tab)
-            setGenGeneratedCertificates(certificatesWithShortLinks);
-            // Also add to full history (for Certificates tab)
-            setAllCertificates((prev) => [
-              ...certificatesWithShortLinks,
-              ...prev,
-            ]);
+            // Keep saved certificates as-is (short links disabled)
+            setGenGeneratedCertificates(savedCertificates);
+            setAllCertificates((prev) => [...savedCertificates, ...prev]);
             setHasLoadedCertificates(true);
           } catch (error: any) {
             console.error("❌ Failed to save certificates to backend:", error);
@@ -1182,12 +1114,11 @@ export default function AdminDashboard({
   };
 
   const genCopyCertificateUrl = async (url: string, cert?: any) => {
-    // Prefer short URL if available
-    const urlToCopy = cert?.fullShortUrl || buildFullCertificateUrl(url);
+    // Always copy the full certificate URL (short links disabled)
+    const urlToCopy = buildFullCertificateUrl(url);
     const success = await copyToClipboard(urlToCopy);
     if (success) {
-      const linkType = cert?.fullShortUrl ? "Short link" : "Certificate URL";
-      toast.success(`${linkType} copied to clipboard!`);
+      toast.success("Certificate URL copied to clipboard!");
     } else {
       toast.error("Failed to copy URL");
     }
@@ -1199,11 +1130,11 @@ export default function AdminDashboard({
     const csvRows = genGeneratedCertificates
       .map(
         (cert) =>
-          `"${cert.studentName}","${cert.email}","${cert.id}","${
-            cert.fullShortUrl || "N/A"
-          }","${buildFullCertificateUrl(cert.certificateUrl)}","${new Date(
-            cert.generatedAt
-          ).toLocaleString()}"`
+          `"${cert.studentName}","${cert.email}","${
+            cert.id
+          }","${"N/A"}","${buildFullCertificateUrl(
+            cert.certificateUrl
+          )}","${new Date(cert.generatedAt).toLocaleString()}"`
       )
       .join("\n");
 
@@ -2400,7 +2331,7 @@ export default function AdminDashboard({
                                       ];
                                       newSignatories[0] = value;
                                       setGenSelectedSignatories(newSignatories);
-                                      }}
+                                    }}
                                   >
                                     <SelectTrigger id="genSignatory1">
                                       <SelectValue placeholder="Select primary signatory" />
@@ -2437,7 +2368,7 @@ export default function AdminDashboard({
                                       ];
                                       newSignatories[1] = value;
                                       setGenSelectedSignatories(newSignatories);
-                                      }}
+                                    }}
                                   >
                                     <SelectTrigger id="genSignatory2">
                                       <SelectValue placeholder="Select secondary signatory" />
@@ -2684,20 +2615,9 @@ export default function AdminDashboard({
                                       <p className="text-sm text-muted-foreground truncate">
                                         {cert.email || cert.certificateHeader}
                                       </p>
-                                      {cert.fullShortUrl ? (
-                                        <div className="mt-2 p-2 bg-green-50 border border-green-200 rounded-lg">
-                                          <p className="text-xs text-green-800 font-medium mb-1">
-                                            🔗 Short Link (Easy to Share!)
-                                          </p>
-                                          <code className="text-xs text-green-700 break-all">
-                                            {cert.fullShortUrl}
-                                          </code>
-                                        </div>
-                                      ) : (
-                                        <p className="text-xs text-muted-foreground mt-1">
-                                          Certificate ID: {cert.id}
-                                        </p>
-                                      )}
+                                      <p className="text-xs text-muted-foreground mt-1">
+                                        Certificate ID: {cert.id}
+                                      </p>
                                     </div>
                                     <div className="flex gap-2 flex-shrink-0">
                                       <Button
@@ -2711,15 +2631,12 @@ export default function AdminDashboard({
                                         }}
                                       >
                                         <Copy className="w-4 h-4 mr-2" />
-                                        {cert.fullShortUrl
-                                          ? "Copy Short Link"
-                                          : "Copy URL"}
+                                        Copy URL
                                       </Button>
                                       <Button
                                         size="sm"
                                         onClick={(e) => {
                                           const fullUrl =
-                                            cert.fullShortUrl ||
                                             buildFullCertificateUrl(
                                               cert.certificateUrl
                                             );

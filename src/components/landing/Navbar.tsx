@@ -76,36 +76,35 @@ const Navbar: React.FC = () => {
             )}
           </button>
 
-          <div className="hidden md:hidden">
-            <div className="hidden text-lg md:flex gap-12 items-center">
-              <Link
-                to="features"
-                smooth={true}
-                duration={500}
-                offset={-50}
-                className="hover:text-orange-500 cursor-pointer"
-              >
-                Features
-              </Link>
-              <Link
-                to="work"
-                smooth={true}
-                duration={500}
-                offset={-50}
-                className="hover:text-orange-500 cursor-pointer"
-              >
-                How It Works
-              </Link>
-              <Link
-                to="testimonials"
-                smooth={true}
-                duration={500}
-                offset={-50}
-                className="hover:text-orange-500 cursor-pointer"
-              >
-                Testimonials
-              </Link>
-              {/* <Link
+          <div className="hidden text-lg md:flex gap-12 items-center">
+            <Link
+              to="features"
+              smooth={true}
+              duration={500}
+              offset={-50}
+              className="hover:text-orange-500 cursor-pointer"
+            >
+              Features
+            </Link>
+            <Link
+              to="work"
+              smooth={true}
+              duration={500}
+              offset={-50}
+              className="hover:text-orange-500 cursor-pointer"
+            >
+              How It Works
+            </Link>
+            <Link
+              to="testimonials"
+              smooth={true}
+              duration={500}
+              offset={-50}
+              className="hover:text-orange-500 cursor-pointer"
+            >
+              Testimonials
+            </Link>
+            {/* <Link
               to="prices"
               smooth={true}
               duration={500}
@@ -114,7 +113,6 @@ const Navbar: React.FC = () => {
             >
               Pricing
             </Link> */}
-            </div>
           </div>
 
           <div className="hidden md:flex gap-8 items-center">

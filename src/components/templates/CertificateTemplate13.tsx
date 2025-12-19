@@ -201,7 +201,7 @@ export default function CertificateTemplate13({
               {/* Date display */}
               {date && (
                 <div className="flex flex-col items-center text-center">
-                  <div className="w-32 mt-8 mb-2" />
+                  <div className="w-32 mt-7 mb-2" />
                   <div className="text-xs font-bold ">Date</div>
                   <div
                     className="text-sm font-medium"

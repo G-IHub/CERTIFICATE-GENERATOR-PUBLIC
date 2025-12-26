@@ -95,7 +95,7 @@ export default function CertificateTemplate13({
             className="flex flex-col items-center gap-4 mb-6"
             style={{ fontFamily: "'Libre Baskerville', serif" }}
           >
-            <h1 className="text-3xl font-bold uppercase">
+            <h1 className="text-3xl w-full font-bold uppercase">
               {header || "Achievement"}
             </h1>
             <div className="flex gap-4 items-center">
@@ -115,7 +115,7 @@ export default function CertificateTemplate13({
             {/* Recipient Name */}
             <div>
               <p
-                className="text-6xl"
+                className="text-4xl"
                 style={{
                   fontFamily: "'Island Moments', cursive",
                   color: "#835A2A",

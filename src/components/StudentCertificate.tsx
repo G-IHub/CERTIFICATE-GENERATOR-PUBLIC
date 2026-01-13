@@ -4,6 +4,7 @@ import { useParams, useLocation } from "react-router-dom";
 import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
 import { Badge } from "./ui/badge";
+import { Alert, AlertDescription } from "./ui/alert";
 import {
   Tooltip,
   TooltipContent,
@@ -44,15 +45,10 @@ import {
   getCertificateLinkTimeRemaining,
 } from "../utils/encryption";
 import { toJpeg } from "html-to-image";
-import logo from "../assets/logo.png";
 
 interface StudentCertificateProps {
   subsidiaries: Subsidiary[];
 }
-
-// Platform promo settings (change the URL and name as needed)
-const PLATFORM_NAME = "Certifyer";
-const PLATFORM_URL = "https://certifyer.online";
 
 interface CertificateData {
   id: string;
@@ -80,6 +76,8 @@ interface CertificateData {
     title: string;
     signatureUrl: string;
   }[];
+  restrictDownload?: boolean; // NEW: Whether downloads are restricted
+  allowedEmails?: string[]; // NEW: List of allowed student emails
 }
 
 const StudentCertificate: React.FC<StudentCertificateProps> = ({
@@ -114,23 +112,43 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
 
       // Try to decrypt if we have a single encrypted parameter
       if (wildcardParam && !subsidiaryId && !programId) {
+        console.log("🔐 Attempting to decrypt certificate URL...");
+        console.log("   - Raw wildcardParam:", wildcardParam);
+        console.log("   - wildcardParam length:", wildcardParam.length);
+        console.log("   - Has % characters:", wildcardParam.includes("%"));
+        console.log("   - Has + characters:", wildcardParam.includes("+"));
+        console.log("   - First 50 chars:", wildcardParam.substring(0, 50));
+
         // React Router may have already decoded the URL, so we need to check
         // If it contains %, it's still encoded. If not, it's already decoded.
         const isAlreadyDecoded = !wildcardParam.includes("%");
+        console.log(
+          "   - Already URL-decoded by React Router?",
+          isAlreadyDecoded
+        );
+
         // Pass the parameter as-is if already decoded, or pass it encoded
         const paramToDecrypt = isAlreadyDecoded
           ? encodeURIComponent(wildcardParam)
           : wildcardParam;
+        console.log("   - Param to decrypt:", paramToDecrypt.substring(0, 50));
+
         decryptedData = decryptCertificateData(paramToDecrypt);
 
         if (decryptedData) {
+          console.log("✅ Successfully decrypted certificate data:");
+          console.log("   - Organization ID:", decryptedData.organizationId);
+          console.log("   - Program ID:", decryptedData.programId);
+          console.log("   - Certificate ID:", decryptedData.certificateId);
+
           // Check expiration
           const timeRemaining = getCertificateLinkTimeRemaining(wildcardParam);
           if (timeRemaining !== null) {
             const daysRemaining = Math.floor(
               timeRemaining / (1000 * 60 * 60 * 24)
             );
-            }
+            console.log(`⏰ Link valid for ${daysRemaining} more days`);
+          }
 
           actualCertificateId = decryptedData.certificateId;
         } else {
@@ -143,8 +161,16 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
         }
       } else if (certificateId) {
         // Legacy format: /certificate/{orgId}/{programId}/{certId}
+        console.log("📄 Using legacy URL format");
         actualCertificateId = certificateId;
       } else {
+        console.log("⚠️ No certificate ID or encrypted data provided");
+        console.log("⚠️ URL params:", {
+          subsidiaryId,
+          programId,
+          certificateId,
+          wildcardParam,
+        });
         setLoading(false);
         return;
       }
@@ -155,15 +181,38 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
         return;
       }
 
+      console.log("🔍 Fetching certificate ID:", actualCertificateId);
       setLoading(true);
 
       try {
         // Fetch certificate from backend
+        console.log("📡 Calling API to get certificate...");
         const response = await certificateApi.getById(actualCertificateId);
+        console.log("📡 API Response received:");
+        console.log("   - Has certificate:", !!response.certificate);
+        console.log("   - Has organization:", !!response.organization);
+        console.log("   - Has program:", !!response.program);
+
         if (response.certificate) {
+          console.log("✅ Certificate data received from backend");
           const cert = response.certificate;
           const org = response.organization;
           const prog = response.program;
+          console.log("📄 Certificate details:");
+          console.log("   - ID:", cert.id);
+          console.log(
+            "   - Student Name:",
+            cert.studentName || "(none - will prompt)"
+          );
+          console.log("   - Course Name:", cert.courseName);
+          console.log("   - Certificate Header:", cert.certificateHeader);
+          console.log("   - Template:", cert.template);
+          console.log("   - Organization ID:", cert.organizationId);
+          console.log("   - Organization Name:", org?.name || "(not found)");
+          console.log("   - Program ID:", cert.programId);
+          console.log("   - Program Name:", prog?.name || "(not found)");
+          console.log("   - Completion Date:", cert.completionDate);
+
           // Map backend response to CertificateData format
           const certificateData: CertificateData = {
             id: cert.id,
@@ -187,18 +236,49 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
             template: cert.template, // Template ID from backend
             customTemplateConfig: cert.customTemplateConfig, // Custom template config if exists
             signatories: cert.signatories || [], // Signatories from backend
+            restrictDownload: cert.restrictDownload || false, // Download restriction flag
+            allowedEmails: cert.allowedEmails || [], // List of allowed emails
           };
+
+          console.log("📋 Template Info:", {
+            templateId: cert.template,
+            hasCustomConfig: !!cert.customTemplateConfig,
+          });
+
+          console.log("🔒 Restriction Info:", {
+            restrictDownload: cert.restrictDownload || false,
+            allowedEmailsCount: cert.allowedEmails?.length || 0,
+            allowedEmails: cert.allowedEmails || [],
+          });
 
           setCertificate(certificateData);
           if (cert.customTemplateConfig) {
+            console.log(
+              "🎨 Certificate has customTemplateConfig - using saved design"
+            );
+            console.log(
+              "🎨 Custom config keys:",
+              Object.keys(cert.customTemplateConfig)
+            );
+            console.log(
+              "⚠️ NOT loading template from global library (would overwrite)"
+            );
             // Don't load from global library - certificate already has the config
           } else if (cert.template && cert.template.match(/^template\d+$/)) {
             // Only load from global library if no customTemplateConfig
+            console.log(
+              "📋 No customTemplateConfig - loading template from backend:",
+              cert.template
+            );
             try {
               const templateResponse = await templateApi.getById(cert.template);
               if (templateResponse.template) {
                 setTemplateConfig(templateResponse.template.config);
-                }
+                console.log(
+                  "✅ Template config loaded from global library:",
+                  templateResponse.template.name
+                );
+              }
             } catch (error) {
               console.error("❌ Failed to load template config:", error);
               // Not critical - will fall back to default
@@ -207,9 +287,14 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
 
           // Check if this is a new format certificate without a student name
           if (!cert.studentName) {
+            console.log("📝 No student name - showing name entry form");
             setShowNameForm(true);
           } else {
-            }
+            console.log("✅ Student name present:", cert.studentName);
+            console.log(
+              "📄 Will display certificate directly (no name entry needed)"
+            );
+          }
         } else {
           toast.error(
             "Certificate not found - this certificate may not exist in the database"
@@ -690,6 +775,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
       toast.error("Certificate not ready for download");
       return;
     }
+
     setIsDownloading(true);
     toast.info("Generating image...");
 
@@ -865,6 +951,37 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
         return;
       }
 
+      // NEW: Check if download is restricted and validate email
+      if (certificate.restrictDownload) {
+        console.log("🔒 Download restriction check:");
+        console.log("  - Restrict Download:", certificate.restrictDownload);
+        console.log("  - Allowed Emails:", certificate.allowedEmails);
+
+        if (!enteredEmail.trim()) {
+          toast.error("Email address is required for this certificate");
+          return;
+        }
+
+        const emailLower = enteredEmail.trim().toLowerCase();
+        const allowedEmails = certificate.allowedEmails || [];
+
+        console.log("  - Entered Email (lowercased):", emailLower);
+        console.log("  - Allowed Emails Array:", allowedEmails);
+        console.log(
+          "  - Is email in allowed list?",
+          allowedEmails.includes(emailLower)
+        );
+
+        if (!allowedEmails.includes(emailLower)) {
+          toast.error(
+            "Sorry, you are not authorized to access this certificate. Please contact your instructor if you believe this is an error."
+          );
+          return;
+        }
+
+        console.log("✅ Email validation passed!");
+      }
+
       setIsSubmitting(true);
 
       try {
@@ -881,7 +998,8 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
           });
 
           if (response.success) {
-            }
+            console.log("✅ Testimonial saved successfully");
+          }
         }
 
         setShowNameForm(false);
@@ -918,13 +1036,23 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
                 <Award className="w-16 h-16 text-primary mx-auto mb-4" />
               )}
               <h2 className="text-2xl font-bold text-gray-900 mb-2">
-                Get Your Certificate
+                Complete Your Certificate
               </h2>
               <p className="text-gray-600">
                 For <span className="font-semibold">{courseName}</span> from{" "}
                 {orgName}
               </p>
             </div>
+
+            {certificate.restrictDownload && (
+              <Alert className="mb-4 border-orange-300 bg-orange-50">
+                <Shield className="h-4 w-4 text-orange-600" />
+                <AlertDescription className="text-sm text-orange-800">
+                  This certificate has restricted access. You must use an
+                  approved email address to view and download it.
+                </AlertDescription>
+              </Alert>
+            )}
 
             <form
               onSubmit={handleFormSubmit}
@@ -955,7 +1083,11 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
                   htmlFor="studentEmail"
                   className="block text-sm font-medium text-gray-700 mb-2"
                 >
-                  Email Address (Optional)
+                  Email Address{" "}
+                  {certificate.restrictDownload && (
+                    <span className="text-red-500">*</span>
+                  )}
+                  {!certificate.restrictDownload && "(Optional)"}
                 </label>
                 <input
                   id="studentEmail"
@@ -965,10 +1097,19 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
                   placeholder="your.email@example.com"
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                   disabled={isSubmitting}
+                  required={certificate.restrictDownload}
                 />
-                <p className="text-xs text-gray-500 mt-1">
-                  Your email will only be visible to course administrators
-                </p>
+                {certificate.restrictDownload ? (
+                  <p className="text-xs text-orange-600 mt-1 flex items-center gap-1">
+                    <Shield className="w-3 h-3" />
+                    Email verification required - only approved students can
+                    access this certificate
+                  </p>
+                ) : (
+                  <p className="text-xs text-gray-500 mt-1">
+                    Your email will only be visible to course administrators
+                  </p>
+                )}
               </div>
 
               <div>
@@ -995,7 +1136,11 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
               <Button
                 type="submit"
                 className="w-full"
-                disabled={!enteredName.trim() || isSubmitting}
+                disabled={
+                  !enteredName.trim() ||
+                  isSubmitting ||
+                  (certificate.restrictDownload && !enteredEmail.trim())
+                }
               >
                 {isSubmitting ? (
                   <>
@@ -1099,36 +1244,6 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
                   </div>
                 </CardContent>
               </Card>
-
-              {/* Promo Card: small advertisement and invite */}
-              <div className="mt-4">
-                <Card>
-                  <CardContent className="p-4 flex items-center gap-4">
-                    <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                      <img src={logo} alt="Certifyer Logo" className="w-6 h-6" />
-                    </div>
-                    <div className="flex-1">
-                      <h4 className="font-semibold">{PLATFORM_NAME}</h4>
-                      <p className="text-sm text-gray-600">
-                        You want to create, issue and verify professional certificates
-                        effortlessly and speedily? Try Certifyer for free today.
-                      </p>
-                    </div>
-                    <div>
-                      <a
-                        href={PLATFORM_URL}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Button size="sm">
-                          Try Certifyer
-                          <ExternalLink className="w-4 h-4 ml-2" />
-                        </Button>
-                      </a>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
             </div>
 
             {/* Sidebar */}

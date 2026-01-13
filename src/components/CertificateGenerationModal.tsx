@@ -1,35 +1,58 @@
 // Version: 2.0 - Simplified 3-step flow (Setup > Generation > Results)
-import React, { useState, useEffect } from 'react';
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from './ui/dialog';
-import { Button } from './ui/button';
-import { Input } from './ui/input';
-import { Label } from './ui/label';
-import { Textarea } from './ui/textarea';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
-import { Badge } from './ui/badge';
-import { Alert, AlertDescription } from './ui/alert';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './ui/tooltip';
-import { 
-  Award, 
-  Upload, 
-  User, 
-  Users, 
-  FileText, 
+import React, { useState, useEffect } from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "./ui/dialog";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import { Label } from "./ui/label";
+import { Textarea } from "./ui/textarea";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "./ui/card";
+import { Badge } from "./ui/badge";
+import { Alert, AlertDescription } from "./ui/alert";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "./ui/tooltip";
+import {
+  Award,
+  Upload,
+  User,
+  Users,
+  FileText,
   Download,
   Eye,
   CheckCircle,
   Copy,
   ExternalLink,
-  Sparkles
-} from 'lucide-react';
-import { toast } from 'sonner';
-import TemplatesPage from './TemplatesPage';
-import { copyToClipboard } from '../utils/clipboard';
-import CertificateRenderer from './CertificateRenderer';
-import { generateSecureCertificateUrl, generateCertificateId, buildFullCertificateUrl, normalizeCertificateUrl } from '../utils/certificateUtils';
-import { certificateApi } from '../utils/api';
-import { projectId, publicAnonKey } from '../utils/supabase/info';
+  Sparkles,
+  Shield,
+} from "lucide-react";
+import { toast } from "sonner";
+import TemplatesPage from "./TemplatesPage";
+import { copyToClipboard } from "../utils/clipboard";
+import CertificateRenderer from "./CertificateRenderer";
+import {
+  generateSecureCertificateUrl,
+  generateCertificateId,
+  buildFullCertificateUrl,
+  normalizeCertificateUrl,
+} from "../utils/certificateUtils";
+import { certificateApi } from "../utils/api";
+import { projectId, publicAnonKey } from "../utils/supabase/info";
 
 interface GeneratedCertificate {
   id: string;
@@ -45,62 +68,136 @@ interface CertificateGenerationModalProps {
   user: any;
   subsidiaries: any[];
   currentSubsidiary: any;
-  onUpdateProgramStats?: (organizationId: string, programId: string, certificateCount: number) => void;
-  onCertificatesGenerated?: (certificates: GeneratedCertificate[], organization: any, program: any) => void;
+  onUpdateProgramStats?: (
+    organizationId: string,
+    programId: string,
+    certificateCount: number
+  ) => void;
+  onCertificatesGenerated?: (
+    certificates: GeneratedCertificate[],
+    organization: any,
+    program: any
+  ) => void;
   customTemplateConfig?: any; // Custom template configuration from Template Builder
 }
 
-export default function CertificateGenerationModal({ 
-  isOpen, 
-  onClose, 
-  user, 
-  subsidiaries: organizations, 
+export default function CertificateGenerationModal({
+  isOpen,
+  onClose,
+  user,
+  subsidiaries: organizations,
   currentSubsidiary: currentOrganization,
   onCertificatesGenerated,
-  customTemplateConfig
+  customTemplateConfig,
 }: CertificateGenerationModalProps) {
   // Debug: Verify new version is loaded
+  console.log(
+    "✅ CertificateGenerationModal v2.0 loaded - Simplified 3-step flow"
+  );
+  console.log("📋 Custom template config:", customTemplateConfig);
+
   // IMMEDIATE DEBUG - Log what props are received
-  const [activeTab, setActiveTab] = useState('setup');
-  const [certificateHeader, setCertificateHeader] = useState('Certificate of Completion');
-  const [courseName, setCourseName] = useState('');
-  const [courseDescription, setCourseDescription] = useState('');
-  const [completionDate, setCompletionDate] = useState(new Date().toISOString().split('T')[0]);
-  const [selectedTemplate, setSelectedTemplate] = useState('');
-  const [selectedTemplateName, setSelectedTemplateName] = useState('');
-  const [selectedTemplateConfig, setSelectedTemplateConfig] = useState<any>(null);
-  const [studentName, setStudentName] = useState('');
-  const [studentEmail, setStudentEmail] = useState('');
-  const [customMessage, setCustomMessage] = useState('');
-  const [bulkStudents, setBulkStudents] = useState('');
+  console.log("🔍 MODAL PROPS DEBUG:");
+  console.log("  - isOpen:", isOpen);
+  console.log("  - organizations (subsidiaries):", organizations);
+  console.log(
+    "  - currentOrganization (currentSubsidiary):",
+    currentOrganization
+  );
+  console.log("  - organizations.length:", organizations?.length);
+  console.log("  - currentOrganization?.id:", currentOrganization?.id);
+  console.log(
+    "  - currentOrganization?.settings:",
+    currentOrganization?.settings
+  );
+  console.log(
+    "  - currentOrganization?.settings?.signatories:",
+    currentOrganization?.settings?.signatories
+  );
+
+  const [activeTab, setActiveTab] = useState("setup");
+  const [certificateHeader, setCertificateHeader] = useState(
+    "Certificate of Completion"
+  );
+  const [courseName, setCourseName] = useState("");
+  const [courseDescription, setCourseDescription] = useState("");
+  const [completionDate, setCompletionDate] = useState(
+    new Date().toISOString().split("T")[0]
+  );
+  const [selectedTemplate, setSelectedTemplate] = useState("");
+  const [selectedTemplateName, setSelectedTemplateName] = useState("");
+  const [selectedTemplateConfig, setSelectedTemplateConfig] =
+    useState<any>(null);
+  const [studentName, setStudentName] = useState("");
+  const [studentEmail, setStudentEmail] = useState("");
+  const [customMessage, setCustomMessage] = useState("");
+  const [bulkStudents, setBulkStudents] = useState("");
   const [generatedCertificates, setGeneratedCertificates] = useState<any[]>([]);
   const [isGenerating, setIsGenerating] = useState(false);
   const [showTemplatePicker, setShowTemplatePicker] = useState(false);
-  const [generationType, setGenerationType] = useState<'individual' | 'bulk'>('individual');
+  const [generationType, setGenerationType] = useState<"individual" | "bulk">(
+    "individual"
+  );
   const [selectedSignatories, setSelectedSignatories] = useState<string[]>([]);
 
+  // NEW: Download restriction states
+  const [restrictDownload, setRestrictDownload] = useState(false);
+  const [allowedEmails, setAllowedEmails] = useState<string[]>([]);
+  const [emailInput, setEmailInput] = useState("");
+
   // Get user's organization
-  const currentUserOrganization = currentOrganization || (organizations.length > 0 ? organizations[0] : null);
+  const currentUserOrganization =
+    currentOrganization || (organizations.length > 0 ? organizations[0] : null);
 
   // Get available signatories from organization settings
-  const availableSignatories = currentUserOrganization?.settings?.signatories || [];
-  
+  const availableSignatories =
+    currentUserOrganization?.settings?.signatories || [];
+
   // IMMEDIATE DEBUG - Log signatory state
+  console.log(
+    "🔥 SIGNATORY DEBUG - availableSignatories:",
+    availableSignatories
+  );
+  console.log(
+    "🔥 SIGNATORY DEBUG - availableSignatories.length:",
+    availableSignatories.length
+  );
+  console.log(
+    "🔥 SIGNATORY DEBUG - Will render signatory UI?",
+    availableSignatories.length > 0
+  );
+
   // Debug logging
   useEffect(() => {
-    }, [currentOrganization, organizations, currentUserOrganization, availableSignatories]);
-  
+    console.log("=== CERTIFICATE GENERATION MODAL DEBUG ===");
+    console.log("currentOrganization:", currentOrganization);
+    console.log("organizations array:", organizations);
+    console.log("currentUserOrganization:", currentUserOrganization);
+    console.log(
+      "currentUserOrganization.settings:",
+      currentUserOrganization?.settings
+    );
+    console.log("availableSignatories:", availableSignatories);
+    console.log("availableSignatories.length:", availableSignatories.length);
+    console.log("==========================================");
+  }, [
+    currentOrganization,
+    organizations,
+    currentUserOrganization,
+    availableSignatories,
+  ]);
+
   // Note: generateCertificateId, normalizeCertificateUrl, and buildFullCertificateUrl are now imported from utils/certificateUtils
-  
+
   // Generate secure encrypted certificate URL
   const generateCertificateUrlSecure = (certificateId: string) => {
     if (!currentUserOrganization) {
-      console.error('❌ No organization selected for certificate generation');
-      return '';
+      console.error("❌ No organization selected for certificate generation");
+      return "";
     }
-    
-    const programSlug = courseName.toLowerCase().replace(/\s+/g, '-');
-    
+
+    const programSlug = courseName.toLowerCase().replace(/\s+/g, "-");
+
     // Use encrypted URL format - more secure with expiration
     const encryptedUrl = generateSecureCertificateUrl(
       currentUserOrganization.id,
@@ -108,42 +205,45 @@ export default function CertificateGenerationModal({
       certificateId,
       365 // Valid for 1 year
     );
-    
+
     // Remove the origin and hash from the URL to get just the path
-    return encryptedUrl.replace(`${window.location.origin}/#/`, '');
+    return encryptedUrl.replace(`${window.location.origin}/#/`, "");
   };
 
   // Parse bulk students input
   const parseBulkStudents = (input: string) => {
-    const lines = input.trim().split('\n');
+    const lines = input.trim().split("\n");
     const students = [];
-    
+
     for (const line of lines) {
       const trimmed = line.trim();
       if (!trimmed) continue;
-      
-      const parts = trimmed.split(',').map(p => p.trim());
+
+      const parts = trimmed.split(",").map((p) => p.trim());
       if (parts.length >= 2) {
         students.push({ name: parts[0], email: parts[1] });
       } else if (parts.length === 1) {
-        students.push({ name: parts[0], email: '' });
+        students.push({ name: parts[0], email: "" });
       }
     }
-    
+
     return students;
   };
 
   // Handle template selection from TemplatesPage (Global Template Library)
   const handleTemplateFromBrowser = (template: any) => {
+    console.log("🎨 Template selected from global library:", template);
+    console.log("🎨 Template config:", template.config);
+
     // Store the template ID, name, AND config
     setSelectedTemplate(template.id); // Store template ID (e.g., "template1", "template2")
     setSelectedTemplateName(template.name);
-    
+
     // IMPORTANT: Store template config for custom templates
     // For default templates, config might be null (uses built-in styles)
     // For custom templates, config contains the user's design
     setSelectedTemplateConfig(template.config || null);
-    
+
     setShowTemplatePicker(false);
     toast.success(`Template "${template.name}" selected!`);
   };
@@ -151,45 +251,52 @@ export default function CertificateGenerationModal({
   // Generate individual certificate
   const generateIndividualCertificate = async () => {
     if (!certificateHeader.trim()) {
-      toast.error('Please enter certificate header');
+      toast.error("Please enter certificate header");
       return;
     }
 
     if (!courseName.trim()) {
-      toast.error('Please enter course title');
+      toast.error("Please enter course title");
       return;
     }
 
     if (!selectedTemplate) {
-      toast.error('Please select a template');
+      toast.error("Please select a template");
       return;
     }
 
     if (!currentUserOrganization) {
-      toast.error('No organization selected');
+      toast.error("No organization selected");
       return;
     }
 
     setIsGenerating(true);
-    
+
     try {
       // Get access token from localStorage
-      const token = localStorage.getItem('accessToken');
-      
+      const token = localStorage.getItem("accessToken");
+
       if (!token) {
-        toast.error('Not authenticated. Please log in again.');
+        toast.error("Not authenticated. Please log in again.");
         setIsGenerating(false);
         return;
       }
 
       // Save certificate to backend
       // Use selectedTemplateConfig (from template picker) OR customTemplateConfig (from modal prop)
-      const templateConfig = selectedTemplateConfig || customTemplateConfig || null;
+      const templateConfig =
+        selectedTemplateConfig || customTemplateConfig || null;
+      console.log(
+        "💾 Saving certificate to backend with template config:",
+        templateConfig
+      );
+      console.log("💾 Selected signatories:", selectedSignatories);
+
       // Get full signatory details for selected IDs
-      const selectedSignatoryDetails = availableSignatories.filter((sig: any) => 
+      const selectedSignatoryDetails = availableSignatories.filter((sig: any) =>
         selectedSignatories.includes(sig.id)
       );
-      
+
       const response = await certificateApi.generate(token, {
         organizationId: currentUserOrganization.id,
         certificateHeader: certificateHeader.trim(),
@@ -199,11 +306,15 @@ export default function CertificateGenerationModal({
         template: selectedTemplate,
         customTemplateConfig: templateConfig,
         signatories: selectedSignatoryDetails,
+        restrictDownload: restrictDownload, // NEW: Download restriction flag
+        allowedEmails: allowedEmails, // NEW: List of allowed emails
       });
+
+      console.log("✅ Certificate saved to backend:", response);
 
       if (response.certificates && response.certificates.length > 0) {
         const backendCert = response.certificates[0];
-        
+
         const certificate = {
           id: backendCert.id,
           generatedAt: backendCert.generatedAt,
@@ -215,25 +326,26 @@ export default function CertificateGenerationModal({
           courseName: backendCert.courseName,
           courseDescription: backendCert.courseDescription,
           completionDate: backendCert.completionDate,
-          customTemplateConfig: backendCert.customTemplateConfig || templateConfig,
+          customTemplateConfig:
+            backendCert.customTemplateConfig || templateConfig,
         };
 
         setGeneratedCertificates([certificate]);
-        
-        toast.success('Certificate link generated and saved successfully!');
-        setActiveTab('results');
-        
+
+        toast.success("Certificate link generated and saved successfully!");
+        setActiveTab("results");
+
         // Clear form
-        setCourseName('');
-        setCourseDescription('');
-        setCertificateHeader('Certificate of Completion');
-        setCompletionDate(new Date().toISOString().split('T')[0]);
+        setCourseName("");
+        setCourseDescription("");
+        setCertificateHeader("Certificate of Completion");
+        setCompletionDate(new Date().toISOString().split("T")[0]);
       } else {
-        toast.error('Failed to generate certificate');
+        toast.error("Failed to generate certificate");
       }
     } catch (error: any) {
-      console.error('❌ Error generating certificate:', error);
-      toast.error(error.message || 'Failed to generate certificate');
+      console.error("❌ Error generating certificate:", error);
+      toast.error(error.message || "Failed to generate certificate");
     } finally {
       setIsGenerating(false);
     }
@@ -242,28 +354,28 @@ export default function CertificateGenerationModal({
   // Generate bulk certificates
   const generateBulkCertificates = () => {
     if (!bulkStudents.trim()) {
-      toast.error('Please enter student data');
+      toast.error("Please enter student data");
       return;
     }
 
     if (!selectedTemplate) {
-      toast.error('Please select a template');
+      toast.error("Please select a template");
       return;
     }
 
     const students = parseBulkStudents(bulkStudents);
     if (students.length === 0) {
-      toast.error('No valid student data found');
+      toast.error("No valid student data found");
       return;
     }
 
     setIsGenerating(true);
-    
+
     setTimeout(() => {
-      const certificates = students.map(student => {
+      const certificates = students.map((student) => {
         const certificateId = generateCertificateId();
         const certificateUrl = generateCertificateUrl(certificateId);
-        
+
         return {
           id: certificateId,
           studentName: student.name,
@@ -274,19 +386,21 @@ export default function CertificateGenerationModal({
           templateName: selectedTemplateName,
           organization: currentUserOrganization,
           customMessage: customMessage.trim(),
-          customTemplateConfig: customTemplateConfig // Store custom template config with certificate
+          customTemplateConfig: customTemplateConfig, // Store custom template config with certificate
         };
       });
 
       setGeneratedCertificates(certificates);
-      
+
       setIsGenerating(false);
-      toast.success(`${certificates.length} certificates generated successfully!`);
-      setActiveTab('results');
-      
+      toast.success(
+        `${certificates.length} certificates generated successfully!`
+      );
+      setActiveTab("results");
+
       // Clear form
-      setBulkStudents('');
-      setCustomMessage('');
+      setBulkStudents("");
+      setCustomMessage("");
     }, 2000);
   };
 
@@ -295,55 +409,68 @@ export default function CertificateGenerationModal({
     const fullUrl = buildFullCertificateUrl(url);
     const success = await copyToClipboard(fullUrl);
     if (success) {
-      toast.success('Certificate URL copied to clipboard!');
+      toast.success("Certificate URL copied to clipboard!");
     } else {
-      toast.error('Failed to copy URL');
+      toast.error("Failed to copy URL");
     }
   };
 
   // Export certificate list as CSV
   const exportCertificateList = () => {
-    const csvHeader = 'Course Name,Certificate ID,Certificate URL,Generated At\n';
-    const csvRows = generatedCertificates.map(cert => 
-      `"${cert.courseName}","${cert.id}","${cert.certificateUrl}","${new Date(cert.generatedAt).toLocaleString()}"`
-    ).join('\n');
-    
+    const csvHeader =
+      "Course Name,Certificate ID,Certificate URL,Generated At\n";
+    const csvRows = generatedCertificates
+      .map(
+        (cert) =>
+          `"${cert.courseName}","${cert.id}","${
+            cert.certificateUrl
+          }","${new Date(cert.generatedAt).toLocaleString()}"`
+      )
+      .join("\n");
+
     const csvContent = csvHeader + csvRows;
-    const blob = new Blob([csvContent], { type: 'text/csv' });
+    const blob = new Blob([csvContent], { type: "text/csv" });
     const url = URL.createObjectURL(blob);
-    
-    const a = document.createElement('a');
+
+    const a = document.createElement("a");
     a.href = url;
-    a.download = `certificates-${new Date().toISOString().split('T')[0]}.csv`;
+    a.download = `certificates-${new Date().toISOString().split("T")[0]}.csv`;
     a.click();
-    
+
     URL.revokeObjectURL(url);
-    toast.success('Certificate list exported successfully!');
+    toast.success("Certificate list exported successfully!");
   };
 
   // Handle preview button
   const handlePreviewCertificates = () => {
     if (generatedCertificates.length > 0 && onCertificatesGenerated) {
-      onCertificatesGenerated(generatedCertificates, currentUserOrganization, null);
+      onCertificatesGenerated(
+        generatedCertificates,
+        currentUserOrganization,
+        null
+      );
       onClose();
     }
   };
 
   const resetModal = () => {
-    setActiveTab('setup');
-    setCertificateHeader('Certificate of Completion');
-    setCourseName('');
-    setCourseDescription('');
-    setCompletionDate(new Date().toISOString().split('T')[0]);
-    setSelectedTemplate('');
-    setSelectedTemplateName('');
-    setStudentName('');
-    setStudentEmail('');
-    setCustomMessage('');
-    setBulkStudents('');
+    setActiveTab("setup");
+    setCertificateHeader("Certificate of Completion");
+    setCourseName("");
+    setCourseDescription("");
+    setCompletionDate(new Date().toISOString().split("T")[0]);
+    setSelectedTemplate("");
+    setSelectedTemplateName("");
+    setStudentName("");
+    setStudentEmail("");
+    setCustomMessage("");
+    setBulkStudents("");
     setGeneratedCertificates([]);
     setIsGenerating(false);
-    setGenerationType('individual');
+    setGenerationType("individual");
+    setRestrictDownload(false);
+    setAllowedEmails([]);
+    setEmailInput("");
   };
 
   const handleClose = () => {
@@ -372,15 +499,30 @@ export default function CertificateGenerationModal({
               Generate Certificates
             </DialogTitle>
             <DialogDescription>
-              Create beautiful, professional certificates with customizable templates
+              Create beautiful, professional certificates with customizable
+              templates
             </DialogDescription>
           </DialogHeader>
 
-          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+          <Tabs
+            value={activeTab}
+            onValueChange={setActiveTab}
+            className="w-full"
+          >
             <TabsList className="grid w-full grid-cols-3">
               <TabsTrigger value="setup">Setup</TabsTrigger>
-              <TabsTrigger value="generation" disabled={!canProceedToGeneration}>Generation</TabsTrigger>
-              <TabsTrigger value="results" disabled={generatedCertificates.length === 0}>Results</TabsTrigger>
+              <TabsTrigger
+                value="generation"
+                disabled={!canProceedToGeneration}
+              >
+                Generation
+              </TabsTrigger>
+              <TabsTrigger
+                value="results"
+                disabled={generatedCertificates.length === 0}
+              >
+                Results
+              </TabsTrigger>
             </TabsList>
 
             <TabsContent value="setup" className="space-y-6">
@@ -391,13 +533,15 @@ export default function CertificateGenerationModal({
                     <Sparkles className="w-5 h-5 text-indigo-600" />
                     Choose Template
                   </CardTitle>
-                  <CardDescription>Select a certificate template to get started</CardDescription>
+                  <CardDescription>
+                    Select a certificate template to get started
+                  </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   {/* Template Selection */}
                   <div className="space-y-2">
                     <Label>Certificate Template *</Label>
-                    <div 
+                    <div
                       onClick={() => setShowTemplatePicker(true)}
                       className="flex items-center gap-3 p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-indigo-400 hover:bg-indigo-50/30 cursor-pointer transition-all group"
                     >
@@ -407,8 +551,12 @@ export default function CertificateGenerationModal({
                             <FileText className="w-6 h-6 text-indigo-600" />
                           </div>
                           <div className="flex-1 min-w-0">
-                            <p className="font-semibold text-gray-900">{selectedTemplateName}</p>
-                            <p className="text-sm text-gray-500 capitalize">{selectedTemplate} style</p>
+                            <p className="font-semibold text-gray-900">
+                              {selectedTemplateName}
+                            </p>
+                            <p className="text-sm text-gray-500 capitalize">
+                              {selectedTemplate} style
+                            </p>
                           </div>
                           <Button
                             type="button"
@@ -429,8 +577,13 @@ export default function CertificateGenerationModal({
                             <Upload className="w-6 h-6 text-gray-400 group-hover:text-indigo-600 transition-colors" />
                           </div>
                           <div className="flex-1">
-                            <p className="font-semibold text-gray-900">Choose a certificate template</p>
-                            <p className="text-sm text-gray-500">Select from previously used or browse all templates</p>
+                            <p className="font-semibold text-gray-900">
+                              Choose a certificate template
+                            </p>
+                            <p className="text-sm text-gray-500">
+                              Select from previously used or browse all
+                              templates
+                            </p>
                           </div>
                         </>
                       )}
@@ -438,9 +591,9 @@ export default function CertificateGenerationModal({
                   </div>
 
                   <div className="flex justify-end">
-                    <Button 
+                    <Button
                       onClick={() => {
-                        setActiveTab('generation');
+                        setActiveTab("generation");
                         // Clear previous results when starting new generation
                         setGeneratedCertificates([]);
                       }}
@@ -462,7 +615,8 @@ export default function CertificateGenerationModal({
                     Certificate Information
                   </CardTitle>
                   <CardDescription>
-                    Enter all the details for the certificate - no need to re-enter them later
+                    Enter all the details for the certificate - no need to
+                    re-enter them later
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
@@ -477,13 +631,16 @@ export default function CertificateGenerationModal({
                       onChange={(e) => setCertificateHeader(e.target.value)}
                       placeholder="e.g., Certificate of Completion"
                     />
-                    <p className="text-xs text-gray-500">The main title that appears on the certificate</p>
+                    <p className="text-xs text-gray-500">
+                      The main title that appears on the certificate
+                    </p>
                   </div>
 
                   {/* Program/Course Name */}
                   <div className="space-y-2">
                     <Label htmlFor="courseName">
-                      Program/Course Name <span className="text-red-500">*</span>
+                      Program/Course Name{" "}
+                      <span className="text-red-500">*</span>
                     </Label>
                     <Input
                       id="courseName"
@@ -491,12 +648,16 @@ export default function CertificateGenerationModal({
                       onChange={(e) => setCourseName(e.target.value)}
                       placeholder="e.g., Advanced Data Analytics Program"
                     />
-                    <p className="text-xs text-gray-500">The name of the program or course</p>
+                    <p className="text-xs text-gray-500">
+                      The name of the program or course
+                    </p>
                   </div>
 
                   {/* Description */}
                   <div className="space-y-2">
-                    <Label htmlFor="courseDescription">Description (optional)</Label>
+                    <Label htmlFor="courseDescription">
+                      Description (optional)
+                    </Label>
                     <Textarea
                       id="courseDescription"
                       value={courseDescription}
@@ -504,7 +665,9 @@ export default function CertificateGenerationModal({
                       placeholder="Additional details about the achievement or program..."
                       rows={3}
                     />
-                    <p className="text-xs text-gray-500">Optional additional information about the program</p>
+                    <p className="text-xs text-gray-500">
+                      Optional additional information about the program
+                    </p>
                   </div>
 
                   {/* Signatory Selection */}
@@ -512,7 +675,8 @@ export default function CertificateGenerationModal({
                     <div className="space-y-2">
                       <Label>Certificate Signatories</Label>
                       <p className="text-xs text-gray-500 mb-3">
-                        Select the signatories who should appear on this certificate (up to 2)
+                        Select the signatories who should appear on this
+                        certificate (up to 2)
                       </p>
                       <div className="space-y-2 border rounded-lg p-4 bg-gray-50">
                         {availableSignatories.map((signatory: any) => (
@@ -522,17 +686,28 @@ export default function CertificateGenerationModal({
                           >
                             <input
                               type="checkbox"
-                              checked={selectedSignatories.includes(signatory.id)}
+                              checked={selectedSignatories.includes(
+                                signatory.id
+                              )}
                               onChange={(e) => {
                                 if (e.target.checked) {
                                   // Limit to 2 signatories
                                   if (selectedSignatories.length >= 2) {
-                                    toast.error('You can only select up to 2 signatories per certificate');
+                                    toast.error(
+                                      "You can only select up to 2 signatories per certificate"
+                                    );
                                     return;
                                   }
-                                  setSelectedSignatories([...selectedSignatories, signatory.id]);
+                                  setSelectedSignatories([
+                                    ...selectedSignatories,
+                                    signatory.id,
+                                  ]);
                                 } else {
-                                  setSelectedSignatories(selectedSignatories.filter(id => id !== signatory.id));
+                                  setSelectedSignatories(
+                                    selectedSignatories.filter(
+                                      (id) => id !== signatory.id
+                                    )
+                                  );
                                 }
                               }}
                               className="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
@@ -552,8 +727,12 @@ export default function CertificateGenerationModal({
                                 </div>
                               )}
                               <div className="flex-1">
-                                <p className="font-medium text-gray-900">{signatory.name || 'Unnamed Signatory'}</p>
-                                <p className="text-sm text-gray-600">{signatory.title || 'No title specified'}</p>
+                                <p className="font-medium text-gray-900">
+                                  {signatory.name || "Unnamed Signatory"}
+                                </p>
+                                <p className="text-sm text-gray-600">
+                                  {signatory.title || "No title specified"}
+                                </p>
                               </div>
                             </div>
                           </label>
@@ -561,7 +740,11 @@ export default function CertificateGenerationModal({
                       </div>
                       {selectedSignatories.length > 0 && (
                         <p className="text-xs text-indigo-600 mt-2">
-                          {selectedSignatories.length} {selectedSignatories.length === 1 ? 'signatory' : 'signatories'} selected
+                          {selectedSignatories.length}{" "}
+                          {selectedSignatories.length === 1
+                            ? "signatory"
+                            : "signatories"}{" "}
+                          selected
                         </p>
                       )}
                     </div>
@@ -571,10 +754,190 @@ export default function CertificateGenerationModal({
                     <Alert>
                       <User className="h-4 w-4" />
                       <AlertDescription>
-                        No signatories configured. Go to Settings to add signatories who can sign certificates.
+                        No signatories configured. Go to Settings to add
+                        signatories who can sign certificates.
                       </AlertDescription>
                     </Alert>
                   )}
+
+                  {/* Download Restriction Feature */}
+                  <div className="space-y-3 border-t pt-6">
+                    <div className="flex items-start gap-3">
+                      <input
+                        type="checkbox"
+                        id="restrictDownload"
+                        checked={restrictDownload}
+                        onChange={(e) => setRestrictDownload(e.target.checked)}
+                        className="mt-1 w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                      />
+                      <div className="flex-1">
+                        <Label
+                          htmlFor="restrictDownload"
+                          className="cursor-pointer font-medium"
+                        >
+                          Restrict Certificate Downloads
+                        </Label>
+                        <p className="text-xs text-gray-500 mt-1">
+                          Only students with approved email addresses can view
+                          and download this certificate. Useful for managing
+                          access for students with payment issues or incomplete
+                          requirements.
+                        </p>
+                      </div>
+                    </div>
+
+                    {restrictDownload && (
+                      <div className="ml-7 space-y-3 p-4 bg-orange-50 border border-orange-200 rounded-lg">
+                        <Label htmlFor="emailInput">
+                          Allowed Student Emails
+                        </Label>
+                        <p className="text-xs text-gray-600 mb-2">
+                          Enter email addresses of students who can access this
+                          certificate. You can add them one at a time or paste a
+                          list.
+                        </p>
+
+                        <div className="flex gap-2">
+                          <Input
+                            id="emailInput"
+                            type="email"
+                            value={emailInput}
+                            onChange={(e) => setEmailInput(e.target.value)}
+                            onKeyPress={(e) => {
+                              if (e.key === "Enter") {
+                                e.preventDefault();
+                                const email = emailInput.trim().toLowerCase();
+                                if (email && email.includes("@")) {
+                                  if (!allowedEmails.includes(email)) {
+                                    setAllowedEmails([...allowedEmails, email]);
+                                    setEmailInput("");
+                                    toast.success(
+                                      "Email added to allowed list"
+                                    );
+                                  } else {
+                                    toast.error("Email already in the list");
+                                  }
+                                } else {
+                                  toast.error(
+                                    "Please enter a valid email address"
+                                  );
+                                }
+                              }
+                            }}
+                            placeholder="student@example.com (press Enter to add)"
+                            className="flex-1"
+                          />
+                          <Button
+                            type="button"
+                            size="sm"
+                            onClick={() => {
+                              const email = emailInput.trim().toLowerCase();
+                              if (email && email.includes("@")) {
+                                if (!allowedEmails.includes(email)) {
+                                  setAllowedEmails([...allowedEmails, email]);
+                                  setEmailInput("");
+                                  toast.success("Email added to allowed list");
+                                } else {
+                                  toast.error("Email already in the list");
+                                }
+                              } else {
+                                toast.error(
+                                  "Please enter a valid email address"
+                                );
+                              }
+                            }}
+                          >
+                            Add
+                          </Button>
+                        </div>
+
+                        {/* Display added emails */}
+                        {allowedEmails.length > 0 && (
+                          <div className="space-y-2">
+                            <div className="flex items-center justify-between">
+                              <Label className="text-sm">
+                                Allowed Emails ({allowedEmails.length})
+                              </Label>
+                              <Button
+                                type="button"
+                                variant="ghost"
+                                size="sm"
+                                onClick={() => {
+                                  setAllowedEmails([]);
+                                  toast.success("All emails removed");
+                                }}
+                                className="text-xs h-7"
+                              >
+                                Clear All
+                              </Button>
+                            </div>
+                            <div className="max-h-40 overflow-y-auto space-y-1 bg-white rounded border p-2">
+                              {allowedEmails.map((email, index) => (
+                                <div
+                                  key={index}
+                                  className="flex items-center justify-between p-2 bg-gray-50 rounded text-sm hover:bg-gray-100"
+                                >
+                                  <span className="text-gray-700">{email}</span>
+                                  <button
+                                    type="button"
+                                    onClick={() => {
+                                      setAllowedEmails(
+                                        allowedEmails.filter(
+                                          (_, i) => i !== index
+                                        )
+                                      );
+                                      toast.success("Email removed");
+                                    }}
+                                    className="text-red-500 hover:text-red-700 text-xs"
+                                  >
+                                    Remove
+                                  </button>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Bulk paste option */}
+                        <div className="pt-2 border-t">
+                          <Label className="text-xs text-gray-600">
+                            Bulk Add (paste emails separated by commas or new
+                            lines)
+                          </Label>
+                          <Textarea
+                            placeholder="student1@example.com, student2@example.com&#10;student3@example.com"
+                            rows={3}
+                            className="mt-2 text-sm"
+                            onPaste={(e) => {
+                              setTimeout(() => {
+                                const pastedText = (
+                                  e.target as HTMLTextAreaElement
+                                ).value;
+                                const emails = pastedText
+                                  .split(/[,\n]/)
+                                  .map((e) => e.trim().toLowerCase())
+                                  .filter((e) => e && e.includes("@"));
+
+                                const newEmails = emails.filter(
+                                  (e) => !allowedEmails.includes(e)
+                                );
+                                if (newEmails.length > 0) {
+                                  setAllowedEmails([
+                                    ...allowedEmails,
+                                    ...newEmails,
+                                  ]);
+                                  toast.success(
+                                    `Added ${newEmails.length} email(s) to allowed list`
+                                  );
+                                  (e.target as HTMLTextAreaElement).value = "";
+                                }
+                              }, 10);
+                            }}
+                          />
+                        </div>
+                      </div>
+                    )}
+                  </div>
 
                   {/* Completion Date */}
                   <div className="space-y-2">
@@ -587,61 +950,115 @@ export default function CertificateGenerationModal({
                       value={completionDate}
                       onChange={(e) => setCompletionDate(e.target.value)}
                     />
-                    <p className="text-xs text-gray-500">The date when the program was completed</p>
+                    <p className="text-xs text-gray-500">
+                      The date when the program was completed
+                    </p>
                   </div>
 
                   {/* Live Certificate Preview */}
-                  {courseName && selectedTemplate && currentUserOrganization && (
-                    <div className="pt-6">
-                      <div className="flex items-center justify-between mb-3">
-                        <div className="flex items-center gap-2">
-                          <Eye className="w-4 h-4 text-indigo-600" />
-                          <h4 className="font-medium">Live Preview</h4>
+                  {courseName &&
+                    selectedTemplate &&
+                    currentUserOrganization && (
+                      <div className="pt-6">
+                        <div className="flex items-center justify-between mb-3">
+                          <div className="flex items-center gap-2">
+                            <Eye className="w-4 h-4 text-indigo-600" />
+                            <h4 className="font-medium">Live Preview</h4>
+                          </div>
+                          <Badge variant="outline" className="text-xs">
+                            {selectedTemplateName ||
+                              `Template ${selectedTemplate}`}
+                          </Badge>
                         </div>
-                        <Badge variant="outline" className="text-xs">
-                          {selectedTemplateName || `Template ${selectedTemplate}`}
-                        </Badge>
-                      </div>
-                      <Card className="bg-gradient-to-br from-indigo-50 to-purple-50 border-2 border-indigo-200">
-                        <CardContent className="p-4">
-                          <div className="bg-white rounded-lg overflow-hidden shadow-sm">
-                            <div className="w-full overflow-x-auto">
-                              <div className="mx-auto" style={{ width: '1056px', transform: 'scale(0.5)', transformOrigin: 'top center', marginBottom: '-396px' }}>
-                                <CertificateRenderer
-                                  templateId={selectedTemplate}
-                                  header={certificateHeader}
-                                  courseTitle={courseName}
-                                  description={courseDescription}
-                                  date={new Date(completionDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
-                                  recipientName="Sample Student Name"
-                                  isPreview={true}
-                                  mode="template-selection"
-                                  organizationName={currentUserOrganization.name}
-                                  organizationLogo={currentUserOrganization.logo}
-                                  signatoryName1={availableSignatories.find((s: any) => s.id === selectedSignatories[0])?.name}
-                                  signatoryTitle1={availableSignatories.find((s: any) => s.id === selectedSignatories[0])?.title}
-                                  signatureUrl1={availableSignatories.find((s: any) => s.id === selectedSignatories[0])?.signatureUrl}
-                                  signatoryName2={availableSignatories.find((s: any) => s.id === selectedSignatories[1])?.name}
-                                  signatoryTitle2={availableSignatories.find((s: any) => s.id === selectedSignatories[1])?.title}
-                                  signatureUrl2={availableSignatories.find((s: any) => s.id === selectedSignatories[1])?.signatureUrl}
-                                />
+                        <Card className="bg-gradient-to-br from-indigo-50 to-purple-50 border-2 border-indigo-200">
+                          <CardContent className="p-4">
+                            <div className="bg-white rounded-lg overflow-hidden shadow-sm">
+                              <div className="w-full overflow-x-auto">
+                                <div
+                                  className="mx-auto"
+                                  style={{
+                                    width: "1056px",
+                                    transform: "scale(0.5)",
+                                    transformOrigin: "top center",
+                                    marginBottom: "-396px",
+                                  }}
+                                >
+                                  <CertificateRenderer
+                                    templateId={selectedTemplate}
+                                    header={certificateHeader}
+                                    courseTitle={courseName}
+                                    description={courseDescription}
+                                    date={new Date(
+                                      completionDate
+                                    ).toLocaleDateString("en-US", {
+                                      year: "numeric",
+                                      month: "long",
+                                      day: "numeric",
+                                    })}
+                                    recipientName="Sample Student Name"
+                                    isPreview={true}
+                                    mode="template-selection"
+                                    organizationName={
+                                      currentUserOrganization.name
+                                    }
+                                    organizationLogo={
+                                      currentUserOrganization.logo
+                                    }
+                                    signatoryName1={
+                                      availableSignatories.find(
+                                        (s: any) =>
+                                          s.id === selectedSignatories[0]
+                                      )?.name
+                                    }
+                                    signatoryTitle1={
+                                      availableSignatories.find(
+                                        (s: any) =>
+                                          s.id === selectedSignatories[0]
+                                      )?.title
+                                    }
+                                    signatureUrl1={
+                                      availableSignatories.find(
+                                        (s: any) =>
+                                          s.id === selectedSignatories[0]
+                                      )?.signatureUrl
+                                    }
+                                    signatoryName2={
+                                      availableSignatories.find(
+                                        (s: any) =>
+                                          s.id === selectedSignatories[1]
+                                      )?.name
+                                    }
+                                    signatoryTitle2={
+                                      availableSignatories.find(
+                                        (s: any) =>
+                                          s.id === selectedSignatories[1]
+                                      )?.title
+                                    }
+                                    signatureUrl2={
+                                      availableSignatories.find(
+                                        (s: any) =>
+                                          s.id === selectedSignatories[1]
+                                      )?.signatureUrl
+                                    }
+                                  />
+                                </div>
                               </div>
                             </div>
-                          </div>
-                          <p className="text-xs text-gray-600 mt-3 text-center">
-                            This is how the certificate will appear to students
-                          </p>
-                        </CardContent>
-                      </Card>
-                    </div>
-                  )}
+                            <p className="text-xs text-gray-600 mt-3 text-center">
+                              This is how the certificate will appear to
+                              students
+                            </p>
+                          </CardContent>
+                        </Card>
+                      </div>
+                    )}
 
                   {/* Action Buttons */}
                   <div className="flex gap-3 pt-4 border-t">
-                    <Button 
+                    <Button
                       variant="outline"
                       onClick={() => {
-                        setActiveTab('setup');
+                        setActiveTab("setup");
                         // Clear previous results when going back to start new generation
                         setGeneratedCertificates([]);
                       }}
@@ -649,9 +1066,13 @@ export default function CertificateGenerationModal({
                     >
                       Back to Template
                     </Button>
-                    <Button 
+                    <Button
                       onClick={generateIndividualCertificate}
-                      disabled={isGenerating || !certificateHeader.trim() || !courseName.trim()}
+                      disabled={
+                        isGenerating ||
+                        !certificateHeader.trim() ||
+                        !courseName.trim()
+                      }
                       className="flex-1"
                     >
                       {isGenerating ? (
@@ -679,15 +1100,20 @@ export default function CertificateGenerationModal({
                     <div>
                       <CardTitle className="flex items-center gap-2">
                         <CheckCircle className="w-5 h-5 text-green-600" />
-                        Generated Certificate Links ({generatedCertificates.length})
+                        Generated Certificate Links (
+                        {generatedCertificates.length})
                       </CardTitle>
                       <CardDescription>
-                        Share these links with students. They will enter their name and view their certificate.
+                        Share these links with students. They will enter their
+                        name and view their certificate.
                       </CardDescription>
                     </div>
                     <div className="flex gap-2">
                       {onCertificatesGenerated && (
-                        <Button variant="outline" onClick={handlePreviewCertificates}>
+                        <Button
+                          variant="outline"
+                          onClick={handlePreviewCertificates}
+                        >
                           <Eye className="w-4 h-4 mr-2" />
                           Preview
                         </Button>
@@ -702,29 +1128,44 @@ export default function CertificateGenerationModal({
                 <CardContent>
                   <div className="space-y-3 max-h-64 overflow-y-auto">
                     {generatedCertificates.map((cert, index) => (
-                      <div key={cert.id} className="flex items-center justify-between p-3 border rounded-lg">
+                      <div
+                        key={cert.id}
+                        className="flex items-center justify-between p-3 border rounded-lg"
+                      >
                         <div className="flex-1">
                           <div className="flex items-center gap-2 mb-1">
                             <h4 className="font-medium">{cert.courseName}</h4>
-                            <Badge variant="secondary" className="text-xs">{cert.templateName}</Badge>
+                            <Badge variant="secondary" className="text-xs">
+                              {cert.templateName}
+                            </Badge>
                           </div>
-                          <p className="text-sm text-gray-600 font-mono">{cert.id}</p>
+                          <p className="text-sm text-gray-600 font-mono">
+                            {cert.id}
+                          </p>
                           <p className="text-xs text-gray-500">
-                            Generated {new Date(cert.generatedAt).toLocaleString()}
+                            Generated{" "}
+                            {new Date(cert.generatedAt).toLocaleString()}
                           </p>
                         </div>
                         <div className="flex items-center gap-2">
                           <Button
                             variant="outline"
                             size="sm"
-                            onClick={() => copyCertificateUrl(cert.certificateUrl)}
+                            onClick={() =>
+                              copyCertificateUrl(cert.certificateUrl)
+                            }
                           >
                             <Copy className="w-4 h-4" />
                           </Button>
                           <Button
                             variant="outline"
                             size="sm"
-                            onClick={() => window.open(buildFullCertificateUrl(cert.certificateUrl), '_blank')}
+                            onClick={() =>
+                              window.open(
+                                buildFullCertificateUrl(cert.certificateUrl),
+                                "_blank"
+                              )
+                            }
                           >
                             <ExternalLink className="w-4 h-4" />
                           </Button>
@@ -745,12 +1186,13 @@ export default function CertificateGenerationModal({
           <DialogHeader className="p-6 pb-4 shrink-0">
             <DialogTitle>Choose Certificate Template</DialogTitle>
             <DialogDescription>
-              Browse and select from our collection of professional certificate templates
+              Browse and select from our collection of professional certificate
+              templates
             </DialogDescription>
           </DialogHeader>
           <div className="overflow-y-auto scrollbar-hide px-6 pb-6 flex-1">
             {currentOrganization && (
-              <TemplatesPage 
+              <TemplatesPage
                 onSelectTemplate={handleTemplateFromBrowser}
                 organization={currentOrganization}
                 showBuilderButton={false}

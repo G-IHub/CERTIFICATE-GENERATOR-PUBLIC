@@ -336,10 +336,81 @@ export default function AdminDashboard({
   const [genGenerationType, setGenGenerationType] = useState<
     "individual" | "bulk"
   >("individual");
+  
+  // Restricted Certificate Downloads states
+  const [genRestrictDownload, setGenRestrictDownload] = useState(false);
+  const [genAllowedEmails, setGenAllowedEmails] = useState<string[]>([]);
+  const [genEmailInput, setGenEmailInput] = useState("");
+  const [bulkEmailInput, setBulkEmailInput] = useState(""); // NEW: For bulk email import
+  const [showBulkImport, setShowBulkImport] = useState(false); // NEW: Toggle bulk import UI
+  
   const [isRefreshingCertificates, setIsRefreshingCertificates] =
     useState(false);
   const [hasLoadedCertificates, setHasLoadedCertificates] = useState(false);
   const [hasLoadedTestimonials, setHasLoadedTestimonials] = useState(false);
+
+  // Bulk import email handler
+  const handleBulkEmailImport = () => {
+    if (!bulkEmailInput.trim()) {
+      toast.error("Please enter at least one email address");
+      return;
+    }
+
+    // Split by comma, newline, or semicolon
+    const emails = bulkEmailInput
+      .split(/[,;\n]/)
+      .map(email => email.trim().toLowerCase())
+      .filter(email => email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email));
+
+    if (emails.length === 0) {
+      toast.error("No valid email addresses found");
+      return;
+    }
+
+    // Remove duplicates and merge with existing emails
+    const uniqueEmails = [...new Set([...genAllowedEmails, ...emails])];
+    const newEmailsCount = uniqueEmails.length - genAllowedEmails.length;
+
+    setGenAllowedEmails(uniqueEmails);
+    setBulkEmailInput("");
+    setShowBulkImport(false);
+    
+    toast.success(`Added ${newEmailsCount} new email${newEmailsCount !== 1 ? 's' : ''} to approved list`);
+  };
+
+  // Handle CSV file upload
+  const handleCSVUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (!file.name.endsWith('.csv')) {
+      toast.error("Please upload a CSV file");
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const text = event.target?.result as string;
+      // Extract all emails from CSV (handles various formats)
+      const emails = text
+        .split(/[\n,;]/)
+        .map(email => email.trim().toLowerCase())
+        .filter(email => email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email));
+
+      if (emails.length === 0) {
+        toast.error("No valid email addresses found in CSV");
+        return;
+      }
+
+      const uniqueEmails = [...new Set([...genAllowedEmails, ...emails])];
+      const newEmailsCount = uniqueEmails.length - genAllowedEmails.length;
+
+      setGenAllowedEmails(uniqueEmails);
+      toast.success(`Imported ${newEmailsCount} new email${newEmailsCount !== 1 ? 's' : ''} from CSV`);
+    };
+    reader.readAsText(file);
+    e.target.value = ''; // Reset input
+  };
 
   // Short links feature disabled
 
@@ -902,6 +973,12 @@ export default function AdminDashboard({
         .map((id) => genAvailableSignatories.find((s: any) => s.id === id))
         .filter(Boolean);
 
+      console.log("🔒 Certificate generation with restrictions:", {
+        restrictDownload: genRestrictDownload,
+        allowedEmails: genAllowedEmails,
+        allowedEmailsCount: genAllowedEmails.length,
+      });
+
       const response = await certificateApi.generate(accessToken, {
         organizationId: genCurrentUserOrganization.id,
         programId: undefined,
@@ -912,6 +989,8 @@ export default function AdminDashboard({
         template: genSelectedTemplate, // Add template
         signatories: signatories.length > 0 ? signatories : undefined,
         students: undefined,
+        restrictDownload: genRestrictDownload, // NEW: Download restriction flag
+        allowedEmails: genAllowedEmails, // NEW: List of allowed emails
       } as any);
 
       // Check if response has certificates
@@ -969,6 +1048,9 @@ export default function AdminDashboard({
       setGenProgramDescription("");
       setGenCertificateHeader("Certificate of Completion");
       setGenCompletionDate(new Date().toISOString().split("T")[0]);
+      setGenRestrictDownload(false); // Reset restriction toggle
+      setGenAllowedEmails([]); // Clear allowed emails
+      setGenEmailInput(""); // Clear email input
     } catch (error: any) {
       console.error("❌ Error generating certificate:", error);
       console.error("❌ Error details:", {
@@ -1067,6 +1149,8 @@ export default function AdminDashboard({
                 email: s.email,
                 completionDate: s.completionDate || genCompletionDate,
               })),
+              restrictDownload: genRestrictDownload, // NEW: Download restriction flag
+              allowedEmails: genAllowedEmails, // NEW: List of allowed emails
             });
 
             // Use backend-confirmed data
@@ -2371,6 +2455,222 @@ export default function AdminDashboard({
                               The date when the program was completed
                             </p>
                           </div>
+
+                          {/* Restricted Certificate Downloads Feature */}
+                          <div className="space-y-4 pt-4 border-t">
+                            <div className="flex items-start gap-3">
+                              <div className="flex items-center gap-2 flex-1">
+                                <Shield className="w-5 h-5 text-orange-600" />
+                                <div className="flex-1">
+                                  <Label className="text-base font-medium">
+                                    Restrict Certificate Downloads
+                                  </Label>
+                                  <p className="text-xs text-gray-500 mt-1">
+                                    Only allow specific email addresses to download certificates
+                                  </p>
+                                </div>
+                              </div>
+                              <Button
+                                type="button"
+                                variant={genRestrictDownload ? "default" : "outline"}
+                                size="sm"
+                                onClick={() => {
+                                  setGenRestrictDownload(!genRestrictDownload);
+                                  if (genRestrictDownload) {
+                                    // Clear emails when disabling
+                                    setGenAllowedEmails([]);
+                                    setGenEmailInput("");
+                                  }
+                                }}
+                                className={genRestrictDownload ? "bg-orange-600 hover:bg-orange-700" : ""}
+                              >
+                                {genRestrictDownload ? "Enabled" : "Disabled"}
+                              </Button>
+                            </div>
+
+                            {genRestrictDownload && (
+                              <div className="pl-8 space-y-3">
+                                <Alert className="bg-orange-50 border-orange-200">
+                                  <Shield className="h-4 w-4 text-orange-600" />
+                                  <AlertDescription className="text-sm text-gray-700">
+                                    When enabled, only students with email addresses in the approved list can download certificates. 
+                                    Students will need to verify their email before downloading.
+                                  </AlertDescription>
+                                </Alert>
+
+                                {/* Email input */}
+                                <div className="space-y-2">
+                                  <Label htmlFor="allowedEmails">
+                                    Approved Email Addresses
+                                  </Label>
+                                  <div className="flex gap-2">
+                                    <Input
+                                      id="allowedEmails"
+                                      type="email"
+                                      placeholder="student@example.com"
+                                      value={genEmailInput}
+                                      onChange={(e) => setGenEmailInput(e.target.value)}
+                                      onKeyPress={(e) => {
+                                        if (e.key === "Enter") {
+                                          e.preventDefault();
+                                          const email = genEmailInput.trim().toLowerCase();
+                                          if (email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                                            if (!genAllowedEmails.includes(email)) {
+                                              setGenAllowedEmails([...genAllowedEmails, email]);
+                                              setGenEmailInput("");
+                                              toast.success("Email added to approved list");
+                                            } else {
+                                              toast.error("Email already in list");
+                                            }
+                                          } else {
+                                            toast.error("Please enter a valid email address");
+                                          }
+                                        }
+                                      }}
+                                      className="flex-1"
+                                    />
+                                    <Button
+                                      type="button"
+                                      onClick={() => {
+                                        const email = genEmailInput.trim().toLowerCase();
+                                        if (email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                                          if (!genAllowedEmails.includes(email)) {
+                                            setGenAllowedEmails([...genAllowedEmails, email]);
+                                            setGenEmailInput("");
+                                            toast.success("Email added to approved list");
+                                          } else {
+                                            toast.error("Email already in list");
+                                          }
+                                        } else {
+                                          toast.error("Please enter a valid email address");
+                                        }
+                                      }}
+                                    >
+                                      <Plus className="w-4 h-4" />
+                                    </Button>
+                                  </div>
+                                  <p className="text-xs text-gray-500">
+                                    Press Enter or click + to add an email to the approved list
+                                  </p>
+                                  
+                                  {/* Bulk Import Buttons */}
+                                  <div className="flex gap-2 pt-2">
+                                    <Button
+                                      type="button"
+                                      variant="outline"
+                                      size="sm"
+                                      onClick={() => setShowBulkImport(!showBulkImport)}
+                                      className="flex items-center gap-2"
+                                    >
+                                      <Upload className="w-4 h-4" />
+                                      Bulk Import
+                                    </Button>
+                                    <label className="cursor-pointer">
+                                      <input
+                                        type="file"
+                                        accept=".csv"
+                                        onChange={handleCSVUpload}
+                                        className="hidden"
+                                      />
+                                      <Button
+                                        type="button"
+                                        variant="outline"
+                                        size="sm"
+                                        className="flex items-center gap-2"
+                                        onClick={(e) => {
+                                          e.preventDefault();
+                                          (e.currentTarget.previousElementSibling as HTMLInputElement)?.click();
+                                        }}
+                                      >
+                                        <FileText className="w-4 h-4" />
+                                        Import CSV
+                                      </Button>
+                                    </label>
+                                  </div>
+
+                                  {/* Bulk Import Textarea */}
+                                  {showBulkImport && (
+                                    <div className="space-y-2 pt-2 border-t">
+                                      <Label htmlFor="bulkEmails" className="text-sm font-medium">
+                                        Paste Multiple Emails
+                                      </Label>
+                                      <textarea
+                                        id="bulkEmails"
+                                        value={bulkEmailInput}
+                                        onChange={(e) => setBulkEmailInput(e.target.value)}
+                                        placeholder="Paste emails here (comma, semicolon, or newline separated)&#10;&#10;Example:&#10;student1@example.com, student2@example.com&#10;student3@example.com&#10;student4@example.com"
+                                        className="w-full h-32 px-3 py-2 text-sm border rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-orange-500"
+                                      />
+                                      <div className="flex gap-2">
+                                        <Button
+                                          type="button"
+                                          onClick={handleBulkEmailImport}
+                                          size="sm"
+                                          className="bg-orange-600 hover:bg-orange-700"
+                                        >
+                                          Add All Emails
+                                        </Button>
+                                        <Button
+                                          type="button"
+                                          variant="outline"
+                                          size="sm"
+                                          onClick={() => {
+                                            setBulkEmailInput("");
+                                            setShowBulkImport(false);
+                                          }}
+                                        >
+                                          Cancel
+                                        </Button>
+                                      </div>
+                                    </div>
+                                  )}
+                                </div>
+
+                                {/* Email list */}
+                                {genAllowedEmails.length > 0 && (
+                                  <div className="space-y-2">
+                                    <Label className="text-sm text-gray-700">
+                                      {genAllowedEmails.length} {genAllowedEmails.length === 1 ? "email" : "emails"} approved
+                                    </Label>
+                                    <div className="max-h-40 overflow-y-auto border rounded-lg p-2 bg-gray-50 space-y-1">
+                                      {genAllowedEmails.map((email, index) => (
+                                        <div
+                                          key={index}
+                                          className="flex items-center justify-between bg-white px-3 py-2 rounded border text-sm"
+                                        >
+                                          <span className="text-gray-700">{email}</span>
+                                          <Button
+                                            type="button"
+                                            variant="ghost"
+                                            size="sm"
+                                            onClick={() => {
+                                              setGenAllowedEmails(
+                                                genAllowedEmails.filter((_, i) => i !== index)
+                                              );
+                                              toast.success("Email removed from approved list");
+                                            }}
+                                            className="h-6 w-6 p-0 text-red-600 hover:text-red-700 hover:bg-red-50"
+                                          >
+                                            <XCircle className="w-4 h-4" />
+                                          </Button>
+                                        </div>
+                                      ))}
+                                    </div>
+                                  </div>
+                                )}
+
+                                {genAllowedEmails.length === 0 && (
+                                  <Alert className="bg-yellow-50 border-yellow-200">
+                                    <AlertTriangle className="h-4 w-4 text-yellow-600" />
+                                    <AlertDescription className="text-sm text-gray-700">
+                                      No approved emails yet. Add at least one email address to enable download restrictions.
+                                    </AlertDescription>
+                                  </Alert>
+                                )}
+                              </div>
+                            )}
+                          </div>
+
                           {/* Live Certificate Preview */}
                           {genProgramName &&
                             genSelectedTemplate &&
@@ -2543,6 +2843,9 @@ export default function AdminDashboard({
                                     new Date().toISOString().split("T")[0]
                                   );
                                   setGenSelectedTemplate("");
+                                  setGenRestrictDownload(false); // Reset restriction toggle
+                                  setGenAllowedEmails([]); // Clear allowed emails
+                                  setGenEmailInput(""); // Clear email input
                                   setGenSelectedTemplateName("");
                                   setGenStudentName("");
                                   setGenStudentEmail("");

@@ -94,6 +94,7 @@ import {
   Menu,
   ChevronLeft,
   ChevronRight,
+  ChevronUp,
   Sparkles,
 } from "lucide-react";
 import CertificateTemplate from "./CertificateTemplate";
@@ -343,6 +344,8 @@ export default function AdminDashboard({
   const [genEmailInput, setGenEmailInput] = useState("");
   const [bulkEmailInput, setBulkEmailInput] = useState(""); // NEW: For bulk email import
   const [showBulkImport, setShowBulkImport] = useState(false); // NEW: Toggle bulk import UI
+  const [showAllEmails, setShowAllEmails] = useState(false); // NEW: Toggle to show all emails or limited
+  const EMAIL_DISPLAY_LIMIT = 10; // Show only 10 emails by default
   
   const [isRefreshingCertificates, setIsRefreshingCertificates] =
     useState(false);
@@ -1051,6 +1054,7 @@ export default function AdminDashboard({
       setGenRestrictDownload(false); // Reset restriction toggle
       setGenAllowedEmails([]); // Clear allowed emails
       setGenEmailInput(""); // Clear email input
+      setShowAllEmails(false); // Reset show all state
     } catch (error: any) {
       console.error("❌ Error generating certificate:", error);
       console.error("❌ Error details:", {
@@ -2480,6 +2484,7 @@ export default function AdminDashboard({
                                     // Clear emails when disabling
                                     setGenAllowedEmails([]);
                                     setGenEmailInput("");
+                                    setShowAllEmails(false); // Reset show all state
                                   }
                                 }}
                                 className={genRestrictDownload ? "bg-orange-600 hover:bg-orange-700" : ""}
@@ -2629,11 +2634,34 @@ export default function AdminDashboard({
                                 {/* Email list */}
                                 {genAllowedEmails.length > 0 && (
                                   <div className="space-y-2">
-                                    <Label className="text-sm text-gray-700">
-                                      {genAllowedEmails.length} {genAllowedEmails.length === 1 ? "email" : "emails"} approved
-                                    </Label>
-                                    <div className="max-h-40 overflow-y-auto border rounded-lg p-2 bg-gray-50 space-y-1">
-                                      {genAllowedEmails.map((email, index) => (
+                                    <div className="flex items-center justify-between">
+                                      <Label className="text-sm text-gray-700">
+                                        {genAllowedEmails.length} {genAllowedEmails.length === 1 ? "email" : "emails"} approved
+                                      </Label>
+                                      {genAllowedEmails.length > EMAIL_DISPLAY_LIMIT && (
+                                        <Button
+                                          type="button"
+                                          variant="ghost"
+                                          size="sm"
+                                          onClick={() => setShowAllEmails(!showAllEmails)}
+                                          className="text-xs text-orange-600 hover:text-orange-700"
+                                        >
+                                          {showAllEmails ? (
+                                            <>
+                                              <ChevronLeft className="w-3 h-3 mr-1" />
+                                              Show Less
+                                            </>
+                                          ) : (
+                                            <>
+                                              <ChevronRight className="w-3 h-3 mr-1" />
+                                              Show All ({genAllowedEmails.length})
+                                            </>
+                                          )}
+                                        </Button>
+                                      )}
+                                    </div>
+                                    <div className="max-h-60 overflow-y-auto border rounded-lg p-2 bg-gray-50 space-y-1">
+                                      {(showAllEmails ? genAllowedEmails : genAllowedEmails.slice(0, EMAIL_DISPLAY_LIMIT)).map((email, index) => (
                                         <div
                                           key={index}
                                           className="flex items-center justify-between bg-white px-3 py-2 rounded border text-sm"
@@ -2655,6 +2683,11 @@ export default function AdminDashboard({
                                           </Button>
                                         </div>
                                       ))}
+                                      {!showAllEmails && genAllowedEmails.length > EMAIL_DISPLAY_LIMIT && (
+                                        <div className="text-center py-2 text-xs text-gray-500">
+                                          Showing {EMAIL_DISPLAY_LIMIT} of {genAllowedEmails.length} emails
+                                        </div>
+                                      )}
                                     </div>
                                   </div>
                                 )}
@@ -2846,6 +2879,7 @@ export default function AdminDashboard({
                                   setGenRestrictDownload(false); // Reset restriction toggle
                                   setGenAllowedEmails([]); // Clear allowed emails
                                   setGenEmailInput(""); // Clear email input
+                                  setShowAllEmails(false); // Reset show all state
                                   setGenSelectedTemplateName("");
                                   setGenStudentName("");
                                   setGenStudentEmail("");

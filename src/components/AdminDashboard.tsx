@@ -346,6 +346,7 @@ export default function AdminDashboard({
   const [showBulkImport, setShowBulkImport] = useState(false); // NEW: Toggle bulk import UI
   const [showAllEmails, setShowAllEmails] = useState(false); // NEW: Toggle to show all emails or limited
   const EMAIL_DISPLAY_LIMIT = 10; // Show only 10 emails by default
+  const [editingCertificateId, setEditingCertificateId] = useState<string | null>(null); // Track which certificate is being edited
   
   const [isRefreshingCertificates, setIsRefreshingCertificates] =
     useState(false);
@@ -413,6 +414,41 @@ export default function AdminDashboard({
     };
     reader.readAsText(file);
     e.target.value = ''; // Reset input
+  };
+
+  // Load certificate data into form for editing
+  const handleEditCertificate = (certificate: any) => {
+    setEditingCertificateId(certificate.id);
+    setGenProgramName(certificate.program_name || "");
+    setGenProgramDescription(certificate.program_description || "");
+    setGenCertificateHeader(certificate.certificate_header || "Certificate of Completion");
+    setGenSelectedTemplate(certificate.template_id || "");
+    setGenSelectedTemplateName(certificate.template_name || "");
+    setGenCompletionDate(certificate.completion_date || new Date().toISOString().split("T")[0]);
+    setGenRestrictDownload(certificate.restrict_download || false);
+    setGenAllowedEmails(certificate.allowed_emails || []);
+    setGenEmailInput("");
+    setShowAllEmails(false);
+    
+    // Scroll to form
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    toast.info("Certificate loaded for editing");
+  };
+
+  // Cancel editing and reset form
+  const handleCancelEdit = () => {
+    setEditingCertificateId(null);
+    setGenProgramName("");
+    setGenProgramDescription("");
+    setGenCertificateHeader("Certificate of Completion");
+    setGenSelectedTemplate("");
+    setGenSelectedTemplateName("");
+    setGenCompletionDate(new Date().toISOString().split("T")[0]);
+    setGenRestrictDownload(false);
+    setGenAllowedEmails([]);
+    setGenEmailInput("");
+    setShowAllEmails(false);
+    toast.info("Edit cancelled");
   };
 
   // Short links feature disabled
@@ -976,13 +1012,26 @@ export default function AdminDashboard({
         .map((id) => genAvailableSignatories.find((s: any) => s.id === id))
         .filter(Boolean);
 
-      console.log("🔒 Certificate generation with restrictions:", {
+      console.log("🔒 Certificate " + (editingCertificateId ? "update" : "generation") + " with restrictions:", {
         restrictDownload: genRestrictDownload,
         allowedEmails: genAllowedEmails,
         allowedEmailsCount: genAllowedEmails.length,
+        editingId: editingCertificateId,
       });
 
-      const response = await certificateApi.generate(accessToken, {
+      // If editing, update the certificate; otherwise, create new
+      const response = editingCertificateId
+        ? await certificateApi.update(accessToken, editingCertificateId, {
+            certificateHeader: genCertificateHeader.trim(),
+            courseName: genProgramName.trim(),
+            courseDescription: genProgramDescription.trim(),
+            completionDate: genCompletionDate,
+            template: genSelectedTemplate,
+            signatories: signatories.length > 0 ? signatories : undefined,
+            restrictDownload: genRestrictDownload,
+            allowedEmails: genAllowedEmails,
+          } as any)
+        : await certificateApi.generate(accessToken, {
         organizationId: genCurrentUserOrganization.id,
         programId: undefined,
         certificateHeader: genCertificateHeader.trim(),
@@ -1038,15 +1087,29 @@ export default function AdminDashboard({
 
       // Short links are disabled — keep only the secure encrypted URL
 
-      // Add to current session results (for Results tab)
-      setGenGeneratedCertificates([certificate]);
-      // Also add to full history (for Certificates tab)
-      setAllCertificates((prev) => [certificate, ...prev]);
-      setHasLoadedCertificates(true); // Mark as loaded since we just added it
+      if (editingCertificateId) {
+        // Update existing certificate in the list
+        setAllCertificates((prev) =>
+          prev.map((cert) =>
+            cert.id === editingCertificateId ? certificate : cert
+          )
+        );
+        toast.success("Certificate updated successfully!");
+      } else {
+        // Add to current session results (for Results tab)
+        setGenGeneratedCertificates([certificate]);
+        // Also add to full history (for Certificates tab)
+        setAllCertificates((prev) => [certificate, ...prev]);
+        setHasLoadedCertificates(true); // Mark as loaded since we just added it
+      }
 
       setGenIsGenerating(false);
-      setGenActiveTab("results");
+      if (!editingCertificateId) {
+        setGenActiveTab("results");
+      }
 
+      // Reset form
+      setEditingCertificateId(null);
       setGenProgramName("");
       setGenProgramDescription("");
       setGenCertificateHeader("Certificate of Completion");
@@ -2148,16 +2211,35 @@ export default function AdminDashboard({
               {activeTab === "generate" && (
                 <div className="space-y-4 md:space-y-6">
                   {/* Page Header */}
-                  <Card className="border-l-4 border-l-primary">
+                  <Card className={`border-l-4 ${editingCertificateId ? 'border-l-orange-500' : 'border-l-primary'}`}>
                     <CardContent className="pt-6">
                       <div className="flex items-center justify-between gap-4">
                         <div className="flex-1 min-w-0">
+                          {editingCertificateId && (
+                            <div className="mb-3 flex items-center gap-2">
+                              <div className="px-3 py-1 bg-orange-100 text-orange-700 rounded-full text-sm font-medium flex items-center gap-2">
+                                <Edit className="w-3 h-3" />
+                                Editing Certificate
+                              </div>
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                onClick={handleCancelEdit}
+                                className="text-gray-600 hover:text-gray-700"
+                              >
+                                <XCircle className="w-4 h-4 mr-1" />
+                                Cancel Edit
+                              </Button>
+                            </div>
+                          )}
                           <h2 className="text-xl md:text-2xl font-bold mb-2 truncate">
-                            Generate Certificates
+                            {editingCertificateId ? 'Edit Certificate' : 'Generate Certificates'}
                           </h2>
                           <p className="text-muted-foreground mb-2 text-sm md:text-base">
-                            Create beautiful, professional certificates for your
-                            students
+                            {editingCertificateId 
+                              ? 'Update your certificate details. The results link will remain the same.'
+                              : 'Create beautiful, professional certificates for your students'
+                            }
                           </p>
                         </div>
                       </div>
@@ -2826,12 +2908,21 @@ export default function AdminDashboard({
                               {genIsGenerating ? (
                                 <>
                                   <RefreshCw className="w-4 h-4 mr-2 animate-spin" />
-                                  Generating...
+                                  {editingCertificateId ? 'Updating...' : 'Generating...'}
                                 </>
                               ) : (
                                 <>
-                                  <Award className="w-4 h-4 mr-2" />
-                                  Generate Certificate Link
+                                  {editingCertificateId ? (
+                                    <>
+                                      <CheckCircle className="w-4 h-4 mr-2" />
+                                      Update Certificate
+                                    </>
+                                  ) : (
+                                    <>
+                                      <Award className="w-4 h-4 mr-2" />
+                                      Generate Certificate Link
+                                    </>
+                                  )}
                                 </>
                               )}
                             </Button>
@@ -3168,6 +3259,17 @@ export default function AdminDashboard({
                                     >
                                       <Copy className="w-3 h-3 mr-1" />
                                       Copy
+                                    </Button>
+                                    <Button
+                                      variant="outline"
+                                      size="sm"
+                                      className="text-orange-600 hover:text-orange-700 hover:bg-orange-50"
+                                      onClick={() => {
+                                        handleEditCertificate(cert);
+                                        setActiveTab("generate");
+                                      }}
+                                    >
+                                      <Edit className="w-4 h-4" />
                                     </Button>
                                     <Button
                                       variant="outline"

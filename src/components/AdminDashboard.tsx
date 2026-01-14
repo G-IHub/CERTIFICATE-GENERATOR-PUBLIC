@@ -419,14 +419,50 @@ export default function AdminDashboard({
   // Load certificate data into form for editing
   const handleEditCertificate = (certificate: any) => {
     setEditingCertificateId(certificate.id);
-    setGenProgramName(certificate.program_name || "");
-    setGenProgramDescription(certificate.program_description || "");
-    setGenCertificateHeader(certificate.certificate_header || "Certificate of Completion");
-    setGenSelectedTemplate(certificate.template_id || "");
-    setGenSelectedTemplateName(certificate.template_name || "");
-    setGenCompletionDate(certificate.completion_date || new Date().toISOString().split("T")[0]);
-    setGenRestrictDownload(certificate.restrict_download || false);
-    setGenAllowedEmails(certificate.allowed_emails || []);
+    
+    // Map backend field names to frontend state
+    setGenProgramName(certificate.courseName || "");
+    setGenProgramDescription(certificate.courseDescription || "");
+    setGenCertificateHeader(certificate.certificateHeader || "Certificate of Completion");
+    setGenSelectedTemplate(certificate.template || "");
+    setGenCompletionDate(certificate.completionDate?.split("T")[0] || new Date().toISOString().split("T")[0]);
+    setGenRestrictDownload(certificate.restrictDownload || false);
+    setGenAllowedEmails(certificate.allowedEmails || []);
+    
+    // Load signatories if they exist (extract IDs from signatory objects)
+    if (certificate.signatories && certificate.signatories.length > 0) {
+      const signatoryIds = certificate.signatories.map((sig: any) => sig.id || sig);
+      setGenSelectedSignatories(signatoryIds);
+    } else {
+      setGenSelectedSignatories([]);
+    }
+    
+    // Load custom template config if it exists
+    if (certificate.customTemplateConfig) {
+      setGenCustomTemplateConfig(certificate.customTemplateConfig);
+    }
+    
+    // Set template name for display
+    const templateNames: { [key: string]: string } = {
+      'impact': 'Impact',
+      'prestige': 'Prestige', 
+      'modern': 'Modern',
+      'classic': 'Classic',
+      'elegant': 'Elegant',
+      'bold': 'Bold',
+      'minimal': 'Minimal',
+      'vibrant': 'Vibrant',
+      'professional': 'Professional',
+      'creative': 'Creative',
+      'tech': 'Tech',
+      'academic': 'Academic',
+      'corporate': 'Corporate',
+      'certificate': 'Certificate',
+      'achievement': 'Achievement',
+      'excellence': 'Excellence'
+    };
+    setGenSelectedTemplateName(templateNames[certificate.template] || certificate.template || "Custom Template");
+    
     setGenEmailInput("");
     setShowAllEmails(false);
     
@@ -448,6 +484,9 @@ export default function AdminDashboard({
     setGenAllowedEmails([]);
     setGenEmailInput("");
     setShowAllEmails(false);
+    
+    // Return to certificates tab
+    setActiveTab("certificates");
     toast.info("Edit cancelled");
   };
 

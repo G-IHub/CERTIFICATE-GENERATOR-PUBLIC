@@ -96,7 +96,7 @@ export default function TestimonialManager({ subsidiary }: TestimonialManagerPro
     <div className="space-y-6">
       {/* Statistics Overview */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <Card>
+        {/* <Card>
           <CardContent className="pt-6">
             <div className="flex items-center justify-between">
               <div>
@@ -106,7 +106,7 @@ export default function TestimonialManager({ subsidiary }: TestimonialManagerPro
               <MessageSquare className="h-4 w-4 text-muted-foreground" />
             </div>
           </CardContent>
-        </Card>
+        </Card> */}
 
         <Card>
           <CardContent className="pt-6">

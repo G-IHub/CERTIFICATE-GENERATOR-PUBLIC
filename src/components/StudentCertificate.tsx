@@ -1112,12 +1112,12 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
                   </p>
                 ) : (
                   <p className="text-xs text-gray-500 mt-1">
-                    Your email will only be visible to course administrators
+                    {/* Your email will only be visible to course administrators */}
                   </p>
                 )}
               </div>
 
-              <div>
+              {/* <div>
                 <label
                   htmlFor="testimonial"
                   className="block text-sm font-medium text-gray-700 mb-2"
@@ -1136,7 +1136,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
                 <p className="text-xs text-gray-500 mt-1">
                   Your feedback helps improve the course for future students
                 </p>
-              </div>
+              </div> */}
 
               <Button
                 type="submit"

@@ -492,7 +492,7 @@ export default function AdminDashboard({
 
   // Short links feature disabled
 
-  // Auto-load testimonials for overview stats (separate from TestimonialsView)
+  // Auto-load testimonials for separate from TestimonialsView)
   useEffect(() => {
     const loadTestimonials = async () => {
       if (!accessToken || !currentOrganization || hasLoadedTestimonials) {
@@ -1585,11 +1585,11 @@ export default function AdminDashboard({
                 name: "Certificates",
                 icon: FileText,
               },
-              {
-                id: "testimonials",
-                name: "Testimonials",
-                icon: MessageSquare,
-              },
+              // {
+              //   id: "testimonials",
+              //   name: "Testimonials",
+              //   icon: MessageSquare,
+              // },
               {
                 id: "analytics",
                 name: "Analytics",
@@ -1952,7 +1952,7 @@ export default function AdminDashboard({
                       </CardContent>
                     </Card>
 
-                    <Card>
+                    {/* <Card>
                       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 p-3 md:p-6">
                         <CardTitle className="text-xs md:text-sm font-medium truncate">
                           Testimonials
@@ -1981,7 +1981,7 @@ export default function AdminDashboard({
                           % response rate
                         </p>
                       </CardContent>
-                    </Card>
+                    </Card> */}
 
                     {/* Quick Actions */}
                     <Card>

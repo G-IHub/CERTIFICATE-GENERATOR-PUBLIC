@@ -156,18 +156,18 @@ interface AdminDashboardProps {
   onLogout: () => void;
   onUpdateSubsidiary: (
     organizationId: string,
-    updates: Partial<Organization>
+    updates: Partial<Organization>,
   ) => void;
   onAddProgram: (organizationId: string, newProgram: Program) => void;
   onUpdateProgramStats: (
     organizationId: string,
     programId: string,
-    certificateCount: number
+    certificateCount: number,
   ) => void;
   onUpdateProgram: (
     organizationId: string,
     programId: string,
-    updates: Partial<Program>
+    updates: Partial<Program>,
   ) => void;
   onCreateOrganization?: (name: string) => void;
   accessToken: string | null;
@@ -236,6 +236,7 @@ export default function AdminDashboard({
   const [showGenerateModal, setShowGenerateModal] = useState<boolean>(false);
   const [showNewProgramModal, setShowNewProgramModal] =
     useState<boolean>(false);
+  const [isTitleBarVisible, setIsTitleBarVisible] = useState<boolean>(true);
   const isMobile = useIsMobile();
 
   // Apply organization theming to CSS variables so the whole app picks up the org color
@@ -255,7 +256,7 @@ export default function AdminDashboard({
                 .map((c) => c + c)
                 .join("")
             : hex,
-          16
+          16,
         );
         const r = (bigint >> 16) & 255;
         const g = (bigint >> 8) & 255;
@@ -283,7 +284,7 @@ export default function AdminDashboard({
     };
 
     applyTheme(
-      currentOrganization?.primaryColor || user.subsidiary?.primaryColor
+      currentOrganization?.primaryColor || user.subsidiary?.primaryColor,
     );
 
     // Reset to default when unmounting
@@ -298,18 +299,18 @@ export default function AdminDashboard({
   const [certificateSearch, setCertificateSearch] = useState("");
   const [certificateFilter, setCertificateFilter] = useState("all");
   const [selectedCertificates, setSelectedCertificates] = useState<string[]>(
-    []
+    [],
   );
 
   // Certificate Generation Page States
   const [genActiveTab, setGenActiveTab] = useState("setup");
   const [genCertificateHeader, setGenCertificateHeader] = useState(
-    "Certificate of Completion"
+    "Certificate of Completion",
   );
   const [genProgramName, setGenProgramName] = useState("");
   const [genProgramDescription, setGenProgramDescription] = useState("");
   const [genCompletionDate, setGenCompletionDate] = useState(
-    new Date().toISOString().split("T")[0]
+    new Date().toISOString().split("T")[0],
   );
   const [genSelectedTemplate, setGenSelectedTemplate] = useState("");
   const [genSelectedTemplateName, setGenSelectedTemplateName] = useState("");
@@ -328,7 +329,7 @@ export default function AdminDashboard({
 
   // Signatory states for Generation tab
   const [genAvailableSignatories, setGenAvailableSignatories] = useState<any[]>(
-    []
+    [],
   );
   const [genSelectedSignatories, setGenSelectedSignatories] = useState<
     string[]
@@ -502,7 +503,7 @@ export default function AdminDashboard({
       try {
         const response = await testimonialApi.getForOrganization(
           accessToken,
-          currentOrganization.id
+          currentOrganization.id,
         );
 
         if (response.testimonials) {
@@ -539,7 +540,7 @@ export default function AdminDashboard({
       try {
         const response = await certificateApi.getForOrganization(
           accessToken,
-          currentOrganization.id
+          currentOrganization.id,
         );
 
         if (response.certificates) {
@@ -560,18 +561,18 @@ export default function AdminDashboard({
                 cert.organizationId,
                 programSlug,
                 cert.id,
-                365
+                365,
               );
               const encryptedPath = encryptedUrl.replace(
                 `${window.location.origin}/#/`,
-                ""
+                "",
               );
 
               return {
                 ...cert,
                 certificateUrl: encryptedPath,
               };
-            }
+            },
           );
 
           setAllCertificates(certificatesWithEncryptedUrls); // Load into allCertificates, NOT genGeneratedCertificates
@@ -603,7 +604,7 @@ export default function AdminDashboard({
     if (currentOrganization && organizations.length > 0) {
       // Find the updated version of the current organization
       const updatedOrg = organizations.find(
-        (org) => org.id === currentOrganization.id
+        (org) => org.id === currentOrganization.id,
       );
       if (updatedOrg) {
         // Only update if the organization data has actually changed
@@ -633,7 +634,7 @@ export default function AdminDashboard({
       }
 
       setGenAvailableSignatories(
-        currentOrganization.settings.signatories || []
+        currentOrganization.settings.signatories || [],
       );
     };
 
@@ -656,7 +657,7 @@ export default function AdminDashboard({
               Authorization: `Bearer ${accessToken}`,
               "Content-Type": "application/json",
             },
-          }
+          },
         );
 
         if (response.ok) {
@@ -704,7 +705,7 @@ export default function AdminDashboard({
           // Pre-select the template
           setGenSelectedTemplate(data.selectedTemplate);
           setGenSelectedTemplateName(
-            data.selectedTemplateName || "Custom Template"
+            data.selectedTemplateName || "Custom Template",
           );
 
           // If template has a config, store it
@@ -733,7 +734,7 @@ export default function AdminDashboard({
       // Pre-select the template
       setGenSelectedTemplate(state.selectedTemplate);
       setGenSelectedTemplateName(
-        state.selectedTemplateName || "Custom Template"
+        state.selectedTemplateName || "Custom Template",
       );
 
       // Clear the navigation state to prevent re-triggering
@@ -788,7 +789,7 @@ export default function AdminDashboard({
   const handleCertificatesGenerated = (
     certificates: any[],
     organization: any,
-    program: any
+    program: any,
   ) => {
     // Add to generated certificates list
     setGenGeneratedCertificates((prev) => [...prev, ...certificates]);
@@ -799,7 +800,7 @@ export default function AdminDashboard({
     }
 
     toast.success(
-      `${certificates.length} certificate(s) generated successfully!`
+      `${certificates.length} certificate(s) generated successfully!`,
     );
   };
 
@@ -807,7 +808,7 @@ export default function AdminDashboard({
   const handleTemplateSelection = (template: any) => {
     // Show success message
     toast.success(
-      `Template "${template.name}" selected! You can now use it to generate certificates.`
+      `Template "${template.name}" selected! You can now use it to generate certificates.`,
     );
 
     // Optionally navigate to generate tab with this template pre-selected
@@ -823,7 +824,7 @@ export default function AdminDashboard({
     // Navigate to generate tab so user can immediately use the template
     setActiveTab("generate");
     toast.info(
-      "Navigate to Generate tab to create certificates with this template"
+      "Navigate to Generate tab to create certificates with this template",
     );
   };
 
@@ -835,7 +836,7 @@ export default function AdminDashboard({
     // Filter by user's organization (already done by the API, but double-check)
     if (currentOrganization) {
       filtered = filtered.filter(
-        (cert) => cert.organizationId === currentOrganization.id
+        (cert) => cert.organizationId === currentOrganization.id,
       );
     }
 
@@ -898,20 +899,20 @@ export default function AdminDashboard({
           .length
       : targetOrg.programs.reduce(
           (sum: number, p: Program) => sum + p.certificates,
-          0
+          0,
         );
 
     const totalTestimonials = hasLoadedTestimonials
       ? allTestimonials.filter((t) => t.organizationId === targetOrg.id).length
       : targetOrg.programs.reduce(
           (sum: number, p: Program) => sum + p.testimonials,
-          0
+          0,
         );
 
     const totalPrograms = targetOrg.programs.length;
 
     const averageEngagement = Math.floor(
-      (totalTestimonials / Math.max(totalCertificates, 1)) * 100
+      (totalTestimonials / Math.max(totalCertificates, 1)) * 100,
     );
 
     return {
@@ -944,7 +945,7 @@ export default function AdminDashboard({
     // If program has organizationId, use that organization
     if (program.organizationId) {
       const organization = organizations.find(
-        (o) => o.id === program.organizationId
+        (o) => o.id === program.organizationId,
       );
       setCurrentOrganization(organization || null);
     }
@@ -1005,7 +1006,7 @@ export default function AdminDashboard({
       genCurrentUserOrganization.id,
       programSlug,
       certificateId,
-      365 // Valid for 1 year
+      365, // Valid for 1 year
     );
 
     // Remove the origin and hash from the URL to get just the path
@@ -1099,13 +1100,13 @@ export default function AdminDashboard({
         backendCert.organizationId,
         programSlug,
         backendCert.id,
-        365 // Valid for 1 year
+        365, // Valid for 1 year
       );
 
       // Extract just the path (remove origin and hash)
       const encryptedPath = encryptedCertUrl.replace(
         `${window.location.origin}/#/`,
-        ""
+        "",
       );
       const certificate = {
         ...response.certificates[0],
@@ -1124,23 +1125,37 @@ export default function AdminDashboard({
         organization: genCurrentUserOrganization,
       };
 
-      // Short links are disabled — keep only the secure encrypted URL
-
-      if (editingCertificateId) {
-        // Update existing certificate in the list
-        setAllCertificates((prev) =>
-          prev.map((cert) =>
-            cert.id === editingCertificateId ? certificate : cert
-          )
+      // Create short link for easier sharing
+      try {
+        const shortLinkResult = await createShortLink(
+          backendCert.organizationId,
+          programSlug,
+          backendCert.id,
+          certificate
         );
-        toast.success("Certificate updated successfully!");
-      } else {
-        // Add to current session results (for Results tab)
-        setGenGeneratedCertificates([certificate]);
-        // Also add to full history (for Certificates tab)
-        setAllCertificates((prev) => [certificate, ...prev]);
-        setHasLoadedCertificates(true); // Mark as loaded since we just added it
+
+        if (shortLinkResult.success && shortLinkResult.shortCode) {
+          // Add short link to certificate object
+          certificate.shortCode = shortLinkResult.shortCode;
+          certificate.shortUrl = `c/${shortLinkResult.shortCode}`;
+          certificate.fullShortUrl = shortLinkResult.fullShortUrl;
+
+          toast.success(
+            `Certificate generated! Short link: ${shortLinkResult.fullShortUrl}`
+          );
+        } else {
+          console.warn("⚠️ Failed to create short link, using encrypted URL");
+        }
+      } catch (error) {
+        console.error("Error creating short link:", error);
+        // Continue with encrypted URL if short link fails
       }
+
+      // Add to current session results (for Results tab)
+      setGenGeneratedCertificates([certificate]);
+      // Also add to full history (for Certificates tab)
+      setAllCertificates((prev) => [certificate, ...prev]);
+      setHasLoadedCertificates(true); // Mark as loaded since we just added it
 
       setGenIsGenerating(false);
       if (!editingCertificateId) {
@@ -1177,7 +1192,7 @@ export default function AdminDashboard({
       ) {
         toast.error(
           "Network error: Please check your connection and try again",
-          { duration: 5000 }
+          { duration: 5000 },
         );
       }
     }
@@ -1236,7 +1251,7 @@ export default function AdminDashboard({
             const signatories = genSelectedSignatories
               .filter((id) => id && id !== "none")
               .map((id) =>
-                genAvailableSignatories.find((s: any) => s.id === id)
+                genAvailableSignatories.find((s: any) => s.id === id),
               )
               .filter(Boolean);
 
@@ -1262,9 +1277,46 @@ export default function AdminDashboard({
             // Use backend-confirmed data
             const savedCertificates = response.certificates || certificates;
 
-            // Keep saved certificates as-is (short links disabled)
-            setGenGeneratedCertificates(savedCertificates);
-            setAllCertificates((prev) => [...savedCertificates, ...prev]);
+            // Create short links for all certificates
+            const certificatesWithShortLinks = await Promise.all(
+              savedCertificates.map(async (cert: any) => {
+                try {
+                  const programSlug = genProgramName
+                    .trim()
+                    .toLowerCase()
+                    .replace(/\s+/g, "-");
+                  const shortLinkResult = await createShortLink(
+                    cert.organizationId,
+                    programSlug,
+                    cert.id,
+                    cert
+                  );
+
+                  if (shortLinkResult.success && shortLinkResult.shortCode) {
+                    return {
+                      ...cert,
+                      shortCode: shortLinkResult.shortCode,
+                      shortUrl: `c/${shortLinkResult.shortCode}`,
+                      fullShortUrl: shortLinkResult.fullShortUrl,
+                    };
+                  }
+                } catch (error) {
+                  console.error(
+                    `Failed to create short link for ${cert.studentName}:`,
+                    error
+                  );
+                }
+                return cert;
+              })
+            );
+
+            // Add to current session results (for Results tab)
+            setGenGeneratedCertificates(certificatesWithShortLinks);
+            // Also add to full history (for Certificates tab)
+            setAllCertificates((prev) => [
+              ...certificatesWithShortLinks,
+              ...prev,
+            ]);
             setHasLoadedCertificates(true);
           } catch (error: any) {
             console.error("❌ Failed to save certificates to backend:", error);
@@ -1284,7 +1336,7 @@ export default function AdminDashboard({
 
         setGenIsGenerating(false);
         toast.success(
-          `${certificates.length} certificates generated successfully!`
+          `${certificates.length} certificates generated successfully!`,
         );
         setGenActiveTab("results");
 
@@ -1321,8 +1373,8 @@ export default function AdminDashboard({
           `"${cert.studentName}","${cert.email}","${
             cert.id
           }","${buildFullCertificateUrl(cert.certificateUrl)}","${new Date(
-            cert.generatedAt
-          ).toLocaleString()}"`
+            cert.generatedAt,
+          ).toLocaleString()}"`,
       )
       .join("\n");
 
@@ -1346,7 +1398,7 @@ export default function AdminDashboard({
     setSelectedCertificates((prev) =>
       prev.includes(certId)
         ? prev.filter((id) => id !== certId)
-        : [...prev, certId]
+        : [...prev, certId],
     );
   };
 
@@ -1396,7 +1448,7 @@ export default function AdminDashboard({
 
     if (
       !window.confirm(
-        `Are you sure you want to delete ${selectedCertificates.length} certificate(s)?`
+        `Are you sure you want to delete ${selectedCertificates.length} certificate(s)?`,
       )
     ) {
       return;
@@ -1405,23 +1457,23 @@ export default function AdminDashboard({
     try {
       const response = await certificateApi.deleteBulk(
         accessToken,
-        selectedCertificates
+        selectedCertificates,
       );
 
       // Update local state after successful deletion
       setAllCertificates((prev) =>
-        prev.filter((cert) => !selectedCertificates.includes(cert.id))
+        prev.filter((cert) => !selectedCertificates.includes(cert.id)),
       );
       setSelectedCertificates([]);
       setHasLoadedCertificates(true); // Keep as loaded since we just updated it
 
       if (response.errors && response.errors.length > 0) {
         toast.warning(
-          `Deleted ${response.deletedCount} certificate(s). ${response.errors.length} failed.`
+          `Deleted ${response.deletedCount} certificate(s). ${response.errors.length} failed.`,
         );
       } else {
         toast.success(
-          `${response.deletedCount} certificate(s) deleted successfully`
+          `${response.deletedCount} certificate(s) deleted successfully`,
         );
       }
     } catch (error: any) {
@@ -1450,13 +1502,13 @@ export default function AdminDashboard({
     try {
       const response = await certificateApi.getForOrganization(
         accessToken,
-        currentOrganization.id
+        currentOrganization.id,
       );
       if (response.certificates) {
         setAllCertificates(response.certificates); // Use allCertificates for full history
         setHasLoadedCertificates(true);
         toast.success(
-          `Refreshed! Found ${response.certificates.length} certificate(s)`
+          `Refreshed! Found ${response.certificates.length} certificate(s)`,
         );
       } else {
         setAllCertificates([]); // Use allCertificates for full history
@@ -1837,6 +1889,23 @@ export default function AdminDashboard({
               {/* Tab Content */}
               {activeTab === "overview" && (
                 <div className="space-y-4 md:space-y-6">
+
+                  {/* Title bar */}
+                  {isTitleBarVisible && (
+                    <div className="bg-primary rounded-lg text-white flex justify-between items-center px-4 py-2 md:px-6">
+                      <p className="text-sm">
+                        Testimonial/feedback, verification, bulk issuance,
+                        monetization, wallet, and payouts will be available at
+                        full launch in March.
+                      </p>
+                      <span
+                        className="text-xl cursor-pointer hover:border-2 hover:border-black rounded p-1 w-6 h-6 flex items-center justify-center"
+                        onClick={() => setIsTitleBarVisible(false)}
+                      >
+                        &times;
+                      </span>
+                    </div>
+                  )}
                   {/* Welcome Card */}
                   <Card className="border-l-4 border-l-primary">
                     <CardContent className="pt-6">
@@ -1849,8 +1918,8 @@ export default function AdminDashboard({
                             {currentOrganization
                               ? `Managing certificate programs for ${currentOrganization.name}`
                               : organizations.length > 0
-                              ? `Managing certificate programs for your organization`
-                              : "Get started by creating your organization and first program"}
+                                ? `Managing certificate programs for your organization`
+                                : "Get started by creating your organization and first program"}
                           </p>
                           {currentOrganization && (
                             <div className="flex items-center gap-2 text-muted-foreground">
@@ -1976,7 +2045,7 @@ export default function AdminDashboard({
                           {Math.floor(
                             (stats.totalTestimonials /
                               Math.max(stats.totalCertificates, 1)) *
-                              100
+                              100,
                           )}
                           % response rate
                         </p>
@@ -2508,7 +2577,7 @@ export default function AdminDashboard({
                                           >
                                             {sig.name} - {sig.title}
                                           </SelectItem>
-                                        )
+                                        ),
                                       )}
                                     </SelectContent>
                                   </Select>
@@ -2545,7 +2614,7 @@ export default function AdminDashboard({
                                           >
                                             {sig.name} - {sig.title}
                                           </SelectItem>
-                                        )
+                                        ),
                                       )}
                                     </SelectContent>
                                   </Select>
@@ -2872,42 +2941,42 @@ export default function AdminDashboard({
                                             genAvailableSignatories.find(
                                               (s: any) =>
                                                 s.id ===
-                                                genSelectedSignatories[0]
+                                                genSelectedSignatories[0],
                                             )?.name
                                           }
                                           signatoryTitle1={
                                             genAvailableSignatories.find(
                                               (s: any) =>
                                                 s.id ===
-                                                genSelectedSignatories[0]
+                                                genSelectedSignatories[0],
                                             )?.title
                                           }
                                           signatureUrl1={
                                             genAvailableSignatories.find(
                                               (s: any) =>
                                                 s.id ===
-                                                genSelectedSignatories[0]
+                                                genSelectedSignatories[0],
                                             )?.signatureUrl
                                           }
                                           signatoryName2={
                                             genAvailableSignatories.find(
                                               (s: any) =>
                                                 s.id ===
-                                                genSelectedSignatories[1]
+                                                genSelectedSignatories[1],
                                             )?.name
                                           }
                                           signatoryTitle2={
                                             genAvailableSignatories.find(
                                               (s: any) =>
                                                 s.id ===
-                                                genSelectedSignatories[1]
+                                                genSelectedSignatories[1],
                                             )?.title
                                           }
                                           signatureUrl2={
                                             genAvailableSignatories.find(
                                               (s: any) =>
                                                 s.id ===
-                                                genSelectedSignatories[1]
+                                                genSelectedSignatories[1],
                                             )?.signatureUrl
                                           }
                                         />
@@ -2998,12 +3067,12 @@ export default function AdminDashboard({
                                   setGenActiveTab("setup");
                                   setGenGeneratedCertificates([]);
                                   setGenCertificateHeader(
-                                    "Certificate of Completion"
+                                    "Certificate of Completion",
                                   );
                                   setGenProgramName("");
                                   setGenProgramDescription("");
                                   setGenCompletionDate(
-                                    new Date().toISOString().split("T")[0]
+                                    new Date().toISOString().split("T")[0],
                                   );
                                   setGenSelectedTemplate("");
                                   setGenRestrictDownload(false); // Reset restriction toggle
@@ -3046,7 +3115,7 @@ export default function AdminDashboard({
                                         onClick={() => {
                                           genCopyCertificateUrl(
                                             cert.certificateUrl,
-                                            cert
+                                            cert,
                                           );
                                         }}
                                       >
@@ -3058,7 +3127,7 @@ export default function AdminDashboard({
                                         onClick={(e) => {
                                           const fullUrl =
                                             buildFullCertificateUrl(
-                                              cert.certificateUrl
+                                              cert.certificateUrl,
                                             );
                                           // Navigate in the same tab - hash routing works this way!
                                           window.location.href = fullUrl;
@@ -3217,7 +3286,7 @@ export default function AdminDashboard({
                                   .includes(certificateSearch.toLowerCase()) ||
                                 cert.id
                                   .toLowerCase()
-                                  .includes(certificateSearch.toLowerCase())
+                                  .includes(certificateSearch.toLowerCase()),
                             )
                             .map((cert) => (
                               <Card
@@ -3230,7 +3299,7 @@ export default function AdminDashboard({
                                     <input
                                       type="checkbox"
                                       checked={selectedCertificates.includes(
-                                        cert.id
+                                        cert.id,
                                       )}
                                       onChange={() =>
                                         toggleCertificateSelection(cert.id)
@@ -3258,7 +3327,7 @@ export default function AdminDashboard({
                                       <Calendar className="w-3 h-3" />
                                       <span>
                                         {new Date(
-                                          cert.generatedAt
+                                          cert.generatedAt,
                                         ).toLocaleDateString("en-US", {
                                           month: "numeric",
                                           day: "numeric",
@@ -3275,7 +3344,7 @@ export default function AdminDashboard({
                                       size="sm"
                                       onClick={(e) => {
                                         const fullUrl = buildFullCertificateUrl(
-                                          cert.certificateUrl
+                                          cert.certificateUrl,
                                         );
                                         // Navigate in the same tab - hash routing works this way!
                                         window.location.href = fullUrl;
@@ -3291,8 +3360,8 @@ export default function AdminDashboard({
                                       onClick={() =>
                                         copyCertificateLink(
                                           buildFullCertificateUrl(
-                                            cert.certificateUrl
-                                          )
+                                            cert.certificateUrl,
+                                          ),
                                         )
                                       }
                                     >

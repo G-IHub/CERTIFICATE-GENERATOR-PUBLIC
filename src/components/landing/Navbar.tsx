@@ -13,6 +13,7 @@ const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navRef = useRef<HTMLElement | null>(null);
   const [navHeight, setNavHeight] = useState<number>(0);
+  const [isTitleBarVisible, setIsTitleBarVisible] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,20 +38,20 @@ const Navbar: React.FC = () => {
     setHeight();
     window.addEventListener("resize", setHeight);
     return () => window.removeEventListener("resize", setHeight);
-  }, [isScrolled, isMenuOpen]);
+  }, [isScrolled, isMenuOpen, isTitleBarVisible]);
 
   return (
     <>
       <nav
         ref={navRef}
-        className={`fixed top-0 left-0 w-full transition-all duration-300 ${
+        className={`fixed top-0 left-0 w-full flex flex-col transition-all duration-300 ${
           isScrolled
-            ? "bg-white md:fixed p-3"
-            : "p-5 md:py-6 md:px-28 md:sticky"
+            ? "bg-white md:fixed px-3 py-2 border-b border-gray-200 shadow-md gap-2"
+            : "p-5 md:py-6 md:px-28 md:sticky gap-2"
         } z-50`}
       >
-        <div className="flex justify-between items-center rounded-lg px-4 py-2 w-full max-w-6xl mx-auto bg-white md:bg-[#FFFFFF66] border-2 border-[#FFFFFF1F] text-sm">
-          <div className="flex items-center gap-2 flex-none">
+        <div className="flex justify-between items-center rounded-lg px-4 py-8 w-[450px] h-14 bg-white md:bg-[#FFFFFF66] border-2 border-[#FFFFFF1F] text-sm">
+          <div className="flex items-center gap-2">
             <Link
               to="hero"
               smooth={true}

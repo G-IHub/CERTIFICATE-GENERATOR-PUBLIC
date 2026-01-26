@@ -236,6 +236,7 @@ export default function AdminDashboard({
   const [showGenerateModal, setShowGenerateModal] = useState<boolean>(false);
   const [showNewProgramModal, setShowNewProgramModal] =
     useState<boolean>(false);
+  const [isTitleBarVisible, setIsTitleBarVisible] = useState<boolean>(true);
   const isMobile = useIsMobile();
 
   // Apply organization theming to CSS variables so the whole app picks up the org color
@@ -1146,6 +1147,7 @@ export default function AdminDashboard({
         organization: genCurrentUserOrganization,
       };
 
+<<<<<<< HEAD
       // Short links are disabled — keep only the secure encrypted URL
 
       if (editingCertificateId) {
@@ -1154,15 +1156,39 @@ export default function AdminDashboard({
           prev.map((cert) =>
             cert.id === editingCertificateId ? certificate : cert,
           ),
+=======
+      // Create short link for easier sharing
+      try {
+        const shortLinkResult = await createShortLink(
+          backendCert.organizationId,
+          programSlug,
+          backendCert.id,
+          certificate
+>>>>>>> dcc9d55a16267327b93562f79dcb8bd23e2f8367
         );
-        toast.success("Certificate updated successfully!");
-      } else {
-        // Add to current session results (for Results tab)
-        setGenGeneratedCertificates([certificate]);
-        // Also add to full history (for Certificates tab)
-        setAllCertificates((prev) => [certificate, ...prev]);
-        setHasLoadedCertificates(true); // Mark as loaded since we just added it
+
+        if (shortLinkResult.success && shortLinkResult.shortCode) {
+          // Add short link to certificate object
+          certificate.shortCode = shortLinkResult.shortCode;
+          certificate.shortUrl = `c/${shortLinkResult.shortCode}`;
+          certificate.fullShortUrl = shortLinkResult.fullShortUrl;
+
+          toast.success(
+            `Certificate generated! Short link: ${shortLinkResult.fullShortUrl}`
+          );
+        } else {
+          console.warn("⚠️ Failed to create short link, using encrypted URL");
+        }
+      } catch (error) {
+        console.error("Error creating short link:", error);
+        // Continue with encrypted URL if short link fails
       }
+
+      // Add to current session results (for Results tab)
+      setGenGeneratedCertificates([certificate]);
+      // Also add to full history (for Certificates tab)
+      setAllCertificates((prev) => [certificate, ...prev]);
+      setHasLoadedCertificates(true); // Mark as loaded since we just added it
 
       setGenIsGenerating(false);
       if (!editingCertificateId) {
@@ -1284,9 +1310,46 @@ export default function AdminDashboard({
             // Use backend-confirmed data
             const savedCertificates = response.certificates || certificates;
 
-            // Keep saved certificates as-is (short links disabled)
-            setGenGeneratedCertificates(savedCertificates);
-            setAllCertificates((prev) => [...savedCertificates, ...prev]);
+            // Create short links for all certificates
+            const certificatesWithShortLinks = await Promise.all(
+              savedCertificates.map(async (cert: any) => {
+                try {
+                  const programSlug = genProgramName
+                    .trim()
+                    .toLowerCase()
+                    .replace(/\s+/g, "-");
+                  const shortLinkResult = await createShortLink(
+                    cert.organizationId,
+                    programSlug,
+                    cert.id,
+                    cert
+                  );
+
+                  if (shortLinkResult.success && shortLinkResult.shortCode) {
+                    return {
+                      ...cert,
+                      shortCode: shortLinkResult.shortCode,
+                      shortUrl: `c/${shortLinkResult.shortCode}`,
+                      fullShortUrl: shortLinkResult.fullShortUrl,
+                    };
+                  }
+                } catch (error) {
+                  console.error(
+                    `Failed to create short link for ${cert.studentName}:`,
+                    error
+                  );
+                }
+                return cert;
+              })
+            );
+
+            // Add to current session results (for Results tab)
+            setGenGeneratedCertificates(certificatesWithShortLinks);
+            // Also add to full history (for Certificates tab)
+            setAllCertificates((prev) => [
+              ...certificatesWithShortLinks,
+              ...prev,
+            ]);
             setHasLoadedCertificates(true);
           } catch (error: any) {
             console.error("❌ Failed to save certificates to backend:", error);
@@ -1859,6 +1922,23 @@ export default function AdminDashboard({
               {/* Tab Content */}
               {activeTab === "overview" && (
                 <div className="space-y-4 md:space-y-6">
+
+                  {/* Title bar */}
+                  {isTitleBarVisible && (
+                    <div className="bg-primary rounded-lg text-white flex justify-between items-center px-4 py-2 md:px-6">
+                      <p className="text-sm">
+                        Testimonial/feedback, verification, bulk issuance,
+                        monetization, wallet, and payouts will be available at
+                        full launch in March.
+                      </p>
+                      <span
+                        className="text-xl cursor-pointer hover:border-2 hover:border-black rounded p-1 w-6 h-6 flex items-center justify-center"
+                        onClick={() => setIsTitleBarVisible(false)}
+                      >
+                        &times;
+                      </span>
+                    </div>
+                  )}
                   {/* Welcome Card */}
                   <Card className="border-l-4 border-l-primary">
                     <CardContent className="pt-6">
@@ -1998,7 +2078,7 @@ export default function AdminDashboard({
                           {Math.floor(
                             (stats.totalTestimonials /
                               Math.max(stats.totalCertificates, 1)) *
-                              100
+                              100,
                           )}
                           % response rate
                         </p>

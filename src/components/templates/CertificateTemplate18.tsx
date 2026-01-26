@@ -33,11 +33,11 @@ export default function CertificateTemplate18({
   isPreview = false,
   organizationName = "Genomac Institute Inc.",
   organizationLogo,
-  signatoryName1 = "Oluwaseyi Abraham Olawale",
-  signatoryTitle1 = "Founder & CEO of Genomac Holdings.",
+  signatoryName1,
+  signatoryTitle1,
   signatureUrl1,
-  signatoryName2 = "Oluwaseun Oyekunle Agboola",
-  signatoryTitle2 = "Director, Genomac Institute INC.",
+  signatoryName2,
+  signatoryTitle2,
   signatureUrl2,
   mode = "student",
 }: CertificateTemplate18Props) {
@@ -64,7 +64,6 @@ export default function CertificateTemplate18({
       className={containerClass}
       style={{
         transform: `scale(${scale})`,
-        marginLeft,
         backgroundColor: "transparent",
       }}
     >
@@ -87,7 +86,7 @@ export default function CertificateTemplate18({
         />
 
         {/* Main Certificate Container */}
-        <div className="relative w-[1000px] h-[600px] border-[20px] border-purple-500 overflow-hidden">
+        <div className="relative w-[1056px] h-[600px] overflow-hidden">
           <div className="flex flex-col h-full p-6 justify-between">
             {/* Header with Logo */}
             <div className="flex text-center mx-auto pl-[200px] ">
@@ -131,7 +130,7 @@ export default function CertificateTemplate18({
                   {description}
                 </p>
               )}
-              <p className="font-bold text-black">{date}</p>
+              {/* <p className="font-bold text-black">{date}</p> */}
             </div>
 
             {/* Signatures Section */}

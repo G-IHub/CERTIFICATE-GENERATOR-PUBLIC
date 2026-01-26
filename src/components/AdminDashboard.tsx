@@ -156,18 +156,18 @@ interface AdminDashboardProps {
   onLogout: () => void;
   onUpdateSubsidiary: (
     organizationId: string,
-    updates: Partial<Organization>
+    updates: Partial<Organization>,
   ) => void;
   onAddProgram: (organizationId: string, newProgram: Program) => void;
   onUpdateProgramStats: (
     organizationId: string,
     programId: string,
-    certificateCount: number
+    certificateCount: number,
   ) => void;
   onUpdateProgram: (
     organizationId: string,
     programId: string,
-    updates: Partial<Program>
+    updates: Partial<Program>,
   ) => void;
   onCreateOrganization?: (name: string) => void;
   accessToken: string | null;
@@ -255,7 +255,7 @@ export default function AdminDashboard({
                 .map((c) => c + c)
                 .join("")
             : hex,
-          16
+          16,
         );
         const r = (bigint >> 16) & 255;
         const g = (bigint >> 8) & 255;
@@ -283,7 +283,7 @@ export default function AdminDashboard({
     };
 
     applyTheme(
-      currentOrganization?.primaryColor || user.subsidiary?.primaryColor
+      currentOrganization?.primaryColor || user.subsidiary?.primaryColor,
     );
 
     // Reset to default when unmounting
@@ -298,18 +298,18 @@ export default function AdminDashboard({
   const [certificateSearch, setCertificateSearch] = useState("");
   const [certificateFilter, setCertificateFilter] = useState("all");
   const [selectedCertificates, setSelectedCertificates] = useState<string[]>(
-    []
+    [],
   );
 
   // Certificate Generation Page States
   const [genActiveTab, setGenActiveTab] = useState("setup");
   const [genCertificateHeader, setGenCertificateHeader] = useState(
-    "Certificate of Completion"
+    "Certificate of Completion",
   );
   const [genProgramName, setGenProgramName] = useState("");
   const [genProgramDescription, setGenProgramDescription] = useState("");
   const [genCompletionDate, setGenCompletionDate] = useState(
-    new Date().toISOString().split("T")[0]
+    new Date().toISOString().split("T")[0],
   );
   const [genSelectedTemplate, setGenSelectedTemplate] = useState("");
   const [genSelectedTemplateName, setGenSelectedTemplateName] = useState("");
@@ -328,7 +328,7 @@ export default function AdminDashboard({
 
   // Signatory states for Generation tab
   const [genAvailableSignatories, setGenAvailableSignatories] = useState<any[]>(
-    []
+    [],
   );
   const [genSelectedSignatories, setGenSelectedSignatories] = useState<
     string[]
@@ -337,7 +337,7 @@ export default function AdminDashboard({
   const [genGenerationType, setGenGenerationType] = useState<
     "individual" | "bulk"
   >("individual");
-  
+
   // Restricted Certificate Downloads states
   const [genRestrictDownload, setGenRestrictDownload] = useState(false);
   const [genAllowedEmails, setGenAllowedEmails] = useState<string[]>([]);
@@ -346,8 +346,10 @@ export default function AdminDashboard({
   const [showBulkImport, setShowBulkImport] = useState(false); // NEW: Toggle bulk import UI
   const [showAllEmails, setShowAllEmails] = useState(false); // NEW: Toggle to show all emails or limited
   const EMAIL_DISPLAY_LIMIT = 10; // Show only 10 emails by default
-  const [editingCertificateId, setEditingCertificateId] = useState<string | null>(null); // Track which certificate is being edited
-  
+  const [editingCertificateId, setEditingCertificateId] = useState<
+    string | null
+  >(null); // Track which certificate is being edited
+
   const [isRefreshingCertificates, setIsRefreshingCertificates] =
     useState(false);
   const [hasLoadedCertificates, setHasLoadedCertificates] = useState(false);
@@ -363,8 +365,8 @@ export default function AdminDashboard({
     // Split by comma, newline, or semicolon
     const emails = bulkEmailInput
       .split(/[,;\n]/)
-      .map(email => email.trim().toLowerCase())
-      .filter(email => email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email));
+      .map((email) => email.trim().toLowerCase())
+      .filter((email) => email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email));
 
     if (emails.length === 0) {
       toast.error("No valid email addresses found");
@@ -378,8 +380,10 @@ export default function AdminDashboard({
     setGenAllowedEmails(uniqueEmails);
     setBulkEmailInput("");
     setShowBulkImport(false);
-    
-    toast.success(`Added ${newEmailsCount} new email${newEmailsCount !== 1 ? 's' : ''} to approved list`);
+
+    toast.success(
+      `Added ${newEmailsCount} new email${newEmailsCount !== 1 ? "s" : ""} to approved list`,
+    );
   };
 
   // Handle CSV file upload
@@ -387,7 +391,7 @@ export default function AdminDashboard({
     const file = e.target.files?.[0];
     if (!file) return;
 
-    if (!file.name.endsWith('.csv')) {
+    if (!file.name.endsWith(".csv")) {
       toast.error("Please upload a CSV file");
       return;
     }
@@ -398,8 +402,8 @@ export default function AdminDashboard({
       // Extract all emails from CSV (handles various formats)
       const emails = text
         .split(/[\n,;]/)
-        .map(email => email.trim().toLowerCase())
-        .filter(email => email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email));
+        .map((email) => email.trim().toLowerCase())
+        .filter((email) => email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email));
 
       if (emails.length === 0) {
         toast.error("No valid email addresses found in CSV");
@@ -410,64 +414,77 @@ export default function AdminDashboard({
       const newEmailsCount = uniqueEmails.length - genAllowedEmails.length;
 
       setGenAllowedEmails(uniqueEmails);
-      toast.success(`Imported ${newEmailsCount} new email${newEmailsCount !== 1 ? 's' : ''} from CSV`);
+      toast.success(
+        `Imported ${newEmailsCount} new email${newEmailsCount !== 1 ? "s" : ""} from CSV`,
+      );
     };
     reader.readAsText(file);
-    e.target.value = ''; // Reset input
+    e.target.value = ""; // Reset input
   };
 
   // Load certificate data into form for editing
   const handleEditCertificate = (certificate: any) => {
     setEditingCertificateId(certificate.id);
-    
+
     // Map backend field names to frontend state
     setGenProgramName(certificate.courseName || "");
     setGenProgramDescription(certificate.courseDescription || "");
-    setGenCertificateHeader(certificate.certificateHeader || "Certificate of Completion");
+    setGenCertificateHeader(
+      certificate.certificateHeader || "Certificate of Completion",
+    );
     setGenSelectedTemplate(certificate.template || "");
-    setGenCompletionDate(certificate.completionDate?.split("T")[0] || new Date().toISOString().split("T")[0]);
+    setGenCompletionDate(
+      certificate.completionDate?.split("T")[0] ||
+        new Date().toISOString().split("T")[0],
+    );
     setGenRestrictDownload(certificate.restrictDownload || false);
     setGenAllowedEmails(certificate.allowedEmails || []);
-    
+
     // Load signatories if they exist (extract IDs from signatory objects)
     if (certificate.signatories && certificate.signatories.length > 0) {
-      const signatoryIds = certificate.signatories.map((sig: any) => sig.id || sig);
+      const signatoryIds = certificate.signatories.map(
+        (sig: any) => sig.id || sig,
+      );
       setGenSelectedSignatories(signatoryIds);
     } else {
       setGenSelectedSignatories([]);
     }
-    
+
     // Load custom template config if it exists
     if (certificate.customTemplateConfig) {
       setGenCustomTemplateConfig(certificate.customTemplateConfig);
     }
-    
+
     // Set template name for display
     const templateNames: { [key: string]: string } = {
-      'impact': 'Impact',
-      'prestige': 'Prestige', 
-      'modern': 'Modern',
-      'classic': 'Classic',
-      'elegant': 'Elegant',
-      'bold': 'Bold',
-      'minimal': 'Minimal',
-      'vibrant': 'Vibrant',
-      'professional': 'Professional',
-      'creative': 'Creative',
-      'tech': 'Tech',
-      'academic': 'Academic',
-      'corporate': 'Corporate',
-      'certificate': 'Certificate',
-      'achievement': 'Achievement',
-      'excellence': 'Excellence'
+      impact: "Impact",
+      prestige: "Prestige",
+      modern: "Modern",
+      classic: "Classic",
+      elegant: "Elegant",
+      bold: "Bold",
+      minimal: "Minimal",
+      vibrant: "Vibrant",
+      professional: "Professional",
+      creative: "Creative",
+      tech: "Tech",
+      academic: "Academic",
+      corporate: "Corporate",
+      certificate: "Certificate",
+      achievement: "Achievement",
+      excellence: "Excellence",
     };
-    setGenSelectedTemplateName(templateNames[certificate.template] || certificate.template || "Custom Template");
-    
+    setGenSelectedTemplateName(
+      templateNames[certificate.template] ||
+        certificate.template ||
+        "Custom Template",
+    );
+
     setGenEmailInput("");
     setShowAllEmails(false);
-    
+
     // Scroll to form
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
     toast.info("Certificate loaded for editing");
   };
 
@@ -484,7 +501,7 @@ export default function AdminDashboard({
     setGenAllowedEmails([]);
     setGenEmailInput("");
     setShowAllEmails(false);
-    
+
     // Return to certificates tab
     setActiveTab("certificates");
     toast.info("Edit cancelled");
@@ -502,7 +519,7 @@ export default function AdminDashboard({
       try {
         const response = await testimonialApi.getForOrganization(
           accessToken,
-          currentOrganization.id
+          currentOrganization.id,
         );
 
         if (response.testimonials) {
@@ -539,7 +556,7 @@ export default function AdminDashboard({
       try {
         const response = await certificateApi.getForOrganization(
           accessToken,
-          currentOrganization.id
+          currentOrganization.id,
         );
 
         if (response.certificates) {
@@ -560,18 +577,18 @@ export default function AdminDashboard({
                 cert.organizationId,
                 programSlug,
                 cert.id,
-                365
+                365,
               );
               const encryptedPath = encryptedUrl.replace(
                 `${window.location.origin}/#/`,
-                ""
+                "",
               );
 
               return {
                 ...cert,
                 certificateUrl: encryptedPath,
               };
-            }
+            },
           );
 
           setAllCertificates(certificatesWithEncryptedUrls); // Load into allCertificates, NOT genGeneratedCertificates
@@ -603,7 +620,7 @@ export default function AdminDashboard({
     if (currentOrganization && organizations.length > 0) {
       // Find the updated version of the current organization
       const updatedOrg = organizations.find(
-        (org) => org.id === currentOrganization.id
+        (org) => org.id === currentOrganization.id,
       );
       if (updatedOrg) {
         // Only update if the organization data has actually changed
@@ -633,7 +650,7 @@ export default function AdminDashboard({
       }
 
       setGenAvailableSignatories(
-        currentOrganization.settings.signatories || []
+        currentOrganization.settings.signatories || [],
       );
     };
 
@@ -656,7 +673,7 @@ export default function AdminDashboard({
               Authorization: `Bearer ${accessToken}`,
               "Content-Type": "application/json",
             },
-          }
+          },
         );
 
         if (response.ok) {
@@ -704,7 +721,7 @@ export default function AdminDashboard({
           // Pre-select the template
           setGenSelectedTemplate(data.selectedTemplate);
           setGenSelectedTemplateName(
-            data.selectedTemplateName || "Custom Template"
+            data.selectedTemplateName || "Custom Template",
           );
 
           // If template has a config, store it
@@ -733,7 +750,7 @@ export default function AdminDashboard({
       // Pre-select the template
       setGenSelectedTemplate(state.selectedTemplate);
       setGenSelectedTemplateName(
-        state.selectedTemplateName || "Custom Template"
+        state.selectedTemplateName || "Custom Template",
       );
 
       // Clear the navigation state to prevent re-triggering
@@ -788,7 +805,7 @@ export default function AdminDashboard({
   const handleCertificatesGenerated = (
     certificates: any[],
     organization: any,
-    program: any
+    program: any,
   ) => {
     // Add to generated certificates list
     setGenGeneratedCertificates((prev) => [...prev, ...certificates]);
@@ -799,7 +816,7 @@ export default function AdminDashboard({
     }
 
     toast.success(
-      `${certificates.length} certificate(s) generated successfully!`
+      `${certificates.length} certificate(s) generated successfully!`,
     );
   };
 
@@ -807,7 +824,7 @@ export default function AdminDashboard({
   const handleTemplateSelection = (template: any) => {
     // Show success message
     toast.success(
-      `Template "${template.name}" selected! You can now use it to generate certificates.`
+      `Template "${template.name}" selected! You can now use it to generate certificates.`,
     );
 
     // Optionally navigate to generate tab with this template pre-selected
@@ -823,7 +840,7 @@ export default function AdminDashboard({
     // Navigate to generate tab so user can immediately use the template
     setActiveTab("generate");
     toast.info(
-      "Navigate to Generate tab to create certificates with this template"
+      "Navigate to Generate tab to create certificates with this template",
     );
   };
 
@@ -835,7 +852,7 @@ export default function AdminDashboard({
     // Filter by user's organization (already done by the API, but double-check)
     if (currentOrganization) {
       filtered = filtered.filter(
-        (cert) => cert.organizationId === currentOrganization.id
+        (cert) => cert.organizationId === currentOrganization.id,
       );
     }
 
@@ -898,20 +915,20 @@ export default function AdminDashboard({
           .length
       : targetOrg.programs.reduce(
           (sum: number, p: Program) => sum + p.certificates,
-          0
+          0,
         );
 
     const totalTestimonials = hasLoadedTestimonials
       ? allTestimonials.filter((t) => t.organizationId === targetOrg.id).length
       : targetOrg.programs.reduce(
           (sum: number, p: Program) => sum + p.testimonials,
-          0
+          0,
         );
 
     const totalPrograms = targetOrg.programs.length;
 
     const averageEngagement = Math.floor(
-      (totalTestimonials / Math.max(totalCertificates, 1)) * 100
+      (totalTestimonials / Math.max(totalCertificates, 1)) * 100,
     );
 
     return {
@@ -944,7 +961,7 @@ export default function AdminDashboard({
     // If program has organizationId, use that organization
     if (program.organizationId) {
       const organization = organizations.find(
-        (o) => o.id === program.organizationId
+        (o) => o.id === program.organizationId,
       );
       setCurrentOrganization(organization || null);
     }
@@ -1005,7 +1022,7 @@ export default function AdminDashboard({
       genCurrentUserOrganization.id,
       programSlug,
       certificateId,
-      365 // Valid for 1 year
+      365, // Valid for 1 year
     );
 
     // Remove the origin and hash from the URL to get just the path
@@ -1051,12 +1068,17 @@ export default function AdminDashboard({
         .map((id) => genAvailableSignatories.find((s: any) => s.id === id))
         .filter(Boolean);
 
-      console.log("🔒 Certificate " + (editingCertificateId ? "update" : "generation") + " with restrictions:", {
-        restrictDownload: genRestrictDownload,
-        allowedEmails: genAllowedEmails,
-        allowedEmailsCount: genAllowedEmails.length,
-        editingId: editingCertificateId,
-      });
+      console.log(
+        "🔒 Certificate " +
+          (editingCertificateId ? "update" : "generation") +
+          " with restrictions:",
+        {
+          restrictDownload: genRestrictDownload,
+          allowedEmails: genAllowedEmails,
+          allowedEmailsCount: genAllowedEmails.length,
+          editingId: editingCertificateId,
+        },
+      );
 
       // If editing, update the certificate; otherwise, create new
       const response = editingCertificateId
@@ -1071,18 +1093,18 @@ export default function AdminDashboard({
             allowedEmails: genAllowedEmails,
           } as any)
         : await certificateApi.generate(accessToken, {
-        organizationId: genCurrentUserOrganization.id,
-        programId: undefined,
-        certificateHeader: genCertificateHeader.trim(),
-        courseName: genProgramName.trim(),
-        courseDescription: genProgramDescription.trim(),
-        completionDate: genCompletionDate,
-        template: genSelectedTemplate, // Add template
-        signatories: signatories.length > 0 ? signatories : undefined,
-        students: undefined,
-        restrictDownload: genRestrictDownload, // NEW: Download restriction flag
-        allowedEmails: genAllowedEmails, // NEW: List of allowed emails
-      } as any);
+            organizationId: genCurrentUserOrganization.id,
+            programId: undefined,
+            certificateHeader: genCertificateHeader.trim(),
+            courseName: genProgramName.trim(),
+            courseDescription: genProgramDescription.trim(),
+            completionDate: genCompletionDate,
+            template: genSelectedTemplate, // Add template
+            signatories: signatories.length > 0 ? signatories : undefined,
+            students: undefined,
+            restrictDownload: genRestrictDownload, // NEW: Download restriction flag
+            allowedEmails: genAllowedEmails, // NEW: List of allowed emails
+          } as any);
 
       // Check if response has certificates
       if (!response.certificates || response.certificates.length === 0) {
@@ -1099,13 +1121,13 @@ export default function AdminDashboard({
         backendCert.organizationId,
         programSlug,
         backendCert.id,
-        365 // Valid for 1 year
+        365, // Valid for 1 year
       );
 
       // Extract just the path (remove origin and hash)
       const encryptedPath = encryptedCertUrl.replace(
         `${window.location.origin}/#/`,
-        ""
+        "",
       );
       const certificate = {
         ...response.certificates[0],
@@ -1130,8 +1152,8 @@ export default function AdminDashboard({
         // Update existing certificate in the list
         setAllCertificates((prev) =>
           prev.map((cert) =>
-            cert.id === editingCertificateId ? certificate : cert
-          )
+            cert.id === editingCertificateId ? certificate : cert,
+          ),
         );
         toast.success("Certificate updated successfully!");
       } else {
@@ -1177,7 +1199,7 @@ export default function AdminDashboard({
       ) {
         toast.error(
           "Network error: Please check your connection and try again",
-          { duration: 5000 }
+          { duration: 5000 },
         );
       }
     }
@@ -1236,7 +1258,7 @@ export default function AdminDashboard({
             const signatories = genSelectedSignatories
               .filter((id) => id && id !== "none")
               .map((id) =>
-                genAvailableSignatories.find((s: any) => s.id === id)
+                genAvailableSignatories.find((s: any) => s.id === id),
               )
               .filter(Boolean);
 
@@ -1284,7 +1306,7 @@ export default function AdminDashboard({
 
         setGenIsGenerating(false);
         toast.success(
-          `${certificates.length} certificates generated successfully!`
+          `${certificates.length} certificates generated successfully!`,
         );
         setGenActiveTab("results");
 
@@ -1321,8 +1343,8 @@ export default function AdminDashboard({
           `"${cert.studentName}","${cert.email}","${
             cert.id
           }","${buildFullCertificateUrl(cert.certificateUrl)}","${new Date(
-            cert.generatedAt
-          ).toLocaleString()}"`
+            cert.generatedAt,
+          ).toLocaleString()}"`,
       )
       .join("\n");
 
@@ -1346,7 +1368,7 @@ export default function AdminDashboard({
     setSelectedCertificates((prev) =>
       prev.includes(certId)
         ? prev.filter((id) => id !== certId)
-        : [...prev, certId]
+        : [...prev, certId],
     );
   };
 
@@ -1396,7 +1418,7 @@ export default function AdminDashboard({
 
     if (
       !window.confirm(
-        `Are you sure you want to delete ${selectedCertificates.length} certificate(s)?`
+        `Are you sure you want to delete ${selectedCertificates.length} certificate(s)?`,
       )
     ) {
       return;
@@ -1405,23 +1427,23 @@ export default function AdminDashboard({
     try {
       const response = await certificateApi.deleteBulk(
         accessToken,
-        selectedCertificates
+        selectedCertificates,
       );
 
       // Update local state after successful deletion
       setAllCertificates((prev) =>
-        prev.filter((cert) => !selectedCertificates.includes(cert.id))
+        prev.filter((cert) => !selectedCertificates.includes(cert.id)),
       );
       setSelectedCertificates([]);
       setHasLoadedCertificates(true); // Keep as loaded since we just updated it
 
       if (response.errors && response.errors.length > 0) {
         toast.warning(
-          `Deleted ${response.deletedCount} certificate(s). ${response.errors.length} failed.`
+          `Deleted ${response.deletedCount} certificate(s). ${response.errors.length} failed.`,
         );
       } else {
         toast.success(
-          `${response.deletedCount} certificate(s) deleted successfully`
+          `${response.deletedCount} certificate(s) deleted successfully`,
         );
       }
     } catch (error: any) {
@@ -1450,13 +1472,13 @@ export default function AdminDashboard({
     try {
       const response = await certificateApi.getForOrganization(
         accessToken,
-        currentOrganization.id
+        currentOrganization.id,
       );
       if (response.certificates) {
         setAllCertificates(response.certificates); // Use allCertificates for full history
         setHasLoadedCertificates(true);
         toast.success(
-          `Refreshed! Found ${response.certificates.length} certificate(s)`
+          `Refreshed! Found ${response.certificates.length} certificate(s)`,
         );
       } else {
         setAllCertificates([]); // Use allCertificates for full history
@@ -1849,8 +1871,8 @@ export default function AdminDashboard({
                             {currentOrganization
                               ? `Managing certificate programs for ${currentOrganization.name}`
                               : organizations.length > 0
-                              ? `Managing certificate programs for your organization`
-                              : "Get started by creating your organization and first program"}
+                                ? `Managing certificate programs for your organization`
+                                : "Get started by creating your organization and first program"}
                           </p>
                           {currentOrganization && (
                             <div className="flex items-center gap-2 text-muted-foreground">
@@ -2250,7 +2272,9 @@ export default function AdminDashboard({
               {activeTab === "generate" && (
                 <div className="space-y-4 md:space-y-6">
                   {/* Page Header */}
-                  <Card className={`border-l-4 ${editingCertificateId ? 'border-l-orange-500' : 'border-l-primary'}`}>
+                  <Card
+                    className={`border-l-4 ${editingCertificateId ? "border-l-orange-500" : "border-l-primary"}`}
+                  >
                     <CardContent className="pt-6">
                       <div className="flex items-center justify-between gap-4">
                         <div className="flex-1 min-w-0">
@@ -2272,13 +2296,14 @@ export default function AdminDashboard({
                             </div>
                           )}
                           <h2 className="text-xl md:text-2xl font-bold mb-2 truncate">
-                            {editingCertificateId ? 'Edit Certificate' : 'Generate Certificates'}
+                            {editingCertificateId
+                              ? "Edit Certificate"
+                              : "Generate Certificates"}
                           </h2>
                           <p className="text-muted-foreground mb-2 text-sm md:text-base">
-                            {editingCertificateId 
-                              ? 'Update your certificate details. The results link will remain the same.'
-                              : 'Create beautiful, professional certificates for your students'
-                            }
+                            {editingCertificateId
+                              ? "Update your certificate details. The results link will remain the same."
+                              : "Create beautiful, professional certificates for your students"}
                           </p>
                         </div>
                       </div>
@@ -2508,7 +2533,7 @@ export default function AdminDashboard({
                                           >
                                             {sig.name} - {sig.title}
                                           </SelectItem>
-                                        )
+                                        ),
                                       )}
                                     </SelectContent>
                                   </Select>
@@ -2545,7 +2570,7 @@ export default function AdminDashboard({
                                           >
                                             {sig.name} - {sig.title}
                                           </SelectItem>
-                                        )
+                                        ),
                                       )}
                                     </SelectContent>
                                   </Select>
@@ -2591,13 +2616,16 @@ export default function AdminDashboard({
                                     Restrict Certificate Downloads
                                   </Label>
                                   <p className="text-xs text-gray-500 mt-1">
-                                    Only allow specific email addresses to download certificates
+                                    Only allow specific email addresses to
+                                    download certificates
                                   </p>
                                 </div>
                               </div>
                               <Button
                                 type="button"
-                                variant={genRestrictDownload ? "default" : "outline"}
+                                variant={
+                                  genRestrictDownload ? "default" : "outline"
+                                }
                                 size="sm"
                                 onClick={() => {
                                   setGenRestrictDownload(!genRestrictDownload);
@@ -2608,7 +2636,11 @@ export default function AdminDashboard({
                                     setShowAllEmails(false); // Reset show all state
                                   }
                                 }}
-                                className={genRestrictDownload ? "bg-orange-600 hover:bg-orange-700" : ""}
+                                className={
+                                  genRestrictDownload
+                                    ? "bg-orange-600 hover:bg-orange-700"
+                                    : ""
+                                }
                               >
                                 {genRestrictDownload ? "Enabled" : "Disabled"}
                               </Button>
@@ -2619,8 +2651,10 @@ export default function AdminDashboard({
                                 <Alert className="bg-orange-50 border-orange-200">
                                   <Shield className="h-4 w-4 text-orange-600" />
                                   <AlertDescription className="text-sm text-gray-700">
-                                    When enabled, only students with email addresses in the approved list can download certificates. 
-                                    Students will need to verify their email before downloading.
+                                    When enabled, only students with email
+                                    addresses in the approved list can download
+                                    certificates. Students will need to verify
+                                    their email before downloading.
                                   </AlertDescription>
                                 </Alert>
 
@@ -2635,21 +2669,41 @@ export default function AdminDashboard({
                                       type="email"
                                       placeholder="student@example.com"
                                       value={genEmailInput}
-                                      onChange={(e) => setGenEmailInput(e.target.value)}
+                                      onChange={(e) =>
+                                        setGenEmailInput(e.target.value)
+                                      }
                                       onKeyPress={(e) => {
                                         if (e.key === "Enter") {
                                           e.preventDefault();
-                                          const email = genEmailInput.trim().toLowerCase();
-                                          if (email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                                            if (!genAllowedEmails.includes(email)) {
-                                              setGenAllowedEmails([...genAllowedEmails, email]);
+                                          const email = genEmailInput
+                                            .trim()
+                                            .toLowerCase();
+                                          if (
+                                            email &&
+                                            /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
+                                              email,
+                                            )
+                                          ) {
+                                            if (
+                                              !genAllowedEmails.includes(email)
+                                            ) {
+                                              setGenAllowedEmails([
+                                                ...genAllowedEmails,
+                                                email,
+                                              ]);
                                               setGenEmailInput("");
-                                              toast.success("Email added to approved list");
+                                              toast.success(
+                                                "Email added to approved list",
+                                              );
                                             } else {
-                                              toast.error("Email already in list");
+                                              toast.error(
+                                                "Email already in list",
+                                              );
                                             }
                                           } else {
-                                            toast.error("Please enter a valid email address");
+                                            toast.error(
+                                              "Please enter a valid email address",
+                                            );
                                           }
                                         }
                                       }}
@@ -2658,17 +2712,35 @@ export default function AdminDashboard({
                                     <Button
                                       type="button"
                                       onClick={() => {
-                                        const email = genEmailInput.trim().toLowerCase();
-                                        if (email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                                          if (!genAllowedEmails.includes(email)) {
-                                            setGenAllowedEmails([...genAllowedEmails, email]);
+                                        const email = genEmailInput
+                                          .trim()
+                                          .toLowerCase();
+                                        if (
+                                          email &&
+                                          /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
+                                            email,
+                                          )
+                                        ) {
+                                          if (
+                                            !genAllowedEmails.includes(email)
+                                          ) {
+                                            setGenAllowedEmails([
+                                              ...genAllowedEmails,
+                                              email,
+                                            ]);
                                             setGenEmailInput("");
-                                            toast.success("Email added to approved list");
+                                            toast.success(
+                                              "Email added to approved list",
+                                            );
                                           } else {
-                                            toast.error("Email already in list");
+                                            toast.error(
+                                              "Email already in list",
+                                            );
                                           }
                                         } else {
-                                          toast.error("Please enter a valid email address");
+                                          toast.error(
+                                            "Please enter a valid email address",
+                                          );
                                         }
                                       }}
                                     >
@@ -2676,16 +2748,19 @@ export default function AdminDashboard({
                                     </Button>
                                   </div>
                                   <p className="text-xs text-gray-500">
-                                    Press Enter or click + to add an email to the approved list
+                                    Press Enter or click + to add an email to
+                                    the approved list
                                   </p>
-                                  
+
                                   {/* Bulk Import Buttons */}
                                   <div className="flex gap-2 pt-2">
                                     <Button
                                       type="button"
                                       variant="outline"
                                       size="sm"
-                                      onClick={() => setShowBulkImport(!showBulkImport)}
+                                      onClick={() =>
+                                        setShowBulkImport(!showBulkImport)
+                                      }
                                       className="flex items-center gap-2"
                                     >
                                       <Upload className="w-4 h-4" />
@@ -2705,7 +2780,10 @@ export default function AdminDashboard({
                                         className="flex items-center gap-2"
                                         onClick={(e) => {
                                           e.preventDefault();
-                                          (e.currentTarget.previousElementSibling as HTMLInputElement)?.click();
+                                          (
+                                            e.currentTarget
+                                              .previousElementSibling as HTMLInputElement
+                                          )?.click();
                                         }}
                                       >
                                         <FileText className="w-4 h-4" />
@@ -2717,13 +2795,18 @@ export default function AdminDashboard({
                                   {/* Bulk Import Textarea */}
                                   {showBulkImport && (
                                     <div className="space-y-2 pt-2 border-t">
-                                      <Label htmlFor="bulkEmails" className="text-sm font-medium">
+                                      <Label
+                                        htmlFor="bulkEmails"
+                                        className="text-sm font-medium"
+                                      >
                                         Paste Multiple Emails
                                       </Label>
                                       <textarea
                                         id="bulkEmails"
                                         value={bulkEmailInput}
-                                        onChange={(e) => setBulkEmailInput(e.target.value)}
+                                        onChange={(e) =>
+                                          setBulkEmailInput(e.target.value)
+                                        }
                                         placeholder="Paste emails here (comma, semicolon, or newline separated)&#10;&#10;Example:&#10;student1@example.com, student2@example.com&#10;student3@example.com&#10;student4@example.com"
                                         className="w-full h-32 px-3 py-2 text-sm border rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-orange-500"
                                       />
@@ -2757,14 +2840,21 @@ export default function AdminDashboard({
                                   <div className="space-y-2">
                                     <div className="flex items-center justify-between">
                                       <Label className="text-sm text-gray-700">
-                                        {genAllowedEmails.length} {genAllowedEmails.length === 1 ? "email" : "emails"} approved
+                                        {genAllowedEmails.length}{" "}
+                                        {genAllowedEmails.length === 1
+                                          ? "email"
+                                          : "emails"}{" "}
+                                        approved
                                       </Label>
-                                      {genAllowedEmails.length > EMAIL_DISPLAY_LIMIT && (
+                                      {genAllowedEmails.length >
+                                        EMAIL_DISPLAY_LIMIT && (
                                         <Button
                                           type="button"
                                           variant="ghost"
                                           size="sm"
-                                          onClick={() => setShowAllEmails(!showAllEmails)}
+                                          onClick={() =>
+                                            setShowAllEmails(!showAllEmails)
+                                          }
                                           className="text-xs text-orange-600 hover:text-orange-700"
                                         >
                                           {showAllEmails ? (
@@ -2775,28 +2865,41 @@ export default function AdminDashboard({
                                           ) : (
                                             <>
                                               <ChevronRight className="w-3 h-3 mr-1" />
-                                              Show All ({genAllowedEmails.length})
+                                              Show All (
+                                              {genAllowedEmails.length})
                                             </>
                                           )}
                                         </Button>
                                       )}
                                     </div>
                                     <div className="max-h-60 overflow-y-auto border rounded-lg p-2 bg-gray-50 space-y-1">
-                                      {(showAllEmails ? genAllowedEmails : genAllowedEmails.slice(0, EMAIL_DISPLAY_LIMIT)).map((email, index) => (
+                                      {(showAllEmails
+                                        ? genAllowedEmails
+                                        : genAllowedEmails.slice(
+                                            0,
+                                            EMAIL_DISPLAY_LIMIT,
+                                          )
+                                      ).map((email, index) => (
                                         <div
                                           key={index}
                                           className="flex items-center justify-between bg-white px-3 py-2 rounded border text-sm"
                                         >
-                                          <span className="text-gray-700">{email}</span>
+                                          <span className="text-gray-700">
+                                            {email}
+                                          </span>
                                           <Button
                                             type="button"
                                             variant="ghost"
                                             size="sm"
                                             onClick={() => {
                                               setGenAllowedEmails(
-                                                genAllowedEmails.filter((_, i) => i !== index)
+                                                genAllowedEmails.filter(
+                                                  (_, i) => i !== index,
+                                                ),
                                               );
-                                              toast.success("Email removed from approved list");
+                                              toast.success(
+                                                "Email removed from approved list",
+                                              );
                                             }}
                                             className="h-6 w-6 p-0 text-red-600 hover:text-red-700 hover:bg-red-50"
                                           >
@@ -2804,11 +2907,14 @@ export default function AdminDashboard({
                                           </Button>
                                         </div>
                                       ))}
-                                      {!showAllEmails && genAllowedEmails.length > EMAIL_DISPLAY_LIMIT && (
-                                        <div className="text-center py-2 text-xs text-gray-500">
-                                          Showing {EMAIL_DISPLAY_LIMIT} of {genAllowedEmails.length} emails
-                                        </div>
-                                      )}
+                                      {!showAllEmails &&
+                                        genAllowedEmails.length >
+                                          EMAIL_DISPLAY_LIMIT && (
+                                          <div className="text-center py-2 text-xs text-gray-500">
+                                            Showing {EMAIL_DISPLAY_LIMIT} of{" "}
+                                            {genAllowedEmails.length} emails
+                                          </div>
+                                        )}
                                     </div>
                                   </div>
                                 )}
@@ -2817,7 +2923,9 @@ export default function AdminDashboard({
                                   <Alert className="bg-yellow-50 border-yellow-200">
                                     <AlertTriangle className="h-4 w-4 text-yellow-600" />
                                     <AlertDescription className="text-sm text-gray-700">
-                                      No approved emails yet. Add at least one email address to enable download restrictions.
+                                      No approved emails yet. Add at least one
+                                      email address to enable download
+                                      restrictions.
                                     </AlertDescription>
                                   </Alert>
                                 )}
@@ -2865,49 +2973,46 @@ export default function AdminDashboard({
                                           organizationLogo={
                                             currentOrganization.logo
                                           }
-                                          customTemplateConfig={
-                                            genCustomTemplateConfig
-                                          }
                                           signatoryName1={
                                             genAvailableSignatories.find(
                                               (s: any) =>
                                                 s.id ===
-                                                genSelectedSignatories[0]
+                                                genSelectedSignatories[0],
                                             )?.name
                                           }
                                           signatoryTitle1={
                                             genAvailableSignatories.find(
                                               (s: any) =>
                                                 s.id ===
-                                                genSelectedSignatories[0]
+                                                genSelectedSignatories[0],
                                             )?.title
                                           }
                                           signatureUrl1={
                                             genAvailableSignatories.find(
                                               (s: any) =>
                                                 s.id ===
-                                                genSelectedSignatories[0]
+                                                genSelectedSignatories[0],
                                             )?.signatureUrl
                                           }
                                           signatoryName2={
                                             genAvailableSignatories.find(
                                               (s: any) =>
                                                 s.id ===
-                                                genSelectedSignatories[1]
+                                                genSelectedSignatories[1],
                                             )?.name
                                           }
                                           signatoryTitle2={
                                             genAvailableSignatories.find(
                                               (s: any) =>
                                                 s.id ===
-                                                genSelectedSignatories[1]
+                                                genSelectedSignatories[1],
                                             )?.title
                                           }
                                           signatureUrl2={
                                             genAvailableSignatories.find(
                                               (s: any) =>
                                                 s.id ===
-                                                genSelectedSignatories[1]
+                                                genSelectedSignatories[1],
                                             )?.signatureUrl
                                           }
                                         />
@@ -2947,7 +3052,9 @@ export default function AdminDashboard({
                               {genIsGenerating ? (
                                 <>
                                   <RefreshCw className="w-4 h-4 mr-2 animate-spin" />
-                                  {editingCertificateId ? 'Updating...' : 'Generating...'}
+                                  {editingCertificateId
+                                    ? "Updating..."
+                                    : "Generating..."}
                                 </>
                               ) : (
                                 <>
@@ -2998,12 +3105,12 @@ export default function AdminDashboard({
                                   setGenActiveTab("setup");
                                   setGenGeneratedCertificates([]);
                                   setGenCertificateHeader(
-                                    "Certificate of Completion"
+                                    "Certificate of Completion",
                                   );
                                   setGenProgramName("");
                                   setGenProgramDescription("");
                                   setGenCompletionDate(
-                                    new Date().toISOString().split("T")[0]
+                                    new Date().toISOString().split("T")[0],
                                   );
                                   setGenSelectedTemplate("");
                                   setGenRestrictDownload(false); // Reset restriction toggle
@@ -3046,7 +3153,7 @@ export default function AdminDashboard({
                                         onClick={() => {
                                           genCopyCertificateUrl(
                                             cert.certificateUrl,
-                                            cert
+                                            cert,
                                           );
                                         }}
                                       >
@@ -3058,7 +3165,7 @@ export default function AdminDashboard({
                                         onClick={(e) => {
                                           const fullUrl =
                                             buildFullCertificateUrl(
-                                              cert.certificateUrl
+                                              cert.certificateUrl,
                                             );
                                           // Navigate in the same tab - hash routing works this way!
                                           window.location.href = fullUrl;
@@ -3217,7 +3324,7 @@ export default function AdminDashboard({
                                   .includes(certificateSearch.toLowerCase()) ||
                                 cert.id
                                   .toLowerCase()
-                                  .includes(certificateSearch.toLowerCase())
+                                  .includes(certificateSearch.toLowerCase()),
                             )
                             .map((cert) => (
                               <Card
@@ -3230,7 +3337,7 @@ export default function AdminDashboard({
                                     <input
                                       type="checkbox"
                                       checked={selectedCertificates.includes(
-                                        cert.id
+                                        cert.id,
                                       )}
                                       onChange={() =>
                                         toggleCertificateSelection(cert.id)
@@ -3258,7 +3365,7 @@ export default function AdminDashboard({
                                       <Calendar className="w-3 h-3" />
                                       <span>
                                         {new Date(
-                                          cert.generatedAt
+                                          cert.generatedAt,
                                         ).toLocaleDateString("en-US", {
                                           month: "numeric",
                                           day: "numeric",
@@ -3275,7 +3382,7 @@ export default function AdminDashboard({
                                       size="sm"
                                       onClick={(e) => {
                                         const fullUrl = buildFullCertificateUrl(
-                                          cert.certificateUrl
+                                          cert.certificateUrl,
                                         );
                                         // Navigate in the same tab - hash routing works this way!
                                         window.location.href = fullUrl;
@@ -3291,8 +3398,8 @@ export default function AdminDashboard({
                                       onClick={() =>
                                         copyCertificateLink(
                                           buildFullCertificateUrl(
-                                            cert.certificateUrl
-                                          )
+                                            cert.certificateUrl,
+                                          ),
                                         )
                                       }
                                     >

@@ -34,7 +34,7 @@
     "@radix-ui/react-tooltip": "^1.1.8",
     "@radix-ui/react-visually-hidden": "^1.1.1",
     "@supabase/supabase-js": "^2.87.1",
-    "@tailwindcss/vite": "^4.1.17",
+    "@tailwindcss/vite": "^4.1.18",
     "class-variance-authority": "^0.7.1",
     "clsx": "*",
     "cmdk": "^1.1.1",
@@ -60,9 +60,9 @@
     "react-scroll": "^1.9.3",
     "recharts": "^2.15.2",
     "sonner": "^2.0.3",
-    "supabase": "^2.54.11",
+    "supabase": "^0.5.0",
     "tailwind-merge": "*",
-    "tailwindcss": "^4.1.17",
+    "tailwindcss": "^4.1.18",
     "vaul": "^1.1.2"
   },
   "devDependencies": {
@@ -71,7 +71,7 @@
     "@types/react-dom": "^19.2.2",
     "@vitejs/plugin-react-swc": "^3.10.2",
     "terser": "^5.44.1",
-    "vite": "6.3.5"
+    "vite": "^6.4.1"
   },
   "scripts": {
     "dev": "vite",

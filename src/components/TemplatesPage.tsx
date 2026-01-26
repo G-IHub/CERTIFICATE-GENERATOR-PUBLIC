@@ -19,6 +19,7 @@ import CertificateRenderer from "./CertificateRenderer";
 import PreviewWrapper from "./PreviewWrapper";
 import type { Organization } from "../App";
 import { projectId, publicAnonKey } from "../utils/supabase/info";
+import TemplateReseedButton from "./TemplateReseedButton";
 
 // Simple error boundary for preview rendering
 class TemplateErrorBoundary extends React.Component<
@@ -95,7 +96,7 @@ export default function TemplatesPage({
       // Debug: log template ids/types to help trace preview issues
       try {
         // eslint-disable-next-line no-console
-        } catch (e) {}
+      } catch (e) {}
       setTemplates(loaded);
     } catch (e: any) {
       console.error("Failed to load templates", e);
@@ -161,7 +162,7 @@ export default function TemplatesPage({
         toast.success(
           `✅ ${data.message || "Templates reseeded successfully!"} (${
             data.count || "?"
-          } templates)`
+          } templates)`,
         );
         // Reload templates after reseeding
         await loadTemplates();
@@ -170,14 +171,14 @@ export default function TemplatesPage({
         toast.error(
           data.error ||
             data.message ||
-            `Failed to reseed (status ${response.status})`
+            `Failed to reseed (status ${response.status})`,
         );
       }
     } catch (error) {
       console.error("Error reseeding templates (caught):", error);
       // Show user-friendly guidance
       toast.error(
-        "Reseed failed — check browser DevTools Network tab or run the reseed command manually. See console for details."
+        "Reseed failed — check browser DevTools Network tab or run the reseed command manually. See console for details.",
       );
     } finally {
       setIsReseeding(false);
@@ -190,14 +191,14 @@ export default function TemplatesPage({
     console.debug(
       "TemplatesPage: handleSelect called",
       template?.id,
-      template?.name
+      template?.name,
     );
     const premium = template.type === "premium";
     if (premium && !isOrgPremium(organization)) {
       // revalidate with backend to avoid stale local state
       const ok = await revalidateOrgPremium(
         organization.id,
-        accessToken || undefined
+        accessToken || undefined,
       );
       if (!ok) {
         toast.error("This template requires a Premium plan. Please upgrade.");
@@ -210,7 +211,7 @@ export default function TemplatesPage({
   };
 
   const freeTemplates = templates.filter(
-    (t) => t.type !== "premium" && (t.type === "default" || t.isDefault)
+    (t) => t.type !== "premium" && (t.type === "default" || t.isDefault),
   );
   const premiumTemplates = templates.filter((t) => t.type === "premium");
 
@@ -238,6 +239,8 @@ export default function TemplatesPage({
         </div>
 
         {/* Reseed Templates Button removed per user request. */}
+
+        <TemplateReseedButton />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -273,12 +276,6 @@ export default function TemplatesPage({
                     mode="template-selection"
                     organizationName={organization?.name}
                     organizationLogo={organization?.logo}
-                    // Only pass customTemplateConfig for user-created custom templates.
-                    // Some template records may include a config object even for defaults;
-                    // treating those as custom causes the generic renderer to be used for all templates.
-                    customTemplateConfig={
-                      template.type === "custom" ? template.config : undefined
-                    }
                   />
                 </PreviewWrapper>
               </TemplateErrorBoundary>
@@ -311,7 +308,7 @@ export default function TemplatesPage({
                     console.debug(
                       "TemplatesPage: Preview clicked",
                       template?.id,
-                      template?.name
+                      template?.name,
                     );
                     setPreview(template);
                   }}
@@ -329,14 +326,14 @@ export default function TemplatesPage({
                     console.debug(
                       "TemplatesPage: Use (grid) clicked",
                       template?.id,
-                      template?.name
+                      template?.name,
                     );
                     if (
                       template.type === "premium" &&
                       !isOrgPremium(organization)
                     ) {
                       toast.error(
-                        "This is a premium template. Upgrade to use premium templates."
+                        "This is a premium template. Upgrade to use premium templates.",
                       );
                       navigate("/billing");
                       return;
@@ -429,11 +426,11 @@ export default function TemplatesPage({
                   ) {
                     const ok = await revalidateOrgPremium(
                       organization.id,
-                      accessToken || undefined
+                      accessToken || undefined,
                     );
                     if (!ok) {
                       toast.error(
-                        "This template requires a Premium plan. Please upgrade."
+                        "This template requires a Premium plan. Please upgrade.",
                       );
                       return;
                     }

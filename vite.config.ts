@@ -9,6 +9,7 @@ import react from '@vitejs/plugin-react-swc';
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
       alias: {
+        '@': path.resolve(__dirname, './src'),
         'vaul@1.1.2': 'vaul',
         'sonner@2.0.3': 'sonner',
         'recharts@2.15.2': 'recharts',
@@ -53,9 +54,9 @@ import react from '@vitejs/plugin-react-swc';
         '@radix-ui/react-accordion@1.2.3': '@radix-ui/react-accordion',
         '@jsr/supabase__supabase-js@2.49.8': '@jsr/supabase__supabase-js',
         '@jsr/supabase__supabase-js@2': '@jsr/supabase__supabase-js',
-        '@': path.resolve(__dirname, './src'),
       },
     },
+    assetsInclude: ['**/*.png', '**/*.svg', '**/*.jpg', '**/*.jpeg', '**/*.gif'],
     build: {
       target: 'esnext',
       outDir: 'build',

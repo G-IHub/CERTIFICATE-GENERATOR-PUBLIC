@@ -87,8 +87,8 @@ export default function CertificateTemplate17({
         style={{
           width: "1056px",
             height: "600px",
-          paddingLeft: "130px",
-          paddingRight: "150px",
+          paddingLeft: "",
+          paddingRight: "300px",
           background: "white",
         }}
       >

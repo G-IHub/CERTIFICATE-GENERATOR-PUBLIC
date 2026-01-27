@@ -50,7 +50,7 @@ const Navbar: React.FC = () => {
             : "p-5 md:py-6 md:px-28 md:sticky gap-2"
         } z-50`}
       >
-        <div className="flex justify-between items-center rounded-lg px-4 py-8 w-[450px] h-14 bg-white md:bg-[#FFFFFF66] border-2 border-[#FFFFFF1F] text-sm">
+        <div className="flex justify-between items-center rounded-lg px-4 py-8 w-full md:w-auto h-14 bg-white md:bg-[#FFFFFF66] border-2 border-[#FFFFFF1F] text-sm">
           <div className="flex items-center gap-2">
             <Link
               to="hero"

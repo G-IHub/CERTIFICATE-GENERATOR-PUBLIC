@@ -85,11 +85,12 @@ export default function CertificateTemplate17({
         ref={ref}
         className="shadow-sm bg-white py-10 rounded-sm flex items-center justify-center relative"
         style={{
-          width: "1056px",
-            height: "600px",
+          width: "800px",
+          height: "600px",
           paddingLeft: "",
-          paddingRight: "300px",
+          // paddingRight: "300px",
           background: "white",
+          marginLeft: "-270px",
         }}
       >
         <div className="relative w-[200px] h-[600px] flex flex-col overflow-hidden z-10 bg-gradient-to-b from-pink-400 via-purple-900 to-purple-900">
@@ -130,7 +131,7 @@ export default function CertificateTemplate17({
               {recipientName}
             </div>
 
-            <p className="capitalize py-6 text-center text-black font-base text-sm leading-relaxed">
+            <p className="capitalize h-[160px] py-6 text-center text-black font-base text-sm leading-relaxed">
               {description}
               <span className="font-bold uppercase text-black">
                 {" "}
@@ -148,19 +149,19 @@ export default function CertificateTemplate17({
                 <img src={barcode} alt="barcode" className="w-full" />
               </div>
 
-              <div className="absolute left-1/2 top-[60%] transform -translate-x-1/2 -translate-y-1/2 z-20">
+              <div className="absolute left-[270px] top-[60%] transform -translate-x-1/2 -translate-y-1/2 z-20">
                 <img
                   src={award}
                   alt="award"
-                  className="w-[300px] object-contain opacity-100"
+                  className="w-[200px] object-contain opacity-100"
                 />
               </div>
 
               <div className="flex justify-between items-end">
-                <div className="flex gap-1 justify-center items-center">
+                <div className="flex gap-1 justify-between items-center">
                   {/* Signature 1 - Always show if name is provided */}
                   {signatoryName1 && (
-                    <div className="flex flex-col items-center text-center">
+                    <div className="flex flex-col items-center text-center px-5 mx-1">
                       {signatureUrl1 && (
                         <img
                           src={signatureUrl1}
@@ -188,7 +189,7 @@ export default function CertificateTemplate17({
 
                   {/* Signature 2 - Always show if name is provided */}
                   {signatoryName2 && (
-                    <div className="flex flex-col items-center text-center">
+                    <div className="flex flex-col items-center text-center px-5 mx-1">
                       {signatureUrl2 && (
                         <img
                           src={signatureUrl2}

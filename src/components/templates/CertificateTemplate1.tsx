@@ -139,8 +139,7 @@ export default function CertificateTemplate1({
               className="text-center text-xs"
               style={{ marginLeft: 10, marginRight: 10 }}
             >
-              {description ||
-                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio commodi incidunt harum, doloremque reprehenderit voluptas aspernatu"}
+              {description}
             </p>
           </div>
 

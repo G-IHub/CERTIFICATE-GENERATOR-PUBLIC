@@ -53,7 +53,7 @@ export default function CertificateTemplate18({
 
   const containerClass = isPreview
     ? "w-full mx-auto origin-center overflow-visible flex justify-center"
-    : "min-w-[1056px] flex justify-center items-center ";
+    : "min-w-[800px] flex justify-center items-center ";
 
   // Determine signature count
   const hasSignature1 = signatoryName1 || signatoryTitle1 || signatureUrl1;
@@ -65,28 +65,33 @@ export default function CertificateTemplate18({
       style={{
         transform: `scale(${scale})`,
         backgroundColor: "transparent",
+        overflow: "hidden",
+        // width: "0",
+        // marginLeft: "-270px",
+        // height: isPreview ? "650px" : "600px",
       }}
     >
       <div
         ref={ref}
         className="shadow-sm bg-white py-10 rounded-sm flex items-center justify-center relative"
         style={{
-          width: "1056px",
+          width: "800px",
           height: "600px",
           paddingLeft: "",
-          paddingRight: "300px",
+          // paddingRight: "300px",
           background: "white",
+          // marginLeft: "-270px",
         }}
       >
         {/* Watermark */}
         <img
           src={watermark}
           alt="watermark"
-          className="absolute w-[1000px] h-[600px] opacity-30 z-0 object-cover"
+          className="absolute w-full h-[600px] opacity-30 z-0 object-cover"
         />
 
         {/* Main Certificate Container */}
-        <div className="relative w-[1056px] h-[600px] overflow-hidden">
+        <div className="relative w-[800px] h-[600px] overflow-hidden">
           <div className="flex flex-col h-full p-6 justify-between">
             {/* Header with Logo */}
             <div className="flex text-center mx-auto pl-[200px] ">
@@ -115,7 +120,7 @@ export default function CertificateTemplate18({
             </div>
 
             {/* Student Info Section */}
-            <div className="text-center pt-5 pb-10 w-[1000px] h-[200px] mt-5">
+            <div className="text-center pt-5 pb-10 w-[800px] h-[200px] mt-5">
               <p className="text-3xl text-purple-800 font-semibold border-b-2 mx-[200px] pb-2 mb-3 border-purple-800 border-dashed">
                 {recipientName}
               </p>
@@ -138,7 +143,7 @@ export default function CertificateTemplate18({
               <div className="flex gap-1 justify-center items-center">
                 {/* Signature 1 - Always show if name is provided */}
                 {signatoryName1 && (
-                  <div className="flex flex-col items-center text-center">
+                  <div className="flex flex-col items-center text-center px-20 mx-16">
                     {signatureUrl1 && (
                       <img
                         src={signatureUrl1}

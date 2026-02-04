@@ -185,8 +185,7 @@ export default function CertificateTemplate2({
           </p>
 
           <p className="text-center">
-            {description ||
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat."}
+            {description}
           </p>
 
           <div className="mt-10 flex justify-between items-end">

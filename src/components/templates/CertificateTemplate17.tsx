@@ -70,7 +70,7 @@ export default function CertificateTemplate17({
 
     const containerClass = isPreview
         ? "w-full mx-auto origin-center overflow-visible flex justify-center"
-        : "min-w-[1056px] flex justify-center items-center ";
+        : "min-w-[800px] flex justify-center items-center ";
 
   // Determine signature count
   const hasSignature1 = signatoryName1 || signatoryTitle1 || signatureUrl1;
@@ -90,7 +90,7 @@ export default function CertificateTemplate17({
           paddingLeft: "",
           // paddingRight: "300px",
           background: "white",
-          marginLeft: "-270px",
+          // marginLeft: "-270px",
         }}
       >
         <div className="relative w-[200px] h-[600px] flex flex-col overflow-hidden z-10 bg-gradient-to-b from-pink-400 via-purple-900 to-purple-900">

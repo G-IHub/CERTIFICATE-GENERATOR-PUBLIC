@@ -1211,13 +1211,9 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
             {/* Certificate Display */}
             <div className="lg:col-span-3">
-              <Card className="">
+              <Card className="overflow-hidden">
                 <CardContent className="p-0">
-                  <div
-                    ref={certificateRef}
-                    className="w-full lg:w-full"
-                    style={{ minWidth: "1056px", minHeight: "600px" }}
-                  >
+                  <div ref={certificateRef} className="w-full">
                     <CertificateRenderer
                       templateId={
                         certificate.template ||
@@ -1257,7 +1253,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
               {/* Promo Card: small advertisement and invite */}
               <div className="mt-4">
                 <Card>
-                  <CardContent className="p-4 flex flex-col items-center text-center gap-4">
+                  <CardContent className="p-4 flex items-center gap-4">
                     <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
                       <img
                         src={logo}
@@ -1291,7 +1287,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
             </div>
 
             {/* Sidebar */}
-            <div className="lg:col-span-1 space-y-6 z-10">
+            <div className="lg:col-span-1 space-y-6">
               {/* Actions */}
               <Card>
                 <CardContent className="p-6">

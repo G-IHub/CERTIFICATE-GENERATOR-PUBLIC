@@ -147,7 +147,7 @@ export default function CertificateTemplate1({
             className="flex justify-between items-end"
             style={{ marginTop: "32px" }}
           >
-            <div className="flex gap-8 justify-center items-center">
+            <div className="flex gap-8 justify-center items-center ml-40">
               {/* Signature 1 - Always show if name is provided */}
               {signatoryName1 && (
                 <div

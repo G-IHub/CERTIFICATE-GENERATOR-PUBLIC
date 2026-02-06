@@ -1211,9 +1211,13 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
             {/* Certificate Display */}
             <div className="lg:col-span-3">
-              <Card className="overflow-hidden">
+              <Card className="w-full overflow-x-auto">
                 <CardContent className="p-0">
-                  <div ref={certificateRef} className="w-full">
+                  <div
+                    ref={certificateRef}
+                    className="flex justify-center min-w-max"
+                    // style={{ minWidth: "1056px", minHeight: "600px" }}
+                  >
                     <CertificateRenderer
                       templateId={
                         certificate.template ||
@@ -1253,7 +1257,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
               {/* Promo Card: small advertisement and invite */}
               <div className="mt-4">
                 <Card>
-                  <CardContent className="p-4 flex items-center gap-4">
+                  <CardContent className="p-4 flex flex-col sm:flex-row items-center gap-4">
                     <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
                       <img
                         src={logo}
@@ -1262,8 +1266,8 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
                       />
                     </div>
                     <div className="flex-1">
-                      <h4 className="font-semibold">{PLATFORM_NAME}</h4>
-                      <p className="text-sm text-gray-600">
+                      <h4 className="font-semibold text-center">{PLATFORM_NAME}</h4>
+                      <p className="text-sm text-center text-gray-600">
                         You want to create, issue and verify professional
                         certificates effortlessly and speedily? Try Certifyer
                         for free today.

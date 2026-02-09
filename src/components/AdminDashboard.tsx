@@ -102,6 +102,7 @@ import CertificateRenderer from "./CertificateRenderer";
 import PreviewWrapper from "./PreviewWrapper";
 import TemplatesPage from "./TemplatesPage";
 import CertificateGenerationModal from "./CertificateGenerationModal";
+import { EditCertificateModal } from "./EditeCertificateModal";
 import { Skeleton } from "./ui/skeleton";
 import TestimonialsSkeleton from "./skeletons/TestimonialsSkeleton";
 import AnalyticsSkeleton from "./skeletons/AnalyticsSkeleton";
@@ -236,7 +237,6 @@ export default function AdminDashboard({
   const [showGenerateModal, setShowGenerateModal] = useState<boolean>(false);
   const [showNewProgramModal, setShowNewProgramModal] =
     useState<boolean>(false);
-  const [isTitleBarVisible, setIsTitleBarVisible] = useState<boolean>(true);
   const isMobile = useIsMobile();
 
   // Apply organization theming to CSS variables so the whole app picks up the org color
@@ -347,9 +347,11 @@ export default function AdminDashboard({
   const [showBulkImport, setShowBulkImport] = useState(false); // NEW: Toggle bulk import UI
   const [showAllEmails, setShowAllEmails] = useState(false); // NEW: Toggle to show all emails or limited
   const EMAIL_DISPLAY_LIMIT = 10; // Show only 10 emails by default
-  const [editingCertificateId, setEditingCertificateId] = useState<
-    string | null
-  >(null); // Track which certificate is being edited
+
+  // Edit certificate modal state
+  const [editingCertificate, setEditingCertificate] = useState<any | null>(
+    null,
+  );
 
   const [isRefreshingCertificates, setIsRefreshingCertificates] =
     useState(false);
@@ -423,89 +425,18 @@ export default function AdminDashboard({
     e.target.value = ""; // Reset input
   };
 
-  // Load certificate data into form for editing
+  // Open edit certificate modal
   const handleEditCertificate = (certificate: any) => {
-    setEditingCertificateId(certificate.id);
-
-    // Map backend field names to frontend state
-    setGenProgramName(certificate.courseName || "");
-    setGenProgramDescription(certificate.courseDescription || "");
-    setGenCertificateHeader(
-      certificate.certificateHeader || "Certificate of Completion",
-    );
-    setGenSelectedTemplate(certificate.template || "");
-    setGenCompletionDate(
-      certificate.completionDate?.split("T")[0] ||
-        new Date().toISOString().split("T")[0],
-    );
-    setGenRestrictDownload(certificate.restrictDownload || false);
-    setGenAllowedEmails(certificate.allowedEmails || []);
-
-    // Load signatories if they exist (extract IDs from signatory objects)
-    if (certificate.signatories && certificate.signatories.length > 0) {
-      const signatoryIds = certificate.signatories.map(
-        (sig: any) => sig.id || sig,
-      );
-      setGenSelectedSignatories(signatoryIds);
-    } else {
-      setGenSelectedSignatories([]);
-    }
-
-    // Load custom template config if it exists
-    if (certificate.customTemplateConfig) {
-      setGenCustomTemplateConfig(certificate.customTemplateConfig);
-    }
-
-    // Set template name for display
-    const templateNames: { [key: string]: string } = {
-      impact: "Impact",
-      prestige: "Prestige",
-      modern: "Modern",
-      classic: "Classic",
-      elegant: "Elegant",
-      bold: "Bold",
-      minimal: "Minimal",
-      vibrant: "Vibrant",
-      professional: "Professional",
-      creative: "Creative",
-      tech: "Tech",
-      academic: "Academic",
-      corporate: "Corporate",
-      certificate: "Certificate",
-      achievement: "Achievement",
-      excellence: "Excellence",
-    };
-    setGenSelectedTemplateName(
-      templateNames[certificate.template] ||
-        certificate.template ||
-        "Custom Template",
-    );
-
-    setGenEmailInput("");
-    setShowAllEmails(false);
-
-    // Scroll to form
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    toast.info("Certificate loaded for editing");
+    setEditingCertificate(certificate);
   };
 
-  // Cancel editing and reset form
-  const handleCancelEdit = () => {
-    setEditingCertificateId(null);
-    setGenProgramName("");
-    setGenProgramDescription("");
-    setGenCertificateHeader("Certificate of Completion");
-    setGenSelectedTemplate("");
-    setGenSelectedTemplateName("");
-    setGenCompletionDate(new Date().toISOString().split("T")[0]);
-    setGenRestrictDownload(false);
-    setGenAllowedEmails([]);
-    setGenEmailInput("");
-    setShowAllEmails(false);
-
-    // Return to certificates tab
-    setActiveTab("certificates");
-    toast.info("Edit cancelled");
+  // Handle certificate update from modal
+  const handleCertificateUpdate = (updatedCertificate: any) => {
+    setAllCertificates((prev) =>
+      prev.map((cert) =>
+        cert.id === updatedCertificate.id ? updatedCertificate : cert,
+      ),
+    );
   };
 
   // Short links feature disabled
@@ -1069,43 +1000,26 @@ export default function AdminDashboard({
         .map((id) => genAvailableSignatories.find((s: any) => s.id === id))
         .filter(Boolean);
 
-      console.log(
-        "🔒 Certificate " +
-          (editingCertificateId ? "update" : "generation") +
-          " with restrictions:",
-        {
-          restrictDownload: genRestrictDownload,
-          allowedEmails: genAllowedEmails,
-          allowedEmailsCount: genAllowedEmails.length,
-          editingId: editingCertificateId,
-        },
-      );
+      console.log("🔒 Certificate generation with restrictions:", {
+        restrictDownload: genRestrictDownload,
+        allowedEmails: genAllowedEmails,
+        allowedEmailsCount: genAllowedEmails.length,
+      });
 
-      // If editing, update the certificate; otherwise, create new
-      const response = editingCertificateId
-        ? await certificateApi.update(accessToken, editingCertificateId, {
-            certificateHeader: genCertificateHeader.trim(),
-            courseName: genProgramName.trim(),
-            courseDescription: genProgramDescription.trim(),
-            completionDate: genCompletionDate,
-            template: genSelectedTemplate,
-            signatories: signatories.length > 0 ? signatories : undefined,
-            restrictDownload: genRestrictDownload,
-            allowedEmails: genAllowedEmails,
-          } as any)
-        : await certificateApi.generate(accessToken, {
-            organizationId: genCurrentUserOrganization.id,
-            programId: undefined,
-            certificateHeader: genCertificateHeader.trim(),
-            courseName: genProgramName.trim(),
-            courseDescription: genProgramDescription.trim(),
-            completionDate: genCompletionDate,
-            template: genSelectedTemplate, // Add template
-            signatories: signatories.length > 0 ? signatories : undefined,
-            students: undefined,
-            restrictDownload: genRestrictDownload, // NEW: Download restriction flag
-            allowedEmails: genAllowedEmails, // NEW: List of allowed emails
-          } as any);
+      // Generate new certificate
+      const response = await certificateApi.generate(accessToken, {
+        organizationId: genCurrentUserOrganization.id,
+        programId: undefined,
+        certificateHeader: genCertificateHeader.trim(),
+        courseName: genProgramName.trim(),
+        courseDescription: genProgramDescription.trim(),
+        completionDate: genCompletionDate,
+        template: genSelectedTemplate, // Add template
+        signatories: signatories.length > 0 ? signatories : undefined,
+        students: undefined,
+        restrictDownload: genRestrictDownload, // NEW: Download restriction flag
+        allowedEmails: genAllowedEmails, // NEW: List of allowed emails
+      } as any);
 
       // Check if response has certificates
       if (!response.certificates || response.certificates.length === 0) {
@@ -1149,31 +1063,16 @@ export default function AdminDashboard({
 
       // Short links are disabled — keep only the secure encrypted URL
 
-      if (editingCertificateId) {
-        // Update existing certificate in the list
-        setAllCertificates((prev) =>
-          prev.map((cert) =>
-            cert.id === editingCertificateId ? certificate : cert,
-          ),
-        );
-      } else {
-        // Add to current session results (for Results tab)
-        setGenGeneratedCertificates([certificate]);
-        // Also add to full history (for Certificates tab)
-        setAllCertificates((prev) => [certificate, ...prev]);
-        setHasLoadedCertificates(true); // Mark as loaded since we just added it
-
-        setGenIsGenerating(false);
-        setGenActiveTab("results");
-      }
+      // Add to current session results (for Results tab)
+      setGenGeneratedCertificates([certificate]);
+      // Also add to full history (for Certificates tab)
+      setAllCertificates((prev) => [certificate, ...prev]);
+      setHasLoadedCertificates(true); // Mark as loaded since we just added it
 
       setGenIsGenerating(false);
-      if (!editingCertificateId) {
-        setGenActiveTab("results");
-      }
+      setGenActiveTab("results");
 
       // Reset form
-      setEditingCertificateId(null);
       setGenProgramName("");
       setGenProgramDescription("");
       setGenCertificateHeader("Certificate of Completion");
@@ -1287,46 +1186,9 @@ export default function AdminDashboard({
             // Use backend-confirmed data
             const savedCertificates = response.certificates || certificates;
 
-            // Create short links for all certificates
-            const certificatesWithShortLinks = await Promise.all(
-              savedCertificates.map(async (cert: any) => {
-                try {
-                  const programSlug = genProgramName
-                    .trim()
-                    .toLowerCase()
-                    .replace(/\s+/g, "-");
-                  const shortLinkResult = await createShortLink(
-                    cert.organizationId,
-                    programSlug,
-                    cert.id,
-                    cert,
-                  );
-
-                  if (shortLinkResult.success && shortLinkResult.shortCode) {
-                    return {
-                      ...cert,
-                      shortCode: shortLinkResult.shortCode,
-                      shortUrl: `c/${shortLinkResult.shortCode}`,
-                      fullShortUrl: shortLinkResult.fullShortUrl,
-                    };
-                  }
-                } catch (error) {
-                  console.error(
-                    `Failed to create short link for ${cert.studentName}:`,
-                    error,
-                  );
-                }
-                return cert;
-              }),
-            );
-
-            // Add to current session results (for Results tab)
-            setGenGeneratedCertificates(certificatesWithShortLinks);
-            // Also add to full history (for Certificates tab)
-            setAllCertificates((prev) => [
-              ...certificatesWithShortLinks,
-              ...prev,
-            ]);
+            // Keep saved certificates as-is (short links disabled)
+            setGenGeneratedCertificates(savedCertificates);
+            setAllCertificates((prev) => [...savedCertificates, ...prev]);
             setHasLoadedCertificates(true);
           } catch (error: any) {
             console.error("❌ Failed to save certificates to backend:", error);
@@ -1899,22 +1761,6 @@ export default function AdminDashboard({
               {/* Tab Content */}
               {activeTab === "overview" && (
                 <div className="space-y-4 md:space-y-6">
-                  {/* Title bar */}
-                  {isTitleBarVisible && (
-                    <div className="bg-primary rounded-lg text-white flex justify-between items-center px-4 py-2 md:px-6">
-                      <p className="text-sm">
-                        Testimonial/feedback, verification, bulk issuance,
-                        monetization, wallet, and payouts will be available at
-                        full launch in March.
-                      </p>
-                      <span
-                        className="text-xl cursor-pointer hover:border-2 hover:border-black rounded p-1 w-6 h-6 flex items-center justify-center"
-                        onClick={() => setIsTitleBarVisible(false)}
-                      >
-                        &times;
-                      </span>
-                    </div>
-                  )}
                   {/* Welcome Card */}
                   <Card className="border-l-4 border-l-primary">
                     <CardContent className="pt-6">
@@ -2054,7 +1900,7 @@ export default function AdminDashboard({
                           {Math.floor(
                             (stats.totalTestimonials /
                               Math.max(stats.totalCertificates, 1)) *
-                              100,
+                              100
                           )}
                           % response rate
                         </p>
@@ -2328,38 +2174,16 @@ export default function AdminDashboard({
               {activeTab === "generate" && (
                 <div className="space-y-4 md:space-y-6">
                   {/* Page Header */}
-                  <Card
-                    className={`border-l-4 ${editingCertificateId ? "border-l-orange-500" : "border-l-primary"}`}
-                  >
+                  <Card className="border-l-4 border-l-primary">
                     <CardContent className="pt-6">
                       <div className="flex items-center justify-between gap-4">
                         <div className="flex-1 min-w-0">
-                          {editingCertificateId && (
-                            <div className="mb-3 flex items-center gap-2">
-                              <div className="px-3 py-1 bg-orange-100 text-orange-700 rounded-full text-sm font-medium flex items-center gap-2">
-                                <Edit className="w-3 h-3" />
-                                Editing Certificate
-                              </div>
-                              <Button
-                                variant="ghost"
-                                size="sm"
-                                onClick={handleCancelEdit}
-                                className="text-gray-600 hover:text-gray-700"
-                              >
-                                <XCircle className="w-4 h-4 mr-1" />
-                                Cancel Edit
-                              </Button>
-                            </div>
-                          )}
                           <h2 className="text-xl md:text-2xl font-bold mb-2 truncate">
-                            {editingCertificateId
-                              ? "Edit Certificate"
-                              : "Generate Certificates"}
+                            Generate Certificates
                           </h2>
                           <p className="text-muted-foreground mb-2 text-sm md:text-base">
-                            {editingCertificateId
-                              ? "Update your certificate details. The results link will remain the same."
-                              : "Create beautiful, professional certificates for your students"}
+                            Create beautiful, professional certificates for your
+                            students
                           </p>
                         </div>
                       </div>
@@ -3029,6 +2853,9 @@ export default function AdminDashboard({
                                           organizationLogo={
                                             currentOrganization.logo
                                           }
+                                          customTemplateConfig={
+                                            genCustomTemplateConfig
+                                          }
                                           signatoryName1={
                                             genAvailableSignatories.find(
                                               (s: any) =>
@@ -3108,23 +2935,12 @@ export default function AdminDashboard({
                               {genIsGenerating ? (
                                 <>
                                   <RefreshCw className="w-4 h-4 mr-2 animate-spin" />
-                                  {editingCertificateId
-                                    ? "Updating..."
-                                    : "Generating..."}
+                                  Generating...
                                 </>
                               ) : (
                                 <>
-                                  {editingCertificateId ? (
-                                    <>
-                                      <CheckCircle className="w-4 h-4 mr-2" />
-                                      Update Certificate
-                                    </>
-                                  ) : (
-                                    <>
-                                      <Award className="w-4 h-4 mr-2" />
-                                      Generate Certificate Link
-                                    </>
-                                  )}
+                                  <Award className="w-4 h-4 mr-2" />
+                                  Generate Certificate Link
                                 </>
                               )}
                             </Button>
@@ -3466,10 +3282,9 @@ export default function AdminDashboard({
                                       variant="outline"
                                       size="sm"
                                       className="text-orange-600 hover:text-orange-700 hover:bg-orange-50"
-                                      onClick={() => {
-                                        handleEditCertificate(cert);
-                                        setActiveTab("generate");
-                                      }}
+                                      onClick={() =>
+                                        handleEditCertificate(cert)
+                                      }
                                     >
                                       <Edit className="w-4 h-4" />
                                     </Button>
@@ -3647,6 +3462,17 @@ export default function AdminDashboard({
           onCertificatesGenerated={handleCertificatesGenerated}
           customTemplateConfig={genCustomTemplateConfig}
         />
+
+        {/* Edit Certificate Modal */}
+        {editingCertificate && (
+          <EditCertificateModal
+            certificate={editingCertificate}
+            accessToken={accessToken!}
+            onClose={() => setEditingCertificate(null)}
+            onUpdate={handleCertificateUpdate}
+            availableSignatories={genAvailableSignatories}
+          />
+        )}
 
         {/* Template Picker Dialog for Generate Tab */}
         <Dialog

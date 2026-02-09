@@ -65,7 +65,7 @@ export default function CertificateTemplate1({
 
   const containerClass = isPreview
     ? "w-full mx-auto origin-center overflow-visible flex justify-center"
-    : "min-w-[1056px] flex justify-center items-center ";
+    : "min-w-[800px] flex justify-center items-center ";
 
   return (
     <div
@@ -76,7 +76,7 @@ export default function CertificateTemplate1({
         ref={ref}
         className="shadow-sm bg-white py-10 rounded-sm flex items-center justify-center relative"
         style={{
-          width: "1056px",
+          width: "800px",
           height: "600px",
           paddingLeft: "64px",
           paddingRight: "64px",

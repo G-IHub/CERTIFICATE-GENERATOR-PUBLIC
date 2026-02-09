@@ -509,6 +509,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
             signatoryName2={certificate.signatories?.[1]?.name}
             signatoryTitle2={certificate.signatories?.[1]?.title}
             signatureUrl2={certificate.signatories?.[1]?.signatureUrl}
+            certificateId={certificate.id}
           />
         </div>,
       );
@@ -1249,6 +1250,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
                       signatoryName2={certificate.signatories?.[1]?.name}
                       signatoryTitle2={certificate.signatories?.[1]?.title}
                       signatureUrl2={certificate.signatories?.[1]?.signatureUrl}
+                      certificateId={certificate.id}
                     />
                   </div>
                 </CardContent>

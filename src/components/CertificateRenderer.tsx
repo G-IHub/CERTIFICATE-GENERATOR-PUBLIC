@@ -34,6 +34,7 @@ interface CertificateRendererProps {
   signatoryName2?: string;
   signatoryTitle2?: string;
   signatureUrl2?: string;
+  certificateId?: string;
 }
 
 export default function CertificateRenderer({
@@ -53,6 +54,7 @@ export default function CertificateRenderer({
   signatoryName2,
   signatoryTitle2,
   signatureUrl2,
+  certificateId,
 }: CertificateRendererProps) {
   const templateProps = {
     header,
@@ -70,6 +72,7 @@ export default function CertificateRenderer({
     signatoryName2,
     signatoryTitle2,
     signatureUrl2,
+    certificateId,
   };
 
   // Normalize template ID - handle both "template1" and "1" formats

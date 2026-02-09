@@ -12,11 +12,10 @@ import AuthPage from "./components/AuthPage";
 import AdminDashboard from "./components/AdminDashboard";
 import PlatformAdminPanel from "./components/PlatformAdminPanel";
 import StudentCertificate from "./components/StudentCertificate";
-
+import CertificateVerification from "./components/CertificateVerification";
 import BackendHealthCheck from "./components/BackendHealthCheck";
 import DeploymentGuide from "./components/DeploymentGuide";
 import NotFound from "./components/NotFound";
-import Story from "./components/landing/Story";
 import TemplateBuilderPage from "./components/TemplateBuilderPage";
 import QueryPremiumOrgs from "./components/QueryPremiumOrgs";
 import AdminUtilities from "./components/AdminUtilities";
@@ -27,6 +26,10 @@ import { toast, Toaster } from "sonner";
 import { isAdminEmail } from "./utils/adminConfig";
 import { isOrgPremium } from "./utils/subscriptionUtils";
 
+// Figma asset imports are not available at runtime in this environment.
+// Use a stable placeholder URL for the default organization logo.
+// If you have a local asset, replace the URL below with a path under /public and
+// use that path (for example: const defaultOrgLogo = '/images/default-org-logo.png')
 const defaultOrgLogo = "https://via.placeholder.com/256x256.png?text=Org+Logo";
 
 // TypeScript interfaces
@@ -114,6 +117,16 @@ function PasswordResetRedirect() {
     const hasRecoveryType = fullPath.includes("type=recovery");
 
     if (hasAccessToken && hasRecoveryType) {
+      console.log(
+        "🔐 Recovery token detected in path, redirecting to reset password page",
+      );
+      console.log("📍 Current location:", {
+        pathname: location.pathname,
+        search: location.search,
+        hash: location.hash,
+        fullPath,
+      });
+
       // Extract the access token and refresh token from the path
       const accessTokenMatch = fullPath.match(/access_token=([^&]+)/);
       const refreshTokenMatch = fullPath.match(/refresh_token=([^&]+)/);
@@ -122,8 +135,14 @@ function PasswordResetRedirect() {
       const refreshToken = refreshTokenMatch ? refreshTokenMatch[1] : null;
 
       if (accessToken) {
+        console.log("✅ Access token extracted, length:", accessToken.length);
         if (refreshToken) {
+          console.log(
+            "✅ Refresh token extracted, length:",
+            refreshToken.length,
+          );
         } else {
+          console.log("⚠️ No refresh token found");
         }
         // Navigate to reset password page with both tokens in React Router state
         navigate("/reset-password", {
@@ -134,6 +153,7 @@ function PasswordResetRedirect() {
           replace: true,
         });
       } else {
+        console.log("❌ Could not extract access token from path");
       }
     }
   }, [navigate, location]);
@@ -180,7 +200,7 @@ export default function App() {
                 "Content-Type": "application/json",
               },
               signal: controller.signal,
-            }
+            },
           );
           clearTimeout(timeoutId);
 
@@ -393,7 +413,7 @@ export default function App() {
   // Function to update organization data
   const updateOrganization = async (
     organizationId: string,
-    updates: Partial<Organization>
+    updates: Partial<Organization>,
   ) => {
     if (!accessToken) return;
 
@@ -401,12 +421,12 @@ export default function App() {
       const response = await organizationApi.update(
         accessToken,
         organizationId,
-        updates
+        updates,
       );
       setOrganizations((prev) =>
         prev.map((org) =>
-          org.id === organizationId ? response.organization : org
-        )
+          org.id === organizationId ? response.organization : org,
+        ),
       );
       toast.success("Organization updated successfully");
     } catch (error: any) {
@@ -415,8 +435,8 @@ export default function App() {
       // Still update locally for demo purposes
       setOrganizations((prev) =>
         prev.map((org) =>
-          org.id === organizationId ? { ...org, ...updates } : org
-        )
+          org.id === organizationId ? { ...org, ...updates } : org,
+        ),
       );
     }
   };
@@ -424,7 +444,7 @@ export default function App() {
   // Function to add new program
   const addProgramToOrganization = async (
     organizationId: string,
-    newProgram: Program
+    newProgram: Program,
   ) => {
     if (!accessToken) {
       // Still update locally for immediate feedback
@@ -432,8 +452,8 @@ export default function App() {
         prev.map((org) =>
           org.id === organizationId
             ? { ...org, programs: [...org.programs, newProgram] }
-            : org
-        )
+            : org,
+        ),
       );
       return;
     }
@@ -450,8 +470,8 @@ export default function App() {
         prev.map((org) =>
           org.id === organizationId
             ? { ...org, programs: [...org.programs, data.program] }
-            : org
-        )
+            : org,
+        ),
       );
 
       toast.success("Program saved successfully");
@@ -463,8 +483,8 @@ export default function App() {
         prev.map((org) =>
           org.id === organizationId
             ? { ...org, programs: [...org.programs, newProgram] }
-            : org
-        )
+            : org,
+        ),
       );
     }
   };
@@ -473,7 +493,7 @@ export default function App() {
   const updateProgramStats = async (
     organizationId: string,
     programId: string,
-    certificateCount: number
+    certificateCount: number,
   ) => {
     // Update locally immediately for responsiveness
     setOrganizations((prev) =>
@@ -487,11 +507,11 @@ export default function App() {
                       ...prog,
                       certificates: prog.certificates + certificateCount,
                     }
-                  : prog
+                  : prog,
               ),
             }
-          : org
-      )
+          : org,
+      ),
     );
 
     // Backend is updated automatically when certificates are generated
@@ -502,7 +522,7 @@ export default function App() {
   const updateProgram = async (
     organizationId: string,
     programId: string,
-    updates: Partial<Program>
+    updates: Partial<Program>,
   ) => {
     if (!accessToken) {
       // Still update locally
@@ -512,11 +532,11 @@ export default function App() {
             ? {
                 ...org,
                 programs: org.programs.map((prog) =>
-                  prog.id === programId ? { ...prog, ...updates } : prog
+                  prog.id === programId ? { ...prog, ...updates } : prog,
                 ),
               }
-            : org
-        )
+            : org,
+        ),
       );
       return;
     }
@@ -527,7 +547,7 @@ export default function App() {
         accessToken,
         organizationId,
         programId,
-        updates
+        updates,
       );
 
       // Update local state with backend-confirmed data
@@ -537,11 +557,11 @@ export default function App() {
             ? {
                 ...org,
                 programs: org.programs.map((prog) =>
-                  prog.id === programId ? data.program : prog
+                  prog.id === programId ? data.program : prog,
                 ),
               }
-            : org
-        )
+            : org,
+        ),
       );
     } catch (error: any) {
       // Still update locally as fallback
@@ -551,11 +571,11 @@ export default function App() {
             ? {
                 ...org,
                 programs: org.programs.map((prog) =>
-                  prog.id === programId ? { ...prog, ...updates } : prog
+                  prog.id === programId ? { ...prog, ...updates } : prog,
                 ),
               }
-            : org
-        )
+            : org,
+        ),
       );
     }
   };
@@ -581,7 +601,7 @@ export default function App() {
               organizationName: name,
               organizationId: newOrg.id,
             }
-          : null
+          : null,
       );
 
       toast.success("Organization created successfully!");
@@ -897,16 +917,10 @@ export default function App() {
             element={<StudentCertificate subsidiaries={organizations} />}
           />
 
-          <Route path="/story" element={<Story />} />
-
-          {/* Short link redirect - disabled */}
+          {/* Certificate verification route - public */}
           <Route
-            path="/c/:code"
-            element={
-              <div className="min-h-screen flex items-center justify-center">
-                Short links are disabled
-              </div>
-            }
+            path="/verify/:certificateId"
+            element={<CertificateVerification />}
           />
 
           {/* Backend health check - public */}

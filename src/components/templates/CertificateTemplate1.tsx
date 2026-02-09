@@ -19,6 +19,7 @@ interface CertificateTemplate1Props {
   signatoryTitle2?: string;
   signatureUrl2?: string;
   mode?: "student" | "template-selection";
+  certificateId?: string;
 }
 
 export default function CertificateTemplate1({
@@ -38,6 +39,7 @@ export default function CertificateTemplate1({
   signatoryTitle2,
   signatureUrl2,
   mode = "student",
+  certificateId,
 }: CertificateTemplate1Props) {
   const ref = useRef<HTMLDivElement>(null);
   const scale = mode === "student" ? "transform-scale-[0.3]" : "transform-scale-100";
@@ -221,6 +223,18 @@ export default function CertificateTemplate1({
               )}
             </div>
           </div>
+
+          {/* Verification Link */}
+          {/* {certificateId && mode === "student" && (
+            <div className="text-center" style={{ marginTop: "16px" }}>
+              <p className="text-xs text-gray-500">
+                Verify this certificate at:{" "}
+                <span className="font-mono text-orange-600">
+                  certifyer.online/#/verify/{certificateId}
+                </span>
+              </p>
+            </div>
+          )} */}
         </div>
       </div>
     </div>

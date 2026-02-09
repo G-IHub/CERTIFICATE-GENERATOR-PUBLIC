@@ -102,12 +102,13 @@ import CertificateRenderer from "./CertificateRenderer";
 import PreviewWrapper from "./PreviewWrapper";
 import TemplatesPage from "./TemplatesPage";
 import CertificateGenerationModal from "./CertificateGenerationModal";
-import { EditCertificateModal } from "./EditeCertificateModal";
+import { EditCertificateModal } from "./EditCertificateModal";
 import { Skeleton } from "./ui/skeleton";
 import TestimonialsSkeleton from "./skeletons/TestimonialsSkeleton";
 import AnalyticsSkeleton from "./skeletons/AnalyticsSkeleton";
 import SettingsSkeleton from "./skeletons/SettingsSkeleton";
 import BillingSkeleton from "./skeletons/BillingSkeleton";
+import SessionTracker from "./SessionTracker";
 
 // Lazy-load heavy/dashboard tab components to improve initial render performance
 const BillingPage = React.lazy(() => import("./BillingPage"));
@@ -1404,6 +1405,13 @@ export default function AdminDashboard({
 
   return (
     <TooltipProvider>
+      {/* Session Tracker - tracks tutor time spent */}
+      <SessionTracker
+        organizationId={currentOrganization?.id || ""}
+        accessToken={accessToken}
+        enabled={!!currentOrganization?.id && !!accessToken}
+      />
+
       <div className="flex h-screen bg-gray-50 overflow-hidden">
         {/* Left Sidebar Navigation - Hidden on Mobile */}
         <aside

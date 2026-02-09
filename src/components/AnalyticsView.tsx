@@ -16,6 +16,8 @@ import {
   MessageSquare,
   Link2,
   MousePointerClick,
+  Download,
+  Clock,
 } from "lucide-react";
 import {
   LineChart,
@@ -55,6 +57,18 @@ interface Analytics {
     testimonials: number;
   }>;
   recentActivity: Array<any>;
+  downloads?: {
+    total: number;
+    byMonth: Record<string, number>;
+    byProgram: Record<string, number>;
+  };
+  timeSpent?: {
+    totalSeconds: number;
+    totalHours: number;
+    totalMinutes: number;
+    byMonth: Record<string, number>;
+    byUser: Record<string, number>;
+  };
 }
 
 export default function AnalyticsView({
@@ -77,7 +91,7 @@ export default function AnalyticsView({
       try {
         const response = await analyticsApi.getForOrganization(
           accessToken,
-          organizationId
+          organizationId,
         );
         setAnalytics(response.analytics);
       } catch (error: any) {
@@ -135,7 +149,7 @@ export default function AnalyticsView({
       </Card>
 
       {/* Key Metrics */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">
@@ -150,6 +164,37 @@ export default function AnalyticsView({
             <p className="text-xs text-muted-foreground">
               Certificates generated
             </p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">
+              Total Downloads
+            </CardTitle>
+            <Download className="h-4 w-4 text-blue-600" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">
+              {analytics.downloads?.total || 0}
+            </div>
+            <p className="text-xs text-muted-foreground">
+              Certificate downloads
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Time Spent</CardTitle>
+            <Clock className="h-4 w-4 text-purple-600" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">
+              {analytics.timeSpent?.totalHours || 0}h{" "}
+              {analytics.timeSpent?.totalMinutes || 0}m
+            </div>
+            <p className="text-xs text-muted-foreground">Active tutor time</p>
           </CardContent>
         </Card>
 
@@ -251,7 +296,7 @@ export default function AnalyticsView({
                   <div className="space-y-2">
                     {shortLinksData.shortLinks
                       .sort(
-                        (a: any, b: any) => (b.clicks || 0) - (a.clicks || 0)
+                        (a: any, b: any) => (b.clicks || 0) - (a.clicks || 0),
                       )
                       .slice(0, 5)
                       .map((link: any) => (

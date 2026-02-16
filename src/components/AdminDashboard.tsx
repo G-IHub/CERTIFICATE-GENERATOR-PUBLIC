@@ -102,7 +102,7 @@ import CertificateRenderer from "./CertificateRenderer";
 import PreviewWrapper from "./PreviewWrapper";
 import TemplatesPage from "./TemplatesPage";
 import CertificateGenerationModal from "./CertificateGenerationModal";
-import { EditCertificateModal } from "./EditCertificateModal";
+import { EditCertificateModal } from "./EditeCertificateModal";
 import { Skeleton } from "./ui/skeleton";
 import TestimonialsSkeleton from "./skeletons/TestimonialsSkeleton";
 import AnalyticsSkeleton from "./skeletons/AnalyticsSkeleton";

@@ -51,12 +51,12 @@ import {
   Crown,
   MessageCircle,
 } from "lucide-react";
-import { toast } from "sonner";
+import { toast } from "sonner@2.0.3";
 import { publicAnonKey, projectId } from "../utils/supabase/info";
 import BillingSettings from "./BillingSettings";
 import AdminEmailsView from "./AdminEmailsView";
 import PlatformAnalytics from "./PlatformAnalytics";
-import logo from "../assets/logo.png";
+import PlatformTrackingView from "./PlatformTrackingView";
 
 interface PlatformAdminPanelProps {
   adminEmail: string;
@@ -125,7 +125,12 @@ export default function PlatformAdminPanel({
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeView, setActiveView] = useState<
-    "overview" | "organizations" | "analytics" | "billing" | "emails"
+    | "overview"
+    | "organizations"
+    | "analytics"
+    | "tracking"
+    | "billing"
+    | "emails"
   >("overview");
   const [stats, setStats] = useState<PlatformStats>({
     totalOrganizations: 0,
@@ -161,7 +166,7 @@ export default function PlatformAdminPanel({
             Authorization: `Bearer ${authHeader}`,
             "Content-Type": "application/json",
           },
-        }
+        },
       );
 
       if (!response.ok) {
@@ -169,6 +174,12 @@ export default function PlatformAdminPanel({
       }
 
       const data = await response.json();
+
+      console.log("🔍 ADMIN DEBUG - Raw platform data:", data);
+      console.log(
+        "🔍 ADMIN DEBUG - Organizations count:",
+        data.organizations?.length,
+      );
 
       // Process organizations - ensure all fields have defaults and unique IDs
       const orgs: Organization[] = (data.organizations || [])
@@ -192,13 +203,19 @@ export default function PlatformAdminPanel({
         .map((org: Organization) => {
           // Debug each organization's subscription and premium status
           if (org.subscription) {
-            }
+            console.log(`🔍 ORG DEBUG - ${org.name}:`, {
+              subscription: org.subscription,
+              isPremium: org.isPremium,
+              status: org.subscription.status,
+              plan: org.subscription.plan,
+            });
+          }
           return org;
         });
 
       // Remove duplicates by ID
       const uniqueOrgs = Array.from(
-        new Map(orgs.map((org) => [org.id, org])).values()
+        new Map(orgs.map((org) => [org.id, org])).values(),
       );
       setOrganizations(uniqueOrgs);
 
@@ -216,7 +233,7 @@ export default function PlatformAdminPanel({
 
       // Remove duplicates by ID
       const uniqueUsers = Array.from(
-        new Map(allUsers.map((user) => [user.id, user])).values()
+        new Map(allUsers.map((user) => [user.id, user])).values(),
       );
       setUsers(uniqueUsers);
 
@@ -236,7 +253,7 @@ export default function PlatformAdminPanel({
 
       // Remove duplicates by ID
       const uniqueCerts = Array.from(
-        new Map(allCerts.map((cert) => [cert.id, cert])).values()
+        new Map(allCerts.map((cert) => [cert.id, cert])).values(),
       );
       setCertificates(uniqueCerts);
 
@@ -245,24 +262,24 @@ export default function PlatformAdminPanel({
       const todayStart = new Date(
         now.getFullYear(),
         now.getMonth(),
-        now.getDate()
+        now.getDate(),
       );
 
       const newOrgsToday = uniqueOrgs.filter(
-        (org) => org.createdAt && new Date(org.createdAt) >= todayStart
+        (org) => org.createdAt && new Date(org.createdAt) >= todayStart,
       ).length;
 
       const newUsersToday = uniqueUsers.filter(
-        (user) => user.createdAt && new Date(user.createdAt) >= todayStart
+        (user) => user.createdAt && new Date(user.createdAt) >= todayStart,
       ).length;
 
       const certsToday = uniqueCerts.filter(
-        (cert) => cert.createdAt && new Date(cert.createdAt) >= todayStart
+        (cert) => cert.createdAt && new Date(cert.createdAt) >= todayStart,
       ).length;
 
       const totalPrograms = uniqueOrgs.reduce(
         (sum, org) => sum + (org.programs?.length || 0),
-        0
+        0,
       );
 
       setStats({
@@ -282,7 +299,7 @@ export default function PlatformAdminPanel({
       } catch (err) {
         console.warn(
           "Could not load admin stats after platform data load",
-          err
+          err,
         );
       }
     } catch (error: any) {
@@ -302,6 +319,12 @@ export default function PlatformAdminPanel({
   const loadAdminStats = async () => {
     try {
       const authHeader = accessToken ?? publicAnonKey;
+      console.log(
+        "🔐 loadAdminStats: adminEmail=",
+        adminEmail,
+        "hasAccessToken=",
+        !!accessToken,
+      );
       const res = await fetch(
         `https://${projectId}.supabase.co/functions/v1/make-server-a611b057/admin/stats`,
         {
@@ -310,8 +333,9 @@ export default function PlatformAdminPanel({
             Authorization: `Bearer ${authHeader}`,
             "Content-Type": "application/json",
           },
-        }
+        },
       );
+      console.log("📡 Admin stats response status:", res.status);
       if (!res.ok) {
         let errData: any = null;
         try {
@@ -321,12 +345,14 @@ export default function PlatformAdminPanel({
         }
         console.error("Admin stats fetch failed", res.status, errData);
         toast.error(
-          `Failed to load analytics: ${errData?.error || res.status}`
+          `Failed to load analytics: ${errData?.error || res.status}`,
         );
         return;
       }
 
       const data = await res.json();
+      console.log("✅ Admin stats fetched:", data);
+      console.log("➡️ adminStats payload:", data?.stats);
       if (data?.stats) {
         setAdminStats(data.stats);
       } else {
@@ -365,8 +391,13 @@ export default function PlatformAdminPanel({
       return;
     }
 
+    console.log("🚀 Granting premium to:", selectedOrg.id, selectedOrg.name);
+    console.log("📅 Duration:", premiumDuration, "months");
+
     try {
       const url = `https://${projectId}.supabase.co/functions/v1/make-server-a611b057/admin/organizations/${selectedOrg.id}/membership`;
+      console.log("🌐 Calling:", url);
+
       const response = await fetch(url, {
         method: "POST",
         headers: {
@@ -380,19 +411,23 @@ export default function PlatformAdminPanel({
         }),
       });
 
+      console.log("📡 Response status:", response.status);
+
       if (!response.ok) {
         const errorData = await response
           .json()
           .catch(() => ({ error: "Unknown error" }));
         console.error("❌ Error response:", errorData);
         throw new Error(
-          errorData.error || `Failed with status ${response.status}`
+          errorData.error || `Failed with status ${response.status}`,
         );
       }
 
       const result = await response.json();
+      console.log("✅ Success:", result);
+
       toast.success(
-        `Premium access granted to ${selectedOrg.name} for ${premiumDuration} months`
+        `Premium access granted to ${selectedOrg.name} for ${premiumDuration} months`,
       );
       setPremiumModalOpen(false);
       setSelectedOrg(null);
@@ -413,14 +448,18 @@ export default function PlatformAdminPanel({
 
     if (
       !confirm(
-        `Are you sure you want to revoke premium access for "${org.name}"?`
+        `Are you sure you want to revoke premium access for "${org.name}"?`,
       )
     ) {
       return;
     }
 
+    console.log("🚫 Revoking premium for:", org.id, org.name);
+
     try {
       const url = `https://${projectId}.supabase.co/functions/v1/make-server-a611b057/admin/organizations/${org.id}/membership`;
+      console.log("🌐 Calling:", url);
+
       const response = await fetch(url, {
         method: "DELETE",
         headers: {
@@ -429,17 +468,21 @@ export default function PlatformAdminPanel({
         },
       });
 
+      console.log("📡 Response status:", response.status);
+
       if (!response.ok) {
         const errorData = await response
           .json()
           .catch(() => ({ error: "Unknown error" }));
         console.error("❌ Error response:", errorData);
         throw new Error(
-          errorData.error || `Failed with status ${response.status}`
+          errorData.error || `Failed with status ${response.status}`,
         );
       }
 
       const result = await response.json();
+      console.log("✅ Success:", result);
+
       toast.success(`Premium access revoked for ${org.name}`);
       await loadPlatformData(); // Reload to show updated status
     } catch (error: any) {
@@ -480,10 +523,10 @@ export default function PlatformAdminPanel({
       premiumFilter === "all"
         ? true
         : premiumFilter === "premium"
-        ? org.isPremium
-        : premiumFilter === "free"
-        ? !org.isPremium
-        : true;
+          ? org.isPremium
+          : premiumFilter === "free"
+            ? !org.isPremium
+            : true;
 
     return matchesSearch && matchesPremiumFilter;
   });
@@ -493,7 +536,7 @@ export default function PlatformAdminPanel({
     (user) =>
       user.email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
       user.fullName?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      user.organizationName?.toLowerCase().includes(searchTerm.toLowerCase())
+      user.organizationName?.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
   if (loading) {
@@ -518,6 +561,7 @@ export default function PlatformAdminPanel({
     { id: "billing", label: "Billing Settings", icon: CreditCard },
     { id: "emails", label: "Email Addresses", icon: Mail },
     { id: "analytics", label: "Analytics", icon: BarChart3 },
+    { id: "tracking", label: "Activity Tracking", icon: Activity },
   ];
 
   return (
@@ -533,10 +577,10 @@ export default function PlatformAdminPanel({
           {sidebarOpen ? (
             <>
               <div className="flex items-center gap-2">
-                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                  <img src={logo} alt="Logo" className="w-6 h-6" />
+                <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <Shield className="w-4 h-4 text-primary" />
                 </div>
-                <span className="text-gray-900 text-sm">Certifyer Admin</span>
+                <span className="text-gray-900 text-sm">Platform Admin</span>
               </div>
               <Button
                 variant="ghost"
@@ -728,6 +772,7 @@ export default function PlatformAdminPanel({
                 {activeView === "billing" && "Billing Settings"}
                 {activeView === "emails" && "Email Addresses"}
                 {activeView === "analytics" && "Analytics"}
+                {activeView === "tracking" && "Activity Tracking"}
               </h1>
               <p className="text-gray-500 text-sm hidden md:block">
                 {activeView === "overview" &&
@@ -740,6 +785,8 @@ export default function PlatformAdminPanel({
                   "Collected student email addresses from testimonials"}
                 {activeView === "analytics" &&
                   "Platform analytics and insights"}
+                {activeView === "tracking" &&
+                  "Track recent activities and changes"}
               </p>
             </div>
             {activeView === "organizations" && (
@@ -1145,7 +1192,7 @@ export default function PlatformAdminPanel({
                                 <TrendingUp className="w-3 h-3" />
                                 Expires:{" "}
                                 {new Date(
-                                  org.subscription.expiryDate
+                                  org.subscription.expiryDate,
                                 ).toLocaleDateString()}
                               </span>
                             )}
@@ -1158,7 +1205,7 @@ export default function PlatformAdminPanel({
                                 <span className="text-xs text-gray-500">
                                   Until{" "}
                                   {new Date(
-                                    org.subscription.expiryDate
+                                    org.subscription.expiryDate,
                                   ).toLocaleDateString("en-US", {
                                     month: "short",
                                     day: "numeric",
@@ -1207,6 +1254,10 @@ export default function PlatformAdminPanel({
 
           {activeView === "analytics" && (
             <PlatformAnalytics accessToken={accessToken} />
+          )}
+
+          {activeView === "tracking" && (
+            <PlatformTrackingView accessToken={accessToken} />
           )}
         </div>
       </main>

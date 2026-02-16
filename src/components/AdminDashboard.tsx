@@ -1405,7 +1405,7 @@ export default function AdminDashboard({
 
   return (
     <TooltipProvider>
-      {/* Session Tracker - tracks tutor time spent */}
+      {/* Session Tracker - tracks tutor time spent (hidden from UI, only for database tracking) */}
       <SessionTracker
         organizationId={currentOrganization?.id || ""}
         accessToken={accessToken}

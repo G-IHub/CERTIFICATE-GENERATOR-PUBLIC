@@ -23,6 +23,11 @@ export default function LandingPage() {
 
   useEffect(() => {
     setIsOpen(true);
+    // Only show the dialog if it hasn't been shown in this session
+    if (!sessionStorage.getItem("earlyAccessDialogShown")) {
+      setIsOpen(true);
+      sessionStorage.setItem("earlyAccessDialogShown", "true");
+    }
   }, []);
 
   return (

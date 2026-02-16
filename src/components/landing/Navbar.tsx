@@ -107,6 +107,12 @@ const Navbar: React.FC = () => {
               Testimonials
             </Link>
             <RouterLink
+              to="/blogs"
+              className="hover:text-orange-500 cursor-pointer"
+            >
+              Blog
+            </RouterLink>
+            <RouterLink
               to="/story"
               className="hover:text-orange-500 cursor-pointer"
             >
@@ -170,6 +176,13 @@ const Navbar: React.FC = () => {
               >
                 Testimonials
               </Link>
+              <RouterLink
+                to="/blogs"
+                className="hover:text-orange-500"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Blog
+              </RouterLink>
               <RouterLink
                 to="/story"
                 className="hover:text-orange-500"

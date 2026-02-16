@@ -20,6 +20,8 @@ import TemplateBuilderPage from "./components/TemplateBuilderPage";
 import QueryPremiumOrgs from "./components/QueryPremiumOrgs";
 import AdminUtilities from "./components/AdminUtilities";
 import ResetPasswordPage from "./components/ResetPasswordPage";
+import BlogList from "./components/BlogList";
+import BlogDetails from "./components/BlogDetails";
 import { organizationApi, authApi, programApi } from "./utils/api";
 import { publicAnonKey, projectId } from "./utils/supabase/info";
 import { toast, Toaster } from "sonner";
@@ -931,6 +933,10 @@ export default function App() {
 
           {/* Query Premium Organizations - public */}
           <Route path="/query-premium" element={<QueryPremiumOrgs />} />
+
+          {/* Blog pages */}
+          <Route path="/blogs" element={<BlogList />} />
+          <Route path="/blog/:id" element={<BlogDetails />} />
 
           {/* Default route - Landing Page or Dashboard */}
           <Route

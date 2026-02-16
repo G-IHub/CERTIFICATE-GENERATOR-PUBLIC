@@ -1971,6 +1971,44 @@ export default function AdminDashboard({
                         </Tooltip>
                       </CardContent>
                     </Card>
+
+                    {/* Whatsapp link */}
+                    <Card className="flex gap-0">
+                      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 p-3 md:p-6">
+                        <CardTitle className="text-xs md:text-sm font-medium truncate">
+                          Join Our Community
+                        </CardTitle>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <div className="cursor-default flex-shrink-0">
+                              <MessageCircle className="h-4 w-4 md:h-5 md:w-5" />
+                            </div>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>Connect with other creators</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </CardHeader>
+
+                      <CardContent className="p-3 md:p-6 pt-0">
+                        <p className="text-sm font-semibold mb-2">
+                          WhatsApp Community
+                        </p>
+                        <p className="text-xs mb-4">
+                          Join our growing community of creators, educators, and
+                          businesses using Certifyer.
+                        </p>
+                        <a
+                          href="https://chat.whatsapp.com/LEVabwlo9qz0OazJaPN8ZF"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-primary text-white text-sm font-medium rounded-lg transition-colors"
+                        >
+                          <MessageCircle className="w-4 h-4" />
+                          Join Now
+                        </a>
+                      </CardContent>
+                    </Card>
                   </div>
 
                   {/* Quick Actions */}

@@ -1,2 +1,6 @@
 console-removal-backup
+<<<<<<< HEAD
 node_modules/
+=======
+node_modules
+>>>>>>> d3115299d8c8837eeed0809baee1ba96e1c00c30

@@ -27,6 +27,8 @@ import { publicAnonKey, projectId } from "./utils/supabase/info";
 import { toast, Toaster } from "sonner";
 import { isAdminEmail } from "./utils/adminConfig";
 import { isOrgPremium } from "./utils/subscriptionUtils";
+import SEOTestPage from "./components/SEOTestPage";
+import SEOHead from "./components/SEOHead";
 
 // Figma asset imports are not available at runtime in this environment.
 // Use a stable placeholder URL for the default organization logo.
@@ -656,6 +658,9 @@ export default function App() {
 
   return (
     <Router>
+      {/* SEO Meta Tags */}
+      <SEOHead />
+
       <PasswordResetRedirect />
       <div className="min-h-screen">
         {/* Toast Notifications */}
@@ -933,6 +938,9 @@ export default function App() {
 
           {/* Query Premium Organizations - public */}
           <Route path="/query-premium" element={<QueryPremiumOrgs />} />
+
+          {/* SEO Test Page - public */}
+          <Route path="/seo-test" element={<SEOTestPage />} />
 
           {/* Blog pages */}
           <Route path="/blogs" element={<BlogList />} />

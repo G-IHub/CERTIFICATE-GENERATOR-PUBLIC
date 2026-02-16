@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import SEOHead from "./SEOHead";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
@@ -118,10 +119,10 @@ export default function AuthPage({
 
     // Show a helpful toast for first-time users
     toast.info(
-      "Connecting to server...",
+      "Connecting to server... (first request may take 30-60 seconds)",
       {
         duration: 5000,
-      }
+      },
     );
 
     try {
@@ -142,7 +143,7 @@ export default function AuthPage({
       if (err.name === "AbortError") {
         setErrorType("network");
         setError(
-          "⏱️ Connection timed out. The Edge Function may be cold starting (first deployment can take 60+ seconds). Please wait a moment and try again."
+          "⏱️ Connection timed out. The Edge Function may be cold starting (first deployment can take 60+ seconds). Please wait a moment and try again.",
         );
         toast.error("Connection timed out. Please try again in 30 seconds.", {
           duration: 6000,
@@ -150,11 +151,11 @@ export default function AuthPage({
       } else if (err.message === "Failed to fetch") {
         setErrorType("network");
         setError(
-          "📡 Unable to connect to server. The Edge Function may not be deployed yet or is starting up. This can take 30-60 seconds after deployment. Please wait a moment and try again."
+          "📡 Unable to connect to server. The Edge Function may not be deployed yet or is starting up. This can take 30-60 seconds after deployment. Please wait a moment and try again.",
         );
         toast.error(
           "Server not responding. It may be deploying. Try again in 30 seconds.",
-          { duration: 6000 }
+          { duration: 6000 },
         );
       } else if (
         err.message.includes("Invalid login credentials") ||
@@ -162,7 +163,7 @@ export default function AuthPage({
       ) {
         setErrorType("auth");
         setError(
-          "Invalid email or password. Please check your credentials and try again."
+          "Invalid email or password. Please check your credentials and try again.",
         );
         setFieldErrors({
           email: "Check your email",
@@ -177,13 +178,14 @@ export default function AuthPage({
       } else {
         setErrorType("auth");
         setError(
-          err.message || "An error occurred during sign in. Please try again."
+          err.message || "An error occurred during sign in. Please try again.",
         );
         toast.error("Sign in failed");
       }
 
       // Log additional debugging info
-      } finally {
+      console.log("Full error object:", err);
+    } finally {
       setIsLoading(false);
     }
   };
@@ -212,26 +214,132 @@ export default function AuthPage({
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${publicAnonKey}`,
-            apikey: publicAnonKey,
           },
           body: JSON.stringify({ email: resetEmail }),
-        }
+        },
       );
 
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || "Failed to send reset email");
+        // Check if it's a configuration error (Resend API not set up)
+        if (data.isConfigError) {
+          console.error("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+          console.error("🚨 RESEND API KEY ERROR");
+          console.error("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+          console.error("Error:", data.error);
+          console.error("");
+
+          if (data.errorType === "resend_domain_verification_required") {
+            console.error("⚠️ RESEND DOMAIN VERIFICATION REQUIRED");
+            console.error("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+            console.error("Error:", data.error);
+            console.error("");
+            console.error("📌 What's happening:");
+            console.error(
+              "   Free Resend accounts can only send emails to your verified email address.",
+            );
+            console.error(`   Your verified email: ${data.verifiedEmail}`);
+            console.error("");
+            console.error("🔧 Two Options to Fix This:");
+            console.error("");
+            console.error("   ✅ Option 1 - For Production (Recommended):");
+            console.error("   1. Go to: https://resend.com/domains");
+            console.error("   2. Click 'Add Domain'");
+            console.error("   3. Enter your domain (e.g., certifyer.com)");
+            console.error("   4. Add the DNS records Resend provides");
+            console.error("   5. Wait 5-10 minutes for verification");
+            console.error(
+              "   6. Once verified, emails can be sent to ANY address!",
+            );
+            console.error("");
+            console.error("   🧪 Option 2 - For Testing (Quick):");
+            console.error(
+              "   • Only test password resets with: genomacinnovationhub@gmail.com",
+            );
+            console.error(
+              "   • This is temporary - verify a domain for production use",
+            );
+            console.error("");
+            console.error(
+              "📚 Learn more: https://resend.com/docs/dashboard/domains/introduction",
+            );
+            console.error("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+
+            setResetError(
+              `⚠️ Domain verification required. For testing, only ${data.verifiedEmail} can receive password reset emails. To enable all emails, verify a domain at resend.com/domains (see console for details).`,
+            );
+            toast.error("Domain Verification Required - Check Console (F12)", {
+              duration: 12000,
+            });
+          } else if (data.errorType === "resend_api_key_invalid") {
+            console.error("🔑 RESEND API KEY ISSUE:");
+            console.error("   Your Resend API key is either:");
+            console.error("   • Not configured");
+            console.error("   • Invalid or expired");
+            console.error("   • Missing required permissions");
+            console.error("");
+            console.error("🔧 How to Fix:");
+            console.error("   1. Go to: https://resend.com/api-keys");
+            console.error("   2. Click 'Create API Key'");
+            console.error("   3. Name: 'Certifyer Platform'");
+            console.error("   4. Permissions: Full Access (default)");
+            console.error("   5. Copy the key (starts with 're_')");
+            console.error(
+              "   6. Add as RESEND_API_KEY in Supabase Edge Functions",
+            );
+            console.error("   7. Wait 30 seconds and try again");
+            console.error("");
+            console.error("📚 Detailed Guide: See /RESEND_SETUP_GUIDE.md");
+
+            setResetError(
+              "⚠️ Resend API key not configured. Check console (F12) for setup instructions.",
+            );
+            toast.error("Resend API Key Required - Check Console (F12)", {
+              duration: 10000,
+            });
+          } else {
+            console.error("🔧 Setup Required:");
+            console.error(
+              "  1. Get your Resend API key from: https://resend.com/api-keys",
+            );
+            console.error(
+              "  2. Add it as RESEND_API_KEY in Supabase environment variables",
+            );
+            console.error(
+              "  3. See /RESEND_SETUP_GUIDE.md for detailed instructions",
+            );
+
+            setResetError(
+              "Email service not configured. Please contact support.",
+            );
+            toast.error("Email service not configured", { duration: 5000 });
+          }
+          console.error("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+        } else {
+          console.error("Password reset error:", data);
+          setResetError(data.error || "Failed to send reset email");
+          toast.error("Failed to send reset email");
+        }
+        return;
       }
 
       setResetSuccess(true);
       toast.success("Password reset email sent! Check your inbox.");
     } catch (err: any) {
       console.error("Password reset error:", err);
-      setResetError(
-        err.message || "Failed to send reset email. Please try again."
-      );
-      toast.error("Failed to send reset email");
+
+      if (err.message === "Failed to fetch") {
+        setResetError(
+          "Unable to connect to server. Please check your connection and try again.",
+        );
+        toast.error("Connection error");
+      } else {
+        setResetError(
+          err.message || "Failed to send reset email. Please try again.",
+        );
+        toast.error("Failed to send reset email");
+      }
     } finally {
       setResetLoading(false);
     }
@@ -289,10 +397,10 @@ export default function AuthPage({
 
     // Show a helpful toast for first-time users
     toast.info(
-      "Creating your account...",
+      "Creating your account... (first request may take 30-60 seconds)",
       {
         duration: 5000,
-      }
+      },
     );
 
     try {
@@ -320,7 +428,7 @@ export default function AuthPage({
       if (err.name === "AbortError") {
         setErrorType("network");
         setError(
-          "⏱️ Connection timed out. The Edge Function may be cold starting (first deployment can take 60+ seconds). Please wait a moment and try again."
+          "⏱️ Connection timed out. The Edge Function may be cold starting (first deployment can take 60+ seconds). Please wait a moment and try again.",
         );
         toast.error("Connection timed out. Please try again in 30 seconds.", {
           duration: 6000,
@@ -328,11 +436,11 @@ export default function AuthPage({
       } else if (err.message === "Failed to fetch") {
         setErrorType("network");
         setError(
-          "📡 Unable to connect to server. The Edge Function may not be deployed yet or is starting up. This can take 30-60 seconds after deployment. Please wait a moment and try again."
+          "📡 Unable to connect to server. The Edge Function may not be deployed yet or is starting up. This can take 30-60 seconds after deployment. Please wait a moment and try again.",
         );
         toast.error(
           "Server not responding. It may be deploying. Try again in 30 seconds.",
-          { duration: 6000 }
+          { duration: 6000 },
         );
       } else if (
         err.message.includes("already registered") ||
@@ -340,7 +448,7 @@ export default function AuthPage({
       ) {
         setErrorType("auth");
         setError(
-          "This email is already registered. Please sign in instead or use a different email."
+          "This email is already registered. Please sign in instead or use a different email.",
         );
         setFieldErrors({ email: "Email already in use" });
         toast.error("Email already registered");
@@ -352,7 +460,7 @@ export default function AuthPage({
       } else {
         setErrorType("auth");
         setError(
-          err.message || "An error occurred during sign up. Please try again."
+          err.message || "An error occurred during sign up. Please try again.",
         );
         toast.error("Sign up failed");
       }
@@ -362,113 +470,85 @@ export default function AuthPage({
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-b from-[#FFCB9E52] to-[#FFFBF8] relative">
-      <div className="">
-        <div className="absolute blur-sm -top-[26px] -left-[30px] bg-gradient-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-[100px] w-12 -rotate-45" />
-        <div className="absolute blur-sm top-20 -left-[40px] bg-gradient-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-[100px] w-12 -rotate-45" />
-        <div className="absolute blur-sm -top-[10px] -left-[33px] bg-gradient-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-[100px] w-12 -rotate-45" />
-        <div className="absolute blur-sm -top-[37px] -left-[21px] bg-gradient-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-[100px] w-12 -rotate-45" />
-        <div className="absolute blur-sm -top-[37px] left-5 bg-gradient-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-[100px] w-12 -rotate-45" />
-        <div className="absolute blur-sm -top-[26px] -right-[30px] bg-gradient-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-[100px] w-12 rotate-45" />
-        <div className="absolute blur-sm top-20 -right-[40px] bg-gradient-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-[100px] w-12 rotate-45" />
-        <div className="absolute blur-sm -top-[10px] -right-[33px] bg-gradient-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-[100px] w-12 rotate-45" />
-        <div className="absolute blur-sm -top-[37px] -right-[21px] bg-gradient-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-[100px] w-12 rotate-45" />
-        <div className="absolute blur-sm -top-[37px] right-5 bg-gradient-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-[100px] w-12 rotate-45" />
-      </div>
-      <div className="w-full max-w-6xl">
-        {/* Header */}
-        <div className="text-center mb-8  ">
-          <div className="flex flex-col items-center justify-center gap-3 mb-4">
-            <div className="p-3 rounded-lg shadow-sm ">
-              <img src={logo} alt="Certifyer Logo" className="w-12 h-12" />
-            </div>
-            <div className="text-left">
-              <h1 className="text-5xl font-bold text-gray-900 text-center ">
-                Certifyer
-              </h1>
-              <p className="text-lg text-gray-600">
-                Professional Certificate Management Platform
-              </p>
+    <>
+      <SEOHead
+        title={
+          activeTab === "signin" ? "Sign In - Certifyer" : "Sign Up - Certifyer"
+        }
+        description={
+          activeTab === "signin"
+            ? "Sign in to your Certifyer account to manage and generate professional certificates for your organization."
+            : "Create your free Certifyer account and start generating professional certificates for your organization today."
+        }
+      />
+      <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-b from-[#FFCB9E52] to-[#FFFBF8] relative">
+        <div className="">
+          <div className="absolute blur-sm -top-[26px] -left-[30px] bg-gradient-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-[100px] w-12 -rotate-45" />
+          <div className="absolute blur-sm top-20 -left-[40px] bg-gradient-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-[100px] w-12 -rotate-45" />
+          <div className="absolute blur-sm -top-[10px] -left-[33px] bg-gradient-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-[100px] w-12 -rotate-45" />
+          <div className="absolute blur-sm -top-[37px] -left-[21px] bg-gradient-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-[100px] w-12 -rotate-45" />
+          <div className="absolute blur-sm -top-[37px] left-5 bg-gradient-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-[100px] w-12 -rotate-45" />
+          <div className="absolute blur-sm -top-[26px] -right-[30px] bg-gradient-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-[100px] w-12 rotate-45" />
+          <div className="absolute blur-sm top-20 -right-[40px] bg-gradient-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-[100px] w-12 rotate-45" />
+          <div className="absolute blur-sm -top-[10px] -right-[33px] bg-gradient-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-[100px] w-12 rotate-45" />
+          <div className="absolute blur-sm -top-[37px] -right-[21px] bg-gradient-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-[100px] w-12 rotate-45" />
+          <div className="absolute blur-sm -top-[37px] right-5 bg-gradient-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-[100px] w-12 rotate-45" />
+        </div>
+        <div className="w-full max-w-6xl">
+          {/* Header */}
+          <div className="text-center mb-8  ">
+            <div className="flex flex-col items-center justify-center gap-3 mb-4">
+              <div className="p-3 rounded-lg shadow-sm ">
+                <img src={logo} alt="Certifyer Logo" className="w-12 h-12" />
+              </div>
+              <div className="text-left">
+                <h1 className="text-5xl font-bold text-gray-900 text-center ">
+                  Certifyer
+                </h1>
+                <p className="text-lg text-gray-600">
+                  Professional Certificate Management Platform
+                </p>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="max-w-md mx-auto">
-          {/* Auth Forms */}
-          <div>
-            <Card>
-              <CardHeader>
-                <Tabs
-                  value={activeTab}
-                  onValueChange={(v) => setActiveTab(v as "signin" | "signup")}
-                >
-                  <TabsList className="grid w-full grid-cols-2">
-                    <TabsTrigger value="signin">Sign In</TabsTrigger>
-                    <TabsTrigger value="signup">Sign Up</TabsTrigger>
-                  </TabsList>
-                </Tabs>
-              </CardHeader>
-              <CardContent>
-                {/* Sign In Form */}
-                {activeTab === "signin" && (
-                  <form onSubmit={handleSignIn} className="space-y-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="signin-email">Email Address</Label>
-                      <Input
-                        id="signin-email"
-                        type="email"
-                        value={signInData.email}
-                        onChange={(e) => {
-                          setSignInData((prev) => ({
-                            ...prev,
-                            email: e.target.value,
-                          }));
-                          // Clear errors when user starts typing
-                          if (fieldErrors.email) {
-                            setFieldErrors((prev) => {
-                              const newErrors = { ...prev };
-                              delete newErrors.email;
-                              return newErrors;
-                            });
-                          }
-                          if (error && errorType === "validation") {
-                            setError(null);
-                            setErrorType(null);
-                          }
-                        }}
-                        placeholder="Enter your email"
-                        disabled={isLoading}
-                        className={`h-11 ${
-                          fieldErrors.email
-                            ? "border-red-500 focus-visible:ring-red-500"
-                            : ""
-                        }`}
-                      />
-                      {fieldErrors.email && (
-                        <p className="text-xs text-red-600 flex items-center gap-1">
-                          <AlertCircle className="w-3 h-3" />
-                          {fieldErrors.email}
-                        </p>
-                      )}
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="signin-password">Password</Label>
-                      <div className="relative">
+          <div className="max-w-md mx-auto">
+            {/* Auth Forms */}
+            <div>
+              <Card>
+                <CardHeader>
+                  <Tabs
+                    value={activeTab}
+                    onValueChange={(v) =>
+                      setActiveTab(v as "signin" | "signup")
+                    }
+                  >
+                    <TabsList className="grid w-full grid-cols-2">
+                      <TabsTrigger value="signin">Sign In</TabsTrigger>
+                      <TabsTrigger value="signup">Sign Up</TabsTrigger>
+                    </TabsList>
+                  </Tabs>
+                </CardHeader>
+                <CardContent>
+                  {/* Sign In Form */}
+                  {activeTab === "signin" && (
+                    <form onSubmit={handleSignIn} className="space-y-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="signin-email">Email Address</Label>
                         <Input
-                          id="signin-password"
-                          type={showSignInPassword ? "text" : "password"}
-                          value={signInData.password}
+                          id="signin-email"
+                          type="email"
+                          value={signInData.email}
                           onChange={(e) => {
                             setSignInData((prev) => ({
                               ...prev,
-                              password: e.target.value,
+                              email: e.target.value,
                             }));
                             // Clear errors when user starts typing
-                            if (fieldErrors.password) {
+                            if (fieldErrors.email) {
                               setFieldErrors((prev) => {
                                 const newErrors = { ...prev };
-                                delete newErrors.password;
+                                delete newErrors.email;
                                 return newErrors;
                               });
                             }
@@ -477,534 +557,599 @@ export default function AuthPage({
                               setErrorType(null);
                             }
                           }}
-                          placeholder="Enter your password"
+                          placeholder="Enter your email"
                           disabled={isLoading}
-                          className={`h-11 pr-10 ${
-                            fieldErrors.password
+                          className={`h-11 ${
+                            fieldErrors.email
                               ? "border-red-500 focus-visible:ring-red-500"
                               : ""
                           }`}
                         />
-                        <button
-                          type="button"
-                          onClick={() =>
-                            setShowSignInPassword(!showSignInPassword)
-                          }
-                          className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                        >
-                          {showSignInPassword ? (
-                            <EyeOff className="w-4 h-4" />
-                          ) : (
-                            <Eye className="w-4 h-4" />
-                          )}
-                        </button>
+                        {fieldErrors.email && (
+                          <p className="text-xs text-red-600 flex items-center gap-1">
+                            <AlertCircle className="w-3 h-3" />
+                            {fieldErrors.email}
+                          </p>
+                        )}
                       </div>
-                      {fieldErrors.password && (
-                        <p className="text-xs text-red-600 flex items-center gap-1">
-                          <AlertCircle className="w-3 h-3" />
-                          {fieldErrors.password}
-                        </p>
-                      )}
-                    </div>
 
-                    {error && (
-                      <Alert
-                        variant={
-                          errorType === "network" ? "default" : "destructive"
-                        }
-                        className={
-                          errorType === "network"
-                            ? "border-amber-500 bg-amber-50"
-                            : ""
+                      <div className="space-y-2">
+                        <Label htmlFor="signin-password">Password</Label>
+                        <div className="relative">
+                          <Input
+                            id="signin-password"
+                            type={showSignInPassword ? "text" : "password"}
+                            value={signInData.password}
+                            onChange={(e) => {
+                              setSignInData((prev) => ({
+                                ...prev,
+                                password: e.target.value,
+                              }));
+                              // Clear errors when user starts typing
+                              if (fieldErrors.password) {
+                                setFieldErrors((prev) => {
+                                  const newErrors = { ...prev };
+                                  delete newErrors.password;
+                                  return newErrors;
+                                });
+                              }
+                              if (error && errorType === "validation") {
+                                setError(null);
+                                setErrorType(null);
+                              }
+                            }}
+                            placeholder="Enter your password"
+                            disabled={isLoading}
+                            className={`h-11 pr-10 ${
+                              fieldErrors.password
+                                ? "border-red-500 focus-visible:ring-red-500"
+                                : ""
+                            }`}
+                          />
+                          <button
+                            type="button"
+                            onClick={() =>
+                              setShowSignInPassword(!showSignInPassword)
+                            }
+                            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                          >
+                            {showSignInPassword ? (
+                              <EyeOff className="w-4 h-4" />
+                            ) : (
+                              <Eye className="w-4 h-4" />
+                            )}
+                          </button>
+                        </div>
+                        {fieldErrors.password && (
+                          <p className="text-xs text-red-600 flex items-center gap-1">
+                            <AlertCircle className="w-3 h-3" />
+                            {fieldErrors.password}
+                          </p>
+                        )}
+                      </div>
+
+                      {error && (
+                        <Alert
+                          variant={
+                            errorType === "network" ? "default" : "destructive"
+                          }
+                          className={
+                            errorType === "network"
+                              ? "border-amber-500 bg-amber-50"
+                              : ""
+                          }
+                        >
+                          <AlertCircle
+                            className={`h-4 w-4 ${
+                              errorType === "network" ? "text-amber-600" : ""
+                            }`}
+                          />
+                          <AlertDescription
+                            className={
+                              errorType === "network" ? "text-amber-800" : ""
+                            }
+                          >
+                            {error}
+                          </AlertDescription>
+                        </Alert>
+                      )}
+
+                      <Button
+                        type="submit"
+                        className="w-full h-11"
+                        disabled={
+                          isLoading || !signInData.email || !signInData.password
                         }
                       >
-                        <AlertCircle
-                          className={`h-4 w-4 ${
-                            errorType === "network" ? "text-amber-600" : ""
-                          }`}
-                        />
-                        <AlertDescription
-                          className={
-                            errorType === "network" ? "text-amber-800" : ""
-                          }
-                        >
-                          {error}
-                        </AlertDescription>
-                      </Alert>
-                    )}
-
-                    <Button
-                      type="submit"
-                      className="w-full h-11"
-                      disabled={
-                        isLoading || !signInData.email || !signInData.password
-                      }
-                    >
-                      {isLoading ? (
-                        <div className="flex flex-col items-center gap-1">
-                          <div className="flex items-center">
-                            <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2" />
-                            Signing In...
+                        {isLoading ? (
+                          <div className="flex flex-col items-center gap-1">
+                            <div className="flex items-center">
+                              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2" />
+                              Signing In...
+                            </div>
+                            {/* <span className="text-xs opacity-75">
+                              First request may take 30-60 seconds
+                            </span> */}
                           </div>
-                          {/* <span className="text-xs opacity-75">
-                            First request may take 30-60 seconds
-                          </span> */}
-                        </div>
-                      ) : (
-                        <>
-                          <LogIn className="w-4 h-4 mr-2" />
-                          Sign In
-                        </>
-                      )}
-                    </Button>
-                    <Button
-                      type="button"
-                      onClick={() => navigate("/")}
-                      className="w-full h-11 bg-orange-500 rounded-sm text-white px-5 py-2 cursor-pointer z-50"
-                      aria-label="Back to home"
-                    >
-                      ← Back to Home
-                    </Button>
-
-                    <div className="text-center mt-4">
-                      <button
+                        ) : (
+                          <>
+                            <LogIn className="w-4 h-4 mr-2" />
+                            Sign In
+                          </>
+                        )}
+                      </Button>
+                      <Button
                         type="button"
-                        onClick={() => {
-                          setShowForgotPassword(true);
-                          setResetEmail(signInData.email);
-                        }}
-                        className="text-sm text-indigo-600 hover:text-indigo-800 hover:underline"
+                        onClick={() => navigate("/")}
+                        className="w-full h-11 bg-orange-500 rounded-sm text-white px-5 py-2 cursor-pointer z-50"
+                        aria-label="Back to home"
                       >
-                        Forgot your password?
-                      </button>
-                    </div>
-                  </form>
-                )}
+                        ← Back to Home
+                      </Button>
 
-                {/* Sign Up Form */}
-                {activeTab === "signup" && (
-                  <form onSubmit={handleSignUp} className="space-y-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="signup-name">Full Name *</Label>
-                      <Input
-                        id="signup-name"
-                        type="text"
-                        value={signUpData.fullName}
-                        onChange={(e) => {
-                          setSignUpData((prev) => ({
-                            ...prev,
-                            fullName: e.target.value,
-                          }));
-                          if (fieldErrors.fullName) {
-                            setFieldErrors((prev) => {
-                              const newErrors = { ...prev };
-                              delete newErrors.fullName;
-                              return newErrors;
-                            });
+                      <div className="text-center mt-4">
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setShowForgotPassword(true);
+                            setResetEmail(signInData.email);
+                          }}
+                          className="text-sm text-indigo-600 hover:text-indigo-800 hover:underline"
+                        >
+                          Forgot your password?
+                        </button>
+                      </div>
+                    </form>
+                  )}
+
+                  {/* Sign Up Form */}
+                  {activeTab === "signup" && (
+                    <form onSubmit={handleSignUp} className="space-y-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="signup-name">Full Name *</Label>
+                        <Input
+                          id="signup-name"
+                          type="text"
+                          value={signUpData.fullName}
+                          onChange={(e) => {
+                            setSignUpData((prev) => ({
+                              ...prev,
+                              fullName: e.target.value,
+                            }));
+                            if (fieldErrors.fullName) {
+                              setFieldErrors((prev) => {
+                                const newErrors = { ...prev };
+                                delete newErrors.fullName;
+                                return newErrors;
+                              });
+                            }
+                            if (error && errorType === "validation") {
+                              setError(null);
+                              setErrorType(null);
+                            }
+                          }}
+                          placeholder="Enter your full name"
+                          disabled={isLoading}
+                          className={`h-11 ${
+                            fieldErrors.fullName
+                              ? "border-red-500 focus-visible:ring-red-500"
+                              : ""
+                          }`}
+                        />
+                        {fieldErrors.fullName && (
+                          <p className="text-xs text-red-600 flex items-center gap-1">
+                            <AlertCircle className="w-3 h-3" />
+                            {fieldErrors.fullName}
+                          </p>
+                        )}
+                      </div>
+
+                      <div className="space-y-2">
+                        <Label htmlFor="signup-email">Email Address *</Label>
+                        <Input
+                          id="signup-email"
+                          type="email"
+                          value={signUpData.email}
+                          onChange={(e) => {
+                            setSignUpData((prev) => ({
+                              ...prev,
+                              email: e.target.value,
+                            }));
+                            if (fieldErrors.email) {
+                              setFieldErrors((prev) => {
+                                const newErrors = { ...prev };
+                                delete newErrors.email;
+                                return newErrors;
+                              });
+                            }
+                            if (error && errorType === "validation") {
+                              setError(null);
+                              setErrorType(null);
+                            }
+                          }}
+                          placeholder="Enter your email"
+                          disabled={isLoading}
+                          className={`h-11 ${
+                            fieldErrors.email
+                              ? "border-red-500 focus-visible:ring-red-500"
+                              : ""
+                          }`}
+                        />
+                        {fieldErrors.email && (
+                          <p className="text-xs text-red-600 flex items-center gap-1">
+                            <AlertCircle className="w-3 h-3" />
+                            {fieldErrors.email}
+                          </p>
+                        )}
+                      </div>
+
+                      <div className="space-y-2">
+                        <Label htmlFor="signup-org">
+                          Organization Name (Optional)
+                        </Label>
+                        <Input
+                          id="signup-org"
+                          type="text"
+                          value={signUpData.organizationName}
+                          onChange={(e) => {
+                            setSignUpData((prev) => ({
+                              ...prev,
+                              organizationName: e.target.value,
+                            }));
+                            if (fieldErrors.organizationName) {
+                              setFieldErrors((prev) => {
+                                const newErrors = { ...prev };
+                                delete newErrors.organizationName;
+                                return newErrors;
+                              });
+                            }
+                            if (error && errorType === "validation") {
+                              setError(null);
+                              setErrorType(null);
+                            }
+                          }}
+                          placeholder="e.g., Your Company Name"
+                          disabled={isLoading}
+                          className={`h-11 ${
+                            fieldErrors.organizationName
+                              ? "border-red-500 focus-visible:ring-red-500"
+                              : ""
+                          }`}
+                        />
+                        {fieldErrors.organizationName ? (
+                          <p className="text-xs text-red-600 flex items-center gap-1">
+                            <AlertCircle className="w-3 h-3" />
+                            {fieldErrors.organizationName}
+                          </p>
+                        ) : (
+                          <p className="text-xs text-gray-500">
+                            You can add this later in settings
+                          </p>
+                        )}
+                      </div>
+
+                      <div className="space-y-2">
+                        <Label htmlFor="signup-password">Password *</Label>
+                        <div className="relative">
+                          <Input
+                            id="signup-password"
+                            type={showSignUpPassword ? "text" : "password"}
+                            value={signUpData.password}
+                            onChange={(e) => {
+                              setSignUpData((prev) => ({
+                                ...prev,
+                                password: e.target.value,
+                              }));
+                              if (fieldErrors.password) {
+                                setFieldErrors((prev) => {
+                                  const newErrors = { ...prev };
+                                  delete newErrors.password;
+                                  return newErrors;
+                                });
+                              }
+                              if (error && errorType === "validation") {
+                                setError(null);
+                                setErrorType(null);
+                              }
+                            }}
+                            placeholder="Create a password (min. 8 characters)"
+                            disabled={isLoading}
+                            className={`h-11 pr-10 ${
+                              fieldErrors.password
+                                ? "border-red-500 focus-visible:ring-red-500"
+                                : ""
+                            }`}
+                          />
+                          <button
+                            type="button"
+                            onClick={() =>
+                              setShowSignUpPassword(!showSignUpPassword)
+                            }
+                            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                          >
+                            {showSignUpPassword ? (
+                              <EyeOff className="w-4 h-4" />
+                            ) : (
+                              <Eye className="w-4 h-4" />
+                            )}
+                          </button>
+                        </div>
+                        {fieldErrors.password && (
+                          <p className="text-xs text-red-600 flex items-center gap-1">
+                            <AlertCircle className="w-3 h-3" />
+                            {fieldErrors.password}
+                          </p>
+                        )}
+                      </div>
+
+                      <div className="space-y-2">
+                        <Label htmlFor="signup-confirm">
+                          Confirm Password *
+                        </Label>
+                        <div className="relative">
+                          <Input
+                            id="signup-confirm"
+                            type={showConfirmPassword ? "text" : "password"}
+                            value={signUpData.confirmPassword}
+                            onChange={(e) => {
+                              setSignUpData((prev) => ({
+                                ...prev,
+                                confirmPassword: e.target.value,
+                              }));
+                              if (fieldErrors.confirmPassword) {
+                                setFieldErrors((prev) => {
+                                  const newErrors = { ...prev };
+                                  delete newErrors.confirmPassword;
+                                  return newErrors;
+                                });
+                              }
+                              if (error && errorType === "validation") {
+                                setError(null);
+                                setErrorType(null);
+                              }
+                            }}
+                            placeholder="Confirm your password"
+                            disabled={isLoading}
+                            className={`h-11 pr-10 ${
+                              fieldErrors.confirmPassword
+                                ? "border-red-500 focus-visible:ring-red-500"
+                                : ""
+                            }`}
+                          />
+                          <button
+                            type="button"
+                            onClick={() =>
+                              setShowConfirmPassword(!showConfirmPassword)
+                            }
+                            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                          >
+                            {showConfirmPassword ? (
+                              <EyeOff className="w-4 h-4" />
+                            ) : (
+                              <Eye className="w-4 h-4" />
+                            )}
+                          </button>
+                        </div>
+                        {fieldErrors.confirmPassword && (
+                          <p className="text-xs text-red-600 flex items-center gap-1">
+                            <AlertCircle className="w-3 h-3" />
+                            {fieldErrors.confirmPassword}
+                          </p>
+                        )}
+                      </div>
+
+                      {error && (
+                        <Alert
+                          variant={
+                            errorType === "network" ? "default" : "destructive"
                           }
-                          if (error && errorType === "validation") {
-                            setError(null);
-                            setErrorType(null);
+                          className={
+                            errorType === "network"
+                              ? "border-amber-500 bg-amber-50"
+                              : ""
                           }
-                        }}
-                        placeholder="Enter your full name"
-                        disabled={isLoading}
-                        className={`h-11 ${
-                          fieldErrors.fullName
-                            ? "border-red-500 focus-visible:ring-red-500"
-                            : ""
-                        }`}
-                      />
-                      {fieldErrors.fullName && (
-                        <p className="text-xs text-red-600 flex items-center gap-1">
-                          <AlertCircle className="w-3 h-3" />
-                          {fieldErrors.fullName}
-                        </p>
+                        >
+                          <AlertCircle
+                            className={`h-4 w-4 ${
+                              errorType === "network" ? "text-amber-600" : ""
+                            }`}
+                          />
+                          <AlertDescription
+                            className={
+                              errorType === "network" ? "text-amber-800" : ""
+                            }
+                          >
+                            {error}
+                          </AlertDescription>
+                        </Alert>
                       )}
-                    </div>
 
-                    <div className="space-y-2">
-                      <Label htmlFor="signup-email">Email Address *</Label>
+                      <Button
+                        type="submit"
+                        className="w-full h-11"
+                        disabled={
+                          isLoading ||
+                          !signUpData.fullName ||
+                          !signUpData.email ||
+                          !signUpData.password ||
+                          !signUpData.confirmPassword
+                        }
+                      >
+                        {isLoading ? (
+                          <div className="flex flex-col items-center gap-1">
+                            <div className="flex items-center">
+                              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2" />
+                              Creating Account...
+                            </div>
+                          </div>
+                        ) : (
+                          <>
+                            <UserPlus className="w-4 h-4 mr-2" />
+                            Create Account
+                          </>
+                        )}
+                      </Button>
+                      <Button
+                        type="button"
+                        onClick={() => navigate("/")}
+                        className="w-full h-11 bg-orange-500 rounded-sm text-white px-5 py-2 cursor-pointer z-50"
+                        aria-label="Back to home"
+                      >
+                        ← Back to Home
+                      </Button>
+
+                      <p className="text-xs text-gray-500 text-center mt-4">
+                        By signing up, you agree to use this platform
+                        responsibly, and Genomac Innovation Hub reserves their
+                        rights.
+                      </p>
+                    </form>
+                  )}
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+
+          {/* Footer */}
+          <div className="text-center mt-8">
+            <p className="text-sm text-gray-500">
+              © 2025 Innovation of Genomac Innovation Hub. All Rights Reserved.
+            </p>
+            <p className="text-xs text-gray-400 mt-1 capitalize">
+              Create, manage, and share professional certificates with ease
+            </p>
+          </div>
+
+          {/* Password Reset Modal */}
+          <Dialog
+            open={showForgotPassword}
+            onOpenChange={setShowForgotPassword}
+          >
+            <DialogContent className="sm:max-w-md">
+              <DialogHeader>
+                <DialogTitle className="flex items-center gap-2">
+                  <KeyRound className="w-5 h-5 text-indigo-600" />
+                  Reset Your Password
+                </DialogTitle>
+                <DialogDescription>
+                  Enter your email address and we'll send you a link to reset
+                  your password.
+                </DialogDescription>
+              </DialogHeader>
+
+              {!resetSuccess ? (
+                <form onSubmit={handlePasswordReset} className="space-y-4 mt-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="reset-email">Email Address</Label>
+                    <div className="relative">
+                      <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                       <Input
-                        id="signup-email"
+                        id="reset-email"
                         type="email"
-                        value={signUpData.email}
+                        value={resetEmail}
                         onChange={(e) => {
-                          setSignUpData((prev) => ({
-                            ...prev,
-                            email: e.target.value,
-                          }));
-                          if (fieldErrors.email) {
-                            setFieldErrors((prev) => {
-                              const newErrors = { ...prev };
-                              delete newErrors.email;
-                              return newErrors;
-                            });
-                          }
-                          if (error && errorType === "validation") {
-                            setError(null);
-                            setErrorType(null);
-                          }
+                          setResetEmail(e.target.value);
+                          setResetError(null);
                         }}
-                        placeholder="Enter your email"
-                        disabled={isLoading}
-                        className={`h-11 ${
-                          fieldErrors.email
-                            ? "border-red-500 focus-visible:ring-red-500"
-                            : ""
-                        }`}
+                        placeholder="your.email@example.com"
+                        disabled={resetLoading}
+                        className="pl-10 h-11"
                       />
-                      {fieldErrors.email && (
-                        <p className="text-xs text-red-600 flex items-center gap-1">
-                          <AlertCircle className="w-3 h-3" />
-                          {fieldErrors.email}
-                        </p>
-                      )}
                     </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="signup-org">
-                        Organization Name (Optional)
-                      </Label>
-                      <Input
-                        id="signup-org"
-                        type="text"
-                        value={signUpData.organizationName}
-                        onChange={(e) => {
-                          setSignUpData((prev) => ({
-                            ...prev,
-                            organizationName: e.target.value,
-                          }));
-                          if (fieldErrors.organizationName) {
-                            setFieldErrors((prev) => {
-                              const newErrors = { ...prev };
-                              delete newErrors.organizationName;
-                              return newErrors;
-                            });
-                          }
-                          if (error && errorType === "validation") {
-                            setError(null);
-                            setErrorType(null);
-                          }
-                        }}
-                        placeholder="e.g., Your Company Name"
-                        disabled={isLoading}
-                        className={`h-11 ${
-                          fieldErrors.organizationName
-                            ? "border-red-500 focus-visible:ring-red-500"
-                            : ""
-                        }`}
-                      />
-                      {fieldErrors.organizationName ? (
-                        <p className="text-xs text-red-600 flex items-center gap-1">
-                          <AlertCircle className="w-3 h-3" />
-                          {fieldErrors.organizationName}
-                        </p>
-                      ) : (
-                        <p className="text-xs text-gray-500">
-                          You can add this later in settings
-                        </p>
-                      )}
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="signup-password">Password *</Label>
-                      <div className="relative">
-                        <Input
-                          id="signup-password"
-                          type={showSignUpPassword ? "text" : "password"}
-                          value={signUpData.password}
-                          onChange={(e) => {
-                            setSignUpData((prev) => ({
-                              ...prev,
-                              password: e.target.value,
-                            }));
-                            if (fieldErrors.password) {
-                              setFieldErrors((prev) => {
-                                const newErrors = { ...prev };
-                                delete newErrors.password;
-                                return newErrors;
-                              });
-                            }
-                            if (error && errorType === "validation") {
-                              setError(null);
-                              setErrorType(null);
-                            }
-                          }}
-                          placeholder="Create a password (min. 8 characters)"
-                          disabled={isLoading}
-                          className={`h-11 pr-10 ${
-                            fieldErrors.password
-                              ? "border-red-500 focus-visible:ring-red-500"
-                              : ""
-                          }`}
-                        />
-                        <button
-                          type="button"
-                          onClick={() =>
-                            setShowSignUpPassword(!showSignUpPassword)
-                          }
-                          className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                        >
-                          {showSignUpPassword ? (
-                            <EyeOff className="w-4 h-4" />
-                          ) : (
-                            <Eye className="w-4 h-4" />
-                          )}
-                        </button>
-                      </div>
-                      {fieldErrors.password && (
-                        <p className="text-xs text-red-600 flex items-center gap-1">
-                          <AlertCircle className="w-3 h-3" />
-                          {fieldErrors.password}
-                        </p>
-                      )}
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="signup-confirm">Confirm Password *</Label>
-                      <div className="relative">
-                        <Input
-                          id="signup-confirm"
-                          type={showConfirmPassword ? "text" : "password"}
-                          value={signUpData.confirmPassword}
-                          onChange={(e) => {
-                            setSignUpData((prev) => ({
-                              ...prev,
-                              confirmPassword: e.target.value,
-                            }));
-                            if (fieldErrors.confirmPassword) {
-                              setFieldErrors((prev) => {
-                                const newErrors = { ...prev };
-                                delete newErrors.confirmPassword;
-                                return newErrors;
-                              });
-                            }
-                            if (error && errorType === "validation") {
-                              setError(null);
-                              setErrorType(null);
-                            }
-                          }}
-                          placeholder="Confirm your password"
-                          disabled={isLoading}
-                          className={`h-11 pr-10 ${
-                            fieldErrors.confirmPassword
-                              ? "border-red-500 focus-visible:ring-red-500"
-                              : ""
-                          }`}
-                        />
-                        <button
-                          type="button"
-                          onClick={() =>
-                            setShowConfirmPassword(!showConfirmPassword)
-                          }
-                          className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                        >
-                          {showConfirmPassword ? (
-                            <EyeOff className="w-4 h-4" />
-                          ) : (
-                            <Eye className="w-4 h-4" />
-                          )}
-                        </button>
-                      </div>
-                      {fieldErrors.confirmPassword && (
-                        <p className="text-xs text-red-600 flex items-center gap-1">
-                          <AlertCircle className="w-3 h-3" />
-                          {fieldErrors.confirmPassword}
-                        </p>
-                      )}
-                    </div>
-
-                    {error && (
+                    {resetError && (
                       <Alert
                         variant={
-                          errorType === "network" ? "default" : "destructive"
+                          resetError.includes("⚠️") ? "default" : "destructive"
                         }
                         className={
-                          errorType === "network"
+                          resetError.includes("⚠️")
                             ? "border-amber-500 bg-amber-50"
                             : ""
                         }
                       >
                         <AlertCircle
-                          className={`h-4 w-4 ${
-                            errorType === "network" ? "text-amber-600" : ""
-                          }`}
+                          className={`h-4 w-4 ${resetError.includes("⚠️") ? "text-amber-600" : ""}`}
                         />
                         <AlertDescription
                           className={
-                            errorType === "network" ? "text-amber-800" : ""
+                            resetError.includes("⚠️") ? "text-amber-800" : ""
                           }
                         >
-                          {error}
+                          {resetError}
                         </AlertDescription>
                       </Alert>
                     )}
+                  </div>
 
-                    <Button
-                      type="submit"
-                      className="w-full h-11"
-                      disabled={
-                        isLoading ||
-                        !signUpData.fullName ||
-                        !signUpData.email ||
-                        !signUpData.password ||
-                        !signUpData.confirmPassword
-                      }
-                    >
-                      {isLoading ? (
-                        <div className="flex flex-col items-center gap-1">
-                          <div className="flex items-center">
-                            <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2" />
-                            Creating Account...
-                          </div>
-                        </div>
-                      ) : (
-                        <>
-                          <UserPlus className="w-4 h-4 mr-2" />
-                          Create Account
-                        </>
-                      )}
-                    </Button>
+                  <div className="flex gap-2">
                     <Button
                       type="button"
-                      onClick={() => navigate("/")}
-                      className="w-full h-11 bg-orange-500 rounded-sm text-white px-5 py-2 cursor-pointer z-50"
-                      aria-label="Back to home"
-                    >
-                      ← Back to Home
-                    </Button>
-
-                    <p className="text-xs text-gray-500 text-center mt-4">
-                      By signing up, you agree to use this platform responsibly,
-                      and Genomac Innovation Hub reserves their rights.
-                    </p>
-                  </form>
-                )}
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-
-        {/* Footer */}
-        <div className="text-center mt-8">
-          <p className="text-sm text-gray-500">
-            © 2025 Innovation of Genomac Innovation Hub. All Rights Reserved.
-          </p>
-          <p className="text-xs text-gray-400 mt-1 capitalize">
-            Create, manage, and share professional certificates with ease
-          </p>
-        </div>
-
-        {/* Password Reset Modal */}
-        <Dialog open={showForgotPassword} onOpenChange={setShowForgotPassword}>
-          <DialogContent className="sm:max-w-md">
-            <DialogHeader>
-              <DialogTitle className="flex items-center gap-2">
-                <KeyRound className="w-5 h-5 text-indigo-600" />
-                Reset Your Password
-              </DialogTitle>
-              <DialogDescription>
-                Enter your email address and we'll send you a link to reset your
-                password.
-              </DialogDescription>
-            </DialogHeader>
-
-            {!resetSuccess ? (
-              <form onSubmit={handlePasswordReset} className="space-y-4 mt-4">
-                <div className="space-y-2">
-                  <Label htmlFor="reset-email">Email Address</Label>
-                  <div className="relative">
-                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                    <Input
-                      id="reset-email"
-                      type="email"
-                      value={resetEmail}
-                      onChange={(e) => {
-                        setResetEmail(e.target.value);
+                      onClick={() => {
+                        setShowForgotPassword(false);
+                        setResetEmail("");
                         setResetError(null);
                       }}
-                      placeholder="your.email@example.com"
                       disabled={resetLoading}
-                      className="pl-10 h-11"
-                    />
+                      className="flex-1 border border-gray-200"
+                    >
+                      <ArrowLeft className="w-4 h-4 mr-2" />
+                      Back
+                    </Button>
+                    <Button
+                      type="submit"
+                      disabled={resetLoading || !resetEmail}
+                      className="flex-1"
+                    >
+                      {resetLoading ? (
+                        <>
+                          <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2" />
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          <Mail className="w-4 h-4 mr-2" />
+                          Send Reset Link
+                        </>
+                      )}
+                    </Button>
                   </div>
-                  {resetError && (
-                    <Alert variant="destructive">
-                      <AlertCircle className="h-4 w-4" />
-                      <AlertDescription>{resetError}</AlertDescription>
-                    </Alert>
-                  )}
-                </div>
-
-                <div className="flex gap-2">
+                </form>
+              ) : (
+                <div className="py-6 text-center space-y-4">
+                  <div className="flex justify-center">
+                    <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
+                      <CheckCircle className="w-8 h-8 text-green-600" />
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <h3 className="font-medium text-gray-900">
+                      Check Your Email
+                    </h3>
+                    <p className="text-sm text-gray-600">
+                      We've sent a password reset link to{" "}
+                      <strong>{resetEmail}</strong>
+                    </p>
+                    <p className="text-xs text-gray-500">
+                      Click the link in the email to reset your password. It may
+                      take a few minutes to arrive.
+                    </p>
+                  </div>
                   <Button
-                    type="button"
                     onClick={() => {
                       setShowForgotPassword(false);
+                      setResetSuccess(false);
                       setResetEmail("");
-                      setResetError(null);
                     }}
-                    disabled={resetLoading}
-                    className="flex-1 border border-gray-200"
+                    className="w-full"
                   >
-                    <ArrowLeft className="w-4 h-4 mr-2" />
-                    Back
-                  </Button>
-                  <Button
-                    type="submit"
-                    disabled={resetLoading || !resetEmail}
-                    className="flex-1"
-                  >
-                    {resetLoading ? (
-                      <>
-                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2" />
-                        Sending...
-                      </>
-                    ) : (
-                      <>
-                        <Mail className="w-4 h-4 mr-2" />
-                        Send Reset Link
-                      </>
-                    )}
+                    Back to Sign In
                   </Button>
                 </div>
-              </form>
-            ) : (
-              <div className="py-6 text-center space-y-4">
-                <div className="flex justify-center">
-                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
-                    <CheckCircle className="w-8 h-8 text-green-600" />
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <h3 className="font-medium text-gray-900">
-                    Check Your Email
-                  </h3>
-                  <p className="text-sm text-gray-600">
-                    We've sent a password reset link to{" "}
-                    <strong>{resetEmail}</strong>
-                  </p>
-                  <p className="text-xs text-gray-500">
-                    Click the link in the email to reset your password. It may
-                    take a few minutes to arrive.
-                  </p>
-                </div>
-                <Button
-                  onClick={() => {
-                    setShowForgotPassword(false);
-                    setResetSuccess(false);
-                    setResetEmail("");
-                  }}
-                  className="w-full"
-                >
-                  Back to Sign In
-                </Button>
-              </div>
-            )}
-          </DialogContent>
-        </Dialog>
+              )}
+            </DialogContent>
+          </Dialog>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

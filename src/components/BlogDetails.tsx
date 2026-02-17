@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import Navbar from "./landing/Navbar";
-import { blogs } from "../../src/data/blog";
+import { blogApi, Blog } from "../utils/blogApi";
+import { toast } from "sonner";
 
 function renderMarkdownish(content: string) {
   const blocks = content.split("\n\n");
@@ -28,21 +29,11 @@ function renderMarkdownish(content: string) {
   });
 }
 
-// useEffect(() => {
-//   const id = "merriweather-font";
-//   if (!document.getElementById(id)) {
-//     const link = document.createElement("link");
-//     link.id = id;
-//     link.rel = "stylesheet";
-//     link.href =
-//       "https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap";
-//     document.head.appendChild(link);
-//   }
-// }, []);
-
 export default function BlogDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [post, setPost] = useState<Blog | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const id = "merriweather-font";
@@ -56,7 +47,47 @@ export default function BlogDetails() {
     }
   }, []);
 
-  const post = blogs.find((b) => b.id === id);
+  useEffect(() => {
+    const fetchBlog = async () => {
+      if (!id) return;
+
+      try {
+        setLoading(true);
+        const response = await blogApi.getById(id);
+        setPost(response.blog);
+      } catch (error: any) {
+        console.error("Failed to fetch blog:", error);
+        toast.error("Failed to load blog post");
+        setPost(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBlog();
+  }, [id]);
+
+  if (loading) {
+    return (
+      <>
+        <Navbar />
+        <div className="min-h-screen bg-gray-50 py-10">
+          <div className="max-w-4xl mx-auto px-4">
+            <div className="animate-pulse">
+              <div className="h-12 bg-gray-200 rounded mb-4"></div>
+              <div className="h-6 bg-gray-200 rounded w-1/3 mb-6"></div>
+              <div className="w-full h-100 bg-gray-200 rounded"></div>
+              <div className="mt-6 space-y-4">
+                <div className="h-4 bg-gray-200 rounded"></div>
+                <div className="h-4 bg-gray-200 rounded"></div>
+                <div className="h-4 bg-gray-200 rounded w-5/6"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
 
   if (!post) {
     return (

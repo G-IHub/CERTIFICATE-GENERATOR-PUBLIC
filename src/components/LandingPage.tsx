@@ -20,16 +20,16 @@ import {
 import bell from "../assets/bell.jpg";
 
 export default function LandingPage() {
-  const [isOpen, setIsOpen] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
 
-  useEffect(() => {
-    setIsOpen(true);
-    // Only show the dialog if it hasn't been shown in this session
-    if (!sessionStorage.getItem("earlyAccessDialogShown")) {
-      setIsOpen(true);
-      sessionStorage.setItem("earlyAccessDialogShown", "true");
-    }
-  }, []);
+  // useEffect(() => {
+  //   setIsOpen(true);
+  //   // Only show the dialog if it hasn't been shown in this session
+  //   if (!sessionStorage.getItem("earlyAccessDialogShown")) {
+  //     setIsOpen(true);
+  //     sessionStorage.setItem("earlyAccessDialogShown", "true");
+  //   }
+  // }, []);
 
   return (
       <>
@@ -52,7 +52,7 @@ export default function LandingPage() {
           <div className="absolute blur-sm -top-37 right-5 bg-gradient-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-100 w-12 rotate-45" />
         </div>
         <div className="relative z-40">
-          <Dialog open={isOpen} onOpenChange={setIsOpen}>
+          {/* <Dialog open={isOpen} onOpenChange={setIsOpen}>
             <DialogContent>
               <DialogHeader>
                 <div className="w-1/2 mx-auto">
@@ -66,7 +66,7 @@ export default function LandingPage() {
                 </DialogDescription>
               </DialogHeader>
             </DialogContent>
-          </Dialog>
+          </Dialog> */}
           <Navbar />
           <section id="hero">
             <Hero />

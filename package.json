@@ -40,7 +40,7 @@
     "cmdk": "^1.1.1",
     "crypto-js": "*",
     "embla-carousel-react": "^8.6.0",
-    "enhanced-resolve": "^5.19.0",
+    "enhanced-resolve": "5.18.0",
     "headlessui": "^0.0.0",
     "heroicons": "^2.2.0",
     "hono": "^4",

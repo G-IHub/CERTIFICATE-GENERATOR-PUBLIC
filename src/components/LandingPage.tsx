@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import Navbar from "./landing/Navbar";
+import React from "react";
 import SEOHead from "./SEOHead";
+import Navbar from "./landing/Navbar";
 import Hero from "./landing/Hero";
 import About from "./landing/About";
 import CoreFeatures from "./landing/CoreFeatures";
@@ -9,35 +9,16 @@ import Price from "./landing/Price";
 import Testimonial from "./landing/Testimonial";
 import FAQ from "./landing/FAQ";
 import Footer from "./landing/Footer";
-import Partners from "./landing/Partners";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "./ui/dialog";
-import bell from "../assets/bell.jpg";
+import BlogSection from "./landing/BlogSection";
 
 export default function LandingPage() {
-  // const [isOpen, setIsOpen] = useState(false);
-
-  // useEffect(() => {
-  //   setIsOpen(true);
-  //   // Only show the dialog if it hasn't been shown in this session
-  //   if (!sessionStorage.getItem("earlyAccessDialogShown")) {
-  //     setIsOpen(true);
-  //     sessionStorage.setItem("earlyAccessDialogShown", "true");
-  //   }
-  // }, []);
-
   return (
-      <>
+    <>
       <SEOHead
-          title="Certifyer - Professional Certificate Management Platform"
-          description="Generate, manage, and verify professional certificates for your organization. Multi-tenant SaaS with customizable templates, real-time previews, secure verification, and bulk email distribution."
-          type="website"
-        />
+        title="Certifyer - Professional Certificate Management Platform"
+        description="Generate, manage, and verify professional certificates for your organization. Multi-tenant SaaS with customizable templates, real-time previews, secure verification, and bulk email distribution."
+        type="website"
+      />
       <div className="bg-gradient-to-b from-[#FFCB9E52] to-[#FFFBF8] font-['Inter'] min-h-screen relative overflow-hidden">
         <div className="">
           <div className="absolute blur-sm -top-26 -left-30 bg-gradient-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-100 w-12 -rotate-45" />
@@ -52,29 +33,11 @@ export default function LandingPage() {
           <div className="absolute blur-sm -top-37 right-5 bg-gradient-to-b from-[#FF7700D9] via-[#FF77003D] to-[#FFF0E22E] h-100 w-12 rotate-45" />
         </div>
         <div className="relative z-40">
-          {/* <Dialog open={isOpen} onOpenChange={setIsOpen}>
-            <DialogContent>
-              <DialogHeader>
-                <div className="w-1/2 mx-auto">
-                  <img src={bell} alt="" />
-                </div>
-                <DialogTitle className="text-center text-lg font-bold">Early Access Notice</DialogTitle>
-                <DialogDescription className="text-center mt-2 text-base text-gray-600">
-                  Certifyer is currently in early access. We're opening core
-                  features to help creators and institutions adopt the platform
-                  ahead of our full commercial launch in March.
-                </DialogDescription>
-              </DialogHeader>
-            </DialogContent>
-          </Dialog> */}
           <Navbar />
           <section id="hero">
             <Hero />
           </section>
           <About />
-          <section id="partners">
-            <Partners />
-          </section>
           <section id="features">
             <CoreFeatures />
           </section>
@@ -82,10 +45,13 @@ export default function LandingPage() {
             <Work />
           </section>
           {/* <section id="prices">
-            <Price />
-          </section> */}
+          <Price />
+        </section> */}
           <section id="testimonials">
             <Testimonial />
+          </section>
+          <section id="blog">
+            <BlogSection />
           </section>
           <FAQ />
           <Footer />

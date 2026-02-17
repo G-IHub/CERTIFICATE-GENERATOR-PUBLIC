@@ -32,7 +32,6 @@ import {
   Image as ImageIcon,
   Upload,
   X as XIcon,
-  AlertCircle,
 } from "lucide-react";
 import {
   blogApi,
@@ -40,7 +39,7 @@ import {
   CreateBlogData,
   UpdateBlogData,
 } from "../utils/blogApi";
-import { supabase } from "../utils/supabase/client";
+import { projectId } from "../utils/supabase/info";
 
 interface BlogManagementProps {
   accessToken: string | null;
@@ -72,19 +71,50 @@ export default function BlogManagement({ accessToken }: BlogManagementProps) {
 
   const loadBlogs = async () => {
     if (!accessToken) {
-      toast.error("Authentication required");
+      toast.error("Authentication required. Please log in again.");
+      console.error("❌ No access token available");
       return;
     }
 
     try {
       setLoading(true);
-      const response = await blogApi.getAll(accessToken);
-      setBlogs(response.blogs);
-    } catch (error: any) {
-      console.error("Failed to load blogs:", error);
+      console.log("🔄 Loading blogs from API...");
+      console.log("📝 Access token length:", accessToken.length);
 
-      // Check if it's a 404 (API not configured)
+      const response = await blogApi.getAll(accessToken);
+      console.log("✅ Blogs loaded successfully:", response);
+
+      // Filter out any null or invalid blogs
+      const validBlogs = (response.blogs || []).filter(
+        (blog) => blog && blog.id,
+      );
+      setBlogs(validBlogs);
+
+      if (validBlogs.length === 0) {
+        console.log("ℹ️ No blogs found in database");
+      }
+    } catch (error: any) {
+      console.error("❌ Failed to load blogs:", error);
+      console.error("Error details:", {
+        message: error.message,
+        stack: error.stack,
+      });
+
+      // Check specific error types
       if (
+        error.message?.includes("Invalid JWT") ||
+        error.message?.includes("Unauthorized")
+      ) {
+        toast.error(
+          "Your session has expired. Please log out and log back in.",
+          {
+            duration: 5000,
+          },
+        );
+        console.error(
+          "🔐 JWT token is invalid or expired. User needs to re-authenticate.",
+        );
+      } else if (
         error.message?.includes("404") ||
         error.message?.includes("Not Found")
       ) {
@@ -92,7 +122,7 @@ export default function BlogManagement({ accessToken }: BlogManagementProps) {
           "Blog API not configured yet. See BLOG_SERVER_SETUP.md for setup instructions.",
         );
       } else {
-        toast.error("Failed to load blogs");
+        toast.error(error.message || "Failed to load blogs");
       }
       setBlogs([]);
     } finally {
@@ -108,6 +138,8 @@ export default function BlogManagement({ accessToken }: BlogManagementProps) {
       setExcerpt(blog.excerpt);
       setContent(blog.content);
       setImage(blog.image);
+      setImagePreview(null); // Clear preview when editing existing blog
+      setImageFile(null); // Clear file when editing existing blog
       setAuthor(blog.author);
       setStatus(blog.status);
     } else {
@@ -117,6 +149,8 @@ export default function BlogManagement({ accessToken }: BlogManagementProps) {
       setExcerpt("");
       setContent("");
       setImage("");
+      setImagePreview(null);
+      setImageFile(null);
       setAuthor("");
       setStatus("draft");
     }
@@ -176,7 +210,7 @@ export default function BlogManagement({ accessToken }: BlogManagementProps) {
           title,
           excerpt,
           content,
-          image,
+          image: image || "", // Use uploaded image or empty string
           author,
           status,
         };
@@ -250,45 +284,59 @@ export default function BlogManagement({ accessToken }: BlogManagementProps) {
 
     try {
       setUploadingImage(true);
+      console.log("📤 Uploading image to server...");
 
-      // Generate unique filename
-      const fileExt = file.name.split(".").pop();
-      const fileName = `${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
-      const filePath = `blog-images/${fileName}`;
+      // Create form data
+      const formData = new FormData();
+      formData.append("file", file);
 
-      const { data, error } = await supabase.storage
-        .from("blog-images")
-        .upload(filePath, file, {
-          cacheControl: "3600",
-          upsert: false,
-        });
+      // Upload via server endpoint (bypasses RLS)
+      const response = await fetch(
+        `https://${projectId}.supabase.co/functions/v1/make-server-a611b057/blogs/upload-image`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+          body: formData,
+        },
+      );
 
-      if (error) {
-        // Check if bucket doesn't exist
-        if (
-          error.message.includes("not found") ||
-          error.message.includes("Bucket")
-        ) {
-          toast.error(
-            "Blog image storage not configured. Please contact administrator.",
-          );
-          console.error(
-            "Blog images bucket doesn't exist. Please create it in Supabase.",
-          );
-          return;
-        }
-        throw error;
+      if (!response.ok) {
+        const error = await response
+          .json()
+          .catch(() => ({ message: "Failed to upload image" }));
+        throw new Error(error.message || "Failed to upload image");
       }
 
-      const { data: urlData } = supabase.storage
-        .from("blog-images")
-        .getPublicUrl(data.path);
-
-      setImage(urlData.publicUrl);
+      const result = await response.json();
+      setImage(result.url);
+      console.log("✅ Image uploaded successfully:", result.url);
       toast.success("Image uploaded successfully");
     } catch (error: any) {
-      console.error("Failed to upload image:", error);
-      toast.error(error.message || "Failed to upload image");
+      console.error("❌ Failed to upload image:", error);
+
+      // Check if it's a bucket setup issue
+      if (
+        error.message?.includes("not found") ||
+        error.message?.includes("Bucket")
+      ) {
+        toast.error(
+          "Blog image storage is being set up. Please wait a moment and try again, or refresh the page.",
+          {
+            duration: 5000,
+          },
+        );
+      } else if (
+        error.message?.includes("RLS") ||
+        error.message?.includes("security policy")
+      ) {
+        toast.error("Storage permissions issue. Please contact support.", {
+          duration: 5000,
+        });
+      } else {
+        toast.error(error.message || "Failed to upload image");
+      }
     } finally {
       setUploadingImage(false);
     }
@@ -336,34 +384,6 @@ export default function BlogManagement({ accessToken }: BlogManagementProps) {
 
   return (
     <div className="space-y-6">
-      {/* Setup Info Banner */}
-      {blogs.length === 0 && (
-        <Card className="border-orange-200 bg-orange-50">
-          <CardContent className="py-4">
-            <div className="flex items-start gap-3">
-              <AlertCircle className="w-5 h-5 text-orange-600 mt-0.5 flex-shrink-0" />
-              <div>
-                <h3 className="font-semibold text-orange-900 mb-1">
-                  Blog API Setup Required
-                </h3>
-                <p className="text-sm text-orange-800 mb-2">
-                  The blog management system requires server-side configuration
-                  before you can create posts. The frontend is ready, but you
-                  need to set up the API endpoints and database.
-                </p>
-                <p className="text-sm text-orange-800">
-                  <strong>Next steps:</strong> Please refer to{" "}
-                  <code className="bg-orange-100 px-1.5 py-0.5 rounded text-xs">
-                    BLOG_SERVER_SETUP.md
-                  </code>{" "}
-                  in your project root for complete setup instructions.
-                </p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      )}
-
       {/* Header */}
       <div className="flex justify-between items-center">
         <div>
@@ -396,7 +416,7 @@ export default function BlogManagement({ accessToken }: BlogManagementProps) {
           </CardHeader>
           <CardContent>
             <p className="text-3xl font-bold">
-              {blogs.filter((b) => b.status === "published").length}
+              {blogs.filter((b) => b && b.status === "published").length}
             </p>
           </CardContent>
         </Card>
@@ -408,7 +428,7 @@ export default function BlogManagement({ accessToken }: BlogManagementProps) {
           </CardHeader>
           <CardContent>
             <p className="text-3xl font-bold">
-              {blogs.filter((b) => b.status === "draft").length}
+              {blogs.filter((b) => b && b.status === "draft").length}
             </p>
           </CardContent>
         </Card>
@@ -547,50 +567,57 @@ export default function BlogManagement({ accessToken }: BlogManagementProps) {
               />
             </div>
 
-            {/* Image URL */}
-            <div>
-              <Label htmlFor="image">Image URL (optional)</Label>
-              <Input
-                id="image"
-                value={image}
-                onChange={(e) => setImage(e.target.value)}
-                placeholder="https://example.com/image.jpg"
-                className="mt-1"
-              />
-              <p className="text-xs text-gray-500 mt-1">
-                Leave empty for default image. Use Unsplash or other image URLs.
-              </p>
-            </div>
-
             {/* Upload Image */}
             <div>
-              <Label htmlFor="imageUpload">Upload Image (optional)</Label>
-              <div className="flex items-center gap-2">
-                <Input
-                  id="imageUpload"
-                  type="file"
-                  accept="image/*"
-                  onChange={handleImageChange}
-                  className="mt-1"
-                />
-                {uploadingImage && (
-                  <div className="text-sm text-gray-500">Uploading...</div>
-                )}
-                {imagePreview && (
-                  <div className="relative">
+              <Label htmlFor="imageUpload">
+                Blog Image{" "}
+                {!editingBlog && <span className="text-red-500">*</span>}
+              </Label>
+              <div className="mt-1 space-y-2">
+                {/* Show current image or preview */}
+                {(image || imagePreview) && (
+                  <div className="relative inline-block">
                     <img
-                      src={imagePreview}
-                      alt="Preview"
-                      className="w-20 h-20 object-cover"
+                      src={imagePreview || image}
+                      alt="Blog preview"
+                      className="w-full max-w-md h-48 object-cover rounded-lg border"
                     />
                     <button
-                      className="absolute top-0 right-0 bg-red-500 text-white rounded-full p-1"
+                      type="button"
+                      className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1.5 hover:bg-red-600 transition-colors shadow-lg"
                       onClick={removeImage}
                     >
                       <XIcon className="w-4 h-4" />
                     </button>
                   </div>
                 )}
+
+                {/* Upload button */}
+                {!uploadingImage && !image && !imagePreview && (
+                  <div className="flex items-center gap-2">
+                    <Input
+                      id="imageUpload"
+                      type="file"
+                      accept="image/*"
+                      onChange={handleImageChange}
+                      disabled={uploadingImage}
+                    />
+                  </div>
+                )}
+
+                {/* Uploading state */}
+                {uploadingImage && (
+                  <div className="flex items-center gap-2 text-sm text-gray-600">
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-[#FF7700]"></div>
+                    <span>Uploading image...</span>
+                  </div>
+                )}
+
+                <p className="text-xs text-gray-500">
+                  {image || imagePreview
+                    ? "Image uploaded successfully. Click the × button to change it."
+                    : "Upload an image for your blog post (max 5MB). JPG, PNG, or GIF formats."}
+                </p>
               </div>
             </div>
 

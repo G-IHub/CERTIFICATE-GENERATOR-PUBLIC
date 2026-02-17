@@ -30,13 +30,12 @@ import { isOrgPremium } from "./utils/subscriptionUtils";
 import SEOTestPage from "./components/SEOTestPage";
 import SEOHead from "./components/SEOHead";
 
-// Figma asset imports are not available at runtime in this environment.
-// Use a stable placeholder URL for the default organization logo.
-// If you have a local asset, replace the URL below with a path under /public and
-// use that path (for example: const defaultOrgLogo = '/images/default-org-logo.png')
+
+
+
 const defaultOrgLogo = "https://via.placeholder.com/256x256.png?text=Org+Logo";
 
-// TypeScript interfaces
+
 interface Program {
   id: string;
   name: string;
@@ -78,9 +77,9 @@ interface UserAccount {
   id: string;
   fullName: string;
   email: string;
-  userType: "company"; // All users are organization users
-  organizationName?: string; // Optional - can be added later
-  organizationId?: string; // Optional - can be added later
+  userType: "company";
+  organizationName?: string;
+  organizationId?: string;
   createdAt: string;
 }
 

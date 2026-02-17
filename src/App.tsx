@@ -102,7 +102,6 @@ export type {
   OrganizationSettings,
 };
 
-// For backwards compatibility with existing components that expect "Subsidiary"
 export type Subsidiary = Organization;
 
 // Password Reset Redirect Component
@@ -111,8 +110,6 @@ function PasswordResetRedirect() {
   const location = useLocation();
 
   useEffect(() => {
-    // Check if there's a recovery token in the URL
-    // With HashRouter, tokens appear in the pathname like: /access_token=...&type=recovery
     const fullPath = location.pathname + location.search + location.hash;
 
     // Check if this looks like a password reset URL

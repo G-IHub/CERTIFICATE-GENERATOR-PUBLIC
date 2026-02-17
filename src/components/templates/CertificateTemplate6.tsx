@@ -50,6 +50,8 @@ export default function CertificateTemplate6({
   primaryColor = "#ea580c",
   signatories = [],
 }: CertificateTemplate6Props) {
+  const ref = React.useRef<HTMLDivElement>(null);
+  const scale = mode === "student" ? "transform scale-[0.3]" : "transform scale-100";
   // Use legacy props if provided, otherwise use new standard props
   const displayProgramName = programName || courseTitle;
   const displayIssueDate = issueDate || date;
@@ -62,18 +64,18 @@ export default function CertificateTemplate6({
     day: "numeric",
   });
 
-  const transformClass =
-    mode === "student" ? "transform scale-[0.3]" : "transform scale-100";
   const containerClass = isPreview
     ? "w-full mx-auto origin-center overflow-visible flex justify-center"
-    : "min-w-[1056px] flex justify-center items-center";
+    : "min-w-[800px] flex justify-center items-center";
 
   return (
-    <div className={`${containerClass} ${transformClass} bg-transparent`}>
+    <div className={containerClass}
+    style={{ transform: `scale(${scale})`, backgroundColor: "transparent" }}>
       {/* Certificate Container */}
       <div
+        ref={ref}
         className="relative w-full bg-white overflow-hidden"
-        style={{ width: "1056px", height: "600px" }}
+        style={{ width: "800px", height: "600px", paddingLeft: "64px", paddingRight: "64px" }}
       >
         {/* Dark Brown Corner Decorations */}
         <div className="absolute top-0 left-0 w-32 h-32">

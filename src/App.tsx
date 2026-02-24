@@ -22,6 +22,7 @@ import AdminUtilities from "./components/AdminUtilities";
 import ResetPasswordPage from "./components/ResetPasswordPage";
 import BlogList from "./components/BlogList";
 import BlogDetails from "./components/BlogDetails";
+import Story from "./components/Story";
 import { organizationApi, authApi, programApi } from "./utils/api";
 import { publicAnonKey, projectId } from "./utils/supabase/info";
 import { toast, Toaster } from "sonner";
@@ -937,6 +938,9 @@ export default function App() {
 
           {/* SEO Test Page - public */}
           <Route path="/seo-test" element={<SEOTestPage />} />
+
+          {/* story Page */}
+           <Route path="/story" element={<Story />} />
 
           {/* Blog pages */}
           <Route path="/blogs" element={<BlogList />} />

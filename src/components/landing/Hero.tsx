@@ -31,11 +31,11 @@ const Hero: React.FC = () => {
         </button>
       </div>
 
-      <div className="mt-6 md:mt-40 md:ml-20 relative w-full md:w-11/12">
+      <div className="mt-6 md:mt-10 md:ml-20 relative w-full md:w-11/12">
         <img
           src={hero_img}
           alt="hero"
-          className="border-5 border-[#FFE0C6] rounded-lg w-full h-auto"
+          className="border-5 border-[#FFE0C6] rounded-lg w-1/2 h-auto md:w-full hidden md:block"
         />
         <div className="z-20 hidden md:block">
           <TbLocationFilled className="text-[#850704] absolute bottom-0 -left-3 size-5" />

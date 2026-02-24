@@ -10,6 +10,7 @@ import Testimonial from "./landing/Testimonial";
 import FAQ from "./landing/FAQ";
 import Footer from "./landing/Footer";
 import BlogSection from "./landing/BlogSection";
+import TemplateDisplay from "./landing/TemplateDisplay";
 
 export default function LandingPage() {
   return (
@@ -44,6 +45,7 @@ export default function LandingPage() {
           <section id="work">
             <Work />
           </section>
+          <TemplateDisplay />
           {/* <section id="prices">
           <Price />
         </section> */}

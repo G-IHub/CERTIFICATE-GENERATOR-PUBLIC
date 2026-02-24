@@ -51,6 +51,7 @@ import {
   Crown,
   MessageCircle,
   BookOpen,
+  Trash2,
 } from "lucide-react";
 import { toast } from "sonner@2.0.3";
 import { publicAnonKey, projectId } from "../utils/supabase/info";
@@ -156,6 +157,9 @@ export default function PlatformAdminPanel({
   const [premiumModalOpen, setPremiumModalOpen] = useState(false);
   const [selectedOrg, setSelectedOrg] = useState<Organization | null>(null);
   const [premiumDuration, setPremiumDuration] = useState("12");
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [orgToDelete, setOrgToDelete] = useState<Organization | null>(null);
+  const [deleting, setDeleting] = useState(false);
 
   // Load all platform data
   const loadPlatformData = async () => {
@@ -494,6 +498,85 @@ export default function PlatformAdminPanel({
     }
   };
 
+  // Handle deleting an organization
+  const handleDeleteOrganization = async (org: Organization) => {
+    setOrgToDelete(org);
+    setDeleteDialogOpen(true);
+  };
+
+  // Confirm delete organization
+  const handleConfirmDelete = async () => {
+    if (!orgToDelete || !accessToken) {
+      toast.error("Unable to delete organization");
+      return;
+    }
+
+    setDeleting(true);
+
+    try {
+      console.log(
+        "🗑️ Deleting organization:",
+        orgToDelete.id,
+        orgToDelete.name,
+      );
+
+      const url = `https://${projectId}.supabase.co/functions/v1/make-server-a611b057/admin/organizations/${orgToDelete.id}`;
+      console.log("🌐 DELETE URL:", url);
+
+      const response = await fetch(url, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      console.log("📡 Response status:", response.status);
+      console.log("📡 Response ok:", response.ok);
+
+      // Try to get response body regardless of status
+      let errorData;
+      try {
+        errorData = await response.json();
+        console.log("📄 Response data:", errorData);
+      } catch (e) {
+        console.error("❌ Failed to parse response as JSON:", e);
+        const text = await response.text().catch(() => "");
+        console.log("📄 Response text:", text);
+        throw new Error(
+          `Server returned ${response.status}: ${text || "No response body"}`,
+        );
+      }
+
+      if (!response.ok) {
+        const errorMessage =
+          errorData.error ||
+          errorData.message ||
+          `Failed with status ${response.status}`;
+        console.error("❌ Server error:", errorMessage);
+        throw new Error(errorMessage);
+      }
+
+      console.log("✅ Organization deleted successfully:", errorData);
+
+      toast.success(`${orgToDelete.name} has been deleted successfully`);
+      setDeleteDialogOpen(false);
+      setOrgToDelete(null);
+      await loadPlatformData(); // Reload data
+    } catch (error: any) {
+      console.error("❌ Error deleting organization:", error);
+      console.error("❌ Error details:", {
+        message: error.message,
+        stack: error.stack,
+        orgId: orgToDelete.id,
+        orgName: orgToDelete.name,
+      });
+      toast.error(error.message || "Failed to delete organization");
+    } finally {
+      setDeleting(false);
+    }
+  };
+
   // Helper to check if created in last 24 hours
   const isNew = (createdAt: string) => {
     if (!createdAt) return false;
@@ -515,24 +598,31 @@ export default function PlatformAdminPanel({
     });
   };
 
-  // Filter organizations based on search and premium status
-  const filteredOrganizations = organizations.filter((org) => {
-    const matchesSearch =
-      org.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      org.id?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      org.ownerEmail?.toLowerCase().includes(searchTerm.toLowerCase());
+  // Filter organizations based on search and premium status, then sort by creation date
+  const filteredOrganizations = organizations
+    .filter((org) => {
+      const matchesSearch =
+        org.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        org.id?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        org.ownerEmail?.toLowerCase().includes(searchTerm.toLowerCase());
 
-    const matchesPremiumFilter =
-      premiumFilter === "all"
-        ? true
-        : premiumFilter === "premium"
-          ? org.isPremium
-          : premiumFilter === "free"
-            ? !org.isPremium
-            : true;
+      const matchesPremiumFilter =
+        premiumFilter === "all"
+          ? true
+          : premiumFilter === "premium"
+            ? org.isPremium
+            : premiumFilter === "free"
+              ? !org.isPremium
+              : true;
 
-    return matchesSearch && matchesPremiumFilter;
-  });
+      return matchesSearch && matchesPremiumFilter;
+    })
+    .sort((a, b) => {
+      // Sort by creation date - newest first
+      const dateA = a.createdAt ? new Date(a.createdAt).getTime() : 0;
+      const dateB = b.createdAt ? new Date(b.createdAt).getTime() : 0;
+      return dateB - dateA; // Descending order (newest first)
+    });
 
   // Filter users based on search
   const filteredUsers = users.filter(
@@ -1073,7 +1163,7 @@ export default function PlatformAdminPanel({
               </div>
 
               {/* Debug Info - Shows subscription data status */}
-              {organizations.length > 0 && (
+              {/* {organizations.length > 0 && (
                 <Card className="bg-blue-50 border-blue-200">
                   <CardContent className="p-4">
                     <div className="flex items-start gap-3">
@@ -1118,7 +1208,7 @@ export default function PlatformAdminPanel({
                     </div>
                   </CardContent>
                 </Card>
-              )}
+              )} */}
 
               {filteredOrganizations.length === 0 ? (
                 <Card>
@@ -1227,17 +1317,37 @@ export default function PlatformAdminPanel({
                               >
                                 Revoke Premium
                               </Button>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => handleDeleteOrganization(org)}
+                                className="text-xs h-8 text-red-600 hover:text-red-700 hover:bg-red-50 border-red-200"
+                              >
+                                <Trash2 className="w-3.5 h-3.5" />
+                                Delete
+                              </Button>
                             </div>
                           ) : (
-                            <Button
-                              variant="default"
-                              size="sm"
-                              onClick={() => handleGrantPremium(org)}
-                              className="text-xs h-8 bg-primary hover:bg-primary/90"
-                            >
-                              <Crown className="w-3 h-3 mr-1" />
-                              Make Premium
-                            </Button>
+                            <div className="flex items-center gap-2">
+                              <Button
+                                variant="default"
+                                size="sm"
+                                onClick={() => handleGrantPremium(org)}
+                                className="text-xs h-8 bg-primary hover:bg-primary/90"
+                              >
+                                <Crown className="w-3 h-3 mr-1" />
+                                Make Premium
+                              </Button>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => handleDeleteOrganization(org)}
+                                className="text-xs h-8 w-8 p-0 text-red-600 hover:text-red-700 hover:bg-red-50 border-red-200"
+                                title="Delete organization"
+                              >
+                                <Trash2 className="w-3.5 h-3.5" />
+                              </Button>
+                            </div>
                           )}
                         </div>
                       </CardContent>
@@ -1346,6 +1456,42 @@ export default function PlatformAdminPanel({
             >
               <Crown className="w-4 h-4 mr-2" />
               Grant Premium
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Delete Organization Dialog */}
+      <Dialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <Trash2 className="w-5 h-5 text-red-600" />
+              Delete {orgToDelete?.name}?
+            </DialogTitle>
+            <DialogDescription>
+              Are you sure you want to delete {orgToDelete?.name}? This action
+              cannot be undone.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button
+              variant="outline"
+              onClick={() => setDeleteDialogOpen(false)}
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={handleConfirmDelete}
+              className="bg-red-600 hover:bg-red-700"
+              disabled={deleting}
+            >
+              {deleting ? (
+                <RefreshCw className="w-4 h-4 animate-spin" />
+              ) : (
+                <Trash2 className="w-4 h-4" />
+              )}
+              Delete
             </Button>
           </DialogFooter>
         </DialogContent>

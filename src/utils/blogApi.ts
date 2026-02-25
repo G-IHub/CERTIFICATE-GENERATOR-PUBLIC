@@ -1,6 +1,18 @@
-import { projectId, publicAnonKey } from "./supabase/info";
+import { 
+  fetchWordPressPostsPublished, 
+  fetchWordPressPostById,
+  mapWordPressPostToBlog 
+} from "./wordpressApi";
 
-const BASE_URL = `https://${projectId}.supabase.co/functions/v1/make-server-a611b057`;
+/**
+ * Blog API
+ * 
+ * All blog posts are now managed exclusively on WordPress.com
+ * URL: https://blogcertifyer.wordpress.com
+ * 
+ * Posts are fetched from WordPress REST API and displayed on Certifyer.
+ * No backend storage - WordPress is the single source of truth.
+ */
 
 export interface Blog {
   id: string;
@@ -13,6 +25,7 @@ export interface Blog {
   status: 'draft' | 'published';
   createdAt: string;
   updatedAt: string;
+  source: 'wordpress';
 }
 
 export interface CreateBlogData {
@@ -34,113 +47,87 @@ export interface UpdateBlogData {
 }
 
 export const blogApi = {
-  // Get all published blogs (public endpoint)
+  // Get all published blogs - fetches from WordPress only
   getAllPublished: async (): Promise<{ blogs: Blog[] }> => {
-    const response = await fetch(`${BASE_URL}/blogs/published`, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${publicAnonKey}`,
-        "Content-Type": "application/json",
-      },
-    });
+    try {
+      console.log('📚 Fetching blog posts from WordPress...');
+      
+      // Fetch from WordPress
+      const wpPosts = await fetchWordPressPostsPublished();
 
-    if (!response.ok) {
-      const error = await response.json().catch(() => ({ message: "Failed to fetch blogs" }));
-      throw new Error(error.message || "Failed to fetch blogs");
+      if (wpPosts.length === 0) {
+        console.log('ℹ️ No WordPress posts available. Create your first post at https://blogcertifyer.wordpress.com/wp-admin');
+        return { blogs: [] };
+      }
+
+      // Map WordPress posts to our Blog interface
+      const blogs: Blog[] = wpPosts.map(post => ({
+        ...mapWordPressPostToBlog(post),
+        source: 'wordpress' as const
+      }));
+
+      // Sort by date (newest first)
+      blogs.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+      console.log(`✅ Successfully loaded ${blogs.length} blog post${blogs.length !== 1 ? 's' : ''} from WordPress`);
+      return { blogs };
+    } catch (error) {
+      console.error('❌ Error fetching blogs from WordPress:', error);
+      return { blogs: [] };
     }
-
-    return response.json();
   },
 
-  // Get all blogs (admin only - includes drafts)
+  // Get all blogs (admin only - includes drafts) - WordPress only
   getAll: async (accessToken: string): Promise<{ blogs: Blog[] }> => {
-    const response = await fetch(`${BASE_URL}/blogs`, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-        "Content-Type": "application/json",
-      },
-    });
-
-    if (!response.ok) {
-      const error = await response.json().catch(() => ({ message: "Failed to fetch blogs" }));
-      throw new Error(error.message || "Failed to fetch blogs");
-    }
-
-    return response.json();
+    // For now, this returns the same as getAllPublished
+    // WordPress.com API doesn't expose drafts without authentication
+    // Admin should manage drafts directly on WordPress
+    console.log('ℹ️ To manage drafts, visit: https://blogcertifyer.wordpress.com/wp-admin');
+    return blogApi.getAllPublished();
   },
 
-  // Get single blog by ID (public endpoint)
+  // Get single blog by ID - WordPress only
   getById: async (id: string): Promise<{ blog: Blog }> => {
-    const response = await fetch(`${BASE_URL}/blogs/${id}`, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${publicAnonKey}`,
-        "Content-Type": "application/json",
-      },
-    });
+    try {
+      // WordPress posts have 'wp-' prefix
+      if (!id.startsWith('wp-')) {
+        throw new Error('Invalid blog post ID. All posts are now on WordPress with wp- prefix.');
+      }
 
-    if (!response.ok) {
-      const error = await response.json().catch(() => ({ message: "Blog not found" }));
-      throw new Error(error.message || "Blog not found");
+      const wpId = parseInt(id.replace('wp-', ''));
+      console.log(`🔍 Fetching WordPress post ${wpId}...`);
+      
+      const wpPost = await fetchWordPressPostById(wpId);
+      
+      if (!wpPost) {
+        throw new Error('Blog post not found');
+      }
+
+      console.log(`✅ Successfully loaded post: ${wpPost.title.rendered}`);
+      return { 
+        blog: {
+          ...mapWordPressPostToBlog(wpPost),
+          source: 'wordpress'
+        }
+      };
+    } catch (error: any) {
+      console.error('❌ Error fetching blog post:', error.message);
+      throw error;
     }
-
-    return response.json();
   },
 
-  // Create new blog (admin only)
+  // Create new blog - Direct to WordPress
   create: async (accessToken: string, data: CreateBlogData): Promise<{ blog: Blog }> => {
-    const response = await fetch(`${BASE_URL}/blogs`, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-
-    if (!response.ok) {
-      const error = await response.json().catch(() => ({ message: "Failed to create blog" }));
-      throw new Error(error.message || "Failed to create blog");
-    }
-
-    return response.json();
+    throw new Error('Please create blog posts directly on WordPress.com: https://blogcertifyer.wordpress.com/wp-admin');
   },
 
-  // Update blog (admin only)
+  // Update blog - Direct to WordPress
   update: async (accessToken: string, id: string, data: UpdateBlogData): Promise<{ blog: Blog }> => {
-    const response = await fetch(`${BASE_URL}/blogs/${id}`, {
-      method: "PUT",
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-
-    if (!response.ok) {
-      const error = await response.json().catch(() => ({ message: "Failed to update blog" }));
-      throw new Error(error.message || "Failed to update blog");
-    }
-
-    return response.json();
+    throw new Error('Please edit blog posts directly on WordPress.com: https://blogcertifyer.wordpress.com/wp-admin');
   },
 
-  // Delete blog (admin only)
+  // Delete blog - Direct to WordPress
   delete: async (accessToken: string, id: string): Promise<{ success: boolean }> => {
-    const response = await fetch(`${BASE_URL}/blogs/${id}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-        "Content-Type": "application/json",
-      },
-    });
-
-    if (!response.ok) {
-      const error = await response.json().catch(() => ({ message: "Failed to delete blog" }));
-      throw new Error(error.message || "Failed to delete blog");
-    }
-
-    return response.json();
+    throw new Error('Please delete blog posts directly on WordPress.com: https://blogcertifyer.wordpress.com/wp-admin');
   },
 };

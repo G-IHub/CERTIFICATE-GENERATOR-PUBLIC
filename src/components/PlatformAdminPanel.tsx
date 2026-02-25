@@ -59,7 +59,6 @@ import BillingSettings from "./BillingSettings";
 import AdminEmailsView from "./AdminEmailsView";
 import PlatformAnalytics from "./PlatformAnalytics";
 import PlatformTrackingView from "./PlatformTrackingView";
-import BlogManagement from "./BlogManagement";
 
 interface PlatformAdminPanelProps {
   adminEmail: string;
@@ -655,7 +654,6 @@ export default function PlatformAdminPanel({
     { id: "emails", label: "Email Addresses", icon: Mail },
     { id: "analytics", label: "Analytics", icon: BarChart3 },
     { id: "tracking", label: "Activity Tracking", icon: Activity },
-    { id: "blog", label: "Blog Management", icon: BookOpen },
   ];
 
   return (
@@ -867,7 +865,6 @@ export default function PlatformAdminPanel({
                 {activeView === "emails" && "Email Addresses"}
                 {activeView === "analytics" && "Analytics"}
                 {activeView === "tracking" && "Activity Tracking"}
-                {activeView === "blog" && "Blog Management"}
               </h1>
               <p className="text-gray-500 text-sm hidden md:block">
                 {activeView === "overview" &&
@@ -882,7 +879,6 @@ export default function PlatformAdminPanel({
                   "Platform analytics and insights"}
                 {activeView === "tracking" &&
                   "Track recent activities and changes"}
-                {activeView === "blog" && "Manage blog posts and content"}
               </p>
             </div>
             {activeView === "organizations" && (
@@ -1374,10 +1370,6 @@ export default function PlatformAdminPanel({
 
           {activeView === "tracking" && (
             <PlatformTrackingView accessToken={accessToken} />
-          )}
-
-          {activeView === "blog" && (
-            <BlogManagement accessToken={accessToken} />
           )}
         </div>
       </main>

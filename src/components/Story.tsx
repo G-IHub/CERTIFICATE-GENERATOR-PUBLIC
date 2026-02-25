@@ -1,8 +1,8 @@
 import React from "react";
 import { CheckCircle } from "lucide-react";
-import Navbar from "./Navbar";
-import Footer from "./Footer";
-import logo from "../../assets/logo.png";
+import Navbar from "../components/landing/Navbar";
+import Footer from "../components/landing/Footer";
+import logo from "../assets/logo.png";
 import { useNavigate } from "react-router-dom";
 
 const Story: React.FC = () => {
@@ -75,11 +75,11 @@ const Story: React.FC = () => {
       <div className="relative z-40">
         <Navbar />
 
-        {/* Hero Section */}
-        <section className="flex flex-col justify-center items-center py-16 md:py-24 px-10 md:px-28 gap-10 mt-20">
+        <section className="flex flex-col justify-center items-center gap-10">
+          {/* Hero Section */}
           <div className="max-w-4xl mx-auto text-center space-y-8">
             <div className="space-y-4 flex flex-col items-center">
-              <img src={logo} alt="logo" className="w-16" />
+              {/* <img src={logo} alt="logo" className="w-16" /> */}
               <h1 className="font-extrabold text-5xl md:text-6xl tracking-tight text-gray-900">
                 Our Story
               </h1>
@@ -99,39 +99,39 @@ const Story: React.FC = () => {
                   <span>Get Started</span>
                 </span>
               </button>
-              <button
+              {/* <button
                 onClick={() => navigate("/")}
                 className="border-2 border-orange-400 text-[#FF7700] px-6 py-3 rounded-full cursor-pointer hover:scale-105 transition-transform duration-300 font-semibold"
               >
                 Back to Home
-              </button>
+              </button> */}
             </div>
           </div>
 
           {/* How Certifyer Began */}
-
-          <div className="max-w-4xl mx-auto text-center space-y-8 py-10">
-            <div className="space-y-4">
-              <h1 className="font-extrabold text-4xl md:text-6xl tracking-tight text-gray-900">
-                How Certifyer Began
-              </h1>
-              <p className="text-[#696969] text-left text-lg md:text-xl leading-relaxed max-w-7xl mx-auto">
-                Certifyer was born out of a simple but recurring challenge:
-                issuing certificates should not be stressful. Across trainings,
-                workshops, webinars, and community programs, we repeatedly
-                encountered the same problem — creating certificates was
-                time-consuming, inconsistent, and often dependent on manual
-                design tools or external designers. What should have been a
-                moment of recognition and celebration often became a bottleneck.
-                We saw an opportunity to simplify this process and build a
-                solution that works for modern educators, trainers, and
-                organizations.
-              </p>
+          <div className="w-full bg-[#FAFAFA]">
+            <div className="max-w-4xl mx-auto text-center space-y-8 py-10">
+              <div className="space-y-4">
+                <h1 className="font-extrabold text-4xl md:text-6xl tracking-tight text-gray-900">
+                  How Certifyer Began
+                </h1>
+                <p className="text-[#696969] text-left text-lg md:text-xl leading-relaxed max-w-7xl mx-auto">
+                  Certifyer was born out of a simple but recurring challenge:
+                  issuing certificates should not be stressful. Across
+                  trainings, workshops, webinars, and community programs, we
+                  repeatedly encountered the same problem — creating
+                  certificates was time-consuming, inconsistent, and often
+                  dependent on manual design tools or external designers. What
+                  should have been a moment of recognition and celebration often
+                  became a bottleneck. We saw an opportunity to simplify this
+                  process and build a solution that works for modern educators,
+                  trainers, and organizations.
+                </p>
+              </div>
             </div>
           </div>
 
           {/* The Journey */}
-
           <div className="max-w-4xl mx-auto text-center space-y-8 py-10">
             <div className="space-y-4">
               <h1 className="font-extrabold text-4xl md:text-6xl tracking-tight text-gray-900">
@@ -171,7 +171,7 @@ const Story: React.FC = () => {
           </div>
 
           {/* Values Section */}
-          <section className="py-10 md:py-16 px-4 md:px-28">
+          <section className="py-10 md:py-16 px-4 md:px-28 w-full md:w-auto">
             <div className="max-w-5xl mx-auto">
               <h2 className="font-extrabold text-3xl md:text-4xl text-center mb-4">
                 Our Core Values
@@ -226,7 +226,6 @@ const Story: React.FC = () => {
           </div>
 
           {/* The Process */}
-
           <div className="max-w-4xl py-10 mx-auto text-center space-y-8">
             <div className="space-y-4">
               <h1 className="font-extrabold text-4xl md:text-6xl tracking-tight text-gray-900">
@@ -267,8 +266,7 @@ const Story: React.FC = () => {
           </div>
 
           {/* The Team */}
-
-          <div className="max-w-4xl mx-auto text-center space-y-8">
+          {/* <div className="max-w-4xl mx-auto text-center space-y-8">
             <div className="space-y-4">
               <h1 className="font-extrabold text-4xl md:text-6xl tracking-tight text-gray-900">
                 The Team
@@ -303,15 +301,15 @@ const Story: React.FC = () => {
                 </p>
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/* Why We're Building Certifyer */}
           <div className="max-w-4xl mx-auto text-left py-20 space-y-8 mt-10">
             <div className="space-y-4">
               <h1 className="font-extrabold text-center text-4xl md:text-6xl tracking-tight text-gray-900">
-                Why We’re Building Certifyer
+                Why We're Building Certifyer
               </h1>
-              <p>Why We’re Building Certifyer</p>
+              <p>Why We're Building Certifyer</p>
               <p className="">
                 Certificates are more than documents — they represent effort,
                 learning, and achievement. Certifyer exists to help individuals

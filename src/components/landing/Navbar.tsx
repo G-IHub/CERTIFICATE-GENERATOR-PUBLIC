@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import { IoIosMenu } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
@@ -9,11 +9,15 @@ import { Button } from "@headlessui/react";
 
 const Navbar: React.FC = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navRef = useRef<HTMLElement | null>(null);
   const [navHeight, setNavHeight] = useState<number>(0);
   const [isTitleBarVisible, setIsTitleBarVisible] = useState(true);
+
+  // Check if we're on the landing page (home page)
+  const isLandingPage = location.pathname === "/";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -52,18 +56,12 @@ const Navbar: React.FC = () => {
       >
         <div className="flex justify-between items-center rounded-lg px-4 py-8 w-full md:w-auto h-14 bg-white md:bg-[#FFFFFF66] border-2 border-[#FFFFFF1F] text-sm">
           <div className="flex items-center gap-2">
-            <Link
-              to="hero"
-              smooth={true}
-              duration={500}
-              offset={-350}
-              className="flex items-center cursor-pointer"
-            >
+            <RouterLink to="/" className="flex items-center cursor-pointer">
               <img src={logo} alt="logo" className="w-12" />
               <p className="text-orange-500 font-medium hidden lg:block lg:text-2xl">
                 Certifyer
               </p>
-            </Link>
+            </RouterLink>
           </div>
 
           <button
@@ -78,40 +76,75 @@ const Navbar: React.FC = () => {
             )}
           </button>
 
-          <div className="hidden text-lg md:flex gap-12 items-center flex-1 justify-center min-w-0 z-20 text-gray-800 ">
-            <Link
-              to="features"
-              smooth={true}
-              duration={500}
-              offset={-50}
-              className="hover:text-orange-500 cursor-pointer"
-            >
-              Features
-            </Link>
-            <Link
-              to="work"
-              smooth={true}
-              duration={500}
-              offset={-50}
-              className="hover:text-orange-500 cursor-pointer"
-            >
-              How It Works
-            </Link>
-            <Link
-              to="testimonials"
-              smooth={true}
-              duration={500}
-              offset={-50}
-              className="hover:text-orange-500 cursor-pointer"
-            >
-              Testimonials
-            </Link>
-            <RouterLink
-              to="/blogs"
-              className="hover:text-orange-500 cursor-pointer"
-            >
-              Blog
-            </RouterLink>
+          <div className="hidden text-lg md:flex gap-12 items-center flex-1 justify-center min-w-0 z-20 text-gray-800">
+            {isLandingPage ? (
+              <>
+                <Link
+                  to="features"
+                  smooth={true}
+                  duration={500}
+                  offset={-50}
+                  className="hover:text-orange-500 cursor-pointer"
+                >
+                  Features
+                </Link>
+                <Link
+                  to="work"
+                  smooth={true}
+                  duration={500}
+                  offset={-50}
+                  className="hover:text-orange-500 cursor-pointer"
+                >
+                  How It Works
+                </Link>
+                <Link
+                  to="testimonials"
+                  smooth={true}
+                  duration={500}
+                  offset={-50}
+                  className="hover:text-orange-500 cursor-pointer"
+                >
+                  Testimonials
+                </Link>
+                <Link
+                  to="blog"
+                  smooth={true}
+                  duration={500}
+                  offset={-50}
+                  className="hover:text-orange-500 cursor-pointer"
+                >
+                  Blog
+                </Link>
+              </>
+            ) : (
+              <>
+                <RouterLink
+                  to="/#features"
+                  className="hover:text-orange-500 cursor-pointer"
+                >
+                  Features
+                </RouterLink>
+                <RouterLink
+                  to="/#work"
+                  className="hover:text-orange-500 cursor-pointer"
+                >
+                  How It Works
+                </RouterLink>
+                <RouterLink
+                  to="/#testimonials"
+                  className="hover:text-orange-500 cursor-pointer"
+                >
+                  Testimonials
+                </RouterLink>
+                <RouterLink
+                  to="/blogs"
+                  className="hover:text-orange-500 cursor-pointer"
+                >
+                  Blog
+                </RouterLink>
+              </>
+            )}
+
             <RouterLink
               to="/story"
               className="hover:text-orange-500 cursor-pointer"
@@ -146,43 +179,81 @@ const Navbar: React.FC = () => {
             style={{ top: navHeight }}
           >
             <div className="flex flex-col gap-10">
-              <Link
-                to="features"
-                smooth={true}
-                duration={500}
-                offset={-50}
-                className="hover:text-orange-500"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Features
-              </Link>
-              <Link
-                to="work"
-                smooth={true}
-                duration={500}
-                offset={-50}
-                className="hover:text-orange-500"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                How It Works
-              </Link>
-              <Link
-                to="testimonials"
-                smooth={true}
-                duration={500}
-                offset={-50}
-                className="hover:text-orange-500"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Testimonials
-              </Link>
-              <RouterLink
-                to="/blogs"
-                className="hover:text-orange-500"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Blog
-              </RouterLink>
+              {isLandingPage ? (
+                <>
+                  <Link
+                    to="features"
+                    smooth={true}
+                    duration={500}
+                    offset={-50}
+                    className="hover:text-orange-500"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Features
+                  </Link>
+                  <Link
+                    to="work"
+                    smooth={true}
+                    duration={500}
+                    offset={-50}
+                    className="hover:text-orange-500"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    How It Works
+                  </Link>
+                  <Link
+                    to="testimonials"
+                    smooth={true}
+                    duration={500}
+                    offset={-50}
+                    className="hover:text-orange-500"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Testimonials
+                  </Link>
+                  <Link
+                    to="blog"
+                    smooth={true}
+                    duration={500}
+                    offset={-50}
+                    className="hover:text-orange-500"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Blog
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <RouterLink
+                    to="/#features"
+                    className="hover:text-orange-500"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Features
+                  </RouterLink>
+                  <RouterLink
+                    to="/#work"
+                    className="hover:text-orange-500"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    How It Works
+                  </RouterLink>
+                  <RouterLink
+                    to="/#testimonials"
+                    className="hover:text-orange-500"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Testimonials
+                  </RouterLink>
+                  <RouterLink
+                    to="/blogs"
+                    className="hover:text-orange-500"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Blog
+                  </RouterLink>
+                </>
+              )}
               <RouterLink
                 to="/story"
                 className="hover:text-orange-500"

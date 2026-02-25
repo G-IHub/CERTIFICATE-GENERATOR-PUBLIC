@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate, Link } from "react-router";
-import Navbar from "./landing/Navbar";
+import { useParams, useNavigate, Link } from "react-router-dom";
+import Navbar from "../components/landing/Navbar";
 import { blogApi, Blog } from "../utils/blogApi";
 import { toast } from "sonner";
 import SEOHead from "./SEOHead";

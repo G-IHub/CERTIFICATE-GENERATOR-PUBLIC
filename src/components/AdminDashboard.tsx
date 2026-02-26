@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router";
 import { toast } from "sonner";
 import {
   Card,
@@ -239,6 +239,13 @@ export default function AdminDashboard({
   const [showNewProgramModal, setShowNewProgramModal] =
     useState<boolean>(false);
   const isMobile = useIsMobile();
+
+  // Update current organization when organizations prop changes
+  useEffect(() => {
+    if (user.subsidiary) {
+      setCurrentOrganization(user.subsidiary);
+    }
+  }, [user.subsidiary, organizations]);
 
   // Apply organization theming to CSS variables so the whole app picks up the org color
   useEffect(() => {

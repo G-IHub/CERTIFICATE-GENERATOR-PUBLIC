@@ -1268,7 +1268,9 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
                       />
                     </div>
                     <div className="flex-1">
-                      <h4 className="font-semibold text-center">{PLATFORM_NAME}</h4>
+                      <h4 className="font-semibold text-center">
+                        {PLATFORM_NAME}
+                      </h4>
                       <p className="text-sm text-center text-gray-600">
                         You want to create, issue and verify professional
                         certificates effortlessly and speedily? Try Certifyer

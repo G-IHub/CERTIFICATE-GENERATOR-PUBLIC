@@ -36,7 +36,11 @@ const CertificateTemplate: React.FC<CertificateTemplateProps> = ({
 }) => {
   // Log custom template config for debugging
   if (customTemplateConfig) {
-    }
+    console.log(
+      "🎨 CertificateTemplate: Using custom template config:",
+      customTemplateConfig,
+    );
+  }
 
   // Define formatDate BEFORE early return so it's available to renderCustomTemplate
   const formatDate = (dateString: string) => {
@@ -50,6 +54,8 @@ const CertificateTemplate: React.FC<CertificateTemplateProps> = ({
   // Render custom template using configuration from Template Builder
   const renderCustomTemplate = () => {
     const config = customTemplateConfig;
+    console.log("🎨 Rendering custom template with config:", config);
+
     // Build background style
     const backgroundStyle: React.CSSProperties = {};
     if (config.colors?.backgroundType === "gradient") {
@@ -68,28 +74,39 @@ const CertificateTemplate: React.FC<CertificateTemplateProps> = ({
 
     return (
       <div
-        className={`relative w-full max-w-4xl mx-auto aspect-[1.414/1] overflow-hidden ${
-          preview ? "p-4" : "p-8"
-        } ${preview ? "shadow-2xl" : "shadow-lg"}`}
+        className={`relative w-full max-w-4xl mx-auto aspect-[1.414/1] overflow-hidden ${preview ? "p-4" : "p-8"} ${preview ? "shadow-2xl" : "shadow-lg"}`}
         style={{ ...backgroundStyle, ...borderStyle }}
       >
         {/* Main content */}
         <div className="relative z-10 h-full flex flex-col">
-          {/* Logo */}
-          {config.elements?.logo?.enabled && config.elements.logo.url && (
-            <div
-              className={`flex justify-${
-                config.elements.logo.alignment || "center"
-              } ${preview ? "mb-2" : "mb-4"}`}
-            >
-              <img
-                src={config.elements.logo.url}
-                alt="Organization Logo"
-                className={`object-contain ${preview ? "h-12" : "h-16"}`}
-                style={{ maxWidth: `${config.elements.logo.size || 200}px` }}
-              />
-            </div>
-          )}
+          {/* Logo(s) */}
+          {config.elements?.logo?.enabled &&
+            (config.elements.logo.url || config.elements.logo.secondaryUrl) && (
+              <div
+                className={`flex ${config.elements.logo.url && config.elements.logo.secondaryUrl ? "justify-between items-center" : `justify-${config.elements.logo.alignment || "center"}`} ${preview ? "mb-2" : "mb-4"} px-8`}
+              >
+                {config.elements.logo.url && (
+                  <img
+                    src={config.elements.logo.url}
+                    alt="Organization Logo"
+                    className={`object-contain ${preview ? "h-12" : "h-16"}`}
+                    style={{
+                      maxWidth: `${config.elements.logo.size || 200}px`,
+                    }}
+                  />
+                )}
+                {config.elements.logo.secondaryUrl && (
+                  <img
+                    src={config.elements.logo.secondaryUrl}
+                    alt="Partner Logo"
+                    className={`object-contain ${preview ? "h-12" : "h-16"}`}
+                    style={{
+                      maxWidth: `${config.elements.logo.size || 200}px`,
+                    }}
+                  />
+                )}
+              </div>
+            )}
 
           {/* Title */}
           {config.content?.title && (
@@ -123,9 +140,7 @@ const CertificateTemplate: React.FC<CertificateTemplateProps> = ({
 
           {/* Student Name Section */}
           <div
-            className={`text-center flex-1 flex flex-col justify-center ${
-              preview ? "my-2" : "my-6"
-            }`}
+            className={`text-center flex-1 flex flex-col justify-center ${preview ? "my-2" : "my-6"}`}
           >
             <p
               className={preview ? "text-sm mb-1" : "text-lg mb-2"}
@@ -165,9 +180,7 @@ const CertificateTemplate: React.FC<CertificateTemplateProps> = ({
             </h3>
             {program.description && (
               <p
-                className={`italic max-w-2xl mx-auto ${
-                  preview ? "text-xs mt-1" : "text-sm mt-2"
-                }`}
+                className={`italic max-w-2xl mx-auto ${preview ? "text-xs mt-1" : "text-sm mt-2"}`}
                 style={{
                   color: config.colors?.textColor || "#000000",
                   fontFamily: config.typography?.bodyFont || "sans-serif",
@@ -182,9 +195,7 @@ const CertificateTemplate: React.FC<CertificateTemplateProps> = ({
           {config.elements?.signatures &&
             config.elements.signatures.length > 0 && (
               <div
-                className={`flex justify-center gap-${preview ? "4" : "8"} ${
-                  preview ? "mt-2" : "mt-6"
-                }`}
+                className={`flex justify-center gap-${preview ? "4" : "8"} ${preview ? "mt-2" : "mt-6"}`}
               >
                 {config.elements.signatures.map((sig: any, index: number) => (
                   <div key={index} className="text-center">
@@ -196,9 +207,7 @@ const CertificateTemplate: React.FC<CertificateTemplateProps> = ({
                       />
                     )}
                     <div
-                      className={`border-t-2 ${
-                        preview ? "pt-0.5" : "pt-1"
-                      } min-w-[120px]`}
+                      className={`border-t-2 ${preview ? "pt-0.5" : "pt-1"} min-w-[120px]`}
                       style={{
                         borderColor: config.colors?.textColor || "#000000",
                       }}
@@ -215,9 +224,7 @@ const CertificateTemplate: React.FC<CertificateTemplateProps> = ({
                       </p>
                       {sig.title && (
                         <p
-                          className={`text-gray-600 ${
-                            preview ? "text-[10px]" : "text-xs"
-                          }`}
+                          className={`text-gray-600 ${preview ? "text-[10px]" : "text-xs"}`}
                           style={{
                             fontFamily:
                               config.typography?.bodyFont || "sans-serif",
@@ -234,9 +241,7 @@ const CertificateTemplate: React.FC<CertificateTemplateProps> = ({
 
           {/* Footer with Date and Certificate ID */}
           <div
-            className={`flex justify-between items-end ${
-              preview ? "mt-2 text-xs" : "mt-6 text-sm"
-            }`}
+            className={`flex justify-between items-end ${preview ? "mt-2 text-xs" : "mt-6 text-sm"}`}
           >
             <div>
               <p
@@ -416,12 +421,12 @@ const CertificateTemplate: React.FC<CertificateTemplateProps> = ({
     const SealIcon = styles.formal
       ? Shield
       : styles.tech
-      ? Hexagon
-      : styles.energetic
-      ? Star
-      : styles.classic
-      ? Crown
-      : Award;
+        ? Hexagon
+        : styles.energetic
+          ? Star
+          : styles.classic
+            ? Crown
+            : Award;
 
     // Don't show seal in preview mode to avoid layout conflicts
     if (preview) return null;
@@ -469,27 +474,53 @@ const CertificateTemplate: React.FC<CertificateTemplateProps> = ({
   const OrganizationHeader = () => {
     // Use custom logo from settings if available, otherwise fallback to organization logo
     const logoUrl = subsidiary?.settings?.logo || subsidiary?.logo;
+    const secondaryLogoUrl = subsidiary?.settings?.secondaryLogo;
 
+    // If both logos exist, display them side by side
+    if (logoUrl && secondaryLogoUrl) {
+      return (
+        <div className={`text-center ${preview ? "mb-4" : "mb-8"}`}>
+          <div
+            className={`flex items-center justify-between ${preview ? "px-4" : "px-8"} ${preview ? "mb-2" : "mb-4"}`}
+          >
+            <img
+              src={logoUrl}
+              alt={subsidiary?.name || "Primary Organization"}
+              className={`${preview ? "h-12" : "h-16"} w-auto max-w-[200px] object-contain`}
+            />
+            <div className="text-center flex-1">
+              <h2
+                className={`${preview ? "text-lg" : "text-xl"} font-bold`}
+                style={{ color: styles.accent }}
+              >
+                {subsidiary?.shortName || subsidiary?.name || "Organization"}
+              </h2>
+            </div>
+            <img
+              src={secondaryLogoUrl}
+              alt="Partner Organization"
+              className={`${preview ? "h-12" : "h-16"} w-auto max-w-[200px] object-contain`}
+            />
+          </div>
+        </div>
+      );
+    }
+
+    // Original single logo layout
     return (
       <div className={`text-center ${preview ? "mb-4" : "mb-8"}`}>
         <div
-          className={`flex items-center justify-center ${
-            preview ? "gap-2" : "gap-4"
-          } ${preview ? "mb-2" : "mb-4"}`}
+          className={`flex items-center justify-center ${preview ? "gap-2" : "gap-4"} ${preview ? "mb-2" : "mb-4"}`}
         >
           {logoUrl && (
             <>
               <img
                 src={logoUrl}
                 alt={subsidiary?.name || "Organization"}
-                className={`${
-                  preview ? "h-12" : "h-16"
-                } w-auto max-w-[200px] object-contain`}
+                className={`${preview ? "h-12" : "h-16"} w-auto max-w-[200px] object-contain`}
               />
               <div
-                className={`w-1 ${
-                  preview ? "h-12" : "h-16"
-                } rounded-full opacity-30`}
+                className={`w-1 ${preview ? "h-12" : "h-16"} rounded-full opacity-30`}
                 style={{ backgroundColor: styles.accent }}
               />
             </>
@@ -513,9 +544,7 @@ const CertificateTemplate: React.FC<CertificateTemplateProps> = ({
   const CertificateTitle = () => (
     <div className={`text-center ${preview ? "mb-4" : "mb-8"}`}>
       <div
-        className={`flex items-center justify-center gap-2 ${
-          preview ? "mb-1" : "mb-2"
-        }`}
+        className={`flex items-center justify-center gap-2 ${preview ? "mb-1" : "mb-2"}`}
       >
         <div
           className="w-8 h-0.5 rounded-full"
@@ -531,9 +560,7 @@ const CertificateTemplate: React.FC<CertificateTemplateProps> = ({
         />
       </div>
       <h1
-        className={`${
-          preview ? "text-3xl" : "text-4xl"
-        } font-bold text-gray-800 ${preview ? "mb-1" : "mb-2"}`}
+        className={`${preview ? "text-3xl" : "text-4xl"} font-bold text-gray-800 ${preview ? "mb-1" : "mb-2"}`}
       >
         Certificate of Completion
       </h1>
@@ -547,39 +574,29 @@ const CertificateTemplate: React.FC<CertificateTemplateProps> = ({
   const StudentSection = () => (
     <div className={`text-center ${preview ? "mb-4" : "mb-8"}`}>
       <p
-        className={`${preview ? "text-base" : "text-lg"} text-gray-600 ${
-          preview ? "mb-1" : "mb-2"
-        }`}
+        className={`${preview ? "text-base" : "text-lg"} text-gray-600 ${preview ? "mb-1" : "mb-2"}`}
       >
         This certifies that
       </p>
       <h2
-        className={`${preview ? "text-4xl" : "text-5xl"} font-bold ${
-          preview ? "mb-2" : "mb-4"
-        }`}
+        className={`${preview ? "text-4xl" : "text-5xl"} font-bold ${preview ? "mb-2" : "mb-4"}`}
         style={{ color: styles.accent }}
       >
         {studentName}
       </h2>
       <p
-        className={`${preview ? "text-base" : "text-lg"} text-gray-600 ${
-          preview ? "mb-1" : "mb-2"
-        }`}
+        className={`${preview ? "text-base" : "text-lg"} text-gray-600 ${preview ? "mb-1" : "mb-2"}`}
       >
         has successfully completed the
       </p>
       <h3
-        className={`${
-          preview ? "text-xl" : "text-2xl"
-        } font-bold text-gray-800 ${preview ? "mb-3" : "mb-6"}`}
+        className={`${preview ? "text-xl" : "text-2xl"} font-bold text-gray-800 ${preview ? "mb-3" : "mb-6"}`}
       >
         {program.name}
       </h3>
       {program.description && (
         <p
-          className={`text-gray-600 max-w-2xl mx-auto italic ${
-            preview ? "text-sm" : ""
-          }`}
+          className={`text-gray-600 max-w-2xl mx-auto italic ${preview ? "text-sm" : ""}`}
         >
           {program.description}
         </p>
@@ -594,9 +611,7 @@ const CertificateTemplate: React.FC<CertificateTemplateProps> = ({
 
     return (
       <div
-        className={`flex ${
-          preview ? "flex-col gap-3" : "justify-between items-end"
-        } ${preview ? "mt-4" : "mt-12"}`}
+        className={`flex ${preview ? "flex-col gap-3" : "justify-between items-end"} ${preview ? "mt-4" : "mt-12"}`}
       >
         {preview ? (
           <>

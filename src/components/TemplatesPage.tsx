@@ -13,7 +13,7 @@ import { templateApi } from "../utils/api";
 import { toast } from "sonner";
 import { revalidateOrgPremium, isOrgPremium } from "../utils/subscriptionUtils";
 import { Button } from "./ui/button";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { Badge } from "./ui/badge";
 import CertificateRenderer from "./CertificateRenderer";
 import PreviewWrapper from "./PreviewWrapper";
@@ -91,11 +91,16 @@ export default function TemplatesPage({
   const loadTemplates = async () => {
     setLoading(true);
     try {
-      const res = await templateApi.getAll();
+      // Pass organizationId to get templates filtered by visibility rules
+      const res = await templateApi.getAll(organization.id);
       const loaded = res.templates || [];
       // Debug: log template ids/types to help trace preview issues
       try {
         // eslint-disable-next-line no-console
+        console.log(
+          "TemplatesPage: loaded templates",
+          loaded.map((t: any) => ({ id: t.id, type: t.type })),
+        );
       } catch (e) {}
       setTemplates(loaded);
     } catch (e: any) {
@@ -238,9 +243,28 @@ export default function TemplatesPage({
           </p>
         </div>
 
-        {/* Reseed Templates Button removed per user request. */}
-
         <TemplateReseedButton />
+
+        {/* Reseed Templates Button */}
+        {/* <Button
+          variant="outline"
+          size="sm"
+          onClick={handleReseed}
+          disabled={isReseeding}
+          className="flex-shrink-0"
+        >
+          {isReseeding ? (
+            <>
+              <RefreshCw className="w-4 h-4 mr-2 animate-spin" />
+              Reseeding...
+            </>
+          ) : (
+            <>
+              <RefreshCw className="w-4 h-4 mr-2" />
+              Reseed Templates
+            </>
+          )}
+        </Button> */}
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -276,6 +300,12 @@ export default function TemplatesPage({
                     mode="template-selection"
                     organizationName={organization?.name}
                     organizationLogo={organization?.logo}
+                    // Only pass customTemplateConfig for user-created custom templates.
+                    // Some template records may include a config object even for defaults;
+                    // treating those as custom causes the generic renderer to be used for all templates.
+                    customTemplateConfig={
+                      template.type === "custom" ? template.config : undefined
+                    }
                   />
                 </PreviewWrapper>
               </TemplateErrorBoundary>
@@ -394,7 +424,7 @@ export default function TemplatesPage({
 
             <div className="p-8 bg-gray-50 flex items-center justify-center">
               <TemplateErrorBoundary>
-                <PreviewWrapper scale={1} origin="center" wrapperSize={2}>
+                <PreviewWrapper scale={0.4} origin="center" wrapperSize={2}>
                   <CertificateRenderer
                     templateId={preview.id}
                     header="Certificate of Completion"

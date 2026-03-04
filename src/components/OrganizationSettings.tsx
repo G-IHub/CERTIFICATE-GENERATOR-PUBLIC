@@ -38,7 +38,7 @@ interface OrganizationSettingsProps {
   accessToken: string;
   onSettingsUpdated: (
     organizationId: string,
-    updates: Partial<Organization>
+    updates: Partial<Organization>,
   ) => void;
 }
 
@@ -49,19 +49,21 @@ export default function OrganizationSettings({
 }: OrganizationSettingsProps) {
   const [settings, setSettings] = useState<OrganizationSettingsData>({
     logo: organization.logo || "",
+    secondaryLogo: "",
     primaryColor: organization.primaryColor || "#ea580c",
     signatories: [],
   });
 
   const [organizationName, setOrganizationName] = useState(
-    organization.name || ""
+    organization.name || "",
   );
 
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
   const [uploadingLogo, setUploadingLogo] = useState(false);
+  const [uploadingSecondaryLogo, setUploadingSecondaryLogo] = useState(false);
   const [uploadingSignature, setUploadingSignature] = useState<string | null>(
-    null
+    null,
   );
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
 
@@ -80,9 +82,12 @@ export default function OrganizationSettings({
       setIsLoading(true);
       const data = await organizationApi.getSettings(
         accessToken,
-        organization.id
+        organization.id,
       );
-      setSettings(data.settings);
+      setSettings({
+        ...data.settings,
+        signatories: data.settings.signatories || [],
+      });
       setOrganizationName(organization.name || "");
       setHasUnsavedChanges(false);
     } catch (error) {
@@ -116,11 +121,11 @@ export default function OrganizationSettings({
         accessToken,
         file,
         "logo",
-        organization.id
+        organization.id,
       );
       setSettings((prev) => ({ ...prev, logo: data.url }));
       setHasUnsavedChanges(true);
-      toast.success("Logo uploaded successfully");
+      toast.success("Primary logo uploaded successfully");
     } catch (error) {
       console.error("Error uploading logo:", error);
       toast.error("Failed to upload logo");
@@ -129,9 +134,47 @@ export default function OrganizationSettings({
     }
   };
 
+  const handleSecondaryLogoUpload = async (
+    e: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    // Validate file type
+    if (!file.type.startsWith("image/")) {
+      toast.error("Please upload an image file");
+      return;
+    }
+
+    // Validate file size (max 5MB)
+    if (file.size > 5 * 1024 * 1024) {
+      toast.error("File size must be less than 5MB");
+      return;
+    }
+
+    try {
+      setUploadingSecondaryLogo(true);
+
+      const data = await organizationApi.uploadFile(
+        accessToken,
+        file,
+        "secondaryLogo",
+        organization.id,
+      );
+      setSettings((prev) => ({ ...prev, secondaryLogo: data.url }));
+      setHasUnsavedChanges(true);
+      toast.success("Secondary logo uploaded successfully");
+    } catch (error) {
+      console.error("Error uploading secondary logo:", error);
+      toast.error("Failed to upload secondary logo");
+    } finally {
+      setUploadingSecondaryLogo(false);
+    }
+  };
+
   const handleSignatureUpload = async (
     signatoryId: string,
-    e: React.ChangeEvent<HTMLInputElement>
+    e: React.ChangeEvent<HTMLInputElement>,
   ) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -155,13 +198,13 @@ export default function OrganizationSettings({
         accessToken,
         file,
         "signature",
-        organization.id
+        organization.id,
       );
 
       setSettings((prev) => ({
         ...prev,
         signatories: prev.signatories.map((s) =>
-          s.id === signatoryId ? { ...s, signatureUrl: data.url } : s
+          s.id === signatoryId ? { ...s, signatureUrl: data.url } : s,
         ),
       }));
 
@@ -203,12 +246,12 @@ export default function OrganizationSettings({
   const updateSignatory = (
     signatoryId: string,
     field: keyof Signatory,
-    value: string
+    value: string,
   ) => {
     setSettings((prev) => ({
       ...prev,
       signatories: prev.signatories.map((s) =>
-        s.id === signatoryId ? { ...s, [field]: value } : s
+        s.id === signatoryId ? { ...s, [field]: value } : s,
       ),
     }));
 
@@ -227,7 +270,7 @@ export default function OrganizationSettings({
       const data = await organizationApi.updateSettings(
         accessToken,
         organization.id,
-        settings
+        settings,
       );
 
       // Update parent component with all changes including organization name
@@ -313,71 +356,154 @@ export default function OrganizationSettings({
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Building2 className="w-5 h-5" />
-            Organization Logo
+            Organization Logos
           </CardTitle>
           <CardDescription>
-            Upload your organization's logo.
+            Upload your organization's logos. These will appear on certificates.
+            You can add a secondary logo for collaborations.
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="flex flex-col md:flex-row items-center gap-6">
-            <div className="w-32 h-32 bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden border-2 border-gray-200">
-              {settings.logo ? (
-                <img
-                  src={settings.logo}
-                  alt="Organization logo"
-                  className="w-full h-full object-contain p-2"
-                />
-              ) : (
-                <ImageIcon className="w-12 h-12 text-gray-400" />
-              )}
-            </div>
-
-            <div className="flex-1 space-y-2">
-              <Label htmlFor="logo-upload">Upload Logo</Label>
-              <div className="flex gap-2">
-                <Button
-                  variant="outline"
-                  disabled={uploadingLogo}
-                  onClick={() =>
-                    document.getElementById("logo-upload")?.click()
-                  }
-                >
-                  {uploadingLogo ? (
-                    <>
-                      <Skeleton className="h-4 w-4 mr-2 rounded-full inline-block" />
-                      Uploading...
-                    </>
-                  ) : (
-                    <>
-                      <Upload className="w-4 h-4 mr-2" />
-                      Choose File
-                    </>
-                  )}
-                </Button>
-                {settings.logo && (
-                  <Button
-                    variant="ghost"
-                    onClick={() => {
-                      setSettings((prev) => ({ ...prev, logo: "" }));
-                      setHasUnsavedChanges(true);
-                    }}
-                  >
-                    <Trash2 className="w-4 h-4 mr-2" />
-                    Remove
-                  </Button>
+        <CardContent className="space-y-6">
+          {/* Primary Logo */}
+          <div>
+            <h4 className="text-sm font-medium text-gray-900 mb-3">
+              Primary Logo
+            </h4>
+            <div className="flex items-center gap-6">
+              <div className="w-32 h-32 bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden border-2 border-gray-200">
+                {settings.logo ? (
+                  <img
+                    src={settings.logo}
+                    alt="Primary logo"
+                    className="w-full h-full object-contain p-2"
+                  />
+                ) : (
+                  <ImageIcon className="w-12 h-12 text-gray-400" />
                 )}
               </div>
-              <input
-                id="logo-upload"
-                type="file"
-                accept="image/*"
-                className="hidden"
-                onChange={handleLogoUpload}
-              />
-              <p className="text-xs text-gray-500">
-                Recommended: PNG or SVG, max 5MB with transparent background.
-              </p>
+
+              <div className="flex-1 space-y-2">
+                <Label htmlFor="logo-upload">Upload Primary Logo</Label>
+                <div className="flex gap-2">
+                  <Button
+                    variant="outline"
+                    disabled={uploadingLogo}
+                    onClick={() =>
+                      document.getElementById("logo-upload")?.click()
+                    }
+                  >
+                    {uploadingLogo ? (
+                      <>
+                        <Skeleton className="h-4 w-4 mr-2 rounded-full inline-block" />
+                        Uploading...
+                      </>
+                    ) : (
+                      <>
+                        <Upload className="w-4 h-4 mr-2" />
+                        Choose File
+                      </>
+                    )}
+                  </Button>
+                  {settings.logo && (
+                    <Button
+                      variant="ghost"
+                      onClick={() => {
+                        setSettings((prev) => ({ ...prev, logo: "" }));
+                        setHasUnsavedChanges(true);
+                      }}
+                    >
+                      <Trash2 className="w-4 h-4 mr-2" />
+                      Remove
+                    </Button>
+                  )}
+                </div>
+                <input
+                  id="logo-upload"
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={handleLogoUpload}
+                />
+                <p className="text-xs text-gray-500">
+                  Recommended: PNG or SVG, max 5MB
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Secondary Logo */}
+          <div className="pt-4 border-t border-gray-200">
+            <h4 className="text-sm font-medium text-gray-900 mb-3">
+              Secondary Logo{" "}
+              <span className="text-gray-500 font-normal">
+                (Optional - for collaborations)
+              </span>
+            </h4>
+            <div className="flex items-center gap-6">
+              <div className="w-32 h-32 bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden border-2 border-dashed border-gray-300">
+                {settings.secondaryLogo ? (
+                  <img
+                    src={settings.secondaryLogo}
+                    alt="Secondary logo"
+                    className="w-full h-full object-contain p-2"
+                  />
+                ) : (
+                  <div className="text-center p-2">
+                    <ImageIcon className="w-10 h-10 text-gray-400 mx-auto mb-1" />
+                    <p className="text-xs text-gray-500">Partner Logo</p>
+                  </div>
+                )}
+              </div>
+
+              <div className="flex-1 space-y-2">
+                <Label htmlFor="secondary-logo-upload">
+                  Upload Secondary Logo
+                </Label>
+                <div className="flex gap-2">
+                  <Button
+                    variant="outline"
+                    disabled={uploadingSecondaryLogo}
+                    onClick={() =>
+                      document.getElementById("secondary-logo-upload")?.click()
+                    }
+                  >
+                    {uploadingSecondaryLogo ? (
+                      <>
+                        <Skeleton className="h-4 w-4 mr-2 rounded-full inline-block" />
+                        Uploading...
+                      </>
+                    ) : (
+                      <>
+                        <Upload className="w-4 h-4 mr-2" />
+                        Choose File
+                      </>
+                    )}
+                  </Button>
+                  {settings.secondaryLogo && (
+                    <Button
+                      variant="ghost"
+                      onClick={() => {
+                        setSettings((prev) => ({ ...prev, secondaryLogo: "" }));
+                        setHasUnsavedChanges(true);
+                      }}
+                    >
+                      <Trash2 className="w-4 h-4 mr-2" />
+                      Remove
+                    </Button>
+                  )}
+                </div>
+                <input
+                  id="secondary-logo-upload"
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={handleSecondaryLogoUpload}
+                />
+                <p className="text-xs text-gray-500">
+                  Add a partner or collaborator logo. Recommended: PNG or SVG,
+                  max 5MB
+                </p>
+              </div>
             </div>
           </div>
         </CardContent>
@@ -388,11 +514,11 @@ export default function OrganizationSettings({
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Palette className="w-5 h-5" />
-            App Color
+            Brand Color
           </CardTitle>
           <CardDescription>
-            Choose a primary color for your app experience. This color will be
-            used in various elements throughout the application.
+            Choose a primary color for your certificates. This will be used for
+            borders, accents, and text highlights.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
@@ -448,6 +574,30 @@ export default function OrganizationSettings({
               Or enter a custom hex color code
             </p>
           </div>
+
+          {/* Color Preview */}
+          <div
+            className="p-4 rounded-lg border-2"
+            style={{ borderColor: settings.primaryColor }}
+          >
+            <div className="flex items-center gap-2">
+              <div
+                className="w-8 h-8 rounded-full"
+                style={{ backgroundColor: settings.primaryColor }}
+              />
+              <div>
+                <p
+                  className="text-sm font-medium"
+                  style={{ color: settings.primaryColor }}
+                >
+                  Certificate Preview
+                </p>
+                <p className="text-xs text-gray-500">
+                  This is how your brand color will appear
+                </p>
+              </div>
+            </div>
+          </div>
         </CardContent>
       </Card>
 
@@ -464,7 +614,7 @@ export default function OrganizationSettings({
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-          {settings.signatories.length === 0 ? (
+          {!settings.signatories || settings.signatories.length === 0 ? (
             <div className="text-center py-8 border-2 border-dashed rounded-lg">
               <User className="w-12 h-12 mx-auto text-gray-400 mb-2" />
               <p className="text-gray-600 mb-4">No signatories added yet</p>

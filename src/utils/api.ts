@@ -294,7 +294,15 @@ export const certificateApi = {
     template?: string;
     customTemplateConfig?: any;
     students?: Array<{ name: string; email?: string; completionDate?: string }>;
+    restrictDownload?: boolean;
+    allowedEmails?: string[];
   }) => {
+    console.log('📤 Sending certificate generation request:', {
+      ...data,
+      restrictDownload: data.restrictDownload,
+      allowedEmails: data.allowedEmails,
+    });
+    
     const response = await fetch(`${API_BASE_URL}/certificates`, {
       method: 'POST',
       headers: getAuthHeaders(token),
@@ -312,6 +320,7 @@ export const certificateApi = {
     }
     
     const result = await response.json();
+    console.log('📥 Certificate generation response:', result);
     return result;
   },
 
@@ -327,7 +336,50 @@ export const certificateApi = {
     }
     
     const data = await response.json();
+    console.log('📥 Certificate retrieved:', {
+      id: data.id,
+      restrictDownload: data.restrictDownload,
+      allowedEmails: data.allowedEmails,
+    });
     return data;
+  },
+
+  update: async (token: string, certificateId: string, data: {
+    organizationId: string;
+    certificateHeader?: string;
+    courseName?: string;
+    courseDescription?: string;
+    completionDate?: string;
+    template?: string;
+    signatories?: any[];
+    restrictDownload?: boolean;
+    allowedEmails?: string[];
+  }) => {
+    console.log('📤 Sending certificate update request:', {
+      certificateId,
+      organizationId: data.organizationId,
+      ...data,
+    });
+    
+    const response = await fetch(`${API_BASE_URL}/certificates/${certificateId}`, {
+      method: 'PUT',
+      headers: getAuthHeaders(token),
+      body: JSON.stringify(data),
+    });
+    
+    if (!response.ok) {
+      let errorDetails;
+      try {
+        errorDetails = await response.json();
+      } catch (e) {
+        errorDetails = { error: `Server returned ${response.status}: ${response.statusText}` };
+      }
+      throw new Error(errorDetails.error || 'Failed to update certificate');
+    }
+    
+    const result = await response.json();
+    console.log('📥 Certificate update response:', result);
+    return result;
   },
 
   getForOrganization: async (token: string, organizationId: string) => {
@@ -376,6 +428,7 @@ export const certificateApi = {
   submitTestimonial: async (data: {
     certificateId: string;
     studentName: string;
+    email?: string;
     testimonial: string;
     courseName: string;
     organizationId: string;
@@ -457,9 +510,14 @@ export const analyticsApi = {
 // ==================== TEMPLATE API (GLOBAL TEMPLATE LIBRARY) ====================
 
 export const templateApi = {
-  // Get all templates (default + user-created) - no auth required for viewing
-  getAll: async () => {
-    const response = await fetch(`${API_BASE_URL}/templates`, {
+  // Get all templates (default + user-created) - now supports visibility filtering
+  getAll: async (organizationId?: string) => {
+    const url = new URL(`${API_BASE_URL}/templates`);
+    if (organizationId) {
+      url.searchParams.append('organizationId', organizationId);
+    }
+    
+    const response = await fetch(url.toString(), {
       method: 'GET',
       headers: getAuthHeaders(),
     });
@@ -529,6 +587,25 @@ export const templateApi = {
     if (!response.ok) {
       const error = await response.json();
       throw new Error(error.error || 'Failed to delete template');
+    }
+    
+    return await response.json();
+  },
+
+  // Update template visibility (admin only)
+  updateVisibility: async (token: string, templateId: string, data: {
+    visibility_type: 'public' | 'organization';
+    organization_id?: string;
+  }) => {
+    const response = await fetch(`${API_BASE_URL}/templates/${templateId}/visibility`, {
+      method: 'PUT',
+      headers: getAuthHeaders(token),
+      body: JSON.stringify(data),
+    });
+    
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.error || 'Failed to update template visibility');
     }
     
     return await response.json();

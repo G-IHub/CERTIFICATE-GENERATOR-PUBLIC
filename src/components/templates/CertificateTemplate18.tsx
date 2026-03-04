@@ -42,6 +42,7 @@ export default function CertificateTemplate18({
   mode = "student",
 }: CertificateTemplate18Props) {
   const ref = useRef<HTMLDivElement>(null);
+  // const scale = mode === "student" ? 0.3 : 1;
   const scale =
     mode === "student" ? "transform-scale-[0.3]" : "transform-scale-100";
 
@@ -53,45 +54,31 @@ export default function CertificateTemplate18({
 
   const containerClass = isPreview
     ? "w-full mx-auto origin-center overflow-visible flex justify-center"
-    : "min-w-[800px] flex justify-center items-center ";
-
-  // Determine signature count
-  const hasSignature1 = signatoryName1 || signatoryTitle1 || signatureUrl1;
-  const hasSignature2 = signatoryName2 || signatoryTitle2 || signatureUrl2;
+    : "min-w-[800px] flex justify-center items-center";
 
   return (
     <div
       className={containerClass}
-      style={{
-        transform: `scale(${scale})`,
-        backgroundColor: "transparent",
-        overflow: "hidden",
-        // width: "0",
-        // marginLeft: "-270px",
-        // height: isPreview ? "650px" : "600px",
-      }}
+      style={{ transform: `scale(${scale})`, backgroundColor: "transparent" }}
     >
       <div
         ref={ref}
-        className="shadow-sm bg-white py-10 rounded-sm flex items-center justify-center relative"
+        className="shadow-sm bg-white rounded-sm flex items-center justify-center relative"
         style={{
           width: "800px",
           height: "600px",
-          paddingLeft: "",
-          // paddingRight: "300px",
           background: "white",
-          // marginLeft: "-270px",
         }}
       >
         {/* Watermark */}
         <img
           src={watermark}
           alt="watermark"
-          className="absolute w-full h-[600px] opacity-30 z-0 object-cover"
+          className="absolute w-full h-full opacity-30 z-0 object-cover"
         />
 
-        {/* Main Certificate Container */}
-        <div className="relative w-[800px] h-[600px] overflow-hidden">
+        {/* Main Certificate Container with Border */}
+        <div className="relative w-full h-full border-[15px] border-purple-500 overflow-hidden">
           <div className="flex flex-col h-full p-6 justify-between">
             {/* Header with Logo */}
             <div className="flex text-center mx-auto pl-[200px] ">

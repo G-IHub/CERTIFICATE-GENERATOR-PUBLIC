@@ -38,6 +38,7 @@ import {
   DialogTitle,
 } from "./ui/dialog";
 import { useIsMobile } from "./ui/use-mobile";
+import { getContrastingTextColor } from "../utils/colorUtils";
 import {
   LayoutDashboard,
   FileText,
@@ -240,6 +241,15 @@ export default function AdminDashboard({
     useState<boolean>(false);
   const isMobile = useIsMobile();
 
+  // Check for onboarding redirect to certificates section
+  useEffect(() => {
+    const targetSection = sessionStorage.getItem("dashboardSection");
+    if (targetSection === "certificates") {
+      setActiveTab("certificates");
+      sessionStorage.removeItem("dashboardSection"); // Clean up
+    }
+  }, []);
+
   // Update current organization when organizations prop changes
   useEffect(() => {
     if (user.subsidiary) {
@@ -274,8 +284,21 @@ export default function AdminDashboard({
 
       try {
         const rgb = toRgb(color);
+
+        // Get contrasting foreground color for text on the primary color
+        const foregroundColor = getContrastingTextColor(color);
+        const foregroundRgb = toRgb(foregroundColor);
+
         root.style.setProperty("--primary", color);
         root.style.setProperty("--primary-rgb", rgb);
+        root.style.setProperty(
+          "--primary-foreground",
+          foregroundColor,
+        );
+        root.style.setProperty(
+          "--primary-foreground-rgb",
+          foregroundRgb,
+        );
         root.style.setProperty("--ring", color);
         root.style.setProperty("--chart-1", color);
         root.style.setProperty("--sidebar-primary", color);
@@ -284,6 +307,14 @@ export default function AdminDashboard({
         // Fallback to default if parsing fails
         root.style.setProperty("--primary", defaultHex);
         root.style.setProperty("--primary-rgb", "234, 88, 12");
+        root.style.setProperty(
+          "--primary-foreground",
+          "#ffffff",
+        );
+        root.style.setProperty(
+          "--primary-foreground-rgb",
+          "255, 255, 255",
+        );
         root.style.setProperty("--ring", defaultHex);
         root.style.setProperty("--chart-1", defaultHex);
         root.style.setProperty("--sidebar-primary", defaultHex);
@@ -292,12 +323,14 @@ export default function AdminDashboard({
     };
 
     applyTheme(
-      currentOrganization?.primaryColor || user.subsidiary?.primaryColor,
+      currentOrganization?.primaryColor ||
+        user.subsidiary?.primaryColor,
     );
 
     // Reset to default when unmounting
     return () => applyTheme(undefined);
   }, [currentOrganization, user.subsidiary]);
+
 
   // Subscription state
   const [subscription, setSubscription] = useState<any>(null);
@@ -1885,9 +1918,30 @@ export default function AdminDashboard({
                         </div>
                         <p className="text-xs text-muted-foreground truncate">
                           {currentOrganization
-                            ? "Your organization"
-                            : "Your certificates"}
+                            ? "Certificates"
+                            : "Certificates"}
                         </p>
+                      </CardContent>
+                      <CardContent className="space-y-2">
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Button
+                              onClick={() => setActiveTab("certificates")}
+                              className="w-full h-12 flex items-center justify-center gap-2"
+                              size="sm"
+                              style={{
+                                background:
+                                  "linear-gradient(135deg, rgba(var(--primary-rgb),0.9), rgba(var(--primary-rgb),1))",
+                              }}
+                            >
+                              <Award className="w-4 h-4" />
+                              View Certificates
+                            </Button>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>View all your generated certificates</p>
+                          </TooltipContent>
+                        </Tooltip>
                       </CardContent>
                     </Card>
 
@@ -1939,7 +1993,7 @@ export default function AdminDashboard({
                           Quick Actions
                         </CardTitle>
                       </CardHeader>
-                      <CardContent className="space-y-2">
+                      <CardContent className="space-y-2 pt-20">
                         <Tooltip>
                           <TooltipTrigger asChild>
                             <Button
@@ -2215,7 +2269,7 @@ export default function AdminDashboard({
                             </button>
                           </TooltipTrigger>
                           <TooltipContent>
-                            <p>View certificate generation statistics</p>
+                            <p>View all your generated certificates</p>
                           </TooltipContent>
                         </Tooltip>
                       </div>

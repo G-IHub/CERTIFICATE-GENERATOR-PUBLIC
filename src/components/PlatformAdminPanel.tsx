@@ -59,6 +59,7 @@ import BillingSettings from "./BillingSettings";
 import AdminEmailsView from "./AdminEmailsView";
 import PlatformAnalytics from "./PlatformAnalytics";
 import PlatformTrackingView from "./PlatformTrackingView";
+import TemplateVisibilityManager from "./TemplateVisibilityManager";
 
 interface PlatformAdminPanelProps {
   adminEmail: string;
@@ -134,6 +135,7 @@ export default function PlatformAdminPanel({
     | "billing"
     | "emails"
     | "blog"
+    | "templates"
   >("overview");
   const [stats, setStats] = useState<PlatformStats>({
     totalOrganizations: 0,
@@ -650,6 +652,7 @@ export default function PlatformAdminPanel({
       icon: Building2,
       count: filteredOrganizations.length,
     },
+    { id: "templates", label: "Template Visibility", icon: FileText },
     { id: "billing", label: "Billing Settings", icon: CreditCard },
     { id: "emails", label: "Email Addresses", icon: Mail },
     { id: "analytics", label: "Analytics", icon: BarChart3 },
@@ -861,6 +864,7 @@ export default function PlatformAdminPanel({
               <h1 className="text-gray-900 mb-0.5 text-lg">
                 {activeView === "overview" && "Dashboard Overview"}
                 {activeView === "organizations" && "Organizations"}
+                {activeView === "templates" && "Template Visibility"}
                 {activeView === "billing" && "Billing Settings"}
                 {activeView === "emails" && "Email Addresses"}
                 {activeView === "analytics" && "Analytics"}
@@ -871,6 +875,8 @@ export default function PlatformAdminPanel({
                   "Platform-wide statistics and recent activity"}
                 {activeView === "organizations" &&
                   "Manage all organizations on the platform"}
+                {activeView === "templates" &&
+                  "Configure template visibility for organizations"}
                 {activeView === "billing" &&
                   "Configure payment system and pricing"}
                 {activeView === "emails" &&
@@ -1358,6 +1364,13 @@ export default function PlatformAdminPanel({
 
           {activeView === "billing" && (
             <BillingSettings accessToken={accessToken} />
+          )}
+
+          {activeView === "templates" && (
+            <TemplateVisibilityManager
+              accessToken={accessToken}
+              organizations={organizations}
+            />
           )}
 
           {activeView === "emails" && (

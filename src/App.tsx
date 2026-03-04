@@ -6,7 +6,7 @@ import {
   Navigate,
   useNavigate,
   useLocation,
-} from "react-router-dom";
+} from "react-router";
 import LandingPage from "./components/LandingPage";
 import AuthPage from "./components/AuthPage";
 import AdminDashboard from "./components/AdminDashboard";
@@ -22,7 +22,8 @@ import AdminUtilities from "./components/AdminUtilities";
 import ResetPasswordPage from "./components/ResetPasswordPage";
 import BlogList from "./components/BlogList";
 import BlogDetails from "./components/BlogDetails";
-import Story from "./components/Story";
+import OnboardingWizard from "./components/OnboardingWizard";
+import CertificateRedirect from "./components/CertificateRedirect";
 import { organizationApi, authApi, programApi } from "./utils/api";
 import { publicAnonKey, projectId } from "./utils/supabase/info";
 import { toast, Toaster } from "sonner";
@@ -31,11 +32,7 @@ import { isOrgPremium } from "./utils/subscriptionUtils";
 import SEOTestPage from "./components/SEOTestPage";
 import SEOHead from "./components/SEOHead";
 
-
-
-
 const defaultOrgLogo = "https://via.placeholder.com/256x256.png?text=Org+Logo";
-
 
 interface Program {
   id: string;
@@ -59,6 +56,7 @@ interface Signatory {
 
 interface OrganizationSettings {
   logo: string;
+  secondaryLogo?: string;
   primaryColor: string;
   signatories: Signatory[];
 }
@@ -171,6 +169,12 @@ export default function App() {
   const [accessToken, setAccessToken] = useState<string | null>(null);
   const [serverHealthy, setServerHealthy] = useState<boolean | null>(null); // null = checking, true = healthy, false = unhealthy
   const [isPlatformAdmin, setIsPlatformAdmin] = useState(false);
+  const [showOnboarding, setShowOnboarding] = useState(false);
+  const [onboardingData, setOnboardingData] = useState<{
+    organizationId: string;
+    organizationName: string;
+  } | null>(null);
+  const [refreshCertificates, setRefreshCertificates] = useState(false);
 
   // Check for existing session on mount
   useEffect(() => {
@@ -327,6 +331,15 @@ export default function App() {
         } else {
           // Load organizations for regular users
           await loadOrganizations(token);
+
+          // Show onboarding wizard for new users
+          if (response.user.organizationId && response.user.organizationName) {
+            setOnboardingData({
+              organizationId: response.user.organizationId,
+              organizationName: response.user.organizationName,
+            });
+            setShowOnboarding(true);
+          }
         }
       } catch (error) {
         // Error loading session
@@ -939,9 +952,6 @@ export default function App() {
           {/* SEO Test Page - public */}
           <Route path="/seo-test" element={<SEOTestPage />} />
 
-          {/* story Page */}
-           <Route path="/story" element={<Story />} />
-
           {/* Blog pages */}
           <Route path="/blogs" element={<BlogList />} />
           <Route path="/blog/:id" element={<BlogDetails />} />
@@ -954,20 +964,7 @@ export default function App() {
               const isCertificateUrl = hash.includes("/certificate");
 
               if (isCertificateUrl) {
-                // Use window.location.replace() instead of <Navigate>
-                // This is the SAME approach that makes the View button work!
-                const fullUrl = `${window.location.origin}${hash}`;
-                window.location.replace(fullUrl);
-
-                // Return a loading state while the redirect happens
-                return (
-                  <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
-                      <p className="text-gray-600">Loading certificate...</p>
-                    </div>
-                  </div>
-                );
+                return <CertificateRedirect />;
               }
 
               // If user is logged in, redirect to their dashboard
@@ -987,6 +984,39 @@ export default function App() {
           {/* Catch all other routes */}
           <Route path="*" element={<NotFound />} />
         </Routes>
+
+        {/* Onboarding Wizard Modal */}
+        {showOnboarding && onboardingData && accessToken && (
+          <OnboardingWizard
+            organizationId={onboardingData.organizationId}
+            organizationName={onboardingData.organizationName}
+            accessToken={accessToken}
+            onComplete={(goToCertificates) => {
+              setShowOnboarding(false);
+              toast.success("Welcome! Your account is all set up! 🎉");
+
+              // Trigger certificate list refresh
+              setRefreshCertificates(true);
+
+              // If goToCertificates is true, navigate to dashboard with certificates section
+              if (goToCertificates) {
+                // Store the target section in sessionStorage so dashboard knows where to go
+                sessionStorage.setItem("dashboardSection", "certificates");
+                // Also store refresh flag
+                sessionStorage.setItem("refreshCertificates", "true");
+              }
+
+              // Reset the refresh trigger after a short delay
+              setTimeout(() => setRefreshCertificates(false), 1000);
+            }}
+            onSkip={() => {
+              setShowOnboarding(false);
+              toast.info(
+                "You can complete these steps later from your dashboard",
+              );
+            }}
+          />
+        )}
       </div>
     </Router>
   );

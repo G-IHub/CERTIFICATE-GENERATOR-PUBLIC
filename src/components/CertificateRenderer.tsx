@@ -16,6 +16,7 @@ import CertificateTemplate15 from "./templates/CertificateTemplate15";
 import CertificateTemplate16 from "./templates/CertificateTemplate16";
 import CertificateTemplate17 from "./templates/CertificateTemplate17";
 import CertificateTemplate18 from "./templates/CertificateTemplate18";
+import CertificateTemplate19 from "./templates/CertificateTemplate19";
 
 interface CertificateRendererProps {
   templateId: string;
@@ -124,7 +125,7 @@ export default function CertificateRenderer({
       return <CertificateTemplate14 {...templateProps} />;
 
     case "15":
-      return <CertificateTemplate15 {...templateProps} />;
+      return <CertificateTemplate19 {...templateProps} />;
 
     case "16":
       return <CertificateTemplate16 {...templateProps} />;
@@ -134,6 +135,9 @@ export default function CertificateRenderer({
 
     case "18":
       return <CertificateTemplate18 {...templateProps} />;
+
+    case "19":
+      return <CertificateTemplate19 {...templateProps} />;
 
     // All other template IDs fall back to Template 1
     default:

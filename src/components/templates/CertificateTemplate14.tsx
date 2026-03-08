@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import vector1 from "../../assets/Vector (9).svg";
 import vector2 from "../../assets/Vector (10).svg";
 import vector3 from "../../assets/Vector (11).svg";
@@ -41,11 +41,12 @@ export default function CertificateTemplate14({
   signatureUrl2,
   mode = "student",
 }: CertificateTemplate14Props) {
-  const transformClass =
-    mode === "student" ? "transform scale-[0.3]" : "transform scale-100";
+  const ref = useRef<HTMLDivElement>(null);
+  const scale =
+    mode === "student" ? "transform-scale-[0.3]" : "transform-scale-100";
   const containerClass = isPreview
     ? "w-full mx-auto origin-center overflow-visible flex justify-center"
-    : "min-w-[1056px] flex justify-center items-center";
+    : "min-w-[800px] flex justify-center items-center";
 
   useEffect(() => {
     const link1 = document.createElement("link");
@@ -66,10 +67,18 @@ export default function CertificateTemplate14({
   });
 
   return (
-    <div className={`${containerClass} ${transformClass} bg-transparent`}>
+    <div
+      className={containerClass}
+      style={{ transform: `scale(${scale})`, backgroundColor: "transparent" }}
+    >
       <div
+        ref={ref}
         className="flex shadow-md rounded p-10 relative overflow-hidden"
-        style={{ width: "1056px", height: "600px" }}
+        style={{
+          width: "800px",
+          height: "600px",
+          fontFamily: "'Open sans', sans-serif",
+        }}
       >
         <div>
           <div

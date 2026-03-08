@@ -9,26 +9,22 @@ import {
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
-import { Textarea } from "./ui/textarea";
 import { Alert, AlertDescription } from "./ui/alert";
 import {
-  Upload,
-  Trash2,
-  Plus,
   Save,
   Palette,
   Building2,
   User,
-  ImageIcon,
   AlertCircle,
   CheckCircle2,
-  Loader2,
 } from "lucide-react";
 import { toast } from "sonner";
 import SettingsSkeleton from "./skeletons/SettingsSkeleton";
 import { Skeleton } from "./ui/skeleton";
-import type { Organization, Signatory, OrganizationSettings } from "../App";
+import type { Organization, Signatory, OrganizationSettings, Logo } from "../App";
 import { organizationApi } from "../utils/api";
+import SignatoryManagement from "./SignatoryManagement";
+import LogoManagement from "./LogoManagement";
 
 // For compatibility, keep the existing interface name
 interface OrganizationSettingsData extends OrganizationSettings {}
@@ -38,7 +34,7 @@ interface OrganizationSettingsProps {
   accessToken: string;
   onSettingsUpdated: (
     organizationId: string,
-    updates: Partial<Organization>,
+    updates: Partial<Organization>
   ) => void;
 }
 
@@ -52,19 +48,19 @@ export default function OrganizationSettings({
     secondaryLogo: "",
     primaryColor: organization.primaryColor || "#ea580c",
     signatories: [],
+    logos: [], // New: Logos array
   });
 
   const [organizationName, setOrganizationName] = useState(
-    organization.name || "",
+    organization.name || ""
   );
 
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
-  const [uploadingLogo, setUploadingLogo] = useState(false);
-  const [uploadingSecondaryLogo, setUploadingSecondaryLogo] = useState(false);
   const [uploadingSignature, setUploadingSignature] = useState<string | null>(
-    null,
+    null
   );
+  const [uploadingLogo, setUploadingLogo] = useState<string | null>(null);
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
 
   // Load settings from backend
@@ -82,11 +78,33 @@ export default function OrganizationSettings({
       setIsLoading(true);
       const data = await organizationApi.getSettings(
         accessToken,
-        organization.id,
+        organization.id
       );
+      
+      // Migrate old logo/secondaryLogo to new logos array if needed
+      let logos: Logo[] = data.settings.logos || [];
+      if (logos.length === 0) {
+        // Migration: Convert old logo/secondaryLogo to new logos array
+        if (data.settings.logo) {
+          logos.push({
+            id: `logo-primary-${Date.now()}`,
+            url: data.settings.logo,
+            name: "Primary Logo",
+          });
+        }
+        if (data.settings.secondaryLogo) {
+          logos.push({
+            id: `logo-secondary-${Date.now()}`,
+            url: data.settings.secondaryLogo,
+            name: "Secondary Logo",
+          });
+        }
+      }
+
       setSettings({
         ...data.settings,
         signatories: data.settings.signatories || [],
+        logos: logos,
       });
       setOrganizationName(organization.name || "");
       setHasUnsavedChanges(false);
@@ -98,99 +116,76 @@ export default function OrganizationSettings({
     }
   };
 
-  const handleLogoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
+  // Logo Management Functions
+  const addLogo = () => {
+    const newLogo: Logo = {
+      id: `logo-${Date.now()}`,
+      url: "",
+      name: "",
+    };
 
-    // Validate file type
-    if (!file.type.startsWith("image/")) {
-      toast.error("Please upload an image file");
-      return;
-    }
+    setSettings((prev) => ({
+      ...prev,
+      logos: [...(prev.logos || []), newLogo],
+    }));
 
-    // Validate file size (max 5MB)
-    if (file.size > 5 * 1024 * 1024) {
-      toast.error("File size must be less than 5MB");
-      return;
-    }
+    setHasUnsavedChanges(true);
+  };
 
+  const removeLogo = (logoId: string) => {
+    setSettings((prev) => ({
+      ...prev,
+      logos: (prev.logos || []).filter((logo) => logo.id !== logoId),
+    }));
+
+    setHasUnsavedChanges(true);
+  };
+
+  const updateLogo = (
+    logoId: string,
+    field: keyof Logo,
+    value: string
+  ) => {
+    setSettings((prev) => ({
+      ...prev,
+      logos: (prev.logos || []).map((logo) =>
+        logo.id === logoId ? { ...logo, [field]: value } : logo
+      ),
+    }));
+
+    setHasUnsavedChanges(true);
+  };
+
+  const handleLogoUpload = async (logoId: string, file: File) => {
     try {
-      setUploadingLogo(true);
+      setUploadingLogo(logoId);
 
       const data = await organizationApi.uploadFile(
         accessToken,
         file,
         "logo",
-        organization.id,
+        organization.id
       );
-      setSettings((prev) => ({ ...prev, logo: data.url }));
+
+      setSettings((prev) => ({
+        ...prev,
+        logos: (prev.logos || []).map((logo) =>
+          logo.id === logoId ? { ...logo, url: data.url } : logo
+        ),
+      }));
+
       setHasUnsavedChanges(true);
-      toast.success("Primary logo uploaded successfully");
+      toast.success("Logo uploaded successfully");
     } catch (error) {
       console.error("Error uploading logo:", error);
       toast.error("Failed to upload logo");
     } finally {
-      setUploadingLogo(false);
+      setUploadingLogo(null);
     }
   };
 
-  const handleSecondaryLogoUpload = async (
-    e: React.ChangeEvent<HTMLInputElement>,
-  ) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    // Validate file type
-    if (!file.type.startsWith("image/")) {
-      toast.error("Please upload an image file");
-      return;
-    }
-
-    // Validate file size (max 5MB)
-    if (file.size > 5 * 1024 * 1024) {
-      toast.error("File size must be less than 5MB");
-      return;
-    }
-
-    try {
-      setUploadingSecondaryLogo(true);
-
-      const data = await organizationApi.uploadFile(
-        accessToken,
-        file,
-        "secondaryLogo",
-        organization.id,
-      );
-      setSettings((prev) => ({ ...prev, secondaryLogo: data.url }));
-      setHasUnsavedChanges(true);
-      toast.success("Secondary logo uploaded successfully");
-    } catch (error) {
-      console.error("Error uploading secondary logo:", error);
-      toast.error("Failed to upload secondary logo");
-    } finally {
-      setUploadingSecondaryLogo(false);
-    }
-  };
-
-  const handleSignatureUpload = async (
-    signatoryId: string,
-    e: React.ChangeEvent<HTMLInputElement>,
-  ) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    // Validate file type
-    if (!file.type.startsWith("image/")) {
-      toast.error("Please upload an image file");
-      return;
-    }
-
-    // Validate file size (max 2MB)
-    if (file.size > 2 * 1024 * 1024) {
-      toast.error("File size must be less than 2MB");
-      return;
-    }
-
+  // Signatory Management Functions
+  const handleSignatureUpload = async (signatoryId: string, file: File) => {
     try {
       setUploadingSignature(signatoryId);
 
@@ -198,13 +193,13 @@ export default function OrganizationSettings({
         accessToken,
         file,
         "signature",
-        organization.id,
+        organization.id
       );
 
       setSettings((prev) => ({
         ...prev,
         signatories: prev.signatories.map((s) =>
-          s.id === signatoryId ? { ...s, signatureUrl: data.url } : s,
+          s.id === signatoryId ? { ...s, signatureUrl: data.url } : s
         ),
       }));
 
@@ -246,12 +241,12 @@ export default function OrganizationSettings({
   const updateSignatory = (
     signatoryId: string,
     field: keyof Signatory,
-    value: string,
+    value: string
   ) => {
     setSettings((prev) => ({
       ...prev,
       signatories: prev.signatories.map((s) =>
-        s.id === signatoryId ? { ...s, [field]: value } : s,
+        s.id === signatoryId ? { ...s, [field]: value } : s
       ),
     }));
 
@@ -267,16 +262,24 @@ export default function OrganizationSettings({
     try {
       setIsSaving(true);
 
+      // Ensure we have the logos array in settings
+      const settingsToSave = {
+        ...settings,
+        logos: settings.logos || [],
+        // Keep legacy logo field for backward compatibility (use first logo)
+        logo: settings.logos && settings.logos.length > 0 ? settings.logos[0].url : settings.logo,
+      };
+
       const data = await organizationApi.updateSettings(
         accessToken,
         organization.id,
-        settings,
+        settingsToSave
       );
 
       // Update parent component with all changes including organization name
       onSettingsUpdated(organization.id, {
         name: organizationName,
-        logo: settings.logo,
+        logo: settingsToSave.logo,
         primaryColor: settings.primaryColor,
         settings: data.settings,
       });
@@ -351,7 +354,7 @@ export default function OrganizationSettings({
         </CardContent>
       </Card>
 
-      {/* Logo Settings */}
+      {/* Logo Management */}
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
@@ -359,153 +362,19 @@ export default function OrganizationSettings({
             Organization Logos
           </CardTitle>
           <CardDescription>
-            Upload your organization's logos. These will appear on certificates.
-            You can add a secondary logo for collaborations.
+            Upload up to 2 logos to display on your certificates (e.g., your organization logo and a partner logo).
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-6">
-          {/* Primary Logo */}
-          <div>
-            <h4 className="text-sm font-medium text-gray-900 mb-3">
-              Primary Logo
-            </h4>
-            <div className="flex items-center gap-6">
-              <div className="w-32 h-32 bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden border-2 border-gray-200">
-                {settings.logo ? (
-                  <img
-                    src={settings.logo}
-                    alt="Primary logo"
-                    className="w-full h-full object-contain p-2"
-                  />
-                ) : (
-                  <ImageIcon className="w-12 h-12 text-gray-400" />
-                )}
-              </div>
-
-              <div className="flex-1 space-y-2">
-                <Label htmlFor="logo-upload">Upload Primary Logo</Label>
-                <div className="flex gap-2">
-                  <Button
-                    variant="outline"
-                    disabled={uploadingLogo}
-                    onClick={() =>
-                      document.getElementById("logo-upload")?.click()
-                    }
-                  >
-                    {uploadingLogo ? (
-                      <>
-                        <Skeleton className="h-4 w-4 mr-2 rounded-full inline-block" />
-                        Uploading...
-                      </>
-                    ) : (
-                      <>
-                        <Upload className="w-4 h-4 mr-2" />
-                        Choose File
-                      </>
-                    )}
-                  </Button>
-                  {settings.logo && (
-                    <Button
-                      variant="ghost"
-                      onClick={() => {
-                        setSettings((prev) => ({ ...prev, logo: "" }));
-                        setHasUnsavedChanges(true);
-                      }}
-                    >
-                      <Trash2 className="w-4 h-4 mr-2" />
-                      Remove
-                    </Button>
-                  )}
-                </div>
-                <input
-                  id="logo-upload"
-                  type="file"
-                  accept="image/*"
-                  className="hidden"
-                  onChange={handleLogoUpload}
-                />
-                <p className="text-xs text-gray-500">
-                  Recommended: PNG or SVG, max 5MB
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Secondary Logo */}
-          <div className="pt-4 border-t border-gray-200">
-            <h4 className="text-sm font-medium text-gray-900 mb-3">
-              Secondary Logo{" "}
-              <span className="text-gray-500 font-normal">
-                (Optional - for collaborations)
-              </span>
-            </h4>
-            <div className="flex items-center gap-6">
-              <div className="w-32 h-32 bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden border-2 border-dashed border-gray-300">
-                {settings.secondaryLogo ? (
-                  <img
-                    src={settings.secondaryLogo}
-                    alt="Secondary logo"
-                    className="w-full h-full object-contain p-2"
-                  />
-                ) : (
-                  <div className="text-center p-2">
-                    <ImageIcon className="w-10 h-10 text-gray-400 mx-auto mb-1" />
-                    <p className="text-xs text-gray-500">Partner Logo</p>
-                  </div>
-                )}
-              </div>
-
-              <div className="flex-1 space-y-2">
-                <Label htmlFor="secondary-logo-upload">
-                  Upload Secondary Logo
-                </Label>
-                <div className="flex gap-2">
-                  <Button
-                    variant="outline"
-                    disabled={uploadingSecondaryLogo}
-                    onClick={() =>
-                      document.getElementById("secondary-logo-upload")?.click()
-                    }
-                  >
-                    {uploadingSecondaryLogo ? (
-                      <>
-                        <Skeleton className="h-4 w-4 mr-2 rounded-full inline-block" />
-                        Uploading...
-                      </>
-                    ) : (
-                      <>
-                        <Upload className="w-4 h-4 mr-2" />
-                        Choose File
-                      </>
-                    )}
-                  </Button>
-                  {settings.secondaryLogo && (
-                    <Button
-                      variant="ghost"
-                      onClick={() => {
-                        setSettings((prev) => ({ ...prev, secondaryLogo: "" }));
-                        setHasUnsavedChanges(true);
-                      }}
-                    >
-                      <Trash2 className="w-4 h-4 mr-2" />
-                      Remove
-                    </Button>
-                  )}
-                </div>
-                <input
-                  id="secondary-logo-upload"
-                  type="file"
-                  accept="image/*"
-                  className="hidden"
-                  onChange={handleSecondaryLogoUpload}
-                />
-                <p className="text-xs text-gray-500">
-                  Add a partner or collaborator logo. Recommended: PNG or SVG,
-                  max 5MB
-                </p>
-              </div>
-            </div>
-          </div>
+        <CardContent>
+          <LogoManagement
+            logos={settings.logos || []}
+            onAdd={addLogo}
+            onRemove={removeLogo}
+            onUpdate={updateLogo}
+            onUploadLogo={handleLogoUpload}
+            uploadingLogo={uploadingLogo}
+            maxLogos={2}
+          />
         </CardContent>
       </Card>
 
@@ -613,135 +482,15 @@ export default function OrganizationSettings({
             upload their signature images.
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-4">
-          {!settings.signatories || settings.signatories.length === 0 ? (
-            <div className="text-center py-8 border-2 border-dashed rounded-lg">
-              <User className="w-12 h-12 mx-auto text-gray-400 mb-2" />
-              <p className="text-gray-600 mb-4">No signatories added yet</p>
-              <Button onClick={addSignatory} variant="outline">
-                <Plus className="w-4 h-4 mr-2" />
-                Add Signatory
-              </Button>
-            </div>
-          ) : (
-            <>
-              {settings.signatories.map((signatory, index) => (
-                <div
-                  key={signatory.id}
-                  className="p-4 border rounded-lg space-y-4"
-                >
-                  <div className="flex items-center justify-between">
-                    <h4 className="font-medium">
-                      {signatory.name.trim() || `Signatory ${index + 1}`}
-                    </h4>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => removeSignatory(signatory.id)}
-                    >
-                      <Trash2 className="w-4 h-4 text-red-600" />
-                    </Button>
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label>Full Name</Label>
-                      <Input
-                        value={signatory.name}
-                        onChange={(e) =>
-                          updateSignatory(signatory.id, "name", e.target.value)
-                        }
-                        placeholder="Dr. Jane Smith"
-                      />
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label>Title / Position</Label>
-                      <Input
-                        value={signatory.title}
-                        onChange={(e) =>
-                          updateSignatory(signatory.id, "title", e.target.value)
-                        }
-                        placeholder="Program Director"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label>Signature Image (Optional)</Label>
-                    <div className="flex items-center gap-4">
-                      {signatory.signatureUrl && (
-                        <div className="w-32 h-16 bg-gray-50 rounded border flex items-center justify-center overflow-hidden">
-                          <img
-                            src={signatory.signatureUrl}
-                            alt="Signature"
-                            className="max-w-full max-h-full object-contain"
-                          />
-                        </div>
-                      )}
-
-                      <div className="flex gap-2">
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          disabled={uploadingSignature === signatory.id}
-                          onClick={() =>
-                            document
-                              .getElementById(`signature-${signatory.id}`)
-                              ?.click()
-                          }
-                        >
-                          {uploadingSignature === signatory.id ? (
-                            <>
-                              <Skeleton className="h-4 w-4 mr-2 rounded-full inline-block" />
-                              Uploading...
-                            </>
-                          ) : (
-                            <>
-                              <Upload className="w-4 h-4 mr-2" />
-                              {signatory.signatureUrl ? "Change" : "Upload"}
-                            </>
-                          )}
-                        </Button>
-
-                        {signatory.signatureUrl && (
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() =>
-                              updateSignatory(signatory.id, "signatureUrl", "")
-                            }
-                          >
-                            <Trash2 className="w-4 h-4" />
-                          </Button>
-                        )}
-                      </div>
-
-                      <input
-                        id={`signature-${signatory.id}`}
-                        type="file"
-                        accept="image/*"
-                        className="hidden"
-                        onChange={(e) => handleSignatureUpload(signatory.id, e)}
-                      />
-                    </div>
-                    <p className="text-xs text-gray-500">
-                      PNG or JPG, transparent background recommended, max 2MB
-                    </p>
-                  </div>
-                </div>
-              ))}
-
-              <Button
-                onClick={addSignatory}
-                variant="outline"
-                className="w-full"
-              >
-                <Plus className="w-4 h-4 mr-2" />
-                Add Another Signatory
-              </Button>
-            </>
-          )}
+        <CardContent>
+          <SignatoryManagement
+            signatories={settings.signatories}
+            onAdd={addSignatory}
+            onRemove={removeSignatory}
+            onUpdate={updateSignatory}
+            onUploadSignature={handleSignatureUpload}
+            uploadingSignature={uploadingSignature}
+          />
         </CardContent>
       </Card>
 

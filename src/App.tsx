@@ -29,6 +29,7 @@ import { publicAnonKey, projectId } from "./utils/supabase/info";
 import { toast, Toaster } from "sonner";
 import { isAdminEmail } from "./utils/adminConfig";
 import { isOrgPremium } from "./utils/subscriptionUtils";
+import { isTokenExpired, getTokenRemainingTime } from "./utils/tokenUtils";
 import SEOTestPage from "./components/SEOTestPage";
 import SEOHead from "./components/SEOHead";
 
@@ -54,11 +55,18 @@ interface Signatory {
   signatureUrl?: string;
 }
 
+export interface Logo {
+  id: string;
+  url: string;
+  name: string;
+}
+
 interface OrganizationSettings {
   logo: string;
   secondaryLogo?: string;
   primaryColor: string;
   signatories: Signatory[];
+  logos?: Logo[]; // New: Array of organization logos
 }
 
 interface Organization {
@@ -278,6 +286,61 @@ export default function App() {
 
     checkSession();
   }, []);
+
+  // Auto-logout when token expires (proactive session management)
+  useEffect(() => {
+    if (!accessToken) {
+      return; // No token, nothing to monitor
+    }
+
+    // Check if token is already expired
+    if (isTokenExpired(accessToken)) {
+      console.log("🔒 Token is already expired, logging out...");
+      toast.error("Your session has expired. Please sign in again.", {
+        duration: 5000,
+      });
+      handleLogout();
+      return;
+    }
+
+    // Get remaining time and set up auto-logout
+    const remainingTime = getTokenRemainingTime(accessToken);
+    console.log(
+      `⏰ Token will expire in ${Math.floor(remainingTime / 1000 / 60)} minutes`,
+    );
+
+    // Show warning 5 minutes before expiration
+    const warningTime = remainingTime - 5 * 60 * 1000; // 5 minutes before
+    let warningTimeout: NodeJS.Timeout | null = null;
+
+    if (warningTime > 0) {
+      warningTimeout = setTimeout(() => {
+        toast.warning(
+          "Your session will expire in 5 minutes. Please save your work!",
+          {
+            duration: 10000,
+          },
+        );
+      }, warningTime);
+    }
+
+    // Auto-logout when token expires
+    const logoutTimeout = setTimeout(() => {
+      console.log("🔒 Token expired, automatically logging out...");
+      toast.error("Your session has expired. Please sign in again.", {
+        duration: 6000,
+      });
+      handleLogout();
+    }, remainingTime);
+
+    // Cleanup timeouts on unmount or when token changes
+    return () => {
+      if (warningTimeout) {
+        clearTimeout(warningTimeout);
+      }
+      clearTimeout(logoutTimeout);
+    };
+  }, [accessToken]); // Re-run when accessToken changes
 
   // Load organizations for the current user
   const loadOrganizations = async (token: string) => {

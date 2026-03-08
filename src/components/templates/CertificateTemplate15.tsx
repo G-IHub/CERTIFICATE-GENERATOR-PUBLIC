@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import shape1 from "../../assets/shapes (1).svg";
 import shape2 from "../../assets/shapes (2).svg";
 import shape3 from "../../assets/shapes (3).svg";
@@ -46,8 +46,9 @@ export default function CertificateTemplate15({
   signatureUrl2,
   mode = "student",
 }: CertificateTemplate15Props) {
-  const transformClass =
-    mode === "student" ? "transform scale-[0.3]" : "transform scale-100";
+  const ref = useRef<HTMLDivElement>(null);
+  const scale =
+    mode === "student" ? "transform-scale-[0.3]" : "transform-scale-100";
   const containerClass = isPreview
     ? "w-full mx-auto origin-center overflow-visible flex justify-center"
     : "min-w-[1056px] flex justify-center items-center";
@@ -81,11 +82,11 @@ export default function CertificateTemplate15({
   const hasSignature2 = signatoryName2 || signatoryTitle2 || signatureUrl2;
 
   return (
-    <div className={`${containerClass} ${transformClass} bg-transparent`}>
+    <div className={containerClass} style={{ transform: `scale(${scale})`, backgroundColor: "transparent" }}>
       <div
         className="flex justify-center shadow-sm relative overflow-hidden"
         style={{
-          width: "1056px",
+          width: "800px",
           height: "600px",
           paddingTop: "56px",
           paddingBottom: "56px",

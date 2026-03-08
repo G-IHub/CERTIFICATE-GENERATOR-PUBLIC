@@ -1,6 +1,7 @@
 import { useRef, useEffect } from "react";
 import badge from "../../assets/best.svg";
 import vecto from "../../assets/Vecto.svg";
+import type { Logo } from "../../App";
 
 interface CertificateTemplate1Props {
   header: string;
@@ -10,7 +11,8 @@ interface CertificateTemplate1Props {
   recipientName?: string;
   isPreview?: boolean;
   organizationName?: string;
-  organizationLogo?: string;
+  organizationLogo?: string; // Deprecated: kept for backward compatibility
+  organizationLogos?: Logo[]; // NEW: Array of organization logos
   organizationSlogan?: string;
   signatoryName1?: string;
   signatoryTitle1?: string;
@@ -31,6 +33,7 @@ export default function CertificateTemplate1({
   isPreview = false,
   organizationName = "Your Organization",
   organizationLogo,
+  organizationLogos,
   organizationSlogan = "slogan text here",
   signatoryName1,
   signatoryTitle1,
@@ -42,8 +45,7 @@ export default function CertificateTemplate1({
   certificateId,
 }: CertificateTemplate1Props) {
   const ref = useRef<HTMLDivElement>(null);
-  const scale = mode === "student" ? "transform-scale-[0.3]" : "transform-scale-100";
-  // const scale = mode === "student" ? 0.3 : isPreview ? 2.5 : 1;
+  const scale = mode === "student" ? 0.3 : 1;
 
   useEffect(() => {
     const id = "cinzel-decorative-font";
@@ -67,6 +69,17 @@ export default function CertificateTemplate1({
     ? "w-full mx-auto origin-center overflow-visible flex justify-center"
     : "min-w-[800px] flex justify-center items-center ";
 
+  // Determine which logos to use (new logos array or fallback to legacy)
+  const logo1 =
+    organizationLogos && organizationLogos[0]?.url
+      ? organizationLogos[0]
+      : null;
+  const logo2 =
+    organizationLogos && organizationLogos[1]?.url
+      ? organizationLogos[1]
+      : null;
+  const fallbackLogo = organizationLogo || vecto;
+
   return (
     <div
       className={containerClass}
@@ -77,7 +90,7 @@ export default function CertificateTemplate1({
         className="shadow-sm bg-white py-10 rounded-sm flex items-center justify-center relative"
         style={{
           width: "800px",
-          height: "600px",
+          height: "500px",
           paddingLeft: "64px",
           paddingRight: "64px",
         }}
@@ -85,22 +98,37 @@ export default function CertificateTemplate1({
         {/* Main Certificate Container - Landscape A4 proportions */}
         <div className="flex flex-col h-full" style={{ gap: "32px" }}>
           <div className="flex gap-4 justify-between items-center">
-            <img src={badge} alt="" className="" style={{ width: "20%" }} />
+            {/* Left section: Badge or Logo 1 */}
+            {logo1 ? (
+              <div className="flex flex-col items-center">
+                <img
+                  src={logo1.url}
+                  alt={logo1.name || "Organization Logo"}
+                  className="object-contain"
+                  style={{ width: 50, height: 50 }}
+                />
+              </div>
+            ) : (
+              <img src={badge} alt="" className="" style={{ width: "20%" }} />
+            )}
+
             <h2
               className="font-bold text-3xl uppercase text-center text-gray-600"
               style={{ fontFamily: "'Cinzel Decorative', serif" }}
             >
               {header || "Certificate of Completion"}
             </h2>
+
+            {/* Right section: Logo 2 or fallback logo */}
             <div className="flex flex-col items-center text-[#BE8C2C]">
               <div className="flex flex-col items-center">
                 <img
-                  src={organizationLogo || vecto}
-                  className="w-52"
-                  style={{ width: 50 }}
-                  alt={organizationName}
+                  src={logo2?.url || (logo1 ? vecto : fallbackLogo)}
+                  className="w-52 object-contain"
+                  style={{ width: 50, height: 50 }}
+                  alt={logo2?.name || organizationName}
                 />
-                <h3 className="font-bold text-xs text-center ">
+                <h3 className="font-bold text-xs text-center">
                   {organizationName}
                 </h3>
               </div>
@@ -141,7 +169,8 @@ export default function CertificateTemplate1({
               className="text-center text-xs"
               style={{ marginLeft: 10, marginRight: 10 }}
             >
-              {description}
+              {description ||
+                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio commodi incidunt harum, doloremque reprehenderit voluptas aspernatu"}
             </p>
           </div>
 
@@ -149,7 +178,7 @@ export default function CertificateTemplate1({
             className="flex justify-between items-end"
             style={{ marginTop: "32px" }}
           >
-            <div className="flex gap-8 justify-center items-center ml-40">
+            <div className="flex gap-8 justify-center items-center">
               {/* Signature 1 - Always show if name is provided */}
               {signatoryName1 && (
                 <div
@@ -211,21 +240,21 @@ export default function CertificateTemplate1({
               {/* Date display */}
               {date && (
                 <div className="flex flex-col items-center text-center">
-                  <div className="w-32 mt-7 mb-2" />
-                  <div className="text-xs font-bold ">Date</div>
+                  <div className="w-32 mt-5 mb-2" />
                   <div
                     className="text-sm font-medium"
                     style={{ color: "#4D4D4D" }}
                   >
                     {formattedDate || "DATE"}
                   </div>
+                  <div className="text-xs font-bold">Date</div>
                 </div>
               )}
             </div>
           </div>
 
           {/* Verification Link */}
-          {/* {certificateId && mode === "student" && (
+          {certificateId && mode === "student" && (
             <div className="text-center" style={{ marginTop: "16px" }}>
               <p className="text-xs text-gray-500">
                 Verify this certificate at:{" "}
@@ -234,7 +263,7 @@ export default function CertificateTemplate1({
                 </span>
               </p>
             </div>
-          )} */}
+          )}
         </div>
       </div>
     </div>

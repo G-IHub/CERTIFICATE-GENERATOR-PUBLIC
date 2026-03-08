@@ -230,21 +230,16 @@ export default function OnboardingWizard({
       const programId = programData.program.id;
 
       // 3. Create certificate with proper backend format
-      const certificatePayload: any = {
-        organizationId,
-        programId,
+      const certificatePayload = {
+        organizationId: organizationId,
         certificateHeader: programHeader,
         courseName: courseTitle,
         courseDescription:
           description || "Congratulations on completing this program!",
         completionDate: new Date().toISOString().split("T")[0],
         template: selectedTemplate,
-        students: [
-          {
-            name: "Sample Student",
-            email: "sample@example.com",
-          },
-        ],
+        // DO NOT send students array - this creates a shareable link without pre-filled name
+        students: undefined,
       };
 
       // Add signatories if provided
@@ -451,19 +446,19 @@ export default function OnboardingWizard({
                     Let's Create Your First Certificate!
                   </h3>
                   <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                    Welcome {" "}
+                    Welcome to{" "}
                     <span className="font-semibold text-orange-600">
                       {organizationName}
                     </span>
                     ! We'll guide you through creating your first professional
                     certificate in just a few steps.
                   </p>
-                  {/* <div className="bg-orange-50 border border-orange-200 rounded-lg p-4 max-w-md mx-auto">
+                  <div className="bg-orange-50 border border-orange-200 rounded-lg p-4 max-w-md mx-auto">
                     <p className="text-sm text-orange-800">
                       ✨ <strong>Tip:</strong> You can skip any step and
                       customize everything later from your dashboard!
                     </p>
-                  </div> */}
+                  </div>
                 </div>
               )}
 
@@ -737,7 +732,7 @@ export default function OnboardingWizard({
                       />
                     </div>
 
-                    {/* <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg">
+                    <div className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg">
                       <input
                         type="checkbox"
                         id="emailRestriction"
@@ -759,7 +754,7 @@ export default function OnboardingWizard({
                           certificates
                         </p>
                       </label>
-                    </div> */}
+                    </div>
                   </div>
                 </div>
               )}

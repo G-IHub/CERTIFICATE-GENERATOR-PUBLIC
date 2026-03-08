@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import vector from "../../assets/Vector (8).svg";
 import path from "../../assets/path2646.svg";
 import wrapper from "../../assets/Wrapper.svg";
@@ -38,8 +38,9 @@ export default function CertificateTemplate13({
   signatureUrl2,
   mode = "student",
 }: CertificateTemplate13Props) {
-  const transformClass =
-    mode === "student" ? "transform scale-[0.3]" : "transform scale-100";
+  const ref = useRef<HTMLDivElement>(null);
+    const scale = mode === "student" ? "transform-scale-[0.3]" : "transform-scale-100";
+  
   const containerClass = isPreview
     ? "w-full mx-auto origin-center overflow-visible flex justify-center"
     : "min-w-[1056px] flex justify-center items-center";
@@ -74,10 +75,11 @@ export default function CertificateTemplate13({
   const hasSignature2 = signatoryName2 || signatoryTitle2 || signatureUrl2;
 
   return (
-    <div className={`${containerClass} ${transformClass} bg-transparent`}>
+    <div className={containerClass}>
       <div
-        className="shadow-md rounded flex items-center justify-center relative overflow-hidden py-16 px-4"
-        style={{ width: "1056px", height: "600px" }}
+        ref={ref}
+        className="shadow-md rounded flex items-center justify-center relative overflow-hidden py-4 px-10"
+        style={{ width: "800px", height: "600px" }}
       >
         <img src={vector} alt="" className="absolute w-11/12" />
         <div className="flex flex-col items-center gap-4 text-center z-40">

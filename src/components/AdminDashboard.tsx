@@ -375,6 +375,11 @@ export default function AdminDashboard({
   const [genSelectedSignatories, setGenSelectedSignatories] = useState<
     string[]
   >([]);
+  
+  // Logo states for Generation tab
+  const [genAvailableLogos, setGenAvailableLogos] = useState<any[]>([]);
+  const [genSelectedLogos, setGenSelectedLogos] = useState<string[]>([]);
+  
   const [genShowTemplateSelector, setGenShowTemplateSelector] = useState(false);
   const [genGenerationType, setGenGenerationType] = useState<
     "individual" | "bulk"
@@ -628,6 +633,28 @@ export default function AdminDashboard({
     };
 
     loadSignatories();
+  }, [currentOrganization]);
+
+  // Load logos for Generation tab
+  useEffect(() => {
+    const loadLogos = async () => {
+      if (!currentOrganization) {
+        setGenAvailableLogos([]);
+        return;
+      }
+
+      if (
+        !currentOrganization.settings?.logos ||
+        currentOrganization.settings.logos.length === 0
+      ) {
+        setGenAvailableLogos([]);
+        return;
+      }
+
+      setGenAvailableLogos(currentOrganization.settings.logos || []);
+    };
+
+    loadLogos();
   }, [currentOrganization]);
 
   // Load subscription status
@@ -1041,6 +1068,12 @@ export default function AdminDashboard({
         .map((id) => genAvailableSignatories.find((s: any) => s.id === id))
         .filter(Boolean);
 
+      // Prepare logos data
+      const logos = genSelectedLogos
+        .filter((id) => id && id !== "none")
+        .map((id) => genAvailableLogos.find((l: any) => l.id === id))
+        .filter(Boolean);
+
       console.log("🔒 Certificate generation with restrictions:", {
         restrictDownload: genRestrictDownload,
         allowedEmails: genAllowedEmails,
@@ -1057,6 +1090,7 @@ export default function AdminDashboard({
         completionDate: genCompletionDate,
         template: genSelectedTemplate, // Add template
         signatories: signatories.length > 0 ? signatories : undefined,
+        logos: logos.length > 0 ? logos : undefined,
         students: undefined,
         restrictDownload: genRestrictDownload, // NEW: Download restriction flag
         allowedEmails: genAllowedEmails, // NEW: List of allowed emails
@@ -1130,6 +1164,20 @@ export default function AdminDashboard({
         name: error.name,
       });
       setGenIsGenerating(false);
+
+      // Check if it's an authentication error (401)
+      if (error.message?.includes("401") || error.message?.includes("Unauthorized") || error.message?.includes("authentication")) {
+        toast.error("Your session has expired. Please sign in again.", {
+          duration: 6000,
+        });
+        // Clear the expired token
+        localStorage.removeItem("accessToken");
+        // Reload the page to force re-login
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+        return;
+      }
 
       // Show more detailed error message
       const errorMessage = error.message || "Failed to generate certificate";
@@ -1205,6 +1253,12 @@ export default function AdminDashboard({
               )
               .filter(Boolean);
 
+            // Prepare logos data
+            const logos = genSelectedLogos
+              .filter((id) => id && id !== "none")
+              .map((id) => genAvailableLogos.find((l: any) => l.id === id))
+              .filter(Boolean);
+
             // Use the generate API with students array
             const response = await certificateApi.generate(accessToken, {
               organizationId: genCurrentUserOrganization.id,
@@ -1215,6 +1269,7 @@ export default function AdminDashboard({
               template: genSelectedTemplate,
               customTemplateConfig: genCustomTemplateConfig,
               signatories: signatories.length > 0 ? signatories : undefined,
+              logos: logos.length > 0 ? logos : undefined,
               students: students.map((s) => ({
                 name: s.name,
                 email: s.email,
@@ -2574,6 +2629,101 @@ export default function AdminDashboard({
                             )}
                           </div>
 
+                          {/* Logo Selection */}
+                          <div className="space-y-4">
+                            <div className="flex items-center justify-between">
+                              <Label>Certificate Logos (optional)</Label>
+                              <Button
+                                type="button"
+                                variant="ghost"
+                                size="sm"
+                                onClick={() => setActiveTab("settings")}
+                                className="text-xs text-indigo-600 hover:text-indigo-700"
+                              >
+                                <Plus className="w-3 h-3 mr-1" />
+                                Manage Logos
+                              </Button>
+                            </div>
+
+                            {genAvailableLogos.length > 0 ? (
+                              <div className="space-y-3">
+                                {/* Primary Logo */}
+                                <div className="space-y-2">
+                                  <Label
+                                    htmlFor="genLogo1"
+                                    className="text-sm"
+                                  >
+                                    Primary Logo
+                                  </Label>
+                                  <Select
+                                    value={genSelectedLogos[0] || ""}
+                                    onValueChange={(value) => {
+                                      const newLogos = [...genSelectedLogos];
+                                      newLogos[0] = value;
+                                      setGenSelectedLogos(newLogos);
+                                    }}
+                                  >
+                                    <SelectTrigger id="genLogo1">
+                                      <SelectValue placeholder="Select primary logo" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                      <SelectItem value="none">None</SelectItem>
+                                      {genAvailableLogos.map((logo: any) => (
+                                        <SelectItem
+                                          key={logo.id}
+                                          value={logo.id}
+                                        >
+                                          {logo.name || "Unnamed Logo"}
+                                        </SelectItem>
+                                      ))}
+                                    </SelectContent>
+                                  </Select>
+                                </div>
+
+                                {/* Secondary Logo */}
+                                <div className="space-y-2">
+                                  <Label
+                                    htmlFor="genLogo2"
+                                    className="text-sm"
+                                  >
+                                    Secondary Logo
+                                  </Label>
+                                  <Select
+                                    value={genSelectedLogos[1] || ""}
+                                    onValueChange={(value) => {
+                                      const newLogos = [...genSelectedLogos];
+                                      newLogos[1] = value;
+                                      setGenSelectedLogos(newLogos);
+                                    }}
+                                  >
+                                    <SelectTrigger id="genLogo2">
+                                      <SelectValue placeholder="Select secondary logo" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                      <SelectItem value="none">None</SelectItem>
+                                      {genAvailableLogos.map((logo: any) => (
+                                        <SelectItem
+                                          key={logo.id}
+                                          value={logo.id}
+                                        >
+                                          {logo.name || "Unnamed Logo"}
+                                        </SelectItem>
+                                      ))}
+                                    </SelectContent>
+                                  </Select>
+                                </div>
+                              </div>
+                            ) : (
+                              <Alert>
+                                <AlertCircle className="h-4 w-4" />
+                                <AlertDescription>
+                                  No logos configured. Go to Settings to add
+                                  logos.
+                                </AlertDescription>
+                              </Alert>
+                            )}
+                          </div>
+
                           {/* Completion Date */}
                           <div className="space-y-2">
                             <Label htmlFor="genCompletionDateGen">
@@ -2959,6 +3109,14 @@ export default function AdminDashboard({
                                           }
                                           organizationLogo={
                                             currentOrganization.logo
+                                          }
+                                          organizationLogos={
+                                            genSelectedLogos.length > 0
+                                              ? genSelectedLogos
+                                                  .filter((id) => id && id !== "none")
+                                                  .map((id) => genAvailableLogos.find((l: any) => l.id === id))
+                                                  .filter(Boolean)
+                                              : currentOrganization?.settings?.logos
                                           }
                                           customTemplateConfig={
                                             genCustomTemplateConfig

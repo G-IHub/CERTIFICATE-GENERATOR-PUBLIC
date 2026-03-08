@@ -316,6 +316,12 @@ export const certificateApi = {
       } catch (e) {
         errorDetails = { error: `Server returned ${response.status}: ${response.statusText}` };
       }
+      console.error('❌ Certificate generation failed:', {
+        status: response.status,
+        statusText: response.statusText,
+        error: errorDetails,
+        hasToken: !!token,
+      });
       throw new Error(errorDetails.error || 'Failed to generate certificates');
     }
     

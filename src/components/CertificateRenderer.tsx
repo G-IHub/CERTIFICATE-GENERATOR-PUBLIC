@@ -17,6 +17,7 @@ import CertificateTemplate16 from "./templates/CertificateTemplate16";
 import CertificateTemplate17 from "./templates/CertificateTemplate17";
 import CertificateTemplate18 from "./templates/CertificateTemplate18";
 import CertificateTemplate19 from "./templates/CertificateTemplate19";
+import type { Logo } from "../App";
 
 interface CertificateRendererProps {
   templateId: string;
@@ -29,6 +30,7 @@ interface CertificateRendererProps {
   mode?: "student" | "template-selection";
   organizationName?: string;
   organizationLogo?: string;
+  organizationLogos?: Logo[]; // NEW: Organization logos array
   signatoryName1?: string;
   signatoryTitle1?: string;
   signatureUrl1?: string;
@@ -49,6 +51,7 @@ export default function CertificateRenderer({
   mode = "student",
   organizationName,
   organizationLogo,
+  organizationLogos,
   signatoryName1,
   signatoryTitle1,
   signatureUrl1,
@@ -67,6 +70,7 @@ export default function CertificateRenderer({
     mode,
     organizationName,
     organizationLogo,
+    organizationLogos, // NEW: Pass logos to all templates
     signatoryName1,
     signatoryTitle1,
     signatureUrl1,
@@ -125,7 +129,7 @@ export default function CertificateRenderer({
       return <CertificateTemplate14 {...templateProps} />;
 
     case "15":
-      return <CertificateTemplate19 {...templateProps} />;
+      return <CertificateTemplate15 {...templateProps} />;
 
     case "16":
       return <CertificateTemplate16 {...templateProps} />;

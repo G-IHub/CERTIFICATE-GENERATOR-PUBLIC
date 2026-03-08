@@ -133,10 +133,25 @@
     @apply border-border outline-ring/50;
   }
 
+  html {
+    /* Prevent overscroll bounce on mobile */
+    overscroll-behavior: none;
+    /* Ensure html takes full height */
+    height: 100%;
+  }
+
   body {
     @apply bg-background text-foreground;
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
+    /* Prevent overscroll bounce */
+    overscroll-behavior: none;
+    /* Prevent pull-to-refresh on mobile */
+    overscroll-behavior-y: contain;
+    /* Ensure body takes full height */
+    min-height: 100%;
+    /* Fix for iOS Safari */
+    position: relative;
   }
 
   body::-webkit-scrollbar {

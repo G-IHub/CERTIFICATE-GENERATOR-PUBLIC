@@ -1,7 +1,5 @@
-import React from "react";
+import React, { useRef } from "react";
 import secondaryAsset from "../../assets/2nd.svg";
-
-
 
 interface CertificateTemplate5Props {
   header?: string;
@@ -38,13 +36,14 @@ export default function CertificateTemplate5({
   signatureUrl2,
   mode = "student",
 }: CertificateTemplate5Props) {
+  const ref = useRef<HTMLDivElement>(null);
   const scale =
-  mode === "student" ? "transform-scale-[0.3]" : "transform-scale-100";
+    mode === "student" ? "transform-scale-[0.3]" : "transform-scale-100";
 
   const containerClass = isPreview
     ? "w-full mx-auto origin-center overflow-visible flex justify-center"
-    : "min-w-[1056px] flex justify-center items-center";
-  
+    : "min-w-[800px] flex justify-center items-center";
+
   const formattedDate = new Date(date).toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
@@ -56,7 +55,11 @@ export default function CertificateTemplate5({
       className={containerClass}
       style={{ transform: `scale(${scale})`, backgroundColor: "transparent" }}
     >
-      <div className="flex justify-center bg-gradient-to-l from-[#161BA0] to-[#AC06F2] items-center shadow-md w-3xl p-10 rounded-sm relative text-[#4D4D4D] font-[Montserrat] overflow-hidden">
+      <div
+        ref={ref}
+        className="flex justify-center bg-gradient-to-l from-[#161BA0] to-[#AC06F2] items-center shadow-md w-3xl p-10 rounded-sm relative text-[#4D4D4D] font-[Montserrat] overflow-hidden"
+        style={{ width: "800px", height: "600px", fontFamily: "'Open sans', sans-serif" }}
+      >
         <div>
           <div className="w-20 h-20 border-2 [border-image:linear-gradient(to_bottom,#DDB4FB,#6E21E0)_1] absolute left-0 bottom-0 rotate-45 z-40" />
           <div className="w-10 h-10 border-2 [border-image:linear-gradient(to_bottom,#DDB4FB,#6E21E0)_1] absolute left-0 bottom-12 rotate-45 z-40" />

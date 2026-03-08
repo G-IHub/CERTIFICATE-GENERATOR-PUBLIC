@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import floral from "../../assets/floral.png";
 
 interface CertificateTemplate16Props {
@@ -36,11 +36,11 @@ export default function CertificateTemplate16({
   signatureUrl2,
   mode = "student",
 }: CertificateTemplate16Props) {
-  const transformClass =
-    mode === "student" ? "transform scale-[0.3]" : "transform scale-100";
+  const ref = useRef<HTMLDivElement>(null);
+  const scale = mode === "student" ? "transform-scale-[0.3]" : "transform-scale-100";
   const containerClass = isPreview
     ? "w-full mx-auto origin-center overflow-visible flex justify-center"
-    : "min-w-[1056px] flex justify-center items-center";
+    : "min-w-[800px] flex justify-center items-center";
 
   useEffect(() => {
     const link1 = document.createElement("link");
@@ -72,12 +72,14 @@ export default function CertificateTemplate16({
   const hasSignature2 = signatoryName2 || signatoryTitle2 || signatureUrl2;
 
   return (
-    <div className={`${containerClass} ${transformClass} bg-transparent`}>
+    <div className={containerClass}
+    style={{ transform: `scale(${scale})`, backgroundColor: "transparent" }}>
       <div
-        className="flex shadow-sm rounded p-4 "
+        ref={ref}
+        className="flex shadow-sm rounded p-4 relative"
         style={{
-          width: "1056px",
-          height: "550px",
+          width: "800px",
+          height: "600px",
           background: "#2A2D30",
         }}
       >

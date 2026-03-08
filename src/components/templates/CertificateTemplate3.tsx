@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import container from "../../assets/Container2.svg";
 
 interface CertificateTemplate3Props {
@@ -36,11 +36,12 @@ export default function CertificateTemplate3({
   signatureUrl2,
   mode = "student",
 }: CertificateTemplate3Props) {
-  const transformClass =
-    mode === "student" ? "transform scale-[0.3]" : "transform scale-100";
+  const ref = useRef<HTMLDivElement>(null);
+  const scale =
+    mode === "student" ? "transform-scale-[0.3]" : "transform-scale-100";
   const containerClass = isPreview
     ? "w-full mx-auto origin-center overflow-visible flex justify-center"
-    : "min-w-[1056px] flex justify-center items-center";
+    : "min-w-[800px] flex justify-center items-center";
 
   const formattedDate = new Date(date).toLocaleDateString("en-US", {
     year: "numeric",
@@ -49,14 +50,19 @@ export default function CertificateTemplate3({
   });
 
   return (
-    <div className={`${containerClass} ${transformClass}`}>
+    <div
+      className={containerClass}
+      style={{ transform: `scale(${scale})`, backgroundColor: "transparent" }}
+    >
       <div
+        ref={ref}
         className="flex justify-center items-center shadow-md px-16 rounded-sm relative overflow-hidden text-[#4D4D4D]"
         style={{
-          width: "1056px",
+          width: "800px",
           height: "600px",
           paddingTop: "80px",
           paddingBottom: "80px",
+          fontFamily: "'Open sans', sans-serif",
         }}
       >
         <div className="z-0">

@@ -291,6 +291,17 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
           }
 
           // Check if this is a new format certificate without a student name
+          console.log("🔍 CHECKING STUDENT NAME:");
+          console.log("   - cert.studentName value:", cert.studentName);
+          console.log("   - Type:", typeof cert.studentName);
+          console.log("   - Is undefined?", cert.studentName === undefined);
+          console.log("   - Is null?", cert.studentName === null);
+          console.log("   - Is empty string?", cert.studentName === "");
+          console.log(
+            "   - Truthy check (!cert.studentName):",
+            !cert.studentName,
+          );
+
           if (!cert.studentName) {
             console.log("📝 No student name - showing name entry form");
             setShowNameForm(true);
@@ -502,6 +513,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
             mode="template-selection"
             organizationName={orgData?.name}
             organizationLogo={orgData?.logo}
+            organizationLogos={certificate.logos || orgData?.settings?.logos}
             customTemplateConfig={certificate.customTemplateConfig}
             signatoryName1={certificate.signatories?.[0]?.name}
             signatoryTitle1={certificate.signatories?.[0]?.title}
@@ -509,7 +521,6 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
             signatoryName2={certificate.signatories?.[1]?.name}
             signatoryTitle2={certificate.signatories?.[1]?.title}
             signatureUrl2={certificate.signatories?.[1]?.signatureUrl}
-            certificateId={certificate.id}
           />
         </div>,
       );
@@ -1212,13 +1223,9 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
             {/* Certificate Display */}
             <div className="lg:col-span-3">
-              <Card className="w-full overflow-x-auto">
+              <Card className="overflow-hidden">
                 <CardContent className="p-0">
-                  <div
-                    ref={certificateRef}
-                    className="flex justify-center min-w-max"
-                    // style={{ minWidth: "1056px", minHeight: "600px" }}
-                  >
+                  <div ref={certificateRef} className="w-full">
                     <CertificateRenderer
                       templateId={
                         certificate.template ||
@@ -1243,6 +1250,9 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
                       mode="student"
                       organizationName={orgData?.name}
                       organizationLogo={orgData?.logo}
+                      organizationLogos={
+                        certificate.logos || orgData?.settings?.logos
+                      }
                       customTemplateConfig={certificate.customTemplateConfig}
                       signatoryName1={certificate.signatories?.[0]?.name}
                       signatoryTitle1={certificate.signatories?.[0]?.title}
@@ -1250,7 +1260,6 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
                       signatoryName2={certificate.signatories?.[1]?.name}
                       signatoryTitle2={certificate.signatories?.[1]?.title}
                       signatureUrl2={certificate.signatories?.[1]?.signatureUrl}
-                      certificateId={certificate.id}
                     />
                   </div>
                 </CardContent>
@@ -1259,7 +1268,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
               {/* Promo Card: small advertisement and invite */}
               <div className="mt-4">
                 <Card>
-                  <CardContent className="p-4 flex flex-col sm:flex-row items-center gap-4">
+                  <CardContent className="p-4 flex items-center gap-4">
                     <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
                       <img
                         src={logo}
@@ -1268,10 +1277,8 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
                       />
                     </div>
                     <div className="flex-1">
-                      <h4 className="font-semibold text-center">
-                        {PLATFORM_NAME}
-                      </h4>
-                      <p className="text-sm text-center text-gray-600">
+                      <h4 className="font-semibold">{PLATFORM_NAME}</h4>
+                      <p className="text-sm text-gray-600">
                         You want to create, issue and verify professional
                         certificates effortlessly and speedily? Try Certifyer
                         for free today.

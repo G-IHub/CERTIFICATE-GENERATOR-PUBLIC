@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import medal from "../../assets/gold-seal.png";
 import medal2 from "../../assets/red-star-stamp.png";
+import type { Logo } from "../../App";
 
 interface CertificateTemplate19Props {
   header: string;
@@ -11,6 +12,8 @@ interface CertificateTemplate19Props {
   isPreview?: boolean;
   organizationName?: string;
   organizationLogo?: string;
+  organizationLogos?: Logo[]; // NEW: Array of organization logos
+  secondaryLogo?: string;
   signatoryName1?: string;
   signatoryTitle1?: string;
   signatureUrl1?: string;
@@ -18,6 +21,9 @@ interface CertificateTemplate19Props {
   signatoryTitle2?: string;
   signatureUrl2?: string;
   mode?: "student" | "template-selection";
+  startDate?: string;
+  endDate?: string;
+  dateDisplayMode?: "completion" | "range";
 }
 
 export default function CertificateTemplate19({
@@ -29,6 +35,8 @@ export default function CertificateTemplate19({
   isPreview = false,
   organizationName = "Your Organization",
   organizationLogo,
+  organizationLogos, // NEW: Array of organization logos
+  secondaryLogo,
   signatoryName1,
   signatoryTitle1,
   signatureUrl1,
@@ -36,12 +44,16 @@ export default function CertificateTemplate19({
   signatoryTitle2,
   signatureUrl2,
   mode = "student",
+  startDate,
+  endDate,
+  dateDisplayMode = "completion",
 }: CertificateTemplate19Props) {
-  const transformClass =
-    mode === "student" ? "transform scale-[0.3]" : "transform scale-100";
+  const ref = useRef<HTMLDivElement>(null);
+  const scale =
+    mode === "student" ? "transform-scale-[0.3]" : "transform-scale-100";
   const containerClass = isPreview
     ? "w-full mx-auto origin-center overflow-visible flex justify-center"
-    : "min-w-[1056px] flex justify-center items-center";
+    : "min-w-[800px] flex justify-center items-center";
 
   useEffect(() => {
     const id = "libre-baskerville-font";
@@ -61,19 +73,51 @@ export default function CertificateTemplate19({
     day: "numeric",
   });
 
+  // Format start and end dates if in range mode
+  const formattedStartDate = startDate
+    ? new Date(startDate).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      })
+    : "";
+
+  const formattedEndDate = endDate
+    ? new Date(endDate).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      })
+    : "";
+
+  // Determine which logos to use (new logos array or fallback to legacy)
+    const logo1 =
+      organizationLogos && organizationLogos[0]?.url
+        ? organizationLogos[0]
+        : null;
+    const logo2 =
+      organizationLogos && organizationLogos[1]?.url
+        ? organizationLogos[1]
+        : null;
+    const fallbackLogo = organizationLogo || vecto;
+
   return (
-    <div className={`${containerClass} ${transformClass} bg-transparent`}>
+    <div
+      className={containerClass}
+      style={{ transform: `scale(${scale})`, backgroundColor: "transparent" }}
+    >
       <div
+        ref={ref}
         className="relative flex justify-center shadow-sm rounded overflow-hidden py-4 px-10"
         style={{
-          width: "1056px",
+          width: "800px",
           height: "600px",
           fontFamily: "'Libre Baskerville', serif",
         }}
       >
         {/* decorative red shapes */}
         <div className="z-0">
-            {/* Top design */}
+          {/* Top design */}
           <div className="w-80 h-20 bg-gradient-to-b from-red-300 to-red-100 absolute -left-10 -top-14 -rotate-25"></div>
           <div className="w-50 h-5 bg-red-800 absolute -left-4 -top-7 -rotate-25"></div>
           <div className="w-50 h-6 bg-gradient-to-r from-red-300 via-red-500 to-red-600 absolute -left-4 top-0 -rotate-25"></div>
@@ -82,7 +126,7 @@ export default function CertificateTemplate19({
           <div className="w-10 h-0.5 bg-red-200 absolute -left-5 top-34 -rotate-25 rounded"></div>
           <div className="w-15 h-0.5 bg-red-200 absolute left-50 top-5 -rotate-25 rounded"></div>
           <div className="w-20 h-0.5 bg-red-200 absolute left-45 top-10 -rotate-25 rounded"></div>
-            {/* Bottom design */}
+          {/* Bottom design */}
           <div className="w-80 h-20 bg-gradient-to-b from-red-300 to-red-100 absolute -right-10 -bottom-14 -rotate-25"></div>
           <div className="w-50 h-5 bg-red-800 absolute -right-4 -bottom-7 -rotate-25"></div>
           <div className="w-50 h-6 bg-gradient-to-r from-red-300 via-red-500 to-red-600 absolute -right-4 bottom-0 -rotate-25"></div>
@@ -97,30 +141,36 @@ export default function CertificateTemplate19({
         {/* content */}
         <div className="text-center flex flex-col gap-8 items-center w-full">
           <div className="flex flex-col items-center gap-2">
-          <div className="flex gap-4">
-              <div>
-              {organizationLogo ? (
-                <img
-                  src={organizationLogo}
-                  alt="logo"
-                  className="w-20 mx-auto"
-                />
+            <div className="flex">
+              {/* First Logo */}
+              {logo1 ? (
+                <div className="flex items-center">
+                  <img
+                    src={logo1.url}
+                    alt={logo1.name || "Logo"}
+                    className="object-contain"
+                    style={{ width: 50, height: 50 }}
+                  />
+                </div>
               ) : (
-                <div className="w-20 h-20 bg-gray-300 rounded-full mx-auto mb-2"></div>
+                <img src={organizationLogo} alt="Logo" />
+              )}
+
+              {/* Second Logo */}
+              {logo2 ? (
+                <div className="flex items-center">
+                  <img
+                    src={logo2.url}
+                    alt="Logo"
+                    className="object-contain"
+                    style={{ width: 50, height: 50 }}
+                  />
+                </div>
+              ) : (
+                <div className="hidden"></div>
               )}
             </div>
-              <div>
-              {organizationLogo ? (
-                <img
-                  src={organizationLogo}
-                  alt="logo"
-                  className="w-20 mx-auto"
-                />
-              ) : (
-                <div className="w-20 h-20 bg-gray-300 rounded-full mx-auto mb-2"></div>
-              )}
-            </div>
-          </div>
+
             <h1 className="text-4xl/14 font-extrabold uppercase max-w-xl">
               {header}
             </h1>
@@ -129,26 +179,73 @@ export default function CertificateTemplate19({
           <p className="text-yellow-600 w-1/2 text-center border-b border-yellow-600 font-semibold text-3xl p-1 tracking-wider">
             {recipientName}
           </p>
-          <p className="max-w-xl text-sm">{description}</p>
+          <p className="-my-7">
+            has successfully completed and actively participated in the:{" "}
+          </p>
           <p className="text-xl uppercase font-bold tracking-widest">
             {courseTitle}
           </p>
+          <p className="-my-7">Held on: {formattedDate}</p>
+          <p className="max-w-xl text-sm">{description}</p>
 
-          <div className="flex gap-10 w-full items-center justify-center">
-            <div className="space-y-2">
-              <p className="border-b border-yellow-600 w-40 text-center font-medium tracking-wide">
-                {formattedDate}
-              </p>
-              <p className="text-center text-sm font-medium">DATE</p>
-            </div>
-            <div className="w-1/10">
-              <img src={medal2} alt="" />
-            </div>
-            <div className="space-y-2">
-              <p className="border-b border-yellow-600 w-40 text-center font-medium tracking-wide">
-                {signatoryName1 || "Awarder"}
-              </p>
-              <p className="text-center text-sm font-medium">SIGNATURE</p>
+          {/* Signatures Section */}
+          <div className="flex justify-between items-center">
+            <div className="flex gap-1 justify-center items-center">
+              {/* Signature 1 - Always show if name is provided */}
+              {signatoryName1 && (
+                <div className="flex flex-col items-center text-center  ">
+                  {signatureUrl1 && (
+                    <img
+                      src={signatureUrl1}
+                      alt={signatoryName1}
+                      className="w-24 h-16 object-contain"
+                      style={{ marginBottom: -12 }}
+                    />
+                  )}
+                  {!signatureUrl1 && (
+                    <div className="w-32 border-b-2 border-gray-400 mb-2" />
+                  )}
+                  <div
+                    className="text-sm font-bold"
+                    style={{ color: "#4D4D4D" }}
+                  >
+                    {signatoryName1}
+                  </div>
+                  {signatoryTitle1 && (
+                    <div className="text-xs font-medium">{signatoryTitle1}</div>
+                  )}
+                </div>
+              )}
+
+              <div className="w-1/10">
+                <img src={medal2} alt="" />
+              </div>
+
+              {/* Signature 2 - Always show if name is provided */}
+              {signatoryName2 && (
+                <div className="flex flex-col items-center text-center">
+                  {signatureUrl2 && (
+                    <img
+                      src={signatureUrl2}
+                      alt={signatoryName2}
+                      className="w-24 h-16 object-contain"
+                      style={{ marginBottom: -12 }}
+                    />
+                  )}
+                  {!signatureUrl2 && (
+                    <div className="w-32 border-b-2 border-gray-400 mb-2" />
+                  )}
+                  <div
+                    className="text-sm font-bold"
+                    style={{ color: "#4D4D4D" }}
+                  >
+                    {signatoryName2}
+                  </div>
+                  {signatoryTitle2 && (
+                    <div className="text-xs font-medium">{signatoryTitle2}</div>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         </div>

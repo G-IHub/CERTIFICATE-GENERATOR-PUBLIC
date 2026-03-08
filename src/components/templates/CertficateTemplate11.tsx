@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import Vector from "../../assets/Vector (1).svg";
 import Flag from "../../assets/Flag.svg";
 
@@ -38,11 +38,12 @@ export default function CertificateTemplate11({
   mode = "student",
 }: CertificateTemplate11Props) {
   // scale for preview vs student mode
-  const transformClass =
-    mode === "student" ? "transform scale-[0.3]" : "transform scale-100";
+  const ref = useRef<HTMLDivElement>(null);
+  const scale =
+    mode === "student" ? "transform-scale-[0.3]" : "transform-scale-100";
   const containerClass = isPreview
     ? "w-full mx-auto origin-center overflow-visible flex justify-center"
-    : "min-w-[1056px] flex justify-center items-center";
+    : "min-w-[800px] flex justify-center items-center";
 
   useEffect(() => {
     const link1 = document.createElement("link");
@@ -78,11 +79,15 @@ export default function CertificateTemplate11({
   });
 
   return (
-    <div className={`${containerClass} ${transformClass} bg-transparent`}>
+    <div
+      className={containerClass}
+      style={{ transform: `scale(${scale})`, backgroundColor: "transparent" }}
+    >
       <div
+        ref={ref}
         className="flex justify-center items-center shadow-md rounded-md relative overflow-hidden bg-white"
         style={{
-          width: "1056px",
+          width: "800px",
           height: "600px",
           paddingRight: "80px",
           paddingLeft: "80px",
@@ -103,10 +108,6 @@ export default function CertificateTemplate11({
               </p>
             </div>
 
-            <p className="">
-              {description ||
-                "This certificate acknowledges your outstanding contribution and dedication to the project"}
-            </p>
             <div className="space-y-1">
               <p>This is proudly presented to</p>
               <p
@@ -115,8 +116,18 @@ export default function CertificateTemplate11({
               >
                 {recipientName}
               </p>
-              <p className="font-medium text-2xl" style={{fontFamily: 'cursive'}} > {courseTitle || "Course Title"} </p>
+              <p
+                className="font-medium text-2xl"
+                style={{ fontFamily: "cursive" }}
+              >
+                {" "}
+                {courseTitle || "Course Title"}{" "}
+              </p>
             </div>
+            <p className="">
+              {description ||
+                "This certificate acknowledges your outstanding contribution and dedication to the project"}
+            </p>
           </div>
 
           <div className="mt-20 flex justify-between items-end">

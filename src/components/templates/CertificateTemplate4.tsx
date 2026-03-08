@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 // Import ribbon and medal assets directly so the bundler resolves them correctly
 import ribbon1 from "../../assets/Ribbon (1).svg";
 import ribbon2 from "../../assets/Ribbon 2.svg";
@@ -39,11 +39,12 @@ export default function CertificateTemplate4({
   signatureUrl2,
   mode = "student",
 }: CertificateTemplate4Props) {
-  const transformClass =
-    mode === "student" ? "transform scale-[0.3]" : "transform scale-100";
+  const ref = useRef<HTMLDivElement>(null);
+  const scale =
+    mode === "student" ? "transform-scale-[0.3]" : "transform-scale-100";
   const containerClass = isPreview
     ? "w-full mx-auto origin-center overflow-visible flex justify-center"
-    : "min-w-[1056px] flex justify-center items-center";
+    : "min-w-[800px] flex justify-center items-center";
 
   useEffect(() => {
     const id = "rakkas-font";
@@ -64,10 +65,14 @@ export default function CertificateTemplate4({
   });
 
   return (
-    <div className={`${containerClass} ${transformClass} bg-transparent`}>
+    <div
+      className={containerClass}
+      style={{ transform: `scale(${scale})`, backgroundColor: "transparent" }}
+    >
       <div
+        ref={ref}
         className="flex justify-center bg-white items-center shadow-md rounded-lg relative overflow-hidden border"
-        style={{ width: "1056px", height: "600px", padding: "24px" }}
+        style={{ width: "800px", height: "600px", padding: "24px" }}
       >
         <div>
           {ribbon1 && (

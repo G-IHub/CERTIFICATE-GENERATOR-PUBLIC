@@ -291,14 +291,8 @@ export default function AdminDashboard({
 
         root.style.setProperty("--primary", color);
         root.style.setProperty("--primary-rgb", rgb);
-        root.style.setProperty(
-          "--primary-foreground",
-          foregroundColor,
-        );
-        root.style.setProperty(
-          "--primary-foreground-rgb",
-          foregroundRgb,
-        );
+        root.style.setProperty("--primary-foreground", foregroundColor);
+        root.style.setProperty("--primary-foreground-rgb", foregroundRgb);
         root.style.setProperty("--ring", color);
         root.style.setProperty("--chart-1", color);
         root.style.setProperty("--sidebar-primary", color);
@@ -307,14 +301,8 @@ export default function AdminDashboard({
         // Fallback to default if parsing fails
         root.style.setProperty("--primary", defaultHex);
         root.style.setProperty("--primary-rgb", "234, 88, 12");
-        root.style.setProperty(
-          "--primary-foreground",
-          "#ffffff",
-        );
-        root.style.setProperty(
-          "--primary-foreground-rgb",
-          "255, 255, 255",
-        );
+        root.style.setProperty("--primary-foreground", "#ffffff");
+        root.style.setProperty("--primary-foreground-rgb", "255, 255, 255");
         root.style.setProperty("--ring", defaultHex);
         root.style.setProperty("--chart-1", defaultHex);
         root.style.setProperty("--sidebar-primary", defaultHex);
@@ -323,14 +311,12 @@ export default function AdminDashboard({
     };
 
     applyTheme(
-      currentOrganization?.primaryColor ||
-        user.subsidiary?.primaryColor,
+      currentOrganization?.primaryColor || user.subsidiary?.primaryColor,
     );
 
     // Reset to default when unmounting
     return () => applyTheme(undefined);
   }, [currentOrganization, user.subsidiary]);
-
 
   // Subscription state
   const [subscription, setSubscription] = useState<any>(null);
@@ -375,11 +361,11 @@ export default function AdminDashboard({
   const [genSelectedSignatories, setGenSelectedSignatories] = useState<
     string[]
   >([]);
-  
+
   // Logo states for Generation tab
   const [genAvailableLogos, setGenAvailableLogos] = useState<any[]>([]);
   const [genSelectedLogos, setGenSelectedLogos] = useState<string[]>([]);
-  
+
   const [genShowTemplateSelector, setGenShowTemplateSelector] = useState(false);
   const [genGenerationType, setGenGenerationType] = useState<
     "individual" | "bulk"
@@ -1166,7 +1152,11 @@ export default function AdminDashboard({
       setGenIsGenerating(false);
 
       // Check if it's an authentication error (401)
-      if (error.message?.includes("401") || error.message?.includes("Unauthorized") || error.message?.includes("authentication")) {
+      if (
+        error.message?.includes("401") ||
+        error.message?.includes("Unauthorized") ||
+        error.message?.includes("authentication")
+      ) {
         toast.error("Your session has expired. Please sign in again.", {
           duration: 6000,
         });
@@ -1612,11 +1602,11 @@ export default function AdminDashboard({
                 name: "Certificates",
                 icon: FileText,
               },
-              // {
-              //   id: "testimonials",
-              //   name: "Testimonials",
-              //   icon: MessageSquare,
-              // },
+              {
+                id: "testimonials",
+                name: "Testimonials",
+                icon: MessageSquare,
+              },
               {
                 id: "analytics",
                 name: "Analytics",
@@ -2000,7 +1990,7 @@ export default function AdminDashboard({
                       </CardContent>
                     </Card>
 
-                    {/* <Card>
+                    <Card>
                       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 p-3 md:p-6">
                         <CardTitle className="text-xs md:text-sm font-medium truncate">
                           Testimonials
@@ -2024,12 +2014,33 @@ export default function AdminDashboard({
                           {Math.floor(
                             (stats.totalTestimonials /
                               Math.max(stats.totalCertificates, 1)) *
-                              100
+                              100,
                           )}
                           % response rate
                         </p>
                       </CardContent>
-                    </Card> */}
+                      <CardContent className="space-y-2">
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Button
+                              onClick={() => setActiveTab("testimonials")}
+                              className="w-full h-12 flex items-center justify-center gap-2"
+                              size="sm"
+                              style={{
+                                background:
+                                  "linear-gradient(135deg, rgba(var(--primary-rgb),0.9), rgba(var(--primary-rgb),1))",
+                              }}
+                            >
+                              <Award className="w-4 h-4" />
+                              View Testimonials
+                            </Button>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>View feedbacks from your courses</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </CardContent>
+                    </Card>
 
                     {/* Quick Actions */}
                     <Card>
@@ -2649,10 +2660,7 @@ export default function AdminDashboard({
                               <div className="space-y-3">
                                 {/* Primary Logo */}
                                 <div className="space-y-2">
-                                  <Label
-                                    htmlFor="genLogo1"
-                                    className="text-sm"
-                                  >
+                                  <Label htmlFor="genLogo1" className="text-sm">
                                     Primary Logo
                                   </Label>
                                   <Select
@@ -2682,10 +2690,7 @@ export default function AdminDashboard({
 
                                 {/* Secondary Logo */}
                                 <div className="space-y-2">
-                                  <Label
-                                    htmlFor="genLogo2"
-                                    className="text-sm"
-                                  >
+                                  <Label htmlFor="genLogo2" className="text-sm">
                                     Secondary Logo
                                   </Label>
                                   <Select
@@ -3113,10 +3118,17 @@ export default function AdminDashboard({
                                           organizationLogos={
                                             genSelectedLogos.length > 0
                                               ? genSelectedLogos
-                                                  .filter((id) => id && id !== "none")
-                                                  .map((id) => genAvailableLogos.find((l: any) => l.id === id))
+                                                  .filter(
+                                                    (id) => id && id !== "none",
+                                                  )
+                                                  .map((id) =>
+                                                    genAvailableLogos.find(
+                                                      (l: any) => l.id === id,
+                                                    ),
+                                                  )
                                                   .filter(Boolean)
-                                              : currentOrganization?.settings?.logos
+                                              : currentOrganization?.settings
+                                                  ?.logos
                                           }
                                           customTemplateConfig={
                                             genCustomTemplateConfig
@@ -3593,6 +3605,31 @@ export default function AdminDashboard({
                     accessToken={accessToken}
                   />
                 </React.Suspense>
+              )}
+
+              {activeTab === "testimonials" && !currentOrganization && (
+                <div className="px-4 md:px-8 py-6">
+                  <Card>
+                    <CardHeader>
+                      <CardTitle className="flex items-center gap-2">
+                        <MessageSquare className="w-5 h-5" />
+                        Student Testimonials
+                      </CardTitle>
+                      <CardDescription>
+                        View and manage student feedback for your courses
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <Alert>
+                        <Building2 className="h-4 w-4" />
+                        <AlertDescription>
+                          You need to create an organization to view
+                          testimonials. Create one from the Overview tab.
+                        </AlertDescription>
+                      </Alert>
+                    </CardContent>
+                  </Card>
+                </div>
               )}
 
               {activeTab === "analytics" && currentOrganization && (

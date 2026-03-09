@@ -27,7 +27,10 @@ interface Testimonial {
   certificateId: string;
   studentName: string;
   email?: string;
-  testimonial: string;
+  testimonial?: string;
+  title?: string;
+  organization?: string;
+  impact?: string;
   courseName: string;
   organizationId: string;
   programId?: string;
@@ -64,7 +67,7 @@ const TestimonialsView: React.FC<TestimonialsViewProps> = ({
       setLoading(true);
       const response = await testimonialApi.getForOrganization(
         accessToken,
-        organizationId
+        organizationId,
       );
       setTestimonials(response.testimonials || []);
       setTestimonialsByCourse(response.testimonialsByCourse || {});
@@ -97,9 +100,12 @@ const TestimonialsView: React.FC<TestimonialsViewProps> = ({
       // CSV Header
       const headers = [
         "Student Name",
+        "Title",
         "Email",
+        "Organization/Affiliation",
         "Course Name",
-        "Testimonial",
+        "Impact Statement",
+        "Additional Comments",
         "Certificate ID",
         "Submitted Date",
       ];
@@ -107,9 +113,12 @@ const TestimonialsView: React.FC<TestimonialsViewProps> = ({
       // CSV Rows
       const rows = displayedTestimonials.map((t) => [
         t.studentName,
+        t.title || "N/A",
         t.email || "N/A",
+        t.organization || "N/A",
         t.courseName,
-        `"${t.testimonial.replace(/"/g, '""')}"`, // Escape quotes in testimonial text
+        t.impact ? `"${t.impact.replace(/"/g, '""')}"` : "N/A",
+        t.testimonial ? `"${t.testimonial.replace(/"/g, '""')}"` : "N/A",
         t.certificateId,
         formatDate(t.submittedAt),
       ]);
@@ -129,7 +138,7 @@ const TestimonialsView: React.FC<TestimonialsViewProps> = ({
         "download",
         `testimonials_${selectedCourse === "all" ? "all" : selectedCourse}_${
           new Date().toISOString().split("T")[0]
-        }.csv`
+        }.csv`,
       );
       link.style.visibility = "hidden";
       document.body.appendChild(link);
@@ -147,9 +156,12 @@ const TestimonialsView: React.FC<TestimonialsViewProps> = ({
     try {
       const data = displayedTestimonials.map((t) => ({
         studentName: t.studentName,
+        title: t.title || "N/A",
         email: t.email || "N/A",
+        organization: t.organization || "N/A",
         courseName: t.courseName,
-        testimonial: t.testimonial,
+        impactStatement: t.impact || "N/A",
+        additionalComments: t.testimonial || "N/A",
         certificateId: t.certificateId,
         submittedAt: t.submittedAt,
         formattedDate: formatDate(t.submittedAt),
@@ -168,7 +180,7 @@ const TestimonialsView: React.FC<TestimonialsViewProps> = ({
         "download",
         `testimonials_${selectedCourse === "all" ? "all" : selectedCourse}_${
           new Date().toISOString().split("T")[0]
-        }.json`
+        }.json`,
       );
       link.style.visibility = "hidden";
       document.body.appendChild(link);
@@ -324,8 +336,14 @@ const TestimonialsView: React.FC<TestimonialsViewProps> = ({
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-900">
+                      {testimonial.title ? `${testimonial.title} ` : ""}
                       {testimonial.studentName}
                     </h4>
+                    {testimonial.organization && (
+                      <p className="text-xs text-gray-600 font-medium">
+                        {testimonial.organization}
+                      </p>
+                    )}
                     {testimonial.email && (
                       <p className="text-xs text-gray-500">
                         {testimonial.email}
@@ -343,11 +361,33 @@ const TestimonialsView: React.FC<TestimonialsViewProps> = ({
                 </div>
               </div>
 
-              <div className="bg-gray-50 rounded-lg p-4 border-l-4 border-primary">
-                <p className="text-gray-700 italic">
-                  "{testimonial.testimonial}"
-                </p>
-              </div>
+              {testimonial.impact && (
+                <div className="bg-blue-50 rounded-lg p-4 border-l-4 border-blue-500 mb-3">
+                  <p className="text-sm font-medium text-blue-900 mb-1">
+                    Impact Statement:
+                  </p>
+                  <p className="text-gray-700 italic">"{testimonial.impact}"</p>
+                </div>
+              )}
+
+              {testimonial.testimonial && (
+                <div className="bg-gray-50 rounded-lg p-4 border-l-4 border-primary">
+                  <p className="text-sm font-medium text-gray-900 mb-1">
+                    Additional Comments:
+                  </p>
+                  <p className="text-gray-700 italic">
+                    "{testimonial.testimonial}"
+                  </p>
+                </div>
+              )}
+
+              {!testimonial.impact && !testimonial.testimonial && (
+                <div className="bg-gray-50 rounded-lg p-4 text-center">
+                  <p className="text-sm text-gray-500 italic">
+                    No feedback provided
+                  </p>
+                </div>
+              )}
 
               <div className="mt-4 flex items-center gap-2">
                 <Badge variant="outline" className="text-xs">

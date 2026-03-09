@@ -436,6 +436,9 @@ export const certificateApi = {
     studentName: string;
     email?: string;
     testimonial: string;
+    title?: string;
+    organization?: string;
+    impact?: string;
     courseName: string;
     organizationId: string;
     programId: string;

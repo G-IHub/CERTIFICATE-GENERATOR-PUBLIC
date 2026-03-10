@@ -115,7 +115,7 @@ export default function CertificateTemplate19({
           fontFamily: "'Libre Baskerville', serif",
         }}
       >
-        {/* decorative red shapes */}
+        {/* decorative purple shapes */}
         <div className="z-0">
           {/* Top design */}
           <div className="w-80 h-20 bg-gradient-to-b from-purple-300 to-purple-100 absolute -left-10 -top-14 -rotate-25"></div>
@@ -132,9 +132,9 @@ export default function CertificateTemplate19({
           <div className="w-50 h-6 bg-gradient-to-r from-purple-300 via-purple-500 to-purple-600 absolute -right-4 bottom-0 -rotate-25"></div>
           <div className="w-80 h-8 bg-purple-800 absolute -right-6 bottom-0 -rotate-25"></div>
           <div className="w-70 h-8 bg-gradient-to-t from-purple-400 to-purple-200 absolute right-14 -bottom-2 -rotate-25 -skew-x-30"></div>
-          <div className="w-10 h-0.5 bg-purple-200 absolute -right-5 bottom-34 -rotate-25 rounded"></div>
-          <div className="w-20 h-0.5 bg-purple-200 absolute -right-5 bottom-28 -rotate-25 rounded"></div>
-          <div className="w-30 h-0.5 bg-purple-200 absolute right-60 bottom-8 -rotate-25 rounded"></div>
+          {/* <div className="w-10 h-0.5 bg-purple-200 absolute -right-5 bottom-34 -rotate-25 rounded"></div> */}
+          {/* <div className="w-20 h-0.5 bg-purple-200 absolute -right-5 bottom-28 -rotate-25 rounded"></div> */}
+          {/* <div className="w-30 h-0.5 bg-purple-200 absolute right-60 bottom-8 -rotate-25 rounded"></div> */}
           <img src={medal} alt="" className="absolute w-1/9 right-20 top-20" />
         </div>
 

@@ -344,6 +344,28 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
     fetchCertificate();
   }, [certificateId]);
 
+  // Prevent layout shift when download starts - always reserve scrollbar space
+  useEffect(() => {
+    // Ensure scrollbar space is always reserved to prevent layout shift
+    document.documentElement.style.overflowY = "scroll";
+
+    return () => {
+      // Clean up on unmount
+      document.documentElement.style.overflowY = "";
+    };
+  }, []);
+
+  // Lock scroll when downloading to prevent user interaction during generation
+  useEffect(() => {
+    if (isDownloading) {
+      document.body.style.overflow = "hidden";
+
+      return () => {
+        document.body.style.overflow = "";
+      };
+    }
+  }, [isDownloading]);
+
   // Helper function to wait for images to load
   const waitForImages = async (container: HTMLElement) => {
     const imgs = Array.from(container.querySelectorAll("img"));

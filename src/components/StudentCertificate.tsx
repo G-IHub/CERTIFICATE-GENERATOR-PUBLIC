@@ -973,6 +973,22 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
         return;
       }
 
+      // Check required testimonial fields
+      if (!enteredTitle.trim()) {
+        toast.error("Please select your title");
+        return;
+      }
+
+      if (!enteredOrganization.trim()) {
+        toast.error("Please enter your organization/institution/affiliation");
+        return;
+      }
+
+      if (!enteredImpact.trim()) {
+        toast.error("Please provide your impact feedback");
+        return;
+      }
+
       // NEW: Check if download is restricted and validate email
       if (certificate.restrictDownload) {
         console.log("🔒 Download restriction check:");
@@ -1007,12 +1023,12 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
       setIsSubmitting(true);
 
       try {
-        // Save testimonial to backend if provided
+        // Save testimonial to backend - title, organization, and impact are now required
         if (
-          enteredTestimonial.trim() ||
           enteredTitle ||
           enteredOrganization ||
-          enteredImpact.trim()
+          enteredImpact.trim() ||
+          enteredTestimonial.trim()
         ) {
           const response = await certificateApi.submitTestimonial({
             certificateId: certificate.id,
@@ -1155,7 +1171,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
                       htmlFor="title"
                       className="block text-sm font-medium text-gray-700 mb-2"
                     >
-                      Title
+                      Title <span className="text-red-500">*</span>
                     </label>
                     <select
                       id="title"
@@ -1163,6 +1179,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
                       onChange={(e) => setEnteredTitle(e.target.value)}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white"
                       disabled={isSubmitting}
+                      required
                     >
                       <option value="">Select title</option>
                       <option value="Mr">Mr</option>
@@ -1179,7 +1196,8 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
                       htmlFor="organization"
                       className="block text-sm font-medium text-gray-700 mb-2"
                     >
-                      Your Organization/Institution/Affiliation
+                      Your Organization/Institution/Affiliation{" "}
+                      <span className="text-red-500">*</span>
                     </label>
                     <input
                       id="organization"
@@ -1189,6 +1207,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
                       placeholder="e.g., ABC University, XYZ Corporation"
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                       disabled={isSubmitting}
+                      required
                     />
                   </div>
 
@@ -1200,7 +1219,8 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
                     >
                       In one sentence, how has this {courseName} program
                       impacted you, and what would you say to fellow lecturers
-                      about participating in it?
+                      about participating in it?{" "}
+                      <span className="text-red-500">*</span>
                     </label>
                     <textarea
                       id="impact"
@@ -1210,6 +1230,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
                       rows={3}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent resize-none"
                       disabled={isSubmitting}
+                      required
                     />
                   </div>
 
@@ -1219,7 +1240,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
                       htmlFor="testimonial"
                       className="block text-sm font-medium text-gray-700 mb-2"
                     >
-                      Additional Comments
+                      Additional Comments (Optional)
                     </label>
                     <textarea
                       id="testimonial"
@@ -1244,6 +1265,9 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
                 className="w-full"
                 disabled={
                   !enteredName.trim() ||
+                  !enteredTitle.trim() ||
+                  !enteredOrganization.trim() ||
+                  !enteredImpact.trim() ||
                   isSubmitting ||
                   (certificate.restrictDownload && !enteredEmail.trim())
                 }

@@ -176,7 +176,7 @@ export default function CertificateTemplate19({
             </h1>
           </div>
           <p className="font-bold">This Certificate is Proudly Presented to:</p>
-          <p className="text-yellow-600 w-1/2 text-center border-b border-yellow-600 font-semibold text-3xl p-1 tracking-wider">
+          <p className="text-purple-600 w-1/2 text-center border-b border-purple-600 font-semibold text-3xl p-1 tracking-wider">
             {recipientName}
           </p>
           <p className="-my-7">

@@ -2,9 +2,8 @@ import { useRef } from "react";
 import logo from "../../assets/ginsti.png";
 import sign1 from "../../assets/sign1.png";
 import sign2 from "../../assets/signInsti.png";
-import award from "../../assets/award.png";
-import award1 from "../../assets/purpleribbon.png";
 import watermark from "../../assets/watermark.png";
+import award from "../../assets/award.png";
 
 interface CertificateTemplate18Props {
   header: string;
@@ -81,7 +80,7 @@ export default function CertificateTemplate18({
         <div className="relative w-full h-full border-[5px] border-purple-500 overflow-hidden">
           <div className="flex flex-col h-full p-6 justify-between">
             {/* Header with Logo */}
-            <div className="flex text-center mx-auto items-center gap-4">
+            <div className="flex text-center mx-auto items-center gap-4 mt-10">
               <p className="ml-6">
                 <img
                   src={organizationLogo || logo}
@@ -90,10 +89,10 @@ export default function CertificateTemplate18({
                 />
               </p>
               <div className="text-center ml-3 mt-5">
-                <p className="uppercase font-semibold text-3xl text-black">
+                <p className="uppercase font-semibold text-5xl text-purple-700">
                   {header || "certificate of attendance"}
                 </p>
-                <p className="text-center italic uppercase text-black font-bold">
+                <p className="text-center uppercase text-black font-thin text-lg">
                   this certificate is awarded to:
                 </p>
               </div>
@@ -102,8 +101,8 @@ export default function CertificateTemplate18({
             {/* Certificate Title */}
 
             {/* Student Info Section */}
-            <div className="text-center pt-5 pb-10 w-[800px] h-[200px] mt-5">
-              <p className="text-3xl text-purple-800 font-semibold border-b-2 mx-[200px] pb-2 mb-3 border-purple-800 border-dashed">
+            <div className="text-center pt-5 pb-10 w-[800px] h-[200px] -mt-20">
+              <p className="text-5xl text-purple-800 font-semibold border-b-2 mx-[200px] pb-2 mb-3 border-purple-800">
                 {recipientName}
               </p>
               <p className="text-black text-lg font-semibold">
@@ -116,6 +115,19 @@ export default function CertificateTemplate18({
                 <p className="mx-28 text-lg font-semibold text-black">
                   {description}
                 </p>
+              )}
+              {/* Date display */}
+              {date && (
+                <div className="flex flex-col items-center text-center -mt-7">
+                  <div className="w-32 mt-7 mb-2" />
+                  {/* <div className="text-xs font-bold text-lg">Date</div> */}
+                  <div
+                    className="text-lg font-bold"
+                    // style={{ color: "#4D4D4D" }}
+                  >
+                    {formattedDate || "DATE"}
+                  </div>
+                </div>
               )}
               {/* <p className="font-bold text-black">{date}</p> */}
             </div>
@@ -138,7 +150,7 @@ export default function CertificateTemplate18({
                       <div className="w-32 border-b-2 border-gray-400 mb-2" />
                     )}
                     <div
-                      className="text-sm font-bold"
+                      className="text-lg text-purple-600 font-bold"
                       style={{ color: "#4D4D4D" }}
                     >
                       {signatoryName1}
@@ -150,6 +162,14 @@ export default function CertificateTemplate18({
                     )}
                   </div>
                 )}
+
+                <div className="absolute left-[600px]">
+                  <img
+                    src={award}
+                    alt="Award"
+                    className="w-78 object-contain" 
+                  />
+                </div>
 
                 {/* Signature 2 - Always show if name is provided */}
                 {signatoryName2 && (
@@ -166,7 +186,7 @@ export default function CertificateTemplate18({
                       <div className="w-32 border-b-2 border-gray-400 mb-2" />
                     )}
                     <div
-                      className="text-sm font-bold"
+                      className="text-lg text-purple-600 font-bold"
                       style={{ color: "#4D4D4D" }}
                     >
                       {signatoryName2}
@@ -176,20 +196,6 @@ export default function CertificateTemplate18({
                         {signatoryTitle2}
                       </div>
                     )}
-                  </div>
-                )}
-
-                {/* Date display */}
-                {date && (
-                  <div className="flex flex-col items-center text-center">
-                    <div className="w-32 mt-7 mb-2" />
-                    <div className="text-xs font-bold ">Date</div>
-                    <div
-                      className="text-sm font-medium"
-                      style={{ color: "#4D4D4D" }}
-                    >
-                      {formattedDate || "DATE"}
-                    </div>
                   </div>
                 )}
               </div>

@@ -91,15 +91,15 @@ export default function CertificateTemplate19({
     : "";
 
   // Determine which logos to use (new logos array or fallback to legacy)
-    const logo1 =
-      organizationLogos && organizationLogos[0]?.url
-        ? organizationLogos[0]
-        : null;
-    const logo2 =
-      organizationLogos && organizationLogos[1]?.url
-        ? organizationLogos[1]
-        : null;
-    const fallbackLogo = organizationLogo || vecto;
+  const logo1 =
+    organizationLogos && organizationLogos[0]?.url
+      ? organizationLogos[0]
+      : null;
+  const logo2 =
+    organizationLogos && organizationLogos[1]?.url
+      ? organizationLogos[1]
+      : null;
+  const fallbackLogo = organizationLogo || vecto;
 
   return (
     <div
@@ -153,7 +153,12 @@ export default function CertificateTemplate19({
                   />
                 </div>
               ) : (
-                <img src={organizationLogo} alt="Logo" />
+                <img
+                  src={organizationLogo}
+                  alt="Logo"
+                  className="w-16 h-16 object-contain"
+                  style={{ width: 50, height: 50 }}
+                />
               )}
 
               {/* Second Logo */}

@@ -109,7 +109,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
   const [templateConfig, setTemplateConfig] = useState<any>(null); // Template config from backend
   const certificateRef = useRef<HTMLDivElement>(null); // Ref for PNG download
   const [isDownloading, setIsDownloading] = useState(false);
-  
+
   // New testimonial fields
   const [enteredTitle, setEnteredTitle] = useState("");
   const [enteredOrganization, setEnteredOrganization] = useState("");
@@ -134,7 +134,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
         const isAlreadyDecoded = !wildcardParam.includes("%");
         console.log(
           "   - Already URL-decoded by React Router?",
-          isAlreadyDecoded
+          isAlreadyDecoded,
         );
 
         // Pass the parameter as-is if already decoded, or pass it encoded
@@ -155,7 +155,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
           const timeRemaining = getCertificateLinkTimeRemaining(wildcardParam);
           if (timeRemaining !== null) {
             const daysRemaining = Math.floor(
-              timeRemaining / (1000 * 60 * 60 * 24)
+              timeRemaining / (1000 * 60 * 60 * 24),
             );
             console.log(`⏰ Link valid for ${daysRemaining} more days`);
           }
@@ -163,7 +163,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
           actualCertificateId = decryptedData.certificateId;
         } else {
           console.error(
-            "❌ Failed to decrypt certificate URL - link may be invalid or expired"
+            "❌ Failed to decrypt certificate URL - link may be invalid or expired",
           );
           toast.error("Invalid or expired certificate link");
           setLoading(false);
@@ -212,7 +212,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
           console.log("   - ID:", cert.id);
           console.log(
             "   - Student Name:",
-            cert.studentName || "(none - will prompt)"
+            cert.studentName || "(none - will prompt)",
           );
           console.log("   - Course Name:", cert.courseName);
           console.log("   - Certificate Header:", cert.certificateHeader);
@@ -264,21 +264,21 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
           setCertificate(certificateData);
           if (cert.customTemplateConfig) {
             console.log(
-              "🎨 Certificate has customTemplateConfig - using saved design"
+              "🎨 Certificate has customTemplateConfig - using saved design",
             );
             console.log(
               "🎨 Custom config keys:",
-              Object.keys(cert.customTemplateConfig)
+              Object.keys(cert.customTemplateConfig),
             );
             console.log(
-              "⚠️ NOT loading template from global library (would overwrite)"
+              "⚠️ NOT loading template from global library (would overwrite)",
             );
             // Don't load from global library - certificate already has the config
           } else if (cert.template && cert.template.match(/^template\d+$/)) {
             // Only load from global library if no customTemplateConfig
             console.log(
               "📋 No customTemplateConfig - loading template from backend:",
-              cert.template
+              cert.template,
             );
             try {
               const templateResponse = await templateApi.getById(cert.template);
@@ -286,7 +286,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
                 setTemplateConfig(templateResponse.template.config);
                 console.log(
                   "✅ Template config loaded from global library:",
-                  templateResponse.template.name
+                  templateResponse.template.name,
                 );
               }
             } catch (error) {
@@ -302,20 +302,23 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
           console.log("   - Is undefined?", cert.studentName === undefined);
           console.log("   - Is null?", cert.studentName === null);
           console.log("   - Is empty string?", cert.studentName === "");
-          console.log("   - Truthy check (!cert.studentName):", !cert.studentName);
-          
+          console.log(
+            "   - Truthy check (!cert.studentName):",
+            !cert.studentName,
+          );
+
           if (!cert.studentName) {
             console.log("📝 No student name - showing name entry form");
             setShowNameForm(true);
           } else {
             console.log("✅ Student name present:", cert.studentName);
             console.log(
-              "📄 Will display certificate directly (no name entry needed)"
+              "📄 Will display certificate directly (no name entry needed)",
             );
           }
         } else {
           toast.error(
-            "Certificate not found - this certificate may not exist in the database"
+            "Certificate not found - this certificate may not exist in the database",
           );
         }
       } catch (error: any) {
@@ -352,15 +355,15 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
             (img as HTMLImageElement).addEventListener(
               "load",
               () => resolve(),
-              { once: true }
+              { once: true },
             );
             (img as HTMLImageElement).addEventListener(
               "error",
               () => resolve(),
-              { once: true }
+              { once: true },
             );
-          })
-      )
+          }),
+      ),
     );
   };
 
@@ -369,7 +372,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
     const TRANSPARENT_PNG =
       "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
     const imgs = Array.from(
-      container.querySelectorAll("img")
+      container.querySelectorAll("img"),
     ) as HTMLImageElement[];
 
     await Promise.all(
@@ -419,8 +422,8 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
             } catch (e) {
               resolve();
             }
-          })
-      )
+          }),
+      ),
     );
   };
 
@@ -524,7 +527,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
             signatoryTitle2={certificate.signatories?.[1]?.title}
             signatureUrl2={certificate.signatories?.[1]?.signatureUrl}
           />
-        </div>
+        </div>,
       );
 
       // Let React paint
@@ -544,7 +547,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
       }
       const target =
         (container.querySelector(
-          '#export-root [class*="w-[1000px]"][class*="h-[600px]"]'
+          '#export-root [class*="w-[1000px]"][class*="h-[600px]"]',
         ) as HTMLElement) ||
         (container.querySelector("#export-root") as HTMLElement) ||
         container;
@@ -596,7 +599,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
                 offsetX * pr,
                 offsetY * pr,
                 cropRect.width * pr,
-                cropRect.height * pr
+                cropRect.height * pr,
               );
             } catch (e) {
               // If cropping fails, fall back to full image
@@ -628,7 +631,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
     cropX: number,
     cropY: number,
     cropW: number,
-    cropH: number
+    cropH: number,
   ): Promise<string> => {
     return await new Promise<string>((resolve, reject) => {
       const img = new Image();
@@ -648,7 +651,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
             0,
             0,
             Math.round(cropW),
-            Math.round(cropH)
+            Math.round(cropH),
           );
           const out = canvas.toDataURL("image/jpeg", 0.92);
           resolve(out);
@@ -671,7 +674,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
     // Try to locate the inner certificate canvas
     const target =
       (root.querySelector(
-        '[class*="w-[1000px]"][class*="h-[600px]"]'
+        '[class*="w-[1000px]"][class*="h-[600px]"]',
       ) as HTMLElement) || root;
 
     // Save previous inline styles to restore later
@@ -756,7 +759,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
                 offsetX * pr,
                 offsetY * pr,
                 cropRect.width * pr,
-                cropRect.height * pr
+                cropRect.height * pr,
               );
             } catch (e) {
               console.warn("Cropping onscreen image failed:", e);
@@ -803,7 +806,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
       .catch((err) => {
         console.warn(
           "Onscreen capture failed, falling back to offscreen:",
-          err
+          err,
         );
         return renderCertificateOffscreen();
       })
@@ -851,27 +854,27 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
     switch (platform) {
       case "facebook":
         url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-          shareUrl
+          shareUrl,
         )}&quote=${encodeURIComponent(text)}`;
         break;
       case "twitter":
         url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
-          text
+          text,
         )}&url=${encodeURIComponent(shareUrl)}`;
         break;
       case "linkedin":
         url = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
-          shareUrl
+          shareUrl,
         )}&summary=${encodeURIComponent(text)}`;
         break;
       case "whatsapp":
         url = `https://wa.me/?text=${encodeURIComponent(
-          text + " " + shareUrl
+          text + " " + shareUrl,
         )}`;
         break;
       case "email":
         url = `mailto:?subject=${encodeURIComponent(
-          "My Certificate Achievement"
+          "My Certificate Achievement",
         )}&body=${encodeURIComponent(text + "\n\n" + shareUrl)}`;
         break;
     }
@@ -988,12 +991,12 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
         console.log("  - Allowed Emails Array:", allowedEmails);
         console.log(
           "  - Is email in allowed list?",
-          allowedEmails.includes(emailLower)
+          allowedEmails.includes(emailLower),
         );
 
         if (!allowedEmails.includes(emailLower)) {
           toast.error(
-            "Sorry, you are not authorized to access this certificate. Please contact your instructor if you believe this is an error."
+            "Sorry, you are not authorized to access this certificate. Please contact your instructor if you believe this is an error.",
           );
           return;
         }
@@ -1005,7 +1008,12 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
 
       try {
         // Save testimonial to backend if provided
-        if (enteredTestimonial.trim() || enteredTitle || enteredOrganization || enteredImpact.trim()) {
+        if (
+          enteredTestimonial.trim() ||
+          enteredTitle ||
+          enteredOrganization ||
+          enteredImpact.trim()
+        ) {
           const response = await certificateApi.submitTestimonial({
             certificateId: certificate.id,
             studentName: enteredName.trim(),
@@ -1028,7 +1036,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
         toast.success(
           enteredTestimonial.trim() || enteredImpact.trim()
             ? "Thank you for your feedback!"
-            : "Certificate personalized with your name!"
+            : "Certificate personalized with your name!",
         );
       } catch (error) {
         console.error("Failed to save testimonial:", error);
@@ -1139,7 +1147,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
                 <h3 className="text-sm font-semibold text-gray-900 mb-3">
                   Your Feedback (Optional)
                 </h3>
-                
+
                 <div className="space-y-4">
                   {/* Title Dropdown */}
                   <div>
@@ -1190,7 +1198,9 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
                       htmlFor="impact"
                       className="block text-sm font-medium text-gray-700 mb-2"
                     >
-                      In one sentence, how has this {courseName} program impacted you, and what would you say to fellow lecturers about participating in it?
+                      In one sentence, how has this {courseName} program
+                      impacted you, and what would you say to fellow lecturers
+                      about participating in it?
                     </label>
                     <textarea
                       id="impact"
@@ -1224,7 +1234,8 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
                 </div>
 
                 <p className="text-xs text-gray-500 mt-2">
-                  Your feedback helps improve the program for future participants
+                  Your feedback helps improve the program for future
+                  participants
                 </p>
               </div>
 
@@ -1301,42 +1312,60 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
             {/* Certificate Display */}
             <div className="lg:col-span-3">
-              <Card className="overflow-hidden">
-                <CardContent className="p-0">
-                  <div ref={certificateRef} className="w-full">
-                    <CertificateRenderer
-                      templateId={
-                        certificate.template ||
-                        progData?.template ||
-                        "template1"
-                      }
-                      header={
-                        certificate.certificateHeader ||
-                        "Certificate of Completion"
-                      }
-                      courseTitle={
-                        certificate.courseName || progData?.name || "Course"
-                      }
-                      description={
-                        certificate.courseDescription ||
-                        progData?.description ||
-                        ""
-                      }
-                      date={certificate.completionDate}
-                      recipientName={displayName}
-                      isPreview={true}
-                      mode="student"
-                      organizationName={orgData?.name}
-                      organizationLogo={orgData?.logo}
-                      organizationLogos={certificate.logos || orgData?.settings?.logos}
-                      customTemplateConfig={certificate.customTemplateConfig}
-                      signatoryName1={certificate.signatories?.[0]?.name}
-                      signatoryTitle1={certificate.signatories?.[0]?.title}
-                      signatureUrl1={certificate.signatories?.[0]?.signatureUrl}
-                      signatoryName2={certificate.signatories?.[1]?.name}
-                      signatoryTitle2={certificate.signatories?.[1]?.title}
-                      signatureUrl2={certificate.signatories?.[1]?.signatureUrl}
-                    />
+              <Card className="">
+                <CardContent className="p-0 overflow-hidden">
+                  {/* Scrollable container - horizontal scroll only on smaller screens */}
+                  <div className="overflow-x-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
+                    <div
+                      ref={certificateRef}
+                      style={{
+                        width: "800px",
+                        height: "600px",
+                        minWidth: "800px",
+                        minHeight: "600px",
+                        flexShrink: 0,
+                      }}
+                    >
+                      <CertificateRenderer
+                        templateId={
+                          certificate.template ||
+                          progData?.template ||
+                          "template1"
+                        }
+                        header={
+                          certificate.certificateHeader ||
+                          "Certificate of Completion"
+                        }
+                        courseTitle={
+                          certificate.courseName || progData?.name || "Course"
+                        }
+                        description={
+                          certificate.courseDescription ||
+                          progData?.description ||
+                          ""
+                        }
+                        date={certificate.completionDate}
+                        recipientName={displayName}
+                        isPreview={true}
+                        mode="student"
+                        organizationName={orgData?.name}
+                        organizationLogo={orgData?.logo}
+                        organizationLogos={
+                          certificate.logos || orgData?.settings?.logos
+                        }
+                        customTemplateConfig={certificate.customTemplateConfig}
+                        signatoryName1={certificate.signatories?.[0]?.name}
+                        signatoryTitle1={certificate.signatories?.[0]?.title}
+                        signatureUrl1={
+                          certificate.signatories?.[0]?.signatureUrl
+                        }
+                        signatoryName2={certificate.signatories?.[1]?.name}
+                        signatoryTitle2={certificate.signatories?.[1]?.title}
+                        signatureUrl2={
+                          certificate.signatories?.[1]?.signatureUrl
+                        }
+                      />
+                    </div>
                   </div>
                 </CardContent>
               </Card>

@@ -127,7 +127,7 @@ export default function CertificateTemplate13({
               </p>
               <img src={wrapper} alt="" />
               <p
-                className="font-medium text-2xl"
+                className="font-medium text-xl"
                 style={{ fontFamily: "cursive" }}
               >
                 {" "}

@@ -109,11 +109,69 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
   const [templateConfig, setTemplateConfig] = useState<any>(null); // Template config from backend
   const certificateRef = useRef<HTMLDivElement>(null); // Ref for PNG download
   const [isDownloading, setIsDownloading] = useState(false);
+  const [fontsLoaded, setFontsLoaded] = useState(false); // Track font loading
 
   // New testimonial fields
   const [enteredTitle, setEnteredTitle] = useState("");
   const [enteredOrganization, setEnteredOrganization] = useState("");
   const [enteredImpact, setEnteredImpact] = useState("");
+
+  // Preload fonts to prevent text shift on first download
+  useEffect(() => {
+    const preloadFonts = async () => {
+      type DocumentWithFonts = Document & {
+        fonts?: {
+          ready?: Promise<unknown>;
+          load?: (font: string) => Promise<unknown>;
+        };
+      };
+      const docWithFonts = document as DocumentWithFonts;
+
+      if (docWithFonts.fonts?.ready) {
+        try {
+          // Wait for all fonts to be ready
+          await docWithFonts.fonts.ready;
+
+          // Additionally, explicitly load common certificate fonts
+          const fontsToLoad = [
+            '16px "Great Vibes"',
+            '16px "Playfair Display"',
+            '16px "Cinzel"',
+            '16px "Cormorant Garamond"',
+            '16px "EB Garamond"',
+            '16px "Libre Baskerville"',
+            '16px "Merriweather"',
+            '16px "Lora"',
+            '16px "Crimson Text"',
+            '16px "Dancing Script"',
+          ];
+
+          if (docWithFonts.fonts?.load) {
+            await Promise.all(
+              fontsToLoad.map((font) =>
+                docWithFonts.fonts!.load!(font).catch(() => {
+                  // Ignore font load errors
+                }),
+              ),
+            );
+          }
+
+          // Small delay to ensure fonts are fully applied
+          await new Promise((resolve) => setTimeout(resolve, 100));
+          setFontsLoaded(true);
+        } catch (error) {
+          console.warn("Font preloading failed:", error);
+          // Set to true anyway to not block the UI
+          setFontsLoaded(true);
+        }
+      } else {
+        // No font API support, set to true
+        setFontsLoaded(true);
+      }
+    };
+
+    preloadFonts();
+  }, []);
 
   useEffect(() => {
     const fetchCertificate = async () => {
@@ -742,6 +800,10 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
           // fonts.ready wait failed (onscreen)
         }
       }
+
+      // Additional delay to ensure fonts are fully rendered and prevent text shift
+      await new Promise((resolve) => setTimeout(resolve, 150));
+
       try {
         await sanitizeImagesForExport(target);
       } catch (e) {
@@ -814,7 +876,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
     }
   }, []);
 
-  const handleDownload = useCallback(() => {
+  const handleDownload = useCallback(async () => {
     if (!certificate) {
       toast.error("Certificate not ready for download");
       return;
@@ -822,6 +884,11 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
 
     setIsDownloading(true);
     toast.info("Generating image...");
+
+    // Wait for fonts to be loaded before first download to prevent text shift
+    if (!fontsLoaded) {
+      await new Promise((resolve) => setTimeout(resolve, 500));
+    }
 
     // Try on-screen capture first (usually more robust), then offscreen fallback
     captureOnscreenNormalized()
@@ -860,7 +927,12 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
       .finally(() => {
         setIsDownloading(false);
       });
-  }, [certificate, captureOnscreenNormalized, renderCertificateOffscreen]);
+  }, [
+    certificate,
+    captureOnscreenNormalized,
+    renderCertificateOffscreen,
+    fontsLoaded,
+  ]);
 
   const handleShare = (platform: string) => {
     const shareUrl = window.location.href;

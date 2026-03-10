@@ -18,9 +18,49 @@ import {
   Settings,
   X,
   Search,
+  AlertCircle,
 } from "lucide-react";
 import { toast } from "sonner@2.0.3";
 import { templateApi } from "../utils/api";
+import CertificateRenderer from "./CertificateRenderer";
+import PreviewWrapper from "./PreviewWrapper";
+import React from "react";
+
+// Simple error boundary for preview rendering
+class TemplateErrorBoundary extends React.Component<
+  {
+    children: React.ReactNode;
+    fallback?: React.ReactNode;
+  },
+  { hasError: boolean }
+> {
+  constructor(props: any) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+    console.error("Template render error:", error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        this.props.fallback || (
+          <div className="flex items-center justify-center p-4 text-gray-500">
+            <AlertCircle className="w-4 h-4 mr-2" />
+            <span className="text-sm">Preview unavailable</span>
+          </div>
+        )
+      );
+    }
+    return this.props.children;
+  }
+}
 
 interface Template {
   id: string;
@@ -225,50 +265,83 @@ export default function TemplateVisibilityManager({
           </Button>
         </CardHeader>
         <CardContent>
-          <div className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {templates.map((template) => (
               <div
                 key={template.id}
-                className="flex items-start gap-4 p-4 border rounded-lg hover:bg-gray-50 transition-colors"
+                className="relative border rounded-lg overflow-hidden hover:shadow-lg transition-shadow"
               >
-                <div className="flex-1 space-y-1">
-                  <div className="flex items-center gap-2">
-                    <h4 className="font-medium">{template.name}</h4>
-                    {getVisibilityBadge(template)}
-                    {template.type === "premium" && (
-                      <Badge className="gap-1 bg-gradient-to-r from-primary to-orange-600 text-white border-0">
-                        Premium
-                      </Badge>
-                    )}
+                {/* Premium badge */}
+                {template.type === "premium" && (
+                  <div className="absolute top-2 left-2 z-10">
+                    <Badge className="bg-gradient-to-r from-primary to-orange-600 text-white border-0 shadow-md">
+                      Premium
+                    </Badge>
                   </div>
-                  <p className="text-sm text-gray-600 line-clamp-1">
-                    {template.description}
-                  </p>
+                )}
+
+                {/* Visibility badge - top right */}
+                <div className="absolute top-2 right-2 z-10">
+                  {getVisibilityBadge(template)}
                 </div>
 
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => openModal(template)}
-                  disabled={saving === template.id}
-                >
-                  {saving === template.id ? (
-                    <>
-                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                      Saving...
-                    </>
-                  ) : (
-                    <>
-                      <Settings className="w-4 h-4 mr-2" />
-                      Configure
-                    </>
-                  )}
-                </Button>
+                {/* Preview area - Same style as TemplatesPage */}
+                <div className="bg-gray-50 p-4 aspect-[4/3] flex items-center justify-center overflow-hidden">
+                  <TemplateErrorBoundary>
+                    <PreviewWrapper scale={0.4} origin="center" wrapperSize={2}>
+                      <CertificateRenderer
+                        templateId={template.id}
+                        header="Certificate of Completion"
+                        courseTitle="Sample Course"
+                        description="For successfully completing the program"
+                        date="22nd January 2025"
+                        recipientName="John Doe"
+                        isPreview={true}
+                        mode="template-selection"
+                        organizationName="Your Organization"
+                      />
+                    </PreviewWrapper>
+                  </TemplateErrorBoundary>
+                </div>
+
+                {/* Info & actions - Same style as TemplatesPage */}
+                <div className="p-4 space-y-3">
+                  <div>
+                    <div className="flex items-center justify-between mb-1">
+                      <h4 className="line-clamp-1 font-medium">
+                        {template.name}
+                      </h4>
+                    </div>
+                    <p className="text-sm text-gray-600 line-clamp-2">
+                      {template.description}
+                    </p>
+                  </div>
+
+                  <Button
+                    variant="default"
+                    size="sm"
+                    className="w-full"
+                    onClick={() => openModal(template)}
+                    disabled={saving === template.id}
+                  >
+                    {saving === template.id ? (
+                      <>
+                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                        Saving...
+                      </>
+                    ) : (
+                      <>
+                        <Settings className="w-4 h-4 mr-2" />
+                        Configure Visibility
+                      </>
+                    )}
+                  </Button>
+                </div>
               </div>
             ))}
 
             {templates.length === 0 && (
-              <div className="text-center py-8 text-gray-500">
+              <div className="col-span-full text-center py-8 text-gray-500">
                 <Eye className="w-12 h-12 mx-auto mb-2 opacity-50" />
                 <p>No templates found</p>
               </div>

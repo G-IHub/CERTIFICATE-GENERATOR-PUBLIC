@@ -99,7 +99,7 @@ export default function CertificateTemplate19({
     organizationLogos && organizationLogos[1]?.url
       ? organizationLogos[1]
       : null;
-  const fallbackLogo = organizationLogo || vecto;
+  const fallbackLogo = organizationLogo;
 
   return (
     <div

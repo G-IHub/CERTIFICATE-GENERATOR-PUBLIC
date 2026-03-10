@@ -78,33 +78,28 @@ export default function CertificateTemplate18({
         />
 
         {/* Main Certificate Container with Border */}
-        <div className="relative w-full h-full border-[15px] border-purple-500 overflow-hidden">
+        <div className="relative w-full h-full border-[5px] border-purple-500 overflow-hidden">
           <div className="flex flex-col h-full p-6 justify-between">
             {/* Header with Logo */}
-            <div className="flex text-center mx-auto pl-[200px] ">
-              <p className="mr-2">
+            <div className="flex text-center mx-auto items-center gap-4">
+              <p className="ml-6">
                 <img
                   src={organizationLogo || logo}
                   alt="logo"
                   className="w-[80px]"
                 />
               </p>
-              <p className="w-[1px] h-[50px] bg-purple-600 mt-4"></p>
-              <p className="mt-5 pr-16 font-bold text-black text-xs w-[200px]">
-                {organizationName}
-                <p className="-ml-2 text-black">| USA Incorporated</p>
-              </p>
+              <div className="text-center ml-3 mt-5">
+                <p className="uppercase font-semibold text-3xl text-black">
+                  {header || "certificate of attendance"}
+                </p>
+                <p className="text-center italic uppercase text-black font-bold">
+                  this certificate is awarded to:
+                </p>
+              </div>
             </div>
 
             {/* Certificate Title */}
-            <div className="text-center ml-32">
-              <p className="uppercase font-semibold text-3xl text-black">
-                {header || "certificate of attendance"}
-              </p>
-              <p className="text-center italic text-black font-bold">
-                this certificate is awarded to:
-              </p>
-            </div>
 
             {/* Student Info Section */}
             <div className="text-center pt-5 pb-10 w-[800px] h-[200px] mt-5">
@@ -198,11 +193,6 @@ export default function CertificateTemplate18({
                   </div>
                 )}
               </div>
-            </div>
-
-            {/* Purple Ribbon Award */}
-            <div className="w-[150px] absolute top-8 left-14">
-              <img src={award1} alt="award" />
             </div>
           </div>
         </div>

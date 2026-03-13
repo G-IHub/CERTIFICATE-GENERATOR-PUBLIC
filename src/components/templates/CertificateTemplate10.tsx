@@ -55,17 +55,17 @@ export default function CertificateTemplate19({
     ? "w-full mx-auto origin-center overflow-visible flex justify-center"
     : "min-w-[800px] flex justify-center items-center";
 
-  useEffect(() => {
-    const id = "libre-baskerville-font";
-    if (!document.getElementById(id)) {
-      const link = document.createElement("link");
-      link.id = id;
-      link.rel = "stylesheet";
-      link.href =
-        "https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap";
-      document.head.appendChild(link);
-    }
-  }, []);
+  // useEffect(() => {
+  //   const id = "libre-baskerville-font";
+  //   if (!document.getElementById(id)) {
+  //     const link = document.createElement("link");
+  //     link.id = id;
+  //     link.rel = "stylesheet";
+  //     link.href =
+  //       "https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap";
+  //     document.head.appendChild(link);
+  //   }
+  // }, []);
 
   const formattedDate = new Date(date).toLocaleDateString("en-US", {
     year: "numeric",

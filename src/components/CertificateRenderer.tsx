@@ -17,6 +17,25 @@ import CertificateTemplate16 from "./templates/CertificateTemplate16";
 import CertificateTemplate17 from "./templates/CertificateTemplate17";
 import CertificateTemplate18 from "./templates/CertificateTemplate18";
 import CertificateTemplate19 from "./templates/CertificateTemplate19";
+import CertificateTemplate20 from "./templates/CertificateTemplate20";
+import CertificateTemplate21 from "./templates/CertificateTemplate21";
+import CertificateTemplate22 from "./templates/CertificateTemplate22";
+import CertificateTemplate23 from "./templates/CertificateTemplate23";
+import CertificateTemplate24 from "./templates/CertificateTemplate24";
+import CertificateTemplate25 from "./templates/CertificateTemplate25";
+import CertificateTemplate26 from "./templates/CertificateTemplate26";
+import CertificateTemplate27 from "./templates/CertificateTemplate27";
+import CertificateTemplate28 from "./templates/CertificateTemplate28";
+import CertificateTemplate29 from "./templates/CertificateTemplate29";
+import CertificateTemplate30 from "./templates/CertificateTemplate30";
+import CertificateTemplate31 from "./templates/CertificateTemplate31";
+import CertificateTemplate32 from "./templates/CertificateTemplate32";
+import CertificateTemplate33 from "./templates/CertificateTemplate33";
+import CertificateTemplate34 from "./templates/CertificateTemplate34";
+import CertificateTemplate35 from "./templates/CertificateTemplate35";
+import CertificateTemplate36 from "./templates/CertificateTemplate36";
+import CertificateTemplate37 from "./templates/CertificateTemplate37";
+import CertificateTemplate38 from "./templates/CertificateTemplate38";
 import type { Logo } from "../App";
 
 interface CertificateRendererProps {
@@ -142,6 +161,63 @@ export default function CertificateRenderer({
 
     case "19":
       return <CertificateTemplate19 {...templateProps} />;
+    
+    case "20":
+      return <CertificateTemplate20 {...templateProps} />;
+
+    case "21":
+      return <CertificateTemplate21 {...templateProps} />;
+
+    case "22":
+      return <CertificateTemplate22 {...templateProps} />;
+    
+    case "23":
+      return <CertificateTemplate23 {...templateProps} />;
+
+    case "24":
+      return <CertificateTemplate24 {...templateProps} />;
+
+    case "25":
+      return <CertificateTemplate25 {...templateProps} />;
+
+    case "26":
+      return <CertificateTemplate26 {...templateProps} />;
+
+    case "27":
+      return <CertificateTemplate27 {...templateProps} />;
+    
+    case "28":
+      return <CertificateTemplate28 {...templateProps} />;
+    
+    case "29":
+      return <CertificateTemplate29 {...templateProps} />;
+
+    case "30":
+      return <CertificateTemplate30 {...templateProps} />;
+
+    case "31":
+      return <CertificateTemplate31 {...templateProps} />;
+
+    case "32":
+      return <CertificateTemplate32 {...templateProps} />;
+
+    case "33":
+      return <CertificateTemplate33 {...templateProps} />;
+    
+    case "34":
+      return <CertificateTemplate34 {...templateProps} />;
+
+    case "35":
+      return <CertificateTemplate35 {...templateProps} />;
+
+    case "36":
+      return <CertificateTemplate36 {...templateProps} />;
+
+    case "37":
+      return <CertificateTemplate37 {...templateProps} />;
+
+    case "38":
+      return <CertificateTemplate38 {...templateProps} />;
 
     // All other template IDs fall back to Template 1
     default:

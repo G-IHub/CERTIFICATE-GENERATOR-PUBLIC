@@ -1,84 +1,52 @@
-import { useRef, useEffect } from "react";
-import wavy from "../../assets/Wavy.svg";
-import rect4 from "../../assets/Rect4.svg";
-import rect from "../../assets/Rect.svg";
-import rect2 from "../../assets/Rect2.svg";
-import rect3 from "../../assets/Rect3.svg";
+import { useEffect } from "react";
+import topShapeUrl from "../../assets/upper_shape.png";
+import centerLogoUrl from "../../assets/logo2b.png";
+import patternUrl from "../../assets/Pattern.png";
+import ribbonUrl from "../../assets/Ribbon.png";
 
 interface CertificateTemplate2Props {
-  header: string;
-  courseTitle: string;
+  header1?: string;
+  subheader?: string;
+  recipientName?: string;
   description?: string;
   date: string;
-  recipientName?: string;
   isPreview?: boolean;
-  organizationName?: string;
-  organizationLogo?: string;
+  topShapeUrl?: string;
+  centerLogoUrl?: string;
+  patternUrl?: string;
   signatoryName1?: string;
   signatoryTitle1?: string;
-  signatureUrl1?: string;
   signatoryName2?: string;
   signatoryTitle2?: string;
-  signatureUrl2?: string;
+  ribbonUrl?: string;
   mode?: "student" | "template-selection";
 }
 
 export default function CertificateTemplate2({
-  header,
-  courseTitle,
+  header1 = "CERTIFICATE",
+  subheader = "Of Excellence",
+  recipientName = "Name Surname",
   description,
   date,
-  recipientName = "Student Name",
   isPreview = false,
-  organizationName = "Your Organization",
-  organizationLogo,
-  signatoryName1,
-  signatoryTitle1,
-  signatureUrl1,
-  signatoryName2,
-  signatoryTitle2,
-  signatureUrl2,
+  signatoryName1 = "Oluwaseyi Abraham Olawale",
+  signatoryTitle1 = "CEO of Genomac Holdings",
+  signatoryName2 = "Gloria Adegbole",
+  signatoryTitle2 = "Director of G-I Hub",
   mode = "student",
 }: CertificateTemplate2Props) {
-  const ref = useRef<HTMLDivElement>(null);
-  const scale =
-    mode === "student" ? "transform-scale-[0.3]" : "transform-scale-100";
+  const scale = mode === "student" ? "transform-scale-[0.3]" : "transform-scale-100";
 
-  // Load decorative fonts used by this template
   useEffect(() => {
-    const id1 = "cinzel-decorative-font";
-    const id2 = "tangerine-font";
-    if (!document.getElementById(id1)) {
+    const fontId = "momo-signature-font";
+    if (!document.getElementById(fontId)) {
       const link = document.createElement("link");
-      link.id = id1;
+      link.id = fontId;
       link.rel = "stylesheet";
-      link.href =
-        "https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&display=swap";
+      link.href = "https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap";
       document.head.appendChild(link);
     }
-    if (!document.getElementById(id2)) {
-      const link2 = document.createElement("link");
-      link2.id = id2;
-      link2.rel = "stylesheet";
-      link2.href =
-        "https://fonts.googleapis.com/css2?family=Tangerine:wght@700&display=swap";
-      document.head.appendChild(link2);
-    }
   }, []);
-
-  const containerClass = isPreview
-    ? "w-full mx-auto origin-center overflow-visible flex justify-center"
-    : "min-w-[1056px] flex justify-center items-center";
-
-  // Normalize signatory data into a single array so we can render uniformly
-  const mergedSignatories: Array<{
-    src?: string;
-    name?: string;
-    title?: string;
-  }> = [
-    { src: signatureUrl1, name: signatoryName1, title: signatoryTitle1 },
-    { src: signatureUrl2, name: signatoryName2, title: signatoryTitle2 },
-  ];
 
   const formattedDate = new Date(date).toLocaleDateString("en-US", {
     year: "numeric",
@@ -86,183 +54,55 @@ export default function CertificateTemplate2({
     day: "numeric",
   });
 
+  const containerClass = isPreview
+    ? "w-full mx-auto origin-center overflow-visible flex justify-center"
+    : "min-w-[1056px] flex justify-center items-center";
+
   return (
-    <div
-      className={containerClass}
-      style={{ transform: `scale(${scale})`, backgroundColor: "transparent" }}
-    >
-      <div
-        className="flex justify-center bg-[#FEFEFD] items-center shadow-md px-16 py-10 relative overflow-hidden text-[#4D4D4D]"
-        style={{
-          width: "1056px",
-          height: "500px",
-        }}
-      >
-        {/* Repeating wavy background */}
-        <div className="z-0">
-          {Array.from({ length: 32 }).map((_, i) => (
-            <img
-              key={i}
-              src={wavy}
-              alt=""
-              className="absolute w-full left-0"
-              style={{ top: `${i * 20}px` }}
-            />
-          ))}
-        </div>
+    <div className={containerClass} style={{ transform: `scale(${scale})`, backgroundColor: "transparent" }}>
+      <div className="w-200 h-150 flex justify-center shadow-sm rounded relative overflow-hidden bg-[#fbfbfb] py-20 px-10">
+        <img src={topShapeUrl} alt="Top Shape" className="absolute w-full top-0 z-10" />
+        <img src={centerLogoUrl} alt="Logo" className="absolute top-6 w-1/6 left-1/2 -translate-x-1/2 z-10" />
+        <img src={patternUrl} alt="Pattern" className="absolute z-0 top-0 w-full h-full opacity-70" />
 
-        {/* Corner decorations */}
-        <div className="z-10">
-          <img
-            src={rect}
-            alt=""
-            className="absolute"
-            style={{ width: "65%", top: "0px", right: "-4px" }}
-          />
-          <img
-            src={rect2}
-            alt=""
-            className="absolute"
-            style={{
-              width: "36%",
-              bottom: "-1px",
-              right: "-1px",
-            }}
-          />
-          <img
-            src={rect3}
-            alt=""
-            className="absolute"
-            style={{ width: "65%", bottom: "-1px", left: "-4px" }}
-          />
-          <img
-            src={rect4}
-            alt=""
-            className="absolute top-0 left-0"
-            style={{ width: "36%" }}
-          />
-        </div>
+        <div className="text-center flex flex-col gap-8 items-center w-full z-30 mt-14">
+          <div className="flex flex-col items-center gap-2">
+            <h1 className="text-5xl font-medium">{header1}</h1>
+            <p className="text-xl uppercase font-bold tracking-widest">{subheader}</p>
+          </div>
 
-        <div className="flex items-center justify-center w-20 h-20 overflow-hidden absolute right-10 top-4">
-          {organizationLogo ? (
-            <img
-              src={organizationLogo}
-              alt={organizationName}
-              className="w-1/2 h-1/2 object-contain"
-            />
-          ) : (
-            <p className="uppercase text-sm text-center px-2">
-              {organizationName || "Brand Award"}
-            </p>
-          )}
-        </div>
+          <p className="font-medium uppercase text-sm">This Certificate is Proudly Presented to:</p>
 
-        <div className="bg-transparent rounded p-6 w-full z-40 flex flex-col items-center gap-8">
-          <h2
-            className="text-3xl font-bold text-center"
-            style={{ fontFamily: "'Cinzel Decorative', serif" }}
-          >
-            {header || "CERTIFICATE"}
-          </h2>
+          <p className="w-1/2 text-center border-b border-orange-500 font-semibold text-3xl tracking-wider">{recipientName}</p>
 
-          <p className="text-center font-medium">
-            THIS CERTIFICATE IS PROUDLY PRESENTED TO
+          <p className="max-w-xl text-sm text-center px-4">
+            {description ??
+              "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque tempora nobis eligendi molestias amet nam sint minima aliquid rerum accusamus."}
           </p>
 
-          <p
-            className="text-4xl text-center font-bold pb-2"
-            style={{
-              width: "75%",
-              fontFamily: "'Tangerine', cursive",
-              borderBottom: "2px solid #4D4D4D",
-            }}
-          >
-            {recipientName}
-          </p>
+          <div className="flex gap-10 w-full items-center justify-center">
+            <div className="space-y-2">
+              <p className="border-b w-40 text-center tracking-wide font-[Great_Vibes]">signature</p>
+              <div className="space-y-0">
+                <p className="text-center text-sm font-medium text-orange-500">{signatoryName1}</p>
+                <p className="text-center text-[9px] italic font-medium">{signatoryTitle1}</p>
+              </div>
+            </div>
 
-          <p className="font-medium text-2xl" style={{ fontFamily: "cursive" }}>
-            {courseTitle || "Course Title"}{" "}
-          </p>
+            <div className="w-1/12">
+              <img src={ribbonUrl} alt="Ribbon" className="mx-auto" />
+            </div>
 
-          <p className="text-center">
-            {description}
-          </p>
-
-          <div className="mt-10 flex justify-between items-end">
-            <div className="flex gap-8 justify-center items-center mt-5">
-              {/* Signature 1 - Always show if name is provided */}
-              {signatoryName1 && (
-                <div
-                  className="flex flex-col items-center text-center"
-                  style={{ marginTop: -20 }}
-                >
-                  {signatureUrl1 && (
-                    <img
-                      src={signatureUrl1}
-                      alt={signatoryName1}
-                      className="w-24 h-16 object-contain"
-                      style={{ marginBottom: -12 }}
-                    />
-                  )}
-                  {!signatureUrl1 && (
-                    <div className="w-32 border-b-2 border-gray-400 mb-2" />
-                  )}
-                  <div
-                    className="text-sm font-bold"
-                    style={{ color: "#4D4D4D" }}
-                  >
-                    {signatoryName1}
-                  </div>
-                  {signatoryTitle1 && (
-                    <div className="text-xs font-medium">{signatoryTitle1}</div>
-                  )}
-                </div>
-              )}
-
-              {/* Signature 2 - Always show if name is provided */}
-              {signatoryName2 && (
-                <div
-                  className="flex flex-col items-center text-center"
-                  style={{ marginTop: -20 }}
-                >
-                  {signatureUrl2 && (
-                    <img
-                      src={signatureUrl2}
-                      alt={signatoryName2}
-                      className="w-24 h-16 object-contain"
-                      style={{ marginBottom: -12 }}
-                    />
-                  )}
-                  {!signatureUrl2 && (
-                    <div className="w-32 border-b-2 border-gray-400 mb-2" />
-                  )}
-                  <div
-                    className="text-sm font-bold"
-                    style={{ color: "#4D4D4D" }}
-                  >
-                    {signatoryName2}
-                  </div>
-                  {signatoryTitle2 && (
-                    <div className="text-xs font-medium">{signatoryTitle2}</div>
-                  )}
-                </div>
-              )}
-
-              {/* Date display */}
-              {date && (
-                <div className="flex flex-col items-center text-center">
-                  <div className="w-32 mt-7 mb-2" />
-                  <div className="text-xs font-bold ">Date</div>
-                  <div
-                    className="text-sm font-medium"
-                    style={{ color: "#4D4D4D" }}
-                  >
-                    {formattedDate || "DATE"}
-                  </div>
-                </div>
-              )}
+            <div className="space-y-2">
+              <p className="border-b w-40 text-center tracking-wide font-[Great_Vibes]">signature</p>
+              <div className="space-y-0">
+                <p className="text-center text-sm font-medium text-orange-500">{signatoryName2}</p>
+                <p className="text-center text-[9px] italic font-medium">{signatoryTitle2}</p>
+              </div>
             </div>
           </div>
+
+          <p className="text-sm text-gray-500">{formattedDate}</p>
         </div>
       </div>
     </div>

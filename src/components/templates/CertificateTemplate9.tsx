@@ -1,9 +1,7 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 
-import DecorImg from "../../assets/Decor2.svg";
-import Medal2Img from "../../assets/Medal2.svg";
-import Path2646 from "../../assets/path2646.svg";
-import VectorImg from "../../assets/Vector.svg";
+import patternURL from "../../assets/HEXAGON.png";
+import stampURL from "../../assets/purple_stamp.png";
 
 interface CertificateTemplate9Props {
   header: string;
@@ -48,25 +46,6 @@ export default function CertificateTemplate9({
     ? "w-full mx-auto origin-center overflow-visible flex justify-center"
     : "min-w-[800px] flex justify-center items-center";
 
-  useEffect(() => {
-    const link1 = document.createElement("link");
-    link1.rel = "stylesheet";
-    link1.href =
-      "https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap";
-    document.head.appendChild(link1);
-
-    const link2 = document.createElement("link");
-    link2.rel = "stylesheet";
-    link2.href =
-      "https://fonts.googleapis.com/css2?family=Momo+Signature&display=swap";
-    document.head.appendChild(link2);
-
-    return () => {
-      document.head.removeChild(link1);
-      document.head.removeChild(link2);
-    };
-  }, []);
-
   // formatted date
   const formattedDate = new Date(date).toLocaleDateString("en-US", {
     year: "numeric",
@@ -81,85 +60,69 @@ export default function CertificateTemplate9({
     >
       <div
         ref={ref}
-        className="flex shadow-md rounded-sm relative overflow-hidden bg-white"
-        style={{ width: "800px", height: "600px" }}
+        className="w-200 h-150 flex justify-center shadow-sm rounded relative overflow-hidden bg-transparent py-20 px-10"
       >
-        <div className="flex flex-col gap-10 items-start w-3/4 p-10">
-          <div
-            className="space-y-2"
-            style={{ fontFamily: "'Libre Baskerville', serif" }}
-          >
-            <h2 className="font-bold text-4xl uppercase">{header}</h2>
-            <div className="flex gap-4">
-              {/* Decorative repeated small paths */}
-              <img src={Path2646} alt="" />
-              <img src={Path2646} alt="" />
-              <img src={Path2646} alt="" />
-              <img src={Path2646} alt="" />
-            </div>
-          </div>
-
-          <div className="space-y-4">
-            <p className="text-gray-400 uppercase font-medium">
-              This is proudly presented to
-            </p>
-            <p
-              className="font-bold text-amber-900 text-3xl border-b border-[#6F6A5B] w-3/4"
-              style={{ fontFamily: "'Momo Signature', cursive" }}
-            >
-              {recipientName}
-            </p>
-            <p
-              className="font-medium text-2xl"
-              style={{ fontFamily: "cursive" }}
-            >
-              {courseTitle || "Course Title"}
-            </p>
-
-            <p className="text-[#5A5549] text-sm max-w-sm">
-              {description || "Description goes here..."}
-            </p>
-          </div>
-
-          {signatoryName1 && (
-            <div className="flex items-end justify-between w-3/4">
-              <div className="flex flex-col gap-2 text-sm">
-                <img
-                  src={signatureUrl1}
-                  alt={signatoryName1}
-                  className="w-24 h-16 object-contain"
-                  style={{ marginBottom: -12 }}
-                />
-                <p className="font-bold border-b border-[#6F6A5B]">
-                  {signatoryName1}
-                </p>
-                <p className="text-sm">{signatoryTitle1}</p>
-              </div>
-              {/* Date Display */}
-              {date && (
-                <div className="flex flex-col items-end gap-2 text-sm">
-                  <img src={VectorImg} alt="" className="w-1/3" />
-                  <p className="uppercase">Presented on</p>
-                  <p>{formattedDate || "DATE"}</p>
-                </div>
-              )}
-            </div>
-          )}
+        <img
+          src={patternURL}
+          alt=""
+          className="absolute w-full h-full top-0 opacity-70"
+        />
+        <div className="w-20 h-full absolute -left-6 top-0 bg-[#330066] z-10 skew-x-2"></div>
+        <div className="w-20 h-full absolute left-10 top-0 bg-[#ff35ff] z-0"></div>
+        <div className="flex-col items-center justify-center h-full">
+          <img
+            src={organizationLogo}
+            alt=""
+            className="absolute top-50 left-12 w-1/6 z-20"
+          />
+          <img
+            src={organizationLogo}
+            alt=""
+            className="absolute -top-14 -right-16 w-1/3 z-10 opacity-10"
+          />
         </div>
 
-        {/* Right side decorations */}
-        <div className="">
-          <img
-            src={DecorImg}
-            alt=""
-            className="absolute right-0 top-0 h-full object-cover"
-          />
-          <img
-            src={Medal2Img}
-            alt=""
-            className="absolute"
-            style={{ right: "80px", top: "80px", width: "25%" }}
-          />
+        <div className="flex flex-col gap-10 z-30 w-9/12 ml-40">
+          <h1 className="text-6xl text-purple-950 font-semibold">{header}</h1>
+
+          <div className="space-y-4">
+            <p className="font-medium text-xs text-purple-900 uppercase mb-4">
+              This Certificate is Presented to:
+            </p>
+            <p className="w-full border-b-2 border-purple-900 font-semibold text-5xl tracking-wider">
+              {recipientName}
+            </p>
+            <p className="max-w-xl text-xs font-semibold">{description}</p>
+          </div>
+          <div className="flex gap-10 w-full items-center mt-20">
+            <div className="flex flex-col gap-2 items-center">
+              <p className="border-b w-40 text-center tracking-wide font-[momo_signature]">
+                {signatoryName1 || "signature"}
+              </p>
+              <div className="space-y-0">
+                <p className="text-center text-xs font-medium text-purple-950">
+                  {signatoryName1}
+                </p>
+                <p className="text-center text-[9px] italic font-medium">
+                  {signatoryTitle1}
+                </p>
+              </div>
+            </div>
+            <img src={stampURL} alt="" className="w-1/7" />
+            <div className="flex flex-col gap-2 items-center">
+              <p className="border-b w-40 text-center tracking-wide font-[momo_signature]">
+                {signatoryName2 || "signature"}
+              </p>
+              <div className="space-y-0">
+                <p className="text-center text-xs font-medium text-purple-950">
+                  {signatoryName2}
+                </p>
+                <p className="text-center text-[9px] italic font-medium">
+                  {signatoryTitle2}
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

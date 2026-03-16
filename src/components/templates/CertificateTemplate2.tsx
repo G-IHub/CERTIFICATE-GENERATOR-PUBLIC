@@ -91,7 +91,7 @@ export default function CertificateTemplate2({
         <img
           src={patternUrl}
           alt="Pattern"
-          className="absolute z-0 top-0 w-[600px] h-full opacity-70"
+          className="absolute z-0 top-0 w-150 h-full opacity-70"
         />
 
         <div className="text-center flex flex-col gap-8 items-center w-full z-30 mt-14">

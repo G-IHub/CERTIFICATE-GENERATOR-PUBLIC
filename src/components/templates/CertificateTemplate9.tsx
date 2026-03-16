@@ -60,7 +60,7 @@ export default function CertificateTemplate9({
     >
       <div
         ref={ref}
-        className="w-200 h-150 flex justify-center shadow-sm rounded relative overflow-hidden bg-transparent py-20 px-10"
+        className="w-[800px] h-[600px] flex justify-center shadow-sm rounded relative overflow-hidden bg-transparent py-20 px-10"
       >
         <img
           src={patternURL}
@@ -86,42 +86,63 @@ export default function CertificateTemplate9({
           <h1 className="text-6xl text-purple-950 font-semibold">{header}</h1>
 
           <div className="space-y-4">
-            <p className="font-medium text-xs text-purple-900 uppercase mb-4">
+            <p className="font-medium text-xs text-purple-900 uppercase -mt-4 mb-6">
               This Certificate is Presented to:
             </p>
-            <p className="w-full border-b-2 border-purple-900 font-semibold text-5xl tracking-wider">
+            <p className="w-full border-b-2 border-purple-900 font-semibold text-4xl tracking-wider">
               {recipientName}
             </p>
+            <p className="text-xs " >For successfully participating in the program: </p>
+            <p className="text-lg font-bold -mt-2 -mb-1 " >{courseTitle} </p>
             <p className="max-w-xl text-xs font-semibold">{description}</p>
           </div>
-          <div className="flex gap-10 w-full items-center mt-20">
-            <div className="flex flex-col gap-2 items-center">
-              <p className="border-b w-40 text-center tracking-wide font-[momo_signature]">
-                {signatoryName1 || "signature"}
-              </p>
-              <div className="space-y-0">
-                <p className="text-center text-xs font-medium text-purple-950">
-                  {signatoryName1}
+
+          <div className="flex gap-10 w-full items-center justify-center mt-4">
+            {signatoryName1 && (
+              <div className="space-y-2">
+                <p className="border-b w-40 text-center tracking-wide font-[Great_Vibes]">
+                  {signatureUrl1 && (
+                    <img
+                      src={signatureUrl1}
+                      alt={signatoryName1}
+                      className="w-24 h-16 object-contain"
+                      style={{ marginBottom: -12 }}
+                    />
+                  )}
                 </p>
-                <p className="text-center text-[9px] italic font-medium">
-                  {signatoryTitle1}
-                </p>
+                <div className="space-y-0">
+                  <p className="text-center text-sm font-medium text-purple-500">
+                    {signatoryName1}
+                  </p>
+                  <p className="text-center text-[9px] italic font-medium">
+                    {signatoryTitle1}
+                  </p>
+                </div>
               </div>
-            </div>
-            <img src={stampURL} alt="" className="w-1/7" />
-            <div className="flex flex-col gap-2 items-center">
-              <p className="border-b w-40 text-center tracking-wide font-[momo_signature]">
-                {signatoryName2 || "signature"}
-              </p>
-              <div className="space-y-0">
-                <p className="text-center text-xs font-medium text-purple-950">
-                  {signatoryName2}
+            )}
+
+            {signatoryName2 && (
+              <div className="space-y-2">
+                <p className="border-b w-40 text-center tracking-wide font-[Great_Vibes]">
+                  {signatureUrl2 && (
+                    <img
+                      src={signatureUrl2}
+                      alt={signatoryName2}
+                      className="w-24 h-16 object-contain"
+                      style={{ marginBottom: -12 }}
+                    />
+                  )}
                 </p>
-                <p className="text-center text-[9px] italic font-medium">
-                  {signatoryTitle2}
-                </p>
+                <div className="space-y-0">
+                  <p className="text-center text-sm font-medium text-purple-500">
+                    {signatoryName2}
+                  </p>
+                  <p className="text-center text-[9px] italic font-medium">
+                    {signatoryTitle2}
+                  </p>
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>

@@ -69,7 +69,7 @@ export default function CertificateTemplate3({
       className={containerClass}
       style={{ transform: `scale(${scale})`, backgroundColor: "transparent" }}
     >
-      <div className="w-800 h-[600px] flex justify-center shadow-sm rounded-sm relative overflow-hidden bg-[#fbfbfb] py-10 px-4">
+      <div className="w-[800px] h-[600px] flex justify-center shadow-sm rounded-sm relative overflow-hidden bg-[#fbfbfb] py-10 px-4">
         <img
           src={patternUrl}
           alt="Pattern"

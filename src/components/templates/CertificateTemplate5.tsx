@@ -40,16 +40,16 @@ export default function CertificateTemplate5({
 }: CertificateTemplate5Props) {
   const scale = mode === "student" ? "transform-scale-[0.3]" : "transform-scale-100";
 
-  useEffect(() => {
-    const fontId = "manufacturing-consent-font";
-    if (!document.getElementById(fontId)) {
-      const link = document.createElement("link");
-      link.id = fontId;
-      link.rel = "stylesheet";
-      link.href = "https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap";
-      document.head.appendChild(link);
-    }
-  }, []);
+  // useEffect(() => {
+  //   const fontId = "manufacturing-consent-font";
+  //   if (!document.getElementById(fontId)) {
+  //     const link = document.createElement("link");
+  //     link.id = fontId;
+  //     link.rel = "stylesheet";
+  //     link.href = "https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap";
+  //     document.head.appendChild(link);
+  //   }
+  // }, []);
 
   const formattedDate = new Date(date).toLocaleDateString("en-US", {
     year: "numeric",
@@ -72,46 +72,73 @@ export default function CertificateTemplate5({
 
         <div className="flex flex-col gap-8 z-30 w-9/12 mt-30">
           <div>
-            <h1 className="text-5xl text-green-950" style={{ fontFamily: "'Manufacturing Consent', sans-serif" }}>
+            <h1 className="text-4xl text-green-950" style={{ fontFamily: "'Manufacturing Consent', sans-serif" }}>
               {header}
             </h1>
-            <p className="text-4xl font-semibold tracking-tight">{courseTitle}</p>
+            <p className="text-3xl font-semibold tracking-tight">{courseTitle}</p>
           </div>
 
-          <p className="font-medium text-xs px-4 py-2 bg-linear-to-r from-green-950 to-green-600 text-white w-1/2">
+          <p className="font-medium -mt-5 text-xs px-4 py-2 bg-linear-to-r from-green-950 to-green-600 text-white w-1/2">
             This certificate is presented to
           </p>
 
           <div className="space-y-2">
             <p className="w-full border-b-2 border-green-600 font-semibold text-4xl tracking-wider">{recipientName}</p>
-            <p className="max-w-xl text-sm">{description || "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque tempora nobis eligendi molestias amet nam sint minima aliquid rerum accusamus."}</p>
+            <p className="max-w-xl text-sm">{description}</p>
+            <div className="text-sm text-black font-bold">{formattedDate}</div>
           </div>
 
-          <div className="flex gap-10 w-full items-center">
-            <div className="space-y-2">
-              <p className="border-b w-40 text-center tracking-wide font-[Great_Vibes]">signature</p>
-              {signatureUrl1 ? <img src={signatureUrl1} alt="sig1" className="mx-auto h-8" /> : null}
-              <div className="space-y-0">
-                <p className="text-center text-sm font-medium text-green-950">{signatoryName1}</p>
-                <p className="text-center text-[9px] italic font-medium">{signatoryTitle1}</p>
+          <div className="flex gap-10 w-full items-center justify-center -mt-4">
+            {signatoryName1 && (
+              <div className="space-y-2">
+                <p className="border-b w-40 text-center tracking-wide font-[Great_Vibes]">
+                  {signatureUrl1 && (
+                    <img
+                      src={signatureUrl1}
+                      alt={signatoryName1}
+                      className="w-24 h-16 object-contain"
+                      style={{ marginBottom: -12 }}
+                    />
+                  )}
+                </p>
+                <div className="space-y-0">
+                  <p className="text-center text-sm font-medium text-green-950">
+                    {signatoryName1}
+                  </p>
+                  <p className="text-center text-[9px] italic font-medium">
+                    {signatoryTitle1}
+                  </p>
+                </div>
               </div>
-            </div>
+            )}
 
             <div className="w-1/12">
-              <img src={ribbonUrl} alt="Ribbon" className="mx-auto" />
+              <img src={ribbonUrl} alt="Ribbon" className="mx-auto" style={{ color: "green" }} />
             </div>
 
-            <div className="space-y-2">
-              <p className="border-b w-40 text-center tracking-wide font-[Great_Vibes]">signature</p>
-              {signatureUrl2 ? <img src={signatureUrl2} alt="sig2" className="mx-auto h-8" /> : null}
-              <div className="space-y-0">
-                <p className="text-center text-sm font-medium text-green-950">{signatoryName2}</p>
-                <p className="text-center text-[9px] italic font-medium">{signatoryTitle2}</p>
+            {signatoryName2 && (
+              <div className="space-y-2">
+                <p className="border-b w-40 text-center tracking-wide font-[Great_Vibes]">
+                  {signatureUrl2 && (
+                    <img
+                      src={signatureUrl2}
+                      alt={signatoryName2}
+                      className="w-24 h-16 object-contain"
+                      style={{ marginBottom: -12 }}
+                    />
+                  )}
+                </p>
+                <div className="space-y-0">
+                  <p className="text-center text-sm font-medium text-green-950">
+                    {signatoryName2}
+                  </p>
+                  <p className="text-center text-[9px] italic font-medium">
+                    {signatoryTitle2}
+                  </p>
+                </div>
               </div>
-            </div>
+            )}
           </div>
-
-          <div className="text-sm text-gray-500">{formattedDate}</div>
         </div>
       </div>
     </div>

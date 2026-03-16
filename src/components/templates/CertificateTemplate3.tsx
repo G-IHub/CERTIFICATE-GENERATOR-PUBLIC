@@ -65,44 +65,91 @@ export default function CertificateTemplate3({
   });
 
   return (
-    <div className={containerClass} style={{ transform: `scale(${scale})`, backgroundColor: "transparent" }}>
+    <div
+      className={containerClass}
+      style={{ transform: `scale(${scale})`, backgroundColor: "transparent" }}
+    >
       <div className="w-800 h-[600px] flex justify-center shadow-sm rounded-sm relative overflow-hidden bg-[#fbfbfb] py-10 px-4">
-        <img src={patternUrl} alt="Pattern" className="absolute z-0 top-0 w-full h-full opacity-80" />
-        <img src={leftDecorUrl} alt="Decoration Left" className="absolute top-0 left-0 h-full" />
-        <img src={rightDecorUrl} alt="Decoration Right" className="absolute top-0 right-0 h-full" />
+        <img
+          src={patternUrl}
+          alt="Pattern"
+          className="absolute z-0 top-0 w-full h-full opacity-80"
+        />
+        <img
+          src={leftDecorUrl}
+          alt="Decoration Left"
+          className="absolute top-0 left-0 h-full"
+        />
+        <img
+          src={rightDecorUrl}
+          alt="Decoration Right"
+          className="absolute top-0 right-0 h-full"
+        />
 
         <div className="absolute top-6 left-16 flex items-center gap-2 z-20">
           {organizationLogo ? (
-            <img src={organizationLogo} alt={organizationName} className="h-12 object-contain" />
+            <img
+              src={organizationLogo}
+              alt={organizationName}
+              className="h-20 object-contain"
+            />
           ) : (
-            <img src="/assets/GenomacInstitute.png" alt="Logo" className="h-12 object-contain" />
+            <img
+              src="/assets/GenomacInstitute.png"
+              alt="Logo"
+              className="h-12 object-contain"
+            />
           )}
-          <p className="font-bold text-black text-base leading-tight" style={{ fontFamily: "Inter, sans-serif" }}>
+          <p
+            className="font-bold text-black text-base leading-tight"
+            style={{ fontFamily: "Inter, sans-serif" }}
+          >
             {organizationName ?? "Genomac"}
-            <br />Institute Inc
+            <br />
+            Institute Inc
           </p>
         </div>
 
         <div className="z-30 flex flex-col gap-8 items-center w-full p-8 mt-10">
           <div className="flex flex-col items-center gap-2">
-            <h1 className="text-6xl -mt-10 text-purple-950 tracking-wider">{header1}</h1>
+            <h1 className="text-6xl -mt-10 text-purple-950 tracking-wider">
+              {header1}
+            </h1>
             <div className="relative w-full flex justify-center items-center">
               <p className="text-xl uppercase font-medium tracking-widest bg-transparent italic text-white px-4 py-2 z-30 relative">
-                {header }
+                {header}
               </p>
-              <img src={ribbonUrl} alt="Ribbon" className="mx-auto z-0 absolute w-9/12" />
+              <img
+                src={ribbonUrl}
+                alt="Ribbon"
+                className="mx-auto z-0 absolute w-9/12"
+              />
             </div>
           </div>
 
-          <p className="text-sm font-semibold text-black -mt-6">This certificate is presented to</p>
+          <p className="text-sm font-semibold text-black -mt-6">
+            This certificate is presented to
+          </p>
 
           <div className="space-y-4 flex flex-col items-center text-center">
-            <p className="w-full border-b-2 border-purple-900 text-purple-900 text-4xl" style={{ fontFamily: "Great Vibes, cursive" }}>
+            <p
+              className="w-full border-b-2 border-purple-900 text-purple-900 text-4xl"
+              style={{ fontFamily: "Great Vibes, cursive" }}
+            >
               {recipientName}
             </p>
-            <p className="max-w-xl text-xs text-center text-black">{description}</p>
-            <p className="-mt-3 text-purple-900 text-xl font-bold">{courseTitle}</p>
-            <p className="text-purple-900 p-2 text-xs border border-purple-900 font-medium">Held on: {formattedDate}</p>
+            <p className="text-xs font-bold -mt-2">
+              For successfully participating in the fully funded program on:
+            </p>
+            <p className=" text-purple-900 text-xl font-bold -mt-3">
+              {courseTitle}
+            </p>
+            <p className="max-w-xl text-xs text-center text-black -mt-3">
+              {description}
+            </p>
+            <p className="text-purple-900 p-2 text-xs border border-purple-900 font-medium">
+              Held on: {formattedDate}
+            </p>
           </div>
 
           <div className="flex gap-10 w-full items-center justify-center mt-10">
@@ -127,8 +174,8 @@ export default function CertificateTemplate3({
                   </p>
                 </div>
               </div>
-  )}
-  
+            )}
+
             {signatoryName2 && (
               <div className="space-y-2">
                 <p className="border-b w-40 text-center tracking-wide font-[Great_Vibes]">

@@ -23,6 +23,7 @@ interface CertificateTemplate3Props {
 }
 
 export default function CertificateTemplate3({
+  header = "Of Completion",
   header1 = "CERTIFICATE",
   courseTitle = "PERSONALIZED RESEARCH TRAINING IN TRANSCRIPTOMICS",
   description =
@@ -42,16 +43,16 @@ export default function CertificateTemplate3({
 }: CertificateTemplate3Props) {
   const scale = mode === "student" ? "transform-scale-[0.3]" : "transform-scale-100";
 
-  useEffect(() => {
-    const fontId = "great-vibes-font";
-    if (!document.getElementById(fontId)) {
-      const link = document.createElement("link");
-      link.id = fontId;
-      link.rel = "stylesheet";
-      link.href = "https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap";
-      document.head.appendChild(link);
-    }
-  }, []);
+  // useEffect(() => {
+  //   const fontId = "great-vibes-font";
+  //   if (!document.getElementById(fontId)) {
+  //     const link = document.createElement("link");
+  //     link.id = fontId;
+  //     link.rel = "stylesheet";
+  //     link.href = "https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap";
+  //     document.head.appendChild(link);
+  //   }
+  // }, []);
 
   const containerClass = isPreview
     ? "w-full mx-auto origin-center overflow-visible flex justify-center"
@@ -65,7 +66,7 @@ export default function CertificateTemplate3({
 
   return (
     <div className={containerClass} style={{ transform: `scale(${scale})`, backgroundColor: "transparent" }}>
-      <div className="w-200 h-150 flex justify-center shadow-sm rounded-sm relative overflow-hidden bg-[#fbfbfb] py-10 px-4">
+      <div className="w-800 h-[600px] flex justify-center shadow-sm rounded-sm relative overflow-hidden bg-[#fbfbfb] py-10 px-4">
         <img src={patternUrl} alt="Pattern" className="absolute z-0 top-0 w-full h-full opacity-80" />
         <img src={leftDecorUrl} alt="Decoration Left" className="absolute top-0 left-0 h-full" />
         <img src={rightDecorUrl} alt="Decoration Right" className="absolute top-0 right-0 h-full" />
@@ -84,47 +85,72 @@ export default function CertificateTemplate3({
 
         <div className="z-30 flex flex-col gap-8 items-center w-full p-8 mt-10">
           <div className="flex flex-col items-center gap-2">
-            <h1 className="text-6xl text-purple-950 tracking-wider">{header1}</h1>
+            <h1 className="text-6xl -mt-10 text-purple-950 tracking-wider">{header1}</h1>
             <div className="relative w-full flex justify-center items-center">
               <p className="text-xl uppercase font-medium tracking-widest bg-transparent italic text-white px-4 py-2 z-30 relative">
-                Of Completion
+                {header }
               </p>
               <img src={ribbonUrl} alt="Ribbon" className="mx-auto z-0 absolute w-9/12" />
             </div>
           </div>
 
-          <p className="text-sm font-semibold text-black">This certificate is presented to</p>
+          <p className="text-sm font-semibold text-black -mt-6">This certificate is presented to</p>
 
           <div className="space-y-4 flex flex-col items-center text-center">
-            <p className="w-full border-b-2 border-purple-900 text-purple-900 text-5xl" style={{ fontFamily: "Great Vibes, cursive" }}>
+            <p className="w-full border-b-2 border-purple-900 text-purple-900 text-4xl -mt-3" style={{ fontFamily: "Great Vibes, cursive" }}>
               {recipientName}
             </p>
-            <p className="max-w-xl text-xs font-bold text-center text-black">{description}</p>
+            <p className="max-w-xl text-xs text-center text-black">{description}</p>
+            <p className="-mt-3 text-purple-900 text-xl font-bold">{courseTitle}</p>
             <p className="text-purple-900 p-2 text-xs border border-purple-900 font-medium">Held on: {formattedDate}</p>
           </div>
 
-          <div className="flex justify-center gap-20 w-full items-center">
-            <div className="flex flex-col justify-center items-center gap-2">
-              <p className="border-b-2 border-green-950 w-40 text-center tracking-wide" />
-              {signatureUrl1 ? (
-                <img src={signatureUrl1} alt={signatoryName1} className="h-12 object-contain" />
-              ) : null}
-              <div className="space-y-0 font-semibold text-center text-sm text-black">
-                <p>{signatoryName1 ?? "Oluwaseyi Abraham Olawale"}</p>
-                <p className="text-xs">{signatoryTitle1 ?? "Founder & CEO"}</p>
+          <div className="flex gap-10 w-full items-center justify-center mt-10">
+            {signatoryName1 && (
+              <div className="space-y-2">
+                <p className="border-b w-40 text-center tracking-wide font-[Great_Vibes]">
+                  {signatureUrl1 && (
+                    <img
+                      src={signatureUrl1}
+                      alt={signatoryName1}
+                      className="w-24 h-16 object-contain"
+                      style={{ marginBottom: -12 }}
+                    />
+                  )}
+                </p>
+                <div className="space-y-0">
+                  <p className="text-center text-sm font-medium text-purple-500">
+                    {signatoryName1}
+                  </p>
+                  <p className="text-center text-[9px] italic font-medium">
+                    {signatoryTitle1}
+                  </p>
+                </div>
               </div>
-            </div>
-
-            <div className="flex flex-col justify-center items-center gap-2">
-              <p className="border-b-2 border-green-950 w-40 text-center tracking-wide" />
-              {signatureUrl2 ? (
-                <img src={signatureUrl2} alt={signatoryName2} className="h-12 object-contain" />
-              ) : null}
-              <div className="space-y-0 font-semibold text-center text-sm text-black">
-                <p>{signatoryName2 ?? "Agboola Oluwaseun"}</p>
-                <p className="text-xs">{signatoryTitle2 ?? "Director"}</p>
+  )}
+  
+            {signatoryName2 && (
+              <div className="space-y-2">
+                <p className="border-b w-40 text-center tracking-wide font-[Great_Vibes]">
+                  {signatureUrl2 && (
+                    <img
+                      src={signatureUrl2}
+                      alt={signatoryName2}
+                      className="w-24 h-16 object-contain"
+                      style={{ marginBottom: -12 }}
+                    />
+                  )}
+                </p>
+                <div className="space-y-0">
+                  <p className="text-center text-sm font-medium text-purple-500">
+                    {signatoryName2}
+                  </p>
+                  <p className="text-center text-[9px] italic font-medium">
+                    {signatoryTitle2}
+                  </p>
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>

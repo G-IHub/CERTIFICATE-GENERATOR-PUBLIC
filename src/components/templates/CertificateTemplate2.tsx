@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import topShapeUrl from "../../assets/upper_shape.png";
 import centerLogoUrl from "../../assets/logo2b.png";
 import patternUrl from "../../assets/Pattern.png";
-import ribbonUrl from "../../assets/Ribbon.png";
+import ribbonUrl from "../../assets/RIBBON.png";
 
 interface CertificateTemplate2Props {
   header1?: string;

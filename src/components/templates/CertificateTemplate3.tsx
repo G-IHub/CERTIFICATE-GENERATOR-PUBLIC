@@ -97,7 +97,7 @@ export default function CertificateTemplate3({
           <p className="text-sm font-semibold text-black -mt-6">This certificate is presented to</p>
 
           <div className="space-y-4 flex flex-col items-center text-center">
-            <p className="w-full border-b-2 border-purple-900 text-purple-900 text-4xl -mt-3" style={{ fontFamily: "Great Vibes, cursive" }}>
+            <p className="w-full border-b-2 border-purple-900 text-purple-900 text-4xl" style={{ fontFamily: "Great Vibes, cursive" }}>
               {recipientName}
             </p>
             <p className="max-w-xl text-xs text-center text-black">{description}</p>

@@ -5,12 +5,14 @@ import patternUrl from "../../assets/Pattern.png";
 import ribbonUrl from "../../assets/RIBBON.png";
 
 interface CertificateTemplate7Props {
+  header?: string;
   header1?: string;
   // courseTitle: string;
   description?: string;
   date: string;
   recipientName?: string;
   isPreview?: boolean;
+  courseTitle?: string;
   organizationName?: string;
   organizationLogo?: string;
   signatoryName1?: string;
@@ -23,12 +25,14 @@ interface CertificateTemplate7Props {
 }
 
 export default function CertificateTemplate7({
+  header,
   header1 = "CERTIFICATE",
   // courseTitle,
   description = "This certificate acknowledges your outstanding contribution and dedication to the Design project, showcasing your commitment to excellence, innovation, and teamwork.",
   date,
   recipientName = "Name Surname",
   isPreview = false,
+  courseTitle = "Course Title",
   organizationName = "Your Organization",
   organizationLogo,
   signatoryName1,
@@ -60,7 +64,7 @@ export default function CertificateTemplate7({
       className={containerClass}
       style={{ transform: `scale(${scale})`, backgroundColor: "transparent" }}
     >
-      <div className="w-200 h-150 flex justify-center shadow-sm rounded relative overflow-hidden bg-[#fbfbfb] py-10 px-8">
+      <div className="w-[800px] h-[600px] flex justify-center shadow-sm rounded relative overflow-hidden bg-[#fbfbfb] py-10 px-8">
         <img
           src={upperUrl}
           alt="Upper shape"
@@ -82,7 +86,7 @@ export default function CertificateTemplate7({
           <div className="flex flex-col items-center gap-2">
             <h1 className="text-5xl font-medium">{header1 || "CERTIFICATE"}</h1>
             <p className="text-xl uppercase font-bold tracking-widest">
-              Of Excellence
+              {header}
             </p>
           </div>
           <p className="font-bold tracking-tighter text-sm uppercase">
@@ -91,15 +95,25 @@ export default function CertificateTemplate7({
           <p className="w-1/2 text-center border-b border-orange-500 font-semibold text-3xl tracking-wider">
             {recipientName}
           </p>
-          <p className="max-w-xl text-sm">
-            {description ||
-              "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque tempora nobis eligendi molestias amet nam sint minima aliquid rerum accusamus."}
+          <p className="text-xs -mt-2 -mb-2 text-black">
+            {/* For participating in the program: */}
           </p>
+          <p className="text-xs -mt-2 -mb-4 font-bold text-lg text-black">
+            {courseTitle}
+          </p>
+          <p className="max-w-xl text-sm">{description}</p>
 
-          <div className="flex gap-10 w-full items-center justify-center">
+          <p className="font-bold text-black -mt-5" >Date: {formattedDate} </p>
+
+          <div className="flex gap-10 w-full items-center justify-center z-50 -mt-5">
             <div className="space-y-2">
               <div className="border-b w-40 flex justify-center items-center">
-                <img src={signatureUrl1} alt="" />
+                <img
+                  src={signatureUrl1}
+                  alt=""
+                  className="w-24 h-16 object-contain"
+                  style={{ marginBottom: -12 }}
+                />
               </div>
               <div className="space-y-0">
                 <p className="text-center text-sm font-medium text-orange-500">
@@ -117,7 +131,12 @@ export default function CertificateTemplate7({
 
             <div className="space-y-2">
               <div className="border-b w-40 flex justify-center items-center">
-                <img src={signatureUrl2} alt="" />
+                <img
+                  src={signatureUrl2}
+                  alt=""
+                  className="w-24 h-16 object-contain"
+                  style={{ marginBottom: -12 }}
+                />
               </div>
               <div className="space-y-0">
                 <p className="text-center text-sm font-medium text-orange-500">

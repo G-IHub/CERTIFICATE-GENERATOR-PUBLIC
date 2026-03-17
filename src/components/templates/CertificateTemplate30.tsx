@@ -57,7 +57,8 @@ export default function CertificateTemplate30({
     }
   }, []);
 
-  const logosToDisplay = organizationLogos?.filter((logo) => logo.selected) || [];
+  const logosToDisplay =
+    organizationLogos?.filter((logo) => logo.selected) || [];
   const hasLogos = logosToDisplay.length > 0;
 
   return (
@@ -394,18 +395,19 @@ export default function CertificateTemplate30({
 
           {/* Description */}
           {description && (
-            <div
+            <p
               style={{
-                fontSize: "10px",
-                color: "#6b7280",
-                fontWeight: 400,
-                maxWidth: "525px",
-                margin: "0 auto",
-                lineHeight: "1.7",
+                textAlign: "center",
+                fontSize: "12px",
+                color: "black",
+                margin: "10px 20px",
+                lineHeight: "1.4",
+                wordWrap: "break-word",
               }}
             >
-              {description}
-            </div>
+              {description ||
+                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio commodi incidunt harum, doloremque reprehenderit voluptas aspernatu"}
+            </p>
           )}
         </div>
 
@@ -426,37 +428,30 @@ export default function CertificateTemplate30({
           <div style={{ textAlign: "center" }}>
             <div
               style={{
-                fontSize: "9px",
-                color: "#9ca3af",
-                marginBottom: "4px",
-                fontWeight: 600,
+                fontSize: "8px",
+                color: "rgba(148, 163, 184, 0.8)",
+                marginBottom: "5px",
+                fontWeight: 500,
                 letterSpacing: "0.7px",
                 textTransform: "uppercase",
+                fontFamily: "'Fira Code', monospace",
               }}
             >
-              Date of Completion
+              {"// date"}
             </div>
             <div
               style={{
-                padding: "6px 11px",
-                border: "1px solid #10b981",
-                borderRadius: "3px",
-                background: "#f0fdf4",
+                fontSize: "10px",
+                color: "#60a5fa",
+                fontWeight: 600,
+                fontFamily: "'Fira Code', monospace",
               }}
             >
-              <div
-                style={{
-                  fontSize: "11px",
-                  color: "#047857",
-                  fontWeight: 700,
-                }}
-              >
-                {new Date(date).toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
-              </div>
+              {new Date(date).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+              })}
             </div>
           </div>
 
@@ -468,25 +463,30 @@ export default function CertificateTemplate30({
                   <img
                     src={signatureUrl1}
                     alt="Signature 1"
-                    style={{ height: "22px", maxWidth: "91px", objectFit: "contain" }}
+                    className="w-24 h-16"
+                    style={{
+                      marginBottom: -20,
+                      marginLeft: "25px",
+                      objectFit: "contain",
+                    }}
                   />
                 </div>
               )}
               <div
                 style={{
-                  width: "91px",
-                  height: "1px",
-                  background: "#10b981",
+                  width: "87px",
+                  height: "0.5px",
+                  background:
+                    "linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.6), transparent)",
                   margin: "0 auto 5px",
                 }}
               />
               <div
                 style={{
-                  fontSize: "11px",
+                  fontSize: "10px",
                   color: "#1f2937",
-                  fontWeight: 700,
-                  marginBottom: "3px",
-                  fontFamily: "'Playfair Display', serif",
+                  fontWeight: 600,
+                  marginBottom: "2px",
                 }}
               >
                 {signatoryName1}
@@ -494,7 +494,7 @@ export default function CertificateTemplate30({
               {signatoryTitle1 && (
                 <div
                   style={{
-                    fontSize: "9px",
+                    fontSize: "8px",
                     color: "#6b7280",
                     fontWeight: 400,
                   }}
@@ -513,25 +513,30 @@ export default function CertificateTemplate30({
                   <img
                     src={signatureUrl2}
                     alt="Signature 2"
-                    style={{ height: "22px", maxWidth: "91px", objectFit: "contain" }}
+                    className="w-24 h-16"
+                    style={{
+                      marginBottom: -20,
+                      marginLeft: "25px",
+                      objectFit: "contain",
+                    }}
                   />
                 </div>
               )}
               <div
                 style={{
-                  width: "91px",
-                  height: "1px",
-                  background: "#3b82f6",
+                  width: "87px",
+                  height: "0.5px",
+                  background:
+                    "linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.6), transparent)",
                   margin: "0 auto 5px",
                 }}
               />
               <div
                 style={{
-                  fontSize: "11px",
+                  fontSize: "10px",
                   color: "#1f2937",
-                  fontWeight: 700,
-                  marginBottom: "3px",
-                  fontFamily: "'Playfair Display', serif",
+                  fontWeight: 600,
+                  marginBottom: "2px",
                 }}
               >
                 {signatoryName2}
@@ -539,7 +544,7 @@ export default function CertificateTemplate30({
               {signatoryTitle2 && (
                 <div
                   style={{
-                    fontSize: "9px",
+                    fontSize: "8px",
                     color: "#6b7280",
                     fontWeight: 400,
                   }}

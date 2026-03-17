@@ -57,7 +57,8 @@ export default function CertificateTemplate29({
     }
   }, []);
 
-  const logosToDisplay = organizationLogos?.filter((logo) => logo.selected) || [];
+  const logosToDisplay =
+    organizationLogos?.filter((logo) => logo.selected) || [];
   const hasLogos = logosToDisplay.length > 0;
 
   return (
@@ -79,7 +80,8 @@ export default function CertificateTemplate29({
         style={{
           position: "absolute",
           inset: 0,
-          background: "radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(168, 85, 247, 0.15) 0%, transparent 50%)",
+          background:
+            "radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(168, 85, 247, 0.15) 0%, transparent 50%)",
         }}
       />
 
@@ -108,8 +110,10 @@ export default function CertificateTemplate29({
           lineHeight: "1.8",
         }}
       >
-        {`{`}<br />
-        &nbsp;&nbsp;"achievement": true,<br />
+        {`{`}
+        <br />
+        &nbsp;&nbsp;"achievement": true,
+        <br />
         &nbsp;&nbsp;"verified": ✓<br />
         {`}`}
       </div>
@@ -125,7 +129,8 @@ export default function CertificateTemplate29({
           lineHeight: "1.8",
         }}
       >
-        {`<certificate />`}<br />
+        {`<certificate />`}
+        <br />
         {`<!-- validated -->`}
       </div>
 
@@ -136,9 +141,11 @@ export default function CertificateTemplate29({
           inset: "27px",
           border: "0.5px solid rgba(59, 130, 246, 0.3)",
           borderRadius: "9px",
-          background: "linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.95) 100%)",
+          background:
+            "linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.95) 100%)",
           backdropFilter: "blur(2px)",
-          boxShadow: "0 0 23px rgba(59, 130, 246, 0.2), inset 0 0 18px rgba(59, 130, 246, 0.03)",
+          boxShadow:
+            "0 0 23px rgba(59, 130, 246, 0.2), inset 0 0 18px rgba(59, 130, 246, 0.03)",
         }}
       >
         {/* Top accent line */}
@@ -149,7 +156,8 @@ export default function CertificateTemplate29({
             left: "30%",
             right: "30%",
             height: "1px",
-            background: "linear-gradient(90deg, transparent, #3b82f6, #a855f7, transparent)",
+            background:
+              "linear-gradient(90deg, transparent, #3b82f6, #a855f7, transparent)",
           }}
         />
 
@@ -224,6 +232,7 @@ export default function CertificateTemplate29({
             transform: "translate(-50%, -50%)",
             textAlign: "center",
             width: "638px",
+            marginTop: "-30px",
           }}
         >
           {/* Header with bracket decoration */}
@@ -274,23 +283,31 @@ export default function CertificateTemplate29({
               marginBottom: "16px",
             }}
           >
-            <div style={{ fontSize: "10px", color: "rgba(59, 130, 246, 0.5)" }}>◆</div>
+            <div style={{ fontSize: "10px", color: "rgba(59, 130, 246, 0.5)" }}>
+              ◆
+            </div>
             <div
               style={{
                 width: "91px",
                 height: "0.5px",
-                background: "linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.5), transparent)",
+                background:
+                  "linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.5), transparent)",
               }}
             />
-            <div style={{ fontSize: "10px", color: "rgba(168, 85, 247, 0.5)" }}>◆</div>
+            <div style={{ fontSize: "10px", color: "rgba(168, 85, 247, 0.5)" }}>
+              ◆
+            </div>
             <div
               style={{
                 width: "91px",
                 height: "0.5px",
-                background: "linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.5), transparent)",
+                background:
+                  "linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.5), transparent)",
               }}
             />
-            <div style={{ fontSize: "10px", color: "rgba(59, 130, 246, 0.5)" }}>◆</div>
+            <div style={{ fontSize: "10px", color: "rgba(59, 130, 246, 0.5)" }}>
+              ◆
+            </div>
           </div>
 
           {/* Awarded text */}
@@ -338,7 +355,8 @@ export default function CertificateTemplate29({
             style={{
               fontSize: "19px",
               fontWeight: 700,
-              background: "linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #a855f7 100%)",
+              background:
+                "linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #a855f7 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -352,18 +370,19 @@ export default function CertificateTemplate29({
 
           {/* Description */}
           {description && (
-            <div
+            <p
               style={{
-                fontSize: "9px",
-                color: "rgba(203, 213, 225, 0.8)",
-                fontWeight: 400,
-                maxWidth: "547px",
-                margin: "0 auto",
-                lineHeight: "1.7",
+                textAlign: "center",
+                fontSize: "12px",
+                color: "white",
+                margin: "10px 20px",
+                lineHeight: "1.4",
+                wordWrap: "break-word",
               }}
             >
-              {description}
-            </div>
+              {description ||
+                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio commodi incidunt harum, doloremque reprehenderit voluptas aspernatu"}
+            </p>
           )}
         </div>
 
@@ -419,7 +438,12 @@ export default function CertificateTemplate29({
                   <img
                     src={signatureUrl1}
                     alt="Signature 1"
-                    style={{ height: "21px", maxWidth: "87px", objectFit: "contain" }}
+                    className="w-24 h-16"
+                    style={{
+                      marginBottom: -20,
+                      marginLeft: "25px",
+                      objectFit: "contain",
+                    }}
                   />
                 </div>
               )}
@@ -427,7 +451,8 @@ export default function CertificateTemplate29({
                 style={{
                   width: "87px",
                   height: "0.5px",
-                  background: "linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.6), transparent)",
+                  background:
+                    "linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.6), transparent)",
                   margin: "0 auto 5px",
                 }}
               />
@@ -463,7 +488,12 @@ export default function CertificateTemplate29({
                   <img
                     src={signatureUrl2}
                     alt="Signature 2"
-                    style={{ height: "21px", maxWidth: "87px", objectFit: "contain" }}
+                    className="w-24 h-16"
+                    style={{
+                      marginBottom: -20,
+                      marginLeft: "25px",
+                      objectFit: "contain",
+                    }}
                   />
                 </div>
               )}
@@ -471,7 +501,8 @@ export default function CertificateTemplate29({
                 style={{
                   width: "87px",
                   height: "0.5px",
-                  background: "linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.6), transparent)",
+                  background:
+                    "linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.6), transparent)",
                   margin: "0 auto 5px",
                 }}
               />
@@ -527,7 +558,8 @@ export default function CertificateTemplate29({
             left: "30%",
             right: "30%",
             height: "1px",
-            background: "linear-gradient(90deg, transparent, #a855f7, #3b82f6, transparent)",
+            background:
+              "linear-gradient(90deg, transparent, #a855f7, #3b82f6, transparent)",
           }}
         />
       </div>

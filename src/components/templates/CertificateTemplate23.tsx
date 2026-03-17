@@ -65,7 +65,8 @@ export default function CertificateTemplate23({
     mode === "student" ? "transform scale-[0.3]" : "transform scale-100";
 
   // Get logos to display
-  const logosToDisplay = organizationLogos?.filter((logo) => logo.selected) || [];
+  const logosToDisplay =
+    organizationLogos?.filter((logo) => logo.selected) || [];
   const hasLogos = logosToDisplay.length > 0;
 
   return (
@@ -261,6 +262,7 @@ export default function CertificateTemplate23({
               color: "#d4af37",
               marginBottom: "12px",
               letterSpacing: "1.2px",
+              marginTop: "-30px",
             }}
           >
             {header}
@@ -301,7 +303,8 @@ export default function CertificateTemplate23({
                 transform: "translateX(-50%)",
                 width: "120%",
                 height: "1px",
-                background: "linear-gradient(90deg, transparent, #d4af37, transparent)",
+                background:
+                  "linear-gradient(90deg, transparent, #d4af37, transparent)",
               }}
             />
           </div>
@@ -336,20 +339,19 @@ export default function CertificateTemplate23({
 
           {/* Description */}
           {description && (
-            <div
+            <p
               style={{
-                fontSize: "8px",
-                color: "#6b6b6b",
-                fontWeight: 400,
-                maxWidth: "440px",
-                margin: "0 auto",
-                lineHeight: "1.7",
-                fontFamily: "'Montserrat', sans-serif",
-                fontStyle: "italic",
+                textAlign: "center",
+                fontSize: "12px",
+                color: "black",
+                margin: "10px 20px",
+                lineHeight: "1.4",
+                wordWrap: "break-word",
               }}
             >
-              {description}
-            </div>
+              {description ||
+                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio commodi incidunt harum, doloremque reprehenderit voluptas aspernatu"}
+            </p>
           )}
         </div>
 
@@ -357,13 +359,13 @@ export default function CertificateTemplate23({
         <div
           style={{
             position: "absolute",
-            bottom: "44px",
+            bottom: "27px",
             left: 0,
             right: 0,
             display: "flex",
             justifyContent: "space-around",
             alignItems: "flex-end",
-            padding: "0 70px",
+            padding: "0 57px",
           }}
         >
           {/* Date */}
@@ -371,34 +373,28 @@ export default function CertificateTemplate23({
             <div
               style={{
                 fontSize: "8px",
-                color: "#6b6b6b",
+                color: "rgba(148, 163, 184, 0.8)",
                 marginBottom: "5px",
-                fontFamily: "'Montserrat', sans-serif",
                 fontWeight: 500,
+                letterSpacing: "0.7px",
+                textTransform: "uppercase",
+                fontFamily: "'Fira Code', monospace",
               }}
             >
-              DATE
+              {"// date"}
             </div>
             <div
               style={{
-                width: "70px",
-                height: "1px",
-                background: "#d4af37",
-                margin: "0 auto 5px",
-              }}
-            />
-            <div
-              style={{
                 fontSize: "10px",
-                color: "#2c2c2c",
+                color: "#60a5fa",
                 fontWeight: 600,
-                fontFamily: "'Montserrat', sans-serif",
+                fontFamily: "'Fira Code', monospace",
               }}
             >
               {new Date(date).toLocaleDateString("en-US", {
                 year: "numeric",
-                month: "long",
-                day: "numeric",
+                month: "2-digit",
+                day: "2-digit",
               })}
             </div>
           </div>
@@ -411,25 +407,30 @@ export default function CertificateTemplate23({
                   <img
                     src={signatureUrl1}
                     alt="Signature 1"
-                    style={{ height: "22px", maxWidth: "80px", objectFit: "contain" }}
+                    className="w-24 h-16"
+                    style={{
+                      marginBottom: -20,
+                      marginLeft: "25px",
+                      objectFit: "contain",
+                    }}
                   />
                 </div>
               )}
               <div
                 style={{
-                  width: "80px",
-                  height: "1px",
-                  background: "#d4af37",
+                  width: "87px",
+                  height: "0.5px",
+                  background:
+                    "linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.6), transparent)",
                   margin: "0 auto 5px",
                 }}
               />
               <div
                 style={{
                   fontSize: "10px",
-                  color: "#2c2c2c",
+                  color: "#1f2937",
                   fontWeight: 600,
                   marginBottom: "2px",
-                  fontFamily: "'Montserrat', sans-serif",
                 }}
               >
                 {signatoryName1}
@@ -438,9 +439,8 @@ export default function CertificateTemplate23({
                 <div
                   style={{
                     fontSize: "8px",
-                    color: "#6b6b6b",
+                    color: "rgba(148, 163, 184, 0.8)",
                     fontWeight: 400,
-                    fontFamily: "'Montserrat', sans-serif",
                   }}
                 >
                   {signatoryTitle1}
@@ -457,25 +457,30 @@ export default function CertificateTemplate23({
                   <img
                     src={signatureUrl2}
                     alt="Signature 2"
-                    style={{ height: "22px", maxWidth: "80px", objectFit: "contain" }}
+                    className="w-24 h-16"
+                    style={{
+                      marginBottom: -20,
+                      marginLeft: "25px",
+                      objectFit: "contain",
+                    }}
                   />
                 </div>
               )}
               <div
                 style={{
-                  width: "80px",
-                  height: "1px",
-                  background: "#d4af37",
+                  width: "87px",
+                  height: "0.5px",
+                  background:
+                    "linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.6), transparent)",
                   margin: "0 auto 5px",
                 }}
               />
               <div
                 style={{
                   fontSize: "10px",
-                  color: "#2c2c2c",
+                  color: "#1f2937",
                   fontWeight: 600,
                   marginBottom: "2px",
-                  fontFamily: "'Montserrat', sans-serif",
                 }}
               >
                 {signatoryName2}
@@ -484,9 +489,8 @@ export default function CertificateTemplate23({
                 <div
                   style={{
                     fontSize: "8px",
-                    color: "#6b6b6b",
+                    color: "rgba(148, 163, 184, 0.8)",
                     fontWeight: 400,
-                    fontFamily: "'Montserrat', sans-serif",
                   }}
                 >
                   {signatoryTitle2}

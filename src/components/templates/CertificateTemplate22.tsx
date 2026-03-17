@@ -65,7 +65,8 @@ export default function CertificateTemplate22({
     mode === "student" ? "transform scale-[0.3]" : "transform scale-100";
 
   // Get logos to display
-  const logosToDisplay = organizationLogos?.filter((logo) => logo.selected) || [];
+  const logosToDisplay =
+    organizationLogos?.filter((logo) => logo.selected) || [];
   const hasLogos = logosToDisplay.length > 0;
 
   return (
@@ -118,7 +119,8 @@ export default function CertificateTemplate22({
             left: 0,
             right: 0,
             height: "2px",
-            background: "linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899, #f59e0b)",
+            background:
+              "linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899, #f59e0b)",
           }}
         />
 
@@ -198,15 +200,17 @@ export default function CertificateTemplate22({
           {/* Header */}
           <div
             style={{
-              fontSize: "18px",
+              fontSize: "30px",
               fontWeight: 500,
-              background: "linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%)",
+              background:
+                "linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
               marginBottom: "16px",
               letterSpacing: "1px",
               textTransform: "uppercase",
+              marginTop: "-20px",
             }}
           >
             {header}
@@ -217,7 +221,8 @@ export default function CertificateTemplate22({
             style={{
               width: "80px",
               height: "1px",
-              background: "linear-gradient(90deg, transparent, #6366f1, transparent)",
+              background:
+                "linear-gradient(90deg, transparent, #6366f1, transparent)",
               margin: "0 auto 20px",
             }}
           />
@@ -282,19 +287,19 @@ export default function CertificateTemplate22({
 
           {/* Description */}
           {description && (
-            <div
+            <p
               style={{
-                fontSize: "8px",
-                color: "rgba(255, 255, 255, 0.5)",
-                fontWeight: 300,
-                marginBottom: "16px",
-                maxWidth: "440px",
-                margin: "0 auto 16px",
-                lineHeight: "1.6",
+                textAlign: "center",
+                fontSize: "12px",
+                color: "white",
+                margin: "10px 20px",
+                lineHeight: "1.4",
+                wordWrap: "break-word",
               }}
             >
-              {description}
-            </div>
+              {description ||
+                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio commodi incidunt harum, doloremque reprehenderit voluptas aspernatu"}
+            </p>
           )}
         </div>
 
@@ -302,13 +307,13 @@ export default function CertificateTemplate22({
         <div
           style={{
             position: "absolute",
-            bottom: "36px",
+            bottom: "27px",
             left: 0,
             right: 0,
             display: "flex",
             justifyContent: "space-around",
             alignItems: "flex-end",
-            padding: "0 60px",
+            padding: "0 57px",
           }}
         >
           {/* Date */}
@@ -316,25 +321,28 @@ export default function CertificateTemplate22({
             <div
               style={{
                 fontSize: "8px",
-                color: "rgba(255, 255, 255, 0.4)",
-                marginBottom: "4px",
-                letterSpacing: "0.6px",
+                color: "rgba(148, 163, 184, 0.8)",
+                marginBottom: "5px",
+                fontWeight: 500,
+                letterSpacing: "0.7px",
                 textTransform: "uppercase",
+                fontFamily: "'Fira Code', monospace",
               }}
             >
-              Date
+              {"// date"}
             </div>
             <div
               style={{
                 fontSize: "10px",
-                color: "#ffffff",
+                color: "#60a5fa",
                 fontWeight: 600,
+                fontFamily: "'Fira Code', monospace",
               }}
             >
               {new Date(date).toLocaleDateString("en-US", {
                 year: "numeric",
-                month: "long",
-                day: "numeric",
+                month: "2-digit",
+                day: "2-digit",
               })}
             </div>
           </div>
@@ -347,23 +355,29 @@ export default function CertificateTemplate22({
                   <img
                     src={signatureUrl1}
                     alt="Signature 1"
-                    style={{ height: "24px", maxWidth: "80px", objectFit: "contain" }}
+                    className="w-24 h-16"
+                    style={{
+                      marginBottom: -20,
+                      marginLeft: "25px",
+                      objectFit: "contain",
+                    }}
                   />
                 </div>
               )}
               <div
                 style={{
-                  width: "80px",
-                  height: "1px",
-                  background: "rgba(99, 102, 241, 0.5)",
-                  margin: "0 auto 4px",
+                  width: "87px",
+                  height: "0.5px",
+                  background:
+                    "linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.6), transparent)",
+                  margin: "0 auto 5px",
                 }}
               />
               <div
                 style={{
                   fontSize: "10px",
-                  color: "#ffffff",
-                  fontWeight: 500,
+                  color: "#e2e8f0",
+                  fontWeight: 600,
                   marginBottom: "2px",
                 }}
               >
@@ -373,8 +387,8 @@ export default function CertificateTemplate22({
                 <div
                   style={{
                     fontSize: "8px",
-                    color: "rgba(255, 255, 255, 0.5)",
-                    fontWeight: 300,
+                    color: "rgba(148, 163, 184, 0.8)",
+                    fontWeight: 400,
                   }}
                 >
                   {signatoryTitle1}
@@ -391,23 +405,29 @@ export default function CertificateTemplate22({
                   <img
                     src={signatureUrl2}
                     alt="Signature 2"
-                    style={{ height: "24px", maxWidth: "80px", objectFit: "contain" }}
+                    className="w-24 h-16"
+                    style={{
+                      marginBottom: -20,
+                      marginLeft: "25px",
+                      objectFit: "contain",
+                    }}
                   />
                 </div>
               )}
               <div
                 style={{
-                  width: "80px",
-                  height: "1px",
-                  background: "rgba(139, 92, 246, 0.5)",
-                  margin: "0 auto 4px",
+                  width: "87px",
+                  height: "0.5px",
+                  background:
+                    "linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.6), transparent)",
+                  margin: "0 auto 5px",
                 }}
               />
               <div
                 style={{
                   fontSize: "10px",
-                  color: "#ffffff",
-                  fontWeight: 500,
+                  color: "#e2e8f0",
+                  fontWeight: 600,
                   marginBottom: "2px",
                 }}
               >
@@ -417,8 +437,8 @@ export default function CertificateTemplate22({
                 <div
                   style={{
                     fontSize: "8px",
-                    color: "rgba(255, 255, 255, 0.5)",
-                    fontWeight: 300,
+                    color: "rgba(148, 163, 184, 0.8)",
+                    fontWeight: 400,
                   }}
                 >
                   {signatoryTitle2}
@@ -454,7 +474,8 @@ export default function CertificateTemplate22({
             left: 0,
             right: 0,
             height: "2px",
-            background: "linear-gradient(90deg, #f59e0b, #ec4899, #8b5cf6, #6366f1)",
+            background:
+              "linear-gradient(90deg, #f59e0b, #ec4899, #8b5cf6, #6366f1)",
           }}
         />
       </div>

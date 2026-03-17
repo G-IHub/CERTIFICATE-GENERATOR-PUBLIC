@@ -57,7 +57,8 @@ export default function CertificateTemplate31({
     }
   }, []);
 
-  const logosToDisplay = organizationLogos?.filter((logo) => logo.selected) || [];
+  const logosToDisplay =
+    organizationLogos?.filter((logo) => logo.selected) || [];
   const hasLogos = logosToDisplay.length > 0;
 
   return (
@@ -67,7 +68,8 @@ export default function CertificateTemplate31({
         width: "800px",
         height: "600px",
         position: "relative",
-        background: "linear-gradient(135deg, #fef3c7 0%, #fde68a 50%, #fbbf24 100%)",
+        background:
+          "linear-gradient(135deg, #fef3c7 0%, #fde68a 50%, #fbbf24 100%)",
         fontFamily: "'Montserrat', sans-serif",
         overflow: "hidden",
         transform: `scale(${scale})`,
@@ -83,7 +85,8 @@ export default function CertificateTemplate31({
           width: "205px",
           height: "205px",
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(236, 72, 153, 0.2) 0%, transparent 70%)",
+          background:
+            "radial-gradient(circle, rgba(236, 72, 153, 0.2) 0%, transparent 70%)",
           filter: "blur(14px)",
         }}
       />
@@ -95,7 +98,8 @@ export default function CertificateTemplate31({
           width: "251px",
           height: "251px",
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(139, 92, 246, 0.2) 0%, transparent 70%)",
+          background:
+            "radial-gradient(circle, rgba(139, 92, 246, 0.2) 0%, transparent 70%)",
           filter: "blur(18px)",
         }}
       />
@@ -108,7 +112,8 @@ export default function CertificateTemplate31({
           width: "228px",
           height: "228px",
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(14, 165, 233, 0.2) 0%, transparent 70%)",
+          background:
+            "radial-gradient(circle, rgba(14, 165, 233, 0.2) 0%, transparent 70%)",
           filter: "blur(16px)",
         }}
       />
@@ -160,18 +165,26 @@ export default function CertificateTemplate31({
           borderRadius: "11px",
           backdropFilter: "blur(5px)",
           border: "1px solid rgba(255, 255, 255, 0.8)",
-          boxShadow: "0 7px 21px rgba(0, 0, 0, 0.15), inset 0 0 14px rgba(255, 255, 255, 0.5)",
+          boxShadow:
+            "0 7px 21px rgba(0, 0, 0, 0.15), inset 0 0 14px rgba(255, 255, 255, 0.5)",
         }}
       >
         {/* Colorful confetti dots */}
         <div style={{ position: "absolute", inset: "9px" }}>
           {[...Array(30)].map((_, i) => {
-            const colors = ["#ec4899", "#8b5cf6", "#0ea5e9", "#f59e0b", "#10b981"];
-            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            const colors = [
+              "#ec4899",
+              "#8b5cf6",
+              "#0ea5e9",
+              "#f59e0b",
+              "#10b981",
+            ];
+            const randomColor =
+              colors[Math.floor(Math.random() * colors.length)];
             const randomX = Math.random() * 100;
             const randomY = Math.random() * 100;
             const randomSize = 2 + Math.random() * 3;
-            
+
             return (
               <div
                 key={i}
@@ -212,7 +225,8 @@ export default function CertificateTemplate31({
                   width: "35px",
                   height: "35px",
                   borderRadius: "7px",
-                  background: "linear-gradient(135deg, #ffffff 0%, #fef3c7 100%)",
+                  background:
+                    "linear-gradient(135deg, #ffffff 0%, #fef3c7 100%)",
                   border: "1px solid #f59e0b",
                   display: "flex",
                   alignItems: "center",
@@ -245,7 +259,8 @@ export default function CertificateTemplate31({
             textAlign: "center",
             fontSize: "16px",
             fontWeight: 800,
-            background: "linear-gradient(135deg, #ec4899 0%, #8b5cf6 50%, #0ea5e9 100%)",
+            background:
+              "linear-gradient(135deg, #ec4899 0%, #8b5cf6 50%, #0ea5e9 100%)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             backgroundClip: "text",
@@ -267,6 +282,7 @@ export default function CertificateTemplate31({
             textAlign: "center",
             width: "661px",
             zIndex: 1,
+            marginTop: "-20px",
           }}
         >
           {/* Header */}
@@ -297,7 +313,8 @@ export default function CertificateTemplate31({
               style={{
                 width: "80px",
                 height: "2px",
-                background: "linear-gradient(90deg, transparent, #ec4899, #8b5cf6)",
+                background:
+                  "linear-gradient(90deg, transparent, #ec4899, #8b5cf6)",
                 borderRadius: "2px",
                 opacity: 0.6,
               }}
@@ -307,7 +324,8 @@ export default function CertificateTemplate31({
               style={{
                 width: "80px",
                 height: "2px",
-                background: "linear-gradient(90deg, #8b5cf6, #0ea5e9, transparent)",
+                background:
+                  "linear-gradient(90deg, #8b5cf6, #0ea5e9, transparent)",
                 borderRadius: "2px",
                 opacity: 0.6,
               }}
@@ -333,7 +351,8 @@ export default function CertificateTemplate31({
             style={{
               fontSize: "32px",
               fontWeight: 400,
-              background: "linear-gradient(135deg, #ec4899 0%, #8b5cf6 50%, #0ea5e9 100%)",
+              background:
+                "linear-gradient(135deg, #ec4899 0%, #8b5cf6 50%, #0ea5e9 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -374,18 +393,19 @@ export default function CertificateTemplate31({
 
           {/* Description */}
           {description && (
-            <div
+            <p
               style={{
-                fontSize: "10px",
-                color: "#4b5563",
-                fontWeight: 400,
-                maxWidth: "570px",
-                margin: "0 auto",
-                lineHeight: "1.7",
+                textAlign: "center",
+                fontSize: "12px",
+                color: "black",
+                margin: "10px 20px",
+                lineHeight: "1.4",
+                wordWrap: "break-word",
               }}
             >
-              {description}
-            </div>
+              {description ||
+                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio commodi incidunt harum, doloremque reprehenderit voluptas aspernatu"}
+            </p>
           )}
         </div>
 
@@ -405,7 +425,7 @@ export default function CertificateTemplate31({
         >
           {/* Date */}
           <div style={{ textAlign: "center" }}>
-            <div
+            {/* <div
               style={{
                 width: "25px",
                 height: "25px",
@@ -419,7 +439,7 @@ export default function CertificateTemplate31({
               }}
             >
               <div style={{ fontSize: "13px" }}>📅</div>
-            </div>
+            </div> */}
             <div
               style={{
                 fontSize: "9px",
@@ -455,7 +475,12 @@ export default function CertificateTemplate31({
                   <img
                     src={signatureUrl1}
                     alt="Signature 1"
-                    style={{ height: "22px", maxWidth: "91px", objectFit: "contain" }}
+                    className="w-24 h-16"
+                    style={{
+                      marginBottom: -20,
+                      marginLeft: "30px",
+                      objectFit: "contain",
+                    }}
                   />
                 </div>
               )}
@@ -463,7 +488,8 @@ export default function CertificateTemplate31({
                 style={{
                   width: "91px",
                   height: "1px",
-                  background: "linear-gradient(90deg, transparent, #ec4899, transparent)",
+                  background:
+                    "linear-gradient(90deg, transparent, #ec4899, transparent)",
                   borderRadius: "2px",
                   margin: "0 auto 5px",
                 }}
@@ -500,7 +526,12 @@ export default function CertificateTemplate31({
                   <img
                     src={signatureUrl2}
                     alt="Signature 2"
-                    style={{ height: "22px", maxWidth: "91px", objectFit: "contain" }}
+                    className="w-24 h-16"
+                    style={{
+                      marginBottom: -20,
+                      marginLeft: "25px",
+                      objectFit: "contain",
+                    }}
                   />
                 </div>
               )}
@@ -508,7 +539,8 @@ export default function CertificateTemplate31({
                 style={{
                   width: "91px",
                   height: "1px",
-                  background: "linear-gradient(90deg, transparent, #0ea5e9, transparent)",
+                  background:
+                    "linear-gradient(90deg, transparent, #0ea5e9, transparent)",
                   borderRadius: "2px",
                   margin: "0 auto 5px",
                 }}

@@ -72,17 +72,21 @@ export default function CertificateTemplate20({
         style={{
           width: "800px",
           height: "600px",
-          background: "linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0a0e27 100%)",
+          background:
+            "linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0a0e27 100%)",
           fontFamily: "'Rajdhani', sans-serif",
         }}
       >
         {/* Cyber Grid Background */}
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `repeating-linear-gradient(0deg, #00ffff 0px, transparent 1px, transparent 30px),
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `repeating-linear-gradient(0deg, #00ffff 0px, transparent 1px, transparent 30px),
                             repeating-linear-gradient(90deg, #00ffff 0px, transparent 1px, transparent 30px)`,
-            backgroundSize: '30px 30px'
-          }}></div>
+              backgroundSize: "30px 30px",
+            }}
+          ></div>
         </div>
 
         {/* Neon Glow Effects */}
@@ -105,29 +109,46 @@ export default function CertificateTemplate20({
         {/* Content */}
         <div className="relative z-10 flex flex-col items-center justify-center flex-1 px-12 py-10 text-center">
           {/* Logo Section */}
-          <div className="mb-4">
+          <div className="mb-4 -mt-52">
             {(logo1 || logo2) && (
               <div className="flex gap-3 items-center justify-center mb-2">
                 {logo1 && (
-                  <img src={logo1.url} alt={logo1.name} className="h-8 object-contain" />
+                  <img
+                    src={logo1.url}
+                    alt={logo1.name}
+                    className="h-8 object-contain"
+                  />
                 )}
                 {logo2 && (
-                  <img src={logo2.url} alt={logo2.name} className="h-8 object-contain" />
+                  <img
+                    src={logo2.url}
+                    alt={logo2.name}
+                    className="h-8 object-contain"
+                  />
                 )}
               </div>
             )}
             {organizationLogo && !logo1 && !logo2 && (
-              <img src={organizationLogo} alt="Logo" className="h-8 mx-auto mb-2" />
+              <img
+                src={organizationLogo}
+                alt="Logo"
+                className="h-8 mx-auto mb-2 -mt-20"
+              />
             )}
-            <div className="text-cyan-400 text-xs font-semibold tracking-widest uppercase" style={{ fontFamily: "'Orbitron', sans-serif" }}>
+            <div
+              className="text-cyan-400 text-xs font-semibold tracking-widest uppercase"
+              style={{ fontFamily: "'Orbitron', sans-serif" }}
+            >
               {organizationName}
             </div>
           </div>
 
           {/* Certificate Header */}
           <div className="mb-3">
-            <h1 className="text-2xl font-black uppercase tracking-wider mb-1 bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent"
-                style={{ fontFamily: "'Orbitron', sans-serif" }}>
+            <h1
+              className="text-4xl font-black uppercase tracking-wider mb-1 bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent"
+              style={{ fontFamily: "'Orbitron', sans-serif" }}
+            >
               {header}
             </h1>
             <div className="h-px w-32 mx-auto bg-gradient-to-r from-transparent via-cyan-400 to-transparent"></div>
@@ -135,65 +156,218 @@ export default function CertificateTemplate20({
 
           {/* Presented To */}
           <div className="mb-4">
-            <p className="text-gray-400 text-xs uppercase tracking-widest mb-1">Presented to</p>
-            <h2 className="text-xl font-bold text-white mb-1" style={{ fontFamily: "'Orbitron', sans-serif" }}>
+            <p className="text-gray-400 text-xs uppercase tracking-widest mb-1">
+              Presented to
+            </p>
+            <h2
+              className="text-2xl font-bold text-white mb-1"
+              style={{ fontFamily: "'Orbitron', sans-serif" }}
+            >
               {recipientName}
             </h2>
           </div>
 
           {/* Course Title */}
           <div className="mb-3">
-            <p className="text-gray-400 text-xs uppercase tracking-widest mb-1">For completing</p>
-            <h3 className="text-lg font-bold text-cyan-300 mb-2" style={{ fontFamily: "'Orbitron', sans-serif" }}>
+            <p className="text-gray-400 text-xs uppercase tracking-widest mb-1">
+              For completing
+            </p>
+            <h3
+              className="text-lg font-bold text-cyan-300 mb-2"
+              style={{ fontFamily: "'Orbitron', sans-serif" }}
+            >
               {courseTitle}
             </h3>
+            {/* Description */}
             {description && (
-              <p className="text-gray-300 text-xs max-w-md mx-auto leading-relaxed">
-                {description}
+              <p
+                style={{
+                  textAlign: "center",
+                  fontSize: "14px",
+                  color: "white",
+                  margin: "10px 20px",
+                  lineHeight: "1.4",
+                  wordWrap: "break-word",
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                  maxWidth: "28%",
+                }}
+              >
+                {description ||
+                  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio commodi incidunt harum, doloremque reprehenderit voluptas aspernatu"}
               </p>
             )}
           </div>
+        </div>
 
+        {/* Bottom Section */}
+        <div
+          style={{
+            position: "absolute",
+            bottom: "27px",
+            left: 0,
+            right: 0,
+            display: "flex",
+            justifyContent: "space-around",
+            alignItems: "flex-end",
+            padding: "0 57px",
+          }}
+        >
           {/* Date */}
-          <div className="mb-4">
-            <p className="text-cyan-400 text-xs font-medium tracking-wide">{formattedDate}</p>
+          <div style={{ textAlign: "center" }}>
+            <div
+              style={{
+                fontSize: "8px",
+                color: "rgba(148, 163, 184, 0.8)",
+                marginBottom: "5px",
+                fontWeight: 500,
+                letterSpacing: "0.7px",
+                textTransform: "uppercase",
+                fontFamily: "'Fira Code', monospace",
+              }}
+            >
+              {"// date"}
+            </div>
+            <div
+              style={{
+                fontSize: "10px",
+                color: "#60a5fa",
+                fontWeight: 600,
+                fontFamily: "'Fira Code', monospace",
+              }}
+            >
+              {new Date(date).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+              })}
+            </div>
           </div>
 
-          {/* Signatures */}
-          <div className="flex justify-center gap-10 w-full max-w-lg">
-            {signatoryName1 && (
-              <div className="flex flex-col items-center">
-                {signatureUrl1 && (
-                  <img src={signatureUrl1} alt="Signature" className="h-10 mb-1" />
-                )}
-                <div className="h-px w-24 bg-gradient-to-r from-transparent via-cyan-400 to-transparent mb-1"></div>
-                <p className="text-white font-semibold text-xs">{signatoryName1}</p>
-                {signatoryTitle1 && (
-                  <p className="text-gray-400 text-[10px] uppercase tracking-wide">{signatoryTitle1}</p>
-                )}
+          {/* Signatory 1 */}
+          {signatoryName1 && (
+            <div style={{ textAlign: "center" }}>
+              {signatureUrl1 && (
+                <div style={{ marginBottom: "6px" }}>
+                  <img
+                    src={signatureUrl1}
+                    alt="Signature 1"
+                    className="w-24 h-16"
+                    style={{
+                      marginBottom: -20,
+                      marginLeft: "25px",
+                      objectFit: "contain",
+                    }}
+                  />
+                </div>
+              )}
+              <div
+                style={{
+                  width: "87px",
+                  height: "0.5px",
+                  background:
+                    "linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.6), transparent)",
+                  margin: "0 auto 5px",
+                }}
+              />
+              <div
+                style={{
+                  fontSize: "10px",
+                  color: "#e2e8f0",
+                  fontWeight: 600,
+                  marginBottom: "2px",
+                }}
+              >
+                {signatoryName1}
               </div>
-            )}
-            {signatoryName2 && (
-              <div className="flex flex-col items-center">
-                {signatureUrl2 && (
-                  <img src={signatureUrl2} alt="Signature" className="h-10 mb-1" />
-                )}
-                <div className="h-px w-24 bg-gradient-to-r from-transparent via-purple-400 to-transparent mb-1"></div>
-                <p className="text-white font-semibold text-xs">{signatoryName2}</p>
-                {signatoryTitle2 && (
-                  <p className="text-gray-400 text-[10px] uppercase tracking-wide">{signatoryTitle2}</p>
-                )}
+              {signatoryTitle1 && (
+                <div
+                  style={{
+                    fontSize: "8px",
+                    color: "rgba(148, 163, 184, 0.8)",
+                    fontWeight: 400,
+                  }}
+                >
+                  {signatoryTitle1}
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Signatory 2 */}
+          {signatoryName2 && (
+            <div style={{ textAlign: "center" }}>
+              {signatureUrl2 && (
+                <div style={{ marginBottom: "6px" }}>
+                  <img
+                    src={signatureUrl2}
+                    alt="Signature 2"
+                    className="w-24 h-16"
+                    style={{
+                      marginBottom: -20,
+                      marginLeft: "25px",
+                      objectFit: "contain",
+                    }}
+                  />
+                </div>
+              )}
+              <div
+                style={{
+                  width: "87px",
+                  height: "0.5px",
+                  background:
+                    "linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.6), transparent)",
+                  margin: "0 auto 5px",
+                }}
+              />
+              <div
+                style={{
+                  fontSize: "10px",
+                  color: "#e2e8f0",
+                  fontWeight: 600,
+                  marginBottom: "2px",
+                }}
+              >
+                {signatoryName2}
               </div>
-            )}
-          </div>
+              {signatoryTitle2 && (
+                <div
+                  style={{
+                    fontSize: "8px",
+                    color: "rgba(148, 163, 184, 0.8)",
+                    fontWeight: 400,
+                  }}
+                >
+                  {signatoryTitle2}
+                </div>
+              )}
+            </div>
+          )}
         </div>
 
         {/* Bottom Tech Pattern */}
         <div className="absolute bottom-0 left-0 right-0 h-12 opacity-20">
           <svg width="100%" height="100%" viewBox="0 0 640 50">
-            <path d="M0,25 L640,25" stroke="#00ffff" strokeWidth="0.5" fill="none" />
-            <path d="M0,30 L640,30" stroke="#00ffff" strokeWidth="0.3" fill="none" opacity="0.5" />
-            <path d="M0,20 L640,20" stroke="#00ffff" strokeWidth="0.3" fill="none" opacity="0.5" />
+            <path
+              d="M0,25 L640,25"
+              stroke="#00ffff"
+              strokeWidth="0.5"
+              fill="none"
+            />
+            <path
+              d="M0,30 L640,30"
+              stroke="#00ffff"
+              strokeWidth="0.3"
+              fill="none"
+              opacity="0.5"
+            />
+            <path
+              d="M0,20 L640,20"
+              stroke="#00ffff"
+              strokeWidth="0.3"
+              fill="none"
+              opacity="0.5"
+            />
           </svg>
         </div>
       </div>

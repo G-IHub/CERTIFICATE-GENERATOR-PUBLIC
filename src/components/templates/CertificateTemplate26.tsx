@@ -134,7 +134,13 @@ export default function CertificateTemplate26({
             style={{ transform: `rotate(${pos.rotation}deg)` }}
           >
             <defs>
-              <linearGradient id={`goldGrad${idx}`} x1="0%" y1="0%" x2="100%" y2="100%">
+              <linearGradient
+                id={`goldGrad${idx}`}
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="100%"
+              >
                 <stop offset="0%" stopColor="#ffd700" />
                 <stop offset="50%" stopColor="#c0c0c0" />
                 <stop offset="100%" stopColor="#ffd700" />
@@ -146,8 +152,22 @@ export default function CertificateTemplate26({
               opacity="0.6"
             />
             <circle cx="0" cy="0" r="15" fill="#ffd700" />
-            <line x1="0" y1="20" x2="0" y2="60" stroke="#ffd700" strokeWidth="2" />
-            <line x1="20" y1="0" x2="60" y2="0" stroke="#ffd700" strokeWidth="2" />
+            <line
+              x1="0"
+              y1="20"
+              x2="0"
+              y2="60"
+              stroke="#ffd700"
+              strokeWidth="2"
+            />
+            <line
+              x1="20"
+              y1="0"
+              x2="60"
+              y2="0"
+              stroke="#ffd700"
+              strokeWidth="2"
+            />
           </svg>
         </div>
       ))}
@@ -206,7 +226,8 @@ export default function CertificateTemplate26({
           textAlign: "center",
           fontSize: "16px",
           fontWeight: 400,
-          background: "linear-gradient(135deg, #ffd700 0%, #ffffff 50%, #c0c0c0 100%)",
+          background:
+            "linear-gradient(135deg, #ffd700 0%, #ffffff 50%, #c0c0c0 100%)",
           WebkitBackgroundClip: "text",
           WebkitTextFillColor: "transparent",
           backgroundClip: "text",
@@ -227,7 +248,8 @@ export default function CertificateTemplate26({
           transform: "translateX(-50%)",
           width: "137px",
           height: "0.5px",
-          background: "linear-gradient(90deg, transparent, #ffd700, transparent)",
+          background:
+            "linear-gradient(90deg, transparent, #ffd700, transparent)",
         }}
       />
 
@@ -240,6 +262,7 @@ export default function CertificateTemplate26({
           transform: "translate(-50%, -50%)",
           textAlign: "center",
           width: "593px",
+          marginTop: "-20px",
         }}
       >
         {/* Header */}
@@ -268,7 +291,9 @@ export default function CertificateTemplate26({
             marginBottom: "23px",
           }}
         >
-          <div style={{ width: "46px", height: "0.5px", background: "#ffd700" }} />
+          <div
+            style={{ width: "46px", height: "0.5px", background: "#ffd700" }}
+          />
           <div
             style={{
               width: "7px",
@@ -293,7 +318,9 @@ export default function CertificateTemplate26({
               transform: "rotate(45deg)",
             }}
           />
-          <div style={{ width: "46px", height: "0.5px", background: "#c0c0c0" }} />
+          <div
+            style={{ width: "46px", height: "0.5px", background: "#c0c0c0" }}
+          />
         </div>
 
         {/* Awarded text */}
@@ -316,7 +343,8 @@ export default function CertificateTemplate26({
           style={{
             fontSize: "33px",
             fontWeight: 700,
-            background: "linear-gradient(135deg, #ffd700 0%, #ffffff 50%, #ffd700 100%)",
+            background:
+              "linear-gradient(135deg, #ffd700 0%, #ffffff 50%, #ffd700 100%)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             backgroundClip: "text",
@@ -360,13 +388,15 @@ export default function CertificateTemplate26({
         {description && (
           <div
             style={{
-              fontSize: "10px",
-              color: "#a0a0a0",
-              fontWeight: 400,
-              maxWidth: "502px",
-              margin: "0 auto",
-              lineHeight: "1.7",
-              fontFamily: "'Lato', sans-serif",
+              textAlign: "center",
+              fontSize: "12px",
+              color: "white",
+              margin: "10px 20px",
+              lineHeight: "1.4",
+              wordWrap: "break-word",
+              // maxWidth: "28%",
+              marginLeft: "auto",
+              marginRight: "auto",
             }}
           >
             {description}
@@ -456,11 +486,11 @@ export default function CertificateTemplate26({
                 <img
                   src={signatureUrl1}
                   alt="Signature 1"
-                  style={{ 
-                    height: "27px", 
-                    maxWidth: "96px", 
+                  className="w-24 h-16"
+                  style={{
+                    marginBottom: -20,
+                    marginLeft: "25px",
                     objectFit: "contain",
-                    filter: "brightness(0) invert(1)",
                   }}
                 />
               </div>
@@ -469,7 +499,8 @@ export default function CertificateTemplate26({
               style={{
                 width: "96px",
                 height: "0.5px",
-                background: "linear-gradient(90deg, transparent, #ffd700, transparent)",
+                background:
+                  "linear-gradient(90deg, transparent, #ffd700, transparent)",
                 margin: "0 auto 6px",
               }}
             />
@@ -507,11 +538,11 @@ export default function CertificateTemplate26({
                 <img
                   src={signatureUrl2}
                   alt="Signature 2"
-                  style={{ 
-                    height: "27px", 
-                    maxWidth: "96px", 
+                  className="w-24 h-16"
+                  style={{
+                    marginBottom: -20,
+                    marginLeft: "25px",
                     objectFit: "contain",
-                    filter: "brightness(0) invert(1)",
                   }}
                 />
               </div>
@@ -520,7 +551,8 @@ export default function CertificateTemplate26({
               style={{
                 width: "96px",
                 height: "0.5px",
-                background: "linear-gradient(90deg, transparent, #c0c0c0, transparent)",
+                background:
+                  "linear-gradient(90deg, transparent, #c0c0c0, transparent)",
                 margin: "0 auto 6px",
               }}
             />

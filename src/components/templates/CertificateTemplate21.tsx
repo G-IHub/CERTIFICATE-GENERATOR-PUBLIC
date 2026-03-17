@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import type { Logo } from "../../App";
 
 interface CertificateTemplate21Props {
@@ -38,11 +38,8 @@ export default function CertificateTemplate21({
   signatureUrl2,
   mode = "student",
 }: CertificateTemplate21Props) {
-  const transformClass =
-    mode === "student" ? "transform scale-[0.3]" : "transform scale-100";
-  const containerClass = isPreview
-    ? "w-full mx-auto origin-center overflow-visible flex justify-center"
-    : "min-w-[1056px] flex justify-center items-center";
+  const ref = useRef<HTMLDivElement>(null);
+  const scale = mode === "student" ? 1 : 1;
 
   useEffect(() => {
     const id = "lato-font";
@@ -62,28 +59,38 @@ export default function CertificateTemplate21({
     day: "numeric",
   });
 
-  const logo1 = organizationLogos?.[0];
-  const logo2 = organizationLogos?.[1];
+  const logosToDisplay =
+    organizationLogos?.filter((logo) => logo.selected) || [];
+  const hasLogos = logosToDisplay.length > 0;
 
   return (
-    <div className={`${containerClass} ${transformClass} bg-transparent`}>
+    <div>
       <div
-        className="relative flex flex-col justify-between shadow-xl bg-white overflow-hidden"
+        ref={ref}
         style={{
           width: "800px",
           height: "600px",
-          fontFamily: "'Lato', sans-serif",
+          position: "relative",
+          background: "white",
+          fontFamily: "'Inter', sans-serif",
+          overflow: "hidden",
+          transform: `scale(${scale})`,
+          transformOrigin: "top left",
         }}
       >
         {/* Medical Cross Pattern Background */}
         <div className="absolute inset-0 opacity-5">
           {[...Array(12)].map((_, i) => (
-            <div key={i} className="absolute" style={{
-              left: `${(i % 4) * 25}%`,
-              top: `${Math.floor(i / 4) * 33}%`,
-              width: '40px',
-              height: '40px',
-            }}>
+            <div
+              key={i}
+              className="absolute"
+              style={{
+                left: `${(i % 4) * 25}%`,
+                top: `${Math.floor(i / 4) * 33}%`,
+                width: "40px",
+                height: "40px",
+              }}
+            >
               <div className="absolute w-4 h-16 bg-teal-600 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"></div>
               <div className="absolute w-16 h-4 bg-teal-600 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"></div>
             </div>
@@ -92,11 +99,18 @@ export default function CertificateTemplate21({
 
         {/* Top Accent Bar */}
         <div className="absolute top-0 left-0 right-0 h-6 bg-gradient-to-r from-teal-600 via-teal-500 to-cyan-500"></div>
-        
+
         {/* Side Medical Symbol */}
         <div className="absolute left-12 top-1/2 -translate-y-1/2 opacity-10">
           <svg width="120" height="120" viewBox="0 0 120 120">
-            <circle cx="60" cy="60" r="50" fill="none" stroke="#0d9488" strokeWidth="3" />
+            <circle
+              cx="60"
+              cy="60"
+              r="50"
+              fill="none"
+              stroke="#0d9488"
+              strokeWidth="3"
+            />
             <rect x="52" y="30" width="16" height="60" fill="#0d9488" />
             <rect x="30" y="52" width="60" height="16" fill="#0d9488" />
           </svg>
@@ -105,25 +119,48 @@ export default function CertificateTemplate21({
         {/* Content */}
         <div className="relative z-10 flex flex-col items-center justify-center flex-1 px-20 py-16">
           {/* Logo Section */}
-          <div className="mb-8">
-            {(logo1 || logo2) && (
-              <div className="flex gap-6 items-center justify-center mb-4">
-                {logo1 && (
-                  <img src={logo1.url} alt={logo1.name} className="h-20 object-contain" />
-                )}
-                {logo2 && (
-                  <img src={logo2.url} alt={logo2.name} className="h-20 object-contain" />
-                )}
-              </div>
-            )}
-            {organizationLogo && !logo1 && !logo2 && (
-              <img src={organizationLogo} alt="Logo" className="h-20 mx-auto mb-4" />
-            )}
-            <div className="text-teal-700 text-xl font-bold tracking-wide uppercase">
-              {organizationName}
+          {hasLogos && (
+            <div
+              style={{
+                position: "absolute",
+                top: "18px",
+                left: "50%",
+                transform: "translateX(-50%)",
+                display: "flex",
+                gap: logosToDisplay.length > 1 ? "14px" : "0",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              {logosToDisplay.map((logo, index) => (
+                <div
+                  key={index}
+                  style={{
+                    width: "32px",
+                    height: "32px",
+                    borderRadius: "5px",
+                    background: "rgba(59, 130, 246, 0.1)",
+                    border: "0.5px solid rgba(59, 130, 246, 0.4)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    padding: "5px",
+                    boxShadow: "0 0 7px rgba(59, 130, 246, 0.2)",
+                  }}
+                >
+                  <img
+                    src={logo.url}
+                    alt={`Logo ${index + 1}`}
+                    style={{
+                      maxWidth: "100%",
+                      maxHeight: "100%",
+                      objectFit: "contain",
+                    }}
+                  />
+                </div>
+              ))}
             </div>
-          </div>
-
+          )}
           {/* Medical Symbol Divider */}
           <div className="mb-6 flex items-center gap-4">
             <div className="h-px w-24 bg-gradient-to-r from-transparent to-teal-500"></div>
@@ -137,14 +174,16 @@ export default function CertificateTemplate21({
 
           {/* Certificate Header */}
           <div className="mb-8 text-center">
-            <h1 className="text-5xl font-black uppercase text-teal-700 mb-2 tracking-wide">
+            <h1 className="text-3xl font-black uppercase text-teal-700 mb-2 tracking-wide">
               {header}
             </h1>
           </div>
 
           {/* Presented To */}
           <div className="mb-6 text-center">
-            <p className="text-gray-600 text-sm uppercase tracking-widest mb-3 font-semibold">This certifies that</p>
+            <p className="text-gray-600 text-sm uppercase tracking-widest mb-3 font-semibold">
+              This certifies that
+            </p>
             <h2 className="text-4xl font-bold text-gray-800 mb-1">
               {recipientName}
             </h2>
@@ -153,51 +192,176 @@ export default function CertificateTemplate21({
 
           {/* Course Title */}
           <div className="mb-6 text-center">
-            <p className="text-gray-600 text-sm uppercase tracking-widest mb-3 font-semibold">has successfully completed</p>
+            <p className="text-gray-600 text-sm uppercase tracking-widest mb-3 font-semibold">
+              has successfully completed
+            </p>
             <h3 className="text-3xl font-bold text-teal-600 mb-4">
               {courseTitle}
             </h3>
             {description && (
-              <p className="text-gray-700 text-base max-w-2xl mx-auto leading-relaxed italic">
-                {description}
+              <p
+                style={{
+                  textAlign: "center",
+                  fontSize: "12px",
+                  color: "black",
+                  margin: "10px 20px",
+                  lineHeight: "1.4",
+                  wordWrap: "break-word",
+                  maxWidth: "28%",
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                }}
+              >
+                {description ||
+                  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio commodi incidunt harum, doloremque reprehenderit voluptas aspernatu"}
               </p>
             )}
           </div>
+        </div>
 
+        {/* Bottom Section */}
+        <div
+          style={{
+            position: "absolute",
+            bottom: "27px",
+            left: 0,
+            right: 0,
+            display: "flex",
+            justifyContent: "space-around",
+            alignItems: "flex-end",
+            padding: "0 57px",
+          }}
+        >
           {/* Date */}
-          <div className="mb-10 mt-6">
-            <div className="inline-block px-8 py-3 border-2 border-teal-500 rounded-full">
-              <p className="text-teal-700 text-base font-bold tracking-wide">{formattedDate}</p>
+          <div style={{ textAlign: "center" }}>
+            <div
+              style={{
+                fontSize: "8px",
+                color: "rgba(148, 163, 184, 0.8)",
+                marginBottom: "5px",
+                fontWeight: 500,
+                letterSpacing: "0.7px",
+                textTransform: "uppercase",
+                fontFamily: "'Fira Code', monospace",
+              }}
+            >
+              {"// date"}
+            </div>
+            <div
+              style={{
+                fontSize: "10px",
+                color: "#60a5fa",
+                fontWeight: 600,
+                fontFamily: "'Fira Code', monospace",
+              }}
+            >
+              {new Date(date).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+              })}
             </div>
           </div>
 
-          {/* Signatures */}
-          <div className="flex justify-center gap-24 w-full max-w-3xl mt-4">
-            {signatoryName1 && (
-              <div className="flex flex-col items-center">
-                {signatureUrl1 && (
-                  <img src={signatureUrl1} alt="Signature" className="h-16 mb-2" />
-                )}
-                <div className="h-0.5 w-52 bg-teal-600 mb-2"></div>
-                <p className="text-gray-800 font-bold text-sm">{signatoryName1}</p>
-                {signatoryTitle1 && (
-                  <p className="text-gray-600 text-xs uppercase tracking-wide mt-1">{signatoryTitle1}</p>
-                )}
+          {/* Signatory 1 */}
+          {signatoryName1 && (
+            <div style={{ textAlign: "center" }}>
+              {signatureUrl1 && (
+                <div style={{ marginBottom: "6px" }}>
+                  <img
+                    src={signatureUrl1}
+                    alt="Signature 1"
+                    className="w-24 h-16"
+                    style={{
+                      marginBottom: -20,
+                      marginLeft: "25px",
+                      objectFit: "contain",
+                    }}
+                  />
+                </div>
+              )}
+              <div
+                style={{
+                  width: "87px",
+                  height: "0.5px",
+                  background:
+                    "linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.6), transparent)",
+                  margin: "0 auto 5px",
+                }}
+              />
+              <div
+                style={{
+                  fontSize: "10px",
+                  color: "#1f2937",
+                  fontWeight: 600,
+                  marginBottom: "2px",
+                }}
+              >
+                {signatoryName1}
               </div>
-            )}
-            {signatoryName2 && (
-              <div className="flex flex-col items-center">
-                {signatureUrl2 && (
-                  <img src={signatureUrl2} alt="Signature" className="h-16 mb-2" />
-                )}
-                <div className="h-0.5 w-52 bg-teal-600 mb-2"></div>
-                <p className="text-gray-800 font-bold text-sm">{signatoryName2}</p>
-                {signatoryTitle2 && (
-                  <p className="text-gray-600 text-xs uppercase tracking-wide mt-1">{signatoryTitle2}</p>
-                )}
+              {signatoryTitle1 && (
+                <div
+                  style={{
+                    fontSize: "8px",
+                    color: "rgba(148, 163, 184, 0.8)",
+                    fontWeight: 400,
+                  }}
+                >
+                  {signatoryTitle1}
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Signatory 2 */}
+          {signatoryName2 && (
+            <div style={{ textAlign: "center" }}>
+              {signatureUrl2 && (
+                <div style={{ marginBottom: "6px" }}>
+                  <img
+                    src={signatureUrl2}
+                    alt="Signature 2"
+                    className="w-24 h-16"
+                    style={{
+                      marginBottom: -20,
+                      marginLeft: "25px",
+                      objectFit: "contain",
+                    }}
+                  />
+                </div>
+              )}
+              <div
+                style={{
+                  width: "87px",
+                  height: "0.5px",
+                  background:
+                    "linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.6), transparent)",
+                  margin: "0 auto 5px",
+                }}
+              />
+              <div
+                style={{
+                  fontSize: "10px",
+                  color: "#1f2937",
+                  fontWeight: 600,
+                  marginBottom: "2px",
+                }}
+              >
+                {signatoryName2}
               </div>
-            )}
-          </div>
+              {signatoryTitle2 && (
+                <div
+                  style={{
+                    fontSize: "8px",
+                    color: "rgba(148, 163, 184, 0.8)",
+                    fontWeight: 400,
+                  }}
+                >
+                  {signatoryTitle2}
+                </div>
+              )}
+            </div>
+          )}
         </div>
 
         {/* Bottom Accent Bar */}

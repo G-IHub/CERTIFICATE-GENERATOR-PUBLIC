@@ -65,7 +65,8 @@ export default function CertificateTemplate24({
     mode === "student" ? "transform scale-[0.3]" : "transform scale-100";
 
   // Get logos to display
-  const logosToDisplay = organizationLogos?.filter((logo) => logo.selected) || [];
+  const logosToDisplay =
+    organizationLogos?.filter((logo) => logo.selected) || [];
   const hasLogos = logosToDisplay.length > 0;
 
   return (
@@ -76,7 +77,8 @@ export default function CertificateTemplate24({
           width: "800px",
           height: "600px",
           position: "relative",
-          background: "linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)",
+          background:
+            "linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)",
           fontFamily: "'Rajdhani', sans-serif",
           overflow: "hidden",
         }}
@@ -92,15 +94,50 @@ export default function CertificateTemplate24({
           }}
         >
           <defs>
-            <pattern id="circuit24" x="0" y="0" width="36" height="36" patternUnits="userSpaceOnUse">
+            <pattern
+              id="circuit24"
+              x="0"
+              y="0"
+              width="36"
+              height="36"
+              patternUnits="userSpaceOnUse"
+            >
               <circle cx="9" cy="9" r="0.5" fill="#fff" />
               <circle cx="27" cy="9" r="0.5" fill="#fff" />
               <circle cx="9" cy="27" r="0.5" fill="#fff" />
               <circle cx="27" cy="27" r="0.5" fill="#fff" />
-              <line x1="9" y1="9" x2="27" y2="9" stroke="#fff" strokeWidth="0.2" />
-              <line x1="9" y1="27" x2="27" y2="27" stroke="#fff" strokeWidth="0.2" />
-              <line x1="9" y1="9" x2="9" y2="27" stroke="#fff" strokeWidth="0.2" />
-              <line x1="27" y1="9" x2="27" y2="27" stroke="#fff" strokeWidth="0.2" />
+              <line
+                x1="9"
+                y1="9"
+                x2="27"
+                y2="9"
+                stroke="#fff"
+                strokeWidth="0.2"
+              />
+              <line
+                x1="9"
+                y1="27"
+                x2="27"
+                y2="27"
+                stroke="#fff"
+                strokeWidth="0.2"
+              />
+              <line
+                x1="9"
+                y1="9"
+                x2="9"
+                y2="27"
+                stroke="#fff"
+                strokeWidth="0.2"
+              />
+              <line
+                x1="27"
+                y1="9"
+                x2="27"
+                y2="27"
+                stroke="#fff"
+                strokeWidth="0.2"
+              />
             </pattern>
           </defs>
           <rect width="100%" height="100%" fill="url(#circuit24)" />
@@ -115,7 +152,8 @@ export default function CertificateTemplate24({
             width: "110px",
             height: "110px",
             borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%)",
+            background:
+              "radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%)",
             filter: "blur(16px)",
           }}
         />
@@ -127,7 +165,8 @@ export default function CertificateTemplate24({
             width: "90px",
             height: "90px",
             borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%)",
+            background:
+              "radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%)",
             filter: "blur(16px)",
           }}
         />
@@ -287,7 +326,8 @@ export default function CertificateTemplate24({
                 style={{
                   width: "54px",
                   height: "1px",
-                  background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.6))",
+                  background:
+                    "linear-gradient(90deg, transparent, rgba(255,255,255,0.6))",
                 }}
               />
               <div
@@ -303,7 +343,8 @@ export default function CertificateTemplate24({
                 style={{
                   width: "54px",
                   height: "1px",
-                  background: "linear-gradient(90deg, rgba(255,255,255,0.6), transparent)",
+                  background:
+                    "linear-gradient(90deg, rgba(255,255,255,0.6), transparent)",
                 }}
               />
             </div>
@@ -367,18 +408,19 @@ export default function CertificateTemplate24({
 
             {/* Description */}
             {description && (
-              <div
+              <p
                 style={{
-                  fontSize: "8px",
-                  color: "rgba(255, 255, 255, 0.75)",
-                  fontWeight: 400,
-                  maxWidth: "420px",
-                  margin: "0 auto",
-                  lineHeight: "1.6",
+                  textAlign: "center",
+                  fontSize: "12px",
+                  color: "white",
+                  margin: "10px 20px",
+                  lineHeight: "1.4",
+                  wordWrap: "break-word",
                 }}
               >
-                {description}
-              </div>
+                {description ||
+                  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio commodi incidunt harum, doloremque reprehenderit voluptas aspernatu"}
+              </p>
             )}
           </div>
 
@@ -386,57 +428,42 @@ export default function CertificateTemplate24({
           <div
             style={{
               position: "absolute",
-              bottom: "24px",
+              bottom: "27px",
               left: 0,
               right: 0,
               display: "flex",
               justifyContent: "space-around",
               alignItems: "flex-end",
-              padding: "0 56px",
+              padding: "0 57px",
             }}
           >
             {/* Date */}
             <div style={{ textAlign: "center" }}>
               <div
                 style={{
-                  width: "16px",
-                  height: "16px",
-                  margin: "0 auto 5px",
-                  borderRadius: "50%",
-                  border: "2px solid rgba(255, 255, 255, 0.5)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
                   fontSize: "8px",
-                  color: "#ffffff",
-                  fontFamily: "'Orbitron', sans-serif",
-                  fontWeight: 700,
-                }}
-              >
-                📅
-              </div>
-              <div
-                style={{
-                  fontSize: "7px",
-                  color: "rgba(255, 255, 255, 0.7)",
-                  marginBottom: "3px",
-                  letterSpacing: "0.6px",
+                  color: "rgba(148, 163, 184, 0.8)",
+                  marginBottom: "5px",
+                  fontWeight: 500,
+                  letterSpacing: "0.7px",
                   textTransform: "uppercase",
+                  fontFamily: "'Fira Code', monospace",
                 }}
               >
-                Date Issued
+                {"// date"}
               </div>
               <div
                 style={{
-                  fontSize: "9px",
-                  color: "#ffffff",
+                  fontSize: "10px",
+                  color: "#60a5fa",
                   fontWeight: 600,
+                  fontFamily: "'Fira Code', monospace",
                 }}
               >
                 {new Date(date).toLocaleDateString("en-US", {
                   year: "numeric",
-                  month: "short",
-                  day: "numeric",
+                  month: "2-digit",
+                  day: "2-digit",
                 })}
               </div>
             </div>
@@ -445,31 +472,32 @@ export default function CertificateTemplate24({
             {signatoryName1 && (
               <div style={{ textAlign: "center" }}>
                 {signatureUrl1 && (
-                  <div style={{ marginBottom: "5px" }}>
+                  <div style={{ marginBottom: "6px" }}>
                     <img
                       src={signatureUrl1}
                       alt="Signature 1"
+                      className="w-24 h-16"
                       style={{
-                        height: "20px",
-                        maxWidth: "76px",
+                        marginBottom: -20,
+                        marginLeft: "25px",
                         objectFit: "contain",
-                        filter: "brightness(0) invert(1)",
                       }}
                     />
                   </div>
                 )}
                 <div
                   style={{
-                    width: "76px",
-                    height: "1px",
-                    background: "rgba(255, 255, 255, 0.5)",
-                    margin: "0 auto 4px",
+                    width: "87px",
+                    height: "0.5px",
+                    background:
+                      "linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.6), transparent)",
+                    margin: "0 auto 5px",
                   }}
                 />
                 <div
                   style={{
-                    fontSize: "9px",
-                    color: "#ffffff",
+                    fontSize: "10px",
+                    color: "#e2e8f0",
                     fontWeight: 600,
                     marginBottom: "2px",
                   }}
@@ -479,8 +507,8 @@ export default function CertificateTemplate24({
                 {signatoryTitle1 && (
                   <div
                     style={{
-                      fontSize: "7px",
-                      color: "rgba(255, 255, 255, 0.7)",
+                      fontSize: "8px",
+                      color: "rgba(148, 163, 184, 0.8)",
                       fontWeight: 400,
                     }}
                   >
@@ -494,31 +522,32 @@ export default function CertificateTemplate24({
             {signatoryName2 && (
               <div style={{ textAlign: "center" }}>
                 {signatureUrl2 && (
-                  <div style={{ marginBottom: "5px" }}>
+                  <div style={{ marginBottom: "6px" }}>
                     <img
                       src={signatureUrl2}
                       alt="Signature 2"
+                      className="w-24 h-16"
                       style={{
-                        height: "20px",
-                        maxWidth: "76px",
+                        marginBottom: -20,
+                        marginLeft: "25px",
                         objectFit: "contain",
-                        filter: "brightness(0) invert(1)",
                       }}
                     />
                   </div>
                 )}
                 <div
                   style={{
-                    width: "76px",
-                    height: "1px",
-                    background: "rgba(255, 255, 255, 0.5)",
-                    margin: "0 auto 4px",
+                    width: "87px",
+                    height: "0.5px",
+                    background:
+                      "linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.6), transparent)",
+                    margin: "0 auto 5px",
                   }}
                 />
                 <div
                   style={{
-                    fontSize: "9px",
-                    color: "#ffffff",
+                    fontSize: "10px",
+                    color: "#e2e8f0",
                     fontWeight: 600,
                     marginBottom: "2px",
                   }}
@@ -528,8 +557,8 @@ export default function CertificateTemplate24({
                 {signatoryTitle2 && (
                   <div
                     style={{
-                      fontSize: "7px",
-                      color: "rgba(255, 255, 255, 0.7)",
+                      fontSize: "8px",
+                      color: "rgba(148, 163, 184, 0.8)",
                       fontWeight: 400,
                     }}
                   >

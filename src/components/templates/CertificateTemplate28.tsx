@@ -98,7 +98,8 @@ export default function CertificateTemplate28({
           left: 0,
           width: "182px",
           height: "182px",
-          background: "linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, transparent 70%)",
+          background:
+            "linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, transparent 70%)",
           clipPath: "polygon(0 0, 100% 0, 0 100%)",
         }}
       />
@@ -111,7 +112,8 @@ export default function CertificateTemplate28({
           right: 0,
           width: "205px",
           height: "205px",
-          background: "linear-gradient(135deg, transparent 30%, rgba(59, 130, 246, 0.12) 100%)",
+          background:
+            "linear-gradient(135deg, transparent 30%, rgba(59, 130, 246, 0.12) 100%)",
           clipPath: "polygon(100% 0, 100% 100%, 0 100%)",
         }}
       />
@@ -134,7 +136,8 @@ export default function CertificateTemplate28({
             left: 0,
             right: 0,
             height: "5px",
-            background: "linear-gradient(90deg, #2563eb 0%, #3b82f6 50%, #60a5fa 100%)",
+            background:
+              "linear-gradient(90deg, #2563eb 0%, #3b82f6 50%, #60a5fa 100%)",
             borderTopLeftRadius: "7px",
             borderTopRightRadius: "7px",
           }}
@@ -161,7 +164,8 @@ export default function CertificateTemplate28({
                   width: "36px",
                   height: "36px",
                   borderRadius: "5px",
-                  background: "linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%)",
+                  background:
+                    "linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%)",
                   border: "1px solid #3b82f6",
                   display: "flex",
                   alignItems: "center",
@@ -221,6 +225,7 @@ export default function CertificateTemplate28({
               fontWeight: 400,
               color: "#2563eb",
               marginBottom: "16px",
+              marginTop: "-50px",
               letterSpacing: "2.7px",
               textTransform: "uppercase",
               fontFamily: "'Bebas Neue', sans-serif",
@@ -298,6 +303,7 @@ export default function CertificateTemplate28({
               color: "#64748b",
               fontWeight: 400,
               marginBottom: "10px",
+              marginTop: "-20px",
               letterSpacing: "0.7px",
             }}
           >
@@ -322,12 +328,16 @@ export default function CertificateTemplate28({
           {description && (
             <div
               style={{
-                fontSize: "10px",
-                color: "#64748b",
-                fontWeight: 400,
-                maxWidth: "502px",
-                margin: "0 auto",
-                lineHeight: "1.6",
+                textAlign: "center",
+                fontSize: "12px",
+                color: "black",
+                margin: "10px 20px",
+                lineHeight: "1.4",
+                wordWrap: "break-word",
+                // maxWidth: "28%",
+                marginLeft: "auto",
+                marginRight: "auto",
+                marginTop: "-10px",
               }}
             >
               {description}
@@ -409,7 +419,12 @@ export default function CertificateTemplate28({
                   <img
                     src={signatureUrl1}
                     alt="Signature 1"
-                    style={{ height: "23px", maxWidth: "91px", objectFit: "contain" }}
+                    className="w-24 h-16"
+                    style={{
+                      marginBottom: -20,
+                      marginLeft: "25px",
+                      objectFit: "contain",
+                    }}
                   />
                 </div>
               )}
@@ -417,7 +432,8 @@ export default function CertificateTemplate28({
                 style={{
                   width: "91px",
                   height: "1px",
-                  background: "linear-gradient(90deg, transparent, #2563eb, transparent)",
+                  background:
+                    "linear-gradient(90deg, transparent, #2563eb, transparent)",
                   margin: "0 auto 6px",
                 }}
               />
@@ -453,7 +469,12 @@ export default function CertificateTemplate28({
                   <img
                     src={signatureUrl2}
                     alt="Signature 2"
-                    style={{ height: "23px", maxWidth: "91px", objectFit: "contain" }}
+                    className="w-24 h-16"
+                    style={{
+                      marginBottom: -20,
+                      marginLeft: "25px",
+                      objectFit: "contain",
+                    }}
                   />
                 </div>
               )}
@@ -461,7 +482,8 @@ export default function CertificateTemplate28({
                 style={{
                   width: "91px",
                   height: "1px",
-                  background: "linear-gradient(90deg, transparent, #3b82f6, transparent)",
+                  background:
+                    "linear-gradient(90deg, transparent, #3b82f6, transparent)",
                   margin: "0 auto 6px",
                 }}
               />

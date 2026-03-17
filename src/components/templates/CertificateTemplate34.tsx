@@ -57,7 +57,8 @@ export default function CertificateTemplate34({
     }
   }, []);
 
-  const logosToDisplay = organizationLogos?.filter((logo) => logo.selected) || [];
+  const logosToDisplay =
+    organizationLogos?.filter((logo) => logo.selected) || [];
   const hasLogos = logosToDisplay.length > 0;
 
   return (
@@ -79,7 +80,8 @@ export default function CertificateTemplate34({
         style={{
           position: "absolute",
           inset: 0,
-          background: "radial-gradient(circle at 30% 40%, rgba(212, 175, 55, 0.1) 0%, transparent 50%), radial-gradient(circle at 70% 60%, rgba(255, 215, 0, 0.08) 0%, transparent 50%)",
+          background:
+            "radial-gradient(circle at 30% 40%, rgba(212, 175, 55, 0.1) 0%, transparent 50%), radial-gradient(circle at 70% 60%, rgba(255, 215, 0, 0.08) 0%, transparent 50%)",
         }}
       />
 
@@ -101,9 +103,11 @@ export default function CertificateTemplate34({
           position: "absolute",
           inset: "18px",
           border: "2px solid",
-          borderImage: "linear-gradient(135deg, #d4af37 0%, #ffd700 50%, #d4af37 100%) 1",
+          borderImage:
+            "linear-gradient(135deg, #d4af37 0%, #ffd700 50%, #d4af37 100%) 1",
           background: "linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%)",
-          boxShadow: "0 0 23px rgba(212, 175, 55, 0.3), inset 0 0 34px rgba(212, 175, 55, 0.05)",
+          boxShadow:
+            "0 0 23px rgba(212, 175, 55, 0.3), inset 0 0 34px rgba(212, 175, 55, 0.05)",
         }}
       >
         {/* Inner decorative border */}
@@ -199,7 +203,8 @@ export default function CertificateTemplate34({
                   width: "36px",
                   height: "36px",
                   borderRadius: "50%",
-                  background: "radial-gradient(circle, #1a1a1a 0%, #0a0a0a 100%)",
+                  background:
+                    "radial-gradient(circle, #1a1a1a 0%, #0a0a0a 100%)",
                   border: "1px solid #d4af37",
                   display: "flex",
                   alignItems: "center",
@@ -258,7 +263,8 @@ export default function CertificateTemplate34({
             style={{
               fontSize: "25px",
               fontWeight: 800,
-              background: "linear-gradient(135deg, #d4af37 0%, #ffd700 50%, #d4af37 100%)",
+              background:
+                "linear-gradient(135deg, #d4af37 0%, #ffd700 50%, #d4af37 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -380,18 +386,19 @@ export default function CertificateTemplate34({
 
           {/* Description */}
           {description && (
-            <div
+            <p
               style={{
-                fontSize: "10px",
-                color: "#c0c0c0",
-                fontWeight: 400,
-                maxWidth: "525px",
-                margin: "0 auto",
-                lineHeight: "1.8",
+                textAlign: "center",
+                fontSize: "12px",
+                color: "white",
+                margin: "10px 20px",
+                lineHeight: "1.4",
+                wordWrap: "break-word",
               }}
             >
-              {description}
-            </div>
+              {description ||
+                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio commodi incidunt harum, doloremque reprehenderit voluptas aspernatu"}
+            </p>
           )}
         </div>
 
@@ -412,38 +419,30 @@ export default function CertificateTemplate34({
           <div style={{ textAlign: "center" }}>
             <div
               style={{
-                padding: "8px 15px",
-                border: "1px solid #d4af37",
-                background: "linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%)",
-                boxShadow: "0 0 9px rgba(212, 175, 55, 0.3)",
+                fontSize: "8px",
+                color: "rgba(148, 163, 184, 0.8)",
+                marginBottom: "5px",
+                fontWeight: 500,
+                letterSpacing: "0.7px",
+                textTransform: "uppercase",
+                fontFamily: "'Fira Code', monospace",
               }}
             >
-              <div
-                style={{
-                  fontSize: "9px",
-                  color: "#a8a8a8",
-                  marginBottom: "3px",
-                  fontWeight: 600,
-                  letterSpacing: "0.9px",
-                  textTransform: "uppercase",
-                }}
-              >
-                Date
-              </div>
-              <div
-                style={{
-                  fontSize: "12px",
-                  color: "#d4af37",
-                  fontWeight: 700,
-                  fontFamily: "'Cinzel', serif",
-                }}
-              >
-                {new Date(date).toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
-              </div>
+              {"// date"}
+            </div>
+            <div
+              style={{
+                fontSize: "10px",
+                color: "#60a5fa",
+                fontWeight: 600,
+                fontFamily: "'Fira Code', monospace",
+              }}
+            >
+              {new Date(date).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+              })}
             </div>
           </div>
 
@@ -451,29 +450,34 @@ export default function CertificateTemplate34({
           {signatoryName1 && (
             <div style={{ textAlign: "center" }}>
               {signatureUrl1 && (
-                <div style={{ marginBottom: "7px" }}>
+                <div style={{ marginBottom: "6px" }}>
                   <img
                     src={signatureUrl1}
                     alt="Signature 1"
-                    style={{ height: "23px", maxWidth: "96px", objectFit: "contain", filter: "brightness(1.5)" }}
+                    className="w-24 h-16"
+                    style={{
+                      marginBottom: -20,
+                      marginLeft: "25px",
+                      objectFit: "contain",
+                    }}
                   />
                 </div>
               )}
               <div
                 style={{
-                  width: "96px",
-                  height: "1px",
-                  background: "#d4af37",
+                  width: "87px",
+                  height: "0.5px",
+                  background:
+                    "linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.6), transparent)",
                   margin: "0 auto 5px",
                 }}
               />
               <div
                 style={{
-                  fontSize: "12px",
-                  color: "#d4af37",
-                  fontWeight: 700,
-                  marginBottom: "3px",
-                  fontFamily: "'Cinzel', serif",
+                  fontSize: "10px",
+                  color: "#e2e8f0",
+                  fontWeight: 600,
+                  marginBottom: "2px",
                 }}
               >
                 {signatoryName1}
@@ -481,8 +485,8 @@ export default function CertificateTemplate34({
               {signatoryTitle1 && (
                 <div
                   style={{
-                    fontSize: "9px",
-                    color: "#a8a8a8",
+                    fontSize: "8px",
+                    color: "rgba(148, 163, 184, 0.8)",
                     fontWeight: 400,
                   }}
                 >
@@ -496,29 +500,34 @@ export default function CertificateTemplate34({
           {signatoryName2 && (
             <div style={{ textAlign: "center" }}>
               {signatureUrl2 && (
-                <div style={{ marginBottom: "7px" }}>
+                <div style={{ marginBottom: "6px" }}>
                   <img
                     src={signatureUrl2}
                     alt="Signature 2"
-                    style={{ height: "23px", maxWidth: "96px", objectFit: "contain", filter: "brightness(1.5)" }}
+                    className="w-24 h-16"
+                    style={{
+                      marginBottom: -20,
+                      marginLeft: "25px",
+                      objectFit: "contain",
+                    }}
                   />
                 </div>
               )}
               <div
                 style={{
-                  width: "96px",
-                  height: "1px",
-                  background: "#d4af37",
+                  width: "87px",
+                  height: "0.5px",
+                  background:
+                    "linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.6), transparent)",
                   margin: "0 auto 5px",
                 }}
               />
               <div
                 style={{
-                  fontSize: "12px",
-                  color: "#d4af37",
-                  fontWeight: 700,
-                  marginBottom: "3px",
-                  fontFamily: "'Cinzel', serif",
+                  fontSize: "10px",
+                  color: "#e2e8f0",
+                  fontWeight: 600,
+                  marginBottom: "2px",
                 }}
               >
                 {signatoryName2}
@@ -526,8 +535,8 @@ export default function CertificateTemplate34({
               {signatoryTitle2 && (
                 <div
                   style={{
-                    fontSize: "9px",
-                    color: "#a8a8a8",
+                    fontSize: "8px",
+                    color: "rgba(148, 163, 184, 0.8)",
                     fontWeight: 400,
                   }}
                 >

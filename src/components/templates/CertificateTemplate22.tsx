@@ -65,8 +65,7 @@ export default function CertificateTemplate22({
     mode === "student" ? "transform scale-[0.3]" : "transform scale-100";
 
   // Get logos to display
-  const logosToDisplay =
-    organizationLogos?.filter((logo) => logo.selected) || [];
+  const logosToDisplay = organizationLogos || [];
   const hasLogos = logosToDisplay.length > 0;
 
   return (
@@ -129,11 +128,11 @@ export default function CertificateTemplate22({
           <div
             style={{
               position: "absolute",
-              top: "20px",
+              top: "18px",
               left: "50%",
               transform: "translateX(-50%)",
               display: "flex",
-              gap: logosToDisplay.length > 1 ? "15px" : "0",
+              gap: logosToDisplay.length > 1 ? "14px" : "0",
               alignItems: "center",
               justifyContent: "center",
             }}
@@ -144,14 +143,14 @@ export default function CertificateTemplate22({
                 style={{
                   width: "32px",
                   height: "32px",
-                  borderRadius: "50%",
-                  background: "rgba(255, 255, 255, 0.05)",
-                  border: "1px solid rgba(99, 102, 241, 0.3)",
+                  borderRadius: "5px",
+                  background: "rgba(59, 130, 246, 0.1)",
+                  border: "0.5px solid rgba(59, 130, 246, 0.4)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
                   padding: "5px",
-                  backdropFilter: "blur(10px)",
+                  boxShadow: "0 0 7px rgba(59, 130, 246, 0.2)",
                 }}
               >
                 <img
@@ -172,7 +171,7 @@ export default function CertificateTemplate22({
         <div
           style={{
             position: "absolute",
-            top: hasLogos ? "60px" : "30px",
+            top: hasLogos ? "59px" : "23px",
             left: 0,
             right: 0,
             textAlign: "center",

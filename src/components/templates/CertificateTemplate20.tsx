@@ -62,8 +62,8 @@ export default function CertificateTemplate20({
     day: "numeric",
   });
 
-  const logo1 = organizationLogos?.[0];
-  const logo2 = organizationLogos?.[1];
+  const logosToDisplay = organizationLogos || [];
+  const hasLogos = logosToDisplay.length > 0;
 
   return (
     <div className={`${containerClass} ${transformClass} bg-transparent`}>
@@ -106,35 +106,54 @@ export default function CertificateTemplate20({
         <div className="absolute bottom-5 left-5 w-10 h-10 border-l-2 border-b-2 border-purple-400"></div>
         <div className="absolute bottom-5 right-5 w-10 h-10 border-r-2 border-b-2 border-purple-400"></div>
 
+        {/* Logo Section */}
+        {hasLogos && (
+          <div
+            style={{
+              position: "absolute",
+              top: "18px",
+              left: "50%",
+              transform: "translateX(-50%)",
+              display: "flex",
+              gap: logosToDisplay.length > 1 ? "14px" : "0",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            {logosToDisplay.map((logo, index) => (
+              <div
+                key={index}
+                style={{
+                  width: "32px",
+                  height: "32px",
+                  borderRadius: "5px",
+                  background: "rgba(59, 130, 246, 0.1)",
+                  border: "0.5px solid rgba(59, 130, 246, 0.4)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  padding: "5px",
+                  boxShadow: "0 0 7px rgba(59, 130, 246, 0.2)",
+                }}
+              >
+                <img
+                  src={logo.url}
+                  alt={`Logo ${index + 1}`}
+                  style={{
+                    maxWidth: "100%",
+                    maxHeight: "100%",
+                    objectFit: "contain",
+                  }}
+                />
+              </div>
+            ))}
+          </div>
+        )}
+
         {/* Content */}
         <div className="relative z-10 flex flex-col items-center justify-center flex-1 px-12 py-10 text-center">
-          {/* Logo Section */}
+          {/* Organization Name */}
           <div className="mb-4 -mt-52">
-            {(logo1 || logo2) && (
-              <div className="flex gap-3 items-center justify-center mb-2">
-                {logo1 && (
-                  <img
-                    src={logo1.url}
-                    alt={logo1.name}
-                    className="h-8 object-contain"
-                  />
-                )}
-                {logo2 && (
-                  <img
-                    src={logo2.url}
-                    alt={logo2.name}
-                    className="h-8 object-contain"
-                  />
-                )}
-              </div>
-            )}
-            {organizationLogo && !logo1 && !logo2 && (
-              <img
-                src={organizationLogo}
-                alt="Logo"
-                className="h-8 mx-auto mb-2 -mt-20"
-              />
-            )}
             <div
               className="text-cyan-400 text-xs font-semibold tracking-widest uppercase"
               style={{ fontFamily: "'Orbitron', sans-serif" }}

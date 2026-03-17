@@ -1,0 +1,28 @@
+# Certifyer - Certificate Management Platform
+# https://certifyer.online
+
+User-agent: *
+
+# Allow public pages
+Allow: /
+Allow: /login
+Allow: /signup
+Allow: /verify/
+
+# Disallow admin and authenticated pages
+Disallow: /dashboard
+Disallow: /platform-admin
+Disallow: /admin-utilities
+Disallow: /template-builder
+Disallow: /test-route
+Disallow: /test-cert
+Disallow: /health-check
+Disallow: /deploy-guide
+Disallow: /query-premium
+Disallow: /short-link-test
+
+# Sitemap location
+Sitemap: https://certifyer.online/sitemap.xml
+
+# Crawl delay (be nice to our server)
+Crawl-delay: 1

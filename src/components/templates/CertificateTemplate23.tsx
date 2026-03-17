@@ -65,8 +65,7 @@ export default function CertificateTemplate23({
     mode === "student" ? "transform scale-[0.3]" : "transform scale-100";
 
   // Get logos to display
-  const logosToDisplay =
-    organizationLogos?.filter((logo) => logo.selected) || [];
+  const logosToDisplay = organizationLogos || [];
   const hasLogos = logosToDisplay.length > 0;
 
   return (
@@ -149,11 +148,11 @@ export default function CertificateTemplate23({
           <div
             style={{
               position: "absolute",
-              top: "32px",
+              top: "18px",
               left: "50%",
               transform: "translateX(-50%)",
               display: "flex",
-              gap: logosToDisplay.length > 1 ? "20px" : "0",
+              gap: logosToDisplay.length > 1 ? "14px" : "0",
               alignItems: "center",
               justifyContent: "center",
             }}
@@ -162,16 +161,16 @@ export default function CertificateTemplate23({
               <div
                 key={index}
                 style={{
-                  width: "36px",
-                  height: "36px",
-                  borderRadius: "50%",
-                  background: "#ffffff",
-                  border: "1px solid #d4af37",
+                  width: "32px",
+                  height: "32px",
+                  borderRadius: "5px",
+                  background: "rgba(59, 130, 246, 0.1)",
+                  border: "0.5px solid rgba(59, 130, 246, 0.4)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  padding: "6px",
-                  boxShadow: "0 2px 8px rgba(0, 0, 0, 0.08)",
+                  padding: "5px",
+                  boxShadow: "0 0 7px rgba(59, 130, 246, 0.2)",
                 }}
               >
                 <img
@@ -192,7 +191,7 @@ export default function CertificateTemplate23({
         <div
           style={{
             position: "absolute",
-            top: hasLogos ? "76px" : "40px",
+            top: hasLogos ? "59px" : "23px",
             left: 0,
             right: 0,
             textAlign: "center",

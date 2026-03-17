@@ -57,8 +57,7 @@ export default function CertificateTemplate34({
     }
   }, []);
 
-  const logosToDisplay =
-    organizationLogos?.filter((logo) => logo.selected) || [];
+  const logosToDisplay = organizationLogos || [];
   const hasLogos = logosToDisplay.length > 0;
 
   return (

@@ -11,7 +11,6 @@ interface CertificateTemplate1Props {
   organizationName?: string;
   organizationLogo?: string;
   organizationLogos?: Logo[];
-  organizationSlogan?: string;
   signatoryName1?: string;
   signatoryTitle1?: string;
   signatureUrl1?: string;
@@ -32,7 +31,6 @@ export default function CertificateTemplate1({
   organizationName = "Genomac Services & Consult",
   organizationLogo,
   organizationLogos,
-  organizationSlogan = "Services & Consult",
   signatoryName1 = "Oluwaseyi Abraham Olawale",
   signatoryTitle1 = "Founder & CEO, Genomac Holdings",
   signatureUrl1,
@@ -74,28 +72,31 @@ export default function CertificateTemplate1({
       className="shadow rounded flex justify-center"
     >
       {/* Header Logo and Organization Name */}
-      <div className="absolute top-10 left-10 z-40 flex gap-3 justify-center items-center">
+      <div className="absolute top-10 left-10 z-40 flex  justify-center items-center">
         {organizationLogo && (
           <img
             src={organizationLogo}
             alt="Organization"
-            className="w-10 h-10 object-contain"
+            className="w-20 h-20 object-contain"
           />
         )}
         {logosToDisplay.length > 0 && (
           <img
             src={logosToDisplay[0].url}
             alt="Organization"
-            className="w-10 h-10 object-contain"
+            className="w-20 h-20 object-contain"
           />
         )}
-        <div className="text-center">
-          <p className="text-sm font-bold tracking-wide m-0">
-            {organizationName.split(" ")[0] || "Genomac"}
+        <div className="text-center text-lg/6 font-bold ">
+          <p className="m-0">
+            {organizationName.split(" ")[0]}
           </p>
-          <p className="text-xs font-semibold m-0">
-            {organizationSlogan}
+          <p className="m-0">
+            {organizationName.split(" ")[1]}
           </p>
+          {/* <p className="m-0">
+            {organizationName.split(" ")[2]}
+          </p> */}
         </div>
       </div>
 

@@ -26,22 +26,22 @@ export default function CertificateTemplate1({
   courseTitle,
   description,
   date,
-  recipientName = "Adeade Favour Ololade",
+  recipientName,
   isPreview = false,
-  organizationName = "Genomac Services & Consult",
+  organizationName,
   organizationLogo,
   organizationLogos,
-  signatoryName1 = "Oluwaseyi Abraham Olawale",
-  signatoryTitle1 = "Founder & CEO, Genomac Holdings",
+  signatoryName1,
+  signatoryTitle1,
   signatureUrl1,
-  signatoryName2 = "ILESANMI MOTUNRAYO",
-  signatoryTitle2 = "Team Lead, Genomac Services & Consult",
+  signatoryName2,
+  signatoryTitle2,
   signatureUrl2,
   mode = "student",
   certificateId,
 }: CertificateTemplate1Props) {
   const ref = useRef<HTMLDivElement>(null);
-  const scale = mode === "student" ? 0.3 : 1;
+  const scale = mode === "student" ? 1 : 1;
 
   useEffect(() => {
     const id = "greatvibes-font";
@@ -55,7 +55,6 @@ export default function CertificateTemplate1({
     }
   }, []);
 
-  const logosToDisplay = organizationLogos || [];
 
   return (
     <div
@@ -80,23 +79,13 @@ export default function CertificateTemplate1({
             className="w-20 h-20 object-contain"
           />
         )}
-        {logosToDisplay.length > 0 && (
-          <img
-            src={logosToDisplay[0].url}
-            alt="Organization"
-            className="w-20 h-20 object-contain"
-          />
-        )}
-        <div className="text-center text-lg/6 font-bold ">
-          <p className="m-0">
+        <div className="text-lg/6">
+          <p className="m-0 font-bold">
             {organizationName.split(" ")[0]}
           </p>
-          <p className="m-0">
-            {organizationName.split(" ")[1]}
+          <p className="m-0 font-bold">
+          {organizationName.split(" ")[1]}{" "}{organizationName.split(" ")[2]}{" "}{organizationName.split(" ")[3]}
           </p>
-          {/* <p className="m-0">
-            {organizationName.split(" ")[2]}
-          </p> */}
         </div>
       </div>
 
@@ -215,7 +204,7 @@ export default function CertificateTemplate1({
           }}
         />
         {/* Triangle - left bottom */}
-        <div
+        {/* <div
           style={{
             position: "absolute",
             width: 0,
@@ -227,7 +216,7 @@ export default function CertificateTemplate1({
             left: 216,
             bottom: 32,
           }}
-        />
+        /> */}
         {/* Triangle - large left bottom 1 */}
         <div
           style={{
@@ -411,12 +400,13 @@ export default function CertificateTemplate1({
         {/* Certificate Title */}
         <div>
           <p className="text-3xl font-medium tracking-widest uppercase">
-            CERTIFICATE OF
+            {header.split(" ")[0]}{" "}{header.split(" ")[1]}
           </p>
           <p className="text-5xl font-bold uppercase ">
-            Completion
+            {header.split(" ")[2]}
           </p>
         </div>
+        {/* <p className="text-3xl font-medium uppercase">{header}</p> */}
 
         {/* Subtitle */}
         <p className="text-sm font-medium">
@@ -426,7 +416,7 @@ export default function CertificateTemplate1({
         {/* Recipient Info */}
         <div className="flex flex-col gap-4 items-center text-center">
           {/* Student Name with underline */}
-          <div className="w-auto border-b-2 border-blue-950 pb-2">
+          <div className="w-auto border-b-2 border-blue-950">
             <div
               style={{
                 fontSize: "40px",
@@ -440,8 +430,7 @@ export default function CertificateTemplate1({
 
           {/* Description */}
           <p className="max-w-xl text-sm font-bold text-center">
-            This Is To Certify That The Above-Mentioned Individual Has Completed A
-            Three-Months Training In {courseTitle || "PERSONALIZED RESEARCH TRAINING IN TRANSCRIPTOMINCS"}{" "}
+            {description} {courseTitle}{" "}
             Organized by {organizationName}.
           </p>
 
@@ -455,7 +444,7 @@ export default function CertificateTemplate1({
         <div className="flex gap-10 w-full justify-center items-center">
           {/* Signature 1 */}
           <div className="flex flex-col gap-2 items-center">
-            <div className="border-b border-blue-950 w-40 text-center min-h-10">
+            <div className="border-b border-blue-950 w-40 flex justify-center min-h-10">
               {signatureUrl1 && (
                 <img
                   src={signatureUrl1}
@@ -466,7 +455,7 @@ export default function CertificateTemplate1({
             </div>
             <div className="text-center text-xs font-semibold">
               <p className="uppercase m-0 mb-0.5">
-                {signatoryName1}
+                {signatoryName1 || "Oluwaseyi Abraham Olawale"}
               </p>
               <p className="m-0">
                 {signatoryTitle1}
@@ -476,7 +465,7 @@ export default function CertificateTemplate1({
 
           {/* Signature 2 */}
           <div className="flex flex-col gap-2 items-center">
-            <div className="border-b border-blue-950 w-40 text-center min-h-10">
+            <div className="border-b border-blue-950 w-40 flex justify-center min-h-10">
               {signatureUrl2 && (
                 <img
                   src={signatureUrl2}
@@ -487,7 +476,7 @@ export default function CertificateTemplate1({
             </div>
             <div className="text-center text-xs font-semibold">
               <p className="uppercase m-0 mb-0.5">
-                {signatoryName2}
+                {signatoryName2 || "Ilesanmi Motunrayo"}
               </p>
               <p className="m-0">
                 {signatoryTitle2}

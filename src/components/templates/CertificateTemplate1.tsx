@@ -28,20 +28,20 @@ export default function CertificateTemplate1({
   date,
   recipientName = "Adeade Favour Ololade",
   isPreview = false,
-  organizationName = "Genomac Services & Consult",
+  organizationName,
   organizationLogo,
   organizationLogos,
-  signatoryName1 = "Oluwaseyi Abraham Olawale",
+  signatoryName1,
   signatoryTitle1 = "Founder & CEO, Genomac Holdings",
   signatureUrl1,
-  signatoryName2 = "ILESANMI MOTUNRAYO",
+  signatoryName2,
   signatoryTitle2 = "Team Lead, Genomac Services & Consult",
   signatureUrl2,
   mode = "student",
   certificateId,
 }: CertificateTemplate1Props) {
   const ref = useRef<HTMLDivElement>(null);
-  const scale = mode === "student" ? 0.3 : 1;
+  const scale = mode === "student" ? 1 : 1;
 
   useEffect(() => {
     const id = "greatvibes-font";
@@ -55,7 +55,6 @@ export default function CertificateTemplate1({
     }
   }, []);
 
-  const logosToDisplay = organizationLogos || [];
 
   return (
     <div
@@ -76,13 +75,6 @@ export default function CertificateTemplate1({
         {organizationLogo && (
           <img
             src={organizationLogo}
-            alt="Organization"
-            className="w-20 h-20 object-contain"
-          />
-        )}
-        {logosToDisplay.length > 0 && (
-          <img
-            src={logosToDisplay[0].url}
             alt="Organization"
             className="w-20 h-20 object-contain"
           />
@@ -409,14 +401,15 @@ export default function CertificateTemplate1({
       {/* Main Content - centered */}
       <div className="flex flex-col justify-center items-center text-center gap-8">
         {/* Certificate Title */}
-        <div>
+        {/* <div>
           <p className="text-3xl font-medium tracking-widest uppercase">
             CERTIFICATE OF
           </p>
           <p className="text-5xl font-bold uppercase ">
             Completion
           </p>
-        </div>
+        </div> */}
+        <p className="text-3xl font-medium uppercase">{header}</p>
 
         {/* Subtitle */}
         <p className="text-sm font-medium">
@@ -440,8 +433,7 @@ export default function CertificateTemplate1({
 
           {/* Description */}
           <p className="max-w-xl text-sm font-bold text-center">
-            This Is To Certify That The Above-Mentioned Individual Has Completed A
-            Three-Months Training In {courseTitle || "PERSONALIZED RESEARCH TRAINING IN TRANSCRIPTOMINCS"}{" "}
+            {description} {courseTitle}{" "}
             Organized by {organizationName}.
           </p>
 
@@ -466,7 +458,7 @@ export default function CertificateTemplate1({
             </div>
             <div className="text-center text-xs font-semibold">
               <p className="uppercase m-0 mb-0.5">
-                {signatoryName1}
+                {signatoryName1 || "Oluwaseyi Abraham Olawale"}
               </p>
               <p className="m-0">
                 {signatoryTitle1}
@@ -487,7 +479,7 @@ export default function CertificateTemplate1({
             </div>
             <div className="text-center text-xs font-semibold">
               <p className="uppercase m-0 mb-0.5">
-                {signatoryName2}
+                {signatoryName2 || "ILESANMI MOTUNRAYO"}
               </p>
               <p className="m-0">
                 {signatoryTitle2}

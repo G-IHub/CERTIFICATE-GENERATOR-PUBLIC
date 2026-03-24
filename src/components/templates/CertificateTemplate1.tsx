@@ -26,16 +26,16 @@ export default function CertificateTemplate1({
   courseTitle,
   description,
   date,
-  recipientName = "Adeade Favour Ololade",
+  recipientName,
   isPreview = false,
   organizationName,
   organizationLogo,
   organizationLogos,
   signatoryName1,
-  signatoryTitle1 = "Founder & CEO, Genomac Holdings",
+  signatoryTitle1,
   signatureUrl1,
   signatoryName2,
-  signatoryTitle2 = "Team Lead, Genomac Services & Consult",
+  signatoryTitle2,
   signatureUrl2,
   mode = "student",
   certificateId,
@@ -79,16 +79,13 @@ export default function CertificateTemplate1({
             className="w-20 h-20 object-contain"
           />
         )}
-        <div className="text-center text-lg/6 font-bold ">
-          <p className="m-0">
+        <div className="text-lg/6">
+          <p className="m-0 font-bold">
             {organizationName.split(" ")[0]}
           </p>
-          <p className="m-0">
-            {organizationName.split(" ")[1]}
+          <p className="m-0 font-bold">
+          {organizationName.split(" ")[1]}{" "}{organizationName.split(" ")[2]}{" "}{organizationName.split(" ")[3]}
           </p>
-          {/* <p className="m-0">
-            {organizationName.split(" ")[2]}
-          </p> */}
         </div>
       </div>
 
@@ -207,7 +204,7 @@ export default function CertificateTemplate1({
           }}
         />
         {/* Triangle - left bottom */}
-        <div
+        {/* <div
           style={{
             position: "absolute",
             width: 0,
@@ -219,7 +216,7 @@ export default function CertificateTemplate1({
             left: 216,
             bottom: 32,
           }}
-        />
+        /> */}
         {/* Triangle - large left bottom 1 */}
         <div
           style={{
@@ -419,7 +416,7 @@ export default function CertificateTemplate1({
         {/* Recipient Info */}
         <div className="flex flex-col gap-4 items-center text-center">
           {/* Student Name with underline */}
-          <div className="w-auto border-b-2 border-blue-950 pb-2">
+          <div className="w-auto border-b-2 border-blue-950">
             <div
               style={{
                 fontSize: "40px",
@@ -447,7 +444,7 @@ export default function CertificateTemplate1({
         <div className="flex gap-10 w-full justify-center items-center">
           {/* Signature 1 */}
           <div className="flex flex-col gap-2 items-center">
-            <div className="border-b border-blue-950 w-40 text-center min-h-10">
+            <div className="border-b border-blue-950 w-40 flex justify-center min-h-10">
               {signatureUrl1 && (
                 <img
                   src={signatureUrl1}
@@ -468,7 +465,7 @@ export default function CertificateTemplate1({
 
           {/* Signature 2 */}
           <div className="flex flex-col gap-2 items-center">
-            <div className="border-b border-blue-950 w-40 text-center min-h-10">
+            <div className="border-b border-blue-950 w-40 flex justify-center min-h-10">
               {signatureUrl2 && (
                 <img
                   src={signatureUrl2}
@@ -479,7 +476,7 @@ export default function CertificateTemplate1({
             </div>
             <div className="text-center text-xs font-semibold">
               <p className="uppercase m-0 mb-0.5">
-                {signatoryName2 || "ILESANMI MOTUNRAYO"}
+                {signatoryName2 || "Ilesanmi Motunrayo"}
               </p>
               <p className="m-0">
                 {signatoryTitle2}

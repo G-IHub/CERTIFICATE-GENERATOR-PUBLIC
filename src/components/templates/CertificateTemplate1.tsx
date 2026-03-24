@@ -401,15 +401,15 @@ export default function CertificateTemplate1({
       {/* Main Content - centered */}
       <div className="flex flex-col justify-center items-center text-center gap-8">
         {/* Certificate Title */}
-        {/* <div>
+        <div>
           <p className="text-3xl font-medium tracking-widest uppercase">
-            CERTIFICATE OF
+            {header.split(" ")[0]}{" "}{header.split(" ")[1]}
           </p>
           <p className="text-5xl font-bold uppercase ">
-            Completion
+            {header.split(" ")[2]}
           </p>
-        </div> */}
-        <p className="text-3xl font-medium uppercase">{header}</p>
+        </div>
+        {/* <p className="text-3xl font-medium uppercase">{header}</p> */}
 
         {/* Subtitle */}
         <p className="text-sm font-medium">

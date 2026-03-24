@@ -1,7 +1,7 @@
 import { useRef, useEffect } from "react";
 import type { Logo } from "../../App";
 
-interface CertificateTemplate1Props {
+interface CertificateTemplate39Props {
   header: string;
   courseTitle: string;
   description?: string;
@@ -11,6 +11,7 @@ interface CertificateTemplate1Props {
   organizationName?: string;
   organizationLogo?: string;
   organizationLogos?: Logo[];
+  organizationSlogan?: string;
   signatoryName1?: string;
   signatoryTitle1?: string;
   signatureUrl1?: string;
@@ -21,7 +22,7 @@ interface CertificateTemplate1Props {
   certificateId?: string;
 }
 
-export default function CertificateTemplate1({
+export default function CertificateTemplate39({
   header,
   courseTitle,
   description,
@@ -31,6 +32,7 @@ export default function CertificateTemplate1({
   organizationName = "Genomac Services & Consult",
   organizationLogo,
   organizationLogos,
+  organizationSlogan = "Services & Consult",
   signatoryName1 = "Oluwaseyi Abraham Olawale",
   signatoryTitle1 = "Founder & CEO, Genomac Holdings",
   signatureUrl1,
@@ -39,9 +41,9 @@ export default function CertificateTemplate1({
   signatureUrl2,
   mode = "student",
   certificateId,
-}: CertificateTemplate1Props) {
+}: CertificateTemplate39Props) {
   const ref = useRef<HTMLDivElement>(null);
-  const scale = mode === "student" ? 0.3 : 1;
+  const scale = mode === "student" ? 1 : 0.7;
 
   useEffect(() => {
     const id = "greatvibes-font";
@@ -64,39 +66,38 @@ export default function CertificateTemplate1({
         width: "800px",
         height: "600px",
         position: "relative",
+        background: "#1a1a1a",
         fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
         overflow: "hidden",
         transform: `scale(${scale})`,
         transformOrigin: "top left",
+        boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+        borderRadius: "8px",
       }}
-      className="shadow rounded flex justify-center"
     >
       {/* Header Logo and Organization Name */}
-      <div className="absolute top-10 left-10 z-40 flex  justify-center items-center">
+      <div className="absolute top-10 left-10 z-40 flex gap-3 justify-center items-center">
         {organizationLogo && (
           <img
             src={organizationLogo}
             alt="Organization"
-            className="w-20 h-20 object-contain"
+            className="w-10 h-10 object-contain"
           />
         )}
         {logosToDisplay.length > 0 && (
           <img
             src={logosToDisplay[0].url}
             alt="Organization"
-            className="w-20 h-20 object-contain"
+            className="w-10 h-10 object-contain"
           />
         )}
-        <div className="text-center text-lg/6 font-bold ">
-          <p className="m-0">
-            {organizationName.split(" ")[0]}
+        <div className="text-center">
+          <p className="text-sm font-bold tracking-wide text-white m-0">
+            {organizationName.split(" ")[0] || "Genomac"}
           </p>
-          <p className="m-0">
-            {organizationName.split(" ")[1]}
+          <p className="text-xs font-semibold text-white m-0">
+            {organizationSlogan}
           </p>
-          {/* <p className="m-0">
-            {organizationName.split(" ")[2]}
-          </p> */}
         </div>
       </div>
 
@@ -210,8 +211,9 @@ export default function CertificateTemplate1({
             borderLeft: "30px solid transparent",
             borderRight: "30px solid transparent",
             borderBottom: "40px solid #80183D",
-            right: -90,
-            bottom: 380,
+            transform: "rotate(180deg)",
+            right: -40,
+            bottom: 120,
           }}
         />
         {/* Triangle - left bottom */}
@@ -378,7 +380,7 @@ export default function CertificateTemplate1({
           }}
         />
         {/* Triangle - left middle 1 */}
-        {/* <div
+        <div
           style={{
             position: "absolute",
             width: 0,
@@ -386,11 +388,10 @@ export default function CertificateTemplate1({
             borderLeft: "30px solid transparent",
             borderRight: "30px solid transparent",
             borderBottom: "40px solid #80183D",
-            transform: "rotate(180deg)",
-            right: 500,
-            bottom: 192,
+            left: 40,
+            top: 192,
           }}
-        /> */}
+        />
         {/* Triangle - left middle 2 */}
         <div
           style={{
@@ -407,46 +408,46 @@ export default function CertificateTemplate1({
       </div>
 
       {/* Main Content - centered */}
-      <div className="flex flex-col justify-center items-center text-center gap-8">
+      <div className="absolute inset-10 flex flex-col justify-center items-center text-center gap-10 z-30">
         {/* Certificate Title */}
         <div>
-          <p className="text-3xl font-medium tracking-widest uppercase">
+          <p className="text-lg font-medium tracking-widest uppercase text-white mb-2">
             CERTIFICATE OF
           </p>
-          <p className="text-5xl font-bold uppercase ">
+          <p className="text-4xl font-bold uppercase text-white">
             Completion
           </p>
         </div>
 
         {/* Subtitle */}
-        <p className="text-sm font-medium">
+        <p className="text-sm text-white">
           This Certificate is Presented to:
         </p>
 
         {/* Recipient Info */}
-        <div className="flex flex-col gap-4 items-center text-center">
+        <div className="flex flex-col gap-4 items-center text-center w-full">
           {/* Student Name with underline */}
-          <div className="w-auto border-b-2 border-blue-950 pb-2">
+          <div className="w-full border-b-2 border-white pb-2">
             <div
               style={{
                 fontSize: "40px",
                 fontFamily: "'Great Vibes', cursive",
               }}
-              className="m-0"
+              className="text-white m-0"
             >
               {recipientName}
             </div>
           </div>
 
           {/* Description */}
-          <p className="max-w-xl text-sm font-bold text-center">
+          <p className="max-w-4/5 text-xs font-bold text-white text-center leading-relaxed">
             This Is To Certify That The Above-Mentioned Individual Has Completed A
             Three-Months Training In {courseTitle || "PERSONALIZED RESEARCH TRAINING IN TRANSCRIPTOMINCS"}{" "}
             Organized by {organizationName}.
           </p>
 
           {/* Date */}
-          <p className="text-xs font-semibold border border-blue-950 px-4 py-2">
+          <p className="text-xs font-semibold text-white border border-white px-4 py-2">
             Held on: {date}
           </p>
         </div>
@@ -464,7 +465,7 @@ export default function CertificateTemplate1({
                 />
               )}
             </div>
-            <div className="text-center text-xs font-semibold">
+            <div className="text-center text-xs font-semibold text-white">
               <p className="uppercase m-0 mb-0.5">
                 {signatoryName1}
               </p>
@@ -485,7 +486,7 @@ export default function CertificateTemplate1({
                 />
               )}
             </div>
-            <div className="text-center text-xs font-semibold">
+            <div className="text-center text-xs font-semibold text-white">
               <p className="uppercase m-0 mb-0.5">
                 {signatoryName2}
               </p>

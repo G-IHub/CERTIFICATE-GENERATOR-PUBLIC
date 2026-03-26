@@ -53,13 +53,14 @@ import {
   BookOpen,
   Trash2,
 } from "lucide-react";
-import { toast } from "sonner@2.0.3";
+import { toast } from "sonner";
 import { publicAnonKey, projectId } from "../utils/supabase/info";
 import BillingSettings from "./BillingSettings";
 import AdminEmailsView from "./AdminEmailsView";
 import PlatformAnalytics from "./PlatformAnalytics";
 import PlatformTrackingView from "./PlatformTrackingView";
 import TemplateVisibilityManager from "./TemplateVisibilityManager";
+import { BlogManagement } from "./admin/BlogManagement";
 
 interface PlatformAdminPanelProps {
   adminEmail: string;
@@ -655,6 +656,7 @@ export default function PlatformAdminPanel({
     { id: "templates", label: "Template Visibility", icon: FileText },
     { id: "billing", label: "Billing Settings", icon: CreditCard },
     { id: "emails", label: "Email Addresses", icon: Mail },
+    { id: "blog", label: "Blog", icon: BookOpen },
     { id: "analytics", label: "Analytics", icon: BarChart3 },
     { id: "tracking", label: "Activity Tracking", icon: Activity },
   ];
@@ -867,6 +869,7 @@ export default function PlatformAdminPanel({
                 {activeView === "templates" && "Template Visibility"}
                 {activeView === "billing" && "Billing Settings"}
                 {activeView === "emails" && "Email Addresses"}
+                {activeView === "blog" && "Blog Management"}
                 {activeView === "analytics" && "Analytics"}
                 {activeView === "tracking" && "Activity Tracking"}
               </h1>
@@ -881,6 +884,8 @@ export default function PlatformAdminPanel({
                   "Configure payment system and pricing"}
                 {activeView === "emails" &&
                   "Collected student email addresses from testimonials"}
+                {activeView === "blog" &&
+                  "Create and manage blog posts for the Certifyer platform"}
                 {activeView === "analytics" &&
                   "Platform analytics and insights"}
                 {activeView === "tracking" &&
@@ -1375,6 +1380,15 @@ export default function PlatformAdminPanel({
 
           {activeView === "emails" && (
             <AdminEmailsView accessToken={accessToken} />
+          )}
+
+          {activeView === "blog" && (
+            <BlogManagement
+              currentUser={{
+                name: "Platform Admin",
+                email: adminEmail,
+              }}
+            />
           )}
 
           {activeView === "analytics" && (

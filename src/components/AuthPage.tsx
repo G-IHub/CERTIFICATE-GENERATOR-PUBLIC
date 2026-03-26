@@ -36,6 +36,7 @@ import {
 import { toast } from "sonner";
 import type { UserAccount } from "../App";
 import { authApi } from "../utils/api";
+import { supabase } from "../utils/supabase/client";
 import { projectId, publicAnonKey } from "../utils/supabase/info";
 import logo from "../assets/logo.png";
 import { useNavigate } from "react-router-dom";
@@ -130,6 +131,21 @@ export default function AuthPage({
         email: signInData.email,
         password: signInData.password,
       });
+
+      // Keep Supabase browser client authenticated for RLS-protected direct queries/storage.
+      if (response?.session?.access_token && response?.session?.refresh_token) {
+        const { error: sessionError } = await supabase.auth.setSession({
+          access_token: response.session.access_token,
+          refresh_token: response.session.refresh_token,
+        });
+
+        if (sessionError) {
+          console.error(
+            "Failed to set Supabase session after sign in:",
+            sessionError,
+          );
+        }
+      }
 
       // Store access token in localStorage
       localStorage.setItem("accessToken", response.accessToken);
@@ -410,6 +426,21 @@ export default function AuthPage({
         fullName: signUpData.fullName,
         organizationName: signUpData.organizationName,
       });
+
+      // Keep Supabase browser client authenticated for RLS-protected direct queries/storage.
+      if (response?.session?.access_token && response?.session?.refresh_token) {
+        const { error: sessionError } = await supabase.auth.setSession({
+          access_token: response.session.access_token,
+          refresh_token: response.session.refresh_token,
+        });
+
+        if (sessionError) {
+          console.error(
+            "Failed to set Supabase session after sign up:",
+            sessionError,
+          );
+        }
+      }
 
       // Store access token in localStorage
       localStorage.setItem("accessToken", response.accessToken);

@@ -105,19 +105,17 @@ export default function CertificateTemplate3({
             style={{ fontFamily: "Inter, sans-serif" }}
           >
             {organizationName ?? "Genomac"}
-            <br />
-            Institute Inc
           </p>
         </div>
 
-        <div className="z-30 flex flex-col gap-8 items-center w-full p-8 mt-10">
+        <div className="z-30 flex flex-col gap-8 items-center w-full p-8 mt-20">
           <div className="flex flex-col items-center gap-2">
-            <h1 className="text-6xl -mt-10 text-purple-950 tracking-wider">
-              {header1}
+            <h1 className="text-6xl -mt-10 text-purple-950 tracking-wider uppercase">
+              {header.split(" ")[0]}
             </h1>
             <div className="relative w-full flex justify-center items-center">
               <p className="text-xl uppercase font-medium tracking-widest bg-transparent italic text-white px-4 py-2 z-30 relative">
-                {header}
+                {header.split(" ")[1]}{" "}{header.split(" ")[2]}
               </p>
               <img
                 src={ribbonUrl}
@@ -133,7 +131,7 @@ export default function CertificateTemplate3({
 
           <div className="space-y-4 flex flex-col items-center text-center">
             <p
-              className="w-full border-b-2 border-purple-900 text-purple-900 text-4xl"
+              className="w-auto border-b-2 border-purple-900 text-purple-900 text-4xl"
               style={{ fontFamily: "Great Vibes, cursive" }}
             >
               {recipientName}
@@ -166,7 +164,7 @@ export default function CertificateTemplate3({
                   )}
                 </p>
                 <div className="space-y-0">
-                  <p className="text-center text-sm font-medium text-purple-500">
+                  <p className="text-center text-sm font-medium text-purple-900">
                     {signatoryName1}
                   </p>
                   <p className="text-center text-[9px] italic font-medium">
@@ -189,7 +187,7 @@ export default function CertificateTemplate3({
                   )}
                 </p>
                 <div className="space-y-0">
-                  <p className="text-center text-sm font-medium text-purple-500">
+                  <p className="text-center text-sm font-medium text-purple-900">
                     {signatoryName2}
                   </p>
                   <p className="text-center text-[9px] italic font-medium">

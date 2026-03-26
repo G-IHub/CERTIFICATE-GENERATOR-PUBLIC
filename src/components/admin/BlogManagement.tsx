@@ -29,6 +29,7 @@ export function BlogManagement({ currentUser }: BlogManagementProps) {
     null,
   );
   const [uploading, setUploading] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
   const [filterStatus, setFilterStatus] = useState<
     "all" | "draft" | "published"
   >("all");
@@ -86,6 +87,7 @@ export function BlogManagement({ currentUser }: BlogManagementProps) {
     }
 
     try {
+      setIsSaving(true);
       const postData = {
         title: currentPost.title,
         excerpt: currentPost.excerpt || "",
@@ -111,6 +113,8 @@ export function BlogManagement({ currentUser }: BlogManagementProps) {
     } catch (error: any) {
       console.error("Error saving blog post:", error);
       toast.error(error.message || "Failed to save blog post");
+    } finally {
+      setIsSaving(false);
     }
   };
 
@@ -195,7 +199,7 @@ export function BlogManagement({ currentUser }: BlogManagementProps) {
     return (
       <div className="flex items-center justify-center h-96">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto mb-4"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-600 mx-auto mb-4"></div>
           <p className="text-gray-600">Loading blog posts...</p>
         </div>
       </div>
@@ -231,7 +235,7 @@ export function BlogManagement({ currentUser }: BlogManagementProps) {
                 setCurrentPost((prev) => ({ ...prev, title: e.target.value }))
               }
               placeholder="Enter blog post title"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
             />
           </div>
 
@@ -247,7 +251,7 @@ export function BlogManagement({ currentUser }: BlogManagementProps) {
               }
               placeholder="Short summary of the blog post (shown in previews)"
               rows={3}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
             />
           </div>
 
@@ -284,7 +288,7 @@ export function BlogManagement({ currentUser }: BlogManagementProps) {
               <button
                 onClick={() => fileInputRef.current?.click()}
                 disabled={uploading}
-                className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 disabled:bg-gray-400 flex items-center gap-2"
+                className="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 disabled:bg-gray-400 flex items-center gap-2"
               >
                 <Upload className="w-4 h-4" />
                 {uploading ? "Uploading..." : "Upload Image"}
@@ -311,7 +315,7 @@ export function BlogManagement({ currentUser }: BlogManagementProps) {
                 setCurrentPost((prev) => ({ ...prev, author: e.target.value }))
               }
               placeholder="Author name"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
             />
           </div>
 
@@ -347,7 +351,7 @@ export function BlogManagement({ currentUser }: BlogManagementProps) {
                   onChange={() =>
                     setCurrentPost((prev) => ({ ...prev, status: "draft" }))
                   }
-                  className="text-purple-600 focus:ring-purple-500"
+                  className="text-orange-600 focus:ring-orange-500"
                 />
                 <span className="text-sm text-gray-700">Save as Draft</span>
               </label>
@@ -359,7 +363,7 @@ export function BlogManagement({ currentUser }: BlogManagementProps) {
                   onChange={() =>
                     setCurrentPost((prev) => ({ ...prev, status: "published" }))
                   }
-                  className="text-purple-600 focus:ring-purple-500"
+                  className="text-orange-600 focus:ring-orange-500"
                 />
                 <span className="text-sm text-gray-700">Publish</span>
               </label>
@@ -367,10 +371,17 @@ export function BlogManagement({ currentUser }: BlogManagementProps) {
 
             <button
               onClick={handleSave}
-              className="px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 flex items-center gap-2"
+              disabled={isSaving}
+              className="px-6 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center gap-2"
             >
               <Save className="w-4 h-4" />
-              {currentPost?.id ? "Update Post" : "Create Post"}
+              {isSaving
+                ? currentPost?.id
+                  ? "Updating..."
+                  : "Creating..."
+                : currentPost?.id
+                  ? "Update Post"
+                  : "Create Post"}
             </button>
           </div>
         </div>
@@ -390,7 +401,7 @@ export function BlogManagement({ currentUser }: BlogManagementProps) {
         </div>
         <button
           onClick={handleNewPost}
-          className="px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 flex items-center gap-2 shadow-md"
+          className="px-6 py-3 bg-orange-600 text-white rounded-lg hover:bg-orange-700 flex items-center gap-2 shadow-md"
         >
           <Plus className="w-5 h-5" />
           New Blog Post
@@ -404,7 +415,7 @@ export function BlogManagement({ currentUser }: BlogManagementProps) {
           onClick={() => setFilterStatus("all")}
           className={`px-4 py-2 rounded-lg ${
             filterStatus === "all"
-              ? "bg-purple-600 text-white"
+              ? "bg-orange-600 text-white"
               : "bg-gray-200 text-gray-700 hover:bg-gray-300"
           }`}
         >
@@ -414,7 +425,7 @@ export function BlogManagement({ currentUser }: BlogManagementProps) {
           onClick={() => setFilterStatus("published")}
           className={`px-4 py-2 rounded-lg ${
             filterStatus === "published"
-              ? "bg-purple-600 text-white"
+              ? "bg-orange-600 text-white"
               : "bg-gray-200 text-gray-700 hover:bg-gray-300"
           }`}
         >
@@ -424,7 +435,7 @@ export function BlogManagement({ currentUser }: BlogManagementProps) {
           onClick={() => setFilterStatus("draft")}
           className={`px-4 py-2 rounded-lg ${
             filterStatus === "draft"
-              ? "bg-purple-600 text-white"
+              ? "bg-orange-600 text-white"
               : "bg-gray-200 text-gray-700 hover:bg-gray-300"
           }`}
         >
@@ -435,8 +446,8 @@ export function BlogManagement({ currentUser }: BlogManagementProps) {
       {/* Blog Posts List */}
       {posts.length === 0 ? (
         <div className="bg-white rounded-lg shadow-md p-12 text-center">
-          <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <Plus className="w-8 h-8 text-purple-600" />
+          <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Plus className="w-8 h-8 text-orange-600" />
           </div>
           <h3 className="text-xl font-semibold mb-2">No blog posts yet</h3>
           <p className="text-gray-600 mb-6">
@@ -445,7 +456,7 @@ export function BlogManagement({ currentUser }: BlogManagementProps) {
           </p>
           <button
             onClick={handleNewPost}
-            className="px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 inline-flex items-center gap-2"
+            className="px-6 py-3 bg-orange-600 text-white rounded-lg hover:bg-orange-700 inline-flex items-center gap-2"
           >
             <Plus className="w-5 h-5" />
             Create First Post
@@ -507,7 +518,7 @@ export function BlogManagement({ currentUser }: BlogManagementProps) {
                   <div className="flex items-center gap-3 mt-4">
                     <button
                       onClick={() => handleEdit(post)}
-                      className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 flex items-center gap-2 text-sm"
+                      className="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 flex items-center gap-2 text-sm"
                     >
                       <Edit2 className="w-4 h-4" />
                       Edit
@@ -535,7 +546,6 @@ export function BlogManagement({ currentUser }: BlogManagementProps) {
               </div>
             </div>
           ))}
-          \n{" "}
         </div>
       )}
     </div>

@@ -8,11 +8,13 @@ import {
   Save,
   X,
   Image as ImageIcon,
+  BarChart3,
 } from "lucide-react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { blogService, type BlogPost } from "../../utils/blogService";
 import { toast } from "sonner";
+import BlogAnalytics from "./BlogAnalytics";
 
 interface BlogManagementProps {
   currentUser: {
@@ -29,10 +31,16 @@ export function BlogManagement({ currentUser }: BlogManagementProps) {
     null,
   );
   const [uploading, setUploading] = useState(false);
-  const [isSaving, setIsSaving] = useState(false);
   const [filterStatus, setFilterStatus] = useState<
     "all" | "draft" | "published"
   >("all");
+  const [viewMode, setViewMode] = useState<
+    "list" | "analytics" | "single-analytics"
+  >("list");
+  const [selectedBlogForAnalytics, setSelectedBlogForAnalytics] = useState<{
+    id: string;
+    title: string;
+  } | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Quill modules configuration
@@ -87,7 +95,6 @@ export function BlogManagement({ currentUser }: BlogManagementProps) {
     }
 
     try {
-      setIsSaving(true);
       const postData = {
         title: currentPost.title,
         excerpt: currentPost.excerpt || "",
@@ -113,8 +120,6 @@ export function BlogManagement({ currentUser }: BlogManagementProps) {
     } catch (error: any) {
       console.error("Error saving blog post:", error);
       toast.error(error.message || "Failed to save blog post");
-    } finally {
-      setIsSaving(false);
     }
   };
 
@@ -371,20 +376,53 @@ export function BlogManagement({ currentUser }: BlogManagementProps) {
 
             <button
               onClick={handleSave}
-              disabled={isSaving}
-              className="px-6 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center gap-2"
+              className="px-6 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 flex items-center gap-2"
             >
               <Save className="w-4 h-4" />
-              {isSaving
-                ? currentPost?.id
-                  ? "Updating..."
-                  : "Creating..."
-                : currentPost?.id
-                  ? "Update Post"
-                  : "Create Post"}
+              {currentPost?.id ? "Update Post" : "Create Post"}
             </button>
           </div>
         </div>
+      </div>
+    );
+  }
+
+  if (viewMode === "analytics") {
+    return (
+      <div className="max-w-6xl mx-auto p-6">
+        <div className="mb-6 flex items-center justify-between">
+          <h2 className="text-2xl font-bold">Blog Analytics</h2>
+          <button
+            onClick={() => setViewMode("list")}
+            className="px-4 py-2 text-gray-600 hover:text-gray-900 flex items-center gap-2"
+          >
+            <X className="w-4 h-4" />
+            Back to List
+          </button>
+        </div>
+
+        <BlogAnalytics />
+      </div>
+    );
+  }
+
+  if (viewMode === "single-analytics") {
+    return (
+      <div className="max-w-6xl mx-auto p-6">
+        <div className="mb-6 flex items-center justify-between">
+          <h2 className="text-2xl font-bold">
+            Blog Analytics: {selectedBlogForAnalytics?.title}
+          </h2>
+          <button
+            onClick={() => setViewMode("list")}
+            className="px-4 py-2 text-gray-600 hover:text-gray-900 flex items-center gap-2"
+          >
+            <X className="w-4 h-4" />
+            Back to List
+          </button>
+        </div>
+
+        <BlogAnalytics blogId={selectedBlogForAnalytics?.id} />
       </div>
     );
   }
@@ -399,13 +437,22 @@ export function BlogManagement({ currentUser }: BlogManagementProps) {
             Create and manage blog posts for the platform
           </p>
         </div>
-        <button
-          onClick={handleNewPost}
-          className="px-6 py-3 bg-orange-600 text-white rounded-lg hover:bg-orange-700 flex items-center gap-2 shadow-md"
-        >
-          <Plus className="w-5 h-5" />
-          New Blog Post
-        </button>
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => setViewMode("analytics")}
+            className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2 shadow-md"
+          >
+            <BarChart3 className="w-5 h-5" />
+            View Analytics
+          </button>
+          <button
+            onClick={handleNewPost}
+            className="px-6 py-3 bg-orange-600 text-white rounded-lg hover:bg-orange-700 flex items-center gap-2 shadow-md"
+          >
+            <Plus className="w-5 h-5" />
+            New Blog Post
+          </button>
+        </div>
       </div>
 
       {/* Filters */}
@@ -522,6 +569,19 @@ export function BlogManagement({ currentUser }: BlogManagementProps) {
                     >
                       <Edit2 className="w-4 h-4" />
                       Edit
+                    </button>
+                    <button
+                      onClick={() => {
+                        setSelectedBlogForAnalytics({
+                          id: post.id,
+                          title: post.title,
+                        });
+                        setViewMode("single-analytics");
+                      }}
+                      className="px-4 py-2 bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 flex items-center gap-2 text-sm"
+                    >
+                      <BarChart3 className="w-4 h-4" />
+                      Analytics
                     </button>
                     <button
                       onClick={() => handleTogglePublish(post)}

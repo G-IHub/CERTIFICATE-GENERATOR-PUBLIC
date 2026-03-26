@@ -5,6 +5,7 @@ import { blogApi, Blog } from "../utils/blogApi";
 import { toast } from "sonner";
 import SEOHead from "./SEOHead";
 import { decodeHtmlEntities } from "../utils/htmlDecode";
+import { useBlogAnalytics } from "../utils/analytics";
 
 export default function BlogDetails() {
   const { id } = useParams();
@@ -43,6 +44,28 @@ export default function BlogDetails() {
 
     fetchBlog();
   }, [id]);
+
+  // Analytics tracking
+  useEffect(() => {
+    if (!post || !id) return;
+
+    const analytics = useBlogAnalytics(id, post.title);
+
+    // Track page view
+    analytics.trackView();
+
+    // Track scroll depth
+    const handleScroll = () => {
+      analytics.updateScrollDepth();
+    };
+    window.addEventListener("scroll", handleScroll);
+
+    // Track engagement on unmount
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      analytics.trackEngagement();
+    };
+  }, [post, id]);
 
   if (loading) {
     return (

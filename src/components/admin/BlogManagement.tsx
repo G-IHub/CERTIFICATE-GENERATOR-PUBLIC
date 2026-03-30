@@ -6,6 +6,7 @@ import {
   Trash2,
   Eye,
   Save,
+  Loader2,
   X,
   Image as ImageIcon,
   BarChart3,
@@ -31,6 +32,7 @@ export function BlogManagement({ currentUser }: BlogManagementProps) {
     null,
   );
   const [uploading, setUploading] = useState(false);
+  const [saving, setSaving] = useState(false);
   const [filterStatus, setFilterStatus] = useState<
     "all" | "draft" | "published"
   >("all");
@@ -89,10 +91,16 @@ export function BlogManagement({ currentUser }: BlogManagementProps) {
 
   // Create or update blog post
   const handleSave = async () => {
+    if (saving) {
+      return;
+    }
+
     if (!currentPost?.title || !currentPost?.content) {
       toast.error("Please fill in title and content");
       return;
     }
+
+    setSaving(true);
 
     try {
       const postData = {
@@ -120,6 +128,8 @@ export function BlogManagement({ currentUser }: BlogManagementProps) {
     } catch (error: any) {
       console.error("Error saving blog post:", error);
       toast.error(error.message || "Failed to save blog post");
+    } finally {
+      setSaving(false);
     }
   };
 
@@ -376,10 +386,21 @@ export function BlogManagement({ currentUser }: BlogManagementProps) {
 
             <button
               onClick={handleSave}
-              className="px-6 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 flex items-center gap-2"
+              disabled={saving}
+              className="px-6 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center gap-2"
             >
-              <Save className="w-4 h-4" />
-              {currentPost?.id ? "Update Post" : "Create Post"}
+              {saving ? (
+                <Loader2 className="w-4 h-4 animate-spin" />
+              ) : (
+                <Save className="w-4 h-4" />
+              )}
+              {saving
+                ? currentPost?.id
+                  ? "Updating..."
+                  : "Creating..."
+                : currentPost?.id
+                  ? "Update Post"
+                  : "Create Post"}
             </button>
           </div>
         </div>

@@ -451,24 +451,26 @@ export function BlogManagement({ currentUser }: BlogManagementProps) {
   return (
     <div className="max-w-6xl mx-auto p-6">
       {/* Header */}
-      <div className="mb-6 flex items-center justify-between">
-        <div>
+      <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+        <div className="min-w-0">
           <h2 className="text-2xl font-bold">Blog Management</h2>
           <p className="text-gray-600">
             Create and manage blog posts for the platform
           </p>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="relative z-10 flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:items-center">
           <button
+            type="button"
             onClick={() => setViewMode("analytics")}
-            className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2 shadow-md"
+            className="w-full sm:w-auto px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center justify-center gap-2 shadow-md"
           >
             <BarChart3 className="w-5 h-5" />
             View Analytics
           </button>
           <button
+            type="button"
             onClick={handleNewPost}
-            className="px-6 py-3 bg-orange-600 text-white rounded-lg hover:bg-orange-700 flex items-center gap-2 shadow-md"
+            className="w-full sm:w-auto px-6 py-3 bg-orange-600 text-white rounded-lg hover:bg-orange-700 flex items-center justify-center gap-2 shadow-md"
           >
             <Plus className="w-5 h-5" />
             New Blog Post
@@ -477,38 +479,43 @@ export function BlogManagement({ currentUser }: BlogManagementProps) {
       </div>
 
       {/* Filters */}
-      <div className="mb-6 flex items-center gap-4">
+      <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
         <span className="text-sm text-gray-600">Filter:</span>
-        <button
-          onClick={() => setFilterStatus("all")}
-          className={`px-4 py-2 rounded-lg ${
-            filterStatus === "all"
-              ? "bg-orange-600 text-white"
-              : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-          }`}
-        >
-          All
-        </button>
-        <button
-          onClick={() => setFilterStatus("published")}
-          className={`px-4 py-2 rounded-lg ${
-            filterStatus === "published"
-              ? "bg-orange-600 text-white"
-              : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-          }`}
-        >
-          Published
-        </button>
-        <button
-          onClick={() => setFilterStatus("draft")}
-          className={`px-4 py-2 rounded-lg ${
-            filterStatus === "draft"
-              ? "bg-orange-600 text-white"
-              : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-          }`}
-        >
-          Drafts
-        </button>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 w-full sm:w-auto sm:min-w-90">
+          <button
+            type="button"
+            onClick={() => setFilterStatus("all")}
+            className={`w-full px-4 py-2 rounded-lg ${
+              filterStatus === "all"
+                ? "bg-orange-600 text-white"
+                : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+            }`}
+          >
+            All
+          </button>
+          <button
+            type="button"
+            onClick={() => setFilterStatus("published")}
+            className={`w-full px-4 py-2 rounded-lg ${
+              filterStatus === "published"
+                ? "bg-orange-600 text-white"
+                : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+            }`}
+          >
+            Published
+          </button>
+          <button
+            type="button"
+            onClick={() => setFilterStatus("draft")}
+            className={`w-full px-4 py-2 rounded-lg ${
+              filterStatus === "draft"
+                ? "bg-orange-600 text-white"
+                : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+            }`}
+          >
+            Drafts
+          </button>
+        </div>
       </div>
 
       {/* Blog Posts List */}
@@ -537,10 +544,10 @@ export function BlogManagement({ currentUser }: BlogManagementProps) {
               key={post.id}
               className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
             >
-              <div className="flex">
+              <div className="flex flex-col md:flex-row">
                 {/* Featured Image */}
                 {post.featured_image && (
-                  <div className="w-48 h-48 flex-shrink-0">
+                  <div className="w-full h-52 md:w-48 md:h-48 shrink-0">
                     <img
                       src={post.featured_image}
                       alt={post.title}
@@ -553,7 +560,7 @@ export function BlogManagement({ currentUser }: BlogManagementProps) {
                 <div className="flex-1 p-6">
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex-1">
-                      <div className="flex items-center gap-3 mb-2">
+                      <div className="flex flex-wrap items-center gap-2 mb-2">
                         <h3 className="text-xl font-bold">{post.title}</h3>
                         <span
                           className={`px-3 py-1 rounded-full text-xs font-medium ${
@@ -583,15 +590,17 @@ export function BlogManagement({ currentUser }: BlogManagementProps) {
                   </div>
 
                   {/* Actions */}
-                  <div className="flex items-center gap-3 mt-4">
+                  <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-wrap items-stretch gap-2">
                     <button
+                      type="button"
                       onClick={() => handleEdit(post)}
-                      className="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 flex items-center gap-2 text-sm"
+                      className="w-full lg:w-auto px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 flex items-center justify-center gap-2 text-sm"
                     >
                       <Edit2 className="w-4 h-4" />
                       Edit
                     </button>
                     <button
+                      type="button"
                       onClick={() => {
                         setSelectedBlogForAnalytics({
                           id: post.id,
@@ -599,14 +608,15 @@ export function BlogManagement({ currentUser }: BlogManagementProps) {
                         });
                         setViewMode("single-analytics");
                       }}
-                      className="px-4 py-2 bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 flex items-center gap-2 text-sm"
+                      className="w-full lg:w-auto px-4 py-2 bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 flex items-center justify-center gap-2 text-sm"
                     >
                       <BarChart3 className="w-4 h-4" />
                       Analytics
                     </button>
                     <button
+                      type="button"
                       onClick={() => handleTogglePublish(post)}
-                      className={`px-4 py-2 rounded-lg flex items-center gap-2 text-sm ${
+                      className={`w-full lg:w-auto px-4 py-2 rounded-lg flex items-center justify-center gap-2 text-sm ${
                         post.status === "published"
                           ? "bg-yellow-100 text-yellow-700 hover:bg-yellow-200"
                           : "bg-green-100 text-green-700 hover:bg-green-200"
@@ -616,8 +626,9 @@ export function BlogManagement({ currentUser }: BlogManagementProps) {
                       {post.status === "published" ? "Unpublish" : "Publish"}
                     </button>
                     <button
+                      type="button"
                       onClick={() => handleDelete(post.id)}
-                      className="px-4 py-2 bg-red-100 text-red-700 rounded-lg hover:bg-red-200 flex items-center gap-2 text-sm"
+                      className="w-full lg:w-auto px-4 py-2 bg-red-100 text-red-700 rounded-lg hover:bg-red-200 flex items-center justify-center gap-2 text-sm"
                     >
                       <Trash2 className="w-4 h-4" />
                       Delete

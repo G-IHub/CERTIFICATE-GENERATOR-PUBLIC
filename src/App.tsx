@@ -1084,6 +1084,3 @@ export default function App() {
     </Router>
   );
 }
-
-// Export types for use in other components
-export type { Program, Organization as Subsidiary, UserProfile, UserAccount };

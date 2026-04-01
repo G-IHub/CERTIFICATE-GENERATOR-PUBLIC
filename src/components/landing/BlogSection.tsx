@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router";
 import { blogApi, Blog } from "../../utils/blogApi";
 import { Calendar, User, ArrowRight } from "lucide-react";
+import { decodeHtmlEntities } from "../../utils/htmlDecode";
 
 export default function BlogSection() {
   const [blogs, setBlogs] = useState<Blog[]>([]);
@@ -99,12 +100,14 @@ export default function BlogSection() {
 
                   {/* Title */}
                   <h3 className="text-xl font-bold mb-3 line-clamp-2 hover:text-[#FF7700] transition-colors">
-                    <Link to={`/blog/${blog.id}`}>{blog.title}</Link>
+                    <Link to={`/blog/${blog.id}`}>
+                      {decodeHtmlEntities(blog.title)}
+                    </Link>
                   </h3>
 
                   {/* Excerpt */}
                   <p className="text-gray-600 mb-4 line-clamp-3 flex-1">
-                    {blog.excerpt}
+                    {decodeHtmlEntities(blog.excerpt)}
                   </p>
 
                   {/* Read More Link */}
@@ -125,7 +128,7 @@ export default function BlogSection() {
         {!loading && blogs.length > 0 && (
           <div className="text-center mt-12">
             <Link
-              to="/blogs"
+              to="/blog"
               className="inline-flex items-center gap-2 px-6 py-3 bg-[#FF7700] text-white font-semibold rounded-lg hover:bg-[#FF6600] transition-colors"
             >
               View All Blog Posts

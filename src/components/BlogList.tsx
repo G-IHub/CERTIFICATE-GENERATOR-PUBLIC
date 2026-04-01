@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import Navbar from "./landing/Navbar";
 import { blogApi, Blog } from "../utils/blogApi";
 import { toast } from "sonner";
+import { decodeHtmlEntities } from "../utils/htmlDecode";
 
 export default function BlogList() {
   const [blogs, setBlogs] = React.useState<Blog[]>([]);
@@ -35,7 +36,10 @@ export default function BlogList() {
             <h1 className="text-3xl font-bold mb-6">Blog</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[1, 2, 3, 4, 5, 6].map((i) => (
-                <div key={i} className="bg-white rounded-lg shadow-sm overflow-hidden animate-pulse">
+                <div
+                  key={i}
+                  className="bg-white rounded-lg shadow-sm overflow-hidden animate-pulse"
+                >
                   <div className="w-full h-40 bg-gray-200"></div>
                   <div className="p-4">
                     <div className="h-6 bg-gray-200 rounded mb-2"></div>
@@ -57,10 +61,12 @@ export default function BlogList() {
       <div className="min-h-screen bg-gray-50 py-10">
         <div className="max-w-6xl mx-auto px-4">
           <h1 className="text-3xl font-bold mb-6">Blog</h1>
-          
+
           {blogs.length === 0 ? (
             <div className="text-center py-12">
-              <p className="text-gray-500">No blog posts available yet. Check back soon!</p>
+              <p className="text-gray-500">
+                No blog posts available yet. Check back soon!
+              </p>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -82,10 +88,10 @@ export default function BlogList() {
                   )}
                   <div className="p-4 flex-1 flex flex-col">
                     <h2 className="text-lg font-semibold mb-2 truncate">
-                      {post.title}
+                      {decodeHtmlEntities(post.title)}
                     </h2>
                     <p className="text-sm text-gray-600 mb-3 flex-1">
-                      {post.excerpt}
+                      {decodeHtmlEntities(post.excerpt)}
                     </p>
                     <div className="flex items-center justify-between pt-3">
                       <div className="text-xs text-gray-500">

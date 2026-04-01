@@ -1436,6 +1436,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
                   <div className="overflow-x-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
                     <div
                       ref={certificateRef}
+                      className="flex justify-center items-center"
                       style={{
                         width: "800px",
                         height: "600px",

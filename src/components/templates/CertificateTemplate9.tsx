@@ -30,11 +30,11 @@ export default function CertificateTemplate9({
   isPreview = false,
   organizationName = "Your Organization",
   organizationLogo,
-  signatoryName1 = "Signature",
+  signatoryName1 = "Bryan Lee",
   signatoryTitle1 = "MANAGER, CTO",
   signatureUrl1,
-  signatoryName2,
-  signatoryTitle2,
+  signatoryName2 = "Sarah Kim",
+  signatoryTitle2 = "CEO, Founder",
   signatureUrl2,
   mode = "student",
 }: CertificateTemplate9Props) {
@@ -60,7 +60,7 @@ export default function CertificateTemplate9({
     >
       <div
         ref={ref}
-        className="w-[800px] h-[600px] flex justify-center shadow-sm rounded relative overflow-hidden bg-transparent py-20 px-10"
+        className="w-200 h-150 flex justify-center shadow-sm rounded relative overflow-hidden bg-transparent py-20 px-10"
       >
         <img
           src={patternURL}
@@ -73,34 +73,42 @@ export default function CertificateTemplate9({
           <img
             src={organizationLogo}
             alt=""
-            className="absolute top-50 left-12 w-1/6 z-20"
+            className="absolute top-50 left-10 w-40 z-20"
           />
           <img
             src={organizationLogo}
             alt=""
-            className="absolute -top-14 -right-16 w-1/3 z-10 opacity-10"
+            className="absolute -top-24 -right-24 w-100 z-10 opacity-10"
           />
         </div>
 
         <div className="flex flex-col gap-10 z-30 w-9/12 ml-40">
-          <h1 className="text-6xl text-purple-950 font-semibold">{header}</h1>
-
-          <div className="space-y-4">
-            <p className="font-medium text-xs text-purple-900 uppercase -mt-4 mb-6">
-              This Certificate is Presented to:
+          <div className="">
+            <h1 className="text-7xl text-purple-950 font-semibold tracking-tighter">
+              {header?.split(" ")[0]}
+            </h1>
+            <p className="text-2xl uppercase tracking-widest">
+              {header?.split(" ")[1]} {header?.split(" ")[2]}
             </p>
-            <p className="w-full border-b-2 border-purple-900 font-semibold text-4xl tracking-wider">
-              {recipientName}
-            </p>
-            <p className="text-xs " >For successfully participating in the program: </p>
-            <p className="text-lg font-bold -mt-2 -mb-1 " >{courseTitle} </p>
-            <p className="max-w-xl text-xs font-semibold">{description}</p>
           </div>
 
-          <div className="flex gap-10 w-full items-center justify-center mt-4">
+          <div className="space-y-2">
+            <p className="font-medium text-xs text-purple-950 uppercase -mt-4 mb-4">
+              This Certificate is Presented to:
+            </p>
+            <p className="w-full border-b-2 border-purple-950 font-semibold text-4xl tracking-wider">
+              {recipientName}
+            </p>
+            <p className="">
+              {description} <b>{courseTitle}</b> Organized By {organizationName}
+            </p>
+            <p className="text-sm text-purple-950 font-bold">{formattedDate}</p>
+          </div>
+
+          <div className="flex w-full items-center justify-between mt-4">
             {signatoryName1 && (
-              <div className="space-y-2">
-                <p className="border-b w-40 text-center tracking-wide font-[Great_Vibes]">
+              <div className="flex flex-col items-center">
+                <div className="border-b border-purple-950 w-40 flex justify-center min-h-10 pb-2">
                   {signatureUrl1 && (
                     <img
                       src={signatureUrl1}
@@ -109,21 +117,21 @@ export default function CertificateTemplate9({
                       style={{ marginBottom: -12 }}
                     />
                   )}
-                </p>
-                <div className="space-y-0">
-                  <p className="text-center text-sm font-medium text-purple-500">
-                    {signatoryName1}
-                  </p>
-                  <p className="text-center text-[9px] italic font-medium">
-                    {signatoryTitle1}
-                  </p>
                 </div>
+                <p className="text-center text-xs font-medium text-purple-950">
+                  {signatoryName1}
+                </p>
+                <p className="text-center text-[9px] italic font-medium">
+                  {signatoryTitle1}
+                </p>
               </div>
             )}
 
+            <img src={stampURL} alt="" className="w-1/9" />
+
             {signatoryName2 && (
-              <div className="space-y-2">
-                <p className="border-b w-40 text-center tracking-wide font-[Great_Vibes]">
+              <div className="flex flex-col items-center">
+                <div className="border-b border-purple-950  w-40 flex justify-center min-h-10 pb-2">
                   {signatureUrl2 && (
                     <img
                       src={signatureUrl2}
@@ -132,15 +140,13 @@ export default function CertificateTemplate9({
                       style={{ marginBottom: -12 }}
                     />
                   )}
-                </p>
-                <div className="space-y-0">
-                  <p className="text-center text-sm font-medium text-purple-500">
-                    {signatoryName2}
-                  </p>
-                  <p className="text-center text-[9px] italic font-medium">
-                    {signatoryTitle2}
-                  </p>
                 </div>
+                <p className="text-center text-xs font-medium text-purple-950">
+                  {signatoryName2}
+                </p>
+                <p className="text-center text-[9px] italic font-medium">
+                  {signatoryTitle2}
+                </p>
               </div>
             )}
           </div>

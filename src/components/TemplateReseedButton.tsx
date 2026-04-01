@@ -45,11 +45,11 @@ export default function TemplateReseedButton() {
   };
 
   return (
-    <div className="fixed bottom-4 right-4 z-50">
+    <div className="rounded-lg bg-primary cursor-pointer">
       <Button
         onClick={handleReseed}
         disabled={loading}
-        size="sm"
+        size="lg"
         variant={
           status === "success"
             ? "default"
@@ -57,7 +57,7 @@ export default function TemplateReseedButton() {
             ? "destructive"
             : "outline"
         }
-        className="shadow-lg"
+        className="shadow-lg text-white hover:text-white cursor-pointer"
       >
         {loading ? (
           <>

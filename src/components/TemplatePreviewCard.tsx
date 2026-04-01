@@ -62,7 +62,7 @@ export default function TemplatePreviewCard({
 
       <CardContent className="space-y-3">
         {/* Preview - Actual Certificate Render */}
-        <div className="relative aspect-[4/3] rounded-lg overflow-hidden border-2 border-gray-200 bg-gray-50 transition-transform group-hover:scale-[1.02]">
+        <div className="relative aspect-4/3 rounded-lg overflow-hidden border-2 border-gray-200 bg-gray-50 transition-transform group-hover:scale-[1.02]">
           <PreviewWrapper scale={0.4} origin="center" wrapperSize={2}>
             <CertificateRenderer
               templateId={template.id}

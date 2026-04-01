@@ -62,7 +62,7 @@ const Testimonial: React.FC = () => {
               testimonials.map((testimonial, index) => (
                 <div
                   key={`${rep}-${index}`}
-                  className="shadow-sm rounded-lg p-6 bg-white flex flex-col justify-between h-full w-96 flex-none"
+                  className="shadow-sm rounded-lg p-6 bg-white flex flex-col justify-between h-auto w-96 flex-none"
                 >
                   <p className="text-sm mb-4">"{testimonial.description}"</p>
                   <div className="flex items-center mt-4">

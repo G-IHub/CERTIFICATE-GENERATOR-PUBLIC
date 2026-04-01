@@ -893,7 +893,7 @@ export default function CertificateGenerationModal({
                               `Template ${selectedTemplate}`}
                           </Badge>
                         </div>
-                        <Card className="bg-gradient-to-br from-indigo-50 to-purple-50 border-2 border-indigo-200">
+                        <Card className="bg-linear-to-br from-indigo-50 to-purple-50 border-2 border-indigo-200">
                           <CardContent className="p-4">
                             <div className="bg-white rounded-lg overflow-hidden shadow-sm">
                               <div className="w-full overflow-x-auto">

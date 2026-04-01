@@ -61,12 +61,12 @@ const TemplateDisplay = () => {
   const CurrentTemplate = templates[currentIndex].component;
 
   return (
-    <section className='bg-white px-6 md:px-28 py-16 flex flex-col justify-center items-center gap-12'>
+    <section className='bg-white px-6 md:px-28 py-16 flex flex-col justify-center items-center gap-8'>
       <div className='text-center space-y-4 w-full'>
-        <h2 className='font-extrabold text-4xl md:text-5xl tracking-tight text-gray-900'>
+        <h2 className='font-extrabold text-2xl sm:text-3xl md:text-4xl tracking-tight text-gray-900'>
           Beautiful Certificate Templates
         </h2>
-        <p className='text-[#696969] text-lg md:text-xl max-w-2xl mx-auto'>
+        <p className='text-[#696969] leading-6 text-sm md:text-basemax-w-2xl mx-auto'>
           Choose from our collection of professionally designed templates. Customize to match your brand.
         </p>
       </div>
@@ -75,7 +75,7 @@ const TemplateDisplay = () => {
       <div className='w-full max-w-5xl relative'>
         {/* Template Display */}
         <div className='bg-gray-50 rounded-lg p-8 shadow-md border border-gray-200 flex justify-center items-center min-h-96'>
-          <div className='w-full scale-75 origin-top'>
+          <div className='w-full scale-100 origin-top'>
             <CurrentTemplate
               {...sampleData}
               mode='template-selection'

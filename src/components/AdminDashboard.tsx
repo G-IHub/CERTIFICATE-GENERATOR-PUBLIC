@@ -3092,11 +3092,11 @@ export default function AdminDashboard({
                                       genSelectedTemplate}
                                   </Badge>
                                 </div>
-                                <Card className="bg-gradient-to-br from-indigo-50 to-purple-50 border-2 border-indigo-200">
+                                <Card className="bg-linear-to-br from-indigo-50 to-purple-50 border-2 border-indigo-200">
                                   <CardContent className="p-4">
                                     <div className="bg-white rounded-lg shadow-sm overflow-auto flex items-center justify-center min-h-[300px]">
                                       <PreviewWrapper
-                                        scale={0.35}
+                                        scale={0.8}
                                         origin="center"
                                         wrapperSize={2.5}
                                       >

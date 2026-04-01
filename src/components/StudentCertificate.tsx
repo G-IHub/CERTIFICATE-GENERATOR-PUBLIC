@@ -13,6 +13,7 @@ import {
 } from "./ui/tooltip";
 import {
   Download,
+  CreditCard,
   Share2,
   ExternalLink,
   Facebook,
@@ -39,7 +40,11 @@ import CertificateTemplate from "./CertificateTemplate";
 import CertificateRenderer from "./CertificateRenderer";
 import type { Subsidiary, Program } from "../App";
 import { copyToClipboard } from "../utils/clipboard";
-import { certificateApi, templateApi } from "../utils/api";
+import {
+  certificateApi,
+  templateApi,
+  certificatePaymentApi,
+} from "../utils/api";
 import {
   decryptCertificateData,
   getCertificateLinkTimeRemaining,
@@ -83,6 +88,11 @@ interface CertificateData {
   }[];
   restrictDownload?: boolean; // NEW: Whether downloads are restricted
   allowedEmails?: string[]; // NEW: List of allowed student emails
+  monetizationEnabled?: boolean;
+  certificatePriceMinor?: number;
+  certificateCurrency?: string;
+  platformFeePercent?: number;
+  paymentStatus?: "unpaid" | "paid";
 }
 
 const StudentCertificate: React.FC<StudentCertificateProps> = ({
@@ -110,6 +120,9 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
   const certificateRef = useRef<HTMLDivElement>(null); // Ref for PNG download
   const [isDownloading, setIsDownloading] = useState(false);
   const [fontsLoaded, setFontsLoaded] = useState(false); // Track font loading
+  const [paymentRequired, setPaymentRequired] = useState(false);
+  const [paymentDetails, setPaymentDetails] = useState<any>(null);
+  const [isPaying, setIsPaying] = useState(false);
 
   // New testimonial fields
   const [enteredTitle, setEnteredTitle] = useState("");
@@ -172,6 +185,34 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
 
     preloadFonts();
   }, []);
+
+  useEffect(() => {
+    const verifyPaymentFromUrl = async () => {
+      const params = new URLSearchParams(location.search);
+      const paymentReference = params.get("payment_reference");
+
+      if (!paymentReference) {
+        return;
+      }
+
+      try {
+        setIsPaying(true);
+        await certificatePaymentApi.verify(paymentReference);
+        toast.success("Payment verified. Certificate unlocked.");
+
+        const cleanHash = window.location.hash.split("?")[0];
+        const cleanUrl = `${window.location.origin}${window.location.pathname}${cleanHash}`;
+        window.history.replaceState({}, "", cleanUrl);
+        window.location.reload();
+      } catch (error: any) {
+        toast.error(error.message || "Failed to verify payment.");
+      } finally {
+        setIsPaying(false);
+      }
+    };
+
+    verifyPaymentFromUrl();
+  }, [location.search]);
 
   useEffect(() => {
     const fetchCertificate = async () => {
@@ -262,6 +303,8 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
         console.log("   - Has program:", !!response.program);
 
         if (response.certificate) {
+          setPaymentRequired(false);
+          setPaymentDetails(null);
           console.log("✅ Certificate data received from backend");
           const cert = response.certificate;
           const org = response.organization;
@@ -306,6 +349,14 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
             signatories: cert.signatories || [], // Signatories from backend
             restrictDownload: cert.restrictDownload || false, // Download restriction flag
             allowedEmails: cert.allowedEmails || [], // List of allowed emails
+            monetizationEnabled: !!cert.monetizationEnabled,
+            certificatePriceMinor: Number(cert.certificatePriceMinor || 0),
+            certificateCurrency: cert.certificateCurrency || "NGN",
+            platformFeePercent:
+              cert.platformFeePercent !== undefined
+                ? Number(cert.platformFeePercent)
+                : 15,
+            paymentStatus: cert.paymentStatus || "unpaid",
           };
 
           console.log("📋 Template Info:", {
@@ -382,6 +433,12 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
       } catch (error: any) {
         if (error.stack) console.error("Stack trace:", error.stack);
 
+        if (error.status === 402 && error.code === "PAYMENT_REQUIRED") {
+          setPaymentRequired(true);
+          setPaymentDetails(error.details || null);
+          return;
+        }
+
         let errorMessage = "Failed to load certificate";
         if (error.message.includes("not found")) {
           errorMessage =
@@ -401,6 +458,38 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
 
     fetchCertificate();
   }, [certificateId]);
+
+  const handlePayForCertificate = async () => {
+    const certId =
+      certificate?.id || paymentDetails?.certificateId || certificateId;
+
+    if (!certId) {
+      toast.error("Unable to resolve certificate for payment");
+      return;
+    }
+
+    try {
+      setIsPaying(true);
+      const response = await certificatePaymentApi.initialize(certId);
+
+      if (response.alreadyPaid) {
+        toast.success("Certificate is already paid. Reloading...");
+        window.location.reload();
+        return;
+      }
+
+      if (response.authorizationUrl) {
+        window.location.href = response.authorizationUrl;
+        return;
+      }
+
+      toast.error("No payment URL returned");
+    } catch (error: any) {
+      toast.error(error.message || "Failed to initialize payment");
+    } finally {
+      setIsPaying(false);
+    }
+  };
 
   // Prevent layout shift when download starts - always reserve scrollbar space
   useEffect(() => {
@@ -1020,6 +1109,41 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
               <p className="text-gray-600">Loading certificate...</p>
             </div>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
+  if (paymentRequired) {
+    const amountMinor = Number(paymentDetails?.amountMinor || 0);
+    const currency = paymentDetails?.currency || "NGN";
+    const amountMajor = (amountMinor / 100).toFixed(2);
+
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+        <Card className="w-full max-w-md">
+          <CardContent className="p-8 text-center space-y-4">
+            <CreditCard className="w-12 h-12 text-primary mx-auto" />
+            <h2 className="text-xl font-bold text-gray-900">
+              Payment Required
+            </h2>
+            <p className="text-gray-600">
+              This certificate requires payment before access.
+            </p>
+            <div className="bg-gray-100 rounded-lg p-4">
+              <p className="text-sm text-gray-500">Amount</p>
+              <p className="text-2xl font-bold text-gray-900">
+                {currency} {amountMajor}
+              </p>
+            </div>
+            <Button
+              className="w-full"
+              onClick={handlePayForCertificate}
+              disabled={isPaying}
+            >
+              {isPaying ? "Processing..." : "Pay and Unlock Certificate"}
+            </Button>
           </CardContent>
         </Card>
       </div>

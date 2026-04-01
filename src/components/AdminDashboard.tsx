@@ -117,6 +117,7 @@ const TemplateBuilderPage = React.lazy(() => import("./TemplateBuilderPage"));
 const TestimonialsView = React.lazy(() => import("./TestimonialsView"));
 const AnalyticsView = React.lazy(() => import("./AnalyticsView"));
 const OrganizationSettings = React.lazy(() => import("./OrganizationSettings"));
+const MonetiseView = React.lazy(() => import("./MonetiseView"));
 import type { Program, Subsidiary, UserProfile } from "../App";
 import {
   LineChart,
@@ -1612,6 +1613,11 @@ export default function AdminDashboard({
                 name: "Analytics",
                 icon: BarChart3,
               },
+              {
+                id: "monetise",
+                name: "Monetise",
+                icon: CreditCard,
+              },
               // {
               //   id: "billing",
               //   name: "Billing",
@@ -1753,6 +1759,11 @@ export default function AdminDashboard({
                     id: "analytics",
                     name: "Analytics",
                     icon: BarChart3,
+                  },
+                  {
+                    id: "monetise",
+                    name: "Monetise",
+                    icon: CreditCard,
                   },
                   // {
                   //   id: "billing",
@@ -3674,6 +3685,40 @@ export default function AdminDashboard({
                         <AlertDescription>
                           You need to create an organization to access settings.
                           Create one from the Overview tab.
+                        </AlertDescription>
+                      </Alert>
+                    </CardContent>
+                  </Card>
+                </div>
+              )}
+
+              {activeTab === "monetise" && currentOrganization && (
+                <React.Suspense fallback={<BillingSkeleton />}>
+                  <MonetiseView
+                    organizationId={currentOrganization.id}
+                    accessToken={accessToken!}
+                  />
+                </React.Suspense>
+              )}
+
+              {activeTab === "monetise" && !currentOrganization && (
+                <div className="px-4 md:px-8 py-6">
+                  <Card>
+                    <CardHeader>
+                      <CardTitle className="flex items-center gap-2">
+                        <CreditCard className="w-5 h-5" />
+                        Monetise Certificates
+                      </CardTitle>
+                      <CardDescription>
+                        Enable paid access for selected certificates
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <Alert>
+                        <Building2 className="h-4 w-4" />
+                        <AlertDescription>
+                          You need to create an organization to configure
+                          certificate monetization.
                         </AlertDescription>
                       </Alert>
                     </CardContent>

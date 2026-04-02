@@ -418,20 +418,12 @@ export const certificateApi = {
       certificateCurrency: data.certificateCurrency,
     };
 
-    let response = await fetch(`${API_BASE_URL}/certificates/${certificateId}`, {
-      method: 'PUT',
+    // Use the dedicated monetization endpoint directly to ensure all monetization logic triggers correctly (updates paymentStatus, verifies amount, etc.)
+    const response = await fetch(`${API_BASE_URL}/certificates/${certificateId}/monetization`, {
+      method: 'POST',
       headers: getAuthHeaders(token),
       body: JSON.stringify(payload),
     });
-
-    // Compatibility fallback for backend variants exposing a dedicated monetization endpoint.
-    if (response.status === 404 || response.status === 405) {
-      response = await fetch(`${API_BASE_URL}/certificates/${certificateId}/monetization`, {
-        method: 'POST',
-        headers: getAuthHeaders(token),
-        body: JSON.stringify(payload),
-      });
-    }
 
     const responseText = await response.text();
     let parsed: any = null;

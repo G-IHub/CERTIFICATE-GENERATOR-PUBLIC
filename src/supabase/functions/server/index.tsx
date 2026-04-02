@@ -2575,8 +2575,6 @@ const finalizeCertificatePayment = async (
   };
 };
 
-// Initialize payment for a monetized certificate
-app.post("/make-server-a611b057/certificate-payments/initialize", async (c) => {
   // Interswitch Web Checkout: Initialize payment
   app.post(
     "/make-server-a611b057/certificate-payments/interswitch/initialize",
@@ -9327,6 +9325,182 @@ const initializeStorageBuckets = async () => {
 
 // Initialize buckets before starting server
 await initializeStorageBuckets();
+
+// ==================== PAYMENT ROUTES (INTERSWITCH) ====================
+
+app.post("/make-server-a611b057/certificate-payments/interswitch/initialize", async (c) => {
+  try {
+    const { certificateId, studentEmail, studentName } = await c.req.json();
+    
+    if (!certificateId || !studentEmail) {
+      return c.json({ success: false, error: "certificateId and studentEmail are required" }, 400);
+    }
+    
+    // 1. Get the certificate
+    const cert = await kv.get(`cert:${certificateId}`);
+    if (!cert) {
+      return c.json({ success: false, error: "Certificate not found" }, 404);
+    }
+    
+    // 2. Validate monetization
+    if (!cert.monetizationEnabled) {
+      return c.json({ success: false, error: "This certificate is not monetized" }, 400);
+    }
+    if (cert.paymentStatus === 'paid') {
+      return c.json({ success: false, error: "This certificate is already paid for" }, 400);
+    }
+    
+    // 3. Generate transaction reference
+    const timestamp = Date.now();
+    const random = Math.random().toString(36).substring(2, 8).toUpperCase();
+    const txnRef = `CERT${timestamp}${random}`;
+    
+    // 4. Fetch keys from env
+    const merchantCode = Deno.env.get("INTERSWITCH_MERCHANT_CODE");
+    const payItemId = Deno.env.get("INTERSWITCH_PAY_ITEM_ID");
+    const isLive = Deno.env.get("INTERSWITCH_LIVE") === "true";
+    
+    if (!merchantCode || !payItemId) {
+      console.error("Backend missing INTERSWITCH_MERCHANT_CODE or INTERSWITCH_PAY_ITEM_ID");
+      return c.json({ success: false, error: "Payment gateway not configured" }, 500);
+    }
+    
+    // 5. Store payment intent in KV
+    const amountMinor = cert.certificatePriceMinor || 0;
+    await kv.set(`payment_intent:${txnRef}`, {
+      certificateId,
+      studentEmail,
+      amount: amountMinor,
+      status: "pending",
+      createdAt: new Date().toISOString()
+    });
+    
+    // 6. Return response
+    return c.json({
+      success: true,
+      txnRef,
+      paymentParams: {
+        merchant_code: merchantCode,
+        pay_item_id: payItemId,
+        pay_item_name: `${cert.courseName || 'Certificate'} - Payment`,
+        txn_ref: txnRef,
+        amount: amountMinor,
+        currency: "566", // NGN
+        cust_id: certificateId,
+        cust_name: studentName || "Student",
+        cust_email: studentEmail,
+        site_redirect_url: Deno.env.get("FRONTEND_URL") || "http://localhost:5173",
+        mode: isLive ? "LIVE" : "TEST"
+      },
+      certificateInfo: {
+        id: cert.id,
+        name: cert.courseName,
+        organizationId: cert.organizationId
+      }
+    });
+
+  } catch (error: any) {
+    console.error("❌ Error initializing Interswitch payment:", error);
+    return c.json({ success: false, error: error.message }, 500);
+  }
+});
+
+app.post("/make-server-a611b057/certificate-payments/interswitch/verify", async (c) => {
+  try {
+    const { transactionRef, amount, certificateId } = await c.req.json();
+    
+    if (!transactionRef || amount === undefined || !certificateId) {
+      return c.json({ success: false, error: "transactionRef, amount, and certificateId are required" }, 400);
+    }
+    
+    const intent = await kv.get(`payment_intent:${transactionRef}`);
+    if (!intent) {
+      return c.json({ success: false, error: "Payment intent not found or expired" }, 404);
+    }
+    
+    const merchantCode = Deno.env.get("INTERSWITCH_MERCHANT_CODE");
+    const isLive = Deno.env.get("INTERSWITCH_LIVE") === "true";
+    const baseUrl = isLive ? "https://webpay.interswitchng.com/collections/api/v1" : "https://qa.interswitchng.com/collections/api/v1";
+    
+    // Call Interswitch gettransaction API
+    const response = await fetch(`${baseUrl}/gettransaction?merchantcode=${merchantCode}&transactionreference=${transactionRef}&amount=${amount}`);
+    
+    let iswData: any = {};
+    if (response.ok) {
+      iswData = await response.json();
+    } else {
+      console.error(`Interswitch verification failed with status ${response.status}`);
+      // return c.json({ success: false, error: "Failed to reach Interswitch verification endpoint" }, 502);
+    }
+    
+    if (iswData.ResponseCode === "00" || iswData.ResponseCode === "00") {
+      const cert = await kv.get(`cert:${certificateId}`);
+      if (cert) {
+        cert.paymentStatus = "paid";
+        cert.paidAt = new Date().toISOString();
+        await kv.set(`cert:${certificateId}`, cert);
+        
+        // Update intent
+        intent.status = "paid";
+        await kv.set(`payment_intent:${transactionRef}`, intent);
+        
+        return c.json({
+          success: true,
+          certificate: {
+            id: cert.id,
+            paymentStatus: cert.paymentStatus,
+            paidAt: cert.paidAt
+          },
+          transactionDetails: iswData
+        });
+      } else {
+        return c.json({ success: false, error: "Certificate not found in store" }, 404);
+      }
+    } else {
+      return c.json({ success: false, error: iswData.ResponseDescription || "Payment not approved", transactionDetails: iswData }, 400);
+    }
+    
+  } catch (error: any) {
+    console.error("❌ Error verifying Interswitch payment:", error);
+    return c.json({ success: false, error: error.message }, 500);
+  }
+});
+
+app.post("/make-server-a611b057/certificate-payments/webhook", async (c) => {
+  try {
+    const rawPayload = await c.req.text();
+    let payload;
+    try {
+      payload = JSON.parse(rawPayload);
+    } catch {
+      return c.json({ success: false, error: "Invalid JSON" }, 400);
+    }
+    
+    // Minimal verification for webhook (in production, verify HMAC)
+    if (payload.event === "TRANSACTION.COMPLETED" && payload.data && payload.data.responseCode === "00") {
+      const txnRef = payload.data.merchantReference;
+      const intent = await kv.get(`payment_intent:${txnRef}`);
+      
+      if (intent && intent.status !== "paid") {
+        const cert = await kv.get(`cert:${intent.certificateId}`);
+        if (cert) {
+          cert.paymentStatus = "paid";
+          cert.paidAt = new Date().toISOString();
+          await kv.set(`cert:${intent.certificateId}`, cert);
+          
+          intent.status = "paid";
+          await kv.set(`payment_intent:${txnRef}`, intent);
+          console.log(`✅ Webhook updated certificate ${cert.id} to paid state via txn ${txnRef}`);
+        }
+      }
+    }
+    
+    return c.json({ success: true });
+  } catch (error: any) {
+    console.error("❌ Error in webhook:", error);
+    return c.json({ success: false, error: error.message }, 500);
+  }
+});
 
 // ==================== BLOG ROUTES ====================
 // Get all blog posts for an organization

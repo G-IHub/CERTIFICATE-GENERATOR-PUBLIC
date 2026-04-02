@@ -243,7 +243,9 @@ export default function TemplatesPage({
           </p>
         </div>
 
-        <TemplateReseedButton />
+        {/* <div className="fixed bottom-20 right-4 z-50">
+          <TemplateReseedButton />
+        </div> */}
 
         {/* Reseed Templates Button */}
         {/* <Button
@@ -276,7 +278,7 @@ export default function TemplatesPage({
             {/* Premium badge */}
             {template.type === "premium" && (
               <div className="absolute top-2 left-2 z-10">
-                <Badge className="bg-gradient-to-r from-primary to-orange-600 text-white border-0 shadow-md">
+                <Badge className="bg-linear-to-r from-primary to-orange-600 text-white border-0 shadow-md">
                   <Crown className="w-3 h-3 mr-1" />
                   Premium
                 </Badge>
@@ -285,7 +287,7 @@ export default function TemplatesPage({
 
             {/* Preview area */}
             <div
-              className={`bg-gray-50 p-4 aspect-[4/3] flex items-center justify-center overflow-hidden`}
+              className={`bg-gray-50 p-4 aspect-4/3 flex items-center justify-center overflow-hidden`}
             >
               <TemplateErrorBoundary>
                 <PreviewWrapper scale={0.4} origin="center" wrapperSize={2}>
@@ -403,7 +405,7 @@ export default function TemplatesPage({
                 <h3 className="flex items-center gap-2">
                   {preview.name}
                   {preview.type === "premium" && (
-                    <Badge className="bg-gradient-to-r from-primary to-orange-600 text-white border-0">
+                    <Badge className="bg-linear-to-r from-primary to-orange-600 text-white border-0">
                       <Crown className="w-3 h-3 mr-1" />
                       Premium
                     </Badge>
@@ -424,7 +426,7 @@ export default function TemplatesPage({
 
             <div className="p-8 bg-gray-50 flex items-center justify-center">
               <TemplateErrorBoundary>
-                <PreviewWrapper scale={0.4} origin="center" wrapperSize={2}>
+                <PreviewWrapper scale={1} origin="center" wrapperSize={2}>
                   <CertificateRenderer
                     templateId={preview.id}
                     header="Certificate of Completion"

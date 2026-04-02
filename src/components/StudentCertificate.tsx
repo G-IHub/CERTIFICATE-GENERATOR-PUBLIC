@@ -654,13 +654,14 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
         // access cssRules on remote sheets (which throws SecurityError).
         const disabled = disableCrossOriginStyleSheets();
         try {
-          const pr = Math.min(2, window.devicePixelRatio || 1);
+          const pr = Math.min(200, window.devicePixelRatio || 1);
           dataUrl = await toJpeg(target as HTMLElement, {
             cacheBust: true,
             backgroundColor: "#ffffff",
             width: measuredWidth,
             height: measuredHeight,
             pixelRatio: pr,
+            quality: .0,
           });
 
           // Attempt to crop to the inner certificate element if present
@@ -733,7 +734,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
             Math.round(cropW),
             Math.round(cropH),
           );
-          const out = canvas.toDataURL("image/jpeg", 0.92);
+          const out = canvas.toDataURL("image/jpeg", 50.92);
           resolve(out);
         } catch (e) {
           reject(e);

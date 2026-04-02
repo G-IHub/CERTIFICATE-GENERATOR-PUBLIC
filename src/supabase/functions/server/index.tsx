@@ -25,6 +25,7 @@ try {
 */
 
 const app = new Hono();
+const FIXED_PLATFORM_FEE_PERCENT = 15;
 
 // Middleware - Configure CORS to allow all requests
 app.use(
@@ -2001,7 +2002,6 @@ app.post("/make-server-a611b057/certificates", async (c) => {
       monetizationEnabled,
       certificatePriceMinor,
       certificateCurrency,
-      platformFeePercent,
     } = requestBody;
 
     console.log("📋 Request data:", {
@@ -2141,8 +2141,7 @@ app.post("/make-server-a611b057/certificates", async (c) => {
         monetizationEnabled: monetizationEnabled || false,
         certificatePriceMinor: certificatePriceMinor || 0,
         certificateCurrency: certificateCurrency || "NGN",
-        platformFeePercent:
-          platformFeePercent !== undefined ? platformFeePercent : 15,
+        platformFeePercent: FIXED_PLATFORM_FEE_PERCENT,
         paymentStatus: "unpaid",
         paidAt: null,
         lastPaymentReference: null,
@@ -2216,8 +2215,7 @@ app.post("/make-server-a611b057/certificates", async (c) => {
           monetizationEnabled: monetizationEnabled || false,
           certificatePriceMinor: certificatePriceMinor || 0,
           certificateCurrency: certificateCurrency || "NGN",
-          platformFeePercent:
-            platformFeePercent !== undefined ? platformFeePercent : 15,
+          platformFeePercent: FIXED_PLATFORM_FEE_PERCENT,
           paymentStatus: "unpaid",
           paidAt: null,
           lastPaymentReference: null,
@@ -2343,8 +2341,7 @@ app.get("/make-server-a611b057/certificates/:id", async (c) => {
   }
 });
 
-// Configure monetization for a certificate (organization owner only)
-app.post("/make-server-a611b057/certificates/:id/monetization", async (c) => {
+const handleMonetizationUpdate = async (c: any) => {
   try {
     const { user, error } = await verifyUser(c.req.header("Authorization"));
     if (error) {
@@ -2356,7 +2353,6 @@ app.post("/make-server-a611b057/certificates/:id/monetization", async (c) => {
       monetizationEnabled,
       certificatePriceMinor,
       certificateCurrency,
-      platformFeePercent,
     } = await c.req.json();
 
     const certificate = await kv.get(`cert:${certificateId}`);
@@ -2376,16 +2372,6 @@ app.post("/make-server-a611b057/certificates/:id/monetization", async (c) => {
           400,
         );
       }
-      if (
-        platformFeePercent === undefined ||
-        platformFeePercent < 0 ||
-        platformFeePercent > 100
-      ) {
-        return c.json(
-          { error: "platformFeePercent must be between 0 and 100" },
-          400,
-        );
-      }
     }
 
     const updatedCertificate = {
@@ -2395,8 +2381,7 @@ app.post("/make-server-a611b057/certificates/:id/monetization", async (c) => {
         ? Number(certificatePriceMinor)
         : 0,
       certificateCurrency: certificateCurrency || "NGN",
-      platformFeePercent:
-        platformFeePercent !== undefined ? Number(platformFeePercent) : 15,
+      platformFeePercent: FIXED_PLATFORM_FEE_PERCENT,
       paymentStatus:
         monetizationEnabled && certificate.paymentStatus === "paid"
           ? "paid"
@@ -2417,6 +2402,16 @@ app.post("/make-server-a611b057/certificates/:id/monetization", async (c) => {
       500,
     );
   }
+};
+
+// Configure monetization for a certificate (organization owner only)
+app.post("/make-server-a611b057/certificates/:id/monetization", async (c) => {
+  return handleMonetizationUpdate(c);
+});
+
+// Compatibility alias for clients using PUT semantics on the monetization route
+app.put("/make-server-a611b057/certificates/:id/monetization", async (c) => {
+  return handleMonetizationUpdate(c);
 });
 
 const getInterswitchConfig = () => {
@@ -2434,6 +2429,67 @@ const getInterswitchConfig = () => {
     webhookSecret,
     callbackBase,
   };
+};
+
+// Interswitch Web Checkout Configuration
+const getInterswitchWebCheckoutConfig = () => {
+  const merchantCode = Deno.env.get("INTERSWITCH_MERCHANT_CODE") || "MX6072";
+  const payItemId = Deno.env.get("INTERSWITCH_PAY_ITEM_ID") || "101007";
+  const isLive = Deno.env.get("INTERSWITCH_LIVE") === "true";
+  const webhookSecret = Deno.env.get("INTERSWITCH_WEBHOOK_SECRET");
+  const baseUrl = isLive
+    ? "https://interswitchng.com"
+    : "https://qa.interswitchng.com";
+  const collectionsBaseUrl = isLive
+    ? "https://webpay.interswitchng.com"
+    : "https://qa.interswitchng.com";
+  const callbackBase =
+    Deno.env.get("APP_PUBLIC_URL") || "https://certifyer.online";
+
+  return {
+    merchantCode,
+    payItemId,
+    isLive,
+    webhookSecret,
+    baseUrl,
+    collectionsBaseUrl,
+    callbackBase,
+    transactionStatusUrl: `${collectionsBaseUrl}/collections/api/v1/gettransaction`,
+  };
+};
+
+// Helper: Generate unique transaction reference for Interswitch
+const generateInterswitchTxnRef = (): string => {
+  return `CERT${Date.now()}${Math.random()
+    .toString(36)
+    .substring(2, 8)
+    .toUpperCase()}`;
+};
+
+// Helper: Convert amount to kobo (minor denomination for NGN)
+const toKobo = (nairaAmount: number): number => {
+  return Math.round(nairaAmount * 100);
+};
+
+// Helper: Verify Interswitch webhook signature (HMAC-SHA512)
+const verifyInterswitchWebhookSignature = (
+  payload: string,
+  signature: string,
+  secret: string,
+): boolean => {
+  try {
+    // Use Web Crypto API available in Deno
+    const encoder = new TextEncoder();
+    const keyData = encoder.encode(secret);
+    const messageData = encoder.encode(payload);
+
+    // This is a placeholder - Deno uses Web Crypto which is async
+    // For webhook signature verification, we'd need async/await
+    return true; // TODO: Implement proper HMAC-SHA512 verification
+  } catch (error) {
+    console.error("Error verifying webhook signature:", error);
+    return false;
+  }
 };
 
 const createCertificatePaymentReference = () => {
@@ -2521,6 +2577,250 @@ const finalizeCertificatePayment = async (
 
 // Initialize payment for a monetized certificate
 app.post("/make-server-a611b057/certificate-payments/initialize", async (c) => {
+  // Interswitch Web Checkout: Initialize payment
+  app.post(
+    "/make-server-a611b057/certificate-payments/interswitch/initialize",
+    async (c) => {
+      try {
+        const { certificateId, studentEmail, studentName } = await c.req.json();
+
+        if (!certificateId || !studentEmail) {
+          return c.json(
+            { error: "certificateId and studentEmail are required" },
+            400,
+          );
+        }
+
+        const certificate = await kv.get(`cert:${certificateId}`);
+        if (!certificate) {
+          return c.json({ error: "Certificate not found" }, 404);
+        }
+
+        if (!certificate.monetizationEnabled) {
+          return c.json({ error: "Certificate is not monetized" }, 400);
+        }
+
+        if (certificate.paymentStatus === "paid") {
+          return c.json({ success: true, alreadyPaid: true });
+        }
+
+        const amount = Number(certificate.certificatePriceMinor || 0) / 100; // Convert from kobo to naira
+        if (!amount || amount <= 0) {
+          return c.json({ error: "Invalid certificate amount" }, 400);
+        }
+
+        const config = getInterswitchWebCheckoutConfig();
+        const txnRef = generateInterswitchTxnRef();
+        const amountKobo = toKobo(amount);
+
+        const organizationSettings = await kv.get(
+          `org:${certificate.organizationId}:settings`,
+        );
+        const payoutAccountId =
+          organizationSettings?.monetization?.payoutAccountId || null;
+
+        if (!payoutAccountId) {
+          return c.json(
+            {
+              error:
+                "Organization payout account is not configured for monetization",
+            },
+            400,
+          );
+        }
+
+        const platformFeePercent = FIXED_PLATFORM_FEE_PERCENT;
+        const platformAmount = Math.floor(
+          (amountKobo * platformFeePercent) / 100,
+        );
+        const tutorAmount = amountKobo - platformAmount;
+
+        // Store payment intent for later verification
+        await kv.set(`cert_payment_intent:${txnRef}`, {
+          txnRef,
+          certificateId,
+          organizationId: certificate.organizationId,
+          amountKobo,
+          amount,
+          currency: "NGN",
+          platformFeePercent,
+          platformAmount,
+          tutorAmount,
+          studentEmail,
+          studentName: studentName || "Student",
+          status: "pending",
+          createdAt: new Date().toISOString(),
+          provider: "interswitch_web_checkout",
+        });
+
+        // Return Interswitch Web Checkout parameters
+        // The frontend will use these with the Interswitch JS SDK
+        return c.json({
+          success: true,
+          txnRef,
+          paymentParams: {
+            merchant_code: config.merchantCode,
+            pay_item_id: config.payItemId,
+            pay_item_name: `${certificate.courseName || "Certificate"} - Payment`,
+            txn_ref: txnRef,
+            amount: amountKobo,
+            currency: "566", // ISO 4217 numeric code for NGN
+            cust_id: certificateId,
+            cust_name: studentName || "Student",
+            cust_email: studentEmail,
+            site_redirect_url: `${config.callbackBase}/?payment_complete=${txnRef}`,
+            mode: config.isLive ? "LIVE" : "TEST",
+          },
+          certificateInfo: {
+            id: certificateId,
+            name: certificate.courseName,
+            organizationId: certificate.organizationId,
+          },
+        });
+      } catch (error) {
+        console.error("❌ Error initializing Interswitch payment:", error);
+        return c.json({ error: `Server error: ${error}` }, 500);
+      }
+    },
+  );
+
+  // Interswitch Web Checkout: Verify payment
+  app.post(
+    "/make-server-a611b057/certificate-payments/interswitch/verify",
+    async (c) => {
+      try {
+        const { transactionRef, amount, certificateId } = await c.req.json();
+
+        if (!transactionRef || !amount || !certificateId) {
+          return c.json(
+            {
+              error:
+                "transactionRef, amount, and certificateId are required",
+            },
+            400,
+          );
+        }
+
+        const config = getInterswitchWebCheckoutConfig();
+        const intent = await kv.get(`cert_payment_intent:${transactionRef}`);
+
+        if (!intent) {
+          return c.json({ error: "Payment intent not found" }, 404);
+        }
+
+        if (intent.status === "success") {
+          return c.json({
+            success: true,
+            alreadyProcessed: true,
+          });
+        }
+
+        // Verify transaction status with Interswitch API
+        // This is a server-side call for security
+        const verifyUrl = new URL(config.transactionStatusUrl);
+        verifyUrl.searchParams.append("merchantcode", config.merchantCode);
+        verifyUrl.searchParams.append("transactionreference", transactionRef);
+        verifyUrl.searchParams.append("amount", amount.toString());
+
+        const verifyResponse = await fetch(verifyUrl.toString(), {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        const transactionData = await verifyResponse.json();
+
+        if (!verifyResponse.ok) {
+          console.error(
+            "❌ Interswitch verification failed:",
+            transactionData,
+          );
+          return c.json(
+            { error: "Payment verification failed" },
+            400,
+          );
+        }
+
+        // Check if transaction is successful (response code "00" = Approved)
+        const responseCode = transactionData.ResponseCode || "";
+        if (responseCode !== "00") {
+          return c.json(
+            {
+              error: "Payment was not approved",
+              responseCode,
+              responseDescription: transactionData.ResponseDescription,
+            },
+            400,
+          );
+        }
+
+        // Verify the amount matches
+        const transactionAmount = Number(transactionData.Amount || 0);
+        if (transactionAmount !== Math.round(amount)) {
+          return c.json(
+            {
+              error: "Transaction amount does not match",
+              expected: amount,
+              received: transactionAmount,
+            },
+            400,
+          );
+        }
+
+        // Finalize the payment
+        const certificate = await kv.get(`cert:${certificateId}`);
+        if (!certificate) {
+          return c.json({ error: "Certificate not found" }, 404);
+        }
+
+        const updatedIntent = {
+          ...intent,
+          status: "success",
+          verifiedAt: new Date().toISOString(),
+          transactionData,
+        };
+
+        await kv.set(`cert_payment_intent:${transactionRef}`, updatedIntent);
+
+        const updatedCertificate = {
+          ...certificate,
+          paymentStatus: "paid",
+          paidAt: new Date().toISOString(),
+          lastPaymentReference: transactionRef,
+          updatedAt: new Date().toISOString(),
+        };
+
+        await kv.set(`cert:${certificateId}`, updatedCertificate);
+
+        // Grant access to certificate
+        await kv.set(`cert_access_grant:${certificateId}`, {
+          certificateId,
+          transactionRef,
+          grantedAt: new Date().toISOString(),
+          unlockType: "permanent",
+          scope: "certificate_link",
+        });
+
+        return c.json({
+          success: true,
+          certificate: updatedCertificate,
+          transactionDetails: {
+            reference: transactionData.PaymentReference,
+            amount: transactionData.Amount,
+            date: transactionData.TransactionDate,
+            bankCode: transactionData.BankCode,
+          },
+        });
+      } catch (error) {
+        console.error("❌ Error verifying Interswitch payment:", error);
+        return c.json({ error: `Server error: ${error}` }, 500);
+      }
+    },
+  );
+
+  // Initialize payment for a monetized certificate
+  app.post("/make-server-a611b057/certificate-payments/initialize", async (c) => {
   try {
     const { certificateId } = await c.req.json();
 
@@ -2543,10 +2843,7 @@ app.post("/make-server-a611b057/certificate-payments/initialize", async (c) => {
 
     const amountMinor = Number(certificate.certificatePriceMinor || 0);
     const currency = certificate.certificateCurrency || "NGN";
-    const platformFeePercent =
-      certificate.platformFeePercent !== undefined
-        ? Number(certificate.platformFeePercent)
-        : 15;
+    const platformFeePercent = FIXED_PLATFORM_FEE_PERCENT;
 
     if (!amountMinor || amountMinor <= 0) {
       return c.json({ error: "Invalid certificate amount" }, 400);
@@ -2828,6 +3125,10 @@ app.get("/make-server-a611b057/organizations/:id/certificates", async (c) => {
         orgCerts.map((c) => c.id),
       );
     }
+
+    c.header("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0");
+    c.header("Pragma", "no-cache");
+    c.header("Expires", "0");
 
     return c.json({ certificates: orgCerts });
   } catch (error) {
@@ -7124,9 +7425,7 @@ app.put("/make-server-a611b057/certificates/:certificateId", async (c) => {
           ? updates.certificateCurrency
           : certificate.certificateCurrency,
       platformFeePercent:
-        updates.platformFeePercent !== undefined
-          ? Number(updates.platformFeePercent)
-          : certificate.platformFeePercent,
+        FIXED_PLATFORM_FEE_PERCENT,
       updatedAt: new Date().toISOString(),
     };
 

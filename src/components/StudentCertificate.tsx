@@ -38,6 +38,7 @@ import {
 import { toast } from "sonner";
 import CertificateTemplate from "./CertificateTemplate";
 import CertificateRenderer from "./CertificateRenderer";
+import InterswitchPaymentModal from "./InterswitchPaymentModal";
 import type { Subsidiary, Program } from "../App";
 import { copyToClipboard } from "../utils/clipboard";
 import {
@@ -123,6 +124,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
   const [paymentRequired, setPaymentRequired] = useState(false);
   const [paymentDetails, setPaymentDetails] = useState<any>(null);
   const [isPaying, setIsPaying] = useState(false);
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
 
   // New testimonial fields
   const [enteredTitle, setEnteredTitle] = useState("");
@@ -460,35 +462,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
   }, [certificateId]);
 
   const handlePayForCertificate = async () => {
-    const certId =
-      certificate?.id || paymentDetails?.certificateId || certificateId;
-
-    if (!certId) {
-      toast.error("Unable to resolve certificate for payment");
-      return;
-    }
-
-    try {
-      setIsPaying(true);
-      const response = await certificatePaymentApi.initialize(certId);
-
-      if (response.alreadyPaid) {
-        toast.success("Certificate is already paid. Reloading...");
-        window.location.reload();
-        return;
-      }
-
-      if (response.authorizationUrl) {
-        window.location.href = response.authorizationUrl;
-        return;
-      }
-
-      toast.error("No payment URL returned");
-    } catch (error: any) {
-      toast.error(error.message || "Failed to initialize payment");
-    } finally {
-      setIsPaying(false);
-    }
+    setShowPaymentModal(true);
   };
 
   // Prevent layout shift when download starts - always reserve scrollbar space
@@ -1119,34 +1093,57 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
     const amountMinor = Number(paymentDetails?.amountMinor || 0);
     const currency = paymentDetails?.currency || "NGN";
     const amountMajor = (amountMinor / 100).toFixed(2);
+    const payableCertificateId =
+      certificate?.id || paymentDetails?.certificateId || certificateId || "";
+    const payableCertificateName =
+      certificate?.courseName ||
+      certificate?.certificateHeader ||
+      paymentDetails?.courseName ||
+      "Certificate";
 
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-        <Card className="w-full max-w-md">
-          <CardContent className="p-8 text-center space-y-4">
-            <CreditCard className="w-12 h-12 text-primary mx-auto" />
-            <h2 className="text-xl font-bold text-gray-900">
-              Payment Required
-            </h2>
-            <p className="text-gray-600">
-              This certificate requires payment before access.
-            </p>
-            <div className="bg-gray-100 rounded-lg p-4">
-              <p className="text-sm text-gray-500">Amount</p>
-              <p className="text-2xl font-bold text-gray-900">
-                {currency} {amountMajor}
+      <>
+        <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+          <Card className="w-full max-w-md">
+            <CardContent className="p-8 text-center space-y-4">
+              <CreditCard className="w-12 h-12 text-primary mx-auto" />
+              <h2 className="text-xl font-bold text-gray-900">
+                Payment Required
+              </h2>
+              <p className="text-gray-600">
+                This certificate requires payment before access.
               </p>
-            </div>
-            <Button
-              className="w-full"
-              onClick={handlePayForCertificate}
-              disabled={isPaying}
-            >
-              {isPaying ? "Processing..." : "Pay and Unlock Certificate"}
-            </Button>
-          </CardContent>
-        </Card>
-      </div>
+              <div className="bg-gray-100 rounded-lg p-4">
+                <p className="text-sm text-gray-500">Amount</p>
+                <p className="text-2xl font-bold text-gray-900">
+                  {currency} {amountMajor}
+                </p>
+              </div>
+              <Button
+                className="w-full"
+                onClick={handlePayForCertificate}
+                disabled={isPaying || !payableCertificateId}
+              >
+                {isPaying ? "Processing..." : "Pay and Unlock Certificate"}
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
+
+        {showPaymentModal && payableCertificateId && (
+          <InterswitchPaymentModal
+            certificateId={payableCertificateId}
+            certificateName={payableCertificateName}
+            priceKobo={amountMinor}
+            onPaymentComplete={() => {
+              setShowPaymentModal(false);
+              toast.success("Payment verified. Certificate unlocked.");
+              window.location.reload();
+            }}
+            onClose={() => setShowPaymentModal(false)}
+          />
+        )}
+      </>
     );
   }
 

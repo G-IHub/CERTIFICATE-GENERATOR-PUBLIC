@@ -27,7 +27,6 @@ interface CertMonetizationDraft {
   monetizationEnabled: boolean;
   amountMinor: number;
   currency: string;
-  platformFeePercent: number;
   paymentStatus: string;
 }
 
@@ -60,10 +59,6 @@ export default function MonetiseView({
         monetizationEnabled: !!cert.monetizationEnabled,
         amountMinor: Number(cert.certificatePriceMinor || 0),
         currency: cert.certificateCurrency || "NGN",
-        platformFeePercent:
-          cert.platformFeePercent !== undefined
-            ? Number(cert.platformFeePercent)
-            : 15,
         paymentStatus: cert.paymentStatus || "unpaid",
       }));
       setCertificates(mapped);
@@ -142,17 +137,11 @@ export default function MonetiseView({
         return;
       }
 
-      if (cert.platformFeePercent < 0 || cert.platformFeePercent > 100) {
-        toast.error("Platform fee must be between 0 and 100");
-        return;
-      }
-
       setSavingId(cert.id);
       await certificateApi.updateMonetization(accessToken, cert.id, {
         monetizationEnabled: cert.monetizationEnabled,
         certificatePriceMinor: cert.amountMinor,
         certificateCurrency: cert.currency,
-        platformFeePercent: cert.platformFeePercent,
       });
 
       toast.success("Monetization settings saved");
@@ -254,7 +243,6 @@ export default function MonetiseView({
 
       {certificates.map((cert) => {
         const amountMajor = cert.amountMinor > 0 ? cert.amountMinor / 100 : 0;
-        const tutorPercent = Math.max(0, 100 - cert.platformFeePercent);
 
         return (
           <Card key={cert.id}>
@@ -295,7 +283,7 @@ export default function MonetiseView({
                 />
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <Label htmlFor={`amount-${cert.id}`}>
                     Price ({cert.currency})
@@ -328,28 +316,6 @@ export default function MonetiseView({
                     }
                     disabled={!cert.monetizationEnabled}
                   />
-                </div>
-
-                <div>
-                  <Label htmlFor={`platform-fee-${cert.id}`}>
-                    Platform fee %
-                  </Label>
-                  <Input
-                    id={`platform-fee-${cert.id}`}
-                    type="number"
-                    min="0"
-                    max="100"
-                    value={cert.platformFeePercent}
-                    onChange={(e) =>
-                      updateDraft(cert.id, {
-                        platformFeePercent: Number(e.target.value || 0),
-                      })
-                    }
-                    disabled={!cert.monetizationEnabled}
-                  />
-                  <p className="text-xs text-gray-500 mt-1">
-                    Tutor share: {tutorPercent}%
-                  </p>
                 </div>
               </div>
 

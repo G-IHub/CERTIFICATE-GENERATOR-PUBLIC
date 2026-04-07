@@ -7236,14 +7236,15 @@ app.post("/make-server-a611b057/certificates/bulk", async (c) => {
 });
 
 // Get all certificates for an organization
-app.get("/make-server-a611b057/certificates/:organizationId", async (c) => {
+// NOTE: renamed to /organization/:id to avoid RegExpRouter parameter mismatch with /:id
+app.get("/make-server-a611b057/certificates/organization/:id", async (c) => {
   try {
     const { user, error } = await verifyUser(c.req.header("Authorization"));
     if (error) {
       return c.json({ error }, 401);
     }
 
-    const organizationId = c.req.param("organizationId");
+    const organizationId = c.req.param("id");
 
     // Get all certificates for this organization
     const allCertificates = await kv.getByPrefix(
@@ -7297,7 +7298,7 @@ app.get("/make-server-a611b057/certificates/cert/:certificateId", async (c) => {
 });
 
 // Update a certificate
-app.put("/make-server-a611b057/certificates/:certificateId", async (c) => {
+app.put("/make-server-a611b057/certificates/:id", async (c) => {
   try {
     console.log("📝 Certificate update request received");
 
@@ -7307,7 +7308,7 @@ app.put("/make-server-a611b057/certificates/:certificateId", async (c) => {
       return c.json({ error }, 401);
     }
 
-    const certificateId = c.req.param("certificateId");
+    const certificateId = c.req.param("id");
     const updates = await c.req.json();
 
     console.log("📝 Updating certificate:", {
@@ -7452,14 +7453,14 @@ app.put("/make-server-a611b057/certificates/:certificateId", async (c) => {
 });
 
 // Delete a certificate
-app.delete("/make-server-a611b057/certificates/:certificateId", async (c) => {
+app.delete("/make-server-a611b057/certificates/:id", async (c) => {
   try {
     const { user, error } = await verifyUser(c.req.header("Authorization"));
     if (error) {
       return c.json({ error }, 401);
     }
 
-    const certificateId = c.req.param("certificateId");
+    const certificateId = c.req.param("id");
 
     // Find the certificate
     const allCertificates = await kv.getByPrefix("certificate:");

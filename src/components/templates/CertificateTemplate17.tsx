@@ -144,91 +144,44 @@ export default function CertificateTemplate17({
                 {date}
               </p> */}
 
-            <div className="flex justify-between items-end mt-10 relative">
-              <div className="w-[60px]">
+            <div className="flex w-full justify-center items-center">
+              <div className="w-[40px]">
                 <img src={barcode} alt="barcode" className="w-full" />
               </div>
-
-              {/* <div className="absolute left-[270px] top-[60%] transform -translate-x-1/2 -translate-y-1/2 z-20">
-                <img
-                  src={award}
-                  alt="award"
-                  className="w-[200px] object-contain opacity-100"
-                />
-              </div> */}
-
-              <div className="flex justify-between items-end">
-                <div className="flex gap-1 justify-between items-center">
-                  {/* Signature 1 - Always show if name is provided */}
-                  {signatoryName1 && (
-                    <div className="flex flex-col items-center text-center px-5 mx-1">
-                      {signatureUrl1 && (
-                        <img
-                          src={signatureUrl1}
-                          alt={signatoryName1}
-                          className="w-24 h-16 object-contain"
-                          style={{ marginBottom: -12 }}
-                        />
-                      )}
-                      {!signatureUrl1 && (
-                        <div className="w-32 border-b-2 border-gray-400 mb-2" />
-                      )}
-                      <div
-                        className="text-sm font-bold"
-                        style={{ color: "#4D4D4D" }}
-                      >
-                        {signatoryName1}
-                      </div>
-                      {signatoryTitle1 && (
-                        <div className="text-xs font-medium">
-                          {signatoryTitle1}
-                        </div>
-                      )}
-                    </div>
-                  )}
-
-                  {/* Signature 2 - Always show if name is provided */}
-                  {signatoryName2 && (
-                    <div className="flex flex-col items-center text-center px-5 mx-1">
-                      {signatureUrl2 && (
-                        <img
-                          src={signatureUrl2}
-                          alt={signatoryName2}
-                          className="w-24 h-16 object-contain"
-                          style={{ marginBottom: -12 }}
-                        />
-                      )}
-                      {!signatureUrl2 && (
-                        <div className="w-32 border-b-2 border-gray-400 mb-2" />
-                      )}
-                      <div
-                        className="text-sm font-bold"
-                        style={{ color: "#4D4D4D" }}
-                      >
-                        {signatoryName2}
-                      </div>
-                      {signatoryTitle2 && (
-                        <div className="text-xs font-medium">
-                          {signatoryTitle2}
-                        </div>
-                      )}
-                    </div>
-                  )}
-
-                  {/* Date display */}
-                  {date && (
-                    <div className="flex flex-col items-center text-center">
-                      <div className="w-32 mt-7 mb-2" />
-                      <div className="text-xs font-bold ">Date</div>
-                      <div
-                        className="text-sm font-medium"
-                        style={{ color: "#4D4D4D" }}
-                      >
-                        {formattedDate || "DATE"}
-                      </div>
-                    </div>
+              <div className="flex flex-col gap-1 items-center">
+                <div className="border-b border-green-950 w-40 flex justify-center min-h-10">
+                  {signatureUrl1 && (
+                    <img
+                      src={signatureUrl1}
+                      alt={signatoryName1}
+                      className="w-24 h-16 object-contain"
+                    />
                   )}
                 </div>
+                <p className="text-center text-xs font-medium">
+                  {signatoryName1}
+                </p>
+                <p className="text-center text-[9px] italic font-medium">
+                  {signatoryTitle1}
+                </p>
+              </div>
+              <img src={award} alt="" className="w-40" />
+              <div className="flex flex-col gap-1 items-center">
+                <div className="border-b border-green-950 w-40 flex justify-center min-h-10">
+                  {signatureUrl2 && (
+                    <img
+                      src={signatureUrl2}
+                      alt={signatoryName2}
+                      className="w-24 h-16 object-contain"
+                    />
+                  )}
+                </div>
+                <p className="text-center text-xs font-medium">
+                  {signatoryName2}
+                </p>
+                <p className="text-center text-[9px] italic font-medium">
+                  {signatoryTitle2}
+                </p>
               </div>
             </div>
           </div>

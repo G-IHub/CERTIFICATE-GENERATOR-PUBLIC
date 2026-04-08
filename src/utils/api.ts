@@ -296,10 +296,6 @@ export const certificateApi = {
     students?: Array<{ name: string; email?: string; completionDate?: string }>;
     restrictDownload?: boolean;
     allowedEmails?: string[];
-    monetizationEnabled?: boolean;
-    certificatePriceMinor?: number;
-    certificateCurrency?: string;
-    platformFeePercent?: number;
   }) => {
     console.log('📤 Sending certificate generation request:', {
       ...data,
@@ -341,18 +337,8 @@ export const certificateApi = {
     });
     
     if (!response.ok) {
-      let errorData: any = { error: 'Failed to get certificate' };
-      try {
-        errorData = await response.json();
-      } catch (e) {
-        // Keep default error payload
-      }
-
-      const err: any = new Error(errorData.error || 'Failed to get certificate');
-      err.status = response.status;
-      err.code = errorData.code;
-      err.details = errorData.details;
-      throw err;
+      const error = await response.json();
+      throw new Error(error.error || 'Failed to get certificate');
     }
     
     const data = await response.json();
@@ -374,10 +360,6 @@ export const certificateApi = {
     signatories?: any[];
     restrictDownload?: boolean;
     allowedEmails?: string[];
-    monetizationEnabled?: boolean;
-    certificatePriceMinor?: number;
-    certificateCurrency?: string;
-    platformFeePercent?: number;
   }) => {
     console.log('📤 Sending certificate update request:', {
       certificateId,
@@ -406,51 +388,10 @@ export const certificateApi = {
     return result;
   },
 
-  updateMonetization: async (token: string, certificateId: string, data: {
-    monetizationEnabled: boolean;
-    certificatePriceMinor?: number;
-    certificateCurrency?: string;
-    platformFeePercent?: number;
-  }) => {
-    const payload = {
-      monetizationEnabled: data.monetizationEnabled,
-      certificatePriceMinor: data.certificatePriceMinor,
-      certificateCurrency: data.certificateCurrency,
-    };
-
-    // Use the dedicated monetization endpoint directly to ensure all monetization logic triggers correctly (updates paymentStatus, verifies amount, etc.)
-    const response = await fetch(`${API_BASE_URL}/certificates/${certificateId}/monetization`, {
-      method: 'POST',
-      headers: getAuthHeaders(token),
-      body: JSON.stringify(payload),
-    });
-
-    const responseText = await response.text();
-    let parsed: any = null;
-    if (responseText) {
-      try {
-        parsed = JSON.parse(responseText);
-      } catch {
-        parsed = null;
-      }
-    }
-
-    if (!response.ok) {
-      throw new Error(
-        parsed?.error ||
-          parsed?.message ||
-          `Failed to update monetization settings (${response.status})`,
-      );
-    }
-
-    return parsed || { success: true };
-  },
-
   getForOrganization: async (token: string, organizationId: string) => {
     const response = await fetch(`${API_BASE_URL}/organizations/${organizationId}/certificates`, {
       method: 'GET',
       headers: getAuthHeaders(token),
-      cache: 'no-store',
     });
     
     if (!response.ok) {
@@ -488,6 +429,40 @@ export const certificateApi = {
     }
     
     return await response.json();
+  },
+
+  updateMonetization: async (token: string, certificateId: string, data: {
+    monetizationEnabled: boolean;
+    certificatePriceMinor?: number;
+    certificateCurrency?: string;
+  }) => {
+    const response = await fetch(`${API_BASE_URL}/certificates/${certificateId}/monetization`, {
+      method: 'PUT',
+      headers: getAuthHeaders(token),
+      body: JSON.stringify(data),
+    });
+    
+    if (!response.ok) {
+      let errorDetails;
+      try {
+        errorDetails = await response.json();
+      } catch (e) {
+        // If response is not JSON, get text
+        const text = await response.text();
+        throw new Error(`Failed to update monetization: ${response.status} ${text || response.statusText}`);
+      }
+      throw new Error(errorDetails.error || 'Failed to update monetization');
+    }
+    
+    // Handle successful response
+    try {
+      return await response.json();
+    } catch (e) {
+      // If response is not JSON but request was successful, try to get text
+      const text = await response.text();
+      console.error('Response is not JSON:', text);
+      throw new Error(`Invalid JSON response: ${text.substring(0, 100)}`);
+    }
   },
 
   submitTestimonial: async (data: {
@@ -569,6 +544,48 @@ export const analyticsApi = {
     if (!response.ok) {
       const error = await response.json();
       throw new Error(error.error || 'Failed to get analytics');
+    }
+    
+    return await response.json();
+  },
+};
+
+// ==================== CERTIFICATE PAYMENT API ====================
+
+export const certificatePaymentApi = {
+  initializeInterswitch: async (data: {
+    certificateId: string;
+    studentEmail: string;
+    studentName: string;
+  }) => {
+    const response = await fetch(`${API_BASE_URL}/payments/interswitch/initialize`, {
+      method: 'POST',
+      headers: getAuthHeaders(),
+      body: JSON.stringify(data),
+    });
+    
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.error || 'Failed to initialize payment');
+    }
+    
+    return await response.json();
+  },
+
+  verifyInterswitch: async (data: {
+    transactionRef: string;
+    amount: number;
+    certificateId: string;
+  }) => {
+    const response = await fetch(`${API_BASE_URL}/payments/interswitch/verify`, {
+      method: 'POST',
+      headers: getAuthHeaders(),
+      body: JSON.stringify(data),
+    });
+    
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.error || 'Failed to verify payment');
     }
     
     return await response.json();
@@ -723,75 +740,4 @@ export const healthCheck = async () => {
   }
   
   return await response.json();
-};
-
-export const certificatePaymentApi = {
-  initialize: async (certificateId: string) => {
-    const response = await fetch(`${API_BASE_URL}/certificate-payments/initialize`, {
-      method: 'POST',
-      headers: getAuthHeaders(),
-      body: JSON.stringify({ certificateId }),
-    });
-
-    if (!response.ok) {
-      const error = await response.json();
-      throw new Error(error.error || 'Failed to initialize certificate payment');
-    }
-
-    return await response.json();
-  },
-
-  verify: async (reference: string) => {
-    const response = await fetch(`${API_BASE_URL}/certificate-payments/verify`, {
-      method: 'POST',
-      headers: getAuthHeaders(),
-      body: JSON.stringify({ reference }),
-    });
-
-    if (!response.ok) {
-      const error = await response.json();
-      throw new Error(error.error || 'Failed to verify certificate payment');
-    }
-
-    return await response.json();
-  },
-
-  // Interswitch-specific methods
-  initializeInterswitch: async (data: {
-    certificateId: string;
-    studentEmail: string;
-    studentName?: string;
-  }) => {
-    const response = await fetch(`${API_BASE_URL}/certificate-payments/interswitch/initialize`, {
-      method: 'POST',
-      headers: getAuthHeaders(),
-      body: JSON.stringify(data),
-    });
-
-    if (!response.ok) {
-      const error = await response.json();
-      throw new Error(error.error || 'Failed to initialize Interswitch payment');
-    }
-
-    return await response.json();
-  },
-
-  verifyInterswitch: async (data: {
-    transactionRef: string;
-    amount: number;
-    certificateId: string;
-  }) => {
-    const response = await fetch(`${API_BASE_URL}/certificate-payments/interswitch/verify`, {
-      method: 'POST',
-      headers: getAuthHeaders(),
-      body: JSON.stringify(data),
-    });
-
-    if (!response.ok) {
-      const error = await response.json();
-      throw new Error(error.error || 'Failed to verify Interswitch payment');
-    }
-
-    return await response.json();
-  },
 };

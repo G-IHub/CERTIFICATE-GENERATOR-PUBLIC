@@ -97,14 +97,14 @@ export default function CertificateTemplate9({
             {recipientName}
           </p>
           <p className="text-sm">For successfully participating in the program:</p>
-          <p className="text-lg font-bold">{courseTitle}</p>
+          <p className="text-lg font-bold -mt-2 -mb-0.5Te">{courseTitle}</p>
           <p className="text-sm">
-            {description} Organized By <span className="font-bold">{organizationName}</span>
+            {description}
           </p>
           {/* <p className="text-sm text-purple-950 font-bold">{formattedDate}</p> */}
         </div>
 
-        <div className="flex gap-10 w-full items-center justify-between mt-4">
+        <div className="flex gap-10 w-full items-center justify-between">
           {signatoryName1 && (
             <div className="flex flex-col items-center">
               <div className="border-b border-purple-950 w-40 flex justify-center min-h-16 pb-2">

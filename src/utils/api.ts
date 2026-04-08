@@ -338,6 +338,26 @@ export const certificateApi = {
     
     if (!response.ok) {
       const error = await response.json();
+      
+      // Special handling for 402 Payment Required
+      if (response.status === 402 && error.code === 'PAYMENT_REQUIRED' && error.details) {
+        console.log('💰 Payment required for certificate:', error.details);
+        // Return a special object indicating payment is required
+        return {
+          paymentRequired: true,
+          certificate: {
+            id: error.details.certificateId,
+            courseName: error.details.courseName,
+            certificateHeader: error.details.certificateHeader,
+            monetizationEnabled: true,
+            certificatePriceMinor: error.details.amountMinor,
+            certificateCurrency: error.details.currency,
+            paymentStatus: 'unpaid',
+          },
+          error: error.error,
+        };
+      }
+      
       throw new Error(error.error || 'Failed to get certificate');
     }
     
@@ -558,7 +578,7 @@ export const certificatePaymentApi = {
     studentEmail: string;
     studentName: string;
   }) => {
-    const response = await fetch(`${API_BASE_URL}/payments/interswitch/initialize`, {
+    const response = await fetch(`${API_BASE_URL}/certificate-payments/interswitch/initialize`, {
       method: 'POST',
       headers: getAuthHeaders(),
       body: JSON.stringify(data),
@@ -577,7 +597,7 @@ export const certificatePaymentApi = {
     amount: number;
     certificateId: string;
   }) => {
-    const response = await fetch(`${API_BASE_URL}/payments/interswitch/verify`, {
+    const response = await fetch(`${API_BASE_URL}/certificate-payments/interswitch/verify`, {
       method: 'POST',
       headers: getAuthHeaders(),
       body: JSON.stringify(data),

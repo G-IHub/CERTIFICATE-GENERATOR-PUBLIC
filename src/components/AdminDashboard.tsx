@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, startTransition } from "react";
 import { useNavigate, useLocation } from "react-router";
 import { toast } from "sonner";
 import {
@@ -141,7 +141,7 @@ import {
   buildFullCertificateUrl,
   normalizeCertificateUrl,
 } from "../utils/certificateUtils";
-import logo from "../assets/logo.png";
+import { logoPng } from "../assets/logo.png";
 // import Footer from "../components/landing/Footer";
 
 // Organization is the new name for Subsidiary
@@ -151,7 +151,7 @@ type Organization = Subsidiary;
 // Use stable placeholder URLs for the logos. Replace with local public assets
 // (for example '/images/default-org-logo.png') if you add them to the public folder.
 const defaultOrgLogo = "https://via.placeholder.com/256x256.png?text=Org+Logo";
-const certifyerLogo = logo;
+const certifyerLogo = logoPng;
 
 interface AdminDashboardProps {
   user: UserProfile;
@@ -1484,7 +1484,9 @@ export default function AdminDashboard({
 
   // Handle tab changes
   const handleTabChange = (tab: string) => {
-    setActiveTab(tab);
+    startTransition(() => {
+      setActiveTab(tab);
+    });
   };
 
   // Analytics data is now fetched from backend via AnalyticsView component
@@ -1781,7 +1783,9 @@ export default function AdminDashboard({
                     <button
                       key={item.id}
                       onClick={() => {
-                        setActiveTab(item.id);
+                        startTransition(() => {
+                          setActiveTab(item.id);
+                        });
                         setMobileMenuOpen(false);
                       }}
                       className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
@@ -3785,7 +3789,7 @@ export default function AdminDashboard({
           <footer className="bg-black text-white px-4 md:px-8 py-3 flex-shrink-0">
             <div className="flex items-center justify-between gap-4">
               <div className="flex items-center gap-2">
-                <img src={logo} alt="logo" className="w-10" />
+                <img src={logoPng} alt="logo" className="w-10" />
                 <p className="text-orange-500 font-medium hidden md:block md:text-xl">
                   Certifyer
                 </p>

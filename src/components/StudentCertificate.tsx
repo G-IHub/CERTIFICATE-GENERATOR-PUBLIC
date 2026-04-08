@@ -13,7 +13,6 @@ import {
 } from "./ui/tooltip";
 import {
   Download,
-  CreditCard,
   Share2,
   ExternalLink,
   Facebook,
@@ -34,24 +33,20 @@ import {
   Building2,
   AlertCircle,
   Image as ImageIcon,
+  DollarSign,
 } from "lucide-react";
 import { toast } from "sonner";
 import CertificateTemplate from "./CertificateTemplate";
 import CertificateRenderer from "./CertificateRenderer";
-import InterswitchPaymentModal from "./InterswitchPaymentModal";
 import type { Subsidiary, Program } from "../App";
 import { copyToClipboard } from "../utils/clipboard";
-import {
-  certificateApi,
-  templateApi,
-  certificatePaymentApi,
-} from "../utils/api";
+import { certificateApi, templateApi } from "../utils/api";
 import {
   decryptCertificateData,
   getCertificateLinkTimeRemaining,
 } from "../utils/encryption";
 import { toJpeg } from "html-to-image";
-import logo from "../assets/logo.png";
+import InterswitchPaymentModal from "./InterswitchPaymentModal";
 
 interface StudentCertificateProps {
   subsidiaries: Subsidiary[];
@@ -89,11 +84,10 @@ interface CertificateData {
   }[];
   restrictDownload?: boolean; // NEW: Whether downloads are restricted
   allowedEmails?: string[]; // NEW: List of allowed student emails
-  monetizationEnabled?: boolean;
-  certificatePriceMinor?: number;
-  certificateCurrency?: string;
-  platformFeePercent?: number;
-  paymentStatus?: "unpaid" | "paid";
+  monetizationEnabled?: boolean; // NEW: Whether payment is required
+  certificatePriceMinor?: number; // NEW: Price in kobo (minor denomination)
+  certificateCurrency?: string; // NEW: Currency (e.g., NGN)
+  paymentStatus?: string; // NEW: Payment status (paid/unpaid)
 }
 
 const StudentCertificate: React.FC<StudentCertificateProps> = ({
@@ -121,15 +115,15 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
   const certificateRef = useRef<HTMLDivElement>(null); // Ref for PNG download
   const [isDownloading, setIsDownloading] = useState(false);
   const [fontsLoaded, setFontsLoaded] = useState(false); // Track font loading
-  const [paymentRequired, setPaymentRequired] = useState(false);
-  const [paymentDetails, setPaymentDetails] = useState<any>(null);
-  const [isPaying, setIsPaying] = useState(false);
-  const [showPaymentModal, setShowPaymentModal] = useState(false);
 
   // New testimonial fields
   const [enteredTitle, setEnteredTitle] = useState("");
   const [enteredOrganization, setEnteredOrganization] = useState("");
   const [enteredImpact, setEnteredImpact] = useState("");
+
+  // Payment state
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const [paymentCompleted, setPaymentCompleted] = useState(false);
 
   // Preload fonts to prevent text shift on first download
   useEffect(() => {
@@ -187,34 +181,6 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
 
     preloadFonts();
   }, []);
-
-  useEffect(() => {
-    const verifyPaymentFromUrl = async () => {
-      const params = new URLSearchParams(location.search);
-      const paymentReference = params.get("payment_reference");
-
-      if (!paymentReference) {
-        return;
-      }
-
-      try {
-        setIsPaying(true);
-        await certificatePaymentApi.verify(paymentReference);
-        toast.success("Payment verified. Certificate unlocked.");
-
-        const cleanHash = window.location.hash.split("?")[0];
-        const cleanUrl = `${window.location.origin}${window.location.pathname}${cleanHash}`;
-        window.history.replaceState({}, "", cleanUrl);
-        window.location.reload();
-      } catch (error: any) {
-        toast.error(error.message || "Failed to verify payment.");
-      } finally {
-        setIsPaying(false);
-      }
-    };
-
-    verifyPaymentFromUrl();
-  }, [location.search]);
 
   useEffect(() => {
     const fetchCertificate = async () => {
@@ -299,14 +265,36 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
         // Fetch certificate from backend
         console.log("📡 Calling API to get certificate...");
         const response = await certificateApi.getById(actualCertificateId);
+
+        // Check if payment is required
+        if (response.paymentRequired) {
+          console.log("💰 Payment required for certificate");
+          const cert = response.certificate;
+
+          // Set minimal certificate data to show the payment form
+          const certificateData: CertificateData = {
+            id: cert.id,
+            courseName: cert.courseName,
+            certificateHeader: cert.certificateHeader,
+            completionDate: new Date().toISOString(),
+            monetizationEnabled: true,
+            certificatePriceMinor: cert.certificatePriceMinor,
+            certificateCurrency: cert.certificateCurrency,
+            paymentStatus: "unpaid",
+          };
+
+          setCertificate(certificateData);
+          setShowNameForm(true); // Show name form which will then lead to payment
+          setLoading(false);
+          return;
+        }
+
         console.log("📡 API Response received:");
         console.log("   - Has certificate:", !!response.certificate);
         console.log("   - Has organization:", !!response.organization);
         console.log("   - Has program:", !!response.program);
 
         if (response.certificate) {
-          setPaymentRequired(false);
-          setPaymentDetails(null);
           console.log("✅ Certificate data received from backend");
           const cert = response.certificate;
           const org = response.organization;
@@ -351,14 +339,10 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
             signatories: cert.signatories || [], // Signatories from backend
             restrictDownload: cert.restrictDownload || false, // Download restriction flag
             allowedEmails: cert.allowedEmails || [], // List of allowed emails
-            monetizationEnabled: !!cert.monetizationEnabled,
-            certificatePriceMinor: Number(cert.certificatePriceMinor || 0),
-            certificateCurrency: cert.certificateCurrency || "NGN",
-            platformFeePercent:
-              cert.platformFeePercent !== undefined
-                ? Number(cert.platformFeePercent)
-                : 15,
-            paymentStatus: cert.paymentStatus || "unpaid",
+            monetizationEnabled: cert.monetizationEnabled || false, // Payment requirement flag
+            certificatePriceMinor: cert.certificatePriceMinor || 0, // Price in kobo
+            certificateCurrency: cert.certificateCurrency || "NGN", // Currency
+            paymentStatus: cert.paymentStatus || "unpaid", // Payment status
           };
 
           console.log("📋 Template Info:", {
@@ -435,9 +419,17 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
       } catch (error: any) {
         if (error.stack) console.error("Stack trace:", error.stack);
 
-        if (error.status === 402 && error.code === "PAYMENT_REQUIRED") {
-          setPaymentRequired(true);
-          setPaymentDetails(error.details || null);
+        // Check if this is a payment required error (402)
+        if (error.message && error.message.includes("Payment is required")) {
+          console.log(
+            "💰 Payment required - this is expected, showing name form",
+          );
+          // Don't show error toast - this is expected behavior
+          // We'll show the name form and then the payment modal
+          setShowNameForm(true);
+          // Set a minimal certificate object so we can show the form
+          // The actual certificate data will be loaded after payment
+          setLoading(false);
           return;
         }
 
@@ -460,10 +452,6 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
 
     fetchCertificate();
   }, [certificateId]);
-
-  const handlePayForCertificate = async () => {
-    setShowPaymentModal(true);
-  };
 
   // Prevent layout shift when download starts - always reserve scrollbar space
   useEffect(() => {
@@ -1089,64 +1077,6 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
     );
   }
 
-  if (paymentRequired) {
-    const amountMinor = Number(paymentDetails?.amountMinor || 0);
-    const currency = paymentDetails?.currency || "NGN";
-    const amountMajor = (amountMinor / 100).toFixed(2);
-    const payableCertificateId =
-      certificate?.id || paymentDetails?.certificateId || certificateId || "";
-    const payableCertificateName =
-      certificate?.courseName ||
-      certificate?.certificateHeader ||
-      paymentDetails?.courseName ||
-      "Certificate";
-
-    return (
-      <>
-        <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-          <Card className="w-full max-w-md">
-            <CardContent className="p-8 text-center space-y-4">
-              <CreditCard className="w-12 h-12 text-primary mx-auto" />
-              <h2 className="text-xl font-bold text-gray-900">
-                Payment Required
-              </h2>
-              <p className="text-gray-600">
-                This certificate requires payment before access.
-              </p>
-              <div className="bg-gray-100 rounded-lg p-4">
-                <p className="text-sm text-gray-500">Amount</p>
-                <p className="text-2xl font-bold text-gray-900">
-                  {currency} {amountMajor}
-                </p>
-              </div>
-              <Button
-                className="w-full"
-                onClick={handlePayForCertificate}
-                disabled={isPaying || !payableCertificateId}
-              >
-                {isPaying ? "Processing..." : "Pay and Unlock Certificate"}
-              </Button>
-            </CardContent>
-          </Card>
-        </div>
-
-        {showPaymentModal && payableCertificateId && (
-          <InterswitchPaymentModal
-            certificateId={payableCertificateId}
-            certificateName={payableCertificateName}
-            priceKobo={amountMinor}
-            onPaymentComplete={() => {
-              setShowPaymentModal(false);
-              toast.success("Payment verified. Certificate unlocked.");
-              window.location.reload();
-            }}
-            onClose={() => setShowPaymentModal(false)}
-          />
-        )}
-      </>
-    );
-  }
-
   if (!certificate) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -1263,17 +1193,37 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
           }
         }
 
-        setShowNameForm(false);
-        toast.success(
-          enteredTestimonial.trim() || enteredImpact.trim()
-            ? "Thank you for your feedback!"
-            : "Certificate personalized with your name!",
-        );
+        // NEW: Check if payment is required
+        if (
+          certificate.monetizationEnabled &&
+          certificate.paymentStatus !== "paid"
+        ) {
+          console.log("💰 Payment required - showing payment modal");
+          setShowNameForm(false);
+          setShowPaymentModal(true);
+          toast.info("Payment required to access this certificate");
+        } else {
+          // No payment required or already paid - show certificate
+          setShowNameForm(false);
+          toast.success(
+            enteredTestimonial.trim() || enteredImpact.trim()
+              ? "Thank you for your feedback!"
+              : "Certificate personalized with your name!",
+          );
+        }
       } catch (error) {
         console.error("Failed to save testimonial:", error);
-        // Still show the certificate even if testimonial save fails
-        setShowNameForm(false);
-        toast.success("Certificate personalized with your name!");
+        // Still proceed even if testimonial save fails
+        if (
+          certificate.monetizationEnabled &&
+          certificate.paymentStatus !== "paid"
+        ) {
+          setShowNameForm(false);
+          setShowPaymentModal(true);
+        } else {
+          setShowNameForm(false);
+          toast.success("Certificate personalized with your name!");
+        }
       } finally {
         setIsSubmitting(false);
       }
@@ -1314,6 +1264,19 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
                 </AlertDescription>
               </Alert>
             )}
+
+            {certificate.monetizationEnabled &&
+              certificate.paymentStatus !== "paid" && (
+                <Alert className="mb-4 border-blue-300 bg-blue-50">
+                  <DollarSign className="h-4 w-4 text-blue-600" />
+                  <AlertDescription className="text-sm text-blue-800">
+                    This certificate requires payment. Price: ₦
+                    {((certificate.certificatePriceMinor || 0) / 100).toFixed(
+                      2,
+                    )}
+                  </AlertDescription>
+                </Alert>
+              )}
 
             <form
               onSubmit={handleFormSubmit}
@@ -1500,6 +1463,42 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
           </CardContent>
         </Card>
       </div>
+    );
+  }
+
+  // Show payment modal if payment is required
+  if (
+    showPaymentModal &&
+    certificate.monetizationEnabled &&
+    certificate.paymentStatus !== "paid"
+  ) {
+    const courseName =
+      certificate.courseName || certificate.program?.name || "Certificate";
+
+    return (
+      <InterswitchPaymentModal
+        certificateId={certificate.id}
+        certificateName={courseName}
+        priceKobo={certificate.certificatePriceMinor || 0}
+        prefilledEmail={enteredEmail}
+        prefilledName={enteredName}
+        onPaymentComplete={(transactionRef) => {
+          console.log("✅ Payment completed:", transactionRef);
+          setPaymentCompleted(true);
+          setShowPaymentModal(false);
+          // Update certificate payment status
+          if (certificate) {
+            certificate.paymentStatus = "paid";
+          }
+          toast.success(
+            "Payment successful! You can now view your certificate.",
+          );
+        }}
+        onClose={() => {
+          setShowPaymentModal(false);
+          setShowNameForm(true); // Go back to name form
+        }}
+      />
     );
   }
 

@@ -26,6 +26,8 @@ interface InterswitchPaymentModalProps {
   priceKobo: number; // Price in kobo (minor denomination)
   onPaymentComplete: (transactionRef: string) => void;
   onClose: () => void;
+  prefilledEmail?: string; // Optional pre-filled email
+  prefilledName?: string; // Optional pre-filled name
 }
 
 export default function InterswitchPaymentModal({
@@ -34,10 +36,12 @@ export default function InterswitchPaymentModal({
   priceKobo,
   onPaymentComplete,
   onClose,
+  prefilledEmail = "",
+  prefilledName = "",
 }: InterswitchPaymentModalProps) {
   const [loading, setLoading] = useState(false);
-  const [studentEmail, setStudentEmail] = useState("");
-  const [studentName, setStudentName] = useState("");
+  const [studentEmail, setStudentEmail] = useState(prefilledEmail);
+  const [studentName, setStudentName] = useState(prefilledName);
   const [checkoutInitialized, setCheckoutInitialized] = useState(false);
   const [paymentInProgress, setPaymentInProgress] = useState(false);
   const [paymentResult, setPaymentResult] = useState<any>(null);

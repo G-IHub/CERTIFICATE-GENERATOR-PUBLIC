@@ -21,10 +21,17 @@ import {
 import { toast } from "sonner";
 import SettingsSkeleton from "./skeletons/SettingsSkeleton";
 import { Skeleton } from "./ui/skeleton";
-import type { Organization, Signatory, OrganizationSettings, Logo } from "../App";
+import type {
+  Organization,
+  Signatory,
+  OrganizationSettings,
+  Logo,
+} from "../App";
 import { organizationApi } from "../utils/api";
 import SignatoryManagement from "./SignatoryManagement";
 import LogoManagement from "./LogoManagement";
+import PayoutSettings from "./PayoutSettings";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 
 // For compatibility, keep the existing interface name
 interface OrganizationSettingsData extends OrganizationSettings {}
@@ -34,7 +41,7 @@ interface OrganizationSettingsProps {
   accessToken: string;
   onSettingsUpdated: (
     organizationId: string,
-    updates: Partial<Organization>
+    updates: Partial<Organization>,
   ) => void;
 }
 
@@ -52,13 +59,13 @@ export default function OrganizationSettings({
   });
 
   const [organizationName, setOrganizationName] = useState(
-    organization.name || ""
+    organization.name || "",
   );
 
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
   const [uploadingSignature, setUploadingSignature] = useState<string | null>(
-    null
+    null,
   );
   const [uploadingLogo, setUploadingLogo] = useState<string | null>(null);
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
@@ -78,9 +85,9 @@ export default function OrganizationSettings({
       setIsLoading(true);
       const data = await organizationApi.getSettings(
         accessToken,
-        organization.id
+        organization.id,
       );
-      
+
       // Migrate old logo/secondaryLogo to new logos array if needed
       let logos: Logo[] = data.settings.logos || [];
       if (logos.length === 0) {
@@ -141,15 +148,11 @@ export default function OrganizationSettings({
     setHasUnsavedChanges(true);
   };
 
-  const updateLogo = (
-    logoId: string,
-    field: keyof Logo,
-    value: string
-  ) => {
+  const updateLogo = (logoId: string, field: keyof Logo, value: string) => {
     setSettings((prev) => ({
       ...prev,
       logos: (prev.logos || []).map((logo) =>
-        logo.id === logoId ? { ...logo, [field]: value } : logo
+        logo.id === logoId ? { ...logo, [field]: value } : logo,
       ),
     }));
 
@@ -164,13 +167,13 @@ export default function OrganizationSettings({
         accessToken,
         file,
         "logo",
-        organization.id
+        organization.id,
       );
 
       setSettings((prev) => ({
         ...prev,
         logos: (prev.logos || []).map((logo) =>
-          logo.id === logoId ? { ...logo, url: data.url } : logo
+          logo.id === logoId ? { ...logo, url: data.url } : logo,
         ),
       }));
 
@@ -193,13 +196,13 @@ export default function OrganizationSettings({
         accessToken,
         file,
         "signature",
-        organization.id
+        organization.id,
       );
 
       setSettings((prev) => ({
         ...prev,
         signatories: prev.signatories.map((s) =>
-          s.id === signatoryId ? { ...s, signatureUrl: data.url } : s
+          s.id === signatoryId ? { ...s, signatureUrl: data.url } : s,
         ),
       }));
 
@@ -241,12 +244,12 @@ export default function OrganizationSettings({
   const updateSignatory = (
     signatoryId: string,
     field: keyof Signatory,
-    value: string
+    value: string,
   ) => {
     setSettings((prev) => ({
       ...prev,
       signatories: prev.signatories.map((s) =>
-        s.id === signatoryId ? { ...s, [field]: value } : s
+        s.id === signatoryId ? { ...s, [field]: value } : s,
       ),
     }));
 
@@ -267,13 +270,16 @@ export default function OrganizationSettings({
         ...settings,
         logos: settings.logos || [],
         // Keep legacy logo field for backward compatibility (use first logo)
-        logo: settings.logos && settings.logos.length > 0 ? settings.logos[0].url : settings.logo,
+        logo:
+          settings.logos && settings.logos.length > 0
+            ? settings.logos[0].url
+            : settings.logo,
       };
 
       const data = await organizationApi.updateSettings(
         accessToken,
         organization.id,
-        settingsToSave
+        settingsToSave,
       );
 
       // Update parent component with all changes including organization name
@@ -310,7 +316,7 @@ export default function OrganizationSettings({
   }
 
   return (
-    <div className="space-y-6 max-w-4xl">
+    <div className="space-y-6">
       {hasUnsavedChanges && (
         <Alert>
           <AlertCircle className="h-4 w-4" />
@@ -320,85 +326,93 @@ export default function OrganizationSettings({
         </Alert>
       )}
 
-      {/* Organization Name */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Building2 className="w-5 h-5" />
-            Organization Information
-          </CardTitle>
-          <CardDescription>
-            Basic information about your organization that will appear on
-            certificates.
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="space-y-2">
-            <Label htmlFor="org-name">Organization Name</Label>
-            <Input
-              id="org-name"
-              type="text"
-              value={organizationName}
-              onChange={(e) => {
-                setOrganizationName(e.target.value);
-                setHasUnsavedChanges(true);
-              }}
-              placeholder="Enter your organization name"
-              className="max-w-md"
-            />
-            <p className="text-xs text-gray-500">
-              This will be displayed on all certificates issued by your
-              organization
-            </p>
-          </div>
-        </CardContent>
-      </Card>
+      <Tabs defaultValue="general" className="w-full">
+        <TabsList className="grid w-full grid-cols-2 max-w-md">
+          <TabsTrigger value="general">General Settings</TabsTrigger>
+          <TabsTrigger value="payouts">Payouts & Earnings</TabsTrigger>
+        </TabsList>
 
-      {/* Logo Management */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Building2 className="w-5 h-5" />
-            Organization Logos
-          </CardTitle>
-          <CardDescription>
-            Upload up to 2 logos to display on your certificates (e.g., your organization logo and a partner logo).
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <LogoManagement
-            logos={settings.logos || []}
-            onAdd={addLogo}
-            onRemove={removeLogo}
-            onUpdate={updateLogo}
-            onUploadLogo={handleLogoUpload}
-            uploadingLogo={uploadingLogo}
-            maxLogos={2}
-          />
-        </CardContent>
-      </Card>
+        <TabsContent value="general" className="space-y-6 max-w-4xl mt-6">
+          {/* Organization Name */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Building2 className="w-5 h-5" />
+                Organization Information
+              </CardTitle>
+              <CardDescription>
+                Basic information about your organization that will appear on
+                certificates.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="org-name">Organization Name</Label>
+                <Input
+                  id="org-name"
+                  type="text"
+                  value={organizationName}
+                  onChange={(e) => {
+                    setOrganizationName(e.target.value);
+                    setHasUnsavedChanges(true);
+                  }}
+                  placeholder="Enter your organization name"
+                  className="max-w-md"
+                />
+                <p className="text-xs text-gray-500">
+                  This will be displayed on all certificates issued by your
+                  organization
+                </p>
+              </div>
+            </CardContent>
+          </Card>
 
-      {/* Brand Color Settings */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Palette className="w-5 h-5" />
-            Brand Color
-          </CardTitle>
-          <CardDescription>
-            Choose a primary color for your certificates. This will be used for
-            borders, accents, and text highlights.
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="space-y-2">
-            <Label>Select Color</Label>
-            <div className="grid grid-cols-4 gap-3">
-              {predefinedColors.map((color) => (
-                <button
-                  key={color.value}
-                  onClick={() => handleColorChange(color.value)}
-                  className={`
+          {/* Logo Management */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Building2 className="w-5 h-5" />
+                Organization Logos
+              </CardTitle>
+              <CardDescription>
+                Upload up to 2 logos to display on your certificates (e.g., your
+                organization logo and a partner logo).
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <LogoManagement
+                logos={settings.logos || []}
+                onAdd={addLogo}
+                onRemove={removeLogo}
+                onUpdate={updateLogo}
+                onUploadLogo={handleLogoUpload}
+                uploadingLogo={uploadingLogo}
+                maxLogos={2}
+              />
+            </CardContent>
+          </Card>
+
+          {/* Brand Color Settings */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Palette className="w-5 h-5" />
+                Brand Color
+              </CardTitle>
+              <CardDescription>
+                Choose a primary color for your certificates. This will be used
+                for borders, accents, and text highlights.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="space-y-2">
+                <Label>Select Color</Label>
+                <div className="grid grid-cols-4 gap-3">
+                  {predefinedColors.map((color) => (
+                    <button
+                      key={color.value}
+                      onClick={() => handleColorChange(color.value)}
+                      className={`
                     relative h-16 rounded-lg border-2 transition-all hover:scale-105
                     ${
                       settings.primaryColor === color.value
@@ -406,118 +420,127 @@ export default function OrganizationSettings({
                         : "border-gray-200"
                     }
                   `}
-                  style={{ backgroundColor: color.value }}
-                >
-                  {settings.primaryColor === color.value && (
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <CheckCircle2 className="w-6 h-6 text-white drop-shadow-lg" />
-                    </div>
-                  )}
-                  <span className="absolute bottom-1 left-0 right-0 text-center text-xs text-white font-medium drop-shadow">
-                    {color.name}
-                  </span>
-                </button>
-              ))}
-            </div>
-          </div>
+                      style={{ backgroundColor: color.value }}
+                    >
+                      {settings.primaryColor === color.value && (
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <CheckCircle2 className="w-6 h-6 text-white drop-shadow-lg" />
+                        </div>
+                      )}
+                      <span className="absolute bottom-1 left-0 right-0 text-center text-xs text-white font-medium drop-shadow">
+                        {color.name}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="custom-color">Custom Color</Label>
-            <div className="flex gap-2">
-              <Input
-                id="custom-color"
-                type="color"
-                value={settings.primaryColor}
-                onChange={(e) => handleColorChange(e.target.value)}
-                className="w-20 h-10 cursor-pointer"
-              />
-              <Input
-                type="text"
-                value={settings.primaryColor}
-                onChange={(e) => handleColorChange(e.target.value)}
-                placeholder="#ea580c"
-                className="flex-1"
-              />
-            </div>
-            <p className="text-xs text-gray-500">
-              Or enter a custom hex color code
-            </p>
-          </div>
-
-          {/* Color Preview */}
-          <div
-            className="p-4 rounded-lg border-2"
-            style={{ borderColor: settings.primaryColor }}
-          >
-            <div className="flex items-center gap-2">
-              <div
-                className="w-8 h-8 rounded-full"
-                style={{ backgroundColor: settings.primaryColor }}
-              />
-              <div>
-                <p
-                  className="text-sm font-medium"
-                  style={{ color: settings.primaryColor }}
-                >
-                  Certificate Preview
-                </p>
+              <div className="space-y-2">
+                <Label htmlFor="custom-color">Custom Color</Label>
+                <div className="flex gap-2">
+                  <Input
+                    id="custom-color"
+                    type="color"
+                    value={settings.primaryColor}
+                    onChange={(e) => handleColorChange(e.target.value)}
+                    className="w-20 h-10 cursor-pointer"
+                  />
+                  <Input
+                    type="text"
+                    value={settings.primaryColor}
+                    onChange={(e) => handleColorChange(e.target.value)}
+                    placeholder="#ea580c"
+                    className="flex-1"
+                  />
+                </div>
                 <p className="text-xs text-gray-500">
-                  This is how your brand color will appear
+                  Or enter a custom hex color code
                 </p>
               </div>
-            </div>
+
+              {/* Color Preview */}
+              <div
+                className="p-4 rounded-lg border-2"
+                style={{ borderColor: settings.primaryColor }}
+              >
+                <div className="flex items-center gap-2">
+                  <div
+                    className="w-8 h-8 rounded-full"
+                    style={{ backgroundColor: settings.primaryColor }}
+                  />
+                  <div>
+                    <p
+                      className="text-sm font-medium"
+                      style={{ color: settings.primaryColor }}
+                    >
+                      Certificate Preview
+                    </p>
+                    <p className="text-xs text-gray-500">
+                      This is how your brand color will appear
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Signatories Settings */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <User className="w-5 h-5" />
+                Certificate Signatories
+              </CardTitle>
+              <CardDescription>
+                Add authorized signatories who will appear on certificates. You
+                can upload their signature images.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <SignatoryManagement
+                signatories={settings.signatories}
+                onAdd={addSignatory}
+                onRemove={removeSignatory}
+                onUpdate={updateSignatory}
+                onUploadSignature={handleSignatureUpload}
+                uploadingSignature={uploadingSignature}
+              />
+            </CardContent>
+          </Card>
+
+          {/* Save Button */}
+          <div className="flex justify-end gap-3 sticky bottom-0 bg-gradient-to-t from-white via-white to-transparent pt-6 pb-4">
+            {hasUnsavedChanges && (
+              <Button variant="outline" onClick={loadSettings}>
+                Discard Changes
+              </Button>
+            )}
+            <Button
+              onClick={handleSaveSettings}
+              disabled={isSaving || !hasUnsavedChanges}
+            >
+              {isSaving ? (
+                <>
+                  <Skeleton className="h-4 w-4 mr-2 rounded-full inline-block" />
+                  Saving...
+                </>
+              ) : (
+                <>
+                  <Save className="w-4 h-4 mr-2" />
+                  Save Settings
+                </>
+              )}
+            </Button>
           </div>
-        </CardContent>
-      </Card>
+        </TabsContent>
 
-      {/* Signatories Settings */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <User className="w-5 h-5" />
-            Certificate Signatories
-          </CardTitle>
-          <CardDescription>
-            Add authorized signatories who will appear on certificates. You can
-            upload their signature images.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <SignatoryManagement
-            signatories={settings.signatories}
-            onAdd={addSignatory}
-            onRemove={removeSignatory}
-            onUpdate={updateSignatory}
-            onUploadSignature={handleSignatureUpload}
-            uploadingSignature={uploadingSignature}
+        <TabsContent value="payouts" className="mt-6">
+          <PayoutSettings
+            organizationId={organization.id}
+            accessToken={accessToken}
           />
-        </CardContent>
-      </Card>
-
-      {/* Save Button */}
-      <div className="flex justify-end gap-3 sticky bottom-0 bg-gradient-to-t from-white via-white to-transparent pt-6 pb-4">
-        {hasUnsavedChanges && (
-          <Button variant="outline" onClick={loadSettings}>
-            Discard Changes
-          </Button>
-        )}
-        <Button
-          onClick={handleSaveSettings}
-          disabled={isSaving || !hasUnsavedChanges}
-        >
-          {isSaving ? (
-            <>
-              <Skeleton className="h-4 w-4 mr-2 rounded-full inline-block" />
-              Saving...
-            </>
-          ) : (
-            <>
-              <Save className="w-4 h-4 mr-2" />
-              Save Settings
-            </>
-          )}
-        </Button>
-      </div>
+        </TabsContent>
+      </Tabs>
     </div>
   );
 }

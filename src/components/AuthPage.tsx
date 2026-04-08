@@ -167,10 +167,10 @@ export default function AuthPage({
       } else if (err.message === "Failed to fetch") {
         setErrorType("network");
         setError(
-          "📡 Unable to connect to server. The Edge Function may not be deployed yet or is starting up. This can take 30-60 seconds after deployment. Please wait a moment and try again.",
+          "📡 Unable to connect to server. Please wait a moment and try again.",
         );
         toast.error(
-          "Server not responding. It may be deploying. Try again in 30 seconds.",
+          "Server not responding. Try again in 30 seconds.",
           { duration: 6000 },
         );
       } else if (
@@ -467,7 +467,7 @@ export default function AuthPage({
       } else if (err.message === "Failed to fetch") {
         setErrorType("network");
         setError(
-          "📡 Unable to connect to server. The Edge Function may not be deployed yet or is starting up. This can take 30-60 seconds after deployment. Please wait a moment and try again.",
+          "📡 Unable to connect to server. Please wait a moment and try again.",
         );
         toast.error(
           "Server not responding. It may be deploying. Try again in 30 seconds.",

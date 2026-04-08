@@ -90,14 +90,16 @@ export default function CertificateTemplate9({
         </div>
 
         <div className="space-y-2">
-          <p className="font-medium text-xs text-purple-950 uppercase -mt-4 mb-4">
+          <p className="font-medium text-xs text-purple-950 uppercase mt-4 mb-4">
             This Certificate is Presented to:
           </p>
           <p className="w-full border-b-2 border-purple-950 font-semibold text-4xl tracking-wider">
             {recipientName}
           </p>
+          <p className="text-sm">For successfully participating in the program:</p>
+          <p className="text-lg font-bold">{courseTitle}</p>
           <p className="text-sm">
-            {description} <b>{courseTitle}</b> Organized By {organizationName}
+            {description} Organized By <span className="font-bold">{organizationName}</span>
           </p>
           {/* <p className="text-sm text-purple-950 font-bold">{formattedDate}</p> */}
         </div>

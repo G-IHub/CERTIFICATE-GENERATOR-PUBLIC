@@ -149,7 +149,7 @@ export default function CertificateTemplate17({
                 <img src={barcode} alt="barcode" className="w-full" />
               </div>
               <div className="flex flex-col gap-1 items-center">
-                <div className="border-b border-green-950 w-40 flex justify-center min-h-10">
+                <div className="border-b border-purple-950 w-40 flex justify-center min-h-10">
                   {signatureUrl1 && (
                     <img
                       src={signatureUrl1}
@@ -167,7 +167,7 @@ export default function CertificateTemplate17({
               </div>
               <img src={award} alt="" className="w-40" />
               <div className="flex flex-col gap-1 items-center">
-                <div className="border-b border-green-950 w-40 flex justify-center min-h-10">
+                <div className="border-b border-purple-950 w-40 flex justify-center min-h-10">
                   {signatureUrl2 && (
                     <img
                       src={signatureUrl2}

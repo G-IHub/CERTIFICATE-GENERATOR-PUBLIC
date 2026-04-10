@@ -5,6 +5,44 @@ import CertificateTemplate2 from '../templates/CertificateTemplate2';
 import CertificateTemplate3 from '../templates/CertificateTemplate3';
 import CertificateTemplate4 from '../templates/CertificateTemplate4';
 import CertificateTemplate5 from '../templates/CertificateTemplate5';
+import PreviewWrapper from '../PreviewWrapper';
+import { AlertCircle } from 'lucide-react';
+
+// Simple error boundary for preview rendering
+class TemplateErrorBoundary extends React.Component<
+  {
+    children: React.ReactNode;
+    fallback?: React.ReactNode;
+  },
+  { hasError: boolean }
+> {
+  constructor(props: any) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+    console.error("Template render error:", error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        this.props.fallback || (
+          <div className="flex items-center justify-center p-4 text-gray-500">
+            <AlertCircle className="w-4 h-4 mr-2" />
+            <span className="text-sm">Preview unavailable</span>
+          </div>
+        )
+      );
+    }
+    return this.props.children;
+  }
+}
 
 const TemplateDisplay = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -66,39 +104,43 @@ const TemplateDisplay = () => {
         <h2 className='font-extrabold text-2xl sm:text-3xl md:text-4xl tracking-tight text-gray-900'>
           Beautiful Certificate Templates
         </h2>
-        <p className='text-[#696969] leading-6 text-sm md:text-basemax-w-2xl mx-auto'>
+        <p className='text-[#696969] leading-6 text-sm md:text-base max-w-2xl mx-auto'>
           Choose from our collection of professionally designed templates. Customize to match your brand.
         </p>
       </div>
 
       {/* Carousel */}
-      <div className='w-full max-w-5xl relative'>
+      <div className='w-full max-w-5xl relative flex items-center justify-center'>
         {/* Template Display */}
-        <div className='bg-gray-50 rounded-lg p-8 shadow-md border border-gray-200 flex justify-center items-center min-h-96'>
-          <div className='w-full scale-100 origin-top'>
-            <CurrentTemplate
-              {...sampleData}
-              mode='template-selection'
-              isPreview={true}
-            />
-          </div>
+        <div className='bg-gray-50 rounded-sm md:rounded-lg p-4 sm:p-8 shadow-md border border-gray-200 flex justify-center items-center min-h-64 sm:min-h-96'>
+          <TemplateErrorBoundary>
+            <div className="scale-[0.5] md:scale-[1] origin-center">
+            <PreviewWrapper  origin="center" wrapperSize={2}>
+              <CurrentTemplate
+                {...sampleData}
+                mode='template-selection'
+                isPreview={true}
+              />
+            </PreviewWrapper>
+            </div>
+          </TemplateErrorBoundary>
         </div>
 
         {/* Navigation Buttons */}
         <button
           onClick={goToPrevious}
-          className='absolute left-0 top-1/2 -translate-y-1/2 -translate-x-16 md:-translate-x-20 bg-orange-500 hover:bg-orange-600 text-white rounded-full p-2 transition duration-200'
+          className='absolute left-0 top-1/2 -translate-y-1/2 -translate-x-8 sm:-translate-x-16 md:-translate-x-20 bg-orange-500 hover:bg-orange-600 text-white rounded-full p-2 transition duration-200'
           aria-label='Previous template'
         >
-          <ChevronLeft className='w-6 h-6' />
+          <ChevronLeft className='w-4 h-4 md:w-6 md:h-6' />
         </button>
 
         <button
           onClick={goToNext}
-          className='absolute right-0 top-1/2 -translate-y-1/2 translate-x-16 md:translate-x-20 bg-orange-500 hover:bg-orange-600 text-white rounded-full p-2 transition duration-200'
+          className='absolute right-0 top-1/2 -translate-y-1/2 translate-x-8 sm:translate-x-16 md:translate-x-20 bg-orange-500 hover:bg-orange-600 text-white rounded-full p-2 transition duration-200'
           aria-label='Next template'
         >
-          <ChevronRight className='w-6 h-6' />
+          <ChevronRight className='w-4 h-4 md:w-6 md:h-6' />
         </button>
       </div>
 

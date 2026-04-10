@@ -287,7 +287,7 @@ export default function TemplatesPage({
 
             {/* Preview area */}
             <div
-              className={`bg-gray-50 p-4 aspect-4/3 flex items-center justify-center overflow-hidden`}
+              className={`bg-gray-50 p-4 aspect-5/3 md:aspect-4/3 flex items-center justify-center overflow-hidden`}
             >
               <TemplateErrorBoundary>
                 <PreviewWrapper scale={0.4} origin="center" wrapperSize={2}>

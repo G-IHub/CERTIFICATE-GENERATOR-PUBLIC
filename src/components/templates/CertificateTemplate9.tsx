@@ -90,19 +90,21 @@ export default function CertificateTemplate9({
         </div>
 
         <div className="space-y-2">
-          <p className="font-medium text-xs text-purple-950 uppercase -mt-4 mb-4">
+          <p className="font-medium text-xs text-purple-950 uppercase mt-4 mb-4">
             This Certificate is Presented to:
           </p>
           <p className="w-full border-b-2 border-purple-950 font-semibold text-4xl tracking-wider">
             {recipientName}
           </p>
+          <p className="text-sm">For successfully participating in the program:</p>
+          <p className="text-lg font-bold -mt-2 -mb-0.5Te">{courseTitle}</p>
           <p className="text-sm">
-            {description} <b>{courseTitle}</b> Organized By {organizationName}
+            {description}
           </p>
           {/* <p className="text-sm text-purple-950 font-bold">{formattedDate}</p> */}
         </div>
 
-        <div className="flex gap-10 w-full items-center justify-between mt-4">
+        <div className="flex gap-10 w-full items-center justify-between">
           {signatoryName1 && (
             <div className="flex flex-col items-center">
               <div className="border-b border-purple-950 w-40 flex justify-center min-h-16 pb-2">

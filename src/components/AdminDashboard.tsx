@@ -320,7 +320,7 @@ export default function AdminDashboard({
 
   // Subscription state
   const [subscription, setSubscription] = useState<any>(null);
-  const [loadingSubscription, setLoadingSubscription] = useState(true);
+  const [, setLoadingSubscription] = useState(true);
 
   // Search and filter states
   const [certificateSearch, setCertificateSearch] = useState("");

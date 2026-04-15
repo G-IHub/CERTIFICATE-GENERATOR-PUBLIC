@@ -100,8 +100,13 @@ export default function CertificateTemplate8({
           </svg>
           <div className="w-[60%] aspect-square rounded-full bg-gray-100 flex items-center justify-center shadow-inner">
             <div className="w-[80%] aspect-square rounded-full bg-gray-100 flex items-center justify-center border-2 border-dotted border-gray-700">
-              <img alt="medalsvg" src={medal} className="absolute -bottom-4 w-10/12 h-full object-contain" />
-              <img alt="Organization Logo"
+              <img
+                alt="medalsvg"
+                src={medal}
+                className="absolute -bottom-4 w-10/12 h-full object-contain"
+              />
+              <img
+                alt="Organization Logo"
                 src={organizationLogo}
                 className="absolute inset-[25%] w-[50%] h-[50%] object-contain"
               />
@@ -124,9 +129,41 @@ export default function CertificateTemplate8({
                       {header.split(" ")[1]} {header.split(" ")[2]}
                     </p>
                   </div>
-                  <p className="mt-2 inline-block bg-linear-to-r from-[#B0FAFF] to-[#4CE4CD] px-4 py-1 shadow-lg font-bold text-xs">
+                  {/* <p className="mt-2 inline-block bg-linear-to-r from-[#B0FAFF] to-[#4CE4CD] px-4 py-1 shadow-lg font-bold text-xs">
                     PROUDLY PRESENTED TO
-                  </p>
+                  </p> */}
+                  <svg viewBox="10 10 350 80" className="w-60">
+                    <defs>
+                      <linearGradient
+                        id="ribbonGradient"
+                        x1="0%"
+                        y1="0%"
+                        x2="100%"
+                        y2="0%"
+                      >
+                        <stop offset="0%" stopColor="#B0FAFF" />
+                        <stop offset="100%" stopColor="#4CE4CD" />
+                      </linearGradient>
+                    </defs>
+                    <path
+                      className="shadow-lg shadow-gray-500"
+                      d="M20,20 L270,20 L260,40 L270,60 L20,60 L30,40 Z"
+                      fill="url(#ribbonGradient)"
+                    />
+
+                    <text
+                      x="42%"
+                      y="50%"
+                      dominantBaseline="middle"
+                      textAnchor="middle"
+                      fill="black"
+                      fontSize="14"
+                      fontWeight="600"
+                      letterSpacing="1"
+                    >
+                      PROUDLY PRESENTED TO
+                    </text>
+                  </svg>
                 </div>
               </div>
 

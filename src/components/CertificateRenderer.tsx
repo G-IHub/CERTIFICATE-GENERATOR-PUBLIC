@@ -149,7 +149,7 @@ export default function CertificateRenderer({
       return <CertificateTemplate14 {...templateProps} />;
 
     case "15":
-      return <CertificateTemplate15 {...templateProps} />;
+      return <CertificateTemplate15{...templateProps} />;
 
     case "16":
       return <CertificateTemplate16 {...templateProps} />;

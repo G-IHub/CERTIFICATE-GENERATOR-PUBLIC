@@ -48,7 +48,7 @@ const Btn = ({
   const base = "inline-flex items-center gap-2 font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-1";
   const sizes = { sm: "px-3 py-1.5 text-sm", md: "px-4 py-2 text-sm" };
   const variants = {
-    primary: "bg-indigo-600 text-white hover:bg-indigo-700 focus:ring-indigo-500 disabled:opacity-50",
+    primary: "bg-orange-500 text-white hover:bg-orange-600 focus:ring-orange-400 disabled:opacity-50",
     secondary: "bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 focus:ring-gray-400 disabled:opacity-50",
     danger: "bg-red-600 text-white hover:bg-red-700 focus:ring-red-500 disabled:opacity-50",
     ghost: "text-gray-600 hover:bg-gray-100 focus:ring-gray-400 disabled:opacity-50",
@@ -63,14 +63,14 @@ const Btn = ({
 const Input = ({ label, ...props }: { label: string } & React.InputHTMLAttributes<HTMLInputElement>) => (
   <div className="space-y-1">
     <label className="block text-sm font-medium text-gray-700">{label}</label>
-    <input {...props} className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 disabled:bg-gray-50" />
+    <input {...props} className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400 disabled:bg-gray-50" />
   </div>
 );
 
 const Select = ({ label, children, ...props }: { label: string } & React.SelectHTMLAttributes<HTMLSelectElement>) => (
   <div className="space-y-1">
     <label className="block text-sm font-medium text-gray-700">{label}</label>
-    <select {...props} className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white">
+    <select {...props} className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400 bg-white">
       {children}
     </select>
   </div>
@@ -79,7 +79,7 @@ const Select = ({ label, children, ...props }: { label: string } & React.SelectH
 const Textarea = ({ label, ...props }: { label: string } & React.TextareaHTMLAttributes<HTMLTextAreaElement>) => (
   <div className="space-y-1">
     <label className="block text-sm font-medium text-gray-700">{label}</label>
-    <textarea {...props} className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-none" />
+    <textarea {...props} className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400 resize-none" />
   </div>
 );
 
@@ -112,7 +112,7 @@ const StatCard = ({ icon: Icon, label, value, sub, color = "indigo" }: {
   icon: React.ElementType; label: string; value: string; sub?: string; color?: string;
 }) => {
   const colors: Record<string, string> = {
-    indigo: "bg-indigo-50 text-indigo-600",
+    indigo: "bg-orange-50 text-orange-500",
     green: "bg-green-50 text-green-600",
     yellow: "bg-yellow-50 text-yellow-600",
     blue: "bg-blue-50 text-blue-600",
@@ -267,7 +267,7 @@ const SellerProducts = ({ token }: { token: string }) => {
               <Card key={cert.id}>
                 <CardContent className="flex items-center justify-between">
                   <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-lg bg-indigo-50 flex items-center justify-center text-indigo-600">
+                    <div className="w-10 h-10 rounded-lg bg-orange-50 flex items-center justify-center text-orange-500">
                       <Package className="w-5 h-5" />
                     </div>
                     <div>
@@ -627,7 +627,7 @@ const AdminTransactions = ({ token }: { token: string }) => {
     <div className="space-y-4">
       <div className="flex gap-2 flex-wrap">
         {["all", "success", "pending", "failed", "refunded"].map(s => (
-          <button key={s} onClick={() => setFilter(s)} className={`px-3 py-1.5 rounded-full text-xs font-medium capitalize transition-colors ${filter === s ? "bg-indigo-600 text-white" : "bg-gray-100 text-gray-600 hover:bg-gray-200"}`}>{s}</button>
+          <button key={s} onClick={() => setFilter(s)} className={`px-3 py-1.5 rounded-full text-xs font-medium capitalize transition-colors ${filter === s ? "bg-orange-500 text-white" : "bg-gray-100 text-gray-600 hover:bg-gray-200"}`}>{s}</button>
         ))}
       </div>
       {filtered.length === 0 ? <EmptyState icon={CreditCard} title="No transactions" desc={`No ${filter} transactions found`} />
@@ -662,26 +662,39 @@ const AdminSellers = ({ token }: { token: string }) => {
   }, [token]);
 
   if (loading) return <p className="text-gray-400 text-sm">Loading...</p>;
-  if (sellers.length === 0) return <EmptyState icon={Users} title="No sellers yet" desc="Sellers will appear here once they onboard" />;
+  if (sellers.length === 0) return <EmptyState icon={Users} title="No sellers yet" desc="Sellers appear here once they have sold a certificate." />;
 
   return (
     <div className="space-y-3">
-      {sellers.map(s => (
-        <Card key={s.userId}>
-          <CardContent className="flex items-center justify-between">
-            <div>
-              <p className="font-medium text-gray-900">{s.displayName || s.email}</p>
-              <p className="text-sm text-gray-500">{s.email}</p>
-              <p className="text-xs text-gray-400 mt-1">{s.bankName} • •••• {(s.bankAccountNumber || "").slice(-4)}</p>
-            </div>
-            <div className="text-right space-y-1">
-              <p className="text-sm font-semibold text-gray-900">Earned: {formatKobo(s.balance?.totalEarned || 0)}</p>
-              <p className="text-xs text-gray-500">Available: {formatKobo(s.balance?.availableBalance || 0)}</p>
-              <Badge variant={s.verified ? "success" : "warning"}>{s.verified ? "Verified" : "Unverified"}</Badge>
-            </div>
-          </CardContent>
-        </Card>
-      ))}
+      {sellers.map(s => {
+        const name = s.displayName || s.orgName || s.email || s.userId;
+        const hasBankAccount = !!s.bankName;
+        return (
+          <Card key={s.userId}>
+            <CardContent className="flex items-center justify-between gap-4">
+              <div className="flex items-center gap-3 min-w-0">
+                <div className="w-10 h-10 rounded-full bg-orange-50 flex items-center justify-center text-orange-600 shrink-0">
+                  <Users className="w-5 h-5" />
+                </div>
+                <div className="min-w-0">
+                  <p className="font-medium text-gray-900 truncate">{name}</p>
+                  {s.email && <p className="text-sm text-gray-500 truncate">{s.email}</p>}
+                  {s.orgName && <p className="text-xs text-gray-400">{s.orgName}</p>}
+                  {hasBankAccount
+                    ? <p className="text-xs text-gray-400 mt-0.5">{s.bankName} • •••• {(s.bankAccountNumber || "").slice(-4)}</p>
+                    : <p className="text-xs text-yellow-600 mt-0.5">No bank account linked</p>
+                  }
+                </div>
+              </div>
+              <div className="text-right space-y-1 shrink-0">
+                <p className="text-sm font-semibold text-gray-900">{formatKobo(s.balance?.totalEarned || s.totalEarned || 0)} earned</p>
+                <p className="text-xs text-gray-500">{s.transactionCount || 0} sale{s.transactionCount !== 1 ? "s" : ""}</p>
+                <Badge variant={s.verified ? "success" : "warning"}>{s.verified ? "Bank verified" : "Not onboarded"}</Badge>
+              </div>
+            </CardContent>
+          </Card>
+        );
+      })}
     </div>
   );
 };
@@ -805,7 +818,7 @@ const AdminRefunds = ({ token }: { token: string }) => {
                   <p className="font-bold">{formatKobo(t.amountTotal)}</p>
                   <StatusBadge status={t.status} />
                   {t.status === "success" && (
-                    <button onClick={() => setRef(t.reference)} className="text-xs text-indigo-600 hover:underline block">Use reference</button>
+                    <button onClick={() => setRef(t.reference)} className="text-xs text-orange-500 hover:underline block">Use reference</button>
                   )}
                 </div>
               </CardContent>
@@ -888,7 +901,7 @@ export default function MonetizationPage({ organizationId, accessToken, isAdmin 
         <div className="mb-8 flex items-start justify-between">
           <div>
             <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
-              <div className="w-9 h-9 bg-indigo-600 rounded-lg flex items-center justify-center">
+              <div className="w-9 h-9 bg-orange-500 rounded-lg flex items-center justify-center">
                 <DollarSign className="w-5 h-5 text-white" />
               </div>
               Monetization
@@ -899,8 +912,8 @@ export default function MonetizationPage({ organizationId, accessToken, isAdmin 
           </div>
           {isAdmin && !adminOnly && (
             <div className="flex rounded-lg border border-gray-200 overflow-hidden">
-              <button onClick={() => { setView("seller"); setActiveTab("overview"); }} className={`px-4 py-2 text-sm font-medium transition-colors ${view === "seller" ? "bg-indigo-600 text-white" : "bg-white text-gray-600 hover:bg-gray-50"}`}>My Account</button>
-              <button onClick={() => { setView("admin"); setActiveTab("overview"); }} className={`px-4 py-2 text-sm font-medium transition-colors ${view === "admin" ? "bg-indigo-600 text-white" : "bg-white text-gray-600 hover:bg-gray-50"}`}>Admin</button>
+              <button onClick={() => { setView("seller"); setActiveTab("overview"); }} className={`px-4 py-2 text-sm font-medium transition-colors ${view === "seller" ? "bg-orange-500 text-white" : "bg-white text-gray-600 hover:bg-gray-50"}`}>My Account</button>
+              <button onClick={() => { setView("admin"); setActiveTab("overview"); }} className={`px-4 py-2 text-sm font-medium transition-colors ${view === "admin" ? "bg-orange-500 text-white" : "bg-white text-gray-600 hover:bg-gray-50"}`}>Admin</button>
             </div>
           )}
         </div>
@@ -913,7 +926,7 @@ export default function MonetizationPage({ organizationId, accessToken, isAdmin 
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium whitespace-nowrap transition-colors ${activeTab === tab.id ? "bg-indigo-600 text-white shadow-sm" : "text-gray-600 hover:bg-gray-100"}`}
+                className={`flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium whitespace-nowrap transition-colors ${activeTab === tab.id ? "bg-orange-500 text-white shadow-sm" : "text-gray-600 hover:bg-gray-100"}`}
               >
                 <Icon className="w-4 h-4" />
                 {tab.label}

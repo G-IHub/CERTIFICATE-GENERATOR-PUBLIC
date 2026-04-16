@@ -1312,9 +1312,8 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
                       htmlFor="impact"
                       className="block text-sm font-medium text-gray-700 mb-2"
                     >
-                      In one sentence, how has this {courseName} program
-                      impacted you, and what would you say to fellow lecturers
-                      about participating in it?{" "}
+                      In one sentence, how has the {courseName} program
+                      impacted you, and what would you say to people about participating in it?
                       <span className="text-red-500">*</span>
                     </label>
                     <textarea

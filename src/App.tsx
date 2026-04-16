@@ -8,6 +8,7 @@ import {
   useLocation,
 } from "react-router";
 import LandingPage from "./components/LandingPage";
+import PaymentVerifyPage from "./components/PaymentVerifyPage";
 import AuthPage from "./components/AuthPage";
 import AdminDashboard from "./components/AdminDashboard";
 import PlatformAdminPanel from "./components/PlatformAdminPanel";
@@ -184,26 +185,50 @@ export default function App() {
   } | null>(null);
   const [refreshCertificates, setRefreshCertificates] = useState(false);
 
-  // Check for existing session on mount
+  // Check for existing session on mount — runs immediately, does NOT wait for health check
   useEffect(() => {
     const checkSession = async () => {
-      // Check if the server is running (with extended timeout for cold starts)
+      const token = localStorage.getItem("accessToken");
 
-      // Try health check with retries to handle Edge Function cold starts
-      let healthCheckSucceeded = false;
-      const maxRetries = 4; // Increased to 4 retries
-      const retryDelay = 3000; // 3 seconds between retries
+      if (token) {
+        try {
+          const response = await authApi.getSession(token);
+          setAccessToken(token);
+          setCurrentUser(response.user);
 
-      for (
-        let attempt = 1;
-        attempt <= maxRetries && !healthCheckSucceeded;
-        attempt++
-      ) {
+          if (response.user && isAdminEmail(response.user.email)) {
+            setIsPlatformAdmin(true);
+          } else {
+            await loadOrganizations(token);
+          }
+        } catch (error: any) {
+          if (
+            !error.message?.includes("Failed to fetch") &&
+            !error.name?.includes("AbortError") &&
+            error.message
+          ) {
+            localStorage.removeItem("accessToken");
+          }
+        }
+      }
+
+      setIsLoadingSession(false);
+    };
+
+    checkSession();
+  }, []);
+
+  // Health check runs in the background — never blocks app loading
+  useEffect(() => {
+    const runHealthCheck = async () => {
+      const maxRetries = 3;
+      const retryDelay = 4000;
+
+      for (let attempt = 1; attempt <= maxRetries; attempt++) {
         try {
           const controller = new AbortController();
-          const timeoutId = setTimeout(() => controller.abort(), 20000); // Increased to 20 second timeout
+          const timeoutId = setTimeout(() => controller.abort(), 10000);
 
-          // Supabase Edge Functions require the anon key for authentication
           const healthResponse = await fetch(
             `https://${projectId}.supabase.co/functions/v1/make-server-a611b057/health`,
             {
@@ -218,73 +243,22 @@ export default function App() {
           clearTimeout(timeoutId);
 
           if (healthResponse.ok) {
-            const data = await healthResponse.json();
-            healthCheckSucceeded = true;
             setServerHealthy(true);
-          } else {
-            // Try to read error response
-            let errorDetail = "";
-            try {
-              const errorData = await healthResponse.text();
-              errorDetail = errorData;
-            } catch (e) {
-              errorDetail = "Could not read error details";
-            }
+            return;
+          }
+        } catch (_err) {
+          // ignore individual attempt errors
+        }
 
-            if (attempt < maxRetries) {
-              await new Promise((resolve) => setTimeout(resolve, retryDelay));
-            }
-          }
-        } catch (healthError: any) {
-          if (attempt < maxRetries) {
-            await new Promise((resolve) => setTimeout(resolve, retryDelay));
-          }
+        if (attempt < maxRetries) {
+          await new Promise((resolve) => setTimeout(resolve, retryDelay));
         }
       }
 
-      if (!healthCheckSucceeded) {
-        setServerHealthy(false);
-      }
-
-      const token = localStorage.getItem("accessToken");
-
-      if (token) {
-        try {
-          // Only check session if server is healthy
-          if (healthCheckSucceeded) {
-            const response = await authApi.getSession(token);
-            setAccessToken(token);
-            setCurrentUser(response.user);
-
-            // Check if this is a platform admin
-            if (response.user && isAdminEmail(response.user.email)) {
-              setIsPlatformAdmin(true);
-            } else {
-              // Load user's organizations for regular users
-              await loadOrganizations(token);
-            }
-          } else {
-            // Server not available - remove token to force fresh login
-            localStorage.removeItem("accessToken");
-          }
-        } catch (error: any) {
-          // Silently clear invalid/expired tokens - user will see login screen
-          // Don't log these errors as they're expected for expired sessions
-          if (
-            !error.message?.includes("Failed to fetch") &&
-            !error.name?.includes("AbortError") &&
-            error.message
-          ) {
-            // Only clear token for actual auth errors
-            localStorage.removeItem("accessToken");
-          }
-        }
-      }
-
-      setIsLoadingSession(false);
+      setServerHealthy(false);
     };
 
-    checkSession();
+    runHealthCheck();
   }, []);
 
   // Auto-logout when token expires (proactive session management)
@@ -1005,6 +979,9 @@ export default function App() {
 
           {/* Backend health check - public */}
           <Route path="/health-check" element={<BackendHealthCheck />} />
+
+          {/* Payment verification - Paystack redirects here after checkout */}
+          <Route path="/payment/verify" element={<PaymentVerifyPage />} />
 
           {/* Deployment guide - public */}
           <Route path="/deploy-guide" element={<DeploymentGuide />} />

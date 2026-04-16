@@ -1,0 +1,9 @@
+2261: app.get("/make-server-a611b057/certificates/:id", async (c) => {
+2408: app.post("/make-server-a611b057/certificates/:id/monetization", async (c) => {
+2413: app.put("/make-server-a611b057/certificates/:id/monetization", async (c) => {
+3142: app.delete("/make-server-a611b057/certificates/:id", async (c) => {
+3277: app.post("/make-server-a611b057/certificates/:id/testimonial", async (c) => {
+3367: app.get("/make-server-a611b057/certificates/:id/verify", async (c) => {
+7239: app.get("/make-server-a611b057/certificates/:organizationId", async (c) => {
+7300: app.put("/make-server-a611b057/certificates/:certificateId", async (c) => {
+7455: app.delete("/make-server-a611b057/certificates/:certificateId", async (c) => {

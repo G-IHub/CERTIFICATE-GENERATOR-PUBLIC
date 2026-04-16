@@ -338,6 +338,26 @@ export const certificateApi = {
     
     if (!response.ok) {
       const error = await response.json();
+      
+      // Special handling for 402 Payment Required
+      if (response.status === 402 && error.code === 'PAYMENT_REQUIRED' && error.details) {
+        console.log('💰 Payment required for certificate:', error.details);
+        // Return a special object indicating payment is required
+        return {
+          paymentRequired: true,
+          certificate: {
+            id: error.details.certificateId,
+            courseName: error.details.courseName,
+            certificateHeader: error.details.certificateHeader,
+            monetizationEnabled: true,
+            certificatePriceMinor: error.details.amountMinor,
+            certificateCurrency: error.details.currency,
+            paymentStatus: 'unpaid',
+          },
+          error: error.error,
+        };
+      }
+      
       throw new Error(error.error || 'Failed to get certificate');
     }
     
@@ -431,6 +451,40 @@ export const certificateApi = {
     return await response.json();
   },
 
+  updateMonetization: async (token: string, certificateId: string, data: {
+    monetizationEnabled: boolean;
+    certificatePriceMinor?: number;
+    certificateCurrency?: string;
+  }) => {
+    const response = await fetch(`${API_BASE_URL}/certificates/${certificateId}/monetization`, {
+      method: 'PUT',
+      headers: getAuthHeaders(token),
+      body: JSON.stringify(data),
+    });
+    
+    if (!response.ok) {
+      let errorDetails;
+      try {
+        errorDetails = await response.json();
+      } catch (e) {
+        // If response is not JSON, get text
+        const text = await response.text();
+        throw new Error(`Failed to update monetization: ${response.status} ${text || response.statusText}`);
+      }
+      throw new Error(errorDetails.error || 'Failed to update monetization');
+    }
+    
+    // Handle successful response
+    try {
+      return await response.json();
+    } catch (e) {
+      // If response is not JSON but request was successful, try to get text
+      const text = await response.text();
+      console.error('Response is not JSON:', text);
+      throw new Error(`Invalid JSON response: ${text.substring(0, 100)}`);
+    }
+  },
+
   submitTestimonial: async (data: {
     certificateId: string;
     studentName: string;
@@ -512,6 +566,43 @@ export const analyticsApi = {
       throw new Error(error.error || 'Failed to get analytics');
     }
     
+    return await response.json();
+  },
+};
+
+// ==================== PRODUCT PAYMENT API (PAYSTACK) ====================
+
+export const productPaymentApi = {
+  // Initialize Paystack payment for a certificate/product purchase
+  initialize: async (data: {
+    productId: string;
+    productType: 'certificate' | 'course' | 'pdf';
+    buyerEmail: string;
+    buyerName: string;
+  }) => {
+    const response = await fetch(`${API_BASE_URL}/monetization/payments/initialize`, {
+      method: 'POST',
+      headers: getAuthHeaders(),
+      body: JSON.stringify(data),
+    });
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.error || 'Failed to initialize payment');
+    }
+    return await response.json();
+  },
+
+  // Verify payment after Paystack redirect
+  verify: async (reference: string) => {
+    const response = await fetch(`${API_BASE_URL}/monetization/payments/verify`, {
+      method: 'POST',
+      headers: getAuthHeaders(),
+      body: JSON.stringify({ reference }),
+    });
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.error || 'Failed to verify payment');
+    }
     return await response.json();
   },
 };

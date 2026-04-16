@@ -1,0 +1,27 @@
+{
+  "project_id": "gzawvtlehnujtviahdbv",
+  "api": {
+    "port": 54321,
+    "schemas": ["public"],
+    "max_rows": 1000,
+    "timeout_sec": 30
+  },
+  "db": {
+    "port": 54322,
+    "major_version": 15
+  },
+  "studio": {
+    "port": 54323
+  },
+  "inbucket": {
+    "port": 54324
+  },
+  "vector": {
+    "port": 54328
+  },
+  "functions": [
+    {
+      "import_map": "./functions/import_map.json"
+    }
+  ]
+}

@@ -8,6 +8,8 @@ export const ADMIN_EMAILS = [
   'admin@gihub.com',
   'admin@g-ihub.com',
   'platform@admin.com',
+  'adewuyigoodness1@gmail.com',
+  'genomacinnovationhub@gmail.com',
 ];
 
 export const isAdminEmail = (email: string): boolean => {

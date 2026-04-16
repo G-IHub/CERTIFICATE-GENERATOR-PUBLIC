@@ -9118,6 +9118,41 @@ app.get("/make-server-a611b057/monetization/seller/invoices", async (c) => {
   } catch (e) { return c.json({ error: `Server error: ${e}` }, 500); }
 });
 
+// Returns all monetization-enabled certificates belonging to the authenticated user's org
+app.get("/make-server-a611b057/monetization/seller/certificates", async (c) => {
+  try {
+    const { user, error } = await verifyUser(c.req.header("Authorization"));
+    if (error) return c.json({ error }, 401);
+
+    // Find the org(s) this user owns
+    const allOrgs = await kv.getByPrefix("org:");
+    const userOrgIds = allOrgs
+      .filter((o: any) => o.value?.ownerId === user.id || o.value?.adminId === user.id)
+      .map((o: any) => o.value?.id)
+      .filter(Boolean);
+
+    // Also check org memberships for admins
+    const memberEntries = await kv.getByPrefix(`orgMember:${user.id}:`);
+    for (const m of memberEntries) {
+      const mem = m.value as any;
+      if (mem?.role === "admin" && mem?.organizationId && !userOrgIds.includes(mem.organizationId)) {
+        userOrgIds.push(mem.organizationId);
+      }
+    }
+
+    const allCerts = await kv.getByPrefix("cert:");
+    const certs = allCerts
+      .filter((entry: any) => {
+        const cert = entry.value || entry;
+        return cert?.monetizationEnabled === true && userOrgIds.includes(cert?.organizationId);
+      })
+      .map((entry: any) => entry.value || entry);
+
+    certs.sort((a: any, b: any) => new Date(b.generatedAt || b.createdAt || 0).getTime() - new Date(a.generatedAt || a.createdAt || 0).getTime());
+    return c.json({ certificates: certs });
+  } catch (e) { return c.json({ error: `Server error: ${e}` }, 500); }
+});
+
 app.get("/make-server-a611b057/monetization/invoices/:id", async (c) => {
   try {
     const invoice = await kv.get(`invoice:${c.req.param("id")}`);

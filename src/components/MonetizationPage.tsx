@@ -2,13 +2,13 @@ import React, { useState, useEffect, useCallback } from "react";
 import {
   DollarSign, Package, CreditCard, ArrowDownToLine, FileText,
   RefreshCw, TrendingUp, Users, AlertCircle, CheckCircle,
-  Clock, XCircle, Plus, Pencil, Trash2, Building2, ChevronRight,
+  Clock, XCircle, Building2, ChevronRight,
   BarChart3, ShieldCheck, Banknote, Eye, Download,
 } from "lucide-react";
 import { toast } from "sonner";
 import {
   productApi, sellerApi, bankApi, adminMonetizationApi,
-  formatKobo, koboFromNaira, nairaFromKobo,
+  formatKobo,
   type Product, type SellerProfile, type SellerBalance,
   type Transaction, type Payout, type Invoice, type NigerianBank,
 } from "../utils/monetizationApi";
@@ -232,104 +232,60 @@ const SellerOverview = ({ token }: { token: string }) => {
   );
 };
 
-// --- Products ---
-const SellerProducts = ({ token, orgId }: { token: string; orgId?: string }) => {
-  const [products, setProducts] = useState<Product[]>([]);
+// --- Products (read-only — shows monetized certificates created from the certificate pages) ---
+const SellerProducts = ({ token }: { token: string }) => {
+  const [certs, setCerts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
-  const [showForm, setShowForm] = useState(false);
-  const [editing, setEditing] = useState<Product | null>(null);
-  const [form, setForm] = useState({ title: "", description: "", type: "certificate", priceNGN: "", currency: "NGN", fileUrl: "" });
-  const [saving, setSaving] = useState(false);
 
-  const load = useCallback(() => {
-    setLoading(true);
-    productApi.list(token, orgId).then(r => setProducts(r.products)).catch(() => toast.error("Failed to load products")).finally(() => setLoading(false));
-  }, [token, orgId]);
+  useEffect(() => {
+    sellerApi.getCertificates(token)
+      .then(r => setCerts(r.certificates))
+      .catch(() => toast.error("Failed to load products"))
+      .finally(() => setLoading(false));
+  }, [token]);
 
-  useEffect(() => { load(); }, [load]);
-
-  const openCreate = () => { setEditing(null); setForm({ title: "", description: "", type: "certificate", priceNGN: "", currency: "NGN", fileUrl: "" }); setShowForm(true); };
-  const openEdit = (p: Product) => { setEditing(p); setForm({ title: p.title, description: p.description, type: p.type, priceNGN: String(nairaFromKobo(p.priceNGN)), currency: p.currency, fileUrl: p.fileUrl || "" }); setShowForm(true); };
-
-  const save = async () => {
-    if (!form.title || !form.priceNGN) return toast.error("Title and price are required");
-    setSaving(true);
-    try {
-      const data = { ...form, priceNGN: koboFromNaira(Number(form.priceNGN)), sellerOrgId: orgId || null };
-      if (editing) { await productApi.update(token, editing.id, data); toast.success("Product updated"); }
-      else { await productApi.create(token, data); toast.success("Product created"); }
-      setShowForm(false); load();
-    } catch (e: any) { toast.error(e.message); }
-    finally { setSaving(false); }
-  };
-
-  const remove = async (id: string) => {
-    if (!confirm("Delete this product?")) return;
-    try { await productApi.remove(token, id); toast.success("Deleted"); load(); } catch (e: any) { toast.error(e.message); }
-  };
+  if (loading) return <p className="text-gray-400 text-sm">Loading...</p>;
 
   return (
     <div className="space-y-4">
-      <div className="flex justify-between items-center">
+      <div className="flex items-center justify-between">
         <h3 className="font-semibold text-gray-900">Your Products</h3>
-        <Btn onClick={openCreate}><Plus className="w-4 h-4" /> New Product</Btn>
+        <p className="text-xs text-gray-400">To add a product, enable monetization when generating a certificate.</p>
       </div>
 
-      {showForm && (
-        <Card>
-          <CardHeader><CardTitle>{editing ? "Edit Product" : "New Product"}</CardTitle></CardHeader>
-          <CardContent className="space-y-4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <Input label="Title *" value={form.title} onChange={e => setForm(f => ({ ...f, title: e.target.value }))} placeholder="e.g. Python Certification" />
-              <Select label="Type *" value={form.type} onChange={e => setForm(f => ({ ...f, type: e.target.value }))}>
-                <option value="certificate">Certificate</option>
-                <option value="course">Course</option>
-                <option value="pdf">PDF / eBook</option>
-              </Select>
-              <Input label="Price (₦) *" type="number" min="0" value={form.priceNGN} onChange={e => setForm(f => ({ ...f, priceNGN: e.target.value }))} placeholder="e.g. 5000" />
-              <Select label="Currency" value={form.currency} onChange={e => setForm(f => ({ ...f, currency: e.target.value }))}>
-                <option value="NGN">NGN (₦)</option>
-                <option value="USD">USD ($)</option>
-              </Select>
-            </div>
-            <Textarea label="Description" value={form.description} onChange={e => setForm(f => ({ ...f, description: e.target.value }))} rows={3} placeholder="What does the buyer receive?" />
-            <Input label="File / Download URL (optional)" value={form.fileUrl} onChange={e => setForm(f => ({ ...f, fileUrl: e.target.value }))} placeholder="https://..." />
-            <div className="flex gap-2">
-              <Btn onClick={save} disabled={saving}>{saving ? "Saving..." : editing ? "Update" : "Create Product"}</Btn>
-              <Btn variant="secondary" onClick={() => setShowForm(false)}>Cancel</Btn>
-            </div>
-          </CardContent>
-        </Card>
-      )}
-
-      {loading ? <p className="text-gray-400 text-sm">Loading...</p>
-        : products.length === 0 ? <EmptyState icon={Package} title="No products yet" desc="Create your first product to start selling certificates, courses, or PDFs" />
-        : (
-          <div className="grid grid-cols-1 gap-3">
-            {products.map(p => (
-              <Card key={p.id}>
+      {certs.length === 0 ? (
+        <EmptyState icon={Package} title="No monetized certificates yet" desc="Enable monetization when generating a certificate to list it here as a product for sale." />
+      ) : (
+        <div className="grid grid-cols-1 gap-3">
+          {certs.map(cert => {
+            const title = cert.courseName || cert.certificateHeader || "Certificate";
+            const price = cert.certificatePriceMinor || 0;
+            const currency = cert.certificateCurrency || "NGN";
+            const isPaid = cert.paymentStatus === "paid";
+            const date = cert.generatedAt || cert.createdAt;
+            return (
+              <Card key={cert.id}>
                 <CardContent className="flex items-center justify-between">
                   <div className="flex items-center gap-4">
                     <div className="w-10 h-10 rounded-lg bg-indigo-50 flex items-center justify-center text-indigo-600">
                       <Package className="w-5 h-5" />
                     </div>
                     <div>
-                      <p className="font-medium text-gray-900">{p.title}</p>
-                      <p className="text-sm text-gray-500 capitalize">{p.type} • {formatKobo(p.priceNGN, p.currency)}</p>
-                      {p.description && <p className="text-xs text-gray-400 mt-0.5 truncate max-w-xs">{p.description}</p>}
+                      <p className="font-medium text-gray-900">{title}</p>
+                      <p className="text-sm text-gray-500">Certificate • {formatKobo(price, currency)}</p>
+                      {date && <p className="text-xs text-gray-400 mt-0.5">Created: {new Date(date).toLocaleDateString()}</p>}
+                      {cert.studentName && <p className="text-xs text-gray-400">Recipient: {cert.studentName}</p>}
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
-                    <StatusBadge status={p.status} />
-                    <Btn size="sm" variant="ghost" onClick={() => openEdit(p)}><Pencil className="w-4 h-4" /></Btn>
-                    <Btn size="sm" variant="ghost" onClick={() => remove(p.id)}><Trash2 className="w-4 h-4 text-red-500" /></Btn>
+                    <Badge variant={isPaid ? "success" : "warning"}>{isPaid ? "Sold" : "Unpaid"}</Badge>
                   </div>
                 </CardContent>
               </Card>
-            ))}
-          </div>
-        )
-      }
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 };
@@ -971,7 +927,7 @@ export default function MonetizationPage({ organizationId, accessToken, isAdmin 
           {view === "seller" && (
             <>
               {activeTab === "overview" && <SellerOverview token={accessToken} />}
-              {activeTab === "products" && <SellerProducts token={accessToken} orgId={organizationId} />}
+              {activeTab === "products" && <SellerProducts token={accessToken} />}
               {activeTab === "transactions" && <SellerTransactions token={accessToken} />}
               {activeTab === "payouts" && <SellerPayouts token={accessToken} />}
               {activeTab === "invoices" && <SellerInvoices token={accessToken} />}

@@ -2414,670 +2414,6 @@ app.put("/make-server-a611b057/certificates/:id/monetization", async (c) => {
   return handleMonetizationUpdate(c);
 });
 
-const getInterswitchConfig = () => {
-  const initUrl = Deno.env.get("INTERSWITCH_INIT_URL");
-  const verifyUrl = Deno.env.get("INTERSWITCH_VERIFY_URL");
-  const bearerToken = Deno.env.get("INTERSWITCH_BEARER_TOKEN");
-  const webhookSecret = Deno.env.get("INTERSWITCH_WEBHOOK_SECRET");
-  const callbackBase =
-    Deno.env.get("APP_PUBLIC_URL") || "https://certifyer.online";
-
-  return {
-    initUrl,
-    verifyUrl,
-    bearerToken,
-    webhookSecret,
-    callbackBase,
-  };
-};
-
-// Interswitch Web Checkout Configuration
-const getInterswitchWebCheckoutConfig = () => {
-  const merchantCode = Deno.env.get("INTERSWITCH_MERCHANT_CODE") || "MX6072";
-  const payItemId = Deno.env.get("INTERSWITCH_PAY_ITEM_ID") || "101007";
-  const isLive = Deno.env.get("INTERSWITCH_LIVE") === "true";
-  const webhookSecret = Deno.env.get("INTERSWITCH_WEBHOOK_SECRET");
-  const baseUrl = isLive
-    ? "https://interswitchng.com"
-    : "https://qa.interswitchng.com";
-  const collectionsBaseUrl = isLive
-    ? "https://webpay.interswitchng.com"
-    : "https://qa.interswitchng.com";
-  const callbackBase =
-    Deno.env.get("APP_PUBLIC_URL") || "https://certifyer.online";
-
-  return {
-    merchantCode,
-    payItemId,
-    isLive,
-    webhookSecret,
-    baseUrl,
-    collectionsBaseUrl,
-    callbackBase,
-    transactionStatusUrl: `${collectionsBaseUrl}/collections/api/v1/gettransaction`,
-  };
-};
-
-// Helper: Generate unique transaction reference for Interswitch
-const generateInterswitchTxnRef = (): string => {
-  return `CERT${Date.now()}${Math.random()
-    .toString(36)
-    .substring(2, 8)
-    .toUpperCase()}`;
-};
-
-// Helper: Convert amount to kobo (minor denomination for NGN)
-const toKobo = (nairaAmount: number): number => {
-  return Math.round(nairaAmount * 100);
-};
-
-// Helper: Verify Interswitch webhook signature (HMAC-SHA512)
-const verifyInterswitchWebhookSignature = (
-  payload: string,
-  signature: string,
-  secret: string,
-): boolean => {
-  try {
-    // Use Web Crypto API available in Deno
-    const encoder = new TextEncoder();
-    const keyData = encoder.encode(secret);
-    const messageData = encoder.encode(payload);
-
-    // This is a placeholder - Deno uses Web Crypto which is async
-    // For webhook signature verification, we'd need async/await
-    return true; // TODO: Implement proper HMAC-SHA512 verification
-  } catch (error) {
-    console.error("Error verifying webhook signature:", error);
-    return false;
-  }
-};
-
-const createCertificatePaymentReference = () => {
-  return `CERTPAY-${Date.now()}-${Math.random()
-    .toString(36)
-    .substring(2, 8)
-    .toUpperCase()}`;
-};
-
-const computeSplit = (amountMinor: number, platformFeePercent: number) => {
-  const platformAmount = Math.floor((amountMinor * platformFeePercent) / 100);
-  const tutorAmount = amountMinor - platformAmount;
-
-  return {
-    platformAmount,
-    tutorAmount,
-  };
-};
-
-const finalizeCertificatePayment = async (
-  reference: string,
-  providerData: any,
-) => {
-  const intent = await kv.get(`cert_payment_intent:${reference}`);
-  if (!intent) {
-    return { success: false, error: "Payment intent not found", status: 404 };
-  }
-
-  if (intent.status === "success") {
-    return { success: true, alreadyProcessed: true, intent };
-  }
-
-  const certificate = await kv.get(`cert:${intent.certificateId}`);
-  if (!certificate) {
-    return { success: false, error: "Certificate not found", status: 404 };
-  }
-
-  const updatedIntent = {
-    ...intent,
-    status: "success",
-    verifiedAt: new Date().toISOString(),
-    providerData: providerData || null,
-  };
-
-  await kv.set(`cert_payment_intent:${reference}`, updatedIntent);
-
-  const updatedCertificate = {
-    ...certificate,
-    paymentStatus: "paid",
-    paidAt: new Date().toISOString(),
-    lastPaymentReference: reference,
-    updatedAt: new Date().toISOString(),
-  };
-
-  await kv.set(`cert:${intent.certificateId}`, updatedCertificate);
-
-  await kv.set(`cert_payment:${reference}`, {
-    reference,
-    certificateId: intent.certificateId,
-    organizationId: intent.organizationId,
-    amountMinor: intent.amountMinor,
-    currency: intent.currency,
-    platformFeePercent: intent.platformFeePercent,
-    platformAmount: intent.platformAmount,
-    tutorAmount: intent.tutorAmount,
-    status: "success",
-    createdAt: intent.createdAt,
-    verifiedAt: new Date().toISOString(),
-    providerData: providerData || null,
-  });
-
-  await kv.set(`cert_access_grant:${intent.certificateId}`, {
-    certificateId: intent.certificateId,
-    reference,
-    grantedAt: new Date().toISOString(),
-    unlockType: "permanent",
-    scope: "certificate_link",
-  });
-
-  return {
-    success: true,
-    updatedCertificate,
-  };
-};
-
-  // Interswitch Web Checkout: Initialize payment
-  app.post(
-    "/make-server-a611b057/certificate-payments/interswitch/initialize",
-    async (c) => {
-      try {
-        const { certificateId, studentEmail, studentName } = await c.req.json();
-
-        if (!certificateId || !studentEmail) {
-          return c.json(
-            { error: "certificateId and studentEmail are required" },
-            400,
-          );
-        }
-
-        const certificate = await kv.get(`cert:${certificateId}`);
-        if (!certificate) {
-          return c.json({ error: "Certificate not found" }, 404);
-        }
-
-        if (!certificate.monetizationEnabled) {
-          return c.json({ error: "Certificate is not monetized" }, 400);
-        }
-
-        if (certificate.paymentStatus === "paid") {
-          return c.json({ success: true, alreadyPaid: true });
-        }
-
-        const amount = Number(certificate.certificatePriceMinor || 0) / 100; // Convert from kobo to naira
-        if (!amount || amount <= 0) {
-          return c.json({ error: "Invalid certificate amount" }, 400);
-        }
-
-        const config = getInterswitchWebCheckoutConfig();
-        const txnRef = generateInterswitchTxnRef();
-        const amountKobo = toKobo(amount);
-
-        const organizationSettings = await kv.get(
-          `org:${certificate.organizationId}:settings`,
-        );
-        const payoutAccountId =
-          organizationSettings?.monetization?.payoutAccountId || null;
-
-        if (!payoutAccountId) {
-          return c.json(
-            {
-              error:
-                "Organization payout account is not configured for monetization",
-            },
-            400,
-          );
-        }
-
-        const platformFeePercent = FIXED_PLATFORM_FEE_PERCENT;
-        const platformAmount = Math.floor(
-          (amountKobo * platformFeePercent) / 100,
-        );
-        const tutorAmount = amountKobo - platformAmount;
-
-        // Store payment intent for later verification
-        await kv.set(`cert_payment_intent:${txnRef}`, {
-          txnRef,
-          certificateId,
-          organizationId: certificate.organizationId,
-          amountKobo,
-          amount,
-          currency: "NGN",
-          platformFeePercent,
-          platformAmount,
-          tutorAmount,
-          studentEmail,
-          studentName: studentName || "Student",
-          status: "pending",
-          createdAt: new Date().toISOString(),
-          provider: "interswitch_web_checkout",
-        });
-
-        // Return Interswitch Web Checkout parameters
-        // The frontend will use these with the Interswitch JS SDK
-        return c.json({
-          success: true,
-          txnRef,
-          paymentParams: {
-            merchant_code: config.merchantCode,
-            pay_item_id: config.payItemId,
-            pay_item_name: `${certificate.courseName || "Certificate"} - Payment`,
-            txn_ref: txnRef,
-            amount: amountKobo,
-            currency: "566", // ISO 4217 numeric code for NGN
-            cust_id: certificateId,
-            cust_name: studentName || "Student",
-            cust_email: studentEmail,
-            site_redirect_url: `${config.callbackBase}/?payment_complete=${txnRef}`,
-            mode: config.isLive ? "LIVE" : "TEST",
-          },
-          certificateInfo: {
-            id: certificateId,
-            name: certificate.courseName,
-            organizationId: certificate.organizationId,
-          },
-        });
-      } catch (error) {
-        console.error("❌ Error initializing Interswitch payment:", error);
-        return c.json({ error: `Server error: ${error}` }, 500);
-      }
-    },
-  );
-
-  // Interswitch Web Checkout: Verify payment
-  app.post(
-    "/make-server-a611b057/certificate-payments/interswitch/verify",
-    async (c) => {
-      try {
-        const { transactionRef, amount, certificateId } = await c.req.json();
-
-        if (!transactionRef || !amount || !certificateId) {
-          return c.json(
-            {
-              error:
-                "transactionRef, amount, and certificateId are required",
-            },
-            400,
-          );
-        }
-
-        const config = getInterswitchWebCheckoutConfig();
-        const intent = await kv.get(`cert_payment_intent:${transactionRef}`);
-
-        if (!intent) {
-          return c.json({ error: "Payment intent not found" }, 404);
-        }
-
-        if (intent.status === "success") {
-          return c.json({
-            success: true,
-            alreadyProcessed: true,
-          });
-        }
-
-        // Verify transaction status with Interswitch API
-        // This is a server-side call for security
-        const verifyUrl = new URL(config.transactionStatusUrl);
-        verifyUrl.searchParams.append("merchantcode", config.merchantCode);
-        verifyUrl.searchParams.append("transactionreference", transactionRef);
-        verifyUrl.searchParams.append("amount", amount.toString());
-
-        const verifyResponse = await fetch(verifyUrl.toString(), {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-
-        const transactionData = await verifyResponse.json();
-
-        if (!verifyResponse.ok) {
-          console.error(
-            "❌ Interswitch verification failed:",
-            transactionData,
-          );
-          return c.json(
-            { error: "Payment verification failed" },
-            400,
-          );
-        }
-
-        // Check if transaction is successful (response code "00" = Approved)
-        const responseCode = transactionData.ResponseCode || "";
-        if (responseCode !== "00") {
-          return c.json(
-            {
-              error: "Payment was not approved",
-              responseCode,
-              responseDescription: transactionData.ResponseDescription,
-            },
-            400,
-          );
-        }
-
-        // Verify the amount matches
-        const transactionAmount = Number(transactionData.Amount || 0);
-        if (transactionAmount !== Math.round(amount)) {
-          return c.json(
-            {
-              error: "Transaction amount does not match",
-              expected: amount,
-              received: transactionAmount,
-            },
-            400,
-          );
-        }
-
-        // Finalize the payment
-        const certificate = await kv.get(`cert:${certificateId}`);
-        if (!certificate) {
-          return c.json({ error: "Certificate not found" }, 404);
-        }
-
-        const updatedIntent = {
-          ...intent,
-          status: "success",
-          verifiedAt: new Date().toISOString(),
-          transactionData,
-        };
-
-        await kv.set(`cert_payment_intent:${transactionRef}`, updatedIntent);
-
-        const updatedCertificate = {
-          ...certificate,
-          paymentStatus: "paid",
-          paidAt: new Date().toISOString(),
-          lastPaymentReference: transactionRef,
-          updatedAt: new Date().toISOString(),
-        };
-
-        await kv.set(`cert:${certificateId}`, updatedCertificate);
-
-        // Grant access to certificate
-        await kv.set(`cert_access_grant:${certificateId}`, {
-          certificateId,
-          transactionRef,
-          grantedAt: new Date().toISOString(),
-          unlockType: "permanent",
-          scope: "certificate_link",
-        });
-
-        return c.json({
-          success: true,
-          certificate: updatedCertificate,
-          transactionDetails: {
-            reference: transactionData.PaymentReference,
-            amount: transactionData.Amount,
-            date: transactionData.TransactionDate,
-            bankCode: transactionData.BankCode,
-          },
-        });
-      } catch (error) {
-        console.error("❌ Error verifying Interswitch payment:", error);
-        return c.json({ error: `Server error: ${error}` }, 500);
-      }
-    },
-  );
-
-  // Initialize payment for a monetized certificate
-  app.post("/make-server-a611b057/certificate-payments/initialize", async (c) => {
-  try {
-    const { certificateId } = await c.req.json();
-
-    if (!certificateId) {
-      return c.json({ error: "certificateId is required" }, 400);
-    }
-
-    const certificate = await kv.get(`cert:${certificateId}`);
-    if (!certificate) {
-      return c.json({ error: "Certificate not found" }, 404);
-    }
-
-    if (!certificate.monetizationEnabled) {
-      return c.json({ error: "Certificate is not monetized" }, 400);
-    }
-
-    if (certificate.paymentStatus === "paid") {
-      return c.json({ success: true, alreadyPaid: true });
-    }
-
-    const amountMinor = Number(certificate.certificatePriceMinor || 0);
-    const currency = certificate.certificateCurrency || "NGN";
-    const platformFeePercent = FIXED_PLATFORM_FEE_PERCENT;
-
-    if (!amountMinor || amountMinor <= 0) {
-      return c.json({ error: "Invalid certificate amount" }, 400);
-    }
-
-    const config = getInterswitchConfig();
-    if (!config.initUrl || !config.bearerToken) {
-      return c.json(
-        {
-          error: "Interswitch is not configured",
-          requiresSetup: true,
-        },
-        503,
-      );
-    }
-
-    const organizationSettings = await kv.get(
-      `org:${certificate.organizationId}:settings`,
-    );
-    const payoutAccountId =
-      organizationSettings?.monetization?.payoutAccountId || null;
-
-    if (!payoutAccountId) {
-      return c.json(
-        {
-          error:
-            "Organization payout account is not configured for monetization",
-        },
-        400,
-      );
-    }
-
-    const reference = createCertificatePaymentReference();
-    const split = computeSplit(amountMinor, platformFeePercent);
-
-    const payload = {
-      reference,
-      amount: amountMinor,
-      currency,
-      redirectUrl: `${config.callbackBase}/#/certificate/${certificate.id}?payment_reference=${reference}`,
-      metadata: {
-        certificateId: certificate.id,
-        organizationId: certificate.organizationId,
-        courseName: certificate.courseName,
-      },
-      split: {
-        platformFeePercent,
-        platformAmount: split.platformAmount,
-        tutorAmount: split.tutorAmount,
-        payoutAccountId,
-      },
-    };
-
-    const initResponse = await fetch(config.initUrl, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${config.bearerToken}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    });
-
-    const initData = await initResponse.json();
-
-    if (!initResponse.ok) {
-      console.log("❌ Interswitch initialize failed:", initData);
-      return c.json({ error: "Failed to initialize payment" }, 500);
-    }
-
-    const authorizationUrl =
-      initData?.authorizationUrl ||
-      initData?.paymentUrl ||
-      initData?.data?.authorizationUrl ||
-      initData?.data?.paymentUrl ||
-      null;
-
-    if (!authorizationUrl) {
-      return c.json({ error: "Payment URL not returned by provider" }, 500);
-    }
-
-    await kv.set(`cert_payment_intent:${reference}`, {
-      reference,
-      certificateId: certificate.id,
-      organizationId: certificate.organizationId,
-      amountMinor,
-      currency,
-      platformFeePercent,
-      platformAmount: split.platformAmount,
-      tutorAmount: split.tutorAmount,
-      status: "pending",
-      createdAt: new Date().toISOString(),
-      provider: "interswitch",
-      providerPayload: payload,
-    });
-
-    return c.json({
-      success: true,
-      reference,
-      authorizationUrl,
-    });
-  } catch (error) {
-    console.log("❌ Error initializing certificate payment:", error);
-    return c.json({ error: `Server error: ${error}` }, 500);
-  }
-});
-
-// Verify payment and unlock certificate
-app.post("/make-server-a611b057/certificate-payments/verify", async (c) => {
-  try {
-    const { reference } = await c.req.json();
-
-    if (!reference) {
-      return c.json({ error: "reference is required" }, 400);
-    }
-
-    const intent = await kv.get(`cert_payment_intent:${reference}`);
-    if (!intent) {
-      return c.json({ error: "Payment intent not found" }, 404);
-    }
-
-    const config = getInterswitchConfig();
-    if (!config.verifyUrl || !config.bearerToken) {
-      return c.json({ error: "Interswitch verify is not configured" }, 503);
-    }
-
-    const verifyUrl = `${config.verifyUrl}${config.verifyUrl.includes("?") ? "&" : "?"}reference=${encodeURIComponent(reference)}`;
-
-    const verifyResponse = await fetch(verifyUrl, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${config.bearerToken}`,
-      },
-    });
-
-    const verifyData = await verifyResponse.json();
-    if (!verifyResponse.ok) {
-      console.log("❌ Interswitch verify failed:", verifyData);
-      return c.json({ error: "Payment verification failed" }, 400);
-    }
-
-    const status =
-      verifyData?.status ||
-      verifyData?.paymentStatus ||
-      verifyData?.data?.status ||
-      "";
-
-    const normalizedStatus = String(status).toLowerCase();
-    if (
-      normalizedStatus !== "success" &&
-      normalizedStatus !== "successful" &&
-      normalizedStatus !== "paid" &&
-      normalizedStatus !== "completed"
-    ) {
-      return c.json(
-        {
-          error: "Payment is not successful yet",
-          status,
-        },
-        400,
-      );
-    }
-
-    const finalizeResult = await finalizeCertificatePayment(
-      reference,
-      verifyData,
-    );
-    if (!finalizeResult.success) {
-      return c.json(
-        { error: finalizeResult.error },
-        finalizeResult.status || 500,
-      );
-    }
-
-    return c.json({
-      success: true,
-      alreadyProcessed: !!finalizeResult.alreadyProcessed,
-      certificate: finalizeResult.updatedCertificate || null,
-    });
-  } catch (error) {
-    console.log("❌ Error verifying certificate payment:", error);
-    return c.json({ error: `Server error: ${error}` }, 500);
-  }
-});
-
-// Interswitch webhook for certificate payments
-app.post("/make-server-a611b057/certificate-payments/webhook", async (c) => {
-  try {
-    const rawBody = await c.req.text();
-    const signature =
-      c.req.header("x-interswitch-signature") ||
-      c.req.header("x-signature") ||
-      "";
-
-    const config = getInterswitchConfig();
-    if (config.webhookSecret && signature) {
-      const crypto = await import("node:crypto");
-      const expected = crypto
-        .createHmac("sha256", config.webhookSecret)
-        .update(rawBody)
-        .digest("hex");
-
-      if (expected !== signature) {
-        return c.json({ error: "Invalid webhook signature" }, 401);
-      }
-    }
-
-    const event = JSON.parse(rawBody || "{}");
-    const reference =
-      event?.reference || event?.data?.reference || event?.transactionReference;
-    const status =
-      event?.status || event?.data?.status || event?.paymentStatus || "";
-
-    if (!reference) {
-      return c.json({ error: "Missing reference" }, 400);
-    }
-
-    const normalizedStatus = String(status).toLowerCase();
-    if (
-      normalizedStatus === "success" ||
-      normalizedStatus === "successful" ||
-      normalizedStatus === "paid" ||
-      normalizedStatus === "completed"
-    ) {
-      const result = await finalizeCertificatePayment(reference, event);
-      if (!result.success) {
-        return c.json({ error: result.error }, result.status || 500);
-      }
-    }
-
-    return c.json({ success: true });
-  } catch (error) {
-    console.log("❌ Error in certificate payment webhook:", error);
-    return c.json({ error: `Server error: ${error}` }, 500);
-  }
-});
-
 // Get all certificates for an organization
 app.get("/make-server-a611b057/organizations/:id/certificates", async (c) => {
   try {
@@ -5462,7 +4798,7 @@ const isPlatformAdmin = async (authHeader: string | null): Promise<boolean> => {
     return false;
   }
 
-  // Platform admin emails - add your admin emails here
+  // Platform admin emails - keep in sync with src/utils/adminConfig.ts
   const adminEmails = [
     "admin@certgen.com",
     "platform@certgen.com",
@@ -5470,6 +4806,8 @@ const isPlatformAdmin = async (authHeader: string | null): Promise<boolean> => {
     "admin@gihub.com",
     "admin@g-ihub.com",
     "platform@admin.com",
+    "adewuyigoodness1@gmail.com",
+    "genomacinnovationhub@gmail.com",
   ];
 
   const isAdmin = adminEmails.includes(user.email?.toLowerCase() || "");
@@ -8970,6 +8308,20 @@ app.get("/make-server-a611b057/blogs/published", async (c) => {
   }
 });
 
+// Alias: /blog/published → same as /blogs/published (for blogService.ts compatibility)
+app.get("/make-server-a611b057/blog/published", async (c) => {
+  try {
+    const response = await fetchFromWordPress("/posts?_embed&per_page=100");
+    if (!response.ok) return c.json({ posts: [], blogs: [] });
+    const posts = await response.json();
+    const blogs = posts.map(mapWordPressPost);
+    blogs.sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    return c.json({ posts: blogs, blogs });
+  } catch {
+    return c.json({ posts: [], blogs: [] });
+  }
+});
+
 // Get all blogs (admin only - includes drafts)
 app.get("/make-server-a611b057/blogs", async (c) => {
   try {
@@ -9264,6 +8616,703 @@ Crawl-delay: 1
   });
 });
 
+
+// ==================== MONETIZATION ROUTES (PAYSTACK) ====================
+// Products, Seller Onboarding, Checkout, Earnings, Payouts, Invoices, Refunds
+
+// ---- Helpers ----
+
+const PLATFORM_FEE_PERCENT = 7; // 7% platform cut
+
+const getPaystackKey = async (): Promise<string> => {
+  const fromEnv = Deno.env.get("PAYSTACK_SECRET_KEY");
+  if (fromEnv) return fromEnv;
+  const settings = await kv.get("billing:settings") as any;
+  return settings?.paystackSecretKey || "";
+};
+
+const generateTxnRef = (): string => {
+  const ts = Date.now();
+  const rand = Math.random().toString(36).substring(2, 8).toUpperCase();
+  return `CTFY_${ts}_${rand}`;
+};
+
+const verifyPaystackSig = async (rawBody: string, signature: string, secret: string): Promise<boolean> => {
+  const encoder = new TextEncoder();
+  const key = await crypto.subtle.importKey("raw", encoder.encode(secret), { name: "HMAC", hash: "SHA-512" }, false, ["sign"]);
+  const sig = await crypto.subtle.sign("HMAC", key, encoder.encode(rawBody));
+  const hex = Array.from(new Uint8Array(sig)).map((b) => b.toString(16).padStart(2, "0")).join("");
+  return hex === signature;
+};
+
+const calcFees = (amountKobo: number) => {
+  const platformFee = Math.round(amountKobo * PLATFORM_FEE_PERCENT / 100);
+  const sellerEarning = amountKobo - platformFee;
+  return { platformFee, sellerEarning };
+};
+
+const updateSellerBalance = async (sellerId: string, sellerEarning: number, _holdUntil: string) => {
+  const key = `seller_balance:${sellerId}`;
+  const bal = (await kv.get(key) as any) || { sellerId, totalEarned: 0, pendingHold: 0, availableBalance: 0, totalWithdrawn: 0 };
+  bal.totalEarned = (bal.totalEarned || 0) + sellerEarning;
+  bal.pendingHold = (bal.pendingHold || 0) + sellerEarning;
+  bal.lastUpdated = new Date().toISOString();
+  await kv.set(key, bal);
+};
+
+const updatePlatformEarnings = async (platformFee: number) => {
+  const key = "platform:earnings";
+  const e = (await kv.get(key) as any) || { totalRevenue: 0, platformFees: 0, totalTransactions: 0 };
+  e.platformFees = (e.platformFees || 0) + platformFee;
+  e.totalTransactions = (e.totalTransactions || 0) + 1;
+  e.lastUpdated = new Date().toISOString();
+  await kv.set(key, e);
+};
+
+const releaseMaturedHolds = async (sellerId: string) => {
+  const now = new Date();
+  const allKeys = kv.list({ prefix: "txn:" });
+  const toRelease: any[] = [];
+  for await (const entry of allKeys) {
+    const t = entry.value as any;
+    if (t?.sellerId === sellerId && t?.status === "success" && !t?.released && t?.holdUntil) {
+      if (new Date(t.holdUntil) <= now) toRelease.push(t);
+    }
+  }
+  if (toRelease.length === 0) return;
+  const balKey = `seller_balance:${sellerId}`;
+  const bal = (await kv.get(balKey) as any) || { sellerId, totalEarned: 0, pendingHold: 0, availableBalance: 0, totalWithdrawn: 0 };
+  for (const t of toRelease) {
+    bal.pendingHold = Math.max(0, (bal.pendingHold || 0) - t.sellerEarning);
+    bal.availableBalance = (bal.availableBalance || 0) + t.sellerEarning;
+    t.released = true;
+    await kv.set(`txn:${t.reference}`, t);
+  }
+  bal.lastUpdated = new Date().toISOString();
+  await kv.set(balKey, bal);
+};
+
+// ---- PRODUCTS ----
+
+app.get("/make-server-a611b057/monetization/products", async (c) => {
+  try {
+    const { user, error } = await verifyUser(c.req.header("Authorization"));
+    if (error) return c.json({ error }, 401);
+    const orgId = c.req.query("orgId");
+    const products: any[] = [];
+    const allKeys = kv.list({ prefix: "product:" });
+    for await (const entry of allKeys) {
+      const p = entry.value as any;
+      if (p?.sellerId === user.id || (orgId && p?.sellerOrgId === orgId)) products.push(p);
+    }
+    products.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+    return c.json({ products });
+  } catch (e) { return c.json({ error: `Server error: ${e}` }, 500); }
+});
+
+app.get("/make-server-a611b057/monetization/products/:id/public", async (c) => {
+  try {
+    const product = await kv.get(`product:${c.req.param("id")}`);
+    if (!product) return c.json({ error: "Product not found" }, 404);
+    return c.json({ product });
+  } catch (e) { return c.json({ error: `Server error: ${e}` }, 500); }
+});
+
+app.post("/make-server-a611b057/monetization/products", async (c) => {
+  try {
+    const { user, error } = await verifyUser(c.req.header("Authorization"));
+    if (error) return c.json({ error }, 401);
+    const body = await c.req.json();
+    const { title, description, type, priceNGN, currency, sellerOrgId, certificateTemplateId, fileUrl } = body;
+    if (!title || !type || !priceNGN) return c.json({ error: "title, type, and priceNGN are required" }, 400);
+    if (!["certificate", "course", "pdf"].includes(type)) return c.json({ error: "type must be certificate, course, or pdf" }, 400);
+    const id = `prod_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`;
+    const product = {
+      id, sellerId: user.id, sellerOrgId: sellerOrgId || null, type, title,
+      description: description || "", priceNGN: Number(priceNGN), currency: currency || "NGN",
+      status: "active", certificateTemplateId: certificateTemplateId || null, fileUrl: fileUrl || null,
+      createdAt: new Date().toISOString(), updatedAt: new Date().toISOString(),
+    };
+    await kv.set(`product:${id}`, product);
+    return c.json({ product }, 201);
+  } catch (e) { return c.json({ error: `Server error: ${e}` }, 500); }
+});
+
+app.put("/make-server-a611b057/monetization/products/:id", async (c) => {
+  try {
+    const { user, error } = await verifyUser(c.req.header("Authorization"));
+    if (error) return c.json({ error }, 401);
+    const product = await kv.get(`product:${c.req.param("id")}`) as any;
+    if (!product) return c.json({ error: "Product not found" }, 404);
+    if (product.sellerId !== user.id) return c.json({ error: "Forbidden" }, 403);
+    const body = await c.req.json();
+    const updated = { ...product, ...body, id: product.id, sellerId: product.sellerId, updatedAt: new Date().toISOString() };
+    await kv.set(`product:${product.id}`, updated);
+    return c.json({ product: updated });
+  } catch (e) { return c.json({ error: `Server error: ${e}` }, 500); }
+});
+
+app.delete("/make-server-a611b057/monetization/products/:id", async (c) => {
+  try {
+    const { user, error } = await verifyUser(c.req.header("Authorization"));
+    if (error) return c.json({ error }, 401);
+    const product = await kv.get(`product:${c.req.param("id")}`) as any;
+    if (!product) return c.json({ error: "Product not found" }, 404);
+    if (product.sellerId !== user.id) return c.json({ error: "Forbidden" }, 403);
+    await kv.delete(`product:${product.id}`);
+    return c.json({ success: true });
+  } catch (e) { return c.json({ error: `Server error: ${e}` }, 500); }
+});
+
+// ---- SELLER ONBOARDING ----
+
+app.get("/make-server-a611b057/monetization/seller/profile", async (c) => {
+  try {
+    const { user, error } = await verifyUser(c.req.header("Authorization"));
+    if (error) return c.json({ error }, 401);
+    const profile = await kv.get(`seller:${user.id}`) || null;
+    return c.json({ profile });
+  } catch (e) { return c.json({ error: `Server error: ${e}` }, 500); }
+});
+
+app.post("/make-server-a611b057/monetization/seller/onboard", async (c) => {
+  try {
+    const { user, error } = await verifyUser(c.req.header("Authorization"));
+    if (error) return c.json({ error }, 401);
+    const { bankAccountNumber, bankCode, bankName, displayName } = await c.req.json();
+    if (!bankAccountNumber || !bankCode || !bankName) return c.json({ error: "bankAccountNumber, bankCode, and bankName are required" }, 400);
+    const secret = await getPaystackKey();
+    if (!secret) return c.json({ error: "Payment system not configured" }, 503);
+    const verifyRes = await fetch(
+      `https://api.paystack.co/bank/resolve?account_number=${bankAccountNumber}&bank_code=${bankCode}`,
+      { headers: { Authorization: `Bearer ${secret}` } }
+    );
+    const verifyData = await verifyRes.json();
+    if (!verifyRes.ok || !verifyData.status) return c.json({ error: verifyData.message || "Bank account verification failed" }, 400);
+    const accountName = verifyData.data?.account_name;
+    const existing = await kv.get(`seller:${user.id}`) as any;
+    let recipientCode = existing?.paystackRecipientCode;
+    if (!recipientCode || existing?.bankAccountNumber !== bankAccountNumber) {
+      const recipientRes = await fetch("https://api.paystack.co/transferrecipient", {
+        method: "POST",
+        headers: { Authorization: `Bearer ${secret}`, "Content-Type": "application/json" },
+        body: JSON.stringify({ type: "nuban", name: accountName, account_number: bankAccountNumber, bank_code: bankCode, currency: "NGN" }),
+      });
+      const recipientData = await recipientRes.json();
+      if (!recipientRes.ok || !recipientData.status) return c.json({ error: recipientData.message || "Failed to create transfer recipient" }, 400);
+      recipientCode = recipientData.data?.recipient_code;
+    }
+    const profile = {
+      userId: user.id, displayName: displayName || accountName, email: user.email,
+      bankAccountName: accountName, bankAccountNumber, bankCode, bankName, accountType: "NGN",
+      verified: true, verifiedAt: new Date().toISOString(), paystackRecipientCode: recipientCode,
+      createdAt: existing?.createdAt || new Date().toISOString(), updatedAt: new Date().toISOString(),
+    };
+    await kv.set(`seller:${user.id}`, profile);
+    return c.json({ profile });
+  } catch (e) { return c.json({ error: `Server error: ${e}` }, 500); }
+});
+
+app.post("/make-server-a611b057/monetization/seller/verify-bank", async (c) => {
+  try {
+    const { user, error } = await verifyUser(c.req.header("Authorization"));
+    if (error) return c.json({ error }, 401);
+    const { bankAccountNumber, bankCode } = await c.req.json();
+    if (!bankAccountNumber || !bankCode) return c.json({ error: "bankAccountNumber and bankCode required" }, 400);
+    const secret = await getPaystackKey();
+    const res = await fetch(
+      `https://api.paystack.co/bank/resolve?account_number=${bankAccountNumber}&bank_code=${bankCode}`,
+      { headers: { Authorization: `Bearer ${secret}` } }
+    );
+    const data = await res.json();
+    if (!res.ok || !data.status) return c.json({ error: data.message || "Verification failed" }, 400);
+    return c.json({ accountName: data.data?.account_name, verified: true });
+  } catch (e) { return c.json({ error: `Server error: ${e}` }, 500); }
+});
+
+app.get("/make-server-a611b057/monetization/banks", async (c) => {
+  try {
+    const secret = await getPaystackKey();
+    const res = await fetch("https://api.paystack.co/bank?country=nigeria&perPage=100", {
+      headers: { Authorization: `Bearer ${secret}` },
+    });
+    const data = await res.json();
+    return c.json({ banks: data.data || [] });
+  } catch (e) { return c.json({ error: `Server error: ${e}` }, 500); }
+});
+
+// ---- PAYMENTS ----
+
+app.post("/make-server-a611b057/monetization/payments/initialize", async (c) => {
+  try {
+    const { productId, buyerEmail, buyerName } = await c.req.json();
+    if (!productId || !buyerEmail || !buyerName) return c.json({ error: "productId, buyerEmail, and buyerName are required" }, 400);
+    const product = await kv.get(`product:${productId}`) as any;
+    if (!product) return c.json({ error: "Product not found" }, 404);
+    if (product.status !== "active") return c.json({ error: "Product is not available" }, 400);
+    const secret = await getPaystackKey();
+    if (!secret) return c.json({ error: "Payment system not configured" }, 503);
+    const reference = generateTxnRef();
+    const amountKobo = product.priceNGN;
+    const callbackUrl = `${Deno.env.get("APP_PUBLIC_URL") || "https://certifyer.online"}/#/payment/verify?ref=${reference}`;
+    const paystackRes = await fetch("https://api.paystack.co/transaction/initialize", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${secret}`, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: buyerEmail, amount: amountKobo, reference, callback_url: callbackUrl,
+        metadata: { productId, productTitle: product.title, buyerName, sellerId: product.sellerId, sellerOrgId: product.sellerOrgId || null },
+      }),
+    });
+    const paystackData = await paystackRes.json();
+    if (!paystackRes.ok || !paystackData.status) return c.json({ error: paystackData.message || "Failed to initialize payment" }, 400);
+    const { platformFee, sellerEarning } = calcFees(amountKobo);
+    const txn = {
+      reference, productId, productType: product.type, sellerId: product.sellerId,
+      sellerOrgId: product.sellerOrgId || null, buyerEmail, buyerName,
+      amountTotal: amountKobo, platformFee, sellerEarning, currency: product.currency || "NGN",
+      status: "pending", paystackRef: reference, createdAt: new Date().toISOString(),
+    };
+    await kv.set(`txn:${reference}`, txn);
+    return c.json({ authorizationUrl: paystackData.data?.authorization_url, reference });
+  } catch (e) { return c.json({ error: `Server error: ${e}` }, 500); }
+});
+
+app.post("/make-server-a611b057/monetization/payments/verify", async (c) => {
+  try {
+    const { reference } = await c.req.json();
+    if (!reference) return c.json({ error: "reference is required" }, 400);
+    const secret = await getPaystackKey();
+    const res = await fetch(`https://api.paystack.co/transaction/verify/${reference}`, {
+      headers: { Authorization: `Bearer ${secret}` },
+    });
+    const data = await res.json();
+    if (!res.ok || !data.status || data.data?.status !== "success") return c.json({ error: "Payment not successful", paystackStatus: data.data?.status }, 400);
+    const txn = await kv.get(`txn:${reference}`) as any;
+    if (!txn) return c.json({ error: "Transaction not found" }, 404);
+    if (txn.status === "success") return c.json({ message: "Already verified", transaction: txn });
+    const holdUntil = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString();
+    const invoiceId = `inv_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`;
+    const updatedTxn = { ...txn, status: "success", completedAt: new Date().toISOString(), holdUntil, invoiceId, released: false };
+    await kv.set(`txn:${reference}`, updatedTxn);
+    const product = await kv.get(`product:${txn.productId}`) as any;
+    const invoice = {
+      id: invoiceId, reference, buyerEmail: txn.buyerEmail, buyerName: txn.buyerName,
+      sellerId: txn.sellerId, productId: txn.productId, productTitle: product?.title || "Product",
+      amountTotal: txn.amountTotal, platformFee: txn.platformFee, sellerEarning: txn.sellerEarning,
+      currency: txn.currency, status: "paid", issuedAt: new Date().toISOString(),
+    };
+    await kv.set(`invoice:${invoiceId}`, invoice);
+    await updateSellerBalance(txn.sellerId, txn.sellerEarning, holdUntil);
+    await updatePlatformEarnings(txn.platformFee);
+    return c.json({ success: true, transaction: updatedTxn, invoice });
+  } catch (e) { return c.json({ error: `Server error: ${e}` }, 500); }
+});
+
+// Certificate payment — initialize
+app.post("/make-server-a611b057/monetization/payments/initialize-certificate", async (c) => {
+  try {
+    const { certificateId, buyerEmail, buyerName } = await c.req.json();
+    if (!certificateId || !buyerEmail || !buyerName) return c.json({ error: "certificateId, buyerEmail, and buyerName are required" }, 400);
+
+    const certificate = await kv.get(`cert:${certificateId}`) as any;
+    if (!certificate) return c.json({ error: "Certificate not found" }, 404);
+    if (!certificate.monetizationEnabled) return c.json({ error: "This certificate is not for sale" }, 400);
+    if (!certificate.certificatePriceMinor || certificate.certificatePriceMinor <= 0) return c.json({ error: "Certificate has no price set" }, 400);
+
+    // Resolve sellerId from the certificate's organization owner
+    let sellerId: string | null = null;
+    let sellerOrgId: string | null = certificate.organizationId || null;
+    if (sellerOrgId) {
+      const org = await kv.get(`org:${sellerOrgId}`) as any;
+      if (org?.ownerId) sellerId = org.ownerId;
+    }
+
+    const secret = await getPaystackKey();
+    if (!secret) return c.json({ error: "Payment system not configured" }, 503);
+
+    const reference = generateTxnRef();
+    const amountKobo = certificate.certificatePriceMinor;
+    const callbackUrl = `${Deno.env.get("APP_PUBLIC_URL") || "https://certifyer.online"}/#/payment/verify?ref=${reference}`;
+
+    const paystackRes = await fetch("https://api.paystack.co/transaction/initialize", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${secret}`, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: buyerEmail, amount: amountKobo, reference, callback_url: callbackUrl,
+        metadata: { certificateId, certificateTitle: certificate.courseName || certificate.certificateHeader, buyerName, sellerId, type: "certificate" },
+      }),
+    });
+    const paystackData = await paystackRes.json();
+    if (!paystackRes.ok || !paystackData.status) return c.json({ error: paystackData.message || "Failed to initialize payment" }, 400);
+
+    const { platformFee, sellerEarning } = calcFees(amountKobo);
+    const txn = {
+      reference,
+      type: "certificate",
+      certificateId,
+      sellerId,           // ← now set so seller queries can find it
+      sellerOrgId,
+      productTitle: certificate.courseName || certificate.certificateHeader || "Certificate",
+      buyerEmail, buyerName,
+      amountTotal: amountKobo, platformFee, sellerEarning,
+      currency: certificate.certificateCurrency || "NGN",
+      status: "pending", paystackRef: reference, createdAt: new Date().toISOString(),
+    };
+    await kv.set(`txn:${reference}`, txn);
+    return c.json({ authorizationUrl: paystackData.data?.authorization_url, reference });
+  } catch (e) { return c.json({ error: `Server error: ${e}` }, 500); }
+});
+
+// Certificate payment — verify (called from PaymentVerifyPage after Paystack redirect)
+app.post("/make-server-a611b057/monetization/payments/verify-certificate", async (c) => {
+  try {
+    const { reference } = await c.req.json();
+    if (!reference) return c.json({ error: "reference is required" }, 400);
+
+    const secret = await getPaystackKey();
+    const res = await fetch(`https://api.paystack.co/transaction/verify/${reference}`, {
+      headers: { Authorization: `Bearer ${secret}` },
+    });
+    const data = await res.json();
+    if (!res.ok || !data.status || data.data?.status !== "success") {
+      return c.json({ error: "Payment not successful", paystackStatus: data.data?.status }, 400);
+    }
+
+    const txn = await kv.get(`txn:${reference}`) as any;
+    if (!txn) return c.json({ error: "Transaction not found" }, 404);
+    if (txn.status === "success") return c.json({ message: "Already verified", transaction: txn });
+
+    const holdUntil = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString();
+    const invoiceId = `inv_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`;
+
+    // Build the complete verified transaction
+    const updatedTxn = {
+      ...txn,
+      status: "success",
+      completedAt: new Date().toISOString(),
+      holdUntil,
+      invoiceId,
+      released: false,
+    };
+    await kv.set(`txn:${reference}`, updatedTxn);
+
+    // Mark certificate as paid
+    const cert = await kv.get(`cert:${txn.certificateId}`) as any;
+    if (cert) {
+      await kv.set(`cert:${txn.certificateId}`, {
+        ...cert,
+        paymentStatus: "paid",
+        paidAt: new Date().toISOString(),
+        paidRef: reference,
+      });
+    }
+
+    // Create invoice (shows up in seller Invoices tab + admin)
+    const invoice = {
+      id: invoiceId,
+      reference,
+      type: "certificate",
+      certificateId: txn.certificateId,
+      productTitle: txn.productTitle || cert?.courseName || "Certificate",
+      buyerEmail: txn.buyerEmail,
+      buyerName: txn.buyerName,
+      sellerId: txn.sellerId || null,
+      sellerOrgId: txn.sellerOrgId || null,
+      amountTotal: txn.amountTotal,
+      platformFee: txn.platformFee,
+      sellerEarning: txn.sellerEarning,
+      currency: txn.currency || "NGN",
+      status: "paid",
+      issuedAt: new Date().toISOString(),
+    };
+    await kv.set(`invoice:${invoiceId}`, invoice);
+
+    // Credit seller earnings (7-day hold)
+    if (txn.sellerId) {
+      await updateSellerBalance(txn.sellerId, txn.sellerEarning, holdUntil);
+    }
+
+    // Record platform earnings
+    await updatePlatformEarnings(txn.platformFee);
+
+    return c.json({ success: true, transaction: updatedTxn, invoice, certificateId: txn.certificateId });
+  } catch (e) { return c.json({ error: `Server error: ${e}` }, 500); }
+});
+
+app.post("/make-server-a611b057/monetization/payments/webhook", async (c) => {
+  try {
+    const rawBody = await c.req.text();
+    const signature = c.req.header("x-paystack-signature") || "";
+    const secret = await getPaystackKey();
+    if (secret && signature) {
+      const valid = await verifyPaystackSig(rawBody, signature, secret);
+      if (!valid) return c.json({ error: "Invalid webhook signature" }, 401);
+    }
+    const event = JSON.parse(rawBody);
+    if (event.event !== "charge.success") return c.json({ success: true });
+    const reference = event.data?.reference;
+    if (!reference) return c.json({ error: "Missing reference" }, 400);
+    const txn = await kv.get(`txn:${reference}`) as any;
+    if (!txn || txn.status === "success") return c.json({ success: true });
+    const holdUntil = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString();
+    const invoiceId = txn.invoiceId || `inv_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`;
+    const updatedTxn = { ...txn, status: "success", completedAt: new Date().toISOString(), holdUntil, invoiceId, released: false };
+    await kv.set(`txn:${reference}`, updatedTxn);
+    if (!txn.invoiceId) {
+      const product = await kv.get(`product:${txn.productId}`) as any;
+      const invoice = {
+        id: invoiceId, reference, buyerEmail: txn.buyerEmail, buyerName: txn.buyerName,
+        sellerId: txn.sellerId, productId: txn.productId, productTitle: product?.title || "Product",
+        amountTotal: txn.amountTotal, platformFee: txn.platformFee, sellerEarning: txn.sellerEarning,
+        currency: txn.currency, status: "paid", issuedAt: new Date().toISOString(),
+      };
+      await kv.set(`invoice:${invoiceId}`, invoice);
+      await updateSellerBalance(txn.sellerId, txn.sellerEarning, holdUntil);
+      await updatePlatformEarnings(txn.platformFee);
+    }
+    return c.json({ success: true });
+  } catch (e) { return c.json({ error: `Server error: ${e}` }, 500); }
+});
+
+// ---- SELLER EARNINGS & TRANSACTIONS ----
+
+app.get("/make-server-a611b057/monetization/seller/earnings", async (c) => {
+  try {
+    const { user, error } = await verifyUser(c.req.header("Authorization"));
+    if (error) return c.json({ error }, 401);
+    await releaseMaturedHolds(user.id);
+    const balance = await kv.get(`seller_balance:${user.id}`) || {
+      sellerId: user.id, totalEarned: 0, pendingHold: 0, availableBalance: 0, totalWithdrawn: 0,
+    };
+    return c.json({ balance });
+  } catch (e) { return c.json({ error: `Server error: ${e}` }, 500); }
+});
+
+app.get("/make-server-a611b057/monetization/seller/transactions", async (c) => {
+  try {
+    const { user, error } = await verifyUser(c.req.header("Authorization"));
+    if (error) return c.json({ error }, 401);
+    const transactions: any[] = [];
+    const allKeys = kv.list({ prefix: "txn:" });
+    for await (const entry of allKeys) {
+      const t = entry.value as any;
+      if (t?.sellerId === user.id) transactions.push(t);
+    }
+    transactions.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+    return c.json({ transactions });
+  } catch (e) { return c.json({ error: `Server error: ${e}` }, 500); }
+});
+
+app.get("/make-server-a611b057/monetization/seller/invoices", async (c) => {
+  try {
+    const { user, error } = await verifyUser(c.req.header("Authorization"));
+    if (error) return c.json({ error }, 401);
+    const invoices: any[] = [];
+    const allKeys = kv.list({ prefix: "invoice:" });
+    for await (const entry of allKeys) {
+      const inv = entry.value as any;
+      if (inv?.sellerId === user.id) invoices.push(inv);
+    }
+    invoices.sort((a, b) => new Date(b.issuedAt).getTime() - new Date(a.issuedAt).getTime());
+    return c.json({ invoices });
+  } catch (e) { return c.json({ error: `Server error: ${e}` }, 500); }
+});
+
+app.get("/make-server-a611b057/monetization/invoices/:id", async (c) => {
+  try {
+    const invoice = await kv.get(`invoice:${c.req.param("id")}`);
+    if (!invoice) return c.json({ error: "Invoice not found" }, 404);
+    return c.json({ invoice });
+  } catch (e) { return c.json({ error: `Server error: ${e}` }, 500); }
+});
+
+// ---- PAYOUTS ----
+
+app.post("/make-server-a611b057/monetization/seller/payout/request", async (c) => {
+  try {
+    const { user, error } = await verifyUser(c.req.header("Authorization"));
+    if (error) return c.json({ error }, 401);
+    await releaseMaturedHolds(user.id);
+    const balance = await kv.get(`seller_balance:${user.id}`) as any;
+    const available = balance?.availableBalance || 0;
+    if (available <= 0) return c.json({ error: "No available balance to withdraw" }, 400);
+    const seller = await kv.get(`seller:${user.id}`) as any;
+    if (!seller?.paystackRecipientCode) return c.json({ error: "Please add and verify your bank account before requesting a payout" }, 400);
+    const payoutId = `payout_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`;
+    const payout = {
+      id: payoutId, sellerId: user.id, amount: available, currency: "NGN",
+      status: "pending", recipientCode: seller.paystackRecipientCode,
+      requestedAt: new Date().toISOString(),
+    };
+    await kv.set(`payout:${payoutId}`, payout);
+    balance.availableBalance = 0;
+    balance.totalWithdrawn = (balance.totalWithdrawn || 0) + available;
+    await kv.set(`seller_balance:${user.id}`, balance);
+    return c.json({ payout });
+  } catch (e) { return c.json({ error: `Server error: ${e}` }, 500); }
+});
+
+app.get("/make-server-a611b057/monetization/seller/payouts", async (c) => {
+  try {
+    const { user, error } = await verifyUser(c.req.header("Authorization"));
+    if (error) return c.json({ error }, 401);
+    const payouts: any[] = [];
+    const allKeys = kv.list({ prefix: "payout:" });
+    for await (const entry of allKeys) {
+      const p = entry.value as any;
+      if (p?.sellerId === user.id) payouts.push(p);
+    }
+    payouts.sort((a, b) => new Date(b.requestedAt).getTime() - new Date(a.requestedAt).getTime());
+    return c.json({ payouts });
+  } catch (e) { return c.json({ error: `Server error: ${e}` }, 500); }
+});
+
+// ---- ADMIN MONETIZATION ----
+
+app.get("/make-server-a611b057/monetization/admin/products", async (c) => {
+  try {
+    if (!(await isPlatformAdmin(c.req.header("Authorization")))) return c.json({ error: "Admin only" }, 403);
+    const products: any[] = [];
+    const allKeys = kv.list({ prefix: "product:" });
+    for await (const entry of allKeys) { products.push(entry.value); }
+    products.sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+    return c.json({ products });
+  } catch (e) { return c.json({ error: `Server error: ${e}` }, 500); }
+});
+
+app.get("/make-server-a611b057/monetization/admin/overview", async (c) => {
+  try {
+    if (!(await isPlatformAdmin(c.req.header("Authorization")))) return c.json({ error: "Admin only" }, 403);
+    const platformEarnings = (await kv.get("platform:earnings") as any) || { totalRevenue: 0, platformFees: 0, totalTransactions: 0 };
+    let pendingPayouts = 0;
+    const payoutKeys = kv.list({ prefix: "payout:" });
+    for await (const entry of payoutKeys) {
+      const p = entry.value as any;
+      if (p?.status === "pending") pendingPayouts += p.amount || 0;
+    }
+    return c.json({ overview: { ...platformEarnings, pendingPayouts } });
+  } catch (e) { return c.json({ error: `Server error: ${e}` }, 500); }
+});
+
+app.get("/make-server-a611b057/monetization/admin/transactions", async (c) => {
+  try {
+    if (!(await isPlatformAdmin(c.req.header("Authorization")))) return c.json({ error: "Admin only" }, 403);
+    const transactions: any[] = [];
+    const allKeys = kv.list({ prefix: "txn:" });
+    for await (const entry of allKeys) { transactions.push(entry.value); }
+    transactions.sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+    return c.json({ transactions });
+  } catch (e) { return c.json({ error: `Server error: ${e}` }, 500); }
+});
+
+app.get("/make-server-a611b057/monetization/admin/sellers", async (c) => {
+  try {
+    if (!(await isPlatformAdmin(c.req.header("Authorization")))) return c.json({ error: "Admin only" }, 403);
+    const sellers: any[] = [];
+    const allKeys = kv.list({ prefix: "seller:" });
+    for await (const entry of allKeys) {
+      const s = entry.value as any;
+      const balance = await kv.get(`seller_balance:${s?.userId}`) || {};
+      sellers.push({ ...s, balance });
+    }
+    return c.json({ sellers });
+  } catch (e) { return c.json({ error: `Server error: ${e}` }, 500); }
+});
+
+app.get("/make-server-a611b057/monetization/admin/payouts", async (c) => {
+  try {
+    if (!(await isPlatformAdmin(c.req.header("Authorization")))) return c.json({ error: "Admin only" }, 403);
+    const payouts: any[] = [];
+    const allKeys = kv.list({ prefix: "payout:" });
+    for await (const entry of allKeys) { payouts.push(entry.value); }
+    payouts.sort((a: any, b: any) => new Date(b.requestedAt).getTime() - new Date(a.requestedAt).getTime());
+    return c.json({ payouts });
+  } catch (e) { return c.json({ error: `Server error: ${e}` }, 500); }
+});
+
+app.post("/make-server-a611b057/monetization/admin/payouts/:id/process", async (c) => {
+  try {
+    if (!(await isPlatformAdmin(c.req.header("Authorization")))) return c.json({ error: "Admin only" }, 403);
+    const payout = await kv.get(`payout:${c.req.param("id")}`) as any;
+    if (!payout) return c.json({ error: "Payout not found" }, 404);
+    if (payout.status !== "pending") return c.json({ error: "Payout is not pending" }, 400);
+    const secret = await getPaystackKey();
+    const transferRes = await fetch("https://api.paystack.co/transfer", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${secret}`, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        source: "balance", amount: payout.amount, recipient: payout.recipientCode,
+        reason: `Certifyer seller payout - ${payout.id}`, reference: payout.id,
+      }),
+    });
+    const transferData = await transferRes.json();
+    if (!transferRes.ok || !transferData.status) {
+      await kv.set(`payout:${payout.id}`, { ...payout, status: "failed", failureReason: transferData.message, processedAt: new Date().toISOString() });
+      return c.json({ error: transferData.message || "Transfer failed" }, 400);
+    }
+    const updated = {
+      ...payout,
+      status: transferData.data?.status === "success" ? "completed" : "processing",
+      paystackTransferCode: transferData.data?.transfer_code,
+      processedAt: new Date().toISOString(),
+    };
+    await kv.set(`payout:${payout.id}`, updated);
+    return c.json({ success: true, payout: updated });
+  } catch (e) { return c.json({ error: `Server error: ${e}` }, 500); }
+});
+
+app.post("/make-server-a611b057/monetization/admin/refund", async (c) => {
+  try {
+    if (!(await isPlatformAdmin(c.req.header("Authorization")))) return c.json({ error: "Admin only" }, 403);
+    const { reference, reason } = await c.req.json();
+    if (!reference) return c.json({ error: "reference is required" }, 400);
+    const txn = await kv.get(`txn:${reference}`) as any;
+    if (!txn) return c.json({ error: "Transaction not found" }, 404);
+    if (txn.status === "refunded") return c.json({ error: "Already refunded" }, 400);
+    if (txn.status !== "success") return c.json({ error: "Can only refund successful transactions" }, 400);
+    const secret = await getPaystackKey();
+    const refundRes = await fetch("https://api.paystack.co/refund", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${secret}`, "Content-Type": "application/json" },
+      body: JSON.stringify({ transaction: reference }),
+    });
+    const refundData = await refundRes.json();
+    if (!refundRes.ok || !refundData.status) return c.json({ error: refundData.message || "Refund failed" }, 400);
+    await kv.set(`txn:${reference}`, { ...txn, status: "refunded", refundedAt: new Date().toISOString(), refundReason: reason || "" });
+    const bal = await kv.get(`seller_balance:${txn.sellerId}`) as any;
+    if (bal) {
+      if (!txn.released) bal.pendingHold = Math.max(0, (bal.pendingHold || 0) - txn.sellerEarning);
+      else bal.availableBalance = Math.max(0, (bal.availableBalance || 0) - txn.sellerEarning);
+      bal.totalEarned = Math.max(0, (bal.totalEarned || 0) - txn.sellerEarning);
+      await kv.set(`seller_balance:${txn.sellerId}`, bal);
+    }
+    if (txn.invoiceId) {
+      const inv = await kv.get(`invoice:${txn.invoiceId}`) as any;
+      if (inv) await kv.set(`invoice:${txn.invoiceId}`, { ...inv, status: "refunded", refundedAt: new Date().toISOString() });
+    }
+    return c.json({ success: true });
+  } catch (e) { return c.json({ error: `Server error: ${e}` }, 500); }
+});
+
+app.get("/make-server-a611b057/monetization/admin/settings", async (c) => {
+  try {
+    if (!(await isPlatformAdmin(c.req.header("Authorization")))) return c.json({ error: "Admin only" }, 403);
+    const settings = await kv.get("monetization:settings") || { platformFeePercent: PLATFORM_FEE_PERCENT, payoutSchedule: "weekly_friday" };
+    return c.json({ settings });
+  } catch (e) { return c.json({ error: `Server error: ${e}` }, 500); }
+});
+
+app.post("/make-server-a611b057/monetization/admin/settings", async (c) => {
+  try {
+    if (!(await isPlatformAdmin(c.req.header("Authorization")))) return c.json({ error: "Admin only" }, 403);
+    const body = await c.req.json();
+    const current = (await kv.get("monetization:settings") as any) || {};
+    await kv.set("monetization:settings", { ...current, ...body, updatedAt: new Date().toISOString() });
+    return c.json({ success: true });
+  } catch (e) { return c.json({ error: `Server error: ${e}` }, 500); }
+});
+
+
 // ==================== START THE SERVER ====================
 
 console.log("📡 Health endpoint: /make-server-a611b057/health");
@@ -9326,182 +9375,6 @@ const initializeStorageBuckets = async () => {
 
 // Initialize buckets before starting server
 await initializeStorageBuckets();
-
-// ==================== PAYMENT ROUTES (INTERSWITCH) ====================
-
-app.post("/make-server-a611b057/certificate-payments/interswitch/initialize", async (c) => {
-  try {
-    const { certificateId, studentEmail, studentName } = await c.req.json();
-    
-    if (!certificateId || !studentEmail) {
-      return c.json({ success: false, error: "certificateId and studentEmail are required" }, 400);
-    }
-    
-    // 1. Get the certificate
-    const cert = await kv.get(`cert:${certificateId}`);
-    if (!cert) {
-      return c.json({ success: false, error: "Certificate not found" }, 404);
-    }
-    
-    // 2. Validate monetization
-    if (!cert.monetizationEnabled) {
-      return c.json({ success: false, error: "This certificate is not monetized" }, 400);
-    }
-    if (cert.paymentStatus === 'paid') {
-      return c.json({ success: false, error: "This certificate is already paid for" }, 400);
-    }
-    
-    // 3. Generate transaction reference
-    const timestamp = Date.now();
-    const random = Math.random().toString(36).substring(2, 8).toUpperCase();
-    const txnRef = `CERT${timestamp}${random}`;
-    
-    // 4. Fetch keys from env
-    const merchantCode = Deno.env.get("INTERSWITCH_MERCHANT_CODE");
-    const payItemId = Deno.env.get("INTERSWITCH_PAY_ITEM_ID");
-    const isLive = Deno.env.get("INTERSWITCH_LIVE") === "true";
-    
-    if (!merchantCode || !payItemId) {
-      console.error("Backend missing INTERSWITCH_MERCHANT_CODE or INTERSWITCH_PAY_ITEM_ID");
-      return c.json({ success: false, error: "Payment gateway not configured" }, 500);
-    }
-    
-    // 5. Store payment intent in KV
-    const amountMinor = cert.certificatePriceMinor || 0;
-    await kv.set(`payment_intent:${txnRef}`, {
-      certificateId,
-      studentEmail,
-      amount: amountMinor,
-      status: "pending",
-      createdAt: new Date().toISOString()
-    });
-    
-    // 6. Return response
-    return c.json({
-      success: true,
-      txnRef,
-      paymentParams: {
-        merchant_code: merchantCode,
-        pay_item_id: payItemId,
-        pay_item_name: `${cert.courseName || 'Certificate'} - Payment`,
-        txn_ref: txnRef,
-        amount: amountMinor,
-        currency: "566", // NGN
-        cust_id: certificateId,
-        cust_name: studentName || "Student",
-        cust_email: studentEmail,
-        site_redirect_url: Deno.env.get("FRONTEND_URL") || "http://localhost:5173",
-        mode: isLive ? "LIVE" : "TEST"
-      },
-      certificateInfo: {
-        id: cert.id,
-        name: cert.courseName,
-        organizationId: cert.organizationId
-      }
-    });
-
-  } catch (error: any) {
-    console.error("❌ Error initializing Interswitch payment:", error);
-    return c.json({ success: false, error: error.message }, 500);
-  }
-});
-
-app.post("/make-server-a611b057/certificate-payments/interswitch/verify", async (c) => {
-  try {
-    const { transactionRef, amount, certificateId } = await c.req.json();
-    
-    if (!transactionRef || amount === undefined || !certificateId) {
-      return c.json({ success: false, error: "transactionRef, amount, and certificateId are required" }, 400);
-    }
-    
-    const intent = await kv.get(`payment_intent:${transactionRef}`);
-    if (!intent) {
-      return c.json({ success: false, error: "Payment intent not found or expired" }, 404);
-    }
-    
-    const merchantCode = Deno.env.get("INTERSWITCH_MERCHANT_CODE");
-    const isLive = Deno.env.get("INTERSWITCH_LIVE") === "true";
-    const baseUrl = isLive ? "https://webpay.interswitchng.com/collections/api/v1" : "https://qa.interswitchng.com/collections/api/v1";
-    
-    // Call Interswitch gettransaction API
-    const response = await fetch(`${baseUrl}/gettransaction?merchantcode=${merchantCode}&transactionreference=${transactionRef}&amount=${amount}`);
-    
-    let iswData: any = {};
-    if (response.ok) {
-      iswData = await response.json();
-    } else {
-      console.error(`Interswitch verification failed with status ${response.status}`);
-      // return c.json({ success: false, error: "Failed to reach Interswitch verification endpoint" }, 502);
-    }
-    
-    if (iswData.ResponseCode === "00" || iswData.ResponseCode === "00") {
-      const cert = await kv.get(`cert:${certificateId}`);
-      if (cert) {
-        cert.paymentStatus = "paid";
-        cert.paidAt = new Date().toISOString();
-        await kv.set(`cert:${certificateId}`, cert);
-        
-        // Update intent
-        intent.status = "paid";
-        await kv.set(`payment_intent:${transactionRef}`, intent);
-        
-        return c.json({
-          success: true,
-          certificate: {
-            id: cert.id,
-            paymentStatus: cert.paymentStatus,
-            paidAt: cert.paidAt
-          },
-          transactionDetails: iswData
-        });
-      } else {
-        return c.json({ success: false, error: "Certificate not found in store" }, 404);
-      }
-    } else {
-      return c.json({ success: false, error: iswData.ResponseDescription || "Payment not approved", transactionDetails: iswData }, 400);
-    }
-    
-  } catch (error: any) {
-    console.error("❌ Error verifying Interswitch payment:", error);
-    return c.json({ success: false, error: error.message }, 500);
-  }
-});
-
-app.post("/make-server-a611b057/certificate-payments/webhook", async (c) => {
-  try {
-    const rawPayload = await c.req.text();
-    let payload;
-    try {
-      payload = JSON.parse(rawPayload);
-    } catch {
-      return c.json({ success: false, error: "Invalid JSON" }, 400);
-    }
-    
-    // Minimal verification for webhook (in production, verify HMAC)
-    if (payload.event === "TRANSACTION.COMPLETED" && payload.data && payload.data.responseCode === "00") {
-      const txnRef = payload.data.merchantReference;
-      const intent = await kv.get(`payment_intent:${txnRef}`);
-      
-      if (intent && intent.status !== "paid") {
-        const cert = await kv.get(`cert:${intent.certificateId}`);
-        if (cert) {
-          cert.paymentStatus = "paid";
-          cert.paidAt = new Date().toISOString();
-          await kv.set(`cert:${intent.certificateId}`, cert);
-          
-          intent.status = "paid";
-          await kv.set(`payment_intent:${txnRef}`, intent);
-          console.log(`✅ Webhook updated certificate ${cert.id} to paid state via txn ${txnRef}`);
-        }
-      }
-    }
-    
-    return c.json({ success: true });
-  } catch (error: any) {
-    console.error("❌ Error in webhook:", error);
-    return c.json({ success: false, error: error.message }, 500);
-  }
-});
 
 // ==================== BLOG ROUTES ====================
 // Get all blog posts for an organization

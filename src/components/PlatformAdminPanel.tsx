@@ -63,6 +63,7 @@ import PlatformTrackingView from "./PlatformTrackingView";
 import TemplateVisibilityManager from "./TemplateVisibilityManager";
 import { BlogManagement } from "./admin/BlogManagement";
 import AdminPayoutManagement from "./AdminPayoutManagement";
+import MonetizationPage from "./MonetizationPage";
 
 interface PlatformAdminPanelProps {
   adminEmail: string;
@@ -658,7 +659,7 @@ export default function PlatformAdminPanel({
     },
     { id: "templates", label: "Template Visibility", icon: FileText },
     { id: "billing", label: "Billing Settings", icon: CreditCard },
-    { id: "payouts", label: "Payouts", icon: Wallet },
+    { id: "payouts", label: "Monetization", icon: Wallet },
     { id: "emails", label: "Email Addresses", icon: Mail },
     { id: "blog", label: "Blog", icon: BookOpen },
     { id: "analytics", label: "Analytics", icon: BarChart3 },
@@ -872,7 +873,7 @@ export default function PlatformAdminPanel({
                 {activeView === "organizations" && "Organizations"}
                 {activeView === "templates" && "Template Visibility"}
                 {activeView === "billing" && "Billing Settings"}
-                {activeView === "payouts" && "Payout Management"}
+                {activeView === "payouts" && "Monetization"}
                 {activeView === "emails" && "Email Addresses"}
                 {activeView === "blog" && "Blog Management"}
                 {activeView === "analytics" && "Analytics"}
@@ -888,7 +889,7 @@ export default function PlatformAdminPanel({
                 {activeView === "billing" &&
                   "Configure payment system and pricing"}
                 {activeView === "payouts" &&
-                  "Manage organization payout requests and process transfers"}
+                  "Platform-wide transactions, seller earnings, payouts and settings"}
                 {activeView === "emails" &&
                   "Collected student email addresses from testimonials"}
                 {activeView === "blog" &&
@@ -1379,7 +1380,13 @@ export default function PlatformAdminPanel({
           )}
 
           {activeView === "payouts" && (
-            <AdminPayoutManagement accessToken={accessToken!} />
+            <MonetizationPage
+              accessToken={accessToken!}
+              isAdmin={true}
+              adminOnly={true}
+              organizationId={undefined}
+              userId={adminEmail}
+            />
           )}
 
           {activeView === "templates" && (

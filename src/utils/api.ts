@@ -570,44 +570,39 @@ export const analyticsApi = {
   },
 };
 
-// ==================== CERTIFICATE PAYMENT API ====================
+// ==================== PRODUCT PAYMENT API (PAYSTACK) ====================
 
-export const certificatePaymentApi = {
-  initializeInterswitch: async (data: {
-    certificateId: string;
-    studentEmail: string;
-    studentName: string;
+export const productPaymentApi = {
+  // Initialize Paystack payment for a certificate/product purchase
+  initialize: async (data: {
+    productId: string;
+    productType: 'certificate' | 'course' | 'pdf';
+    buyerEmail: string;
+    buyerName: string;
   }) => {
-    const response = await fetch(`${API_BASE_URL}/certificate-payments/interswitch/initialize`, {
+    const response = await fetch(`${API_BASE_URL}/monetization/payments/initialize`, {
       method: 'POST',
       headers: getAuthHeaders(),
       body: JSON.stringify(data),
     });
-    
     if (!response.ok) {
       const error = await response.json();
       throw new Error(error.error || 'Failed to initialize payment');
     }
-    
     return await response.json();
   },
 
-  verifyInterswitch: async (data: {
-    transactionRef: string;
-    amount: number;
-    certificateId: string;
-  }) => {
-    const response = await fetch(`${API_BASE_URL}/certificate-payments/interswitch/verify`, {
+  // Verify payment after Paystack redirect
+  verify: async (reference: string) => {
+    const response = await fetch(`${API_BASE_URL}/monetization/payments/verify`, {
       method: 'POST',
       headers: getAuthHeaders(),
-      body: JSON.stringify(data),
+      body: JSON.stringify({ reference }),
     });
-    
     if (!response.ok) {
       const error = await response.json();
       throw new Error(error.error || 'Failed to verify payment');
     }
-    
     return await response.json();
   },
 };

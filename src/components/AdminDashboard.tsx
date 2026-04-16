@@ -97,6 +97,7 @@ import {
   ChevronRight,
   ChevronUp,
   Sparkles,
+  DollarSign,
 } from "lucide-react";
 import CertificateTemplate from "./CertificateTemplate";
 import CertificateRenderer from "./CertificateRenderer";
@@ -117,7 +118,7 @@ const TemplateBuilderPage = React.lazy(() => import("./TemplateBuilderPage"));
 const TestimonialsView = React.lazy(() => import("./TestimonialsView"));
 const AnalyticsView = React.lazy(() => import("./AnalyticsView"));
 const OrganizationSettings = React.lazy(() => import("./OrganizationSettings"));
-const MonetiseView = React.lazy(() => import("./MonetiseView"));
+const MonetizationPage = React.lazy(() => import("./MonetizationPage"));
 import type { Program, Subsidiary, UserProfile } from "../App";
 import {
   LineChart,
@@ -371,6 +372,11 @@ export default function AdminDashboard({
   const [genGenerationType, setGenGenerationType] = useState<
     "individual" | "bulk"
   >("individual");
+
+  // Monetization states
+  const [genMonetizationEnabled, setGenMonetizationEnabled] = useState(false);
+  const [genMonetizationPrice, setGenMonetizationPrice] = useState("");
+  const [genMonetizationCurrency, setGenMonetizationCurrency] = useState("NGN");
 
   // Restricted Certificate Downloads states
   const [genRestrictDownload, setGenRestrictDownload] = useState(false);
@@ -1079,8 +1085,11 @@ export default function AdminDashboard({
         signatories: signatories.length > 0 ? signatories : undefined,
         logos: logos.length > 0 ? logos : undefined,
         students: undefined,
-        restrictDownload: genRestrictDownload, // NEW: Download restriction flag
-        allowedEmails: genAllowedEmails, // NEW: List of allowed emails
+        restrictDownload: genRestrictDownload,
+        allowedEmails: genAllowedEmails,
+        monetizationEnabled: genMonetizationEnabled,
+        certificatePriceMinor: genMonetizationEnabled && genMonetizationPrice ? Math.round(parseFloat(genMonetizationPrice) * 100) : 0,
+        certificateCurrency: genMonetizationCurrency,
       } as any);
 
       // Check if response has certificates
@@ -1266,8 +1275,11 @@ export default function AdminDashboard({
                 email: s.email,
                 completionDate: s.completionDate || genCompletionDate,
               })),
-              restrictDownload: genRestrictDownload, // NEW: Download restriction flag
-              allowedEmails: genAllowedEmails, // NEW: List of allowed emails
+              restrictDownload: genRestrictDownload,
+              allowedEmails: genAllowedEmails,
+              monetizationEnabled: genMonetizationEnabled,
+              certificatePriceMinor: genMonetizationEnabled && genMonetizationPrice ? Math.round(parseFloat(genMonetizationPrice) * 100) : 0,
+              certificateCurrency: genMonetizationCurrency,
             });
 
             // Use backend-confirmed data
@@ -1617,7 +1629,7 @@ export default function AdminDashboard({
               },
               {
                 id: "monetise",
-                name: "Monetise",
+                name: "Monetization",
                 icon: CreditCard,
               },
               // {
@@ -3090,6 +3102,67 @@ export default function AdminDashboard({
                             )}
                           </div>
 
+                          {/* Monetization */}
+                          <div className="space-y-3 pt-4 border-t">
+                            <div className="flex items-start gap-3">
+                              <div className="flex items-center gap-2 flex-1">
+                                <DollarSign className="w-5 h-5 text-indigo-600" />
+                                <div className="flex-1">
+                                  <Label className="text-base font-medium">Monetize this certificate</Label>
+                                  <p className="text-xs text-gray-500 mt-1">Require payment before students can access and download</p>
+                                </div>
+                              </div>
+                              <Button
+                                type="button"
+                                variant={genMonetizationEnabled ? "default" : "outline"}
+                                size="sm"
+                                onClick={() => {
+                                  setGenMonetizationEnabled(!genMonetizationEnabled);
+                                  if (genMonetizationEnabled) {
+                                    setGenMonetizationPrice("");
+                                  }
+                                }}
+                                className={genMonetizationEnabled ? "bg-indigo-600 hover:bg-indigo-700" : ""}
+                              >
+                                {genMonetizationEnabled ? "Enabled" : "Disabled"}
+                              </Button>
+                            </div>
+
+                            {genMonetizationEnabled && (
+                              <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-4 space-y-3">
+                                <div className="flex gap-3">
+                                  <div className="flex-1 space-y-1">
+                                    <Label htmlFor="genMonetizationPrice" className="text-sm">Price *</Label>
+                                    <Input
+                                      id="genMonetizationPrice"
+                                      type="number"
+                                      min="1"
+                                      step="0.01"
+                                      placeholder="e.g. 5000"
+                                      value={genMonetizationPrice}
+                                      onChange={(e) => setGenMonetizationPrice(e.target.value)}
+                                    />
+                                  </div>
+                                  <div className="w-32 space-y-1">
+                                    <Label htmlFor="genMonetizationCurrency" className="text-sm">Currency</Label>
+                                    <select
+                                      id="genMonetizationCurrency"
+                                      value={genMonetizationCurrency}
+                                      onChange={(e) => setGenMonetizationCurrency(e.target.value)}
+                                      className="w-full h-10 px-3 rounded-md border border-input bg-background text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+                                    >
+                                      <option value="NGN">NGN (₦)</option>
+                                      <option value="USD">USD ($)</option>
+                                    </select>
+                                  </div>
+                                </div>
+                                <p className="text-xs text-indigo-700">
+                                  Students will be charged {genMonetizationCurrency === "NGN" ? "₦" : "$"}{genMonetizationPrice || "0"} via Paystack before accessing this certificate. Certifyer takes a 7% platform fee.
+                                </p>
+                              </div>
+                            )}
+                          </div>
+
                           {/* Live Certificate Preview */}
                           {genProgramName &&
                             genSelectedTemplate &&
@@ -3696,33 +3769,34 @@ export default function AdminDashboard({
                 </div>
               )}
 
-              {activeTab === "monetise" && currentOrganization && (
+              {activeTab === "monetise" && (
                 <React.Suspense fallback={<BillingSkeleton />}>
-                  <MonetiseView
-                    organizationId={currentOrganization.id}
+                  <MonetizationPage
+                    organizationId={currentOrganization?.id}
                     accessToken={accessToken!}
+                    isAdmin={false}
+                    userId={user?.id}
                   />
                 </React.Suspense>
               )}
 
-              {activeTab === "monetise" && !currentOrganization && (
+              {false && !currentOrganization && (
                 <div className="px-4 md:px-8 py-6">
                   <Card>
                     <CardHeader>
                       <CardTitle className="flex items-center gap-2">
                         <CreditCard className="w-5 h-5" />
-                        Monetise Certificates
+                        Monetization
                       </CardTitle>
                       <CardDescription>
-                        Enable paid access for selected certificates
+                        Sell certificates, courses, and digital products
                       </CardDescription>
                     </CardHeader>
                     <CardContent>
                       <Alert>
                         <Building2 className="h-4 w-4" />
                         <AlertDescription>
-                          You need to create an organization to configure
-                          certificate monetization.
+                          You need to create an organization to start selling.
                         </AlertDescription>
                       </Alert>
                     </CardContent>

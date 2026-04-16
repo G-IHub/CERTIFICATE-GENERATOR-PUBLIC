@@ -30,7 +30,7 @@ import type {
 import { organizationApi } from "../utils/api";
 import SignatoryManagement from "./SignatoryManagement";
 import LogoManagement from "./LogoManagement";
-import PayoutSettings from "./PayoutSettings";
+
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 
 // For compatibility, keep the existing interface name
@@ -534,12 +534,7 @@ export default function OrganizationSettings({
           </div>
         </TabsContent>
 
-        <TabsContent value="payouts" className="mt-6">
-          <PayoutSettings
-            organizationId={organization.id}
-            accessToken={accessToken}
-          />
-        </TabsContent>
+        {/* Payouts moved to the Monetization page */}
       </Tabs>
     </div>
   );

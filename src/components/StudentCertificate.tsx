@@ -46,7 +46,7 @@ import {
   getCertificateLinkTimeRemaining,
 } from "../utils/encryption";
 import { toJpeg } from "html-to-image";
-import InterswitchPaymentModal from "./InterswitchPaymentModal";
+import PaystackPaymentModal from "./PaystackPaymentModal";
 
 interface StudentCertificateProps {
   subsidiaries: Subsidiary[];
@@ -1476,17 +1476,17 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
       certificate.courseName || certificate.program?.name || "Certificate";
 
     return (
-      <InterswitchPaymentModal
-        certificateId={certificate.id}
-        certificateName={courseName}
+      <PaystackPaymentModal
+        itemId={certificate.id}
+        paymentType="certificate"
+        itemName={courseName}
         priceKobo={certificate.certificatePriceMinor || 0}
-        prefilledEmail={enteredEmail}
-        prefilledName={enteredName}
+        email={enteredEmail}
+        buyerName={enteredName}
         onPaymentComplete={(transactionRef) => {
           console.log("✅ Payment completed:", transactionRef);
           setPaymentCompleted(true);
           setShowPaymentModal(false);
-          // Update certificate payment status
           if (certificate) {
             certificate.paymentStatus = "paid";
           }
@@ -1496,7 +1496,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
         }}
         onClose={() => {
           setShowPaymentModal(false);
-          setShowNameForm(true); // Go back to name form
+          setShowNameForm(true);
         }}
       />
     );

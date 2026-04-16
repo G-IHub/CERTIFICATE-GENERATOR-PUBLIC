@@ -123,7 +123,12 @@ export default function CertificateGenerationModal({
   );
   const [selectedSignatories, setSelectedSignatories] = useState<string[]>([]);
 
-  // NEW: Download restriction states
+  // Monetization states
+  const [monetizationEnabled, setMonetizationEnabled] = useState(false);
+  const [monetizationPrice, setMonetizationPrice] = useState("");
+  const [monetizationCurrency, setMonetizationCurrency] = useState("NGN");
+
+  // Download restriction states
   const [restrictDownload, setRestrictDownload] = useState(false);
   const [allowedEmails, setAllowedEmails] = useState<string[]>([]);
   const [emailInput, setEmailInput] = useState("");
@@ -311,8 +316,11 @@ export default function CertificateGenerationModal({
         template: selectedTemplate,
         customTemplateConfig: templateConfig,
         signatories: selectedSignatoryDetails,
-        restrictDownload: restrictDownload, // NEW: Download restriction flag
-        allowedEmails: allowedEmails, // NEW: List of allowed emails
+        restrictDownload: restrictDownload,
+        allowedEmails: allowedEmails,
+        monetizationEnabled: monetizationEnabled,
+        certificatePriceMinor: monetizationEnabled && monetizationPrice ? Math.round(parseFloat(monetizationPrice) * 100) : 0,
+        certificateCurrency: monetizationCurrency,
       });
 
       console.log("✅ Certificate saved to backend:", response);
@@ -471,6 +479,9 @@ export default function CertificateGenerationModal({
     setGeneratedCertificates([]);
     setIsGenerating(false);
     setGenerationType("individual");
+    setMonetizationEnabled(false);
+    setMonetizationPrice("");
+    setMonetizationCurrency("NGN");
     setRestrictDownload(false);
     setAllowedEmails([]);
     setEmailInput("");
@@ -987,6 +998,58 @@ export default function CertificateGenerationModal({
                         </Card>
                       </div>
                     )}
+
+                  {/* Monetization */}
+                  <div className="space-y-3 pt-4 border-t">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <Label className="font-semibold text-sm">Monetize this certificate</Label>
+                        <p className="text-xs text-gray-500 mt-0.5">Require payment before students can access and download</p>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => setMonetizationEnabled(v => !v)}
+                        className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none ${monetizationEnabled ? "bg-indigo-600" : "bg-gray-200"}`}
+                      >
+                        <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${monetizationEnabled ? "translate-x-6" : "translate-x-1"}`} />
+                      </button>
+                    </div>
+
+                    {monetizationEnabled && (
+                      <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-4 space-y-3">
+                        <div className="flex gap-3">
+                          <div className="flex-1 space-y-1">
+                            <Label htmlFor="monetizationPrice" className="text-sm">Price *</Label>
+                            <Input
+                              id="monetizationPrice"
+                              type="number"
+                              min="1"
+                              step="0.01"
+                              placeholder="e.g. 5000"
+                              value={monetizationPrice}
+                              onChange={e => setMonetizationPrice(e.target.value)}
+                            />
+                          </div>
+                          <div className="w-28 space-y-1">
+                            <Label htmlFor="monetizationCurrency" className="text-sm">Currency</Label>
+                            <select
+                              id="monetizationCurrency"
+                              value={monetizationCurrency}
+                              onChange={e => setMonetizationCurrency(e.target.value)}
+                              className="w-full h-10 px-3 rounded-md border border-input bg-background text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+                            >
+                              <option value="NGN">NGN (₦)</option>
+                              <option value="USD">USD ($)</option>
+                            </select>
+                          </div>
+                        </div>
+                        <p className="text-xs text-indigo-700">
+                          Students will be charged {monetizationCurrency === "NGN" ? "₦" : "$"}{monetizationPrice || "0"} via Paystack before they can view or download this certificate.
+                          Certifyer takes a 7% platform fee.
+                        </p>
+                      </div>
+                    )}
+                  </div>
 
                   {/* Action Buttons */}
                   <div className="flex gap-3 pt-4 border-t">

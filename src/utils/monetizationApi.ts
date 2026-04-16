@@ -161,6 +161,9 @@ export const sellerApi = {
   getInvoices: (token: string): Promise<{ invoices: Invoice[] }> =>
     fetch(`${BASE}/seller/invoices`, { headers: headers(token) }).then(handle),
 
+  getCertificates: (token: string): Promise<{ certificates: any[] }> =>
+    fetch(`${BASE}/seller/certificates`, { headers: headers(token) }).then(handle),
+
   requestPayout: (token: string): Promise<{ payout: Payout }> =>
     fetch(`${BASE}/seller/payout/request`, { method: 'POST', headers: headers(token), body: JSON.stringify({}) }).then(handle),
 

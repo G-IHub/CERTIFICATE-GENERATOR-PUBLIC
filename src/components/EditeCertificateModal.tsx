@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
-import { X, Save, Loader2 } from "lucide-react";
+import { X, Save, Loader2, DollarSign } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { Textarea } from "./ui/textarea";
 import { Card, CardContent } from "./ui/card";
 import { toast } from "sonner";
-// Force cache refresh - certificateApi.update is available
 import { certificateApi } from "../utils/api";
 import { projectId, publicAnonKey } from "../utils/supabase/info";
 
@@ -89,6 +88,9 @@ export function EditCertificateModal({
   const [restrictDownload, setRestrictDownload] = useState(false);
   const [allowedEmails, setAllowedEmails] = useState<string[]>([]);
   const [emailInput, setEmailInput] = useState("");
+  const [monetizationEnabled, setMonetizationEnabled] = useState(false);
+  const [monetizationPrice, setMonetizationPrice] = useState("");
+  const [monetizationCurrency, setMonetizationCurrency] = useState("NGN");
 
   // Load certificate data into form
   useEffect(() => {
@@ -104,6 +106,9 @@ export function EditCertificateModal({
       );
       setRestrictDownload(certificate.restrictDownload || false);
       setAllowedEmails(certificate.allowedEmails || []);
+      setMonetizationEnabled(certificate.monetizationEnabled || false);
+      setMonetizationPrice(certificate.certificatePriceMinor ? String(certificate.certificatePriceMinor / 100) : "");
+      setMonetizationCurrency(certificate.certificateCurrency || "NGN");
 
       // Load signatories
       if (certificate.signatories && certificate.signatories.length > 0) {
@@ -190,8 +195,20 @@ export function EditCertificateModal({
         organization: certificate.organization,
       };
 
+      // Update monetization settings separately
+      await certificateApi.updateMonetization(accessToken, certificate.id, {
+        monetizationEnabled,
+        certificatePriceMinor: monetizationEnabled && monetizationPrice ? Math.round(parseFloat(monetizationPrice) * 100) : 0,
+        certificateCurrency: monetizationCurrency,
+      });
+
       toast.success("Certificate updated successfully!");
-      onUpdate(updatedCert);
+      onUpdate({
+        ...updatedCert,
+        monetizationEnabled,
+        certificatePriceMinor: monetizationEnabled && monetizationPrice ? Math.round(parseFloat(monetizationPrice) * 100) : 0,
+        certificateCurrency: monetizationCurrency,
+      });
       onClose();
     } catch (error: any) {
       console.error("Failed to update certificate:", error);
@@ -376,6 +393,61 @@ export function EditCertificateModal({
                       ))}
                     </div>
                   )}
+                </div>
+              )}
+            </div>
+
+            {/* Monetization */}
+            <div className="border rounded-lg p-4 space-y-3">
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={monetizationEnabled}
+                  onChange={e => { setMonetizationEnabled(e.target.checked); if (!e.target.checked) setMonetizationPrice(""); }}
+                  disabled={isLoading}
+                  className="w-4 h-4"
+                />
+                <div className="flex items-center gap-2 flex-1">
+                  <DollarSign className="w-4 h-4 text-orange-500" />
+                  <div>
+                    <p className="font-medium">Monetize this certificate</p>
+                    <p className="text-sm text-muted-foreground">Require payment before students can access and download</p>
+                  </div>
+                </div>
+              </label>
+
+              {monetizationEnabled && (
+                <div className="pt-3 border-t space-y-3">
+                  <div className="flex gap-3">
+                    <div className="flex-1">
+                      <Label htmlFor="editMonetizationPrice">Price *</Label>
+                      <Input
+                        id="editMonetizationPrice"
+                        type="number"
+                        min="1"
+                        step="0.01"
+                        placeholder="e.g. 5000"
+                        value={monetizationPrice}
+                        onChange={e => setMonetizationPrice(e.target.value)}
+                        disabled={isLoading}
+                      />
+                    </div>
+                    <div className="w-32">
+                      <Label>Currency</Label>
+                      <select
+                        value={monetizationCurrency}
+                        onChange={e => setMonetizationCurrency(e.target.value)}
+                        disabled={isLoading}
+                        className="w-full h-10 px-3 rounded-md border border-input bg-background text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+                      >
+                        <option value="NGN">NGN (₦)</option>
+                        <option value="USD">USD ($)</option>
+                      </select>
+                    </div>
+                  </div>
+                  <p className="text-xs text-orange-700 bg-orange-50 rounded p-2">
+                    Platform takes 7%. You receive {100 - 7}% of each sale.
+                  </p>
                 </div>
               )}
             </div>

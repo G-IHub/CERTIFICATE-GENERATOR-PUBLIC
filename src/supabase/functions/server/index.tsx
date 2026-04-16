@@ -9243,13 +9243,66 @@ app.get("/make-server-a611b057/monetization/admin/transactions", async (c) => {
 app.get("/make-server-a611b057/monetization/admin/sellers", async (c) => {
   try {
     if (!(await isPlatformAdmin(c.req.header("Authorization")))) return c.json({ error: "Admin only" }, 403);
-    const sellers: any[] = [];
-    const allKeys = kv.list({ prefix: "seller:" });
-    for await (const entry of allKeys) {
-      const s = entry.value as any;
-      const balance = await kv.get(`seller_balance:${s?.userId}`) || {};
-      sellers.push({ ...s, balance });
+
+    // Build a map of sellers from transactions (covers sellers without bank onboarding)
+    const sellerMap: Record<string, any> = {};
+
+    const allTxns = await kv.getByPrefix("txn:");
+    for (const entry of allTxns) {
+      const txn = entry.value as any;
+      if (!txn?.sellerId) continue;
+      const sid = txn.sellerId;
+      if (!sellerMap[sid]) {
+        sellerMap[sid] = {
+          userId: sid,
+          sellerOrgId: txn.sellerOrgId || null,
+          totalSales: 0,
+          totalEarned: 0,
+          transactionCount: 0,
+          displayName: null,
+          email: null,
+          bankName: null,
+          bankAccountNumber: null,
+          verified: false,
+          balance: {},
+        };
+      }
+      if (txn.status === "success") {
+        sellerMap[sid].totalEarned += txn.sellerEarning || 0;
+        sellerMap[sid].totalSales += txn.amountTotal || 0;
+        sellerMap[sid].transactionCount += 1;
+      }
     }
+
+    // Enrich with seller profile if they onboarded
+    for (const sid of Object.keys(sellerMap)) {
+      const profile = await kv.get(`seller:${sid}`) as any;
+      if (profile) {
+        sellerMap[sid].displayName = profile.displayName || null;
+        sellerMap[sid].email = profile.email || null;
+        sellerMap[sid].bankName = profile.bankName || null;
+        sellerMap[sid].bankAccountNumber = profile.bankAccountNumber || null;
+        sellerMap[sid].verified = profile.verified || false;
+      }
+      // Enrich with org info
+      if (sellerMap[sid].sellerOrgId) {
+        const org = await kv.get(`org:${sellerMap[sid].sellerOrgId}`) as any;
+        if (org) {
+          sellerMap[sid].orgName = org.name || null;
+          if (!sellerMap[sid].email) sellerMap[sid].email = org.email || null;
+        }
+      }
+      // Enrich with user info
+      const userRecord = await kv.get(`user:${sid}`) as any;
+      if (userRecord) {
+        if (!sellerMap[sid].displayName) sellerMap[sid].displayName = userRecord.name || userRecord.fullName || null;
+        if (!sellerMap[sid].email) sellerMap[sid].email = userRecord.email || null;
+      }
+      const balance = await kv.get(`seller_balance:${sid}`) as any;
+      if (balance) sellerMap[sid].balance = balance;
+    }
+
+    const sellers = Object.values(sellerMap).sort((a: any, b: any) => b.totalEarned - a.totalEarned);
     return c.json({ sellers });
   } catch (e) { return c.json({ error: `Server error: ${e}` }, 500); }
 });

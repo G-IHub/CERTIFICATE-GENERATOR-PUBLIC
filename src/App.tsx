@@ -9,6 +9,7 @@ import {
 } from "react-router";
 import LandingPage from "./components/LandingPage";
 import PaymentVerifyPage from "./components/PaymentVerifyPage";
+import InvoicePage from "./components/InvoicePage";
 import AuthPage from "./components/AuthPage";
 import AdminDashboard from "./components/AdminDashboard";
 import PlatformAdminPanel from "./components/PlatformAdminPanel";
@@ -982,6 +983,9 @@ export default function App() {
 
           {/* Payment verification - Paystack redirects here after checkout */}
           <Route path="/payment/verify" element={<PaymentVerifyPage />} />
+
+          {/* Invoice view */}
+          <Route path="/invoice/:id" element={<InvoicePage />} />
 
           {/* Deployment guide - public */}
           <Route path="/deploy-guide" element={<DeploymentGuide />} />

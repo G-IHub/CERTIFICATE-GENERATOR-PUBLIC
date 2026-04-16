@@ -47,6 +47,7 @@ import {
 } from "../utils/encryption";
 import { toJpeg } from "html-to-image";
 import PaystackPaymentModal from "./PaystackPaymentModal";
+import { certificatePaymentApi } from "../utils/monetizationApi";
 
 interface StudentCertificateProps {
   subsidiaries: Subsidiary[];
@@ -124,6 +125,9 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
   // Payment state
   const [showPaymentModal, setShowPaymentModal] = useState(false);
   const [paymentCompleted, setPaymentCompleted] = useState(false);
+  const [showRecovery, setShowRecovery] = useState(false);
+  const [recoveryRef, setRecoveryRef] = useState("");
+  const [recovering, setRecovering] = useState(false);
 
   // Preload fonts to prevent text shift on first download
   useEffect(() => {
@@ -1236,6 +1240,20 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
       }
     };
 
+    const handleRecovery = async () => {
+      if (!recoveryRef.trim()) return toast.error("Please enter your payment reference");
+      setRecovering(true);
+      try {
+        await certificatePaymentApi.verify(recoveryRef.trim());
+        // Reload the certificate — it should now be marked paid
+        window.location.reload();
+      } catch (e: any) {
+        toast.error(e.message || "Could not verify that reference. Please check it and try again.");
+      } finally {
+        setRecovering(false);
+      }
+    };
+
     return (
       <div
         className="min-h-screen bg-gray-50 flex items-center justify-center p-4"
@@ -1274,15 +1292,46 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
 
             {certificate.monetizationEnabled &&
               certificate.paymentStatus !== "paid" && (
-                <Alert className="mb-4 border-blue-300 bg-blue-50">
-                  <DollarSign className="h-4 w-4 text-blue-600" />
-                  <AlertDescription className="text-sm text-blue-800">
-                    This certificate requires payment. Price: ₦
-                    {((certificate.certificatePriceMinor || 0) / 100).toFixed(
-                      2,
-                    )}
-                  </AlertDescription>
-                </Alert>
+                <>
+                  <Alert className="mb-2 border-orange-300 bg-orange-50">
+                    <DollarSign className="h-4 w-4 text-orange-600" />
+                    <AlertDescription className="text-sm text-orange-800">
+                      This certificate requires payment. Price: ₦
+                      {((certificate.certificatePriceMinor || 0) / 100).toFixed(2)}
+                    </AlertDescription>
+                  </Alert>
+                  {!showRecovery ? (
+                    <button
+                      type="button"
+                      onClick={() => setShowRecovery(true)}
+                      className="text-xs text-orange-500 hover:underline mb-3 block"
+                    >
+                      Already paid? Enter your payment reference
+                    </button>
+                  ) : (
+                    <div className="mb-4 p-3 bg-gray-50 rounded-lg border border-gray-200 space-y-2">
+                      <p className="text-xs font-medium text-gray-700">Enter your Paystack reference (starts with CTFY_)</p>
+                      <div className="flex gap-2">
+                        <input
+                          type="text"
+                          value={recoveryRef}
+                          onChange={e => setRecoveryRef(e.target.value)}
+                          placeholder="CTFY_..."
+                          className="flex-1 text-sm border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-400"
+                        />
+                        <button
+                          type="button"
+                          onClick={handleRecovery}
+                          disabled={recovering}
+                          className="px-3 py-2 text-sm bg-orange-500 text-white rounded-lg hover:bg-orange-600 disabled:opacity-60"
+                        >
+                          {recovering ? "Checking..." : "Verify"}
+                        </button>
+                      </div>
+                      <button type="button" onClick={() => setShowRecovery(false)} className="text-xs text-gray-400 hover:text-gray-600">Cancel</button>
+                    </div>
+                  )}
+                </>
               )}
 
             <form

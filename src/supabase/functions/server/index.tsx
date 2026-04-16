@@ -8889,7 +8889,7 @@ app.post("/make-server-a611b057/monetization/payments/verify", async (c) => {
     if (!res.ok || !data.status || data.data?.status !== "success") return c.json({ error: "Payment not successful", paystackStatus: data.data?.status }, 400);
     const txn = await kv.get(`txn:${reference}`) as any;
     if (!txn) return c.json({ error: "Transaction not found" }, 404);
-    if (txn.status === "success") return c.json({ message: "Already verified", transaction: txn });
+    if (txn.status === "success") return c.json({ message: "Already verified", transaction: txn, invoice: txn.invoiceId ? await kv.get(`invoice:${txn.invoiceId}`) : null });
     const holdUntil = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString();
     const invoiceId = `inv_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`;
     const updatedTxn = { ...txn, status: "success", completedAt: new Date().toISOString(), holdUntil, invoiceId, released: false };
@@ -8980,7 +8980,16 @@ app.post("/make-server-a611b057/monetization/payments/verify-certificate", async
 
     const txn = await kv.get(`txn:${reference}`) as any;
     if (!txn) return c.json({ error: "Transaction not found" }, 404);
-    if (txn.status === "success") return c.json({ message: "Already verified", transaction: txn });
+    if (txn.status === "success") {
+      // Webhook may have already verified — ensure cert is still marked paid
+      if (txn.certificateId) {
+        const cert = await kv.get(`cert:${txn.certificateId}`) as any;
+        if (cert && cert.paymentStatus !== "paid") {
+          await kv.set(`cert:${txn.certificateId}`, { ...cert, paymentStatus: "paid", paidAt: txn.completedAt || new Date().toISOString(), paidRef: reference });
+        }
+      }
+      return c.json({ message: "Already verified", transaction: txn, certificateId: txn.certificateId });
+    }
 
     const holdUntil = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString();
     const invoiceId = `inv_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`;
@@ -9058,16 +9067,30 @@ app.post("/make-server-a611b057/monetization/payments/webhook", async (c) => {
     const invoiceId = txn.invoiceId || `inv_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`;
     const updatedTxn = { ...txn, status: "success", completedAt: new Date().toISOString(), holdUntil, invoiceId, released: false };
     await kv.set(`txn:${reference}`, updatedTxn);
+
+    // For certificate payments, mark the cert as paid
+    if (txn.type === "certificate" && txn.certificateId) {
+      const cert = await kv.get(`cert:${txn.certificateId}`) as any;
+      if (cert) {
+        await kv.set(`cert:${txn.certificateId}`, { ...cert, paymentStatus: "paid", paidAt: new Date().toISOString(), paidRef: reference });
+      }
+    }
+
     if (!txn.invoiceId) {
-      const product = await kv.get(`product:${txn.productId}`) as any;
+      const isCertPayment = txn.type === "certificate";
+      const product = isCertPayment ? null : await kv.get(`product:${txn.productId}`) as any;
       const invoice = {
-        id: invoiceId, reference, buyerEmail: txn.buyerEmail, buyerName: txn.buyerName,
-        sellerId: txn.sellerId, productId: txn.productId, productTitle: product?.title || "Product",
+        id: invoiceId, reference, type: txn.type || "product",
+        certificateId: txn.certificateId || null,
+        buyerEmail: txn.buyerEmail, buyerName: txn.buyerName,
+        sellerId: txn.sellerId, sellerOrgId: txn.sellerOrgId || null,
+        productId: txn.productId || null,
+        productTitle: txn.productTitle || product?.title || "Product",
         amountTotal: txn.amountTotal, platformFee: txn.platformFee, sellerEarning: txn.sellerEarning,
-        currency: txn.currency, status: "paid", issuedAt: new Date().toISOString(),
+        currency: txn.currency || "NGN", status: "paid", issuedAt: new Date().toISOString(),
       };
       await kv.set(`invoice:${invoiceId}`, invoice);
-      await updateSellerBalance(txn.sellerId, txn.sellerEarning, holdUntil);
+      if (txn.sellerId) await updateSellerBalance(txn.sellerId, txn.sellerEarning, holdUntil);
       await updatePlatformEarnings(txn.platformFee);
     }
     return c.json({ success: true });
@@ -9336,6 +9359,13 @@ app.post("/make-server-a611b057/monetization/admin/payouts/:id/process", async (
     const transferData = await transferRes.json();
     if (!transferRes.ok || !transferData.status) {
       await kv.set(`payout:${payout.id}`, { ...payout, status: "failed", failureReason: transferData.message, processedAt: new Date().toISOString() });
+      // Restore the seller's available balance since the transfer failed
+      const bal = await kv.get(`seller_balance:${payout.sellerId}`) as any;
+      if (bal) {
+        bal.availableBalance = (bal.availableBalance || 0) + payout.amount;
+        bal.totalWithdrawn = Math.max(0, (bal.totalWithdrawn || 0) - payout.amount);
+        await kv.set(`seller_balance:${payout.sellerId}`, bal);
+      }
       return c.json({ error: transferData.message || "Transfer failed" }, 400);
     }
     const updated = {

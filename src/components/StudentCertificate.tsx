@@ -403,8 +403,25 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
           );
 
           if (!cert.studentName) {
-            console.log("📝 No student name - showing name entry form");
-            setShowNameForm(true);
+            // Check if returning from a successful Paystack payment for this cert
+            const savedCertId = sessionStorage.getItem("ctfy_buyer_cert");
+            const savedName = sessionStorage.getItem("ctfy_buyer_name");
+            const savedEmail = sessionStorage.getItem("ctfy_buyer_email");
+            if (
+              cert.paymentStatus === "paid" &&
+              savedCertId === cert.id &&
+              savedName
+            ) {
+              console.log("✅ Returning from payment — restoring buyer details, skipping name form");
+              setEnteredName(savedName);
+              if (savedEmail) setEnteredEmail(savedEmail);
+              sessionStorage.removeItem("ctfy_buyer_cert");
+              sessionStorage.removeItem("ctfy_buyer_name");
+              sessionStorage.removeItem("ctfy_buyer_email");
+            } else {
+              console.log("📝 No student name - showing name entry form");
+              setShowNameForm(true);
+            }
           } else {
             console.log("✅ Student name present:", cert.studentName);
             console.log(
@@ -1199,6 +1216,10 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
           certificate.paymentStatus !== "paid"
         ) {
           console.log("💰 Payment required - showing payment modal");
+          // Save buyer details so we can skip re-entry after Paystack redirect
+          sessionStorage.setItem("ctfy_buyer_cert", certificate.id);
+          sessionStorage.setItem("ctfy_buyer_name", enteredName.trim());
+          sessionStorage.setItem("ctfy_buyer_email", enteredEmail.trim());
           setShowNameForm(false);
           setShowPaymentModal(true);
           toast.info("Payment required to access this certificate");
@@ -1614,7 +1635,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
                   <CardContent className="p-4 flex items-center gap-4">
                     <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
                       <img
-                        src={logo}
+                        src="/logo.png"
                         alt="Certifyer Logo"
                         className="w-6 h-6"
                       />

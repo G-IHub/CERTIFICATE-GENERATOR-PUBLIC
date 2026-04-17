@@ -9058,6 +9058,44 @@ app.post("/make-server-a611b057/monetization/payments/webhook", async (c) => {
       if (!valid) return c.json({ error: "Invalid webhook signature" }, 401);
     }
     const event = JSON.parse(rawBody);
+
+    // ---- Transfer events (payout status updates) ----
+    if (event.event === "transfer.success" || event.event === "transfer.failed") {
+      const transferCode = event.data?.transfer_code;
+      const transferRef = event.data?.reference; // This is the payoutId we set as reference
+      const payoutId = transferRef;
+      if (!payoutId) return c.json({ success: true });
+
+      const payout = await kv.get(`payout:${payoutId}`) as any;
+      if (!payout) return c.json({ success: true }); // unknown payout, ignore
+
+      if (event.event === "transfer.success") {
+        await kv.set(`payout:${payoutId}`, {
+          ...payout,
+          status: "completed",
+          paystackTransferCode: transferCode || payout.paystackTransferCode,
+          completedAt: new Date().toISOString(),
+        });
+      } else {
+        // transfer.failed — mark failed and restore seller balance
+        const failureReason = event.data?.failures?.[0]?.reason || event.data?.reason || "Transfer failed";
+        await kv.set(`payout:${payoutId}`, {
+          ...payout,
+          status: "failed",
+          failureReason,
+          failedAt: new Date().toISOString(),
+        });
+        // Restore seller's available balance
+        const bal = await kv.get(`seller_balance:${payout.sellerId}`) as any;
+        if (bal) {
+          bal.availableBalance = (bal.availableBalance || 0) + payout.amount;
+          bal.totalWithdrawn = Math.max(0, (bal.totalWithdrawn || 0) - payout.amount);
+          await kv.set(`seller_balance:${payout.sellerId}`, bal);
+        }
+      }
+      return c.json({ success: true });
+    }
+
     if (event.event !== "charge.success") return c.json({ success: true });
     const reference = event.data?.reference;
     if (!reference) return c.json({ error: "Missing reference" }, 400);

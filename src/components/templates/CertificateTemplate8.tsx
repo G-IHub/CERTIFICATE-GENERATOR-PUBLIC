@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from "react";
-import medal from "../../assets/rosette.png";
+import medal from "../../assets/iwdAward.png";
 
 interface CertificateTemplate8Props {
   header?: string;
@@ -103,12 +103,12 @@ export default function CertificateTemplate8({
               <img
                 alt="medalsvg"
                 src={medal}
-                className="absolute -bottom-4 w-10/12 h-full object-contain"
+                className="absolute -bottom-4 w-9/12 h-full object-contain"
               />
               <img
                 alt="Organization Logo"
                 src={organizationLogo}
-                className="absolute inset-[25%] w-[50%] h-[50%] object-contain"
+                className="absolute inset-[31%] w-[37%] h-[40%] object-contain"
               />
             </div>
           </div>

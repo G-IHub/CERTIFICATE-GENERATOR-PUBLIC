@@ -1,4 +1,5 @@
 import { useRef, useEffect } from "react";
+import type { ThemeColors } from "../../types/theme";
 import type { Logo } from "../../App";
 
 interface CertificateTemplate27Props {
@@ -20,6 +21,7 @@ interface CertificateTemplate27Props {
   signatureUrl2?: string;
   mode?: "student" | "template-selection";
   certificateId?: string;
+  themeColors?: ThemeColors;
 }
 
 export default function CertificateTemplate27({
@@ -41,6 +43,7 @@ export default function CertificateTemplate27({
   signatureUrl2,
   mode = "student",
   certificateId,
+  themeColors,
 }: CertificateTemplate27Props) {
   const ref = useRef<HTMLDivElement>(null);
   const scale = mode === "student" ? 1 : 1;

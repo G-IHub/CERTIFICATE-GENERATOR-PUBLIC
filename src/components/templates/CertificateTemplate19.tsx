@@ -25,6 +25,7 @@ interface CertificateTemplate19Props {
   startDate?: string;
   endDate?: string;
   dateDisplayMode?: "completion" | "range";
+  themeColors?: ThemeColors;
 }
 
 export default function CertificateTemplate19({
@@ -48,6 +49,7 @@ export default function CertificateTemplate19({
   startDate,
   endDate,
   dateDisplayMode = "completion",
+  themeColors,
 }: CertificateTemplate19Props) {
   const ref = useRef<HTMLDivElement>(null);
   const scale =

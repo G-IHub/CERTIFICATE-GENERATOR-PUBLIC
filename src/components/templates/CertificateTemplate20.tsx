@@ -19,6 +19,7 @@ interface CertificateTemplate20Props {
   signatoryTitle2?: string;
   signatureUrl2?: string;
   mode?: "student" | "template-selection";
+  themeColors?: ThemeColors;
 }
 
 export default function CertificateTemplate20({
@@ -38,6 +39,7 @@ export default function CertificateTemplate20({
   signatoryTitle2,
   signatureUrl2,
   mode = "student",
+  themeColors,
 }: CertificateTemplate20Props) {
   const transformClass =
     mode === "student" ? "transform scale-[0.3]" : "transform scale-100";

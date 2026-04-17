@@ -1,0 +1,5 @@
+[api]
+enabled = true
+
+[functions.make-server-a611b057]
+verify_jwt = false

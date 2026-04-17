@@ -52,8 +52,9 @@ import {
   MessageCircle,
   BookOpen,
   Trash2,
+  Wallet,
 } from "lucide-react";
-import { toast } from "sonner";
+import { toast } from "sonner@2.0.3";
 import { publicAnonKey, projectId } from "../utils/supabase/info";
 import BillingSettings from "./BillingSettings";
 import AdminEmailsView from "./AdminEmailsView";
@@ -61,6 +62,8 @@ import PlatformAnalytics from "./PlatformAnalytics";
 import PlatformTrackingView from "./PlatformTrackingView";
 import TemplateVisibilityManager from "./TemplateVisibilityManager";
 import { BlogManagement } from "./admin/BlogManagement";
+import AdminPayoutManagement from "./AdminPayoutManagement";
+import MonetizationPage from "./MonetizationPage";
 
 interface PlatformAdminPanelProps {
   adminEmail: string;
@@ -137,6 +140,7 @@ export default function PlatformAdminPanel({
     | "emails"
     | "blog"
     | "templates"
+    | "payouts"
   >("overview");
   const [stats, setStats] = useState<PlatformStats>({
     totalOrganizations: 0,
@@ -655,6 +659,7 @@ export default function PlatformAdminPanel({
     },
     { id: "templates", label: "Template Visibility", icon: FileText },
     { id: "billing", label: "Billing Settings", icon: CreditCard },
+    { id: "payouts", label: "Monetization", icon: Wallet },
     { id: "emails", label: "Email Addresses", icon: Mail },
     { id: "blog", label: "Blog", icon: BookOpen },
     { id: "analytics", label: "Analytics", icon: BarChart3 },
@@ -868,6 +873,7 @@ export default function PlatformAdminPanel({
                 {activeView === "organizations" && "Organizations"}
                 {activeView === "templates" && "Template Visibility"}
                 {activeView === "billing" && "Billing Settings"}
+                {activeView === "payouts" && "Monetization"}
                 {activeView === "emails" && "Email Addresses"}
                 {activeView === "blog" && "Blog Management"}
                 {activeView === "analytics" && "Analytics"}
@@ -882,6 +888,8 @@ export default function PlatformAdminPanel({
                   "Configure template visibility for organizations"}
                 {activeView === "billing" &&
                   "Configure payment system and pricing"}
+                {activeView === "payouts" &&
+                  "Platform-wide transactions, seller earnings, payouts and settings"}
                 {activeView === "emails" &&
                   "Collected student email addresses from testimonials"}
                 {activeView === "blog" &&
@@ -1369,6 +1377,16 @@ export default function PlatformAdminPanel({
 
           {activeView === "billing" && (
             <BillingSettings accessToken={accessToken} />
+          )}
+
+          {activeView === "payouts" && (
+            <MonetizationPage
+              accessToken={accessToken!}
+              isAdmin={true}
+              adminOnly={true}
+              organizationId={undefined}
+              userId={adminEmail}
+            />
           )}
 
           {activeView === "templates" && (

@@ -33,6 +33,7 @@ import {
   Building2,
   AlertCircle,
   Image as ImageIcon,
+  DollarSign,
 } from "lucide-react";
 import { toast } from "sonner";
 import CertificateTemplate from "./CertificateTemplate";
@@ -45,7 +46,8 @@ import {
   getCertificateLinkTimeRemaining,
 } from "../utils/encryption";
 import { toJpeg } from "html-to-image";
-import logo from "../assets/logo.png";
+import PaystackPaymentModal from "./PaystackPaymentModal";
+import { certificatePaymentApi } from "../utils/monetizationApi";
 
 interface StudentCertificateProps {
   subsidiaries: Subsidiary[];
@@ -83,6 +85,10 @@ interface CertificateData {
   }[];
   restrictDownload?: boolean; // NEW: Whether downloads are restricted
   allowedEmails?: string[]; // NEW: List of allowed student emails
+  monetizationEnabled?: boolean; // NEW: Whether payment is required
+  certificatePriceMinor?: number; // NEW: Price in kobo (minor denomination)
+  certificateCurrency?: string; // NEW: Currency (e.g., NGN)
+  paymentStatus?: string; // NEW: Payment status (paid/unpaid)
 }
 
 const StudentCertificate: React.FC<StudentCertificateProps> = ({
@@ -115,6 +121,13 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
   const [enteredTitle, setEnteredTitle] = useState("");
   const [enteredOrganization, setEnteredOrganization] = useState("");
   const [enteredImpact, setEnteredImpact] = useState("");
+
+  // Payment state
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const [paymentCompleted, setPaymentCompleted] = useState(false);
+  const [showRecovery, setShowRecovery] = useState(false);
+  const [recoveryRef, setRecoveryRef] = useState("");
+  const [recovering, setRecovering] = useState(false);
 
   // Preload fonts to prevent text shift on first download
   useEffect(() => {
@@ -256,6 +269,30 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
         // Fetch certificate from backend
         console.log("📡 Calling API to get certificate...");
         const response = await certificateApi.getById(actualCertificateId);
+
+        // Check if payment is required
+        if (response.paymentRequired) {
+          console.log("💰 Payment required for certificate");
+          const cert = response.certificate;
+
+          // Set minimal certificate data to show the payment form
+          const certificateData: CertificateData = {
+            id: cert.id,
+            courseName: cert.courseName,
+            certificateHeader: cert.certificateHeader,
+            completionDate: new Date().toISOString(),
+            monetizationEnabled: true,
+            certificatePriceMinor: cert.certificatePriceMinor,
+            certificateCurrency: cert.certificateCurrency,
+            paymentStatus: "unpaid",
+          };
+
+          setCertificate(certificateData);
+          setShowNameForm(true); // Show name form which will then lead to payment
+          setLoading(false);
+          return;
+        }
+
         console.log("📡 API Response received:");
         console.log("   - Has certificate:", !!response.certificate);
         console.log("   - Has organization:", !!response.organization);
@@ -306,6 +343,10 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
             signatories: cert.signatories || [], // Signatories from backend
             restrictDownload: cert.restrictDownload || false, // Download restriction flag
             allowedEmails: cert.allowedEmails || [], // List of allowed emails
+            monetizationEnabled: cert.monetizationEnabled || false, // Payment requirement flag
+            certificatePriceMinor: cert.certificatePriceMinor || 0, // Price in kobo
+            certificateCurrency: cert.certificateCurrency || "NGN", // Currency
+            paymentStatus: cert.paymentStatus || "unpaid", // Payment status
           };
 
           console.log("📋 Template Info:", {
@@ -366,8 +407,25 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
           );
 
           if (!cert.studentName) {
-            console.log("📝 No student name - showing name entry form");
-            setShowNameForm(true);
+            // Check if returning from a successful Paystack payment for this cert
+            const savedCertId = sessionStorage.getItem("ctfy_buyer_cert");
+            const savedName = sessionStorage.getItem("ctfy_buyer_name");
+            const savedEmail = sessionStorage.getItem("ctfy_buyer_email");
+            if (
+              cert.paymentStatus === "paid" &&
+              savedCertId === cert.id &&
+              savedName
+            ) {
+              console.log("✅ Returning from payment — restoring buyer details, skipping name form");
+              setEnteredName(savedName);
+              if (savedEmail) setEnteredEmail(savedEmail);
+              sessionStorage.removeItem("ctfy_buyer_cert");
+              sessionStorage.removeItem("ctfy_buyer_name");
+              sessionStorage.removeItem("ctfy_buyer_email");
+            } else {
+              console.log("📝 No student name - showing name entry form");
+              setShowNameForm(true);
+            }
           } else {
             console.log("✅ Student name present:", cert.studentName);
             console.log(
@@ -381,6 +439,20 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
         }
       } catch (error: any) {
         if (error.stack) console.error("Stack trace:", error.stack);
+
+        // Check if this is a payment required error (402)
+        if (error.message && error.message.includes("Payment is required")) {
+          console.log(
+            "💰 Payment required - this is expected, showing name form",
+          );
+          // Don't show error toast - this is expected behavior
+          // We'll show the name form and then the payment modal
+          setShowNameForm(true);
+          // Set a minimal certificate object so we can show the form
+          // The actual certificate data will be loaded after payment
+          setLoading(false);
+          return;
+        }
 
         let errorMessage = "Failed to load certificate";
         if (error.message.includes("not found")) {
@@ -1068,21 +1140,6 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
         return;
       }
 
-      // Check required testimonial fields
-      if (!enteredTitle.trim()) {
-        toast.error("Please select your title");
-        return;
-      }
-
-      if (!enteredOrganization.trim()) {
-        toast.error("Please enter your organization/institution/affiliation");
-        return;
-      }
-
-      if (!enteredImpact.trim()) {
-        toast.error("Please provide your impact feedback");
-        return;
-      }
 
       // NEW: Check if download is restricted and validate email
       if (certificate.restrictDownload) {
@@ -1143,19 +1200,57 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
           }
         }
 
-        setShowNameForm(false);
-        toast.success(
-          enteredTestimonial.trim() || enteredImpact.trim()
-            ? "Thank you for your feedback!"
-            : "Certificate personalized with your name!",
-        );
+        // NEW: Check if payment is required
+        if (
+          certificate.monetizationEnabled &&
+          certificate.paymentStatus !== "paid"
+        ) {
+          console.log("💰 Payment required - showing payment modal");
+          // Save buyer details so we can skip re-entry after Paystack redirect
+          sessionStorage.setItem("ctfy_buyer_cert", certificate.id);
+          sessionStorage.setItem("ctfy_buyer_name", enteredName.trim());
+          sessionStorage.setItem("ctfy_buyer_email", enteredEmail.trim());
+          setShowNameForm(false);
+          setShowPaymentModal(true);
+          toast.info("Payment required to access this certificate");
+        } else {
+          // No payment required or already paid - show certificate
+          setShowNameForm(false);
+          toast.success(
+            enteredTestimonial.trim() || enteredImpact.trim()
+              ? "Thank you for your feedback!"
+              : "Certificate personalized with your name!",
+          );
+        }
       } catch (error) {
         console.error("Failed to save testimonial:", error);
-        // Still show the certificate even if testimonial save fails
-        setShowNameForm(false);
-        toast.success("Certificate personalized with your name!");
+        // Still proceed even if testimonial save fails
+        if (
+          certificate.monetizationEnabled &&
+          certificate.paymentStatus !== "paid"
+        ) {
+          setShowNameForm(false);
+          setShowPaymentModal(true);
+        } else {
+          setShowNameForm(false);
+          toast.success("Certificate personalized with your name!");
+        }
       } finally {
         setIsSubmitting(false);
+      }
+    };
+
+    const handleRecovery = async () => {
+      if (!recoveryRef.trim()) return toast.error("Please enter your payment reference");
+      setRecovering(true);
+      try {
+        await certificatePaymentApi.verify(recoveryRef.trim());
+        // Reload the certificate — it should now be marked paid
+        window.location.reload();
+      } catch (e: any) {
+        toast.error(e.message || "Could not verify that reference. Please check it and try again.");
+      } finally {
+        setRecovering(false);
       }
     };
 
@@ -1194,6 +1289,50 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
                 </AlertDescription>
               </Alert>
             )}
+
+            {certificate.monetizationEnabled &&
+              certificate.paymentStatus !== "paid" && (
+                <>
+                  <Alert className="mb-2 border-orange-300 bg-orange-50">
+                    <DollarSign className="h-4 w-4 text-orange-600" />
+                    <AlertDescription className="text-sm text-orange-800">
+                      This certificate requires payment. Price: ₦
+                      {((certificate.certificatePriceMinor || 0) / 100).toFixed(2)}
+                    </AlertDescription>
+                  </Alert>
+                  {!showRecovery ? (
+                    <button
+                      type="button"
+                      onClick={() => setShowRecovery(true)}
+                      className="text-xs text-orange-500 hover:underline mb-3 block"
+                    >
+                      Already paid? Enter your payment reference
+                    </button>
+                  ) : (
+                    <div className="mb-4 p-3 bg-gray-50 rounded-lg border border-gray-200 space-y-2">
+                      <p className="text-xs font-medium text-gray-700">Enter your Paystack reference (starts with CTFY_)</p>
+                      <div className="flex gap-2">
+                        <input
+                          type="text"
+                          value={recoveryRef}
+                          onChange={e => setRecoveryRef(e.target.value)}
+                          placeholder="CTFY_..."
+                          className="flex-1 text-sm border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-400"
+                        />
+                        <button
+                          type="button"
+                          onClick={handleRecovery}
+                          disabled={recovering}
+                          className="px-3 py-2 text-sm bg-orange-500 text-white rounded-lg hover:bg-orange-600 disabled:opacity-60"
+                        >
+                          {recovering ? "Checking..." : "Verify"}
+                        </button>
+                      </div>
+                      <button type="button" onClick={() => setShowRecovery(false)} className="text-xs text-gray-400 hover:text-gray-600">Cancel</button>
+                    </div>
+                  )}
+                </>
+              )}
 
             <form
               onSubmit={handleFormSubmit}
@@ -1266,7 +1405,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
                       htmlFor="title"
                       className="block text-sm font-medium text-gray-700 mb-2"
                     >
-                      Title <span className="text-red-500">*</span>
+                      Title
                     </label>
                     <select
                       id="title"
@@ -1274,7 +1413,6 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
                       onChange={(e) => setEnteredTitle(e.target.value)}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white"
                       disabled={isSubmitting}
-                      required
                     >
                       <option value="">Select title</option>
                       <option value="Mr">Mr</option>
@@ -1291,8 +1429,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
                       htmlFor="organization"
                       className="block text-sm font-medium text-gray-700 mb-2"
                     >
-                      Your Organization/Institution/Affiliation{" "}
-                      <span className="text-red-500">*</span>
+                      Your Organization/Institution/Affiliation
                     </label>
                     <input
                       id="organization"
@@ -1302,7 +1439,6 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
                       placeholder="e.g., ABC University, XYZ Corporation"
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                       disabled={isSubmitting}
-                      required
                     />
                   </div>
 
@@ -1312,10 +1448,8 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
                       htmlFor="impact"
                       className="block text-sm font-medium text-gray-700 mb-2"
                     >
-                      In one sentence, how has this {courseName} program
-                      impacted you, and what would you say to fellow lecturers
-                      about participating in it?{" "}
-                      <span className="text-red-500">*</span>
+                      In one sentence, how has the {courseName} program
+                      impacted you, and what would you say to people about participating in it?
                     </label>
                     <textarea
                       id="impact"
@@ -1325,7 +1459,6 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
                       rows={3}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent resize-none"
                       disabled={isSubmitting}
-                      required
                     />
                   </div>
 
@@ -1360,9 +1493,6 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
                 className="w-full"
                 disabled={
                   !enteredName.trim() ||
-                  !enteredTitle.trim() ||
-                  !enteredOrganization.trim() ||
-                  !enteredImpact.trim() ||
                   isSubmitting ||
                   (certificate.restrictDownload && !enteredEmail.trim())
                 }
@@ -1380,6 +1510,42 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
           </CardContent>
         </Card>
       </div>
+    );
+  }
+
+  // Show payment modal if payment is required
+  if (
+    showPaymentModal &&
+    certificate.monetizationEnabled &&
+    certificate.paymentStatus !== "paid"
+  ) {
+    const courseName =
+      certificate.courseName || certificate.program?.name || "Certificate";
+
+    return (
+      <PaystackPaymentModal
+        itemId={certificate.id}
+        paymentType="certificate"
+        itemName={courseName}
+        priceKobo={certificate.certificatePriceMinor || 0}
+        email={enteredEmail}
+        buyerName={enteredName}
+        onPaymentComplete={(transactionRef) => {
+          console.log("✅ Payment completed:", transactionRef);
+          setPaymentCompleted(true);
+          setShowPaymentModal(false);
+          if (certificate) {
+            certificate.paymentStatus = "paid";
+          }
+          toast.success(
+            "Payment successful! You can now view your certificate.",
+          );
+        }}
+        onClose={() => {
+          setShowPaymentModal(false);
+          setShowNameForm(true);
+        }}
+      />
     );
   }
 
@@ -1496,7 +1662,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
                   <CardContent className="p-4 flex items-center gap-4">
                     <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
                       <img
-                        src={logo}
+                        src="/logo.png"
                         alt="Certifyer Logo"
                         className="w-6 h-6"
                       />

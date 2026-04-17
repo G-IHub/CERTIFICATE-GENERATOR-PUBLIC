@@ -105,3 +105,17 @@ export const getKeysByPrefix = async (prefix: string): Promise<string[]> => {
   }
   return data?.map((d) => d.key) ?? [];
 };
+
+// List entries by prefix — returns an async iterable of { key, value } objects.
+// Mimics the Deno KV list() API so monetization code can iterate with "for await".
+export async function* list(options: { prefix: string }): AsyncGenerator<{ key: string; value: any }> {
+  const supabase = client();
+  const { data, error } = await supabase
+    .from("kv_store_a611b057")
+    .select("key, value")
+    .like("key", options.prefix + "%");
+  if (error) throw new Error(error.message);
+  for (const row of data ?? []) {
+    yield { key: row.key, value: row.value };
+  }
+}

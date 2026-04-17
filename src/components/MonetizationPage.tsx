@@ -558,7 +558,9 @@ const AdminSellersAndProducts = ({ token }: { token: string }) => {
       {sellers.map(s => {
         const name = s.displayName || s.orgName || s.email || s.userId;
         const sellerCerts = certs.filter((c: any) =>
-          c.sellerId === s.userId || c.sellerOrgId === s.sellerOrgId
+          c.organizationId === s.sellerOrgId ||
+          c.organizationId === s.userId ||
+          c.sellerId === s.userId
         );
         const isExpanded = expandedSeller === s.userId;
 

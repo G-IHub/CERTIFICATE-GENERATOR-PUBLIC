@@ -613,6 +613,25 @@ export default function CertificateGenerationModal({
                     </div>
                   </div>
 
+                  {/* Colour Theme Picker — shown right after template selection */}
+                  {selectedTemplate && (
+                    <div className="pt-2">
+                      <CertificateThemePicker
+                        value={themeColors}
+                        onChange={setThemeColors}
+                        previewProps={{
+                          templateId: selectedTemplate,
+                          header: "Certificate of Completion",
+                          courseTitle: "Sample Programme",
+                          date: new Date().toISOString().split("T")[0],
+                          recipientName: "Sample Student Name",
+                          organizationName: currentUserOrganization?.name,
+                          organizationLogo: currentUserOrganization?.logo,
+                        }}
+                      />
+                    </div>
+                  )}
+
                   <div className="flex justify-end">
                     <Button
                       onClick={() => {
@@ -872,28 +891,6 @@ export default function CertificateGenerationModal({
                       The date when the program was completed
                     </p>
                   </div>
-
-                  {/* Colour Theme Picker */}
-                  {selectedTemplate && (
-                    <div className="pt-2">
-                      <CertificateThemePicker
-                        value={themeColors}
-                        onChange={setThemeColors}
-                        previewProps={{
-                          templateId: selectedTemplate,
-                          header: certificateHeader,
-                          courseTitle: courseName || "Sample Programme",
-                          description: courseDescription,
-                          date: completionDate,
-                          recipientName: "Sample Student Name",
-                          organizationName: currentUserOrganization?.name,
-                          organizationLogo: currentUserOrganization?.logo,
-                          signatoryName1: availableSignatories.find((s: any) => s.id === selectedSignatories[0])?.name,
-                          signatoryTitle1: availableSignatories.find((s: any) => s.id === selectedSignatories[0])?.title,
-                        }}
-                      />
-                    </div>
-                  )}
 
                   {/* Live Certificate Preview */}
                   {courseName &&

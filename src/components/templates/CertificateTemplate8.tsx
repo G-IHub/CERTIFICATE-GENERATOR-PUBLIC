@@ -108,7 +108,7 @@ export default function CertificateTemplate8({
               <img
                 alt="Organization Logo"
                 src={organizationLogo}
-                className="absolute inset-[31.5%] w-[35%] h-[40%] object-contain"
+                className="absolute inset-[31%] w-[37%] h-[40%] object-contain"
               />
             </div>
           </div>

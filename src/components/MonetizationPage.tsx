@@ -146,9 +146,8 @@ const SELLER_TABS = [
 
 const ADMIN_TABS = [
   { id: "overview", label: "Overview", icon: BarChart3 },
-  { id: "products", label: "All Products", icon: Package },
+  { id: "sellers_products", label: "Sellers & Products", icon: Users },
   { id: "transactions", label: "All Transactions", icon: CreditCard },
-  { id: "sellers", label: "Sellers", icon: Users },
   { id: "payouts", label: "Payouts", icon: ArrowDownToLine },
   { id: "refunds", label: "Refunds", icon: RefreshCw },
   { id: "settings", label: "Settings", icon: ShieldCheck },
@@ -514,51 +513,130 @@ const SellerBankSettings = ({ token }: { token: string }) => {
 // ==================== ADMIN TABS ====================
 
 // --- Admin Products ---
-const AdminProducts = ({ token }: { token: string }) => {
-  const [products, setProducts] = useState<Product[]>([]);
+// --- Admin Sellers & Products (combined) ---
+const AdminSellersAndProducts = ({ token }: { token: string }) => {
+  const [sellers, setSellers] = useState<any[]>([]);
+  const [certs, setCerts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [expandedSeller, setExpandedSeller] = useState<string | null>(null);
 
   useEffect(() => {
-    adminMonetizationApi.getProducts(token)
-      .then(r => setProducts(r.products))
-      .catch(() => toast.error("Failed to load products"))
+    Promise.all([
+      adminMonetizationApi.getSellers(token),
+      adminMonetizationApi.getProducts(token),
+    ])
+      .then(([s, p]) => {
+        setSellers(s.sellers || []);
+        // getProducts returns certificate-level products
+        setCerts(p.products || p.certificates || []);
+      })
+      .catch(() => toast.error("Failed to load sellers & products"))
       .finally(() => setLoading(false));
   }, [token]);
 
   if (loading) return <p className="text-gray-400 text-sm">Loading...</p>;
+  if (sellers.length === 0) return (
+    <EmptyState icon={Users} title="No sellers yet" desc="Sellers appear here once they have sold a certificate." />
+  );
 
   return (
-    <div className="space-y-4">
-      <div className="flex items-center justify-between">
-        <h2 className="text-lg font-semibold text-gray-900">All Products</h2>
-        <Badge variant="secondary">{products.length} total</Badge>
+    <div className="space-y-3">
+      <div className="flex items-center justify-between mb-2">
+        <h2 className="text-lg font-semibold text-gray-900">Sellers & Products</h2>
+        <span className="text-xs text-gray-400">{sellers.length} seller{sellers.length !== 1 ? "s" : ""} · {certs.length} product{certs.length !== 1 ? "s" : ""}</span>
       </div>
-      {products.length === 0 ? (
-        <EmptyState icon={Package} title="No products yet" description="Products created by sellers will appear here." />
-      ) : (
-        <div className="space-y-3">
-          {products.map(p => (
-            <Card key={p.id}>
-              <CardContent className="p-4">
-                <div className="flex items-start justify-between gap-4">
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 flex-wrap">
-                      <p className="font-semibold text-gray-900 truncate">{p.name}</p>
-                      <Badge variant={p.isActive ? "default" : "secondary"}>{p.isActive ? "Active" : "Inactive"}</Badge>
-                      <Badge variant="outline" className="capitalize">{p.type}</Badge>
-                    </div>
-                    {p.description && <p className="text-sm text-gray-500 mt-1 line-clamp-1">{p.description}</p>}
-                    <p className="text-xs text-gray-400 mt-1">Seller: {p.sellerId} • Created: {new Date(p.createdAt).toLocaleDateString()}</p>
-                  </div>
-                  <div className="text-right shrink-0">
-                    <p className="font-bold text-gray-900">{formatKobo(p.priceKobo, p.currency)}</p>
-                  </div>
+
+      {/* Table header */}
+      <div className="hidden sm:grid grid-cols-12 gap-2 px-4 py-2 text-xs font-medium text-gray-500 uppercase tracking-wide bg-gray-50 rounded-lg">
+        <div className="col-span-4">Seller</div>
+        <div className="col-span-2 text-center">Sales</div>
+        <div className="col-span-2 text-right">Earned</div>
+        <div className="col-span-2 text-right">Available</div>
+        <div className="col-span-2 text-right">Status</div>
+      </div>
+
+      {sellers.map(s => {
+        const name = s.displayName || s.orgName || s.email || s.userId;
+        const sellerCerts = certs.filter((c: any) =>
+          c.sellerId === s.userId || c.sellerOrgId === s.sellerOrgId
+        );
+        const isExpanded = expandedSeller === s.userId;
+
+        return (
+          <div key={s.userId} className="border border-gray-200 rounded-xl overflow-hidden bg-white shadow-sm">
+            {/* Seller row */}
+            <button
+              onClick={() => setExpandedSeller(isExpanded ? null : s.userId)}
+              className="w-full grid grid-cols-12 gap-2 px-4 py-3 text-left hover:bg-gray-50 transition-colors items-center"
+            >
+              <div className="col-span-4 flex items-center gap-3 min-w-0">
+                <div className="w-8 h-8 rounded-full bg-orange-50 flex items-center justify-center text-orange-500 shrink-0">
+                  <Users className="w-4 h-4" />
                 </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      )}
+                <div className="min-w-0">
+                  <p className="font-medium text-gray-900 truncate text-sm">{name}</p>
+                  {s.email && <p className="text-xs text-gray-400 truncate">{s.email}</p>}
+                </div>
+              </div>
+              <div className="col-span-2 text-center">
+                <span className="text-sm font-medium text-gray-700">{s.transactionCount || 0}</span>
+                <p className="text-xs text-gray-400">sales</p>
+              </div>
+              <div className="col-span-2 text-right">
+                <span className="text-sm font-semibold text-gray-900">{formatKobo(s.balance?.totalEarned || s.totalEarned || 0)}</span>
+              </div>
+              <div className="col-span-2 text-right">
+                <span className="text-sm text-gray-700">{formatKobo(s.balance?.availableBalance || 0)}</span>
+              </div>
+              <div className="col-span-2 text-right flex items-center justify-end gap-1">
+                <Badge variant={s.verified ? "success" : "warning"}>{s.verified ? "Verified" : "Unverified"}</Badge>
+                <ChevronRight className={`w-4 h-4 text-gray-400 shrink-0 transition-transform ${isExpanded ? "rotate-90" : ""}`} />
+              </div>
+            </button>
+
+            {/* Expanded: products table */}
+            {isExpanded && (
+              <div className="border-t border-gray-100 bg-gray-50">
+                {sellerCerts.length === 0 ? (
+                  <p className="text-xs text-gray-400 px-6 py-4">No monetized certificates found for this seller.</p>
+                ) : (
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="text-xs text-gray-500 border-b border-gray-200">
+                        <th className="text-left px-6 py-2 font-medium">Product / Certificate</th>
+                        <th className="text-center px-4 py-2 font-medium">Status</th>
+                        <th className="text-right px-6 py-2 font-medium">Price</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {sellerCerts.map((c: any) => {
+                        const title = c.name || c.courseName || c.certificateHeader || c.title || "Certificate";
+                        const price = c.priceKobo || c.certificatePriceMinor || 0;
+                        const currency = c.currency || c.certificateCurrency || "NGN";
+                        const sold = c.paymentStatus === "paid" || c.isActive === false;
+                        return (
+                          <tr key={c.id} className="border-b border-gray-100 last:border-0 hover:bg-white transition-colors">
+                            <td className="px-6 py-3">
+                              <p className="font-medium text-gray-800 truncate max-w-xs">{title}</p>
+                              <p className="text-xs text-gray-400 mt-0.5 font-mono">{c.id?.slice(0, 12)}…</p>
+                            </td>
+                            <td className="px-4 py-3 text-center">
+                              <Badge variant={sold ? "success" : "info"}>{sold ? "Sold" : "Available"}</Badge>
+                            </td>
+                            <td className="px-6 py-3 text-right font-semibold text-gray-900">
+                              {formatKobo(price, currency)}
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                )}
+              </div>
+            )}
+          </div>
+        );
+      })}
     </div>
   );
 };
@@ -653,52 +731,6 @@ const AdminTransactions = ({ token }: { token: string }) => {
 };
 
 // --- Admin Sellers ---
-const AdminSellers = ({ token }: { token: string }) => {
-  const [sellers, setSellers] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    adminMonetizationApi.getSellers(token).then(r => setSellers(r.sellers)).catch(() => toast.error("Failed to load sellers")).finally(() => setLoading(false));
-  }, [token]);
-
-  if (loading) return <p className="text-gray-400 text-sm">Loading...</p>;
-  if (sellers.length === 0) return <EmptyState icon={Users} title="No sellers yet" desc="Sellers appear here once they have sold a certificate." />;
-
-  return (
-    <div className="space-y-3">
-      {sellers.map(s => {
-        const name = s.displayName || s.orgName || s.email || s.userId;
-        const hasBankAccount = !!s.bankName;
-        return (
-          <Card key={s.userId}>
-            <CardContent className="flex items-center justify-between gap-4">
-              <div className="flex items-center gap-3 min-w-0">
-                <div className="w-10 h-10 rounded-full bg-orange-50 flex items-center justify-center text-orange-600 shrink-0">
-                  <Users className="w-5 h-5" />
-                </div>
-                <div className="min-w-0">
-                  <p className="font-medium text-gray-900 truncate">{name}</p>
-                  {s.email && <p className="text-sm text-gray-500 truncate">{s.email}</p>}
-                  {s.orgName && <p className="text-xs text-gray-400">{s.orgName}</p>}
-                  {hasBankAccount
-                    ? <p className="text-xs text-gray-400 mt-0.5">{s.bankName} • •••• {(s.bankAccountNumber || "").slice(-4)}</p>
-                    : <p className="text-xs text-yellow-600 mt-0.5">No bank account linked</p>
-                  }
-                </div>
-              </div>
-              <div className="text-right space-y-1 shrink-0">
-                <p className="text-sm font-semibold text-gray-900">{formatKobo(s.balance?.totalEarned || s.totalEarned || 0)} earned</p>
-                <p className="text-xs text-gray-500">{s.transactionCount || 0} sale{s.transactionCount !== 1 ? "s" : ""}</p>
-                <Badge variant={s.verified ? "success" : "warning"}>{s.verified ? "Bank verified" : "Not onboarded"}</Badge>
-              </div>
-            </CardContent>
-          </Card>
-        );
-      })}
-    </div>
-  );
-};
-
 // --- Admin Payouts ---
 const AdminPayouts = ({ token }: { token: string }) => {
   const [payouts, setPayouts] = useState<Payout[]>([]);
@@ -950,9 +982,8 @@ export default function MonetizationPage({ organizationId, accessToken, isAdmin 
           {view === "admin" && (
             <>
               {activeTab === "overview" && <AdminOverview token={accessToken} />}
-              {activeTab === "products" && <AdminProducts token={accessToken} />}
+              {activeTab === "sellers_products" && <AdminSellersAndProducts token={accessToken} />}
               {activeTab === "transactions" && <AdminTransactions token={accessToken} />}
-              {activeTab === "sellers" && <AdminSellers token={accessToken} />}
               {activeTab === "payouts" && <AdminPayouts token={accessToken} />}
               {activeTab === "refunds" && <AdminRefunds token={accessToken} />}
               {activeTab === "settings" && <AdminSettings token={accessToken} />}

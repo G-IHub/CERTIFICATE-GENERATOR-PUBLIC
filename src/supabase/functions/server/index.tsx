@@ -9265,11 +9265,12 @@ app.get("/make-server-a611b057/monetization/seller/payouts", async (c) => {
 app.get("/make-server-a611b057/monetization/admin/products", async (c) => {
   try {
     if (!(await isPlatformAdmin(c.req.header("Authorization")))) return c.json({ error: "Admin only" }, 403);
-    const products: any[] = [];
-    const allKeys = kv.list({ prefix: "product:" });
-    for await (const entry of allKeys) { products.push(entry.value); }
-    products.sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
-    return c.json({ products });
+    // Return monetized certificates as products (certs are the primary product type)
+    const allCerts = await kv.getByPrefix("cert:");
+    const products = allCerts
+      .filter((cert: any) => cert?.monetizationEnabled === true)
+      .sort((a: any, b: any) => new Date(b.generatedAt || b.createdAt || 0).getTime() - new Date(a.generatedAt || a.createdAt || 0).getTime());
+    return c.json({ products, certificates: products });
   } catch (e) { return c.json({ error: `Server error: ${e}` }, 500); }
 });
 

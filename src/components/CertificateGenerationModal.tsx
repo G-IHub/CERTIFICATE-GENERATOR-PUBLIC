@@ -47,7 +47,10 @@ import {
   Sparkles,
   Shield,
   ImageIcon,
+  Palette,
 } from "lucide-react";
+import CertificateThemePicker from "./CertificateThemePicker";
+import type { ThemeColors } from "../types/theme";
 import { toast } from "sonner@2.0.3";
 import TemplatesPage from "./TemplatesPage";
 import { copyToClipboard } from "../utils/clipboard";
@@ -127,6 +130,9 @@ export default function CertificateGenerationModal({
   const [monetizationEnabled, setMonetizationEnabled] = useState(false);
   const [monetizationPrice, setMonetizationPrice] = useState("");
   const [monetizationCurrency, setMonetizationCurrency] = useState("NGN");
+
+  // Theme colors state
+  const [themeColors, setThemeColors] = useState<ThemeColors | undefined>(undefined);
 
   // Download restriction states
   const [restrictDownload, setRestrictDownload] = useState(false);
@@ -321,6 +327,7 @@ export default function CertificateGenerationModal({
         monetizationEnabled: monetizationEnabled,
         certificatePriceMinor: monetizationEnabled && monetizationPrice ? Math.round(parseFloat(monetizationPrice) * 100) : 0,
         certificateCurrency: monetizationCurrency,
+        themeColors: themeColors ?? null,
       });
 
       console.log("✅ Certificate saved to backend:", response);
@@ -487,6 +494,7 @@ export default function CertificateGenerationModal({
     setEmailInput("");
     setAvailableLogos([]);
     setSelectedLogos([]);
+    setThemeColors(undefined);
   };
 
   const handleClose = () => {
@@ -500,34 +508,22 @@ export default function CertificateGenerationModal({
     <TooltipProvider>
       <Dialog open={isOpen} onOpenChange={handleClose}>
         <DialogContent className="max-w-6xl max-h-[90vh] overflow-y-auto">
-          {/* MEGA TEST - If you see this giant message, new code IS loading */}
-          <div className="fixed inset-0 bg-red-600 z-50 flex items-center justify-center">
-            <div className="text-white text-center p-8">
-              <h1 className="text-6xl font-bold mb-4">🔴 STOP 🔴</h1>
-              <h2 className="text-4xl font-bold mb-4">NEW CODE IS LOADING!</h2>
-              <p className="text-2xl">
-                If you can see this, the changes ARE being deployed
-              </p>
-              <p className="text-xl mt-4">Click anywhere to continue</p>
-            </div>
-          </div>
-
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
               <Tooltip>
                 <TooltipTrigger asChild>
                   <div className="cursor-default">
-                    <Award className="w-5 h-5 text-indigo-600" />
+                    <Award className="w-5 h-5 text-orange-500" />
                   </div>
                 </TooltipTrigger>
                 <TooltipContent>
                   <p>Certificate generation system</p>
                 </TooltipContent>
               </Tooltip>
-              🔴🔴 RED BOX TEST 🔴🔴🔴
+              Generate Certificate
             </DialogTitle>
             <DialogDescription>
-              IF YOU CAN READ THIS, THE CODE IS DEPLOYING
+              Create a shareable certificate link with your chosen template and theme.
             </DialogDescription>
           </DialogHeader>
 
@@ -553,12 +549,6 @@ export default function CertificateGenerationModal({
             </TabsList>
 
             <TabsContent value="setup" className="space-y-6">
-              <div className="w-full h-64 bg-red-600 flex items-center justify-center mb-6">
-                <h1 className="text-white text-4xl font-bold">
-                  🔴 SETUP TAB TEST - CAN YOU SEE THIS?
-                </h1>
-              </div>
-
               {/* Template Selection Only */}
               <Card>
                 <CardHeader>
@@ -653,12 +643,6 @@ export default function CertificateGenerationModal({
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
-                  <div className="w-full h-64 bg-red-600 flex items-center justify-center">
-                    <h1 className="text-white text-4xl font-bold">
-                      🔴 RED BOX TEST - AT THE TOP!
-                    </h1>
-                  </div>
-
                   {/* Certificate Header */}
                   <div className="space-y-2">
                     <Label htmlFor="certificateHeader">
@@ -889,6 +873,28 @@ export default function CertificateGenerationModal({
                     </p>
                   </div>
 
+                  {/* Colour Theme Picker */}
+                  {selectedTemplate && (
+                    <div className="pt-2">
+                      <CertificateThemePicker
+                        value={themeColors}
+                        onChange={setThemeColors}
+                        previewProps={{
+                          templateId: selectedTemplate,
+                          header: certificateHeader,
+                          courseTitle: courseName || "Sample Programme",
+                          description: courseDescription,
+                          date: completionDate,
+                          recipientName: "Sample Student Name",
+                          organizationName: currentUserOrganization?.name,
+                          organizationLogo: currentUserOrganization?.logo,
+                          signatoryName1: availableSignatories.find((s: any) => s.id === selectedSignatories[0])?.name,
+                          signatoryTitle1: availableSignatories.find((s: any) => s.id === selectedSignatories[0])?.title,
+                        }}
+                      />
+                    </div>
+                  )}
+
                   {/* Live Certificate Preview */}
                   {courseName &&
                     selectedTemplate &&
@@ -896,7 +902,7 @@ export default function CertificateGenerationModal({
                       <div className="pt-6">
                         <div className="flex items-center justify-between mb-3">
                           <div className="flex items-center gap-2">
-                            <Eye className="w-4 h-4 text-indigo-600" />
+                            <Eye className="w-4 h-4 text-orange-500" />
                             <h4 className="font-medium">Live Preview</h4>
                           </div>
                           <Badge variant="outline" className="text-xs">
@@ -904,7 +910,7 @@ export default function CertificateGenerationModal({
                               `Template ${selectedTemplate}`}
                           </Badge>
                         </div>
-                        <Card className="bg-linear-to-br from-indigo-50 to-purple-50 border-2 border-indigo-200">
+                        <Card className="bg-gradient-to-br from-orange-50 to-amber-50 border-2 border-orange-200">
                           <CardContent className="p-4">
                             <div className="bg-white rounded-lg overflow-hidden shadow-sm">
                               <div className="w-full overflow-x-auto">
@@ -986,6 +992,7 @@ export default function CertificateGenerationModal({
                                           s.id === selectedSignatories[1],
                                       )?.signatureUrl
                                     }
+                                    themeColors={themeColors}
                                   />
                                 </div>
                               </div>

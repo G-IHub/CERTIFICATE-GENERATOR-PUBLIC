@@ -1,6 +1,6 @@
 import React from "react";
-import award from "../../assets/award.png";
-import watermark from "../../assets/watermark.png";
+import { Award, Star } from "lucide-react";
+import type { ThemeColors } from "../../types/theme";
 
 interface CertificateTemplate6Props {
   header: string;
@@ -27,6 +27,7 @@ interface CertificateTemplate6Props {
     title: string;
     signatureUrl?: string;
   }>;
+  themeColors?: ThemeColors;
 }
 
 export default function CertificateTemplate6({
@@ -38,20 +39,29 @@ export default function CertificateTemplate6({
   isPreview = false,
   organizationName = "Your Organization",
   organizationLogo,
-  signatoryName1 = "Bryan Luke",
-  signatoryTitle1 = "Founde & CEO",
+  signatoryName1,
+  signatoryTitle1,
   signatureUrl1,
-  signatoryName2 = "Sarah Kim",
-  signatoryTitle2 = "Co-founder",
+  signatoryName2,
+  signatoryTitle2,
   signatureUrl2,
   mode = "student",
+  // Legacy props
+  programName,
+  issueDate,
+  primaryColor = "#ea580c",
+  signatories = [],
+  themeColors,
 }: CertificateTemplate6Props) {
   const ref = React.useRef<HTMLDivElement>(null);
-  const scale =
-    mode === "student" ? "transform scale-[0.3]" : "transform scale-100";
+  const scale = mode === "student" ? "transform scale-[0.3]" : "transform scale-100";
+  // Use legacy props if provided, otherwise use new standard props
+  const displayProgramName = programName || courseTitle;
+  const displayIssueDate = issueDate || date;
+  const displayRecipientName = recipientName;
 
   // Format date
-  const formattedDate = new Date(date).toLocaleDateString("en-US", {
+  const formattedDate = new Date(displayIssueDate).toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
     day: "numeric",
@@ -62,74 +72,180 @@ export default function CertificateTemplate6({
     : "min-w-[800px] flex justify-center items-center";
 
   return (
-    <div ref={ref}
-      className={containerClass}
-      style={{ transform: `scale(${scale})`, backgroundColor: "transparent" }}
-    >
-      <div className="w-200 h-150 flex justify-center shadow-sm rounded overflow-hidden bg-transparent relative">
-        <img
-          src={watermark}
-          alt="watermark"
-          className="absolute w-full h-full z-0 opacity-14 -bottom-10"
-        />
-        <div className="w-50 bg-linear-to-t from-green-900 to-green-600 h-full relative flex justify-center">
-          {organizationLogo && (
-            <img
-              src={organizationLogo}
-              alt="Organization"
-              className="w-20 h-20 object-contain absolute top-4 left-4 z-20"
-            />
-          ) }
+    <div className={containerClass}
+    style={{ transform: `scale(${scale})`, backgroundColor: "transparent" }}>
+      {/* Certificate Container */}
+      <div
+        ref={ref}
+        className="relative w-full bg-white overflow-hidden"
+        style={{ width: "800px", height: "600px", paddingLeft: "64px", paddingRight: "64px" }}
+      >
+        {/* Dark Brown Corner Decorations */}
+        <div className="absolute top-0 left-0 w-32 h-32">
+          <svg viewBox="0 0 100 100" className="w-full h-full">
+            <path d="M 0,0 L 100,0 L 0,100 Z" fill={themeColors?.primary ?? '#3d2817'} />
+          </svg>
+        </div>
+        <div className="absolute top-0 right-0 w-32 h-32">
+          <svg viewBox="0 0 100 100" className="w-full h-full">
+            <path d="M 0,0 L 100,0 L 100,100 Z" fill="#3d2817" />
+          </svg>
+        </div>
+        <div className="absolute bottom-0 left-0 w-32 h-32">
+          <svg viewBox="0 0 100 100" className="w-full h-full">
+            <path d="M 0,0 L 0,100 L 100,100 Z" fill="#3d2817" />
+          </svg>
+        </div>
+        <div className="absolute bottom-0 right-0 w-32 h-32">
+          <svg viewBox="0 0 100 100" className="w-full h-full">
+            <path d="M 0,100 L 100,100 L 100,0 Z" fill="#3d2817" />
+          </svg>
         </div>
 
-        <div className="flex flex-col gap-12 py-10 px-4 items-center text-center z-50 w-full">
-          <h2 className="text-2xl py-1 text-white bg-green-900 uppercase w-full">
-            {header}
-          </h2>
-          <p className="text-xs italic">This Certificate is Presented to:</p>
-          <div className="w-11/12 border-b-2 pb-2 border-green-900 text-green-900 font-semibold text-xl tracking-wider text-center">
-            {recipientName}
-          </div>
-          <p className="font-medium text-xs">
-            {description} Titled: {courseTitle} Organized By {organizationName}.
-          </p>
-          <p className="font-bold text-sm uppercase">{formattedDate}</p>
+        {/* Orange Border Frame */}
+        <div className="absolute inset-0 m-4">
+          <div className="absolute inset-0 border-4" style={{ borderColor: themeColors?.secondary ?? '#ea580c' }} />
+        </div>
 
-          <div className="flex w-full justify-center items-center">
-            <div className="flex flex-col gap-1 items-center">
-              <div className="border-b border-green-950 w-40 flex justify-center min-h-10">
-                {signatureUrl1 && (
-                  <img
-                    src={signatureUrl1}
-                    alt={signatoryName1}
-                    className="w-24 h-16 object-contain"
-                  />
-                )}
-              </div>
-              <p className="text-center text-xs font-medium">
-                {signatoryName1}
-              </p>
-              <p className="text-center text-[9px] italic font-medium">
-                {signatoryTitle1}
-              </p>
+        {/* Inner White Content Area */}
+        <div className="absolute inset-0 m-12 bg-white flex flex-col items-center justify-center p-12">
+          {/* Gold Badge and Title Section */}
+          <div className="flex items-start gap-8 mb-8">
+            <div className="flex flex-col items-center">
+              {/* Organization Logo */}
+              {organizationLogo && (
+                <img
+                  src={organizationLogo}
+                  alt="Organization Logo"
+                  className="w-20 h-20 object-contain mb-4"
+                />
+              )}
             </div>
-            <img src={award} alt="" className="w-40" />
-            <div className="flex flex-col gap-1 items-center">
-              <div className="border-b border-green-950 w-40 flex justify-center min-h-10">
-                {signatureUrl2 && (
-                  <img
-                    src={signatureUrl2}
-                    alt={signatoryName2}
-                    className="w-24 h-16 object-contain"
-                  />
-                )}
-              </div>
-              <p className="text-center text-xs font-medium">
-                {signatoryName2}
-              </p>
-              <p className="text-center text-[9px] italic font-medium">
-                {signatoryTitle2}
-              </p>
+            {/* Title Section */}
+            <div className="flex-1 text-left pt-4">
+              <h1
+                className="text-5xl tracking-wider mb-2"
+                style={{
+                  fontFamily: "serif",
+                  color: "#4a4a4a",
+                  letterSpacing: "0.1em",
+                }}
+              >
+                CERTIFICATE
+              </h1>
+              <h2 className="text-xl tracking-widest text-gray-600 uppercase">
+                OF APPRECIATION
+              </h2>
+            </div>
+          </div>
+
+          {/* Presentation Text */}
+          <div className="text-center mb-6">
+            <p className="text-sm text-gray-600 uppercase tracking-wide mb-4">
+              This certificate is proudly presented to
+            </p>
+
+            {/* Recipient Name */}
+            <div className="mb-6">
+              <h3
+                className="text-4xl mb-2"
+                style={{
+                  fontFamily: "cursive",
+                  color: "#2d2d2d",
+                }}
+              >
+                {displayRecipientName}
+              </h3>
+              <div className="w-full max-w-md mx-auto h-px bg-gray-800" />
+            </div>
+
+            {/* Company/Program Name */}
+            <p className="text-sm uppercase tracking-wider text-gray-700 mb-4">
+              {courseTitle || "Course Title"}
+            </p>
+
+            {/* Description */}
+            <p className="text-xs text-gray-600 leading-relaxed max-w-2xl mx-auto">
+              {description ||
+                `In recognition of outstanding achievement and exceptional dedication to ${displayProgramName}. This certificate acknowledges your commitment to excellence and significant contributions that have made a lasting impact on our organization and community.`}
+            </p>
+          </div>
+
+          {/* Bottom Section */}
+          {/* Signatures - Support up to 2 */}
+          <div className="mt-20 flex justify-between items-end">
+            <div className="flex gap-8 justify-center items-center mt-5">
+              {/* Signature 1 - Always show if name is provided */}
+              {signatoryName1 && (
+                <div
+                  className="flex flex-col items-center text-center"
+                  style={{ marginTop: -20 }}
+                >
+                  {signatureUrl1 && (
+                    <img
+                      src={signatureUrl1}
+                      alt={signatoryName1}
+                      className="w-24 h-16 object-contain"
+                      style={{ marginBottom: -12 }}
+                    />
+                  )}
+                  {!signatureUrl1 && (
+                    <div className="w-32 border-b-2 border-gray-400 mb-2" />
+                  )}
+                  <div
+                    className="text-sm font-bold"
+                    style={{ color: "#4D4D4D" }}
+                  >
+                    {signatoryName1}
+                  </div>
+                  {signatoryTitle1 && (
+                    <div className="text-xs font-medium">{signatoryTitle1}</div>
+                  )}
+                </div>
+              )}
+
+              {/* Signature 2 - Always show if name is provided */}
+              {signatoryName2 && (
+                <div
+                  className="flex flex-col items-center text-center"
+                  style={{ marginTop: -20 }}
+                >
+                  {signatureUrl2 && (
+                    <img
+                      src={signatureUrl2}
+                      alt={signatoryName2}
+                      className="w-24 h-16 object-contain"
+                      style={{ marginBottom: -12 }}
+                    />
+                  )}
+                  {!signatureUrl2 && (
+                    <div className="w-32 border-b-2 border-gray-400 mb-2" />
+                  )}
+                  <div
+                    className="text-sm font-bold"
+                    style={{ color: "#4D4D4D" }}
+                  >
+                    {signatoryName2}
+                  </div>
+                  {signatoryTitle2 && (
+                    <div className="text-xs font-medium">{signatoryTitle2}</div>
+                  )}
+                </div>
+              )}
+
+              {/* Date display */}
+              {date && (
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-32 mt-7 mb-2" />
+                  <div className="text-xs font-bold ">Date</div>
+                  <div
+                    className="text-sm font-medium"
+                    style={{ color: "#4D4D4D" }}
+                  >
+                    {formattedDate || "DATE"}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>

@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import medal from "../../assets/gold-seal.png";
 import medal2 from "../../assets/red-star-stamp.png";
 import type { Logo } from "../../App";
+import type { ThemeColors } from "../../types/theme";
 
 interface CertificateTemplate19Props {
   header: string;
@@ -24,6 +25,7 @@ interface CertificateTemplate19Props {
   startDate?: string;
   endDate?: string;
   dateDisplayMode?: "completion" | "range";
+  themeColors?: ThemeColors;
 }
 
 export default function CertificateTemplate19({
@@ -47,6 +49,7 @@ export default function CertificateTemplate19({
   startDate,
   endDate,
   dateDisplayMode = "completion",
+  themeColors,
 }: CertificateTemplate19Props) {
   const ref = useRef<HTMLDivElement>(null);
   const scale =

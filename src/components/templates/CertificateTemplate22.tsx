@@ -1,5 +1,6 @@
 import { useRef, useEffect } from "react";
 import type { Logo } from "../../App";
+import type { ThemeColors } from "../../types/theme";
 
 interface CertificateTemplate22Props {
   header: string;
@@ -20,6 +21,7 @@ interface CertificateTemplate22Props {
   signatureUrl2?: string;
   mode?: "student" | "template-selection";
   certificateId?: string;
+  themeColors?: ThemeColors;
 }
 
 export default function CertificateTemplate22({
@@ -41,6 +43,7 @@ export default function CertificateTemplate22({
   signatureUrl2,
   mode = "student",
   certificateId,
+  themeColors,
 }: CertificateTemplate22Props) {
   const ref = useRef<HTMLDivElement>(null);
   const scale = mode === "student" ? 0.3 : 1;
@@ -118,8 +121,7 @@ export default function CertificateTemplate22({
             left: 0,
             right: 0,
             height: "2px",
-            background:
-              "linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899, #f59e0b)",
+            background: `linear-gradient(90deg, ${themeColors?.primary ?? '#6366f1'}, ${themeColors?.secondary ?? themeColors?.primary ?? '#8b5cf6'}, #ec4899, #f59e0b)`,
           }}
         />
 
@@ -201,8 +203,7 @@ export default function CertificateTemplate22({
             style={{
               fontSize: "30px",
               fontWeight: 500,
-              background:
-                "linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%)",
+              background: `linear-gradient(135deg, ${themeColors?.primary ?? '#6366f1'} 0%, ${themeColors?.secondary ?? themeColors?.primary ?? '#8b5cf6'} 50%, #ec4899 100%)`,
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -220,8 +221,7 @@ export default function CertificateTemplate22({
             style={{
               width: "80px",
               height: "1px",
-              background:
-                "linear-gradient(90deg, transparent, #6366f1, transparent)",
+              background: `linear-gradient(90deg, transparent, ${themeColors?.primary ?? '#6366f1'}, transparent)`,
               margin: "0 auto 20px",
             }}
           />
@@ -473,8 +473,7 @@ export default function CertificateTemplate22({
             left: 0,
             right: 0,
             height: "2px",
-            background:
-              "linear-gradient(90deg, #f59e0b, #ec4899, #8b5cf6, #6366f1)",
+            background: `linear-gradient(90deg, #f59e0b, #ec4899, ${themeColors?.secondary ?? themeColors?.primary ?? '#8b5cf6'}, ${themeColors?.primary ?? '#6366f1'})`,
           }}
         />
       </div>

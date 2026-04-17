@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from "react";
+import type { ThemeColors } from "../../types/theme";
 import vector from "../../assets/Vector (8).svg";
 import path from "../../assets/path2646.svg";
 import wrapper from "../../assets/Wrapper.svg";
@@ -19,6 +20,7 @@ interface CertificateTemplate13Props {
   signatoryTitle2?: string;
   signatureUrl2?: string;
   mode?: "student" | "template-selection";
+  themeColors?: ThemeColors;
 }
 
 export default function CertificateTemplate13({
@@ -37,6 +39,7 @@ export default function CertificateTemplate13({
   signatoryTitle2,
   signatureUrl2,
   mode = "student",
+  themeColors,
 }: CertificateTemplate13Props) {
   const ref = useRef<HTMLDivElement>(null);
     const scale = mode === "student" ? "transform-scale-[0.3]" : "transform-scale-100";

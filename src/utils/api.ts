@@ -294,8 +294,13 @@ export const certificateApi = {
     template?: string;
     customTemplateConfig?: any;
     students?: Array<{ name: string; email?: string; completionDate?: string }>;
+    signatories?: any[];
     restrictDownload?: boolean;
     allowedEmails?: string[];
+    monetizationEnabled?: boolean;
+    certificatePriceMinor?: number;
+    certificateCurrency?: string;
+    themeColors?: any;
   }) => {
     console.log('📤 Sending certificate generation request:', {
       ...data,
@@ -455,6 +460,7 @@ export const certificateApi = {
     monetizationEnabled: boolean;
     certificatePriceMinor?: number;
     certificateCurrency?: string;
+    themeColors?: any;
   }) => {
     const response = await fetch(`${API_BASE_URL}/certificates/${certificateId}/monetization`, {
       method: 'PUT',

@@ -1,17 +1,21 @@
+import { useEffect } from "react";
+import type { ThemeColors } from "../../types/theme";
 import topShapeUrl from "../../assets/upper_shape.png";
+import centerLogoUrl from "../../assets/logo2b.png";
 import patternUrl from "../../assets/Pattern.png";
 import ribbonUrl from "../../assets/RIBBON.png";
 
 interface CertificateTemplate2Props {
-  header?: string;
+  header1?: string;
   courseTitle?: string;
+  header?: string;
+  subheader?: string;
   recipientName?: string;
   description?: string;
   date: string;
   isPreview?: boolean;
   topShapeUrl?: string;
   centerLogoUrl?: string;
-  organizationName?: string;
   organizationLogo?: string;
   organizationLogos?: Logo[];
   patternUrl?: string;
@@ -24,28 +28,42 @@ interface CertificateTemplate2Props {
   ribbonUrl?: string;
   mode?: "student" | "template-selection";
   certificateId?: string;
+  themeColors?: ThemeColors;
 }
 
 export default function CertificateTemplate2({
   header,
   courseTitle,
+  header1 = "CERTIFICATE",
+  subheader = "Of Excellence",
   recipientName = "Name Surname",
   description,
   date,
-  organizationName = "Your Organization",
   organizationLogo,
   organizationLogos,
   isPreview = false,
-  signatoryName1 = "Bryan Luke",
-  signatoryTitle1 = "Founder & CEO",
+  signatoryName1 = "Oluwaseyi Abraham Olawale",
+  signatoryTitle1 = "CEO of Genomac Holdings",
   signatureUrl1,
-  signatoryName2 = "Sarah Kim",
-  signatoryTitle2 = "Director",
+  signatoryName2 = "Gloria Adegbole",
+  signatoryTitle2 = "Director of G-I Hub",
   signatureUrl2,
   mode = "student",
   certificateId,
+  themeColors,
 }: CertificateTemplate2Props) {
   const scale = mode === "student" ? "transform-scale-[0.3]" : "transform-scale-100";
+
+  useEffect(() => {
+    const fontId = "momo-signature-font";
+    if (!document.getElementById(fontId)) {
+      const link = document.createElement("link");
+      link.id = fontId;
+      link.rel = "stylesheet";
+      link.href = "https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap";
+      document.head.appendChild(link);
+    }
+  }, []);
 
   const formattedDate = new Date(date).toLocaleDateString("en-US", {
     year: "numeric",
@@ -62,7 +80,7 @@ export default function CertificateTemplate2({
       className={containerClass}
       style={{ transform: `scale(${scale})`, backgroundColor: "transparent" }}
     >
-      <div className="w-200 h-150 flex justify-center shadow-sm rounded relative overflow-hidden bg-[#fbfbfb] py-20 px-10">
+      <div className="w-800 h-600 flex justify-center shadow-sm rounded relative overflow-hidden bg-[#fbfbfb] py-20 px-10">
         <img
           src={topShapeUrl}
           alt="Top Shape"
@@ -76,14 +94,14 @@ export default function CertificateTemplate2({
         <img
           src={patternUrl}
           alt="Pattern"
-          className="absolute z-0 top-0 w-full h-full opacity-70"
+          className="absolute z-0 top-0 w-150 h-full opacity-70"
         />
 
         <div className="text-center flex flex-col gap-8 items-center w-full z-30 mt-14">
-          <div className="flex flex-col items-center">
-            <h1 className="text-5xl font-medium uppercase">{header?.split(" ")[0]}</h1>
+          <div className="flex flex-col items-center gap-2">
+            <h1 className="text-5xl font-medium">{header1}</h1>
             <p className="text-xl uppercase font-bold tracking-widest">
-              {header?.split(" ")[1]}{" "} {header?.split(" ")[2]}
+              {subheader}
             </p>
           </div>
 
@@ -91,20 +109,21 @@ export default function CertificateTemplate2({
             This Certificate is Proudly Presented to:
           </p>
 
-          <p className="w-auto text-center border-b border-orange-500 font-semibold text-3xl tracking-wider">
+          <p className="w-1/2 text-center border-b font-semibold text-3xl tracking-wider" style={{ borderColor: themeColors?.primary ?? '#f97316' }}>
             {recipientName}
           </p>
 
           <p className="max-w-xl text-sm text-center px-4 -mt-5">
-            {description}{" "}{courseTitle} Organized By {organizationName}
+            {description}
           </p>
+          <p className="-mt-7 text-xl font-bold">{courseTitle}</p>
 
           <p className="text-sm text-gray-500 -mt-7 font-bold">{formattedDate}</p>
 
           <div className="flex gap-10 w-full items-center justify-center">
             {signatoryName1 && (
-              <div className="flex flex-col items-center gap-2">
-                <div className="border-b w-40 flex justify-center min-h-10">
+              <div className="space-y-2">
+                <p className="border-b w-40 text-center tracking-wide font-[Great_Vibes]">
                   {signatureUrl1 && (
                     <img
                       src={signatureUrl1}
@@ -113,9 +132,9 @@ export default function CertificateTemplate2({
                       style={{ marginBottom: -12 }}
                     />
                   )}
-                </div>
-                <div>
-                  <p className="text-center text-sm font-medium text-orange-500">
+                </p>
+                <div className="space-y-0">
+                  <p className="text-center text-sm font-medium" style={{ color: themeColors?.primary ?? '#f97316' }}>
                     {signatoryName1}
                   </p>
                   <p className="text-center text-[9px] italic font-medium">
@@ -125,13 +144,13 @@ export default function CertificateTemplate2({
               </div>
             )}
 
-            <div className="w-1/12 object-contain">
+            <div className="w-1/12">
               <img src={ribbonUrl} alt="Ribbon" className="mx-auto" />
             </div>
 
             {signatoryName2 && (
-              <div className="flex flex-col items-center gap-2">
-                <div className="border-b w-40 flex justify-center min-h-10">
+              <div className="space-y-2">
+                <p className="border-b w-40 text-center tracking-wide font-[Great_Vibes]">
                   {signatureUrl2 && (
                     <img
                       src={signatureUrl2}
@@ -140,9 +159,9 @@ export default function CertificateTemplate2({
                       style={{ marginBottom: -12 }}
                     />
                   )}
-                </div>
-                <div>
-                  <p className="text-center text-sm font-medium text-orange-500">
+                </p>
+                <div className="space-y-0">
+                  <p className="text-center text-sm font-medium" style={{ color: themeColors?.primary ?? '#f97316' }}>
                     {signatoryName2}
                   </p>
                   <p className="text-center text-[9px] italic font-medium">

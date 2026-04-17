@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import Vector from "../../assets/Vector (1).svg";
 import Flag from "../../assets/Flag.svg";
+import type { ThemeColors } from "../../types/theme";
 
 interface CertificateTemplate11Props {
   header: string;
@@ -18,6 +19,7 @@ interface CertificateTemplate11Props {
   signatoryTitle2?: string;
   signatureUrl2?: string;
   mode?: "student" | "template-selection";
+  themeColors?: ThemeColors;
 }
 
 export default function CertificateTemplate11({
@@ -36,6 +38,7 @@ export default function CertificateTemplate11({
   signatoryTitle2,
   signatureUrl2,
   mode = "student",
+  themeColors,
 }: CertificateTemplate11Props) {
   // scale for preview vs student mode
   const ref = useRef<HTMLDivElement>(null);

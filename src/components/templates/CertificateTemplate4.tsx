@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import type { ThemeColors } from "../../types/theme";
 // Import ribbon and medal assets directly so the bundler resolves them correctly
 import ribbon1 from "../../assets/Ribbon (1).svg";
 import ribbon2 from "../../assets/Ribbon 2.svg";
@@ -20,6 +21,7 @@ interface CertificateTemplate4Props {
   signatoryTitle2?: string;
   signatureUrl2?: string;
   mode?: "student" | "template-selection";
+  themeColors?: ThemeColors;
 }
 
 export default function CertificateTemplate4({
@@ -38,6 +40,7 @@ export default function CertificateTemplate4({
   signatoryTitle2,
   signatureUrl2,
   mode = "student",
+  themeColors,
 }: CertificateTemplate4Props) {
   const ref = useRef<HTMLDivElement>(null);
   const scale =
@@ -106,7 +109,7 @@ export default function CertificateTemplate4({
                 {header || "Certificate of Participation"}
               </h2>
               <p className="uppercase">proudly presented to</p>
-              <p className="text-4xl font-semibold w-full border-b-2 border-b-[#314E85] pb-4 text-[#314E85] text-center">
+              <p className="text-4xl font-semibold w-full border-b-2 pb-4 text-center" style={{ borderColor: themeColors?.primary ?? '#314E85', color: themeColors?.primary ?? '#314E85' }}>
                 {recipientName}
               </p>
               <p

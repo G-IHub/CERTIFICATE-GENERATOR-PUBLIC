@@ -294,8 +294,13 @@ export const certificateApi = {
     template?: string;
     customTemplateConfig?: any;
     students?: Array<{ name: string; email?: string; completionDate?: string }>;
+    signatories?: any[];
     restrictDownload?: boolean;
     allowedEmails?: string[];
+    monetizationEnabled?: boolean;
+    certificatePriceMinor?: number;
+    certificateCurrency?: string;
+    themeColors?: any;
   }) => {
     console.log('📤 Sending certificate generation request:', {
       ...data,

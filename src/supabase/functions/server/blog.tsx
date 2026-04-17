@@ -1,106 +1,150 @@
 import { Hono } from "npm:hono@4";
 import { createClient } from "jsr:@supabase/supabase-js@2";
+import * as kv from "./kv_store.tsx";
 
 const app = new Hono();
 
-export default app;
+// Helper to generate IDs
+const generateId = () => {
+  return `${Date.now()}-${Math.random().toString(36).substring(2, 11)}`;
+};
 
-/**
- * Upload blog image to Supabase Storage
- */
-export async function uploadBlogImage(c: any) {
+// Helper to generate slugs
+const generateSlug = (title: string) => {
+  return title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+};
+
+// GET / - Get all blog posts (supports draft and published)
+app.get("/", async (c) => {
   try {
-    const supabase = createClient(
-      Deno.env.get("SUPABASE_URL") ?? "",
-      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "",
+    const posts = await kv.getByPrefix("blog:post:");
+    // Sort descending by created_at
+    posts.sort(
+      (a: any, b: any) =>
+        new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
     );
-
-    const bucketName = "make-a611b057-blog-images";
-
-    // Ensure bucket exists
-    const { data: buckets } = await supabase.storage.listBuckets();
-    const bucketExists = buckets?.some((bucket: any) => bucket.name === bucketName);
-
-    if (!bucketExists) {
-      console.log(`📦 Creating blog images bucket: ${bucketName}`);
-      const { error: bucketError } = await supabase.storage.createBucket(
-        bucketName,
-        { public: true },
-      );
-
-      if (bucketError) {
-        console.error("❌ Error creating bucket:", bucketError);
-        return c.json({ error: "Failed to create storage bucket", details: bucketError.message }, 500);
-      }
-    }
-
-    const formData = await c.req.formData();
-    const file = formData.get("file") as File;
-
-    if (!file) {
-      return c.json({ error: "file is required" }, 400);
-    }
-
-    const ext = file.name.split(".").pop();
-    const filename = `platform/${crypto.randomUUID()}.${ext}`;
-    const arrayBuffer = await file.arrayBuffer();
-    const uint8Array = new Uint8Array(arrayBuffer);
-
-    const { data, error } = await supabase.storage
-      .from(bucketName)
-      .upload(filename, uint8Array, { contentType: file.type, upsert: false });
-
-    if (error) {
-      return c.json({ error: "Failed to upload image", details: error.message }, 500);
-    }
-
-    const { data: urlData } = supabase.storage.from(bucketName).getPublicUrl(filename);
-
-    return c.json({ url: urlData.publicUrl, filename: data.path, message: "Image uploaded successfully" });
+    return c.json({ posts });
   } catch (error) {
-    return c.json({ error: "Failed to upload image", details: String(error) }, 500);
+    return c.json({ error: String(error) }, 500);
   }
-}
+});
 
-/**
- * Get all blog posts for an organization
- */
-export async function getBlogPosts(c: any) {
+// GET /published - Get all published blog posts
+app.get("/published", async (c) => {
   try {
-    const supabase = createClient(
-      Deno.env.get("SUPABASE_URL") ?? "",
-      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "",
+    const allPosts = await kv.getByPrefix("blog:post:");
+    const posts = allPosts.filter((p: any) => p.status === "published");
+    posts.sort(
+      (a: any, b: any) =>
+        new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
     );
-    const orgId = c.req.query("orgId");
-    let query = supabase.from("blog_posts_a611b057").select("*").order("created_at", { ascending: false });
-    if (orgId) query = query.eq("organization_id", orgId);
-    const { data, error } = await query;
-    if (error) return c.json({ error: error.message }, 500);
-    return c.json({ posts: data ?? [] });
-  } catch (e) {
-    return c.json({ error: String(e) }, 500);
+    return c.json({ posts });
+  } catch (error) {
+    return c.json({ error: String(error) }, 500);
   }
-}
+});
 
-/**
- * Get a single blog post by ID
- */
-export async function getBlogPost(c: any) {
+// GET /:id - Get a single blog post
+app.get("/:id", async (c) => {
   try {
-    const supabase = createClient(
-      Deno.env.get("SUPABASE_URL") ?? "",
-      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "",
-    );
     const id = c.req.param("id");
-    const { data, error } = await supabase
-      .from("blog_posts_a611b057")
-      .select("*")
-      .eq("id", id)
-      .maybeSingle();
-    if (error) return c.json({ error: error.message }, 500);
-    if (!data) return c.json({ error: "Post not found" }, 404);
-    return c.json({ post: data });
-  } catch (e) {
-    return c.json({ error: String(e) }, 500);
+    const post = await kv.get(`blog:post:${id}`);
+
+    if (!post) {
+      return c.json({ error: "Blog post not found" }, 404);
+    }
+
+    return c.json({ post });
+  } catch (error) {
+    return c.json({ error: String(error) }, 500);
   }
-}
+});
+
+// POST / - Create a new blog post
+app.post("/", async (c) => {
+  try {
+    const data = await c.req.json();
+
+    if (!data.title || !data.content) {
+      return c.json({ error: "Title and content are required" }, 400);
+    }
+
+    const id = generateId();
+    const slug = generateSlug(data.title);
+
+    const post = {
+      id,
+      ...data,
+      slug,
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
+      published_at:
+        data.status === "published" ? new Date().toISOString() : null,
+    };
+
+    await kv.set(`blog:post:${id}`, post);
+
+    return c.json({ post });
+  } catch (error) {
+    return c.json({ error: String(error) }, 500);
+  }
+});
+
+// PUT /:id - Update an existing blog post
+app.put("/:id", async (c) => {
+  try {
+    const id = c.req.param("id");
+    const data = await c.req.json();
+
+    const existingPost = await kv.get(`blog:post:${id}`);
+
+    if (!existingPost) {
+      return c.json({ error: "Blog post not found" }, 404);
+    }
+
+    const post = {
+      ...existingPost,
+      ...data,
+      updated_at: new Date().toISOString(),
+    };
+
+    // Update slug if title changed, though not strictly required
+    if (data.title && data.title !== existingPost.title) {
+      post.slug = generateSlug(data.title);
+    }
+
+    // Set published_at if status changed to published
+    if (data.status === "published" && existingPost.status !== "published") {
+      post.published_at = new Date().toISOString();
+    }
+
+    await kv.set(`blog:post:${id}`, post);
+
+    return c.json({ post });
+  } catch (error) {
+    return c.json({ error: String(error) }, 500);
+  }
+});
+
+// DELETE /:id - Delete a blog post
+app.delete("/:id", async (c) => {
+  try {
+    const id = c.req.param("id");
+
+    const post = await kv.get(`blog:post:${id}`);
+    if (!post) {
+      return c.json({ error: "Blog post not found" }, 404);
+    }
+
+    await kv.del(`blog:post:${id}`);
+
+    return c.json({ success: true, message: "Blog post deleted successfully" });
+  } catch (error) {
+    return c.json({ error: String(error) }, 500);
+  }
+});
+
+export default app;

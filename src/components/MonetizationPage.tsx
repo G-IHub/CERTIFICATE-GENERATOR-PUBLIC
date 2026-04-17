@@ -146,9 +146,8 @@ const SELLER_TABS = [
 
 const ADMIN_TABS = [
   { id: "overview", label: "Overview", icon: BarChart3 },
-  { id: "products", label: "All Products", icon: Package },
+  { id: "sellers_products", label: "Sellers & Products", icon: Users },
   { id: "transactions", label: "All Transactions", icon: CreditCard },
-  { id: "sellers", label: "Sellers", icon: Users },
   { id: "payouts", label: "Payouts", icon: ArrowDownToLine },
   { id: "refunds", label: "Refunds", icon: RefreshCw },
   { id: "settings", label: "Settings", icon: ShieldCheck },

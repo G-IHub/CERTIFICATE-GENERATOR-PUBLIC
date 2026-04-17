@@ -1,5 +1,5 @@
 import { useRef, useEffect } from "react";
-import medal from "../../assets/rosette.png";
+import medal from "../../assets/iwdAward.png";
 
 interface CertificateTemplate15Props {
   header?: string;
@@ -199,7 +199,7 @@ export default function CertificateTemplate15({
                 />
                 <text
                   fill="#3B82F6"
-                  fontSize="13"
+                  fontSize="12"
                   fontWeight="600"
                   letterSpacing="2"
                 >
@@ -216,12 +216,12 @@ export default function CertificateTemplate15({
                 <img
                   alt="medalsvg"
                   src={medal}
-                  className="absolute -bottom-2 w-11/12 h-full object-contain"
+                  className="absolute -bottom-3 w-11/12 h-full object-contain"
                 />
                 <img
                   alt="Organization Logo"
                   src={organizationLogo}
-                  className="absolute inset-[25%] w-[50%] h-[50%] object-contain"
+                  className="absolute inset-[29.5%] w-[42%] h-[43%] object-contain"
                 />
               </div>
             </div>

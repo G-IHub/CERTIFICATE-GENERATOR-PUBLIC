@@ -1,11 +1,8 @@
 {
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": { "distDir": "build" }
-    }
-  ],
+  "buildCommand": "echo 'Using pre-built files'",
+  "outputDirectory": "build",
+  "installCommand": "echo 'skip install'",
+  "framework": null,
   "routes": [
     { "handle": "filesystem" },
     { "src": "/(.*)", "dest": "/index.html" }

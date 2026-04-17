@@ -9185,17 +9185,17 @@ app.get("/make-server-a611b057/monetization/seller/certificates", async (c) => {
     const { user, error } = await verifyUser(c.req.header("Authorization"));
     if (error) return c.json({ error }, 401);
 
-    // Find the org(s) this user owns
+    // Find the org(s) this user owns — getByPrefix returns raw values directly
     const allOrgs = await kv.getByPrefix("org:");
     const userOrgIds = allOrgs
-      .filter((o: any) => o.value?.ownerId === user.id || o.value?.adminId === user.id)
-      .map((o: any) => o.value?.id)
+      .filter((o: any) => o?.ownerId === user.id || o?.adminId === user.id)
+      .map((o: any) => o?.id)
       .filter(Boolean);
 
     // Also check org memberships for admins
     const memberEntries = await kv.getByPrefix(`orgMember:${user.id}:`);
     for (const m of memberEntries) {
-      const mem = m.value as any;
+      const mem = m as any;
       if (mem?.role === "admin" && mem?.organizationId && !userOrgIds.includes(mem.organizationId)) {
         userOrgIds.push(mem.organizationId);
       }
@@ -9203,11 +9203,8 @@ app.get("/make-server-a611b057/monetization/seller/certificates", async (c) => {
 
     const allCerts = await kv.getByPrefix("cert:");
     const certs = allCerts
-      .filter((entry: any) => {
-        const cert = entry.value || entry;
-        return cert?.monetizationEnabled === true && userOrgIds.includes(cert?.organizationId);
-      })
-      .map((entry: any) => entry.value || entry);
+      .filter((cert: any) => cert?.monetizationEnabled === true && userOrgIds.includes(cert?.organizationId))
+      .filter(Boolean);
 
     certs.sort((a: any, b: any) => new Date(b.generatedAt || b.createdAt || 0).getTime() - new Date(a.generatedAt || a.createdAt || 0).getTime());
     return c.json({ certificates: certs });
@@ -9310,7 +9307,7 @@ app.get("/make-server-a611b057/monetization/admin/sellers", async (c) => {
 
     const allTxns = await kv.getByPrefix("txn:");
     for (const entry of allTxns) {
-      const txn = entry.value as any;
+      const txn = entry as any;
       if (!txn?.sellerId) continue;
       const sid = txn.sellerId;
       if (!sellerMap[sid]) {

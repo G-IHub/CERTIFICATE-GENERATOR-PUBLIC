@@ -9495,11 +9495,6 @@ const initializeStorageBuckets = async () => {
 await initializeStorageBuckets();
 
 // ==================== BLOG ROUTES ====================
-// Get all blog posts for an organization
-app.get("/make-server-a611b057/blog/posts", blog.getBlogPosts);
-
-// Get a single blog post
-app.get("/make-server-a611b057/blog/posts/:id", blog.getBlogPost);
 
 // Blog routes - mount the blog app
 app.route("/make-server-a611b057/blog", blog.default);

@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import first from "../../assets/1st.svg";
+import type { ThemeColors } from "../../types/theme";
 
 interface CertificateTemplate8Props {
   header?: string;
@@ -17,6 +18,7 @@ interface CertificateTemplate8Props {
   signatoryTitle2?: string;
   signatureUrl2?: string;
   mode?: "student" | "template-selection";
+  themeColors?: ThemeColors;
 }
 
 export default function CertificateTemplate8({
@@ -35,6 +37,7 @@ export default function CertificateTemplate8({
   signatoryTitle2,
   signatureUrl2,
   mode = "student",
+  themeColors,
 }: CertificateTemplate8Props) {
   const scale =
     mode === "student" ? "transform-scale-[0.3]" : "transform-scale-100";

@@ -2002,6 +2002,7 @@ app.post("/make-server-a611b057/certificates", async (c) => {
       monetizationEnabled,
       certificatePriceMinor,
       certificateCurrency,
+      themeColors,
     } = requestBody;
 
     console.log("📋 Request data:", {
@@ -2145,6 +2146,7 @@ app.post("/make-server-a611b057/certificates", async (c) => {
         paymentStatus: "unpaid",
         paidAt: null,
         lastPaymentReference: null,
+        themeColors: themeColors || null,
       };
 
       await kv.set(`cert:${certificateId}`, certificate);
@@ -2353,6 +2355,7 @@ const handleMonetizationUpdate = async (c: any) => {
       monetizationEnabled,
       certificatePriceMinor,
       certificateCurrency,
+      themeColors,
     } = await c.req.json();
 
     const certificate = await kv.get(`cert:${certificateId}`);
@@ -2386,6 +2389,7 @@ const handleMonetizationUpdate = async (c: any) => {
         monetizationEnabled && certificate.paymentStatus === "paid"
           ? "paid"
           : "unpaid",
+      themeColors: themeColors !== undefined ? themeColors : (certificate.themeColors ?? null),
       updatedAt: new Date().toISOString(),
     };
 
@@ -6763,6 +6767,10 @@ app.put("/make-server-a611b057/certificates/:id", async (c) => {
           : certificate.certificateCurrency,
       platformFeePercent:
         FIXED_PLATFORM_FEE_PERCENT,
+      themeColors:
+        updates.themeColors !== undefined
+          ? updates.themeColors
+          : certificate.themeColors,
       updatedAt: new Date().toISOString(),
     };
 

@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import type { Logo } from "../../App";
+import type { ThemeColors } from "../../types/theme";
 
 interface CertificateTemplate21Props {
   header: string;
@@ -18,6 +19,7 @@ interface CertificateTemplate21Props {
   signatoryTitle2?: string;
   signatureUrl2?: string;
   mode?: "student" | "template-selection";
+  themeColors?: ThemeColors;
 }
 
 export default function CertificateTemplate21({
@@ -37,6 +39,7 @@ export default function CertificateTemplate21({
   signatoryTitle2,
   signatureUrl2,
   mode = "student",
+  themeColors,
 }: CertificateTemplate21Props) {
   const ref = useRef<HTMLDivElement>(null);
   const scale = mode === "student" ? 1 : 1;
@@ -90,14 +93,14 @@ export default function CertificateTemplate21({
                 height: "40px",
               }}
             >
-              <div className="absolute w-4 h-16 bg-teal-600 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"></div>
-              <div className="absolute w-16 h-4 bg-teal-600 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+              <div className="absolute w-4 h-16 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" style={{ background: themeColors?.primary ?? '#0d9488' }}></div>
+              <div className="absolute w-16 h-4 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" style={{ background: themeColors?.primary ?? '#0d9488' }}></div>
             </div>
           ))}
         </div>
 
         {/* Top Accent Bar */}
-        <div className="absolute top-0 left-0 right-0 h-6 bg-gradient-to-r from-teal-600 via-teal-500 to-cyan-500"></div>
+        <div className="absolute top-0 left-0 right-0 h-6" style={{ background: `linear-gradient(to right, ${themeColors?.primary ?? '#0d9488'}, ${themeColors?.secondary ?? themeColors?.primary ?? '#14b8a6'}, ${themeColors?.secondary ?? themeColors?.primary ?? '#06b6d4'})` }}></div>
 
         {/* Side Medical Symbol */}
         <div className="absolute left-12 top-1/2 -translate-y-1/2 opacity-10">
@@ -107,11 +110,11 @@ export default function CertificateTemplate21({
               cy="60"
               r="50"
               fill="none"
-              stroke="#0d9488"
+              stroke={themeColors?.primary ?? '#0d9488'}
               strokeWidth="3"
             />
-            <rect x="52" y="30" width="16" height="60" fill="#0d9488" />
-            <rect x="30" y="52" width="60" height="16" fill="#0d9488" />
+            <rect x="52" y="30" width="16" height="60" fill={themeColors?.primary ?? '#0d9488'} />
+            <rect x="30" y="52" width="60" height="16" fill={themeColors?.primary ?? '#0d9488'} />
           </svg>
         </div>
 
@@ -162,18 +165,18 @@ export default function CertificateTemplate21({
           )}
           {/* Medical Symbol Divider */}
           <div className="mb-6 flex items-center gap-4">
-            <div className="h-px w-24 bg-gradient-to-r from-transparent to-teal-500"></div>
+            <div className="h-px w-24" style={{ background: `linear-gradient(to right, transparent, ${themeColors?.primary ?? '#14b8a6'})` }}></div>
             <svg width="40" height="40" viewBox="0 0 40 40">
-              <circle cx="20" cy="20" r="18" fill="#0d9488" />
+              <circle cx="20" cy="20" r="18" fill={themeColors?.primary ?? '#0d9488'} />
               <rect x="17" y="10" width="6" height="20" fill="white" />
               <rect x="10" y="17" width="20" height="6" fill="white" />
             </svg>
-            <div className="h-px w-24 bg-gradient-to-l from-transparent to-teal-500"></div>
+            <div className="h-px w-24" style={{ background: `linear-gradient(to left, transparent, ${themeColors?.primary ?? '#14b8a6'})` }}></div>
           </div>
 
           {/* Certificate Header */}
           <div className="mb-8 text-center">
-            <h1 className="text-3xl font-black uppercase text-teal-700 mb-2 tracking-wide">
+            <h1 className="text-3xl font-black uppercase mb-2 tracking-wide" style={{ color: themeColors?.primary ?? '#0f766e' }}>
               {header}
             </h1>
           </div>
@@ -186,7 +189,7 @@ export default function CertificateTemplate21({
             <h2 className="text-4xl font-bold text-gray-800 mb-1">
               {recipientName}
             </h2>
-            <div className="h-0.5 w-96 mx-auto bg-gradient-to-r from-transparent via-teal-500 to-transparent mt-3"></div>
+            <div className="h-0.5 w-96 mx-auto mt-3" style={{ background: `linear-gradient(to right, transparent, ${themeColors?.primary ?? '#14b8a6'}, transparent)` }}></div>
           </div>
 
           {/* Course Title */}
@@ -194,7 +197,7 @@ export default function CertificateTemplate21({
             <p className="text-gray-600 text-sm uppercase tracking-widest mb-3 font-semibold">
               has successfully completed
             </p>
-            <h3 className="text-3xl font-bold text-teal-600 mb-4">
+            <h3 className="text-3xl font-bold mb-4" style={{ color: themeColors?.primary ?? '#0d9488' }}>
               {courseTitle}
             </h3>
             {description && (
@@ -364,13 +367,13 @@ export default function CertificateTemplate21({
         </div>
 
         {/* Bottom Accent Bar */}
-        <div className="absolute bottom-0 left-0 right-0 h-6 bg-gradient-to-r from-cyan-500 via-teal-500 to-teal-600"></div>
+        <div className="absolute bottom-0 left-0 right-0 h-6" style={{ background: `linear-gradient(to right, ${themeColors?.secondary ?? themeColors?.primary ?? '#06b6d4'}, ${themeColors?.primary ?? '#14b8a6'}, ${themeColors?.primary ?? '#0d9488'})` }}></div>
 
         {/* Corner Accents */}
-        <div className="absolute top-8 left-8 w-20 h-20 border-l-4 border-t-4 border-teal-500 opacity-50"></div>
-        <div className="absolute top-8 right-8 w-20 h-20 border-r-4 border-t-4 border-teal-500 opacity-50"></div>
-        <div className="absolute bottom-8 left-8 w-20 h-20 border-l-4 border-b-4 border-teal-500 opacity-50"></div>
-        <div className="absolute bottom-8 right-8 w-20 h-20 border-r-4 border-b-4 border-teal-500 opacity-50"></div>
+        <div className="absolute top-8 left-8 w-20 h-20 opacity-50" style={{ borderLeft: `4px solid ${themeColors?.primary ?? '#14b8a6'}`, borderTop: `4px solid ${themeColors?.primary ?? '#14b8a6'}` }}></div>
+        <div className="absolute top-8 right-8 w-20 h-20 opacity-50" style={{ borderRight: `4px solid ${themeColors?.primary ?? '#14b8a6'}`, borderTop: `4px solid ${themeColors?.primary ?? '#14b8a6'}` }}></div>
+        <div className="absolute bottom-8 left-8 w-20 h-20 opacity-50" style={{ borderLeft: `4px solid ${themeColors?.primary ?? '#14b8a6'}`, borderBottom: `4px solid ${themeColors?.primary ?? '#14b8a6'}` }}></div>
+        <div className="absolute bottom-8 right-8 w-20 h-20 opacity-50" style={{ borderRight: `4px solid ${themeColors?.primary ?? '#14b8a6'}`, borderBottom: `4px solid ${themeColors?.primary ?? '#14b8a6'}` }}></div>
       </div>
     </div>
   );

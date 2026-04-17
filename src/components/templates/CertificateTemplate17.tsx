@@ -1,4 +1,5 @@
 import { useRef, useEffect } from "react";
+import type { ThemeColors } from "../../types/theme";
 import watermark from "../../assets/watermark.png";
 import award from "../../assets/award.png";
 import barcode from "../../assets/barcode.png";
@@ -21,6 +22,7 @@ interface CertificateTemplate17Props {
   signatoryTitle2?: string;
   signatureUrl2?: string;
   mode?: "student" | "template-selection";
+  themeColors?: ThemeColors;
 }
 
 export default function CertificateTemplate17({
@@ -39,6 +41,7 @@ export default function CertificateTemplate17({
   signatoryTitle2,
   signatureUrl2,
   mode = "student",
+  themeColors,
 }: CertificateTemplate17Props) {
     const ref = useRef<HTMLDivElement>(null);
     const scale = mode === "student" ? "transform-scale-[0.3]" : "transform-scale-100";

@@ -1,5 +1,6 @@
 import React from "react";
 import { Award, Star } from "lucide-react";
+import type { ThemeColors } from "../../types/theme";
 
 interface CertificateTemplate6Props {
   header: string;
@@ -26,6 +27,7 @@ interface CertificateTemplate6Props {
     title: string;
     signatureUrl?: string;
   }>;
+  themeColors?: ThemeColors;
 }
 
 export default function CertificateTemplate6({
@@ -49,6 +51,7 @@ export default function CertificateTemplate6({
   issueDate,
   primaryColor = "#ea580c",
   signatories = [],
+  themeColors,
 }: CertificateTemplate6Props) {
   const ref = React.useRef<HTMLDivElement>(null);
   const scale = mode === "student" ? "transform scale-[0.3]" : "transform scale-100";
@@ -80,7 +83,7 @@ export default function CertificateTemplate6({
         {/* Dark Brown Corner Decorations */}
         <div className="absolute top-0 left-0 w-32 h-32">
           <svg viewBox="0 0 100 100" className="w-full h-full">
-            <path d="M 0,0 L 100,0 L 0,100 Z" fill="#3d2817" />
+            <path d="M 0,0 L 100,0 L 0,100 Z" fill={themeColors?.primary ?? '#3d2817'} />
           </svg>
         </div>
         <div className="absolute top-0 right-0 w-32 h-32">
@@ -101,7 +104,7 @@ export default function CertificateTemplate6({
 
         {/* Orange Border Frame */}
         <div className="absolute inset-0 m-4">
-          <div className="absolute inset-0 border-4 border-[#ea580c]" />
+          <div className="absolute inset-0 border-4" style={{ borderColor: themeColors?.secondary ?? '#ea580c' }} />
         </div>
 
         {/* Inner White Content Area */}

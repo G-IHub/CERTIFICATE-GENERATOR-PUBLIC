@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import type { ThemeColors } from "../../types/theme";
 import medal from "../../assets/gold-seal.png";
 import medal2 from "../../assets/red-star-stamp.png";
 import type { Logo } from "../../App";

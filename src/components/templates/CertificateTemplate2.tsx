@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import type { ThemeColors } from "../../types/theme";
 import topShapeUrl from "../../assets/upper_shape.png";
 import centerLogoUrl from "../../assets/logo2b.png";
 import patternUrl from "../../assets/Pattern.png";
@@ -27,6 +28,7 @@ interface CertificateTemplate2Props {
   ribbonUrl?: string;
   mode?: "student" | "template-selection";
   certificateId?: string;
+  themeColors?: ThemeColors;
 }
 
 export default function CertificateTemplate2({
@@ -48,6 +50,7 @@ export default function CertificateTemplate2({
   signatureUrl2,
   mode = "student",
   certificateId,
+  themeColors,
 }: CertificateTemplate2Props) {
   const scale = mode === "student" ? "transform-scale-[0.3]" : "transform-scale-100";
 
@@ -106,7 +109,7 @@ export default function CertificateTemplate2({
             This Certificate is Proudly Presented to:
           </p>
 
-          <p className="w-1/2 text-center border-b border-orange-500 font-semibold text-3xl tracking-wider">
+          <p className="w-1/2 text-center border-b font-semibold text-3xl tracking-wider" style={{ borderColor: themeColors?.primary ?? '#f97316' }}>
             {recipientName}
           </p>
 
@@ -131,7 +134,7 @@ export default function CertificateTemplate2({
                   )}
                 </p>
                 <div className="space-y-0">
-                  <p className="text-center text-sm font-medium text-orange-500">
+                  <p className="text-center text-sm font-medium" style={{ color: themeColors?.primary ?? '#f97316' }}>
                     {signatoryName1}
                   </p>
                   <p className="text-center text-[9px] italic font-medium">
@@ -158,7 +161,7 @@ export default function CertificateTemplate2({
                   )}
                 </p>
                 <div className="space-y-0">
-                  <p className="text-center text-sm font-medium text-orange-500">
+                  <p className="text-center text-sm font-medium" style={{ color: themeColors?.primary ?? '#f97316' }}>
                     {signatoryName2}
                   </p>
                   <p className="text-center text-[9px] italic font-medium">

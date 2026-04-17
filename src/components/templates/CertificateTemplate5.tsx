@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import ribbonUrl from "../../assets/RIBBON.png";
 import gNaturesLogo from "../../assets/g-natures_logo.png";
 import medalUrl from "../../assets/medal.png";
+import type { ThemeColors } from "../../types/theme";
 
 interface CertificateTemplate5Props {
   header?: string;
@@ -19,6 +20,7 @@ interface CertificateTemplate5Props {
   signatoryTitle2?: string;
   signatureUrl2?: string;
   mode?: "student" | "template-selection";
+  themeColors?: ThemeColors;
 }
 
 export default function CertificateTemplate5({
@@ -37,6 +39,7 @@ export default function CertificateTemplate5({
   signatoryTitle2 = "Director, G-Natures",
   signatureUrl2,
   mode = "student",
+  themeColors,
 }: CertificateTemplate5Props) {
   const scale = mode === "student" ? "transform-scale-[0.3]" : "transform-scale-100";
 
@@ -64,26 +67,26 @@ export default function CertificateTemplate5({
   return (
     <div className={containerClass} style={{ transform: `scale(${scale})`, backgroundColor: "transparent" }}>
       <div className="w-200 h-150 shadow-sm rounded-sm relative overflow-hidden bg-[#fbfbfb] px-10">
-        <div className="w-full h-20 bg-linear-to-r from-green-950 via-green-600 to-green-600 absolute top-0 left-0 z-0" />
-        <div className="w-40 h-full bg-linear-to-b from-green-950 to-green-600 absolute top-0 right-0 rounded-bl-full z-0" />
+        <div className="w-full h-20 absolute top-0 left-0 z-0" style={{ background: `linear-gradient(to right, ${themeColors?.primary ?? '#14532d'}, ${themeColors?.secondary ?? '#16a34a'}, ${themeColors?.secondary ?? '#16a34a'})` }} />
+        <div className="w-40 h-full absolute top-0 right-0 rounded-bl-full z-0" style={{ background: `linear-gradient(to bottom, ${themeColors?.primary ?? '#14532d'}, ${themeColors?.secondary ?? '#16a34a'})` }} />
 
         <img src={organizationLogo || gNaturesLogo} alt="Logo" className="absolute left-10 top-8 z-10 w-1/12 object-contain" />
         <img src={medalUrl} alt="Medal" className="absolute right-0 top-20 z-10 w-1/4 object-contain" />
 
         <div className="flex flex-col gap-8 z-30 w-9/12 mt-30">
           <div>
-            <h1 className="text-4xl text-green-950" style={{ fontFamily: "'Manufacturing Consent', sans-serif" }}>
+            <h1 className="text-4xl" style={{ fontFamily: "'Manufacturing Consent', sans-serif", color: themeColors?.primary ?? '#14532d' }}>
               {header}
             </h1>
             <p className="text-3xl font-semibold tracking-tight">{courseTitle}</p>
           </div>
 
-          <p className="font-medium -mt-5 text-xs px-4 py-2 bg-linear-to-r from-green-950 to-green-600 text-white w-1/2">
+          <p className="font-medium -mt-5 text-xs px-4 py-2 text-white w-1/2" style={{ background: `linear-gradient(to right, ${themeColors?.primary ?? '#14532d'}, ${themeColors?.secondary ?? '#16a34a'})` }}>
             This certificate is presented to
           </p>
 
           <div className="space-y-2">
-            <p className="w-full border-b-2 border-green-600 font-semibold text-4xl tracking-wider">{recipientName}</p>
+            <p className="w-full border-b-2 font-semibold text-4xl tracking-wider" style={{ borderColor: themeColors?.secondary ?? '#16a34a' }}>{recipientName}</p>
             <p className="max-w-xl text-sm">{description}</p>
             <div className="text-sm text-black font-bold">{formattedDate}</div>
           </div>
@@ -102,7 +105,7 @@ export default function CertificateTemplate5({
                   )}
                 </p>
                 <div className="space-y-0">
-                  <p className="text-center text-sm font-medium text-green-950">
+                  <p className="text-center text-sm font-medium" style={{ color: themeColors?.primary ?? '#14532d' }}>
                     {signatoryName1}
                   </p>
                   <p className="text-center text-[9px] italic font-medium">
@@ -129,7 +132,7 @@ export default function CertificateTemplate5({
                   )}
                 </p>
                 <div className="space-y-0">
-                  <p className="text-center text-sm font-medium text-green-950">
+                  <p className="text-center text-sm font-medium" style={{ color: themeColors?.primary ?? '#14532d' }}>
                     {signatoryName2}
                   </p>
                   <p className="text-center text-[9px] italic font-medium">

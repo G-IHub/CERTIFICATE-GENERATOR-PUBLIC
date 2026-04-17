@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from "react";
+import type { ThemeColors } from "../../types/theme";
 import shape1 from "../../assets/shapes (1).svg";
 import shape2 from "../../assets/shapes (2).svg";
 import shape3 from "../../assets/shapes (3).svg";
@@ -27,6 +28,7 @@ interface CertificateTemplate15Props {
   signatoryTitle2?: string;
   signatureUrl2?: string;
   mode?: "student" | "template-selection";
+  themeColors?: ThemeColors;
 }
 
 export default function CertificateTemplate15({
@@ -45,6 +47,7 @@ export default function CertificateTemplate15({
   signatoryTitle2,
   signatureUrl2,
   mode = "student",
+  themeColors,
 }: CertificateTemplate15Props) {
   const ref = useRef<HTMLDivElement>(null);
   const scale =

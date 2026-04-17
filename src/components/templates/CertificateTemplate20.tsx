@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import type { ThemeColors } from "../../types/theme";
 import type { Logo } from "../../App";
 
 interface CertificateTemplate20Props {

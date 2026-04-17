@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import type { ThemeColors } from "../../types/theme";
 import patternUrl from "../../assets/Pattern.png";
 import leftDecorUrl from "../../assets/ins_left.png";
 import rightDecorUrl from "../../assets/ins_right.png";
@@ -20,6 +21,7 @@ interface CertificateTemplate3Props {
   signatoryTitle2?: string;
   signatureUrl2?: string;
   mode?: "student" | "template-selection";
+  themeColors?: ThemeColors;
 }
 
 export default function CertificateTemplate3({
@@ -40,6 +42,7 @@ export default function CertificateTemplate3({
   signatoryTitle2 = "Director",
   signatureUrl2,
   mode = "student",
+  themeColors,
 }: CertificateTemplate3Props) {
   const scale = mode === "student" ? "transform-scale-[0.3]" : "transform-scale-100";
 
@@ -110,7 +113,7 @@ export default function CertificateTemplate3({
 
         <div className="z-30 flex flex-col gap-8 items-center w-full p-8 mt-20">
           <div className="flex flex-col items-center gap-2">
-            <h1 className="text-6xl -mt-10 text-purple-950 tracking-wider uppercase">
+            <h1 className="text-6xl -mt-10 tracking-wider uppercase" style={{ color: themeColors?.primary ?? '#2d0569' }}>
               {header.split(" ")[0]}
             </h1>
             <div className="relative w-full flex justify-center items-center">
@@ -131,21 +134,21 @@ export default function CertificateTemplate3({
 
           <div className="space-y-4 flex flex-col items-center text-center">
             <p
-              className="w-auto border-b-2 border-purple-900 text-purple-900 text-4xl"
-              style={{ fontFamily: "Great Vibes, cursive" }}
+              className="w-auto border-b-2 text-4xl"
+              style={{ fontFamily: "Great Vibes, cursive", borderColor: themeColors?.text ?? '#581c87', color: themeColors?.primary ?? '#581c87' }}
             >
               {recipientName}
             </p>
             <p className="text-xs font-bold -mt-2">
               For successfully participating in the fully funded program on:
             </p>
-            <p className=" text-purple-900 text-xl font-bold -mt-3">
+            <p className="text-xl font-bold -mt-3" style={{ color: themeColors?.primary ?? '#581c87' }}>
               {courseTitle}
             </p>
             <p className="max-w-xl text-xs text-center text-black -mt-3">
               {description}
             </p>
-            <p className="text-purple-900 p-2 text-xs border border-purple-900 font-medium">
+            <p className="p-2 text-xs border font-medium" style={{ color: themeColors?.primary ?? '#581c87', borderColor: themeColors?.primary ?? '#581c87' }}>
               Held on: {formattedDate}
             </p>
           </div>
@@ -164,7 +167,7 @@ export default function CertificateTemplate3({
                   )}
                 </p>
                 <div className="space-y-0">
-                  <p className="text-center text-sm font-medium text-purple-900">
+                  <p className="text-center text-sm font-medium" style={{ color: themeColors?.primary ?? '#581c87' }}>
                     {signatoryName1}
                   </p>
                   <p className="text-center text-[9px] italic font-medium">
@@ -187,7 +190,7 @@ export default function CertificateTemplate3({
                   )}
                 </p>
                 <div className="space-y-0">
-                  <p className="text-center text-sm font-medium text-purple-900">
+                  <p className="text-center text-sm font-medium" style={{ color: themeColors?.primary ?? '#581c87' }}>
                     {signatoryName2}
                   </p>
                   <p className="text-center text-[9px] italic font-medium">

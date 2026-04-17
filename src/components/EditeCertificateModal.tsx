@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { X, Save, Loader2, DollarSign } from "lucide-react";
+import CertificateThemePicker from "./CertificateThemePicker";
+import type { ThemeColors } from "../types/theme";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
@@ -91,6 +93,7 @@ export function EditCertificateModal({
   const [monetizationEnabled, setMonetizationEnabled] = useState(false);
   const [monetizationPrice, setMonetizationPrice] = useState("");
   const [monetizationCurrency, setMonetizationCurrency] = useState("NGN");
+  const [themeColors, setThemeColors] = useState<ThemeColors | undefined>(undefined);
 
   // Load certificate data into form
   useEffect(() => {
@@ -109,6 +112,7 @@ export function EditCertificateModal({
       setMonetizationEnabled(certificate.monetizationEnabled || false);
       setMonetizationPrice(certificate.certificatePriceMinor ? String(certificate.certificatePriceMinor / 100) : "");
       setMonetizationCurrency(certificate.certificateCurrency || "NGN");
+      setThemeColors(certificate.themeColors || undefined);
 
       // Load signatories
       if (certificate.signatories && certificate.signatories.length > 0) {
@@ -200,6 +204,7 @@ export function EditCertificateModal({
         monetizationEnabled,
         certificatePriceMinor: monetizationEnabled && monetizationPrice ? Math.round(parseFloat(monetizationPrice) * 100) : 0,
         certificateCurrency: monetizationCurrency,
+        themeColors: themeColors ?? null,
       });
 
       toast.success("Certificate updated successfully!");
@@ -208,6 +213,7 @@ export function EditCertificateModal({
         monetizationEnabled,
         certificatePriceMinor: monetizationEnabled && monetizationPrice ? Math.round(parseFloat(monetizationPrice) * 100) : 0,
         certificateCurrency: monetizationCurrency,
+        themeColors: themeColors ?? null,
       });
       onClose();
     } catch (error: any) {
@@ -396,6 +402,25 @@ export function EditCertificateModal({
                 </div>
               )}
             </div>
+
+            {/* Colour Theme */}
+            <CertificateThemePicker
+              value={themeColors}
+              onChange={setThemeColors}
+              previewProps={{
+                templateId: certificate.template || "1",
+                header: certificateHeader,
+                courseTitle: programName || "Sample Programme",
+                description: programDescription,
+                date: completionDate,
+                recipientName: "Sample Student",
+                organizationName: certificate.organization?.name,
+                organizationLogo: certificate.organization?.logo,
+                signatoryName1: certificate.signatories?.[0]?.name,
+                signatoryTitle1: certificate.signatories?.[0]?.title,
+              }}
+              disabled={isLoading}
+            />
 
             {/* Monetization */}
             <div className="border rounded-lg p-4 space-y-3">

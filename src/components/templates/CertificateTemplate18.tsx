@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import type { ThemeColors } from "../../types/theme";
 import logo from "../../assets/ginsti.png";
 import sign1 from "../../assets/sign1.png";
 import sign2 from "../../assets/signInsti.png";
@@ -21,6 +22,7 @@ interface CertificateTemplate18Props {
   signatoryTitle2?: string;
   signatureUrl2?: string;
   mode?: "student" | "template-selection";
+  themeColors?: ThemeColors;
 }
 
 export default function CertificateTemplate18({
@@ -39,6 +41,7 @@ export default function CertificateTemplate18({
   signatoryTitle2,
   signatureUrl2,
   mode = "student",
+  themeColors,
 }: CertificateTemplate18Props) {
   const ref = useRef<HTMLDivElement>(null);
   // const scale = mode === "student" ? 0.3 : 1;

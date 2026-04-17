@@ -38,6 +38,7 @@ import CertificateTemplate37 from "./templates/CertificateTemplate37";
 import CertificateTemplate38 from "./templates/CertificateTemplate38";
 import CertificateTemplate39 from "./templates/CertificateTemplate39";
 import type { Logo } from "../App";
+import type { ThemeColors } from "../types/theme";
 
 interface CertificateRendererProps {
   templateId: string;
@@ -58,6 +59,7 @@ interface CertificateRendererProps {
   signatoryTitle2?: string;
   signatureUrl2?: string;
   certificateId?: string;
+  themeColors?: ThemeColors;
 }
 
 export default function CertificateRenderer({
@@ -79,7 +81,18 @@ export default function CertificateRenderer({
   signatoryTitle2,
   signatureUrl2,
   certificateId,
+  themeColors,
 }: CertificateRendererProps) {
+  // Strip sentinel "__default__" values so templates receive undefined and use their own defaults
+  const resolvedTheme: ThemeColors | undefined = themeColors && themeColors.primary !== "__default__"
+    ? {
+        primary: themeColors.primary,
+        secondary: themeColors.secondary,
+        text: themeColors.text !== "__default__" ? themeColors.text : undefined,
+        background: themeColors.background !== "__default__" ? themeColors.background : undefined,
+      }
+    : undefined;
+
   const templateProps = {
     header,
     courseTitle,
@@ -98,6 +111,7 @@ export default function CertificateRenderer({
     signatoryTitle2,
     signatureUrl2,
     certificateId,
+    themeColors: resolvedTheme,
   };
 
   // Normalize template ID - handle both "template1" and "1" formats

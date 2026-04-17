@@ -1,5 +1,6 @@
 import { useRef, useEffect } from "react";
 import type { Logo } from "../../App";
+import type { ThemeColors } from "../../types/theme";
 
 interface CertificateTemplate1Props {
   header: string;
@@ -19,6 +20,7 @@ interface CertificateTemplate1Props {
   signatureUrl2?: string;
   mode?: "student" | "template-selection";
   certificateId?: string;
+  themeColors?: ThemeColors;
 }
 
 export default function CertificateTemplate1({
@@ -39,6 +41,7 @@ export default function CertificateTemplate1({
   signatureUrl2,
   mode = "student",
   certificateId,
+  themeColors,
 }: CertificateTemplate1Props) {
   const ref = useRef<HTMLDivElement>(null);
   const scale = mode === "student" ? 1 : 1;
@@ -99,7 +102,7 @@ export default function CertificateTemplate1({
             height: 0,
             borderLeft: "50px solid transparent",
             borderRight: "50px solid transparent",
-            borderBottom: "80px solid #673A8D",
+            borderBottom: `80px solid ${themeColors?.primary ?? '#673A8D'}`,
             right: 20,
             top: 0,
           }}
@@ -112,7 +115,7 @@ export default function CertificateTemplate1({
             height: 0,
             borderLeft: "50px solid transparent",
             borderRight: "50px solid transparent",
-            borderBottom: "80px solid #80183D",
+            borderBottom: `80px solid ${themeColors?.secondary ?? themeColors?.primary ?? '#80183D'}`,
             transform: "rotate(180deg)",
             right: 20,
             top: 80,
@@ -126,7 +129,7 @@ export default function CertificateTemplate1({
             height: 0,
             borderLeft: "50px solid transparent",
             borderRight: "50px solid transparent",
-            borderBottom: "80px solid #651C30",
+            borderBottom: `80px solid ${themeColors?.secondary ?? themeColors?.primary ?? '#651C30'}`,
             right: -30,
             top: 80,
           }}
@@ -139,7 +142,7 @@ export default function CertificateTemplate1({
             height: 0,
             borderLeft: "50px solid transparent",
             borderRight: "50px solid transparent",
-            borderBottom: "80px solid #80183D",
+            borderBottom: `80px solid ${themeColors?.secondary ?? themeColors?.primary ?? '#80183D'}`,
             transform: "rotate(180deg)",
             right: 70,
             top: 0,
@@ -153,7 +156,7 @@ export default function CertificateTemplate1({
             height: 0,
             borderLeft: "30px solid transparent",
             borderRight: "30px solid transparent",
-            borderBottom: "50px solid #673A8D",
+            borderBottom: `50px solid ${themeColors?.primary ?? '#673A8D'}`,
             right: 160,
             top: 8,
           }}
@@ -166,7 +169,7 @@ export default function CertificateTemplate1({
             height: 0,
             borderLeft: "40px solid transparent",
             borderRight: "40px solid transparent",
-            borderBottom: "50px solid #673A8D",
+            borderBottom: `50px solid ${themeColors?.primary ?? '#673A8D'}`,
             transform: "rotate(180deg)",
             right: 0,
             top: 200,
@@ -180,7 +183,7 @@ export default function CertificateTemplate1({
             height: 0,
             borderLeft: "20px solid transparent",
             borderRight: "20px solid transparent",
-            borderBottom: "30px solid #80183D",
+            borderBottom: `30px solid ${themeColors?.secondary ?? themeColors?.primary ?? '#80183D'}`,
             transform: "rotate(180deg)",
             right: 40,
             top: 256,
@@ -198,7 +201,7 @@ export default function CertificateTemplate1({
             height: 0,
             borderLeft: "30px solid transparent",
             borderRight: "30px solid transparent",
-            borderBottom: "40px solid #80183D",
+            borderBottom: `40px solid ${themeColors?.secondary ?? themeColors?.primary ?? '#80183D'}`,
             right: -90,
             bottom: 380,
           }}
@@ -211,7 +214,7 @@ export default function CertificateTemplate1({
             height: 0,
             borderLeft: "30px solid transparent",
             borderRight: "30px solid transparent",
-            borderBottom: "40px solid #673A8D",
+            borderBottom: `40px solid ${themeColors?.primary ?? '#673A8D'}`,
             transform: "rotate(180deg)",
             left: 216,
             bottom: 32,
@@ -225,7 +228,7 @@ export default function CertificateTemplate1({
             height: 0,
             borderLeft: "50px solid transparent",
             borderRight: "50px solid transparent",
-            borderBottom: "60px solid #673A8D",
+            borderBottom: `60px solid ${themeColors?.primary ?? '#673A8D'}`,
             transform: "rotate(180deg)",
             left: -49,
             bottom: 60,
@@ -239,7 +242,7 @@ export default function CertificateTemplate1({
             height: 0,
             borderLeft: "50px solid transparent",
             borderRight: "50px solid transparent",
-            borderBottom: "60px solid #673A8D",
+            borderBottom: `60px solid ${themeColors?.primary ?? '#673A8D'}`,
             transform: "rotate(180deg)",
             left: 50,
             bottom: 60,
@@ -253,7 +256,7 @@ export default function CertificateTemplate1({
             height: 0,
             borderLeft: "50px solid transparent",
             borderRight: "50px solid transparent",
-            borderBottom: "60px solid #80183D",
+            borderBottom: `60px solid ${themeColors?.secondary ?? themeColors?.primary ?? '#80183D'}`,
             left: 100,
             bottom: 60,
           }}
@@ -266,7 +269,7 @@ export default function CertificateTemplate1({
             height: 0,
             borderLeft: "50px solid transparent",
             borderRight: "50px solid transparent",
-            borderBottom: "60px solid #80183D",
+            borderBottom: `60px solid ${themeColors?.secondary ?? themeColors?.primary ?? '#80183D'}`,
             left: 50,
             bottom: 120,
           }}
@@ -279,7 +282,7 @@ export default function CertificateTemplate1({
             height: 0,
             borderLeft: "50px solid transparent",
             borderRight: "50px solid transparent",
-            borderBottom: "60px solid #651C30",
+            borderBottom: `60px solid ${themeColors?.secondary ?? themeColors?.primary ?? '#651C30'}`,
             transform: "rotate(180deg)",
             left: 0,
             bottom: 120,
@@ -293,7 +296,7 @@ export default function CertificateTemplate1({
             height: 0,
             borderLeft: "50px solid transparent",
             borderRight: "50px solid transparent",
-            borderBottom: "60px solid #673A8D",
+            borderBottom: `60px solid ${themeColors?.primary ?? '#673A8D'}`,
             left: -52,
             bottom: 240,
           }}
@@ -306,7 +309,7 @@ export default function CertificateTemplate1({
             height: 0,
             borderLeft: "50px solid transparent",
             borderRight: "50px solid transparent",
-            borderBottom: "60px solid #80183D",
+            borderBottom: `60px solid ${themeColors?.secondary ?? themeColors?.primary ?? '#80183D'}`,
             transform: "rotate(180deg)",
             left: -52,
             bottom: 180,
@@ -320,7 +323,7 @@ export default function CertificateTemplate1({
             height: 0,
             borderLeft: "50px solid transparent",
             borderRight: "50px solid transparent",
-            borderBottom: "60px solid #80183D",
+            borderBottom: `60px solid ${themeColors?.secondary ?? themeColors?.primary ?? '#80183D'}`,
             transform: "rotate(180deg)",
             left: -52,
             bottom: 300,
@@ -334,7 +337,7 @@ export default function CertificateTemplate1({
             height: 0,
             borderLeft: "50px solid transparent",
             borderRight: "50px solid transparent",
-            borderBottom: "60px solid #651C30",
+            borderBottom: `60px solid ${themeColors?.secondary ?? themeColors?.primary ?? '#651C30'}`,
             left: 50,
             bottom: 0,
           }}
@@ -347,7 +350,7 @@ export default function CertificateTemplate1({
             height: 0,
             borderLeft: "50px solid transparent",
             borderRight: "50px solid transparent",
-            borderBottom: "60px solid #673A8D",
+            borderBottom: `60px solid ${themeColors?.primary ?? '#673A8D'}`,
             left: -49,
             bottom: 0,
           }}
@@ -360,7 +363,7 @@ export default function CertificateTemplate1({
             height: 0,
             borderLeft: "50px solid transparent",
             borderRight: "50px solid transparent",
-            borderBottom: "60px solid #80183D",
+            borderBottom: `60px solid ${themeColors?.secondary ?? themeColors?.primary ?? '#80183D'}`,
             transform: "rotate(180deg)",
             left: 0,
             bottom: 0,
@@ -374,7 +377,7 @@ export default function CertificateTemplate1({
             height: 0,
             borderLeft: "30px solid transparent",
             borderRight: "30px solid transparent",
-            borderBottom: "40px solid #80183D",
+            borderBottom: `40px solid ${themeColors?.secondary ?? themeColors?.primary ?? '#80183D'}`,
             transform: "rotate(180deg)",
             right: 500,
             bottom: 192,
@@ -388,7 +391,7 @@ export default function CertificateTemplate1({
             height: 0,
             borderLeft: "30px solid transparent",
             borderRight: "30px solid transparent",
-            borderBottom: "40px solid #673A8D",
+            borderBottom: `40px solid ${themeColors?.primary ?? '#673A8D'}`,
             left: 40,
             bottom: 200,
           }}
@@ -416,7 +419,7 @@ export default function CertificateTemplate1({
         {/* Recipient Info */}
         <div className="flex flex-col gap-4 items-center text-center">
           {/* Student Name with underline */}
-          <div className="w-auto border-b-2 border-blue-950">
+          <div className="w-auto border-b-2" style={{ borderColor: themeColors?.text ?? '#172554' }}>
             <div
               style={{
                 fontSize: "40px",
@@ -435,7 +438,7 @@ export default function CertificateTemplate1({
           </p>
 
           {/* Date */}
-          <p className="text-xs font-semibold border border-blue-950 px-4 py-2">
+          <p className="text-xs font-semibold border px-4 py-2" style={{ borderColor: themeColors?.text ?? '#172554' }}>
             Held on: {date}
           </p>
         </div>
@@ -444,7 +447,7 @@ export default function CertificateTemplate1({
         <div className="flex gap-10 w-full justify-center items-center">
           {/* Signature 1 */}
           <div className="flex flex-col gap-2 items-center">
-            <div className="border-b border-blue-950 w-40 flex justify-center min-h-10">
+            <div className="border-b w-40 flex justify-center min-h-10" style={{ borderColor: themeColors?.text ?? '#172554' }}>
               {signatureUrl1 && (
                 <img
                   src={signatureUrl1}
@@ -465,7 +468,7 @@ export default function CertificateTemplate1({
 
           {/* Signature 2 */}
           <div className="flex flex-col gap-2 items-center">
-            <div className="border-b border-blue-950 w-40 flex justify-center min-h-10">
+            <div className="border-b w-40 flex justify-center min-h-10" style={{ borderColor: themeColors?.text ?? '#172554' }}>
               {signatureUrl2 && (
                 <img
                   src={signatureUrl2}

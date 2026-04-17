@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from "react";
+import type { ThemeColors } from "../../types/theme";
 import floral from "../../assets/floral.png";
 
 interface CertificateTemplate16Props {
@@ -17,6 +18,7 @@ interface CertificateTemplate16Props {
   signatoryTitle2?: string;
   signatureUrl2?: string;
   mode?: "student" | "template-selection";
+  themeColors?: ThemeColors;
 }
 
 export default function CertificateTemplate16({
@@ -35,6 +37,7 @@ export default function CertificateTemplate16({
   signatoryTitle2,
   signatureUrl2,
   mode = "student",
+  themeColors,
 }: CertificateTemplate16Props) {
   const ref = useRef<HTMLDivElement>(null);
   const scale = mode === "student" ? "transform-scale-[0.3]" : "transform-scale-100";

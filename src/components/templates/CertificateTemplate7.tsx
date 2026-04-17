@@ -1,4 +1,5 @@
 import React from "react";
+import type { ThemeColors } from "../../types/theme";
 import upperUrl from "../../assets/UpperShape.png";
 import bottomUrl from "../../assets/BottomShape.png";
 import patternUrl from "../../assets/Pattern.png";
@@ -22,6 +23,7 @@ interface CertificateTemplate7Props {
   signatoryTitle2?: string;
   signatureUrl2?: string;
   mode?: "student" | "template-selection";
+  themeColors?: ThemeColors;
 }
 
 export default function CertificateTemplate7({
@@ -42,6 +44,7 @@ export default function CertificateTemplate7({
   signatoryTitle2,
   signatureUrl2,
   mode = "student",
+  themeColors,
 }: CertificateTemplate7Props) {
   // scale for preview vs student mode
   const scale =
@@ -81,7 +84,7 @@ export default function CertificateTemplate7({
           className="absolute z-0 top-0 w-full h-full opacity-70"
         />
 
-        <div className="text-center flex flex-col gap-5 items-center w-full z-40 border-2 border-orange-300 p-2">
+        <div className="text-center flex flex-col gap-5 items-center w-full z-40 border-2 p-2" style={{ borderColor: themeColors?.secondary ?? '#fdba74' }}>
           <img src={organizationLogo} alt="logo" className="w-1/9" />
           <div className="flex flex-col items-center gap-2">
             <h1 className="text-5xl font-medium">{header1 || "CERTIFICATE"}</h1>
@@ -92,7 +95,7 @@ export default function CertificateTemplate7({
           <p className="font-bold tracking-tighter text-sm uppercase">
             This Certificate is Proudly Presented to:
           </p>
-          <p className="w-1/2 text-center border-b border-orange-500 font-semibold text-3xl tracking-wider">
+          <p className="w-1/2 text-center border-b font-semibold text-3xl tracking-wider" style={{ borderColor: themeColors?.primary ?? '#f97316' }}>
             {recipientName}
           </p>
           <p className="text-xs -mt-2 -mb-2 text-black">
@@ -116,7 +119,7 @@ export default function CertificateTemplate7({
                 />
               </div>
               <div className="space-y-0">
-                <p className="text-center text-sm font-medium text-orange-500">
+                <p className="text-center text-sm font-medium" style={{ color: themeColors?.primary ?? '#f97316' }}>
                   {signatoryName1 || "Oluwaseyi Abraham Olawale"}
                 </p>
                 <p className="text-center text-[9px] italic font-medium">
@@ -139,7 +142,7 @@ export default function CertificateTemplate7({
                 />
               </div>
               <div className="space-y-0">
-                <p className="text-center text-sm font-medium text-orange-500">
+                <p className="text-center text-sm font-medium" style={{ color: themeColors?.primary ?? '#f97316' }}>
                   {signatoryName2 || "Gloria Adegbole"}
                 </p>
                 <p className="text-center text-[9px] italic font-medium">

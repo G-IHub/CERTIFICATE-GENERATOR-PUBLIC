@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-
+import type { ThemeColors } from "../../types/theme";
 import patternURL from "../../assets/HEXAGON.png";
 import stampURL from "../../assets/purple_stamp.png";
 
@@ -19,6 +19,7 @@ interface CertificateTemplate9Props {
   signatoryTitle2?: string;
   signatureUrl2?: string;
   mode?: "student" | "template-selection";
+  themeColors?: ThemeColors;
 }
 
 export default function CertificateTemplate9({
@@ -37,6 +38,7 @@ export default function CertificateTemplate9({
   signatoryTitle2,
   signatureUrl2,
   mode = "student",
+  themeColors,
 }: CertificateTemplate9Props) {
   // scale for preview vs student mode
   const ref = useRef<HTMLDivElement>(null);

@@ -89,6 +89,7 @@ interface CertificateData {
   certificatePriceMinor?: number; // NEW: Price in kobo (minor denomination)
   certificateCurrency?: string; // NEW: Currency (e.g., NGN)
   paymentStatus?: string; // NEW: Payment status (paid/unpaid)
+  themeColors?: any; // Theme colors
 }
 
 const StudentCertificate: React.FC<StudentCertificateProps> = ({
@@ -347,6 +348,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
             certificatePriceMinor: cert.certificatePriceMinor || 0, // Price in kobo
             certificateCurrency: cert.certificateCurrency || "NGN", // Currency
             paymentStatus: cert.paymentStatus || "unpaid", // Payment status
+            themeColors: cert.themeColors, // Theme colors
           };
 
           console.log("📋 Template Info:", {

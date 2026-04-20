@@ -612,25 +612,24 @@ export default function CertificateGenerationModal({
                       )}
                     </div>
                   </div>
+                  <div className="pt-4 border-t border-gray-100 mt-6 mb-4">
+                    <CertificateThemePicker
+                      value={themeColors}
+                      onChange={setThemeColors}
+                      previewProps={{
+                        templateId: selectedTemplate || "1",
+                        header: "Certificate of Completion",
+                        courseTitle: "Sample Programme",
+                        date: new Date().toISOString().split("T")[0],
+                        recipientName: "Sample Student Name",
+                        organizationName: currentUserOrganization?.name,
+                        organizationLogo: currentUserOrganization?.logo,
+                      }}
+                      disabled={!selectedTemplate}
+                    />
+                  </div>
 
-                  {/* Colour Theme Picker — shown right after template selection */}
-                  {selectedTemplate && (
-                    <div className="pt-2">
-                      <CertificateThemePicker
-                        value={themeColors}
-                        onChange={setThemeColors}
-                        previewProps={{
-                          templateId: selectedTemplate,
-                          header: "Certificate of Completion",
-                          courseTitle: "Sample Programme",
-                          date: new Date().toISOString().split("T")[0],
-                          recipientName: "Sample Student Name",
-                          organizationName: currentUserOrganization?.name,
-                          organizationLogo: currentUserOrganization?.logo,
-                        }}
-                      />
-                    </div>
-                  )}
+
 
                   <div className="flex justify-end">
                     <Button

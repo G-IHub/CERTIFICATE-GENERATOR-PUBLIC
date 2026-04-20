@@ -104,6 +104,8 @@ import CertificateRenderer from "./CertificateRenderer";
 import PreviewWrapper from "./PreviewWrapper";
 import TemplatesPage from "./TemplatesPage";
 import CertificateGenerationModal from "./CertificateGenerationModal";
+import CertificateThemePicker from "./CertificateThemePicker";
+import type { ThemeColors } from "../types/theme";
 import { EditCertificateModal } from "./EditeCertificateModal";
 import { Skeleton } from "./ui/skeleton";
 import TestimonialsSkeleton from "./skeletons/TestimonialsSkeleton";
@@ -377,6 +379,7 @@ export default function AdminDashboard({
   const [genMonetizationEnabled, setGenMonetizationEnabled] = useState(false);
   const [genMonetizationPrice, setGenMonetizationPrice] = useState("");
   const [genMonetizationCurrency, setGenMonetizationCurrency] = useState("NGN");
+  const [genThemeColors, setGenThemeColors] = useState<ThemeColors | undefined>(undefined);
 
   // Restricted Certificate Downloads states
   const [genRestrictDownload, setGenRestrictDownload] = useState(false);
@@ -1280,6 +1283,7 @@ export default function AdminDashboard({
               monetizationEnabled: genMonetizationEnabled,
               certificatePriceMinor: genMonetizationEnabled && genMonetizationPrice ? Math.round(parseFloat(genMonetizationPrice) * 100) : 0,
               certificateCurrency: genMonetizationCurrency,
+              themeColors: genThemeColors ?? null,
             });
 
             // Use backend-confirmed data
@@ -2475,6 +2479,23 @@ export default function AdminDashboard({
                                 </>
                               )}
                             </div>
+                          </div>
+
+                          <div className="pt-4 border-t border-gray-100 mt-6 mb-4">
+                            <CertificateThemePicker
+                              value={genThemeColors}
+                              onChange={setGenThemeColors}
+                              previewProps={{
+                                templateId: genSelectedTemplate || "1",
+                                header: "Certificate of Completion",
+                                courseTitle: "Sample Programme",
+                                date: new Date().toISOString().split("T")[0],
+                                recipientName: "Sample Student Name",
+                                organizationName: (currentOrganization || user.subsidiary)?.name,
+                                organizationLogo: (currentOrganization || user.subsidiary)?.logo,
+                              }}
+                              disabled={!genSelectedTemplate}
+                            />
                           </div>
 
                           <div className="flex justify-end">

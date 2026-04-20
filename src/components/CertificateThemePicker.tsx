@@ -35,7 +35,7 @@ export default function CertificateThemePicker({
   previewProps,
   disabled = false,
 }: CertificateThemePickerProps) {
-  const [showPreview, setShowPreview] = useState(false);
+  const [showPreview, setShowPreview] = useState(true);
 
   // Current working colors — merge saved value with safe defaults
   const current: ThemeColors = {

@@ -249,7 +249,7 @@ export default function CertificateThemePicker({
                   signatoryTitle1={preview.signatoryTitle1}
                   isPreview={true}
                   mode="student"
-                  themeColors={isDefaultPreset ? undefined : value}
+                  themeColors={current}
                 />
               </div>
             </div>

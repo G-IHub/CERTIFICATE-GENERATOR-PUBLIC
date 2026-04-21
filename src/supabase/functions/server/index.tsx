@@ -8838,6 +8838,24 @@ app.get("/make-server-a611b057/monetization/banks", async (c) => {
   } catch (e) { return c.json({ error: `Server error: ${e}` }, 500); }
 });
 
+// ---- EXCHANGE RATE PROXY ----
+
+app.get("/make-server-a611b057/monetization/exchange-rate", async (c) => {
+  try {
+    const from = c.req.query("from") || "NGN";
+    const to = c.req.query("to") || "USD";
+    const allowed = ["NGN", "USD", "GBP", "EUR"];
+    if (!allowed.includes(from) || !allowed.includes(to)) {
+      return c.json({ error: "Unsupported currency" }, 400);
+    }
+    const res = await fetch(`https://api.frankfurter.app/latest?from=${from}&to=${to}`);
+    const data = await res.json();
+    const rate = data?.rates?.[to];
+    if (!rate) return c.json({ error: "Rate not found" }, 502);
+    return c.json({ from, to, rate });
+  } catch (e) { return c.json({ error: `Server error: ${e}` }, 500); }
+});
+
 // ---- PAYMENTS ----
 
 app.post("/make-server-a611b057/monetization/payments/initialize", async (c) => {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { CreditCard, X, Lock, CheckCircle, RefreshCw } from "lucide-react";
 import { toast } from "sonner";
-import { certificatePaymentApi, paymentApi, formatKobo } from "../utils/monetizationApi";
+import { certificatePaymentApi, paymentApi, formatKobo, exchangeRateApi } from "../utils/monetizationApi";
 
 interface PaystackPaymentModalProps {
   itemId: string;
@@ -57,11 +57,9 @@ export default function PaystackPaymentModal({
       return;
     }
     setRateLoading(true);
-    fetch(`https://api.frankfurter.app/latest?from=${currency}&to=${selectedCurrency}`)
-      .then((r) => r.json())
+    exchangeRateApi.get(currency, selectedCurrency)
       .then((data) => {
-        const rate = data?.rates?.[selectedCurrency];
-        if (rate) setExchangeRate(rate);
+        if (data?.rate) setExchangeRate(data.rate);
         else toast.error("Could not fetch exchange rate");
       })
       .catch(() => toast.error("Could not fetch exchange rate"))

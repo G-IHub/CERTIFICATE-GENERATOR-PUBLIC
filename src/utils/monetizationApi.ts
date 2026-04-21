@@ -234,6 +234,13 @@ export const adminMonetizationApi = {
     fetch(`${BASE}/admin/settings`, { method: 'POST', headers: headers(token), body: JSON.stringify(data) }).then(handle),
 };
 
+// ---- Exchange Rate ----
+
+export const exchangeRateApi = {
+  get: (from: string, to: string): Promise<{ from: string; to: string; rate: number }> =>
+    fetch(`${BASE}/exchange-rate?from=${from}&to=${to}`, { headers: headers() }).then(handle),
+};
+
 // ---- Utils ----
 
 export const formatKobo = (kobo: number, currency = 'NGN'): string => {

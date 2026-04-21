@@ -45,7 +45,6 @@ export default function CertificateTemplate44({
   const navy = themeColors?.secondary ?? "#0F172A";
   const textCol = themeColors?.text ?? "#0F172A";
   const bg = themeColors?.background ?? "#F8FAFC";
-  const scale = mode === "student" ? 1 : 0.7;
 
   useEffect(() => {
     const id = "dm-serif-t44";
@@ -64,7 +63,6 @@ export default function CertificateTemplate44({
     <div style={{
       width: 800, height: 600, position: "relative",
       background: bg, overflow: "hidden",
-      transform: `scale(${scale})`, transformOrigin: "top left",
       fontFamily: "'DM Sans', sans-serif",
     }}>
 

@@ -45,7 +45,6 @@ export default function CertificateTemplate40({
   const goldDark = themeColors?.secondary ?? "#A07C10";
   const bg = themeColors?.background ?? "#0B0B0B";
   const textCol = themeColors?.text ?? "#FFFFFF";
-  const scale = mode === "student" ? 1 : 0.7;
 
   useEffect(() => {
     const id = "playfair-font-t40";
@@ -64,7 +63,6 @@ export default function CertificateTemplate40({
     <div style={{
       width: 800, height: 600, position: "relative",
       background: bg, overflow: "hidden",
-      transform: `scale(${scale})`, transformOrigin: "top left",
       fontFamily: "'Cormorant Garamond', Georgia, serif",
     }}>
 

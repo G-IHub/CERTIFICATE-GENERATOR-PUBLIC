@@ -45,7 +45,6 @@ export default function CertificateTemplate42({
   const gold = themeColors?.secondary ?? "#C9A93F";
   const textCol = themeColors?.text ?? "#3B2A1A";
   const bg = themeColors?.background ?? "#F5F0E4";
-  const scale = mode === "student" ? 1 : 0.7;
 
   useEffect(() => {
     const id = "eb-garamond-t42";
@@ -64,7 +63,6 @@ export default function CertificateTemplate42({
     <div style={{
       width: 800, height: 600, position: "relative",
       background: bg, overflow: "hidden",
-      transform: `scale(${scale})`, transformOrigin: "top left",
       fontFamily: "'EB Garamond', Georgia, serif",
     }}>
 

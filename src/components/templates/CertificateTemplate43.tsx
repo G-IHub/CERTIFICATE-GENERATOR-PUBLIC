@@ -45,7 +45,6 @@ export default function CertificateTemplate43({
   const p2 = themeColors?.secondary ?? "#EC4899";
   const textCol = themeColors?.text ?? "#1F1235";
   const bg = themeColors?.background ?? "#FDFBFF";
-  const scale = mode === "student" ? 1 : 0.7;
 
   useEffect(() => {
     const id = "inter-font-t43";
@@ -64,7 +63,6 @@ export default function CertificateTemplate43({
     <div style={{
       width: 800, height: 600, position: "relative",
       background: bg, overflow: "hidden",
-      transform: `scale(${scale})`, transformOrigin: "top left",
       fontFamily: "'Inter', sans-serif",
     }}>
 

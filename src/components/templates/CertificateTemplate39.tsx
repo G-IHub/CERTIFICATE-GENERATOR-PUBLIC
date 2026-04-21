@@ -46,8 +46,6 @@ export default function CertificateTemplate39({
   themeColors,
 }: CertificateTemplate39Props) {
   const ref = useRef<HTMLDivElement>(null);
-  const scale = mode === "student" ? 1 : 0.7;
-
   useEffect(() => {
     const id = "greatvibes-font";
     if (!document.getElementById(id)) {
@@ -72,8 +70,6 @@ export default function CertificateTemplate39({
         background: "#1a1a1a",
         fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
         overflow: "hidden",
-        transform: `scale(${scale})`,
-        transformOrigin: "top left",
         boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
         borderRadius: "8px",
       }}

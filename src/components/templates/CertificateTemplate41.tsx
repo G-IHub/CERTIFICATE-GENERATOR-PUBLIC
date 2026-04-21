@@ -45,7 +45,6 @@ export default function CertificateTemplate41({
   const accent = themeColors?.secondary ?? "#1A8FD1";
   const textCol = themeColors?.text ?? "#1a2744";
   const bg = themeColors?.background ?? "#FFFFFF";
-  const scale = mode === "student" ? 1 : 0.7;
 
   useEffect(() => {
     const id = "montserrat-font-t41";
@@ -64,7 +63,6 @@ export default function CertificateTemplate41({
     <div style={{
       width: 800, height: 600, position: "relative",
       background: bg, overflow: "hidden",
-      transform: `scale(${scale})`, transformOrigin: "top left",
       fontFamily: "'Montserrat', sans-serif",
     }}>
 

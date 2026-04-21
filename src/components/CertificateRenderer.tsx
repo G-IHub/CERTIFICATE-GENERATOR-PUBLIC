@@ -304,7 +304,6 @@ export default function CertificateRenderer({
           width={64}
           height={64}
           style={{ display: "block", borderRadius: 2 }}
-          crossOrigin="anonymous"
         />
         <span style={{
           fontSize: 7,

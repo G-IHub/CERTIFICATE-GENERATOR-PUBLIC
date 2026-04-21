@@ -9277,6 +9277,49 @@ const getSignedUrl = async (storagePath: string): Promise<string> => {
   return `${supabaseUrl}/storage/v1${data.signedURL}`;
 };
 
+// POST /digital-products/upload — upload a file to storage
+app.post("/make-server-a611b057/digital-products/upload", async (c) => {
+  try {
+    const { user, error } = await verifyUser(c.req.header("Authorization"));
+    if (error) return c.json({ error }, 401);
+
+    const formData = await c.req.formData();
+    const file = formData.get("file") as File;
+    const orgId = formData.get("orgId") as string;
+
+    if (!file || !orgId) return c.json({ error: "file and orgId are required" }, 400);
+
+    const supabaseUrl = Deno.env.get("SUPABASE_URL") ?? "";
+    const serviceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "";
+
+    // Try to create the bucket (ignore error if already exists)
+    await fetch(`${supabaseUrl}/storage/v1/bucket`, {
+      method: "POST",
+      headers: { "Authorization": `Bearer ${serviceKey}`, "Content-Type": "application/json" },
+      body: JSON.stringify({ id: "digital-products", name: "digital-products", public: false }),
+    }); // ignore errors - bucket may already exist
+
+    // Upload the file
+    const storagePath = `${orgId}/${Date.now()}_${file.name.replace(/\s+/g, "_")}`;
+    const arrayBuffer = await file.arrayBuffer();
+    const uploadRes = await fetch(`${supabaseUrl}/storage/v1/object/digital-products/${storagePath}`, {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${serviceKey}`,
+        "Content-Type": file.type || "application/octet-stream",
+        "x-upsert": "false",
+      },
+      body: arrayBuffer,
+    });
+    if (!uploadRes.ok) {
+      const err = await uploadRes.text();
+      return c.json({ error: err }, 400);
+    }
+
+    return c.json({ storagePath, name: file.name, size: file.size }, 200);
+  } catch (e) { return c.json({ error: `Server error: ${e}` }, 500); }
+});
+
 // POST /digital-products — create product
 app.post("/make-server-a611b057/digital-products", async (c) => {
   try {

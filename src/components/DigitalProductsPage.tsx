@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { toast } from "sonner";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { Card, CardContent } from "./ui/card";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
@@ -11,19 +11,18 @@ import {
   Plus,
   Edit,
   Trash2,
-  Eye,
   FileText,
   Video,
   Package,
   Upload,
   X,
-  ExternalLink,
   CheckCircle,
   Globe,
   AlertCircle,
+  Link as LinkIcon,
+  Award,
 } from "lucide-react";
 import { projectId, publicAnonKey } from "../utils/supabase/info";
-import { supabase } from "../utils/supabase";
 
 const API_BASE = `https://${projectId}.supabase.co/functions/v1/make-server-a611b057`;
 
@@ -63,9 +62,42 @@ interface Props {
 }
 
 const TYPE_META = {
-  pdf: { label: "PDF / File", icon: FileText, color: "bg-blue-100 text-blue-700" },
-  video: { label: "Video Course", icon: Video, color: "bg-purple-100 text-purple-700" },
-  bundle: { label: "Bundle Package", icon: Package, color: "bg-orange-100 text-orange-700" },
+  pdf: {
+    label: "PDF / File",
+    description: "Sell downloadable files like PDFs, ZIPs, docs",
+    icon: FileText,
+    iconBg: "bg-blue-100",
+    iconColor: "text-blue-600",
+    borderColor: "border-blue-500",
+    bgTint: "bg-blue-50",
+    textColor: "text-blue-700",
+    headerBg: "bg-blue-600",
+    badgeClass: "bg-blue-100 text-blue-700",
+  },
+  video: {
+    label: "Video Course",
+    description: "Share video links from YouTube, Vimeo, Loom, etc.",
+    icon: Video,
+    iconBg: "bg-purple-100",
+    iconColor: "text-purple-600",
+    borderColor: "border-purple-500",
+    bgTint: "bg-purple-50",
+    textColor: "text-purple-700",
+    headerBg: "bg-purple-600",
+    badgeClass: "bg-purple-100 text-purple-700",
+  },
+  bundle: {
+    label: "Bundle Package",
+    description: "Combine files and links into one complete package",
+    icon: Package,
+    iconBg: "bg-orange-100",
+    iconColor: "text-orange-600",
+    borderColor: "border-orange-500",
+    bgTint: "bg-orange-50",
+    textColor: "text-orange-700",
+    headerBg: "bg-orange-600",
+    badgeClass: "bg-orange-100 text-orange-700",
+  },
 } as const;
 
 function nairaDisplay(kobo: number) {
@@ -73,6 +105,11 @@ function nairaDisplay(kobo: number) {
 }
 function dollarDisplay(cents: number) {
   return `$${(cents / 100).toFixed(2)}`;
+}
+function fileSizeDisplay(bytes: number) {
+  if (bytes < 1024) return `${bytes} B`;
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
 }
 
 export default function DigitalProductsPage({ organizationId, accessToken }: Props) {
@@ -180,20 +217,23 @@ export default function DigitalProductsPage({ organizationId, accessToken }: Pro
 
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (!file || !organizationId) return;
-
+    if (!file || !organizationId || !accessToken) return;
     setUploadingFile(true);
     try {
-      const ext = file.name.split(".").pop() || "bin";
-      const storagePath = `${organizationId}/${Date.now()}_${file.name.replace(/\s+/g, "_")}`;
-
-      const { error } = await supabase.storage
-        .from("digital-products")
-        .upload(storagePath, file, { upsert: false });
-
-      if (error) throw new Error(error.message);
-
-      setFormFiles((prev) => [...prev, { name: file.name, storagePath, size: file.size }]);
+      const fd = new FormData();
+      fd.append("file", file);
+      fd.append("orgId", organizationId);
+      const res = await fetch(`${API_BASE}/digital-products/upload`, {
+        method: "POST",
+        headers: { Authorization: `Bearer ${accessToken}` }, // NO Content-Type for FormData
+        body: fd,
+      });
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.error || "Upload failed");
+      }
+      const data = await res.json();
+      setFormFiles((prev) => [...prev, { name: data.name, storagePath: data.storagePath, size: data.size }]);
       toast.success(`${file.name} uploaded`);
     } catch (e: any) {
       toast.error(e.message || "File upload failed");
@@ -305,6 +345,7 @@ export default function DigitalProductsPage({ organizationId, accessToken }: Pro
   };
 
   const totalPublished = products.filter((p) => p.status === "published").length;
+  const typeMeta = TYPE_META[formType];
 
   if (!organizationId) {
     return (
@@ -384,7 +425,7 @@ export default function DigitalProductsPage({ organizationId, accessToken }: Pro
                 <CardContent className="flex-1 pt-4 space-y-3">
                   <div className="flex items-start justify-between gap-2">
                     <h3 className="font-semibold text-gray-900 text-sm leading-tight">{p.title}</h3>
-                    <Badge className={`text-[10px] shrink-0 ${meta.color}`}>
+                    <Badge className={`text-[10px] shrink-0 ${meta.badgeClass}`}>
                       <Icon className="w-3 h-3 mr-1" />
                       {meta.label}
                     </Badge>
@@ -488,222 +529,299 @@ export default function DigitalProductsPage({ organizationId, accessToken }: Pro
               </button>
             </div>
 
-            <div className="px-6 py-4 space-y-5 overflow-y-auto max-h-[70vh]">
-              {/* Title */}
-              <div>
-                <Label htmlFor="dp-title">Title *</Label>
-                <Input
-                  id="dp-title"
-                  value={formTitle}
-                  onChange={(e) => setFormTitle(e.target.value)}
-                  placeholder="e.g. Advanced Python Course"
-                  className="mt-1"
-                />
-              </div>
+            {/* Scrollable form body */}
+            <div className="overflow-y-auto max-h-[72vh]">
 
-              {/* Description */}
-              <div>
-                <Label htmlFor="dp-desc">Description</Label>
-                <Textarea
-                  id="dp-desc"
-                  value={formDescription}
-                  onChange={(e) => setFormDescription(e.target.value)}
-                  placeholder="What buyers will get…"
-                  className="mt-1"
-                  rows={3}
-                />
-              </div>
+              {/* ── Basic Info section ── */}
+              <div className="px-6 py-5 space-y-4" style={{ background: "#f9fafb" }}>
+                <p className="text-xs font-semibold uppercase tracking-wider text-gray-400">Basic Info</p>
 
-              {/* Thumbnail URL */}
-              <div>
-                <Label htmlFor="dp-thumb">Thumbnail URL (optional)</Label>
-                <Input
-                  id="dp-thumb"
-                  value={formThumbnail}
-                  onChange={(e) => setFormThumbnail(e.target.value)}
-                  placeholder="https://..."
-                  className="mt-1"
-                />
-              </div>
-
-              {/* Product type */}
-              <div>
-                <Label className="mb-2 block">Product Type *</Label>
-                <div className="grid grid-cols-3 gap-3">
-                  {(["pdf", "video", "bundle"] as const).map((t) => {
-                    const meta = TYPE_META[t];
-                    const Icon = meta.icon;
-                    return (
-                      <button
-                        key={t}
-                        type="button"
-                        onClick={() => setFormType(t)}
-                        className={`flex flex-col items-center gap-2 p-3 rounded-lg border-2 text-sm transition-colors ${
-                          formType === t
-                            ? "border-indigo-500 bg-indigo-50 text-indigo-700"
-                            : "border-gray-200 hover:border-gray-300 text-gray-600"
-                        }`}
-                      >
-                        <Icon className="w-5 h-5" />
-                        <span className="font-medium text-center text-xs leading-tight">{meta.label}</span>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-
-              {/* Prices */}
-              <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <Label htmlFor="dp-ngn">Price in Naira (₦)</Label>
+                  <Label htmlFor="dp-title">Title <span className="text-red-500">*</span></Label>
                   <Input
-                    id="dp-ngn"
-                    type="number"
-                    min="0"
-                    step="0.01"
-                    value={formPriceNGN}
-                    onChange={(e) => setFormPriceNGN(e.target.value)}
-                    placeholder="0.00"
-                    className="mt-1"
+                    id="dp-title"
+                    value={formTitle}
+                    onChange={(e) => setFormTitle(e.target.value)}
+                    placeholder="e.g. Advanced Python Course"
+                    className="mt-1 bg-white"
                   />
                 </div>
+
                 <div>
-                  <Label htmlFor="dp-usd">Price in Dollars ($)</Label>
-                  <Input
-                    id="dp-usd"
-                    type="number"
-                    min="0"
-                    step="0.01"
-                    value={formPriceUSD}
-                    onChange={(e) => setFormPriceUSD(e.target.value)}
-                    placeholder="0.00"
-                    className="mt-1"
+                  <Label htmlFor="dp-desc">Description</Label>
+                  <p className="text-xs text-gray-400 mt-0.5 mb-1">Tell buyers what they'll get</p>
+                  <Textarea
+                    id="dp-desc"
+                    value={formDescription}
+                    onChange={(e) => setFormDescription(e.target.value)}
+                    placeholder="What buyers will get…"
+                    className="bg-white"
+                    rows={3}
                   />
                 </div>
-              </div>
 
-              {/* File upload — for pdf and bundle */}
-              {(formType === "pdf" || formType === "bundle") && (
                 <div>
-                  <Label className="mb-2 block">Files</Label>
-                  <div
-                    className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center cursor-pointer hover:border-indigo-400 transition-colors"
-                    onClick={() => fileInputRef.current?.click()}
-                  >
-                    {uploadingFile ? (
-                      <p className="text-sm text-gray-500">Uploading…</p>
-                    ) : (
-                      <>
-                        <Upload className="w-6 h-6 text-gray-400 mx-auto mb-2" />
-                        <p className="text-sm text-gray-500">Click to upload a file (PDF, ZIP, etc.)</p>
-                      </>
-                    )}
+                  <Label htmlFor="dp-thumb">Thumbnail URL <span className="text-gray-400 font-normal">(optional)</span></Label>
+                  <Input
+                    id="dp-thumb"
+                    value={formThumbnail}
+                    onChange={(e) => setFormThumbnail(e.target.value)}
+                    placeholder="https://..."
+                    className="mt-1 bg-white"
+                  />
+                </div>
+
+                {/* Product type */}
+                <div>
+                  <Label className="mb-2 block">Product Type <span className="text-red-500">*</span></Label>
+                  <div className="grid grid-cols-3 gap-3">
+                    {(["pdf", "video", "bundle"] as const).map((t) => {
+                      const meta = TYPE_META[t];
+                      const Icon = meta.icon;
+                      const selected = formType === t;
+                      return (
+                        <button
+                          key={t}
+                          type="button"
+                          onClick={() => setFormType(t)}
+                          className={`flex flex-col items-center gap-2 p-4 rounded-xl border-2 text-sm transition-all ${
+                            selected
+                              ? `${meta.borderColor} ${meta.bgTint} ${meta.textColor}`
+                              : "border-gray-200 hover:border-gray-300 bg-white text-gray-600"
+                          }`}
+                        >
+                          <div className={`w-10 h-10 rounded-full flex items-center justify-center ${selected ? meta.iconBg : "bg-gray-100"}`}>
+                            <Icon className={`w-5 h-5 ${selected ? meta.iconColor : "text-gray-500"}`} />
+                          </div>
+                          <span className="font-semibold text-xs text-center leading-tight">{meta.label}</span>
+                          <span className="text-[10px] text-center leading-tight opacity-70">{meta.description}</span>
+                        </button>
+                      );
+                    })}
                   </div>
-                  <input
-                    ref={fileInputRef}
-                    type="file"
-                    className="hidden"
-                    onChange={handleFileUpload}
-                    accept=".pdf,.zip,.docx,.xlsx,.pptx,.mp4,.mov"
-                  />
+                </div>
+              </div>
 
-                  {formFiles.length > 0 && (
-                    <ul className="mt-2 space-y-1">
-                      {formFiles.map((f, i) => (
-                        <li key={i} className="flex items-center justify-between text-sm bg-gray-50 rounded px-3 py-1.5">
-                          <span className="truncate text-gray-700">{f.name} <span className="text-gray-400">({(f.size / 1024).toFixed(1)} KB)</span></span>
-                          <button onClick={() => removeFile(i)} className="text-red-400 hover:text-red-600 ml-2">
-                            <X className="w-4 h-4" />
-                          </button>
-                        </li>
-                      ))}
-                    </ul>
+              {/* ── Pricing section ── */}
+              <div className="px-6 py-5 space-y-4 border-t" style={{ background: "#f9fafb" }}>
+                <p className="text-xs font-semibold uppercase tracking-wider text-gray-400">Pricing</p>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="dp-ngn">Price in Naira (₦)</Label>
+                    <p className="text-xs text-gray-400 mb-1">Enter amount in naira (e.g. 5000)</p>
+                    <Input
+                      id="dp-ngn"
+                      type="number"
+                      min="0"
+                      step="0.01"
+                      value={formPriceNGN}
+                      onChange={(e) => setFormPriceNGN(e.target.value)}
+                      placeholder="0.00"
+                      className="bg-white"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="dp-usd">Price in Dollars ($)</Label>
+                    <p className="text-xs text-gray-400 mb-1">Enter amount in dollars (e.g. 29.99)</p>
+                    <Input
+                      id="dp-usd"
+                      type="number"
+                      min="0"
+                      step="0.01"
+                      value={formPriceUSD}
+                      onChange={(e) => setFormPriceUSD(e.target.value)}
+                      placeholder="0.00"
+                      className="bg-white"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* ── Content section ── */}
+              <div className="border-t">
+                {/* Colored header bar */}
+                <div className={`px-6 py-3 ${typeMeta.headerBg}`}>
+                  <p className="text-xs font-semibold uppercase tracking-wider text-white">Content</p>
+                </div>
+                <div className="px-6 py-5 space-y-5 bg-white">
+
+                  {/* File upload — for pdf and bundle */}
+                  {(formType === "pdf" || formType === "bundle") && (
+                    <div>
+                      <Label className="mb-1 block">Files</Label>
+                      <p className="text-xs text-gray-400 mb-2">Upload PDFs, ZIPs, docs, or other files. You can add multiple.</p>
+
+                      {/* Uploaded file cards */}
+                      {formFiles.length > 0 && (
+                        <ul className="mb-3 space-y-2">
+                          {formFiles.map((f, i) => (
+                            <li key={i} className="flex items-center gap-3 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2.5">
+                              <div className={`w-8 h-8 rounded flex items-center justify-center shrink-0 ${typeMeta.iconBg}`}>
+                                <FileText className={`w-4 h-4 ${typeMeta.iconColor}`} />
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <p className="text-sm font-medium text-gray-800 truncate">{f.name}</p>
+                                <p className="text-xs text-gray-400">{fileSizeDisplay(f.size)}</p>
+                              </div>
+                              <button
+                                onClick={() => removeFile(i)}
+                                className="text-gray-400 hover:text-red-500 transition-colors shrink-0"
+                                title="Remove file"
+                              >
+                                <X className="w-4 h-4" />
+                              </button>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+
+                      {/* Upload zone */}
+                      <div
+                        className={`border-2 border-dashed rounded-lg p-5 text-center cursor-pointer transition-colors ${
+                          uploadingFile ? "border-gray-200 bg-gray-50" : `hover:${typeMeta.borderColor} border-gray-300 hover:bg-gray-50`
+                        }`}
+                        onClick={() => !uploadingFile && fileInputRef.current?.click()}
+                      >
+                        {uploadingFile ? (
+                          <div className="flex items-center justify-center gap-2 text-gray-500">
+                            <div className="w-4 h-4 border-2 border-gray-400 border-t-transparent rounded-full animate-spin" />
+                            <p className="text-sm">Uploading…</p>
+                          </div>
+                        ) : (
+                          <>
+                            <Upload className="w-6 h-6 text-gray-400 mx-auto mb-2" />
+                            <p className="text-sm text-gray-600 font-medium">
+                              {formFiles.length > 0 ? "Add another file" : "Upload a file"}
+                            </p>
+                            <p className="text-xs text-gray-400 mt-1">PDF, ZIP, DOCX, XLSX, PPTX, MP4, MOV</p>
+                          </>
+                        )}
+                      </div>
+                      <input
+                        ref={fileInputRef}
+                        type="file"
+                        className="hidden"
+                        onChange={handleFileUpload}
+                        accept=".pdf,.zip,.docx,.xlsx,.pptx,.mp4,.mov"
+                      />
+                    </div>
+                  )}
+
+                  {/* Links — for video and bundle */}
+                  {(formType === "video" || formType === "bundle") && (
+                    <div>
+                      <Label className="mb-1 block">Links</Label>
+                      <p className="text-xs text-gray-400 mb-2">Add links to videos or resources buyers will receive.</p>
+                      <div className="space-y-3">
+                        {formLinks.map((l, i) => (
+                          <div key={i} className="space-y-1.5">
+                            <div className="flex gap-2 items-start">
+                              <div className={`w-8 h-8 rounded flex items-center justify-center shrink-0 mt-1 ${typeMeta.iconBg}`}>
+                                <LinkIcon className={`w-4 h-4 ${typeMeta.iconColor}`} />
+                              </div>
+                              <div className="flex-1 grid grid-cols-2 gap-2">
+                                <Input
+                                  placeholder="Label (e.g. Module 1)"
+                                  value={l.label}
+                                  onChange={(e) => updateLink(i, "label", e.target.value)}
+                                />
+                                <Input
+                                  placeholder="URL (https://...)"
+                                  value={l.url}
+                                  onChange={(e) => updateLink(i, "url", e.target.value)}
+                                />
+                              </div>
+                              <button
+                                onClick={() => removeLink(i)}
+                                className="text-gray-400 hover:text-red-500 transition-colors mt-2 shrink-0"
+                                title="Remove link"
+                              >
+                                <X className="w-4 h-4" />
+                              </button>
+                            </div>
+                            <p className="text-[10px] text-gray-400 pl-10">
+                              Supports: YouTube, Vimeo, Google Drive, Loom, Notion, Dropbox, and more
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                      <button
+                        type="button"
+                        onClick={addLink}
+                        className={`mt-3 text-sm font-medium flex items-center gap-1 ${typeMeta.textColor} hover:opacity-80 transition-opacity`}
+                      >
+                        <Plus className="w-3 h-3" />
+                        Add another link
+                      </button>
+                    </div>
+                  )}
+
+                  {/* Placeholder if no content inputs for this type */}
+                  {formType === "pdf" && formFiles.length === 0 && (
+                    <p className="text-xs text-gray-400 italic">Upload at least one file for buyers to download.</p>
                   )}
                 </div>
-              )}
+              </div>
 
-              {/* Links — for video and bundle */}
-              {(formType === "video" || formType === "bundle") && (
-                <div>
-                  <Label className="mb-2 block">Links</Label>
-                  <div className="space-y-2">
-                    {formLinks.map((l, i) => (
-                      <div key={i} className="flex gap-2">
-                        <Input
-                          placeholder="Label (e.g. Module 1)"
-                          value={l.label}
-                          onChange={(e) => updateLink(i, "label", e.target.value)}
-                          className="flex-1"
-                        />
-                        <Input
-                          placeholder="URL (https://...)"
-                          value={l.url}
-                          onChange={(e) => updateLink(i, "url", e.target.value)}
-                          className="flex-2"
-                        />
-                        <button onClick={() => removeLink(i)} className="text-gray-400 hover:text-red-500">
-                          <X className="w-4 h-4" />
-                        </button>
-                      </div>
-                    ))}
-                  </div>
-                  <button
-                    type="button"
-                    onClick={addLink}
-                    className="mt-2 text-sm text-indigo-600 hover:underline flex items-center gap-1"
-                  >
-                    <Plus className="w-3 h-3" />
-                    Add another link
-                  </button>
+              {/* ── Certificate section ── */}
+              <div className="border-t">
+                <div className="px-6 py-3 bg-indigo-50">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-indigo-400">Certificate</p>
                 </div>
-              )}
-
-              {/* Bundle: Include certificate */}
-              {formType === "bundle" && (
-                <div>
-                  <label className="flex items-center gap-2 cursor-pointer">
+                <div className="px-6 py-5 bg-white">
+                  <label className="flex items-center gap-3 cursor-pointer group">
                     <input
                       type="checkbox"
-                      className="w-4 h-4 accent-indigo-600"
+                      className="w-4 h-4 accent-indigo-600 shrink-0"
                       checked={formIncludeCert}
                       onChange={(e) => setFormIncludeCert(e.target.checked)}
                     />
-                    <span className="text-sm font-medium text-gray-700">Include Certificate on Purchase</span>
+                    <div>
+                      <span className="text-sm font-medium text-gray-800 flex items-center gap-1.5">
+                        <Award className="w-4 h-4 text-indigo-500" />
+                        Include Certificate on Purchase
+                      </span>
+                      <p className="text-xs text-gray-400 mt-0.5">Buyers automatically receive a certificate when they purchase this product.</p>
+                    </div>
                   </label>
                   {formIncludeCert && (
-                    <div className="mt-2">
+                    <div className="mt-4 pl-7">
                       <Label htmlFor="dp-cert">Certificate Template</Label>
                       <select
                         id="dp-cert"
                         value={formCertTemplate}
                         onChange={(e) => setFormCertTemplate(e.target.value)}
-                        className="mt-1 w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                        className="mt-1 w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white"
                       >
                         <option value="">— Select template —</option>
                         {templates.map((t) => (
                           <option key={t.id} value={t.id}>{t.name}</option>
                         ))}
                       </select>
+                      {templates.length === 0 && (
+                        <p className="text-xs text-amber-600 mt-1.5">No templates found. Create a certificate template first.</p>
+                      )}
                     </div>
                   )}
                 </div>
-              )}
+              </div>
 
-              {/* Status toggle */}
-              <div>
+              {/* ── Status section ── */}
+              <div className="px-6 py-5 border-t" style={{ background: "#f9fafb" }}>
                 <Label className="mb-2 block">Status</Label>
+                <p className="text-xs text-gray-400 mb-3">Draft products are not visible in your store.</p>
                 <div className="flex gap-3">
                   {(["draft", "published"] as const).map((s) => (
                     <button
                       key={s}
                       type="button"
                       onClick={() => setFormStatus(s)}
-                      className={`px-4 py-2 rounded-lg text-sm font-medium border transition-colors ${
+                      className={`px-5 py-2 rounded-lg text-sm font-medium border transition-colors ${
                         formStatus === s
                           ? s === "published"
                             ? "bg-green-100 border-green-500 text-green-700"
                             : "bg-gray-100 border-gray-400 text-gray-700"
-                          : "border-gray-200 text-gray-500 hover:border-gray-300"
+                          : "border-gray-200 text-gray-500 hover:border-gray-300 bg-white"
                       }`}
                     >
                       {s === "published" ? "Published" : "Draft"}
@@ -714,7 +832,7 @@ export default function DigitalProductsPage({ organizationId, accessToken }: Pro
             </div>
 
             {/* Modal footer */}
-            <div className="flex gap-3 px-6 py-4 border-t">
+            <div className="flex gap-3 px-6 py-4 border-t bg-white">
               <Button
                 variant="outline"
                 className="flex-1"

@@ -8316,19 +8316,8 @@ app.get("/make-server-a611b057/blogs/published", async (c) => {
   }
 });
 
-// Alias: /blog/published → same as /blogs/published (for blogService.ts compatibility)
-app.get("/make-server-a611b057/blog/published", async (c) => {
-  try {
-    const response = await fetchFromWordPress("/posts?_embed&per_page=100");
-    if (!response.ok) return c.json({ posts: [], blogs: [] });
-    const posts = await response.json();
-    const blogs = posts.map(mapWordPressPost);
-    blogs.sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime());
-    return c.json({ posts: blogs, blogs });
-  } catch {
-    return c.json({ posts: [], blogs: [] });
-  }
-});
+
+
 
 // Get all blogs (admin only - includes drafts)
 app.get("/make-server-a611b057/blogs", async (c) => {
@@ -9541,12 +9530,6 @@ const initializeStorageBuckets = async () => {
 await initializeStorageBuckets();
 
 // ==================== BLOG ROUTES ====================
-// Get all blog posts for an organization
-app.get("/make-server-a611b057/blog/posts", blog.getBlogPosts);
-
-// Get a single blog post
-app.get("/make-server-a611b057/blog/posts/:id", blog.getBlogPost);
-
 // Blog routes - mount the blog app
 app.route("/make-server-a611b057/blog", blog.default);
 

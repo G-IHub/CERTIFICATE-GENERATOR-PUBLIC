@@ -2825,6 +2825,7 @@ app.get("/make-server-a611b057/certificates/:id/verify", async (c) => {
         issuedDate: certificate.createdAt,
         studentName: certificate.studentName || null,
         template: certificate.template,
+        status: certificate.status || "active",
         signatories: certificate.signatories || [],
       },
       organization: {

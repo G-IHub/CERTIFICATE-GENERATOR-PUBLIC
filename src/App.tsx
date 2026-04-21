@@ -34,6 +34,7 @@ import { isOrgPremium } from "./utils/subscriptionUtils";
 import { isTokenExpired, getTokenRemainingTime } from "./utils/tokenUtils";
 import SEOTestPage from "./components/SEOTestPage";
 import SEOHead from "./components/SEOHead";
+import VerificationPage from "./components/VerificationPage";
 
 const defaultOrgLogo = "https://via.placeholder.com/256x256.png?text=Org+Logo";
 
@@ -999,6 +1000,9 @@ export default function App() {
           {/* Blog pages */}
           <Route path="/blogs" element={<BlogList />} />
           <Route path="/blog/:id" element={<BlogDetails />} />
+
+          {/* Certificate verification — public, scannable via QR */}
+          <Route path="/verify/:certificateId" element={<VerificationPage />} />
 
           {/* Default route - Landing Page or Dashboard */}
           <Route

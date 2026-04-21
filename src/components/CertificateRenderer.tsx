@@ -98,6 +98,15 @@ export default function CertificateRenderer({
       }
     : undefined;
 
+  // QR code — only on real certificates (student mode, cert ID present)
+  const showQR = mode === "student" && !!certificateId;
+  const verifyUrl = showQR
+    ? `https://certifyer.online/#/verify/${certificateId}`
+    : "";
+  const qrSrc = showQR
+    ? `https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=${encodeURIComponent(verifyUrl)}&color=000000&bgcolor=ffffff&margin=2&qzone=1`
+    : "";
+
   const templateProps = {
     header,
     courseTitle,
@@ -122,11 +131,13 @@ export default function CertificateRenderer({
   // Normalize template ID - handle both "template1" and "1" formats
   const normalizedId = templateId.replace(/^template/i, "");
 
-  // Global Template Library System
-  // Templates are added sequentially as they are created
-  switch (normalizedId) {
-    case "1":
-      return <CertificateTemplate1 {...templateProps} />;
+  // Render the template, then overlay QR badge if in student mode
+  function renderTemplate() {
+    // Global Template Library System
+    // Templates are added sequentially as they are created
+    switch (normalizedId) {
+      case "1":
+        return <CertificateTemplate1 {...templateProps} />;
 
     case "2":
       return <CertificateTemplate2 {...templateProps} />;
@@ -257,10 +268,55 @@ export default function CertificateRenderer({
     case "44":
       return <CertificateTemplate44 {...templateProps} />;
 
-    // All other template IDs fall back to Template 1
-    default:
-      // Silent fallback to Template 1 - no warning needed
-      // The fallback is expected behavior for the unified template system
-      return <CertificateTemplate1 {...templateProps} />;
+      // All other template IDs fall back to Template 1
+      default:
+        // Silent fallback to Template 1 - no warning needed
+        // The fallback is expected behavior for the unified template system
+        return <CertificateTemplate1 {...templateProps} />;
+    }
   }
+
+  const rendered = renderTemplate();
+
+  if (!showQR) return rendered;
+
+  // Overlay QR badge — bottom-right corner, on top of every template
+  return (
+    <div style={{ position: "relative", width: 800, height: 600, display: "inline-block" }}>
+      {rendered}
+      <div style={{
+        position: "absolute",
+        bottom: 14,
+        right: 14,
+        background: "rgba(255,255,255,0.93)",
+        borderRadius: 6,
+        padding: "5px 7px 4px",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: 2,
+        boxShadow: "0 1px 6px rgba(0,0,0,0.18)",
+        zIndex: 9999,
+      }}>
+        <img
+          src={qrSrc}
+          alt="Verify certificate"
+          width={64}
+          height={64}
+          style={{ display: "block", borderRadius: 2 }}
+          crossOrigin="anonymous"
+        />
+        <span style={{
+          fontSize: 7,
+          color: "#374151",
+          fontFamily: "sans-serif",
+          letterSpacing: 0.3,
+          textAlign: "center",
+          lineHeight: 1.3,
+        }}>
+          Scan to verify
+        </span>
+      </div>
+    </div>
+  );
 }

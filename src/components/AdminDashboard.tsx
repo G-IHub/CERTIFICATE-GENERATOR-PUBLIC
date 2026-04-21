@@ -377,8 +377,8 @@ export default function AdminDashboard({
 
   // Monetization states
   const [genMonetizationEnabled, setGenMonetizationEnabled] = useState(false);
-  const [genMonetizationPrice, setGenMonetizationPrice] = useState("");
-  const [genMonetizationCurrency, setGenMonetizationCurrency] = useState("NGN");
+  const [genMonetizationPrice, setGenMonetizationPrice] = useState(""); // NGN price in naira
+  const [genMonetizationPriceUSD, setGenMonetizationPriceUSD] = useState(""); // USD price in dollars
   const [genThemeColors, setGenThemeColors] = useState<ThemeColors | undefined>(undefined);
 
   // Restricted Certificate Downloads states
@@ -1092,7 +1092,7 @@ export default function AdminDashboard({
         allowedEmails: genAllowedEmails,
         monetizationEnabled: genMonetizationEnabled,
         certificatePriceMinor: genMonetizationEnabled && genMonetizationPrice ? Math.round(parseFloat(genMonetizationPrice) * 100) : 0,
-        certificateCurrency: genMonetizationCurrency,
+        certificatePriceUSDMinor: genMonetizationEnabled && genMonetizationPriceUSD ? Math.round(parseFloat(genMonetizationPriceUSD) * 100) : 0,
       } as any);
 
       // Check if response has certificates
@@ -1282,7 +1282,7 @@ export default function AdminDashboard({
               allowedEmails: genAllowedEmails,
               monetizationEnabled: genMonetizationEnabled,
               certificatePriceMinor: genMonetizationEnabled && genMonetizationPrice ? Math.round(parseFloat(genMonetizationPrice) * 100) : 0,
-              certificateCurrency: genMonetizationCurrency,
+              certificatePriceUSDMinor: genMonetizationEnabled && genMonetizationPriceUSD ? Math.round(parseFloat(genMonetizationPriceUSD) * 100) : 0,
               themeColors: genThemeColors ?? null,
             });
 
@@ -3141,6 +3141,7 @@ export default function AdminDashboard({
                                   setGenMonetizationEnabled(!genMonetizationEnabled);
                                   if (genMonetizationEnabled) {
                                     setGenMonetizationPrice("");
+                                    setGenMonetizationPriceUSD("");
                                   }
                                 }}
                                 className={genMonetizationEnabled ? "bg-indigo-600 hover:bg-indigo-700" : ""}
@@ -3151,34 +3152,35 @@ export default function AdminDashboard({
 
                             {genMonetizationEnabled && (
                               <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-4 space-y-3">
+                                <p className="text-xs font-medium text-indigo-800">Set your prices — students will choose which currency to pay in.</p>
                                 <div className="flex gap-3">
                                   <div className="flex-1 space-y-1">
-                                    <Label htmlFor="genMonetizationPrice" className="text-sm">Price *</Label>
+                                    <Label htmlFor="genMonetizationPrice" className="text-sm">Price in Naira (₦)</Label>
                                     <Input
                                       id="genMonetizationPrice"
                                       type="number"
                                       min="1"
-                                      step="0.01"
+                                      step="1"
                                       placeholder="e.g. 5000"
                                       value={genMonetizationPrice}
                                       onChange={(e) => setGenMonetizationPrice(e.target.value)}
                                     />
                                   </div>
-                                  <div className="w-32 space-y-1">
-                                    <Label htmlFor="genMonetizationCurrency" className="text-sm">Currency</Label>
-                                    <select
-                                      id="genMonetizationCurrency"
-                                      value={genMonetizationCurrency}
-                                      onChange={(e) => setGenMonetizationCurrency(e.target.value)}
-                                      className="w-full h-10 px-3 rounded-md border border-input bg-background text-sm focus:outline-none focus:ring-2 focus:ring-ring"
-                                    >
-                                      <option value="NGN">NGN (₦)</option>
-                                      <option value="USD">USD ($)</option>
-                                    </select>
+                                  <div className="flex-1 space-y-1">
+                                    <Label htmlFor="genMonetizationPriceUSD" className="text-sm">Price in Dollars ($)</Label>
+                                    <Input
+                                      id="genMonetizationPriceUSD"
+                                      type="number"
+                                      min="1"
+                                      step="0.01"
+                                      placeholder="e.g. 5"
+                                      value={genMonetizationPriceUSD}
+                                      onChange={(e) => setGenMonetizationPriceUSD(e.target.value)}
+                                    />
                                   </div>
                                 </div>
                                 <p className="text-xs text-indigo-700">
-                                  Students will be charged {genMonetizationCurrency === "NGN" ? "₦" : "$"}{genMonetizationPrice || "0"} via Paystack before accessing this certificate. Certifyer takes a 7% platform fee.
+                                  Students will see both prices and choose how to pay. Leave a field blank to offer only one currency. Certifyer takes a 7% platform fee.
                                 </p>
                               </div>
                             )}

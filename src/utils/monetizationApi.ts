@@ -181,7 +181,7 @@ export const bankApi = {
 // ---- Payments ----
 
 export const certificatePaymentApi = {
-  initialize: (data: { certificateId: string; buyerEmail: string; buyerName: string; currency?: string; amountMinor?: number }): Promise<{ authorizationUrl: string; reference: string }> =>
+  initialize: (data: { certificateId: string; buyerEmail: string; buyerName: string; currency: 'NGN' | 'USD' }): Promise<{ authorizationUrl: string; reference: string }> =>
     fetch(`${BASE}/payments/initialize-certificate`, { method: 'POST', headers: headers(''), body: JSON.stringify(data) }).then(handle),
 
   verify: (reference: string): Promise<{ success: boolean; transaction: any; certificateId: string }> =>
@@ -232,13 +232,6 @@ export const adminMonetizationApi = {
 
   updateSettings: (token: string, data: object): Promise<{ success: boolean }> =>
     fetch(`${BASE}/admin/settings`, { method: 'POST', headers: headers(token), body: JSON.stringify(data) }).then(handle),
-};
-
-// ---- Exchange Rate ----
-
-export const exchangeRateApi = {
-  get: (from: string, to: string): Promise<{ from: string; to: string; rate: number }> =>
-    fetch(`${BASE}/exchange-rate?from=${from}&to=${to}`, { headers: headers() }).then(handle),
 };
 
 // ---- Utils ----

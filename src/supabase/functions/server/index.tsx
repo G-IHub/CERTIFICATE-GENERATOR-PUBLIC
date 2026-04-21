@@ -1997,7 +1997,7 @@ app.post("/make-server-a611b057/certificates", async (c) => {
       allowedEmails, // NEW: List of allowed student emails
       monetizationEnabled,
       certificatePriceMinor,
-      certificateCurrency,
+      certificatePriceUSDMinor,
       themeColors,
     } = requestBody;
 
@@ -2137,7 +2137,7 @@ app.post("/make-server-a611b057/certificates", async (c) => {
         allowedEmails: allowedEmails || [], // NEW: List of allowed student emails
         monetizationEnabled: monetizationEnabled || false,
         certificatePriceMinor: certificatePriceMinor || 0,
-        certificateCurrency: certificateCurrency || "NGN",
+        certificatePriceUSDMinor: certificatePriceUSDMinor || 0,
         platformFeePercent: FIXED_PLATFORM_FEE_PERCENT,
         paymentStatus: "unpaid",
         paidAt: null,
@@ -2212,7 +2212,7 @@ app.post("/make-server-a611b057/certificates", async (c) => {
           allowedEmails: allowedEmails || [], // NEW: List of allowed student emails
           monetizationEnabled: monetizationEnabled || false,
           certificatePriceMinor: certificatePriceMinor || 0,
-          certificateCurrency: certificateCurrency || "NGN",
+          certificatePriceUSDMinor: certificatePriceUSDMinor || 0,
           platformFeePercent: FIXED_PLATFORM_FEE_PERCENT,
           paymentStatus: "unpaid",
           paidAt: null,
@@ -2281,8 +2281,8 @@ app.get("/make-server-a611b057/certificates/:id", async (c) => {
             certificateId: certificate.id,
             courseName: certificate.courseName,
             certificateHeader: certificate.certificateHeader,
-            amountMinor: certificate.certificatePriceMinor || 0,
-            currency: certificate.certificateCurrency || "NGN",
+            certificatePriceMinor: certificate.certificatePriceMinor || 0,
+            certificatePriceUSDMinor: certificate.certificatePriceUSDMinor || 0,
             platformFeePercent:
               certificate.platformFeePercent !== undefined
                 ? certificate.platformFeePercent
@@ -2350,7 +2350,7 @@ const handleMonetizationUpdate = async (c: any) => {
     const {
       monetizationEnabled,
       certificatePriceMinor,
-      certificateCurrency,
+      certificatePriceUSDMinor,
       themeColors,
     } = await c.req.json();
 
@@ -2365,9 +2365,11 @@ const handleMonetizationUpdate = async (c: any) => {
     }
 
     if (monetizationEnabled) {
-      if (!certificatePriceMinor || certificatePriceMinor <= 0) {
+      const hasNGN = certificatePriceMinor && certificatePriceMinor > 0;
+      const hasUSD = certificatePriceUSDMinor && certificatePriceUSDMinor > 0;
+      if (!hasNGN && !hasUSD) {
         return c.json(
-          { error: "Valid certificatePriceMinor is required" },
+          { error: "At least one price (NGN or USD) is required" },
           400,
         );
       }
@@ -2376,10 +2378,8 @@ const handleMonetizationUpdate = async (c: any) => {
     const updatedCertificate = {
       ...certificate,
       monetizationEnabled: !!monetizationEnabled,
-      certificatePriceMinor: monetizationEnabled
-        ? Number(certificatePriceMinor)
-        : 0,
-      certificateCurrency: certificateCurrency || "NGN",
+      certificatePriceMinor: monetizationEnabled ? Number(certificatePriceMinor || 0) : 0,
+      certificatePriceUSDMinor: monetizationEnabled ? Number(certificatePriceUSDMinor || 0) : 0,
       platformFeePercent: FIXED_PLATFORM_FEE_PERCENT,
       paymentStatus:
         monetizationEnabled && certificate.paymentStatus === "paid"
@@ -8597,13 +8597,22 @@ app.post("/make-server-a611b057/monetization/payments/verify", async (c) => {
 // Certificate payment — initialize
 app.post("/make-server-a611b057/monetization/payments/initialize-certificate", async (c) => {
   try {
-    const { certificateId, buyerEmail, buyerName, currency: overrideCurrency, amountMinor: overrideAmountMinor } = await c.req.json();
+    const { certificateId, buyerEmail, buyerName, currency: requestedCurrency } = await c.req.json();
     if (!certificateId || !buyerEmail || !buyerName) return c.json({ error: "certificateId, buyerEmail, and buyerName are required" }, 400);
 
     const certificate = await kv.get(`cert:${certificateId}`) as any;
     if (!certificate) return c.json({ error: "Certificate not found" }, 404);
     if (!certificate.monetizationEnabled) return c.json({ error: "This certificate is not for sale" }, 400);
-    if (!certificate.certificatePriceMinor || certificate.certificatePriceMinor <= 0) return c.json({ error: "Certificate has no price set" }, 400);
+
+    // Determine which currency and price to use
+    const chargeCurrency = (requestedCurrency === "USD") ? "USD" : "NGN";
+    const chargeAmount = chargeCurrency === "USD"
+      ? (certificate.certificatePriceUSDMinor || 0)
+      : (certificate.certificatePriceMinor || 0);
+
+    if (!chargeAmount || chargeAmount <= 0) {
+      return c.json({ error: `Certificate has no ${chargeCurrency} price set` }, 400);
+    }
 
     // Resolve sellerId from the certificate's organization owner
     let sellerId: string | null = null;
@@ -8617,9 +8626,6 @@ app.post("/make-server-a611b057/monetization/payments/initialize-certificate", a
     if (!secret) return c.json({ error: "Payment system not configured" }, 503);
 
     const reference = generateTxnRef();
-    // Use student's chosen currency/amount if provided, otherwise fall back to certificate defaults
-    const chargeCurrency = (overrideCurrency && ["NGN", "USD"].includes(overrideCurrency)) ? overrideCurrency : (certificate.certificateCurrency || "NGN");
-    const chargeAmount = (overrideAmountMinor && overrideAmountMinor > 0) ? Math.round(overrideAmountMinor) : certificate.certificatePriceMinor;
     const callbackUrl = `${Deno.env.get("APP_PUBLIC_URL") || "https://certifyer.online"}/#/payment/verify?ref=${reference}`;
 
     const paystackRes = await fetch("https://api.paystack.co/transaction/initialize", {

@@ -86,8 +86,9 @@ interface CertificateData {
   restrictDownload?: boolean; // NEW: Whether downloads are restricted
   allowedEmails?: string[]; // NEW: List of allowed student emails
   monetizationEnabled?: boolean; // NEW: Whether payment is required
-  certificatePriceMinor?: number; // NEW: Price in kobo (minor denomination)
-  certificateCurrency?: string; // NEW: Currency (e.g., NGN)
+  certificatePriceMinor?: number; // NEW: Price in kobo (NGN)
+  certificatePriceUSDMinor?: number; // NEW: Price in cents (USD)
+  certificateCurrency?: string; // legacy field kept for compatibility
   paymentStatus?: string; // NEW: Payment status (paid/unpaid)
   themeColors?: any; // Theme colors
 }
@@ -284,6 +285,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
             completionDate: new Date().toISOString(),
             monetizationEnabled: true,
             certificatePriceMinor: cert.certificatePriceMinor,
+            certificatePriceUSDMinor: cert.certificatePriceUSDMinor,
             certificateCurrency: cert.certificateCurrency,
             paymentStatus: "unpaid",
           };
@@ -345,8 +347,9 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
             restrictDownload: cert.restrictDownload || false, // Download restriction flag
             allowedEmails: cert.allowedEmails || [], // List of allowed emails
             monetizationEnabled: cert.monetizationEnabled || false, // Payment requirement flag
-            certificatePriceMinor: cert.certificatePriceMinor || 0, // Price in kobo
-            certificateCurrency: cert.certificateCurrency || "NGN", // Currency
+            certificatePriceMinor: cert.certificatePriceMinor || 0, // Price in kobo (NGN)
+            certificatePriceUSDMinor: cert.certificatePriceUSDMinor || 0, // Price in cents (USD)
+            certificateCurrency: cert.certificateCurrency || "NGN", // legacy
             paymentStatus: cert.paymentStatus || "unpaid", // Payment status
             themeColors: cert.themeColors, // Theme colors
           };
@@ -1299,10 +1302,10 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
                   <Alert className="mb-2 border-orange-300 bg-orange-50">
                     <DollarSign className="h-4 w-4 text-orange-600" />
                     <AlertDescription className="text-sm text-orange-800">
-                      This certificate requires payment. Price:{" "}
-                      {certificate.certificateCurrency === "USD" ? "$" : "₦"}
-                      {((certificate.certificatePriceMinor || 0) / 100).toFixed(2)}{" "}
-                      {certificate.certificateCurrency || "NGN"}
+                      This certificate requires payment.{" "}
+                      {certificate.certificatePriceMinor ? `₦${((certificate.certificatePriceMinor) / 100).toLocaleString("en-NG", { minimumFractionDigits: 0, maximumFractionDigits: 0 })}` : ""}
+                      {certificate.certificatePriceMinor && certificate.certificatePriceUSDMinor ? " or " : ""}
+                      {certificate.certificatePriceUSDMinor ? `$${((certificate.certificatePriceUSDMinor) / 100).toFixed(2)}` : ""}
                     </AlertDescription>
                   </Alert>
                   {!showRecovery ? (
@@ -1533,7 +1536,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
         paymentType="certificate"
         itemName={courseName}
         priceKobo={certificate.certificatePriceMinor || 0}
-        currency={certificate.certificateCurrency || "NGN"}
+        priceUSDCents={certificate.certificatePriceUSDMinor || 0}
         email={enteredEmail}
         buyerName={enteredName}
         onPaymentComplete={(transactionRef) => {

@@ -3587,6 +3587,21 @@ app.get("/make-server-a611b057/templates", async (c) => {
       organizationId || "all (no filter)",
     );
 
+    // Auto-seed any DEFAULT_TEMPLATES that are missing from KV (self-healing)
+    const existingKeys = new Set(
+      (await kv.getByPrefix("globaltemplate:")).map((t: any) => t?.id).filter(Boolean)
+    );
+    for (const tpl of DEFAULT_TEMPLATES) {
+      if (!existingKeys.has(tpl.id)) {
+        await kv.set(`globaltemplate:${tpl.id}`, {
+          ...tpl,
+          visibility_type: tpl.visibility_type || "public",
+          organization_id: tpl.organization_id || null,
+        });
+        console.log(`✅ Auto-seeded missing template: ${tpl.id}`);
+      }
+    }
+
     // Get all templates with prefix 'globaltemplate:'
     const allTemplates = await kv.getByPrefix("globaltemplate:");
 

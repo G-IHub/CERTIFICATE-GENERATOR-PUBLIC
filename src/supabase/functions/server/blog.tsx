@@ -17,8 +17,8 @@ const generateSlug = (title: string) => {
     .replace(/^-|-$/g, "");
 };
 
-// GET / - Get all blog posts (supports draft and published)
-app.get("/", async (c) => {
+// Shared handler for GET all posts (handles both / and no-slash via router)
+const getAllPosts = async (c: any) => {
   try {
     const posts = await kv.getByPrefix("blog:post:");
     // Sort descending by created_at
@@ -30,7 +30,11 @@ app.get("/", async (c) => {
   } catch (error) {
     return c.json({ error: String(error) }, 500);
   }
-});
+};
+
+// GET / and GET "" - Get all blog posts (supports draft and published)
+app.get("/", getAllPosts);
+app.get("", getAllPosts);
 
 // GET /published - Get all published blog posts
 app.get("/published", async (c) => {
@@ -63,8 +67,8 @@ app.get("/:id", async (c) => {
   }
 });
 
-// POST / - Create a new blog post
-app.post("/", async (c) => {
+// Shared handler for POST new post
+const createPost = async (c: any) => {
   try {
     const data = await c.req.json();
 
@@ -91,7 +95,11 @@ app.post("/", async (c) => {
   } catch (error) {
     return c.json({ error: String(error) }, 500);
   }
-});
+};
+
+// POST / and POST "" - Create a new blog post
+app.post("/", createPost);
+app.post("", createPost);
 
 // PUT /:id - Update an existing blog post
 app.put("/:id", async (c) => {

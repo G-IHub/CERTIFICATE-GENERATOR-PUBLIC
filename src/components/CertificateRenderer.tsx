@@ -37,6 +37,11 @@ import CertificateTemplate36 from "./templates/CertificateTemplate36";
 import CertificateTemplate37 from "./templates/CertificateTemplate37";
 import CertificateTemplate38 from "./templates/CertificateTemplate38";
 import CertificateTemplate39 from "./templates/CertificateTemplate39";
+import CertificateTemplate40 from "./templates/CertificateTemplate40";
+import CertificateTemplate41 from "./templates/CertificateTemplate41";
+import CertificateTemplate42 from "./templates/CertificateTemplate42";
+import CertificateTemplate43 from "./templates/CertificateTemplate43";
+import CertificateTemplate44 from "./templates/CertificateTemplate44";
 import type { Logo } from "../App";
 import type { ThemeColors } from "../types/theme";
 
@@ -236,6 +241,21 @@ export default function CertificateRenderer({
 
     case "39":
       return <CertificateTemplate39 {...templateProps} />;
+
+    case "40":
+      return <CertificateTemplate40 {...templateProps} />;
+
+    case "41":
+      return <CertificateTemplate41 {...templateProps} />;
+
+    case "42":
+      return <CertificateTemplate42 {...templateProps} />;
+
+    case "43":
+      return <CertificateTemplate43 {...templateProps} />;
+
+    case "44":
+      return <CertificateTemplate44 {...templateProps} />;
 
     // All other template IDs fall back to Template 1
     default:

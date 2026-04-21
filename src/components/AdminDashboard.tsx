@@ -778,6 +778,8 @@ export default function AdminDashboard({
     // Store template ID
     setGenSelectedTemplate(template.id);
     setGenSelectedTemplateName(template.name);
+    // Reset theme colors when switching templates so the new template shows its own defaults
+    setGenThemeColors(undefined);
 
     // For custom templates, store the full config
     if (template.type === "custom" && template.config) {
@@ -826,6 +828,7 @@ export default function AdminDashboard({
     // Optionally navigate to generate tab with this template pre-selected
     setGenSelectedTemplate(template.id);
     setGenSelectedTemplateName(template.name);
+    setGenThemeColors(undefined); // Reset theme when switching templates
 
     if (template.type === "custom" && template.config) {
       setGenCustomTemplateConfig(template.config);
@@ -3286,6 +3289,7 @@ export default function AdminDashboard({
                                                 genSelectedSignatories[1],
                                             )?.signatureUrl
                                           }
+                                          themeColors={genThemeColors}
                                         />
                                       </PreviewWrapper>
                                     </div>
@@ -3454,6 +3458,7 @@ export default function AdminDashboard({
                     // Store selected template for certificate generation
                     setGenSelectedTemplate(template.id);
                     setGenSelectedTemplateName(template.name);
+                    setGenThemeColors(undefined); // Reset theme when switching templates
                     if (!template.isDefault) {
                       setGenCustomTemplateConfig(template.config);
                     } else {

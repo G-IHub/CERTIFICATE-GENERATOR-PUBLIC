@@ -204,7 +204,7 @@ export const blogService = {
     }
   },
 
-  // Upload image as base64
+  // Upload image to Supabase Storage via backend
   uploadImage: async (file: File): Promise<string> => {
     try {
       // Validate file
@@ -216,18 +216,24 @@ export const blogService = {
         throw new Error('File must be an image');
       }
 
-      // Convert to base64
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = () => {
-          const base64 = reader.result as string;
-          resolve(base64);
-        };
-        reader.onerror = () => {
-          reject(new Error('Failed to read image file'));
-        };
-        reader.readAsDataURL(file);
+      const formData = new FormData();
+      formData.append('file', file);
+
+      const response = await fetch(`${API_BASE}/blog/upload-image`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${publicAnonKey}`,
+        },
+        body: formData,
       });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || 'Failed to upload image');
+      }
+
+      const result = await response.json();
+      return result.url;
     } catch (error: any) {
       console.error('Failed to upload image:', error);
       throw error;

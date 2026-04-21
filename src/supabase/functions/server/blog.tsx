@@ -40,7 +40,17 @@ app.get("", getAllPosts);
 app.get("/published", async (c) => {
   try {
     const allPosts = await kv.getByPrefix("blog:post:");
-    const posts = allPosts.filter((p: any) => p.status === "published");
+    const posts = allPosts
+      .filter((p: any) => p.status === "published")
+      .map((p: any) => {
+        // Sanitize large base64 images that might crash the frontend
+        if (p.featured_image && p.featured_image.startsWith("data:image") && p.featured_image.length > 50000) {
+          console.log(`⚠️ Truncating massive base64 image for post: ${p.id}`);
+          return { ...p, featured_image: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800&h=400&fit=crop" };
+        }
+        return p;
+      });
+
     posts.sort(
       (a: any, b: any) =>
         new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
@@ -151,6 +161,47 @@ app.delete("/:id", async (c) => {
 
     return c.json({ success: true, message: "Blog post deleted successfully" });
   } catch (error) {
+    return c.json({ error: String(error) }, 500);
+  }
+});
+
+// POST /upload-image - Upload an image to Supabase Storage
+app.post("/upload-image", async (c) => {
+  try {
+    const formData = await c.req.formData();
+    const file = formData.get("file") as File;
+
+    if (!file) {
+      return c.json({ error: "No file provided" }, 400);
+    }
+
+    const supabase = createClient(
+      Deno.env.get("SUPABASE_URL")!,
+      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
+    );
+
+    const fileName = `${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.]/g, "_")}`;
+    const filePath = `post-images/${fileName}`;
+
+    const { data, error } = await supabase.storage
+      .from("blog-images")
+      .upload(filePath, file, {
+        contentType: file.type,
+      });
+
+    if (error) {
+      console.error("Storage upload error:", error);
+      return c.json({ error: error.message }, 500);
+    }
+
+    // Get public URL
+    const {
+      data: { publicUrl },
+    } = supabase.storage.from("blog-images").getPublicUrl(filePath);
+
+    return c.json({ url: publicUrl });
+  } catch (error) {
+    console.error("Upload handler error:", error);
     return c.json({ error: String(error) }, 500);
   }
 });

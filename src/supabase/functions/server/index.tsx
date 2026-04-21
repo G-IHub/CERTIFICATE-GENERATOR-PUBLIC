@@ -95,17 +95,13 @@ app.get("/make-server-a611b057", (c) => {
   return c.json({
     status: "online",
     message: "Certificate Generator API",
-    version: "1.0.0",
-    timestamp: new Date().toISOString(),
     endpoints: {
-      health: "/make-server-a611b057/health",
-      auth: "/make-server-a611b057/auth/*",
-      organizations: "/make-server-a611b057/organizations/*",
-      programs: "/make-server-a611b057/programs/*",
-      certificates: "/make-server-a611b057/certificates/*",
-    },
+      health: "/make-server-a611b057",
+    }
   });
 });
+
+// Health check endpoint - must be before auth routes and doesn't require authentication
 
 // Health check endpoint - must be before auth routes and doesn't require authentication
 app.options("/make-server-a611b057/health", (c) => {
@@ -8176,348 +8172,23 @@ app.get("/make-server-a611b057/admin/tracking-data", async (c) => {
     console.log(
       `✅ Tracking data generated for ${trackingData.length} organizations`,
     );
-    console.log(
-      `📊 Total downloads across all orgs: ${trackingData.reduce((sum, org) => sum + org.totalDownloads, 0)}`,
-    );
-    console.log(
-      `⏱️ Total time across all orgs: ${trackingData.reduce((sum, org) => sum + org.totalTimeSeconds, 0)} seconds`,
-    );
 
     return c.json({
       trackingData,
     });
   } catch (error) {
     console.error("❌ Error fetching tracking data:", error);
-    // Log the full error stack for debugging
-    if (error instanceof Error) {
-      console.error("Error stack:", error.stack);
-      console.error("Error message:", error.message);
-    }
     return c.json(
       {
         error: `Server error fetching tracking data: ${error}`,
-        trackingData: [], // Return empty array so frontend doesn't crash
+        trackingData: [],
       },
       500,
     );
   }
 });
 
-// ==================== BLOG ROUTES ====================
-// All blog posts are fetched from WordPress.com
-// WordPress URL: https://blogcertifyer.wordpress.com
 
-// WordPress API Configuration
-const WORDPRESS_API_BASE =
-  "https://public-api.wordpress.com/wp/v2/sites/blogcertifyer.wordpress.com";
-
-// Helper function to fetch from WordPress with timeout
-async function fetchFromWordPress(endpoint: string, timeout = 10000) {
-  const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), timeout);
-
-  try {
-    const response = await fetch(`${WORDPRESS_API_BASE}${endpoint}`, {
-      method: "GET",
-      signal: controller.signal,
-    });
-    clearTimeout(timeoutId);
-    return response;
-  } catch (error) {
-    clearTimeout(timeoutId);
-    throw error;
-  }
-}
-
-// Helper function to decode HTML entities from WordPress
-function decodeHtmlEntities(text: string) {
-  return text
-    .replace(/&nbsp;/g, " ") // non-breaking space
-    .replace(/&#160;/g, " ") // non-breaking space (numeric)
-    .replace(/&#8211;/g, "-") // en-dash
-    .replace(/&#8212;/g, "-") // em-dash
-    .replace(/&#8216;/g, "'") // left single quote
-    .replace(/&#8217;/g, "'") // right single quote/apostrophe
-    .replace(/&#8220;/g, '"') // left double quote
-    .replace(/&#8221;/g, '"') // right double quote
-    .replace(/&#8230;/g, "...") // ellipsis
-    .replace(/&amp;/g, "&") // ampersand
-    .replace(/&lt;/g, "<") // less than
-    .replace(/&gt;/g, ">") // greater than
-    .replace(/&quot;/g, '"') // quote
-    .replace(/&#(\d+);/g, (match, dec) => String.fromCharCode(dec)); // numeric entities
-}
-
-// Helper function to map WordPress post to our format
-function mapWordPressPost(wp: any) {
-  const featuredImage = wp._embedded?.["wp:featuredmedia"]?.[0]?.source_url;
-  const defaultImage =
-    "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800&h=400&fit=crop";
-  const authorName = wp._embedded?.["author"]?.[0]?.name || "Certifyer Team";
-
-  // Log original title for debugging
-  console.log("🔍 Original WordPress title:", wp.title.rendered);
-  const decodedTitle = decodeHtmlEntities(wp.title.rendered);
-  console.log("✨ Decoded title:", decodedTitle);
-
-  return {
-    id: `wp-${wp.id}`,
-    title: decodedTitle,
-    excerpt: decodeHtmlEntities(wp.excerpt.rendered.replace(/<[^>]*>/g, "")), // Strip HTML then decode
-    content: wp.content.rendered,
-    image: featuredImage || defaultImage,
-    author: authorName,
-    date: wp.date,
-    status: "published",
-    createdAt: wp.date,
-    updatedAt: wp.modified,
-    source: "wordpress",
-  };
-}
-
-// Get all published blogs (public endpoint - no auth required)
-app.get("/make-server-a611b057/blogs/published", async (c) => {
-  try {
-    console.log("📚 Fetching all published blogs from WordPress...");
-
-    const response = await fetchFromWordPress("/posts?_embed&per_page=100");
-
-    if (!response.ok) {
-      console.error(`❌ WordPress API error: ${response.status}`);
-      return c.json({
-        blogs: [],
-        success: true,
-        message: "No posts available at this time",
-      });
-    }
-
-    const posts = await response.json();
-    const blogs = posts.map(mapWordPressPost);
-
-    // Sort by date (newest first)
-    blogs.sort(
-      (a: any, b: any) =>
-        new Date(b.date).getTime() - new Date(a.date).getTime(),
-    );
-
-    console.log(`✅ Found ${blogs.length} published blogs from WordPress`);
-
-    return c.json({
-      blogs,
-      success: true,
-    });
-  } catch (error: any) {
-    console.error("❌ Error fetching published blogs from WordPress:", error);
-    return c.json({
-      blogs: [],
-      success: true,
-      message: "No posts available at this time",
-    });
-  }
-});
-
-
-
-
-// Get all blogs (admin only - includes drafts)
-app.get("/make-server-a611b057/blogs", async (c) => {
-  try {
-    const { user, error } = await verifyUser(c.req.header("Authorization"));
-    if (error) {
-      return c.json({ message: error }, 401);
-    }
-
-    console.log(`📚 Fetching all blogs for admin user: ${user.email}`);
-    console.log(
-      "ℹ️ Note: Blog management is done on WordPress: https://blogcertifyer.wordpress.com/wp-admin",
-    );
-
-    // For now, return the same as published (WordPress API doesn't expose drafts without auth)
-    const response = await fetchFromWordPress("/posts?_embed&per_page=100");
-
-    if (!response.ok) {
-      console.error(`❌ WordPress API error: ${response.status}`);
-      return c.json({
-        blogs: [],
-        success: true,
-      });
-    }
-
-    const posts = await response.json();
-    const blogs = posts.map(mapWordPressPost);
-
-    // Sort by date (newest first)
-    blogs.sort(
-      (a: any, b: any) =>
-        new Date(b.date).getTime() - new Date(a.date).getTime(),
-    );
-
-    console.log(`✅ Found ${blogs.length} total blogs from WordPress`);
-
-    return c.json({
-      blogs,
-      success: true,
-    });
-  } catch (error: any) {
-    console.error("❌ Error fetching blogs from WordPress:", error);
-    return c.json({
-      blogs: [],
-      success: true,
-    });
-  }
-});
-
-// Get single blog by ID (public endpoint)
-app.get("/make-server-a611b057/blogs/:id", async (c) => {
-  try {
-    const blogId = c.req.param("id");
-    console.log(`📖 Fetching blog: ${blogId}`);
-
-    // WordPress posts have 'wp-' prefix
-    if (!blogId.startsWith("wp-")) {
-      return c.json({ message: "Invalid blog post ID" }, 404);
-    }
-
-    const wpId = blogId.replace("wp-", "");
-    const response = await fetchFromWordPress(`/posts/${wpId}?_embed`);
-
-    if (!response.ok) {
-      console.error(`❌ WordPress API error: ${response.status}`);
-      return c.json({ message: "Blog not found" }, 404);
-    }
-
-    const post = await response.json();
-    const blog = mapWordPressPost(post);
-
-    console.log(`✅ Blog found: ${blog.title}`);
-
-    return c.json({
-      blog,
-      success: true,
-    });
-  } catch (error: any) {
-    console.error("❌ Error fetching blog from WordPress:", error);
-    return c.json({ message: "Blog not found" }, 404);
-  }
-});
-
-// Create new blog - Redirects to WordPress
-app.post("/make-server-a611b057/blogs", async (c) => {
-  try {
-    const { user, error } = await verifyUser(c.req.header("Authorization"));
-    if (error) {
-      return c.json({ message: error }, 401);
-    }
-
-    console.log(
-      `⚠️ Blog creation attempted by ${user.email} - redirecting to WordPress`,
-    );
-
-    return c.json(
-      {
-        message: "Please create blog posts directly on WordPress.com",
-        wordpressUrl: "https://blogcertifyer.wordpress.com/wp-admin",
-        success: false,
-      },
-      400,
-    );
-  } catch (error: any) {
-    console.error("❌ Error in blog creation:", error);
-    return c.json(
-      { message: "Failed to create blog", error: error.message },
-      500,
-    );
-  }
-});
-
-// Update blog - Redirects to WordPress
-app.put("/make-server-a611b057/blogs/:id", async (c) => {
-  try {
-    const { user, error } = await verifyUser(c.req.header("Authorization"));
-    if (error) {
-      return c.json({ message: error }, 401);
-    }
-
-    const blogId = c.req.param("id");
-    console.log(
-      `⚠️ Blog update attempted by ${user.email} for ${blogId} - redirecting to WordPress`,
-    );
-
-    return c.json(
-      {
-        message: "Please edit blog posts directly on WordPress.com",
-        wordpressUrl: "https://blogcertifyer.wordpress.com/wp-admin",
-        success: false,
-      },
-      400,
-    );
-  } catch (error: any) {
-    console.error("❌ Error in blog update:", error);
-    return c.json(
-      { message: "Failed to update blog", error: error.message },
-      500,
-    );
-  }
-});
-
-// Delete blog - Redirects to WordPress
-app.delete("/make-server-a611b057/blogs/:id", async (c) => {
-  try {
-    const { user, error } = await verifyUser(c.req.header("Authorization"));
-    if (error) {
-      return c.json({ message: error }, 401);
-    }
-
-    const blogId = c.req.param("id");
-    console.log(
-      `⚠️ Blog deletion attempted by ${user.email} for ${blogId} - redirecting to WordPress`,
-    );
-
-    return c.json(
-      {
-        message: "Please delete blog posts directly on WordPress.com",
-        wordpressUrl: "https://blogcertifyer.wordpress.com/wp-admin",
-        success: false,
-      },
-      400,
-    );
-  } catch (error: any) {
-    console.error("❌ Error in blog deletion:", error);
-    return c.json(
-      { message: "Failed to delete blog", error: error.message },
-      500,
-    );
-  }
-});
-
-// Upload blog image - Redirects to WordPress
-app.post("/make-server-a611b057/blogs/upload-image", async (c) => {
-  try {
-    const { user, error } = await verifyUser(c.req.header("Authorization"));
-    if (error) {
-      return c.json({ message: error }, 401);
-    }
-
-    console.log(
-      `⚠️ Blog image upload attempted by ${user.email} - redirecting to WordPress`,
-    );
-
-    return c.json(
-      {
-        message: "Please upload images directly on WordPress.com",
-        wordpressUrl: "https://blogcertifyer.wordpress.com/wp-admin",
-        success: false,
-      },
-      400,
-    );
-  } catch (error: any) {
-    console.error("❌ Error in image upload:", error);
-    return c.json(
-      { message: "Failed to upload image", error: error.message },
-      500,
-    );
-  }
-});
 
 // ==================== SEO ROUTES ====================
 

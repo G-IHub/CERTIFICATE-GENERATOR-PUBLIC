@@ -672,7 +672,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
             date={certificate.completionDate}
             recipientName={certificate.studentName || enteredName || "Student"}
             isPreview={false}
-            mode="template-selection"
+            mode="student"
             organizationName={orgData?.name}
             organizationLogo={orgData?.logo}
             organizationLogos={certificate.logos || orgData?.settings?.logos}
@@ -684,6 +684,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
             signatoryTitle2={certificate.signatories?.[1]?.title}
             signatureUrl2={certificate.signatories?.[1]?.signatureUrl}
             themeColors={certificate.themeColors || undefined}
+            certificateId={certificate.id}
           />
         </div>,
       );
@@ -1660,6 +1661,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
                           certificate.signatories?.[1]?.signatureUrl
                         }
                         themeColors={certificate.themeColors || undefined}
+                        certificateId={certificate.id}
                       />
                     </div>
                   </div>

@@ -181,7 +181,7 @@ export const bankApi = {
 // ---- Payments ----
 
 export const certificatePaymentApi = {
-  initialize: (data: { certificateId: string; buyerEmail: string; buyerName: string }): Promise<{ authorizationUrl: string; reference: string }> =>
+  initialize: (data: { certificateId: string; buyerEmail: string; buyerName: string; currency?: string; amountMinor?: number }): Promise<{ authorizationUrl: string; reference: string }> =>
     fetch(`${BASE}/payments/initialize-certificate`, { method: 'POST', headers: headers(''), body: JSON.stringify(data) }).then(handle),
 
   verify: (reference: string): Promise<{ success: boolean; transaction: any; certificateId: string }> =>

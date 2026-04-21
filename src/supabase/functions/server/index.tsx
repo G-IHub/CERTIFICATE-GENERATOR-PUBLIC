@@ -8919,7 +8919,7 @@ app.post("/make-server-a611b057/monetization/payments/verify", async (c) => {
 // Certificate payment — initialize
 app.post("/make-server-a611b057/monetization/payments/initialize-certificate", async (c) => {
   try {
-    const { certificateId, buyerEmail, buyerName } = await c.req.json();
+    const { certificateId, buyerEmail, buyerName, currency: overrideCurrency, amountMinor: overrideAmountMinor } = await c.req.json();
     if (!certificateId || !buyerEmail || !buyerName) return c.json({ error: "certificateId, buyerEmail, and buyerName are required" }, 400);
 
     const certificate = await kv.get(`cert:${certificateId}`) as any;
@@ -8939,31 +8939,33 @@ app.post("/make-server-a611b057/monetization/payments/initialize-certificate", a
     if (!secret) return c.json({ error: "Payment system not configured" }, 503);
 
     const reference = generateTxnRef();
-    const amountKobo = certificate.certificatePriceMinor;
+    // Use student's chosen currency/amount if provided, otherwise fall back to certificate defaults
+    const chargeCurrency = (overrideCurrency && ["NGN", "USD"].includes(overrideCurrency)) ? overrideCurrency : (certificate.certificateCurrency || "NGN");
+    const chargeAmount = (overrideAmountMinor && overrideAmountMinor > 0) ? Math.round(overrideAmountMinor) : certificate.certificatePriceMinor;
     const callbackUrl = `${Deno.env.get("APP_PUBLIC_URL") || "https://certifyer.online"}/#/payment/verify?ref=${reference}`;
 
     const paystackRes = await fetch("https://api.paystack.co/transaction/initialize", {
       method: "POST",
       headers: { Authorization: `Bearer ${secret}`, "Content-Type": "application/json" },
       body: JSON.stringify({
-        email: buyerEmail, amount: amountKobo, reference, callback_url: callbackUrl,
+        email: buyerEmail, amount: chargeAmount, currency: chargeCurrency, reference, callback_url: callbackUrl,
         metadata: { certificateId, certificateTitle: certificate.courseName || certificate.certificateHeader, buyerName, sellerId, type: "certificate" },
       }),
     });
     const paystackData = await paystackRes.json();
     if (!paystackRes.ok || !paystackData.status) return c.json({ error: paystackData.message || "Failed to initialize payment" }, 400);
 
-    const { platformFee, sellerEarning } = calcFees(amountKobo);
+    const { platformFee, sellerEarning } = calcFees(chargeAmount);
     const txn = {
       reference,
       type: "certificate",
       certificateId,
-      sellerId,           // ← now set so seller queries can find it
+      sellerId,
       sellerOrgId,
       productTitle: certificate.courseName || certificate.certificateHeader || "Certificate",
       buyerEmail, buyerName,
-      amountTotal: amountKobo, platformFee, sellerEarning,
-      currency: certificate.certificateCurrency || "NGN",
+      amountTotal: chargeAmount, platformFee, sellerEarning,
+      currency: chargeCurrency,
       status: "pending", paystackRef: reference, createdAt: new Date().toISOString(),
     };
     await kv.set(`txn:${reference}`, txn);

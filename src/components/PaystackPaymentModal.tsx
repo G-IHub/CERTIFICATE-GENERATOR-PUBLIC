@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import { CreditCard, X, Lock, CheckCircle } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { CreditCard, X, Lock, CheckCircle, RefreshCw } from "lucide-react";
 import { toast } from "sonner";
 import { certificatePaymentApi, paymentApi, formatKobo } from "../utils/monetizationApi";
 
 interface PaystackPaymentModalProps {
-  /** The ID of the item being purchased */
   itemId: string;
-  /** "certificate" pays via the certificate endpoint; "product" uses the product endpoint */
   paymentType?: "certificate" | "product";
   itemName: string;
   priceKobo: number;
+  /** Currency the creator set — "NGN" (default) or "USD" */
+  currency?: string;
   email: string;
   buyerName: string;
   onPaymentComplete: (transactionRef: string) => void;
@@ -24,6 +24,7 @@ export default function PaystackPaymentModal({
   paymentType = "certificate",
   itemName,
   priceKobo,
+  currency = "NGN",
   email,
   buyerName,
   onPaymentComplete,
@@ -31,12 +32,41 @@ export default function PaystackPaymentModal({
   certificateId,
   certificateName,
 }: PaystackPaymentModalProps) {
-  // Support legacy prop names
   const resolvedId = itemId || certificateId || "";
   const resolvedName = itemName || certificateName || "";
 
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+
+  // Currency toggle
+  const [selectedCurrency, setSelectedCurrency] = useState(currency);
+  const [exchangeRate, setExchangeRate] = useState<number | null>(null);
+  const [rateLoading, setRateLoading] = useState(false);
+
+  // Amount in selected currency's minor unit
+  const chargeAmountMinor = (() => {
+    if (selectedCurrency === currency) return priceKobo;
+    if (exchangeRate === null) return priceKobo;
+    return Math.round((priceKobo / 100) * exchangeRate * 100);
+  })();
+
+  // Fetch live exchange rate when currency differs from creator's
+  useEffect(() => {
+    if (selectedCurrency === currency) {
+      setExchangeRate(null);
+      return;
+    }
+    setRateLoading(true);
+    fetch(`https://api.frankfurter.app/latest?from=${currency}&to=${selectedCurrency}`)
+      .then((r) => r.json())
+      .then((data) => {
+        const rate = data?.rates?.[selectedCurrency];
+        if (rate) setExchangeRate(rate);
+        else toast.error("Could not fetch exchange rate");
+      })
+      .catch(() => toast.error("Could not fetch exchange rate"))
+      .finally(() => setRateLoading(false));
+  }, [selectedCurrency, currency]);
 
   const handlePay = async () => {
     setLoading(true);
@@ -49,6 +79,8 @@ export default function PaystackPaymentModal({
           certificateId: resolvedId,
           buyerEmail: email,
           buyerName,
+          currency: selectedCurrency,
+          amountMinor: chargeAmountMinor,
         });
         authorizationUrl = result.authorizationUrl;
         reference = result.reference;
@@ -66,7 +98,6 @@ export default function PaystackPaymentModal({
       }
 
       sessionStorage.setItem("pending_payment_ref", reference);
-      // Store current page URL so we can return here after payment
       sessionStorage.setItem("pending_return_url", window.location.href);
       window.location.href = authorizationUrl;
     } catch (e: any) {
@@ -107,14 +138,45 @@ export default function PaystackPaymentModal({
 
         {/* Body */}
         <div className="px-6 py-6 space-y-5">
-          {/* Summary */}
           <div className="bg-gray-50 rounded-xl p-4 space-y-2">
             <p className="text-xs text-gray-500 uppercase tracking-wide font-medium">You are purchasing</p>
             <p className="font-semibold text-gray-900">{resolvedName}</p>
-            <div className="flex items-center justify-between mt-3 pt-3 border-t border-gray-200">
-              <span className="text-sm text-gray-500">Total</span>
-              <span className="text-lg font-bold text-gray-900">{formatKobo(priceKobo)}</span>
+
+            {/* Currency toggle */}
+            <div className="pt-3 border-t border-gray-200">
+              <p className="text-xs text-gray-500 mb-2">Pay in</p>
+              <div className="flex gap-2">
+                {["NGN", "USD"].map((c) => (
+                  <button
+                    key={c}
+                    type="button"
+                    onClick={() => setSelectedCurrency(c)}
+                    className={`flex-1 py-1.5 rounded-lg text-sm font-medium border transition-all ${
+                      selectedCurrency === c
+                        ? "border-indigo-500 bg-indigo-50 text-indigo-700"
+                        : "border-gray-200 text-gray-600 hover:border-gray-300"
+                    }`}
+                  >
+                    {c === "NGN" ? "₦ NGN" : "$ USD"}
+                  </button>
+                ))}
+              </div>
             </div>
+
+            <div className="flex items-center justify-between pt-3 border-t border-gray-200">
+              <span className="text-sm text-gray-500">Total</span>
+              <div className="flex items-center gap-1.5">
+                {rateLoading && <RefreshCw className="w-3.5 h-3.5 text-gray-400 animate-spin" />}
+                <span className="text-lg font-bold text-gray-900">
+                  {rateLoading ? "Converting…" : formatKobo(chargeAmountMinor, selectedCurrency)}
+                </span>
+              </div>
+            </div>
+            {selectedCurrency !== currency && exchangeRate && (
+              <p className="text-xs text-gray-400">
+                Live rate: 1 {currency} = {exchangeRate.toFixed(6)} {selectedCurrency}
+              </p>
+            )}
           </div>
 
           {/* Buyer info */}
@@ -126,7 +188,6 @@ export default function PaystackPaymentModal({
             </div>
           </div>
 
-          {/* Security note */}
           <div className="flex items-center gap-2 text-xs text-gray-400">
             <Lock className="w-3.5 h-3.5 shrink-0" />
             <span>Secure payment powered by Paystack. Your card details are never stored on our servers.</span>
@@ -137,7 +198,7 @@ export default function PaystackPaymentModal({
         <div className="px-6 pb-6 space-y-3">
           <button
             onClick={handlePay}
-            disabled={loading}
+            disabled={loading || rateLoading}
             className="w-full bg-indigo-600 hover:bg-indigo-700 disabled:opacity-60 text-white font-semibold py-3 px-6 rounded-xl transition-colors flex items-center justify-center gap-2"
           >
             {loading ? (
@@ -151,7 +212,7 @@ export default function PaystackPaymentModal({
             ) : (
               <>
                 <CreditCard className="w-4 h-4" />
-                Pay {formatKobo(priceKobo)}
+                Pay {rateLoading ? "…" : formatKobo(chargeAmountMinor, selectedCurrency)}
               </>
             )}
           </button>

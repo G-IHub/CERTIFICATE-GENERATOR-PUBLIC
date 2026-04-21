@@ -1299,8 +1299,10 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
                   <Alert className="mb-2 border-orange-300 bg-orange-50">
                     <DollarSign className="h-4 w-4 text-orange-600" />
                     <AlertDescription className="text-sm text-orange-800">
-                      This certificate requires payment. Price: ₦
-                      {((certificate.certificatePriceMinor || 0) / 100).toFixed(2)}
+                      This certificate requires payment. Price:{" "}
+                      {certificate.certificateCurrency === "USD" ? "$" : "₦"}
+                      {((certificate.certificatePriceMinor || 0) / 100).toFixed(2)}{" "}
+                      {certificate.certificateCurrency || "NGN"}
                     </AlertDescription>
                   </Alert>
                   {!showRecovery ? (
@@ -1531,6 +1533,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
         paymentType="certificate"
         itemName={courseName}
         priceKobo={certificate.certificatePriceMinor || 0}
+        currency={certificate.certificateCurrency || "NGN"}
         email={enteredEmail}
         buyerName={enteredName}
         onPaymentComplete={(transactionRef) => {

@@ -98,8 +98,8 @@ export default function CertificateRenderer({
       }
     : undefined;
 
-  // QR code — only on real certificates (student mode, cert ID present)
-  const showQR = mode === "student" && !!certificateId;
+  // QR code — show whenever a certificateId is provided (real or demo)
+  const showQR = !!certificateId;
   const verifyUrl = showQR
     ? `https://certifyer.online/#/verify/${certificateId}`
     : "";

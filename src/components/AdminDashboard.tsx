@@ -3290,6 +3290,7 @@ export default function AdminDashboard({
                                             )?.signatureUrl
                                           }
                                           themeColors={genThemeColors}
+                                          certificateId="preview-demo"
                                         />
                                       </PreviewWrapper>
                                     </div>

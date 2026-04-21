@@ -35,6 +35,8 @@ import { isTokenExpired, getTokenRemainingTime } from "./utils/tokenUtils";
 import SEOTestPage from "./components/SEOTestPage";
 import SEOHead from "./components/SEOHead";
 import VerificationPage from "./components/VerificationPage";
+import StorefrontPage from "./components/StorefrontPage";
+import ProductAccessPage from "./components/ProductAccessPage";
 
 const defaultOrgLogo = "https://via.placeholder.com/256x256.png?text=Org+Logo";
 
@@ -1003,6 +1005,12 @@ export default function App() {
 
           {/* Certificate verification — public, scannable via QR */}
           <Route path="/verify/:certificateId" element={<VerificationPage />} />
+
+          {/* Digital Products storefront — public */}
+          <Route path="/store/:orgId" element={<StorefrontPage />} />
+
+          {/* Digital Products access page — post-payment */}
+          <Route path="/access/:reference" element={<ProductAccessPage />} />
 
           {/* Default route - Landing Page or Dashboard */}
           <Route

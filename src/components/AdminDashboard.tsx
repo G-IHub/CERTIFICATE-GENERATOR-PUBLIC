@@ -98,6 +98,7 @@ import {
   ChevronUp,
   Sparkles,
   DollarSign,
+  ShoppingBag,
 } from "lucide-react";
 import CertificateTemplate from "./CertificateTemplate";
 import CertificateRenderer from "./CertificateRenderer";
@@ -121,6 +122,7 @@ const TestimonialsView = React.lazy(() => import("./TestimonialsView"));
 const AnalyticsView = React.lazy(() => import("./AnalyticsView"));
 const OrganizationSettings = React.lazy(() => import("./OrganizationSettings"));
 const MonetizationPage = React.lazy(() => import("./MonetizationPage"));
+const DigitalProductsPage = React.lazy(() => import("./DigitalProductsPage"));
 import type { Program, Subsidiary, UserProfile } from "../App";
 import {
   LineChart,
@@ -1638,6 +1640,7 @@ export default function AdminDashboard({
                 id: "monetise",
                 name: "Monetization",
                 icon: CreditCard,
+                badge: null,
               },
               // {
               //   id: "billing",
@@ -1645,9 +1648,16 @@ export default function AdminDashboard({
               //   icon: CreditCard,
               // },
               {
+                id: "digital-products",
+                name: "Digital Products",
+                icon: ShoppingBag,
+                badge: "NEW",
+              },
+              {
                 id: "settings",
                 name: "Settings",
                 icon: Settings,
+                badge: null,
               },
             ].map((item) => {
               const Icon = item.icon;
@@ -1666,7 +1676,14 @@ export default function AdminDashboard({
                     >
                       <Icon className="w-5 h-5 flex-shrink-0" />
                       {!navCollapsed && (
-                        <span className="truncate">{item.name}</span>
+                        <span className="truncate flex items-center gap-1">
+                          {item.name}
+                          {item.badge && (
+                            <span className="bg-indigo-100 text-indigo-700 text-[10px] font-bold px-1.5 py-0.5 rounded-full ml-1">
+                              {item.badge}
+                            </span>
+                          )}
+                        </span>
                       )}
                     </button>
                   </TooltipTrigger>
@@ -3805,6 +3822,15 @@ export default function AdminDashboard({
                     accessToken={accessToken!}
                     isAdmin={false}
                     userId={user?.id}
+                  />
+                </React.Suspense>
+              )}
+
+              {activeTab === "digital-products" && (
+                <React.Suspense fallback={<BillingSkeleton />}>
+                  <DigitalProductsPage
+                    organizationId={currentOrganization?.id}
+                    accessToken={accessToken}
                   />
                 </React.Suspense>
               )}

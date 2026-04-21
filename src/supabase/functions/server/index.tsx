@@ -9243,6 +9243,420 @@ app.post("/make-server-a611b057/monetization/admin/settings", async (c) => {
 });
 
 
+// ==================== DIGITAL PRODUCTS ====================
+// Full digital product marketplace: create, manage, sell, and deliver digital products
+
+const generateProductId = (): string => {
+  const ts = Date.now();
+  const rand = Math.random().toString(36).substring(2, 8).toUpperCase();
+  return `PROD_${ts}_${rand}`;
+};
+
+const generatePurchaseRef = (): string => {
+  const ts = Date.now();
+  const rand = Math.random().toString(36).substring(2, 8).toUpperCase();
+  return `DPP_${ts}_${rand}`;
+};
+
+// Generate a signed Supabase Storage URL
+const getSignedUrl = async (storagePath: string): Promise<string> => {
+  const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
+  const serviceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+  const bucket = "digital-products";
+  const url = `${supabaseUrl}/storage/v1/object/sign/${bucket}/${encodeURIComponent(storagePath)}`;
+  const res = await fetch(url, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${serviceKey}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ expiresIn: 3600 }),
+  });
+  if (!res.ok) return "";
+  const data = await res.json();
+  return `${supabaseUrl}/storage/v1${data.signedURL}`;
+};
+
+// POST /digital-products — create product
+app.post("/make-server-a611b057/digital-products", async (c) => {
+  try {
+    const { user, error } = await verifyUser(c.req.header("Authorization"));
+    if (error) return c.json({ error }, 401);
+
+    const body = await c.req.json();
+    const { orgId, title, description, thumbnailUrl, type, priceNGN, priceUSD, files, links, certificateTemplateId } = body;
+
+    if (!orgId || !title || !type) return c.json({ error: "orgId, title, and type are required" }, 400);
+    if (!["pdf", "video", "bundle"].includes(type)) return c.json({ error: "type must be pdf, video, or bundle" }, 400);
+
+    // Verify org belongs to user
+    const org = await kv.get(`org:${orgId}`) as any;
+    if (!org) return c.json({ error: "Organization not found" }, 404);
+    if (org.ownerId !== user.id) return c.json({ error: "Unauthorized" }, 403);
+
+    const productId = generateProductId();
+    const now = new Date().toISOString();
+
+    const product = {
+      id: productId,
+      orgId,
+      title,
+      description: description || "",
+      thumbnailUrl: thumbnailUrl || null,
+      type,
+      priceNGN: priceNGN || 0,
+      priceUSD: priceUSD || 0,
+      status: "draft",
+      files: files || [],
+      links: links || [],
+      certificateTemplateId: certificateTemplateId || null,
+      createdAt: now,
+      updatedAt: now,
+    };
+
+    await kv.set(`product:${orgId}:${productId}`, product);
+
+    // Update org_products index
+    const existing = (await kv.get(`org_products:${orgId}`) as string[]) || [];
+    if (!existing.includes(productId)) {
+      await kv.set(`org_products:${orgId}`, [...existing, productId]);
+    }
+
+    return c.json({ product }, 201);
+  } catch (e) { return c.json({ error: `Server error: ${e}` }, 500); }
+});
+
+// GET /digital-products — list org's products
+app.get("/make-server-a611b057/digital-products", async (c) => {
+  try {
+    const { user, error } = await verifyUser(c.req.header("Authorization"));
+    if (error) return c.json({ error }, 401);
+
+    const orgId = c.req.query("orgId");
+    if (!orgId) return c.json({ error: "orgId query param required" }, 400);
+
+    // Verify org belongs to user
+    const org = await kv.get(`org:${orgId}`) as any;
+    if (!org) return c.json({ error: "Organization not found" }, 404);
+    if (org.ownerId !== user.id) return c.json({ error: "Unauthorized" }, 403);
+
+    const productIds = (await kv.get(`org_products:${orgId}`) as string[]) || [];
+    const products: any[] = [];
+    for (const pid of productIds) {
+      const p = await kv.get(`product:${orgId}:${pid}`);
+      if (p) products.push(p);
+    }
+
+    return c.json({ products });
+  } catch (e) { return c.json({ error: `Server error: ${e}` }, 500); }
+});
+
+// GET /digital-products/:productId — get single product
+app.get("/make-server-a611b057/digital-products/:productId", async (c) => {
+  try {
+    const { user, error } = await verifyUser(c.req.header("Authorization"));
+    if (error) return c.json({ error }, 401);
+
+    const productId = c.req.param("productId");
+    const orgId = c.req.query("orgId");
+    if (!orgId) return c.json({ error: "orgId query param required" }, 400);
+
+    const org = await kv.get(`org:${orgId}`) as any;
+    if (!org || org.ownerId !== user.id) return c.json({ error: "Unauthorized" }, 403);
+
+    const product = await kv.get(`product:${orgId}:${productId}`);
+    if (!product) return c.json({ error: "Product not found" }, 404);
+
+    return c.json({ product });
+  } catch (e) { return c.json({ error: `Server error: ${e}` }, 500); }
+});
+
+// PUT /digital-products/:productId — update product
+app.put("/make-server-a611b057/digital-products/:productId", async (c) => {
+  try {
+    const { user, error } = await verifyUser(c.req.header("Authorization"));
+    if (error) return c.json({ error }, 401);
+
+    const productId = c.req.param("productId");
+    const body = await c.req.json();
+    const { orgId } = body;
+    if (!orgId) return c.json({ error: "orgId is required" }, 400);
+
+    const org = await kv.get(`org:${orgId}`) as any;
+    if (!org || org.ownerId !== user.id) return c.json({ error: "Unauthorized" }, 403);
+
+    const existing = await kv.get(`product:${orgId}:${productId}`) as any;
+    if (!existing) return c.json({ error: "Product not found" }, 404);
+
+    const updated = { ...existing, ...body, id: productId, orgId, updatedAt: new Date().toISOString() };
+    await kv.set(`product:${orgId}:${productId}`, updated);
+
+    return c.json({ product: updated });
+  } catch (e) { return c.json({ error: `Server error: ${e}` }, 500); }
+});
+
+// DELETE /digital-products/:productId — delete product
+app.delete("/make-server-a611b057/digital-products/:productId", async (c) => {
+  try {
+    const { user, error } = await verifyUser(c.req.header("Authorization"));
+    if (error) return c.json({ error }, 401);
+
+    const productId = c.req.param("productId");
+    const orgId = c.req.query("orgId");
+    if (!orgId) return c.json({ error: "orgId query param required" }, 400);
+
+    const org = await kv.get(`org:${orgId}`) as any;
+    if (!org || org.ownerId !== user.id) return c.json({ error: "Unauthorized" }, 403);
+
+    await kv.delete(`product:${orgId}:${productId}`);
+
+    // Remove from index
+    const ids = (await kv.get(`org_products:${orgId}`) as string[]) || [];
+    await kv.set(`org_products:${orgId}`, ids.filter((id) => id !== productId));
+
+    return c.json({ success: true });
+  } catch (e) { return c.json({ error: `Server error: ${e}` }, 500); }
+});
+
+// POST /digital-products/:productId/publish — toggle published status
+app.post("/make-server-a611b057/digital-products/:productId/publish", async (c) => {
+  try {
+    const { user, error } = await verifyUser(c.req.header("Authorization"));
+    if (error) return c.json({ error }, 401);
+
+    const productId = c.req.param("productId");
+    const { orgId } = await c.req.json();
+    if (!orgId) return c.json({ error: "orgId is required" }, 400);
+
+    const org = await kv.get(`org:${orgId}`) as any;
+    if (!org || org.ownerId !== user.id) return c.json({ error: "Unauthorized" }, 403);
+
+    const product = await kv.get(`product:${orgId}:${productId}`) as any;
+    if (!product) return c.json({ error: "Product not found" }, 404);
+
+    const newStatus = product.status === "published" ? "draft" : "published";
+    const updated = { ...product, status: newStatus, updatedAt: new Date().toISOString() };
+    await kv.set(`product:${orgId}:${productId}`, updated);
+
+    return c.json({ product: updated });
+  } catch (e) { return c.json({ error: `Server error: ${e}` }, 500); }
+});
+
+// GET /store/:orgSlug/products — PUBLIC storefront product listing
+app.get("/make-server-a611b057/store/:orgSlug/products", async (c) => {
+  try {
+    const orgSlug = c.req.param("orgSlug");
+    // For now, orgSlug == orgId (simple approach)
+    const orgId = orgSlug;
+
+    const org = await kv.get(`org:${orgId}`) as any;
+    if (!org) return c.json({ error: "Store not found" }, 404);
+
+    const productIds = (await kv.get(`org_products:${orgId}`) as string[]) || [];
+    const products: any[] = [];
+    for (const pid of productIds) {
+      const p = await kv.get(`product:${orgId}:${pid}`) as any;
+      if (p && p.status === "published") {
+        // Strip encrypted links from public listing
+        const safeProduct = { ...p, links: (p.links || []).map((l: any) => ({ label: l.label })) };
+        products.push(safeProduct);
+      }
+    }
+
+    return c.json({ org: { id: org.id, name: org.name, logo: org.logo, primaryColor: org.primaryColor }, products });
+  } catch (e) { return c.json({ error: `Server error: ${e}` }, 500); }
+});
+
+// GET /store/:orgSlug/products/:productId — PUBLIC single product (no links)
+app.get("/make-server-a611b057/store/:orgSlug/products/:productId", async (c) => {
+  try {
+    const orgSlug = c.req.param("orgSlug");
+    const productId = c.req.param("productId");
+    const orgId = orgSlug;
+
+    const org = await kv.get(`org:${orgId}`) as any;
+    if (!org) return c.json({ error: "Store not found" }, 404);
+
+    const product = await kv.get(`product:${orgId}:${productId}`) as any;
+    if (!product || product.status !== "published") return c.json({ error: "Product not found" }, 404);
+
+    const safeProduct = { ...product, links: (product.links || []).map((l: any) => ({ label: l.label })) };
+    return c.json({ org: { id: org.id, name: org.name, logo: org.logo, primaryColor: org.primaryColor }, product: safeProduct });
+  } catch (e) { return c.json({ error: `Server error: ${e}` }, 500); }
+});
+
+// POST /digital-products/:productId/purchase/initialize — init Paystack payment
+app.post("/make-server-a611b057/digital-products/:productId/purchase/initialize", async (c) => {
+  try {
+    const productId = c.req.param("productId");
+    const { orgId, buyerEmail, buyerName, currency } = await c.req.json();
+
+    if (!orgId || !buyerEmail || !buyerName) return c.json({ error: "orgId, buyerEmail, and buyerName are required" }, 400);
+
+    const product = await kv.get(`product:${orgId}:${productId}`) as any;
+    if (!product) return c.json({ error: "Product not found" }, 404);
+    if (product.status !== "published") return c.json({ error: "Product is not available for purchase" }, 400);
+
+    const secret = await getPaystackKey();
+    if (!secret) return c.json({ error: "Payment system not configured" }, 500);
+
+    const useCurrency = currency === "USD" ? "USD" : "NGN";
+    const amountMinor = useCurrency === "USD" ? product.priceUSD : product.priceNGN;
+    if (!amountMinor || amountMinor <= 0) return c.json({ error: "Product not available in selected currency" }, 400);
+
+    const reference = generatePurchaseRef();
+    const appUrl = Deno.env.get("APP_PUBLIC_URL") || c.req.header("origin") || "https://localhost";
+    const callbackUrl = `${appUrl}/#/access/${reference}`;
+
+    const paystackRes = await fetch("https://api.paystack.co/transaction/initialize", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${secret}`, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: buyerEmail,
+        amount: amountMinor,
+        currency: useCurrency,
+        reference,
+        callback_url: callbackUrl,
+        metadata: { productId, orgId, buyerName, productTitle: product.title },
+      }),
+    });
+
+    const paystackData = await paystackRes.json();
+    if (!paystackRes.ok || !paystackData.status) {
+      return c.json({ error: paystackData.message || "Failed to initialize payment" }, 500);
+    }
+
+    const now = new Date().toISOString();
+    const purchase = {
+      reference,
+      productId,
+      orgId,
+      buyerEmail,
+      buyerName,
+      currency: useCurrency,
+      amountMinor,
+      status: "pending",
+      accessGranted: false,
+      createdAt: now,
+    };
+    await kv.set(`product_purchase:${reference}`, purchase);
+
+    return c.json({ authorizationUrl: paystackData.data.authorization_url, reference });
+  } catch (e) { return c.json({ error: `Server error: ${e}` }, 500); }
+});
+
+// POST /digital-products/purchase/verify — verify payment + grant access
+app.post("/make-server-a611b057/digital-products/purchase/verify", async (c) => {
+  try {
+    const { reference } = await c.req.json();
+    if (!reference) return c.json({ error: "reference is required" }, 400);
+
+    const purchase = await kv.get(`product_purchase:${reference}`) as any;
+    if (!purchase) return c.json({ error: "Purchase not found" }, 404);
+
+    if (purchase.status === "paid") return c.json({ success: true, purchase, alreadyVerified: true });
+
+    const secret = await getPaystackKey();
+    if (!secret) return c.json({ error: "Payment system not configured" }, 500);
+
+    const psRes = await fetch(`https://api.paystack.co/transaction/verify/${reference}`, {
+      headers: { Authorization: `Bearer ${secret}` },
+    });
+    const psData = await psRes.json();
+
+    if (!psRes.ok || !psData.status || psData.data?.status !== "success") {
+      const updatedPurchase = { ...purchase, status: "failed" };
+      await kv.set(`product_purchase:${reference}`, updatedPurchase);
+      return c.json({ success: false, error: "Payment not successful" }, 400);
+    }
+
+    const now = new Date().toISOString();
+    const updatedPurchase = {
+      ...purchase,
+      status: "paid",
+      accessGranted: true,
+      paidAt: now,
+    };
+    await kv.set(`product_purchase:${reference}`, updatedPurchase);
+
+    // Auto-issue certificate if product has certificateTemplateId
+    const product = await kv.get(`product:${purchase.orgId}:${purchase.productId}`) as any;
+    let certificateId: string | null = null;
+    if (product?.certificateTemplateId) {
+      try {
+        certificateId = `cert_dp_${reference}`;
+        const certRecord = {
+          id: certificateId,
+          organizationId: purchase.orgId,
+          templateId: product.certificateTemplateId,
+          recipientName: purchase.buyerName,
+          recipientEmail: purchase.buyerEmail,
+          courseName: product.title,
+          issuedAt: now,
+          source: "digital_product_purchase",
+          purchaseReference: reference,
+        };
+        await kv.set(`certificate:${certificateId}`, certRecord);
+        updatedPurchase.certificateId = certificateId;
+        await kv.set(`product_purchase:${reference}`, updatedPurchase);
+      } catch (_e) { /* cert creation is non-blocking */ }
+    }
+
+    return c.json({ success: true, purchase: updatedPurchase });
+  } catch (e) { return c.json({ error: `Server error: ${e}` }, 500); }
+});
+
+// GET /digital-products/purchase/:reference/access — get access content
+app.get("/make-server-a611b057/digital-products/purchase/:reference/access", async (c) => {
+  try {
+    const reference = c.req.param("reference");
+    const buyerEmail = c.req.query("email");
+
+    if (!buyerEmail) return c.json({ error: "email query param required" }, 400);
+
+    const purchase = await kv.get(`product_purchase:${reference}`) as any;
+    if (!purchase) return c.json({ error: "Purchase not found" }, 404);
+
+    if (purchase.buyerEmail.toLowerCase() !== buyerEmail.toLowerCase()) {
+      return c.json({ error: "Email does not match purchase record" }, 403);
+    }
+
+    if (!purchase.accessGranted || purchase.status !== "paid") {
+      return c.json({ error: "Access not granted. Please complete payment first." }, 403);
+    }
+
+    const product = await kv.get(`product:${purchase.orgId}:${purchase.productId}`) as any;
+    if (!product) return c.json({ error: "Product not found" }, 404);
+
+    const org = await kv.get(`org:${purchase.orgId}`) as any;
+
+    // Generate signed URLs for files
+    const signedFiles: any[] = [];
+    for (const file of (product.files || [])) {
+      const signedUrl = await getSignedUrl(file.storagePath);
+      signedFiles.push({ name: file.name, size: file.size, url: signedUrl });
+    }
+
+    // Return raw links (they're already stored as-is)
+    const links = (product.links || []).map((l: any) => ({ label: l.label, url: l.url }));
+
+    // Certificate info
+    let certificate: any = null;
+    if (purchase.certificateId) {
+      certificate = await kv.get(`certificate:${purchase.certificateId}`);
+    }
+
+    return c.json({
+      purchase: { reference, productId: purchase.productId, buyerName: purchase.buyerName, paidAt: purchase.paidAt },
+      product: { id: product.id, title: product.title, type: product.type, description: product.description },
+      org: org ? { name: org.name, logo: org.logo } : null,
+      files: signedFiles,
+      links,
+      certificate,
+    });
+  } catch (e) { return c.json({ error: `Server error: ${e}` }, 500); }
+});
+
 // ==================== START THE SERVER ====================
 
 console.log("📡 Health endpoint: /make-server-a611b057/health");

@@ -13,10 +13,10 @@ const About: React.FC = () => {
       id: 1,
       text: "Instant generation and delivery of certificates.",
     },
-    // {
-    //   id: 2,
-    //   text: "Monetization through institutional use or certificate-based branding.",
-    // },
+    {
+      id: 2,
+      text: "Monetization of certificates and digital products.",
+    },
     {
       id: 3,
       text: "Analytics for performance and impact tracking.",
@@ -39,6 +39,7 @@ const About: React.FC = () => {
               trackable certificates. Each certificate includes unique IDs,
               shareable URLs, and testimonial collection features, allowing you
               to turn your learners' achievements into brand visibility.
+              You can also turn your certificates and digital products into revenue. Certifyer helps you monetize your certificates and digital products by providing a platform to display your certificates and digital products, track your sales and get paid for your products.
             </p>
           </div>
 

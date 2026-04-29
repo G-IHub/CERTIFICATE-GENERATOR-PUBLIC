@@ -144,10 +144,10 @@ export default function CertificateTemplate6({
                   letterSpacing: "0.1em",
                 }}
               >
-                {header.split(" ")[0]} {header.split(" ")[1]}
+                {header.split(" ")[0]}
               </h1>
               <h2 className="text-xl tracking-widest text-gray-600 uppercase">
-                {header.split(" ")[2]}
+                {header.split(" ")[1]} {" "} {header.split(" ")[2]}
               </h2>
             </div>
           </div>

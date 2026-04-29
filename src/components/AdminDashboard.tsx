@@ -38,6 +38,8 @@ import {
   DialogTitle,
 } from "./ui/dialog";
 import { useIsMobile } from "./ui/use-mobile";
+import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
+import { Calendar as CalendarUI } from "./ui/calendar";
 import { getContrastingTextColor } from "../utils/colorUtils";
 import {
   LayoutDashboard,
@@ -2803,14 +2805,37 @@ export default function AdminDashboard({
                               Completion Date{" "}
                               <span className="text-red-500">*</span>
                             </Label>
-                            <Input
-                              id="genCompletionDateGen"
-                              type="date"
-                              value={genCompletionDate}
-                              onChange={(e) =>
-                                setGenCompletionDate(e.target.value)
-                              }
-                            />
+                            <Popover>
+                              <PopoverTrigger asChild>
+                                <Button
+                                  variant={"outline"}
+                                  className={`w-full justify-start text-left font-normal ${!genCompletionDate ? "text-muted-foreground" : ""}`}
+                                >
+                                  <Calendar className="mr-2 h-4 w-4" />
+                                  {genCompletionDate ? (
+                                    new Date(genCompletionDate).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })
+                                  ) : (
+                                    <span>Pick a date</span>
+                                  )}
+                                </Button>
+                              </PopoverTrigger>
+                              <PopoverContent className="w-auto p-0" align="start">
+                                <CalendarUI
+                                  mode="single"
+                                  selected={genCompletionDate ? new Date(genCompletionDate) : undefined}
+                                  onSelect={(date) => {
+                                    if (date) {
+                                      const offset = date.getTimezoneOffset();
+                                      const adjustedDate = new Date(date.getTime() - (offset * 60 * 1000));
+                                      setGenCompletionDate(adjustedDate.toISOString().split('T')[0]);
+                                    } else {
+                                      setGenCompletionDate("");
+                                    }
+                                  }}
+                                  initialFocus
+                                />
+                              </PopoverContent>
+                            </Popover>
                             <p className="text-xs text-gray-500">
                               The date when the program was completed
                             </p>
@@ -2829,10 +2854,10 @@ export default function AdminDashboard({
                                   setShowAllEmails(false); // Reset show all state
                                 }
                               }}
-                              className={`w-full flex items-center justify-between p-4 rounded-xl border-2 transition-all duration-200 text-left cursor-pointer ${
+                              className={`w-full flex items-center justify-between p-4 rounded-md border transition-all duration-200 text-left cursor-pointer ${
                                 genRestrictDownload
-                                  ? "shadow-sm"
-                                  : "border-gray-200 bg-white hover:border-gray-300 shadow-sm hover:shadow"
+                                  ? ""
+                                  : "border-gray-200 bg-white hover:border-gray-300"
                               }`}
                               style={genRestrictDownload ? { borderColor: "var(--primary)", backgroundColor: "color-mix(in srgb, var(--primary) 10%, transparent)" } : {}}
                             >
@@ -3171,10 +3196,10 @@ export default function AdminDashboard({
                                   setGenMonetizationPriceUSD("");
                                 }
                               }}
-                              className={`w-full flex items-center justify-between p-4 rounded-xl border-2 transition-all duration-200 text-left cursor-pointer ${
+                              className={`w-full flex items-center justify-between p-4 rounded-md border transition-all duration-200 text-left cursor-pointer ${
                                 genMonetizationEnabled
-                                  ? "shadow-sm"
-                                  : "border-gray-200 bg-white hover:border-gray-300 shadow-sm hover:shadow"
+                                  ? ""
+                                  : "border-gray-200 bg-white hover:border-gray-300"
                               }`}
                               style={genMonetizationEnabled ? { borderColor: "var(--primary)", backgroundColor: "color-mix(in srgb, var(--primary) 10%, transparent)" } : {}}
                             >
@@ -3969,8 +3994,8 @@ export default function AdminDashboard({
                 </p>
               </div>
               <p className="text-sm md:text-base">
-                Empowering educators to create and manage certificates with
-                ease.
+                Empowering educators to create, manage and monetize
+                certificates with ease.
               </p>
             </div>
           </footer>

@@ -2818,43 +2818,60 @@ export default function AdminDashboard({
 
                           {/* Restricted Certificate Downloads Feature */}
                           <div className="space-y-4 pt-4 border-t">
-                            <div className="flex items-start gap-3">
-                              <div className="flex items-center gap-2 flex-1">
-                                <Shield className="w-5 h-5 text-orange-600" />
-                                <div className="flex-1">
-                                  <Label className="text-base font-medium">
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setGenRestrictDownload(!genRestrictDownload);
+                                if (genRestrictDownload) {
+                                  // Clear emails when disabling
+                                  setGenAllowedEmails([]);
+                                  setGenEmailInput("");
+                                  setShowAllEmails(false); // Reset show all state
+                                }
+                              }}
+                              className={`w-full flex items-center justify-between p-4 rounded-xl border-2 transition-all duration-200 text-left cursor-pointer ${
+                                genRestrictDownload
+                                  ? "shadow-sm"
+                                  : "border-gray-200 bg-white hover:border-gray-300 shadow-sm hover:shadow"
+                              }`}
+                              style={genRestrictDownload ? { borderColor: "var(--primary)", backgroundColor: "color-mix(in srgb, var(--primary) 10%, transparent)" } : {}}
+                            >
+                              <div className="flex items-center gap-4">
+                                <div 
+                                  className={`p-2.5 rounded-full transition-colors ${!genRestrictDownload ? 'bg-gray-100' : ''}`}
+                                  style={genRestrictDownload ? { backgroundColor: "color-mix(in srgb, var(--primary) 20%, transparent)" } : {}}
+                                >
+                                  <Shield 
+                                    className={`w-5 h-5 ${!genRestrictDownload ? 'text-gray-500' : ''}`}
+                                    style={genRestrictDownload ? { color: "var(--primary)" } : {}}
+                                  />
+                                </div>
+                                <div>
+                                  <h4 
+                                    className={`text-base font-semibold transition-colors ${!genRestrictDownload ? 'text-gray-900' : ''}`}
+                                    style={genRestrictDownload ? { color: "var(--primary)" } : {}}
+                                  >
                                     Restrict Certificate Downloads
-                                  </Label>
-                                  <p className="text-xs text-gray-500 mt-1">
-                                    Only allow specific email addresses to
-                                    download certificates
+                                  </h4>
+                                  <p className="text-xs text-gray-500 mt-0.5">
+                                    Only allow specific email addresses to download certificates
                                   </p>
                                 </div>
                               </div>
-                              <Button
-                                type="button"
-                                variant={
-                                  genRestrictDownload ? "default" : "outline"
-                                }
-                                size="sm"
-                                onClick={() => {
-                                  setGenRestrictDownload(!genRestrictDownload);
-                                  if (genRestrictDownload) {
-                                    // Clear emails when disabling
-                                    setGenAllowedEmails([]);
-                                    setGenEmailInput("");
-                                    setShowAllEmails(false); // Reset show all state
-                                  }
-                                }}
-                                className={
-                                  genRestrictDownload
-                                    ? "bg-orange-600 hover:bg-orange-700"
-                                    : ""
-                                }
+                              
+                              <div
+                                className={`relative inline-flex h-6 w-11 flex-shrink-0 rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out ${
+                                  !genRestrictDownload ? "bg-gray-200" : ""
+                                }`}
+                                style={genRestrictDownload ? { backgroundColor: "var(--primary)" } : {}}
                               >
-                                {genRestrictDownload ? "Enabled" : "Disabled"}
-                              </Button>
-                            </div>
+                                <span
+                                  className={`pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out ${
+                                    genRestrictDownload ? "translate-x-5" : "translate-x-0"
+                                  }`}
+                                />
+                              </div>
+                            </button>
 
                             {genRestrictDownload && (
                               <div className="pl-8 space-y-3">
@@ -3145,30 +3162,58 @@ export default function AdminDashboard({
 
                           {/* Monetization */}
                           <div className="space-y-3 pt-4 border-t">
-                            <div className="flex items-start gap-3">
-                              <div className="flex items-center gap-2 flex-1">
-                                <DollarSign className="w-5 h-5 text-indigo-600" />
-                                <div className="flex-1">
-                                  <Label className="text-base font-medium">Monetize this certificate</Label>
-                                  <p className="text-xs text-gray-500 mt-1">Require payment before students can access and download</p>
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setGenMonetizationEnabled(!genMonetizationEnabled);
+                                if (genMonetizationEnabled) {
+                                  setGenMonetizationPrice("");
+                                  setGenMonetizationPriceUSD("");
+                                }
+                              }}
+                              className={`w-full flex items-center justify-between p-4 rounded-xl border-2 transition-all duration-200 text-left cursor-pointer ${
+                                genMonetizationEnabled
+                                  ? "shadow-sm"
+                                  : "border-gray-200 bg-white hover:border-gray-300 shadow-sm hover:shadow"
+                              }`}
+                              style={genMonetizationEnabled ? { borderColor: "var(--primary)", backgroundColor: "color-mix(in srgb, var(--primary) 10%, transparent)" } : {}}
+                            >
+                              <div className="flex items-center gap-4">
+                                <div 
+                                  className={`p-2.5 rounded-full transition-colors ${!genMonetizationEnabled ? 'bg-gray-100' : ''}`}
+                                  style={genMonetizationEnabled ? { backgroundColor: "color-mix(in srgb, var(--primary) 20%, transparent)" } : {}}
+                                >
+                                  <DollarSign 
+                                    className={`w-5 h-5 ${!genMonetizationEnabled ? 'text-gray-500' : ''}`}
+                                    style={genMonetizationEnabled ? { color: "var(--primary)" } : {}}
+                                  />
+                                </div>
+                                <div>
+                                  <h4 
+                                    className={`text-base font-semibold transition-colors ${!genMonetizationEnabled ? 'text-gray-900' : ''}`}
+                                    style={genMonetizationEnabled ? { color: "var(--primary)" } : {}}
+                                  >
+                                    Monetize this certificate
+                                  </h4>
+                                  <p className="text-xs text-gray-500 mt-0.5">
+                                    Require payment before students can access and download
+                                  </p>
                                 </div>
                               </div>
-                              <Button
-                                type="button"
-                                variant={genMonetizationEnabled ? "default" : "outline"}
-                                size="sm"
-                                onClick={() => {
-                                  setGenMonetizationEnabled(!genMonetizationEnabled);
-                                  if (genMonetizationEnabled) {
-                                    setGenMonetizationPrice("");
-                                    setGenMonetizationPriceUSD("");
-                                  }
-                                }}
-                                className={genMonetizationEnabled ? "bg-indigo-600 hover:bg-indigo-700" : ""}
+                              
+                              <div
+                                className={`relative inline-flex h-6 w-11 flex-shrink-0 rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out ${
+                                  !genMonetizationEnabled ? "bg-gray-200" : ""
+                                }`}
+                                style={genMonetizationEnabled ? { backgroundColor: "var(--primary)" } : {}}
                               >
-                                {genMonetizationEnabled ? "Enabled" : "Disabled"}
-                              </Button>
-                            </div>
+                                <span
+                                  className={`pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out ${
+                                    genMonetizationEnabled ? "translate-x-5" : "translate-x-0"
+                                  }`}
+                                />
+                              </div>
+                            </button>
 
                             {genMonetizationEnabled && (
                               <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-4 space-y-3">

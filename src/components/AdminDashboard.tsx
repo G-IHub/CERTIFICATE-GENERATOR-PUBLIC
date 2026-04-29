@@ -1640,19 +1640,19 @@ export default function AdminDashboard({
                 id: "monetise",
                 name: "Monetization",
                 icon: CreditCard,
-                badge: null,
+                badge: "NEW",
               },
               // {
               //   id: "billing",
               //   name: "Billing",
               //   icon: CreditCard,
               // },
-              {
-                id: "digital-products",
-                name: "Digital Products",
-                icon: ShoppingBag,
-                badge: "NEW",
-              },
+              // {
+              //   id: "digital-products",
+              //   name: "Digital Products",
+              //   icon: ShoppingBag,
+              //   badge: "NEW",
+              // },
               {
                 id: "settings",
                 name: "Settings",

@@ -8,6 +8,9 @@ import {
   useLocation,
 } from "react-router";
 import LandingPage from "./components/LandingPage";
+import Story from "./components/Story";
+import Privacy from "./components/Privacy";
+import Terms from "./components/Terms";
 import PaymentVerifyPage from "./components/PaymentVerifyPage";
 import InvoicePage from "./components/InvoicePage";
 import AuthPage from "./components/AuthPage";
@@ -115,6 +118,17 @@ export type {
 };
 
 export type Subsidiary = Organization;
+
+// Scroll to top component to fix navigation positioning
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
 
 // Password Reset Redirect Component
 function PasswordResetRedirect() {
@@ -709,6 +723,7 @@ export default function App() {
 
   return (
     <Router>
+      <ScrollToTop />
       {/* SEO Meta Tags */}
       <SEOHead />
 
@@ -1011,6 +1026,15 @@ export default function App() {
 
           {/* Digital Products access page — post-payment */}
           <Route path="/access/:reference" element={<ProductAccessPage />} />
+
+          {/* Story page */}
+          <Route path="/story" element={<Story />} />
+
+          {/* Privacy Page */}
+          <Route path="/privacy" element={<Privacy />} />
+
+          {/* Terms Page */}
+          <Route path="/terms" element={<Terms />} />
 
           {/* Default route - Landing Page or Dashboard */}
           <Route

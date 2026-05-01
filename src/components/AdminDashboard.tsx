@@ -385,7 +385,7 @@ export default function AdminDashboard({
 
   // Digital product linking for certificates
   const [genLinkedProductId, setGenLinkedProductId] = useState<string>("");
-  const [genAvailableProducts, setGenAvailableProducts] = useState<{id:string,title:string}[]>([]);
+  const [genAvailableProducts, setGenAvailableProducts] = useState<{id:string,title:string,status:string}[]>([]);
 
   // Restricted Certificate Downloads states
   const [genRestrictDownload, setGenRestrictDownload] = useState(false);
@@ -672,12 +672,17 @@ export default function AdminDashboard({
         });
         if (res.ok) {
           const data = await res.json();
-          setGenAvailableProducts((data.products || []).filter((p:any) => p.status === "published").map((p:any) => ({ id: p.id, title: p.title })));
+          // Show all products (draft + published) so seller can link any product to a certificate
+          setGenAvailableProducts((data.products || []).map((p:any) => ({
+            id: p.id,
+            title: p.title,
+            status: p.status,
+          })));
         }
       } catch {}
     };
     loadGenProducts();
-  }, [currentOrganization, accessToken]);
+  }, [currentOrganization, accessToken, activeTab]);
 
   // Load subscription status
   useEffect(() => {
@@ -2746,8 +2751,10 @@ export default function AdminDashboard({
                               className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
                             >
                               <option value="">— No linked product —</option>
-                              {genAvailableProducts.map((p) => (
-                                <option key={p.id} value={p.id}>{p.title}</option>
+                              {genAvailableProducts.map((p: any) => (
+                                <option key={p.id} value={p.id}>
+                                  {p.title}{p.status === "draft" ? " (Draft)" : ""}
+                                </option>
                               ))}
                             </select>
                             <p className="text-xs text-gray-400 mt-1">

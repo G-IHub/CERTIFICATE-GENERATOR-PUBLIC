@@ -667,7 +667,7 @@ export default function AdminDashboard({
         return;
       }
       try {
-        const res = await fetch(`${API_BASE}/digital-products?orgId=${currentOrganization.id}`, {
+        const res = await fetch(`https://${projectId}.supabase.co/functions/v1/make-server-a611b057/digital-products?orgId=${currentOrganization.id}`, {
           headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" }
         });
         if (res.ok) {

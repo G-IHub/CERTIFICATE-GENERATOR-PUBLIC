@@ -1,5 +1,6 @@
-import React, { useRef, useEffect } from "react";
-import medal from "../../assets/iwdAward.png";
+import React, { useEffect } from "react";
+import first from "../../assets/1st.svg";
+import type { ThemeColors } from "../../types/theme";
 
 interface CertificateTemplate8Props {
   header?: string;
@@ -17,39 +18,41 @@ interface CertificateTemplate8Props {
   signatoryTitle2?: string;
   signatureUrl2?: string;
   mode?: "student" | "template-selection";
+  themeColors?: ThemeColors;
 }
 
 export default function CertificateTemplate8({
-  header = "CERTIFICATE OF ATTENDANCE",
-  courseTitle = "Certificate Program",
-  description = "This certificate is awarded in recognition of your active participation and dedication to excellence.",
-  date = "2026-04-18",
+  header = "Sertifikat Penghargaan",
+  courseTitle = "",
+  description = "",
+  date = "",
   recipientName = "Recipient Name",
   isPreview = false,
-  organizationName = "Your Organization",
+  organizationName,
   organizationLogo,
-  signatoryName1 = "Boluwatife Adebisi",
-  signatoryTitle1 = "WTM Ogbomoso Ambassador",
+  signatoryName1,
+  signatoryTitle1,
   signatureUrl1,
-  signatoryName2 = "Deborah Opakunle",
-  signatoryTitle2 = "WTM IWD'26 Organiser",
+  signatoryName2,
+  signatoryTitle2,
   signatureUrl2,
   mode = "student",
+  themeColors,
 }: CertificateTemplate8Props) {
-  const ref = useRef<HTMLDivElement>(null);
-  const scale = mode === "student" ? 1 : 1;
+  const scale =
+    mode === "student" ? "transform-scale-[0.3]" : "transform-scale-100";
+
   const containerClass = isPreview
     ? "w-full mx-auto origin-center overflow-visible flex justify-center"
-    : "min-w-[850px] flex justify-center items-center";
+    : "min-w-[1056px] flex justify-center items-center";
 
   useEffect(() => {
-    const id = "Montserrat-font";
+    const id = "rakkas-font";
     if (!document.getElementById(id)) {
       const link = document.createElement("link");
       link.id = id;
-      link.href =
-        "https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap";
       link.rel = "stylesheet";
+      link.href = "https://fonts.googleapis.com/css2?family=Montserrat&display=swap";
       document.head.appendChild(link);
     }
   }, []);
@@ -62,180 +65,245 @@ export default function CertificateTemplate8({
 
   return (
     <div
-      ref={ref}
       className={containerClass}
       style={{ transform: `scale(${scale})`, backgroundColor: "transparent" }}
     >
-      <div className="relative w-[800px] h-[600px] shadow-sm rounded bg-white overflow-hidden bg-linear-to-b from-[#406DBA] via-[#20365C] to-[#0D1524]">
-        <div className="absolute top-50 h-50 w-20 right-0 z-20 bg-white flex">
-          <div className="flex self-center bg-[#04BFA6] w-10 h-5 absolute right-0"></div>
+      <div
+        className="flex justify-center items-center shadow-md p-10 rounded-sm relative text-[#4D4D4D] font-['Montserrat'] overflow-hidden"
+        style={{
+          background: "linear-gradient(to right, #DDB4FB, #FDBA18)", width: "1000px"
+        }}
+      >
+        <div>
+          <div
+            className="w-32 h-32 border-2 absolute bottom-0 rotate-45 z-10"
+            style={{
+              border: "2px solid",
+              left: "-20px",
+              borderImage: "linear-gradient(to bottom, #FDBA18, #FA54CE) 1",
+            }}
+          />
+          <div
+            className="w-14 h-14 absolute left-0 bottom-14 rotate-45 z-40"
+            style={{
+              border: "2px solid",
+              bottom: "100px",
+              borderImage: "linear-gradient(to bottom, #FDBA18, #FA54CE) 1",
+            }}
+          />
+          <div
+            className="w-14 h-14 absolute left-14 bottom-4 rotate-45 z-40"
+            style={{
+              border: "2px solid",
+              borderImage: "linear-gradient(to bottom, #FDBA18, #FA54CE) 1",
+            }}
+          />
+          <div
+            className="w-16 h-50 absolute -left-4 -top-4 rotate-50 z-20"
+            style={{
+              border: "2px solid",
+              borderImage: "linear-gradient(to top, #FDBA18, #FA54CE) 1",
+            }}
+          />
+          <div
+            className="w-12 h-50 absolute left-50 -top-20 rotate-70 z-0"
+            style={{
+              border: "2px solid",
+              borderImage: "linear-gradient(to top, #d604da, #ff9c39) 1",
+            }}
+          />
+          <div
+            className="w-30 h-80 absolute left-2 -top-36 rotate-50 z-10"
+            style={{
+              background: "linear-gradient(to bottom, #FFA246, #D604DA)",
+            }}
+          />
+          <div
+            className="w-30 h-80 absolute -left-4 -top-26 rotate-50 z-0"
+            style={{ background: "#FAC595" }}
+          />
+          <div
+            className="w-50 h-50 absolute rotate-30 -right-10 -bottom-20 z-0"
+            style={{ background: "#DDB4FB" }}
+          />
+          <div
+            className="w-30 h-50 absolute rotate-30 -right-10 -bottom-20 z-10"
+            style={{
+              background: "linear-gradient(to bottom, #FFA246, #D604DA)",
+            }}
+          />
+          <div
+            className="w-16 h-50 absolute right-30 -bottom-12 rotate-50 z-20"
+            style={{
+              border: "2px solid",
+              borderImage: "linear-gradient(to top, #D604DA, #FF9C39) 1",
+            }}
+          />
         </div>
-        <div className="w-0.5 h-20 bg-white absolute bottom-60 left-30"></div>
-        <div className="absolute bottom-10 left-10 w-[20%] aspect-square flex items-center justify-center font-[Montserrat]">
-          <svg viewBox="0 0 200 200" className="absolute inset-0 w-full h-full">
-            <path
-              id="circlePath"
-              d="
-              M 100, 100
-              m -80, 0
-              a 80,80 0 1,1 160,0
-              a 80,80 0 1,1 -160,0
-            "
-              fill="transparent"
-            />
-            <text
-              fill="#3B82F6"
-              fontSize="16"
-              fontWeight="600"
-              letterSpacing="2"
+
+        <div
+          className="rounded space-y-6 relative p-10 w-full z-30"
+          style={{
+            background: "linear-gradient(to bottom, #DDB4FB, #FFFFFF)",
+          }}
+        >
+          <div
+            className="w-full h-6 absolute left-0 top-4"
+            style={{
+              background: "linear-gradient(to left, #FF9C39, #FA54CE)",
+            }}
+          />
+          <div
+            className="h-full w-6 absolute right-4 top-0"
+            style={{
+              background: "linear-gradient(to left, #FF9C39, #FA54CE)",
+            }}
+          />
+          <img
+            src={first}
+            className="absolute -top-5 -right-5"
+            alt="decoration"
+          />
+          <div className="mt-6">
+            <p className="font-medium" style={{ color: "#FA54CE80" }}>
+              {organizationName || "Company Name"}
+            </p>
+            <h3
+              className="font-bold text-2xl"
+              style={{
+                backgroundImage: "linear-gradient(to bottom, #FDBA18, #D604DA)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
             >
-              <textPath
-                href="#circlePath"
-                startOffset="50%"
-                textAnchor="middle"
-              >
-                INTERNATIONAL WOMEN'S DAY CONFERENCE
-              </textPath>
-            </text>
-          </svg>
-          <div className="w-[60%] aspect-square rounded-full bg-gray-100 flex items-center justify-center shadow-inner">
-            <div className="w-[80%] aspect-square rounded-full bg-gray-100 flex items-center justify-center border-2 border-dotted border-gray-700">
-              <img
-                alt="medalsvg"
-                src={medal}
-                className="absolute -bottom-4 w-9/12 h-full object-contain"
-              />
-              <img
-                alt="Organization Logo"
-                src={organizationLogo}
-                className="absolute inset-[31%] w-[37%] h-[40%] object-contain"
-              />
-            </div>
+              {header}
+            </h3>
           </div>
-        </div>
+          <h2 className="font-bold text-3xl" style={{ color: "#FD8207" }}>
+            {recipientName}
+          </h2>
+          <div>
+            {/* <p className="font-medium" style={{ color: "#FA54CE80" }}>
+              Selamat atas pencapaian sebagai
+            </p> */}
+            <h3
+              className="font-bold tracking-tighter text-2xl"
+              style={{ color: "#60B3FF" }}
+            >
+              {courseTitle || "Achievement"}
+            </h3>
+          </div>
+          <p className="font-medium" style={{ color: "#FA54CE80" }}>
+            {description || "Successfully participated in the course"}
+          </p>
 
-        <div className="absolute inset-0 flex">
-          <div className="w-[20%]" />
-
-          <div className="w-[200%] p-10 border-l-10 border-b-10 rounded-bl-full bg-white">
-            <div className="flex flex-col justify-between ml-30 border-2 h-full rounded-bl-full rounded border-black border-s-transparent border-b-0 p-10">
-              <div className="flex items-end justify-between gap-4 font-[Montserrat]">
-                <div>
-                  <div className="text-[#5691F7] uppercase">
-                    <h1 className="text-7xl/14 font-extrabold">
-                      {header.split(" ")[0]}
-                    </h1>
-                    <p className="text-4xl tracking-widest font-bold">
-                      {header.split(" ")[1]} {header.split(" ")[2]}
-                    </p>
-                  </div>
-                  {/* <p className="mt-2 inline-block bg-linear-to-r from-[#B0FAFF] to-[#4CE4CD] px-4 py-1 shadow-lg font-bold text-xs">
-                    PROUDLY PRESENTED TO
-                  </p> */}
-                  <svg viewBox="10 10 350 80" className="w-60">
-                    <defs>
-                      <linearGradient
-                        id="ribbonGradient"
-                        x1="0%"
-                        y1="0%"
-                        x2="100%"
-                        y2="0%"
-                      >
-                        <stop offset="0%" stopColor="#B0FAFF" />
-                        <stop offset="100%" stopColor="#4CE4CD" />
-                      </linearGradient>
-                    </defs>
-                    <path
-                      className="shadow-lg shadow-gray-500"
-                      d="M20,20 L270,20 L260,40 L270,60 L20,60 L30,40 Z"
-                      fill="url(#ribbonGradient)"
+          <div className="mt-20 flex justify-between items-end z-50">
+            <div className="flex gap-8 justify-center items-center mt-5">
+              {/* Signature 1 - Always show if name is provided */}
+              {signatoryName1 && (
+                <div
+                  className="flex flex-col items-center text-center"
+                  style={{ marginTop: -20 }}
+                >
+                  {signatureUrl1 && (
+                    <img
+                      src={signatureUrl1}
+                      alt={signatoryName1}
+                      className="w-24 h-16 object-contain"
+                      style={{ marginBottom: -8 }}
                     />
-
-                    <text
-                      x="42%"
-                      y="50%"
-                      dominantBaseline="middle"
-                      textAnchor="middle"
-                      fill="black"
-                      fontSize="14"
-                      fontWeight="600"
-                      letterSpacing="1"
-                    >
-                      PROUDLY PRESENTED TO
-                    </text>
-                  </svg>
-                </div>
-              </div>
-
-              <div className="space-y-6 font-[Montserrat]">
-                <div className="border-b border-black">
-                  <h2
-                    style={{ fontSize: "clamp(18px, 2.5vw, 32px)" }}
-                    className="font-semibold text-gray-800 uppercase"
+                  )}
+                  {!signatureUrl1 && (
+                    <div className="w-32 border-b-2 border-gray-400 mb-2" />
+                  )}
+                  <div
+                    className="text-sm font-bold"
+                    style={{ color: "#FA54CE80" }}
                   >
-                    {recipientName || "Recipient Name"}
-                  </h2>
-                </div>
-
-                <div className="space-y-3">
-                  <p className="text-sm/4">
-                    {description} <b>{courseTitle}</b>. Thank you for joining
-                    our community to learn, connect, and help us{" "}
-                    <span className="text-[#04B8A0] font-semibold">
-                      #BreakThePattern
-                    </span>{" "}
-                    in the technology industry.
-                  </p>
-                </div>
-              </div>
-
-              <div className="space-y-4 flex flex-col items-end">
-                <div className="flex justify-between gap-10 items-center">
-                  <div className="flex-1 min-w-42.5 text-center">
-                    <div className="mx-auto mb-2 h-16 w-32 border-b border-black flex items-end justify-center">
-                      {signatureUrl1 && (
-                        <img
-                          src={signatureUrl1}
-                          alt={signatoryName1}
-                          className="w-24 h-16 object-contain"
-                          style={{ marginBottom: -12 }}
-                        />
-                      )}
-                    </div>
-                    <p className="text-sm font-semibold text-slate-900">
-                      {signatoryName1}
-                    </p>
-                    <p className="text-[9px] tracking-tight text-slate-500">
+                    {signatoryName1}
+                  </div>
+                  {signatoryTitle1 && (
+                    <div
+                      className="text-xs font-medium"
+                      style={{
+                        backgroundImage:
+                          "linear-gradient(to bottom, #FFA246, #FA54CE)",
+                        WebkitBackgroundClip: "text",
+                        WebkitTextFillColor: "transparent",
+                        backgroundClip: "text",
+                      }}
+                    >
                       {signatoryTitle1}
-                    </p>
-                  </div>
-
-                  <div className="flex-1 min-w-42.5 text-center">
-                    <div className="mx-auto mb-2 h-16 w-32 border-b border-black flex items-end justify-center">
-                      {signatureUrl2 && (
-                        <img
-                          src={signatureUrl2}
-                          alt={signatoryName2}
-                          className="w-24 h-16 object-contain"
-                          style={{ marginBottom: -12 }}
-                        />
-                      )}
                     </div>
-                    <p className="text-sm font-semibold text-slate-900">
-                      {signatoryName2}
-                    </p>
-                    <p className="text-[9px] tracking-tight text-slate-500">
+                  )}
+                </div>
+              )}
+
+              {/* Signature 2 - Always show if name is provided */}
+              {signatoryName2 && (
+                <div
+                  className="flex flex-col items-center text-center"
+                  style={{ marginTop: -20 }}
+                >
+                  {signatureUrl2 && (
+                    <img
+                      src={signatureUrl2}
+                      alt={signatoryName2}
+                      className="w-24 h-16 object-contain"
+                      style={{ marginBottom: -8 }}
+                    />
+                  )}
+                  {!signatureUrl2 && (
+                    <div className="w-32 border-b-2 border-gray-400 mb-2" />
+                  )}
+                  <div
+                    className="text-sm font-bold"
+                    style={{ color: "#FA54CE80" }}
+                  >
+                    {signatoryName2}
+                  </div>
+                  {signatoryTitle2 && (
+                    <div
+                      className="text-xs font-medium"
+                      style={{
+                        backgroundImage:
+                          "linear-gradient(to bottom, #FFA246, #FA54CE)",
+                        WebkitBackgroundClip: "text",
+                        WebkitTextFillColor: "transparent",
+                        backgroundClip: "text",
+                      }}
+                    >
                       {signatoryTitle2}
-                    </p>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Date display */}
+              {date && (
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-32 mt-5 mb-2" />
+                  <div
+                    className="text-sm font-medium"
+                    style={{
+                      backgroundImage:
+                        "linear-gradient(to bottom, #FFA246, #FA54CE)",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                      backgroundClip: "text",
+                    }}
+                  >
+                    {formattedDate}
+                  </div>
+                  <div
+                    className="text-xs font-bold "
+                    style={{ color: "#FA54CE80" }}
+                  >
+                    Date
                   </div>
                 </div>
-
-                <div className="flex self-end">
-                  <p className="text-xs text-[#04B8A0]">
-                    {formattedDate} | Ogbomoso, Oyo State
-                  </p>
-                </div>
-              </div>
+              )}
             </div>
           </div>
         </div>

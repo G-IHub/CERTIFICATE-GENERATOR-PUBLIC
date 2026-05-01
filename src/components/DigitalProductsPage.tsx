@@ -465,6 +465,43 @@ export default function DigitalProductsPage({ organizationId, accessToken }: Pro
                     )}
                   </div>
 
+                  {/* Share Links — only for published products */}
+                  {p.status === "published" && (
+                    <div className="mt-2 p-3 bg-gray-50 rounded-lg border border-gray-100">
+                      <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-wide mb-2">📋 Share Links</p>
+                      <div className="space-y-2">
+                        <div className="flex items-center gap-2">
+                          <span className="text-[10px] text-gray-500 flex-1 truncate">
+                            certifyer.online/#/store/{p.orgId}
+                          </span>
+                          <button
+                            onClick={() => {
+                              navigator.clipboard.writeText(`https://certifyer.online/#/store/${p.orgId}`)
+                                .then(() => toast.success("Link copied!"));
+                            }}
+                            className="text-[10px] font-medium text-indigo-600 hover:text-indigo-800 shrink-0 px-2 py-0.5 rounded bg-indigo-50 hover:bg-indigo-100 transition-colors"
+                          >
+                            Copy Store Link
+                          </button>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-[10px] text-gray-500 flex-1 truncate">
+                            certifyer.online/#/store/{p.orgId}/{p.id}
+                          </span>
+                          <button
+                            onClick={() => {
+                              navigator.clipboard.writeText(`https://certifyer.online/#/store/${p.orgId}/${p.id}`)
+                                .then(() => toast.success("Link copied!"));
+                            }}
+                            className="text-[10px] font-medium text-indigo-600 hover:text-indigo-800 shrink-0 px-2 py-0.5 rounded bg-indigo-50 hover:bg-indigo-100 transition-colors"
+                          >
+                            Copy Product Link
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
                   <div className="flex gap-2 pt-1">
                     <Button
                       size="sm"

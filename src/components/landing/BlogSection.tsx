@@ -128,7 +128,7 @@ export default function BlogSection() {
         {!loading && blogs.length > 0 && (
           <div className="text-center mt-12">
             <Link
-              to="/blogs"
+              to="/blog"
               className="inline-flex items-center gap-2 px-6 py-3 bg-[#FF7700] text-white font-semibold rounded-lg hover:bg-[#FF6600] transition-colors"
             >
               View All Blog Posts

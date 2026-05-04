@@ -91,6 +91,8 @@ interface CertificateData {
   certificateCurrency?: string; // legacy field kept for compatibility
   paymentStatus?: string; // NEW: Payment status (paid/unpaid)
   themeColors?: any; // Theme colors
+  linkedProductId?: string; // Linked digital product
+  linkedProductOrgId?: string; // Org ID for linked product
 }
 
 const StudentCertificate: React.FC<StudentCertificateProps> = ({
@@ -352,6 +354,8 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
             certificateCurrency: cert.certificateCurrency || "NGN", // legacy
             paymentStatus: cert.paymentStatus || "unpaid", // Payment status
             themeColors: cert.themeColors, // Theme colors
+            linkedProductId: cert.linkedProductId || undefined,
+            linkedProductOrgId: cert.orgId || cert.organizationId || undefined,
           };
 
           console.log("📋 Template Info:", {
@@ -1777,6 +1781,46 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
                   </div>
                 </CardContent>
               </Card>
+
+              {/* Get the Course Bundle CTA */}
+              {certificate.linkedProductId && (
+                <div style={{
+                  background: "linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%)",
+                  borderRadius: 12,
+                  padding: "20px 24px",
+                  margin: "0",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  gap: 16,
+                  flexWrap: "wrap" as const,
+                }}>
+                  <div>
+                    <p style={{ margin: 0, color: "white", fontWeight: 700, fontSize: 15 }}>
+                      🎁 Get the Full Course Bundle
+                    </p>
+                    <p style={{ margin: "4px 0 0", color: "rgba(255,255,255,0.8)", fontSize: 13 }}>
+                      Access all course materials, recordings, and resources
+                    </p>
+                  </div>
+                  <a
+                    href={`/#/store/${certificate.linkedProductOrgId || certificate.organizationId}/${certificate.linkedProductId}`}
+                    style={{
+                      background: "white",
+                      color: "#4f46e5",
+                      fontWeight: 700,
+                      fontSize: 13,
+                      padding: "10px 20px",
+                      borderRadius: 8,
+                      textDecoration: "none",
+                      whiteSpace: "nowrap" as const,
+                      flexShrink: 0,
+                    }}
+                  >
+                    View Bundle →
+                  </a>
+                </div>
+              )}
 
               {/* Share */}
               <Card>

@@ -282,7 +282,7 @@ export default function CertificateRenderer({
 
   // Overlay QR badge — bottom-right corner, on top of every template
   return (
-    <div style={{ position: "relative", width: "fit-content", height: "fit-content", display: "inline-block" }}>
+    <div style={{ position: "relative", width: 800, height: 600, display: "inline-block" }}>
       {rendered}
       <div style={{
         position: "absolute",

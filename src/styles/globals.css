@@ -33,6 +33,8 @@
   --switch-background: #d1d5db;
   --font-weight-medium: 500;
   --font-weight-normal: 400;
+  --font-sans: 'Arimo', sans-serif;
+  --font-arimo: 'Arimo', sans-serif;
   --ring: #ea580c;
   --chart-1: #ea580c;
   --chart-2: #fb923c;
@@ -142,8 +144,11 @@
 
   body {
     @apply bg-background text-foreground;
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    font-family: 'Arimo', sans-serif !important;
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
     /* Prevent overscroll bounce */
     overscroll-behavior: none;
     /* Prevent pull-to-refresh on mobile */
@@ -155,17 +160,21 @@
   }
 
   body::-webkit-scrollbar {
-    display: none;  /* Chrome, Safari and Opera */
+    display: none;
+    /* Chrome, Safari and Opera */
   }
 
   /* Hide scrollbars on all elements */
   * {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
   }
 
   *::-webkit-scrollbar {
-    display: none;  /* Chrome, Safari and Opera */
+    display: none;
+    /* Chrome, Safari and Opera */
   }
 }
 
@@ -231,19 +240,22 @@ html {
 /* Hide scrollbar while maintaining scroll functionality */
 @layer utilities {
   .scrollbar-hide {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
   }
-  
+
   .scrollbar-hide::-webkit-scrollbar {
-    display: none;  /* Chrome, Safari and Opera */
+    display: none;
+    /* Chrome, Safari and Opera */
   }
-  
+
   /* Safe primary color that's always visible on white backgrounds */
   .text-primary-safe {
     color: var(--primary);
   }
-  
+
   /* Ensure primary color has minimum contrast on white backgrounds */
   @supports (color: color-mix(in srgb, white, black)) {
     .text-primary-safe {

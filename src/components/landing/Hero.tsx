@@ -6,17 +6,17 @@ import { TbLocationFilled } from "react-icons/tb";
 const Hero: React.FC = () => {
   const navigate = useNavigate();
 
-
   return (
     <section className="flex flex-col justify-center mt-8 md:mt-0 md:mb-12 items-center md:flex-row px-6 md:px-28">
       <div className="space-y-3 max-w-lg md:max-w-md">
         <h2 className="font-medium text-4xl md:text-5xl tracking-tight">
-          Generate, Issue & Manage Your Certificates with Ease.
+          Generate, Issue, Manage and Monetize Your Certificates and Digital
+          Products with Ease
         </h2>
         <p className="text-[#696969] text-xl md:text-lg">
           A modern multi-tenant platform for organizations and educators to
-          issue branded digital certificates, collect testimonials, and track
-          performance.
+          issue, monetize branded digital certificates, digital products,
+          collect testimonials and track performance.
         </p>
         <button
           onClick={() => navigate("/signup")}

@@ -282,22 +282,31 @@ export default function CertificateRenderer({
 
   // Overlay QR badge — bottom-right corner, on top of every template
   return (
-    <div style={{ position: "relative", width: 800, height: 600, display: "inline-block" }}>
+    <div
+      style={{
+        position: "relative",
+        width: "fit-content",
+        height: "fit-content",
+        display: "inline-block",
+      }}
+    >
       {rendered}
-      <div style={{
-        position: "absolute",
-        bottom: 14,
-        right: 14,
-        background: "rgba(255,255,255,0.93)",
-        borderRadius: 6,
-        padding: "5px 7px 4px",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        gap: 2,
-        boxShadow: "0 1px 6px rgba(0,0,0,0.18)",
-        zIndex: 9999,
-      }}>
+      <div
+        style={{
+          position: "absolute",
+          bottom: 14,
+          right: 14,
+          background: "rgba(255,255,255,0.93)",
+          borderRadius: 6,
+          padding: "5px 7px 4px",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: 2,
+          boxShadow: "0 1px 6px rgba(0,0,0,0.18)",
+          zIndex: 9999,
+        }}
+      >
         <img
           src={qrSrc}
           alt="Verify certificate"
@@ -305,14 +314,16 @@ export default function CertificateRenderer({
           height={64}
           style={{ display: "block", borderRadius: 2 }}
         />
-        <span style={{
-          fontSize: 7,
-          color: "#374151",
-          fontFamily: "sans-serif",
-          letterSpacing: 0.3,
-          textAlign: "center",
-          lineHeight: 1.3,
-        }}>
+        <span
+          style={{
+            fontSize: 7,
+            color: "#374151",
+            fontFamily: "sans-serif",
+            letterSpacing: 0.3,
+            textAlign: "center",
+            lineHeight: 1.3,
+          }}
+        >
           Scan to verify
         </span>
       </div>

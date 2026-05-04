@@ -54,7 +54,8 @@ export default function CertificateTemplate6({
   themeColors,
 }: CertificateTemplate6Props) {
   const ref = React.useRef<HTMLDivElement>(null);
-  const scale = mode === "student" ? "transform scale-[0.3]" : "transform scale-100";
+  const scale =
+    mode === "student" ? "transform scale-[0.3]" : "transform scale-100";
   // Use legacy props if provided, otherwise use new standard props
   const displayProgramName = programName || courseTitle;
   const displayIssueDate = issueDate || date;
@@ -72,18 +73,28 @@ export default function CertificateTemplate6({
     : "min-w-[800px] flex justify-center items-center";
 
   return (
-    <div className={containerClass}
-    style={{ transform: `scale(${scale})`, backgroundColor: "transparent" }}>
+    <div
+      className={containerClass}
+      style={{ transform: `scale(${scale})`, backgroundColor: "transparent" }}
+    >
       {/* Certificate Container */}
       <div
         ref={ref}
         className="relative w-full bg-white overflow-hidden"
-        style={{ width: "800px", height: "600px", paddingLeft: "64px", paddingRight: "64px" }}
+        style={{
+          width: "800px",
+          height: "600px",
+          paddingLeft: "64px",
+          paddingRight: "64px",
+        }}
       >
         {/* Dark Brown Corner Decorations */}
         <div className="absolute top-0 left-0 w-32 h-32">
           <svg viewBox="0 0 100 100" className="w-full h-full">
-            <path d="M 0,0 L 100,0 L 0,100 Z" fill={themeColors?.primary ?? '#3d2817'} />
+            <path
+              d="M 0,0 L 100,0 L 0,100 Z"
+              fill={themeColors?.primary ?? "#3d2817"}
+            />
           </svg>
         </div>
         <div className="absolute top-0 right-0 w-32 h-32">
@@ -104,7 +115,10 @@ export default function CertificateTemplate6({
 
         {/* Orange Border Frame */}
         <div className="absolute inset-0 m-4">
-          <div className="absolute inset-0 border-4" style={{ borderColor: themeColors?.secondary ?? '#ea580c' }} />
+          <div
+            className="absolute inset-0 border-4"
+            style={{ borderColor: themeColors?.secondary ?? "#ea580c" }}
+          />
         </div>
 
         {/* Inner White Content Area */}
@@ -131,10 +145,10 @@ export default function CertificateTemplate6({
                   letterSpacing: "0.1em",
                 }}
               >
-                CERTIFICATE
+                {header.split(" ")[0]}
               </h1>
               <h2 className="text-xl tracking-widest text-gray-600 uppercase">
-                OF APPRECIATION
+                {header.split(" ")[1]} {header.split(" ")[2]}
               </h2>
             </div>
           </div>
@@ -160,7 +174,7 @@ export default function CertificateTemplate6({
             </div>
 
             {/* Company/Program Name */}
-            <p className="text-sm uppercase tracking-wider text-gray-700 mb-4">
+            <p className="text-sm uppercase font-extrabold tracking-wider text-black mb-4">
               {courseTitle || "Course Title"}
             </p>
 

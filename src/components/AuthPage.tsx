@@ -127,10 +127,12 @@ export default function AuthPage({
     );
 
     try {
+      console.log("📡 Calling authApi.signIn...");
       const response = await authApi.signIn({
         email: signInData.email,
         password: signInData.password,
       });
+      console.log("📥 Sign in response received:", response ? "Success (data hidden)" : "Null/Undefined");
 
       // Keep Supabase browser client authenticated for RLS-protected direct queries/storage.
       if (response?.session?.access_token && response?.session?.refresh_token) {
@@ -148,9 +150,11 @@ export default function AuthPage({
       }
 
       // Store access token in localStorage
+      console.log("💾 Storing access token in localStorage...");
       localStorage.setItem("accessToken", response.accessToken);
 
       toast.success("Welcome back! Signed in successfully");
+      console.log("✅ Calling onLogin with user:", response.user?.email);
       onLogin(response.user);
     } catch (err: any) {
       console.error("Sign in error:", err);

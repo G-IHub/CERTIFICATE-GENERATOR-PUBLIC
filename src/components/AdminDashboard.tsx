@@ -39,6 +39,8 @@ import {
 } from "./ui/dialog";
 import { useIsMobile } from "./ui/use-mobile";
 import { getContrastingTextColor } from "../utils/colorUtils";
+import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
+import { Calendar as CalendarUI } from "./ui/calendar";
 import {
   LayoutDashboard,
   FileText,
@@ -1672,7 +1674,7 @@ export default function AdminDashboard({
                 id: "monetise",
                 name: "Monetization",
                 icon: CreditCard,
-                badge: null,
+                badge: "NEW",
               },
               // {
               //   id: "billing",
@@ -2543,8 +2545,12 @@ export default function AdminDashboard({
                                 courseTitle: "Sample Programme",
                                 date: new Date().toISOString().split("T")[0],
                                 recipientName: "Sample Student Name",
-                                organizationName: (currentOrganization || user.subsidiary)?.name,
-                                organizationLogo: (currentOrganization || user.subsidiary)?.logo,
+                                organizationName: (
+                                  currentOrganization || user.subsidiary
+                                )?.name,
+                                organizationLogo: (
+                                  currentOrganization || user.subsidiary
+                                )?.logo,
                               }}
                               disabled={!genSelectedTemplate}
                             />
@@ -2747,18 +2753,22 @@ export default function AdminDashboard({
                             </label>
                             <select
                               value={genLinkedProductId}
-                              onChange={(e) => setGenLinkedProductId(e.target.value)}
+                              onChange={(e) =>
+                                setGenLinkedProductId(e.target.value)
+                              }
                               className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
                             >
                               <option value="">— No linked product —</option>
                               {genAvailableProducts.map((p: any) => (
                                 <option key={p.id} value={p.id}>
-                                  {p.title}{p.status === "draft" ? " (Draft)" : ""}
+                                  {p.title}
+                                  {p.status === "draft" ? " (Draft)" : ""}
                                 </option>
                               ))}
                             </select>
                             <p className="text-xs text-gray-400 mt-1">
-                              Students will see a link to purchase this product on their certificate page.
+                              Students will see a link to purchase this product
+                              on their certificate page.
                             </p>
                           </div>
 
@@ -2857,14 +2867,56 @@ export default function AdminDashboard({
                               Completion Date{" "}
                               <span className="text-red-500">*</span>
                             </Label>
-                            <Input
-                              id="genCompletionDateGen"
-                              type="date"
-                              value={genCompletionDate}
-                              onChange={(e) =>
-                                setGenCompletionDate(e.target.value)
-                              }
-                            />
+                            <Popover>
+                              <PopoverTrigger asChild>
+                                <Button
+                                  variant={"outline"}
+                                  className={`w-full justify-start text-left font-normal ${!genCompletionDate ? "text-muted-foreground" : ""}`}
+                                >
+                                  <Calendar className="mr-2 h-4 w-4" />
+                                  {genCompletionDate ? (
+                                    new Date(
+                                      genCompletionDate,
+                                    ).toLocaleDateString("en-US", {
+                                      month: "long",
+                                      day: "numeric",
+                                      year: "numeric",
+                                    })
+                                  ) : (
+                                    <span>Pick a date</span>
+                                  )}
+                                </Button>
+                              </PopoverTrigger>
+                              <PopoverContent
+                                className="w-auto p-0"
+                                align="start"
+                              >
+                                <CalendarUI
+                                  mode="single"
+                                  selected={
+                                    genCompletionDate
+                                      ? new Date(genCompletionDate)
+                                      : undefined
+                                  }
+                                  onSelect={(date) => {
+                                    if (date) {
+                                      const offset = date.getTimezoneOffset();
+                                      const adjustedDate = new Date(
+                                        date.getTime() - offset * 60 * 1000,
+                                      );
+                                      setGenCompletionDate(
+                                        adjustedDate
+                                          .toISOString()
+                                          .split("T")[0],
+                                      );
+                                    } else {
+                                      setGenCompletionDate("");
+                                    }
+                                  }}
+                                  initialFocus
+                                />
+                              </PopoverContent>
+                            </Popover>
                             <p className="text-xs text-gray-500">
                               The date when the program was completed
                             </p>
@@ -2872,43 +2924,90 @@ export default function AdminDashboard({
 
                           {/* Restricted Certificate Downloads Feature */}
                           <div className="space-y-4 pt-4 border-t">
-                            <div className="flex items-start gap-3">
-                              <div className="flex items-center gap-2 flex-1">
-                                <Shield className="w-5 h-5 text-orange-600" />
-                                <div className="flex-1">
-                                  <Label className="text-base font-medium">
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setGenRestrictDownload(!genRestrictDownload);
+                                if (genRestrictDownload) {
+                                  // Clear emails when disabling
+                                  setGenAllowedEmails([]);
+                                  setGenEmailInput("");
+                                  setShowAllEmails(false); // Reset show all state
+                                }
+                              }}
+                              className={`w-full flex items-center justify-between p-4 rounded-md border transition-all duration-200 text-left cursor-pointer ${
+                                genRestrictDownload
+                                  ? ""
+                                  : "border-gray-200 bg-white hover:border-gray-300"
+                              }`}
+                              style={
+                                genRestrictDownload
+                                  ? {
+                                      borderColor: "var(--primary)",
+                                      backgroundColor:
+                                        "color-mix(in srgb, var(--primary) 10%, transparent)",
+                                    }
+                                  : {}
+                              }
+                            >
+                              <div className="flex items-center gap-4">
+                                <div
+                                  className={`p-2.5 rounded-full transition-colors ${!genRestrictDownload ? "bg-gray-100" : ""}`}
+                                  style={
+                                    genRestrictDownload
+                                      ? {
+                                          backgroundColor:
+                                            "color-mix(in srgb, var(--primary) 20%, transparent)",
+                                        }
+                                      : {}
+                                  }
+                                >
+                                  <Shield
+                                    className={`w-5 h-5 ${!genRestrictDownload ? "text-gray-500" : ""}`}
+                                    style={
+                                      genRestrictDownload
+                                        ? { color: "var(--primary)" }
+                                        : {}
+                                    }
+                                  />
+                                </div>
+                                <div>
+                                  <h4
+                                    className={`text-base font-semibold transition-colors ${!genRestrictDownload ? "text-gray-900" : ""}`}
+                                    style={
+                                      genRestrictDownload
+                                        ? { color: "var(--primary)" }
+                                        : {}
+                                    }
+                                  >
                                     Restrict Certificate Downloads
-                                  </Label>
-                                  <p className="text-xs text-gray-500 mt-1">
+                                  </h4>
+                                  <p className="text-xs text-gray-500 mt-0.5">
                                     Only allow specific email addresses to
                                     download certificates
                                   </p>
                                 </div>
                               </div>
-                              <Button
-                                type="button"
-                                variant={
-                                  genRestrictDownload ? "default" : "outline"
-                                }
-                                size="sm"
-                                onClick={() => {
-                                  setGenRestrictDownload(!genRestrictDownload);
-                                  if (genRestrictDownload) {
-                                    // Clear emails when disabling
-                                    setGenAllowedEmails([]);
-                                    setGenEmailInput("");
-                                    setShowAllEmails(false); // Reset show all state
-                                  }
-                                }}
-                                className={
+
+                              <div
+                                className={`relative inline-flex h-6 w-11 flex-shrink-0 rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out ${
+                                  !genRestrictDownload ? "bg-gray-200" : ""
+                                }`}
+                                style={
                                   genRestrictDownload
-                                    ? "bg-orange-600 hover:bg-orange-700"
-                                    : ""
+                                    ? { backgroundColor: "var(--primary)" }
+                                    : {}
                                 }
                               >
-                                {genRestrictDownload ? "Enabled" : "Disabled"}
-                              </Button>
-                            </div>
+                                <span
+                                  className={`pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out ${
+                                    genRestrictDownload
+                                      ? "translate-x-5"
+                                      : "translate-x-0"
+                                  }`}
+                                />
+                              </div>
+                            </button>
 
                             {genRestrictDownload && (
                               <div className="pl-8 space-y-3">
@@ -3199,37 +3298,105 @@ export default function AdminDashboard({
 
                           {/* Monetization */}
                           <div className="space-y-3 pt-4 border-t">
-                            <div className="flex items-start gap-3">
-                              <div className="flex items-center gap-2 flex-1">
-                                <DollarSign className="w-5 h-5 text-indigo-600" />
-                                <div className="flex-1">
-                                  <Label className="text-base font-medium">Monetize this certificate</Label>
-                                  <p className="text-xs text-gray-500 mt-1">Require payment before students can access and download</p>
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setGenMonetizationEnabled(
+                                  !genMonetizationEnabled,
+                                );
+                                if (genMonetizationEnabled) {
+                                  setGenMonetizationPrice("");
+                                  setGenMonetizationPriceUSD("");
+                                }
+                              }}
+                              className={`w-full flex items-center justify-between p-4 rounded-md border transition-all duration-200 text-left cursor-pointer ${
+                                genMonetizationEnabled
+                                  ? ""
+                                  : "border-gray-200 bg-white hover:border-gray-300"
+                              }`}
+                              style={
+                                genMonetizationEnabled
+                                  ? {
+                                      borderColor: "var(--primary)",
+                                      backgroundColor:
+                                        "color-mix(in srgb, var(--primary) 10%, transparent)",
+                                    }
+                                  : {}
+                              }
+                            >
+                              <div className="flex items-center gap-4">
+                                <div
+                                  className={`p-2.5 rounded-full transition-colors ${!genMonetizationEnabled ? "bg-gray-100" : ""}`}
+                                  style={
+                                    genMonetizationEnabled
+                                      ? {
+                                          backgroundColor:
+                                            "color-mix(in srgb, var(--primary) 20%, transparent)",
+                                        }
+                                      : {}
+                                  }
+                                >
+                                  <DollarSign
+                                    className={`w-5 h-5 ${!genMonetizationEnabled ? "text-gray-500" : ""}`}
+                                    style={
+                                      genMonetizationEnabled
+                                        ? { color: "var(--primary)" }
+                                        : {}
+                                    }
+                                  />
+                                </div>
+                                <div>
+                                  <h4
+                                    className={`text-base font-semibold transition-colors ${!genMonetizationEnabled ? "text-gray-900" : ""}`}
+                                    style={
+                                      genMonetizationEnabled
+                                        ? { color: "var(--primary)" }
+                                        : {}
+                                    }
+                                  >
+                                    Monetize this certificate
+                                  </h4>
+                                  <p className="text-xs text-gray-500 mt-0.5">
+                                    Require payment before students can access
+                                    and download
+                                  </p>
                                 </div>
                               </div>
-                              <Button
-                                type="button"
-                                variant={genMonetizationEnabled ? "default" : "outline"}
-                                size="sm"
-                                onClick={() => {
-                                  setGenMonetizationEnabled(!genMonetizationEnabled);
-                                  if (genMonetizationEnabled) {
-                                    setGenMonetizationPrice("");
-                                    setGenMonetizationPriceUSD("");
-                                  }
-                                }}
-                                className={genMonetizationEnabled ? "bg-indigo-600 hover:bg-indigo-700" : ""}
+
+                              <div
+                                className={`relative inline-flex h-6 w-11 flex-shrink-0 rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out ${
+                                  !genMonetizationEnabled ? "bg-gray-200" : ""
+                                }`}
+                                style={
+                                  genMonetizationEnabled
+                                    ? { backgroundColor: "var(--primary)" }
+                                    : {}
+                                }
                               >
-                                {genMonetizationEnabled ? "Enabled" : "Disabled"}
-                              </Button>
-                            </div>
+                                <span
+                                  className={`pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out ${
+                                    genMonetizationEnabled
+                                      ? "translate-x-5"
+                                      : "translate-x-0"
+                                  }`}
+                                />
+                              </div>
+                            </button>
 
                             {genMonetizationEnabled && (
                               <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-4 space-y-3">
-                                <p className="text-xs font-medium text-indigo-800">Set your prices — students will choose which currency to pay in.</p>
+                                <p className="text-xs font-medium text-indigo-800">
+                                  Set your prices — students will choose which
+                                  currency to pay in.
+                                </p>
                                 <div className="flex gap-3">
                                   <div className="flex-1 space-y-1">
-                                    <Label htmlFor="genMonetizationPrice" className="text-sm">Price in Naira (₦)</Label>
+                                    <Label
+                                      htmlFor="genMonetizationPrice"
+                                      className="text-sm"
+                                    >
+                                      Price in Naira (₦)
+                                    </Label>
                                     <Input
                                       id="genMonetizationPrice"
                                       type="number"
@@ -3237,11 +3404,18 @@ export default function AdminDashboard({
                                       step="1"
                                       placeholder="e.g. 5000"
                                       value={genMonetizationPrice}
-                                      onChange={(e) => setGenMonetizationPrice(e.target.value)}
+                                      onChange={(e) =>
+                                        setGenMonetizationPrice(e.target.value)
+                                      }
                                     />
                                   </div>
                                   <div className="flex-1 space-y-1">
-                                    <Label htmlFor="genMonetizationPriceUSD" className="text-sm">Price in Dollars ($)</Label>
+                                    <Label
+                                      htmlFor="genMonetizationPriceUSD"
+                                      className="text-sm"
+                                    >
+                                      Price in Dollars ($)
+                                    </Label>
                                     <Input
                                       id="genMonetizationPriceUSD"
                                       type="number"
@@ -3249,12 +3423,18 @@ export default function AdminDashboard({
                                       step="0.01"
                                       placeholder="e.g. 5"
                                       value={genMonetizationPriceUSD}
-                                      onChange={(e) => setGenMonetizationPriceUSD(e.target.value)}
+                                      onChange={(e) =>
+                                        setGenMonetizationPriceUSD(
+                                          e.target.value,
+                                        )
+                                      }
                                     />
                                   </div>
                                 </div>
                                 <p className="text-xs text-indigo-700">
-                                  Students will see both prices and choose how to pay. Leave a field blank to offer only one currency. Certifyer takes a 7% platform fee.
+                                  Students will see both prices and choose how
+                                  to pay. Leave a field blank to offer only one
+                                  currency. Certifyer takes a 7% platform fee.
                                 </p>
                               </div>
                             )}
@@ -3978,8 +4158,8 @@ export default function AdminDashboard({
                 </p>
               </div>
               <p className="text-sm md:text-base">
-                Empowering educators to create and manage certificates with
-                ease.
+                Empowering educators to create, manage and monetize certificates
+                with ease.
               </p>
             </div>
           </footer>

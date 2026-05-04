@@ -31,12 +31,14 @@ interface ProductFile {
   name: string;
   storagePath: string;
   size: number;
+  description?: string;
 }
 
 interface ProductLink {
   label: string;
   url: string;
   encrypted: boolean;
+  meta?: string;
 }
 
 interface DigitalProduct {
@@ -54,6 +56,9 @@ interface DigitalProduct {
   certificateTemplateId?: string;
   createdAt: string;
   updatedAt: string;
+  level?: string;
+  coverSubtitle?: string;
+  outcomes?: string[];
 }
 
 interface Props {
@@ -132,6 +137,9 @@ export default function DigitalProductsPage({ organizationId, accessToken }: Pro
   const [formIncludeCert, setFormIncludeCert] = useState(false);
   const [formCertTemplate, setFormCertTemplate] = useState("");
   const [formStatus, setFormStatus] = useState<"draft" | "published">("draft");
+  const [formLevel, setFormLevel] = useState("");
+  const [formCoverSubtitle, setFormCoverSubtitle] = useState("");
+  const [formOutcomes, setFormOutcomes] = useState<string[]>([""]);
   const [uploadingFile, setUploadingFile] = useState(false);
   const [saving, setSaving] = useState(false);
 
@@ -191,6 +199,9 @@ export default function DigitalProductsPage({ organizationId, accessToken }: Pro
     setFormIncludeCert(false);
     setFormCertTemplate("");
     setFormStatus("draft");
+    setFormLevel("");
+    setFormCoverSubtitle("");
+    setFormOutcomes([""]);
     setEditingProduct(null);
   };
 
@@ -212,6 +223,9 @@ export default function DigitalProductsPage({ organizationId, accessToken }: Pro
     setFormIncludeCert(!!p.certificateTemplateId);
     setFormCertTemplate(p.certificateTemplateId || "");
     setFormStatus(p.status);
+    setFormLevel(p.level || "");
+    setFormCoverSubtitle(p.coverSubtitle || "");
+    setFormOutcomes(p.outcomes?.length ? p.outcomes : [""]);
     setShowForm(true);
   };
 
@@ -259,6 +273,18 @@ export default function DigitalProductsPage({ organizationId, accessToken }: Pro
     setFormLinks((prev) => prev.filter((_, i) => i !== index));
   };
 
+  const addOutcome = () => setFormOutcomes(prev => [...prev, ""]);
+  const updateOutcome = (index: number, value: string) =>
+    setFormOutcomes(prev => prev.map((o, i) => i === index ? value : o));
+  const removeOutcome = (index: number) =>
+    setFormOutcomes(prev => prev.filter((_, i) => i !== index));
+
+  const updateFileDescription = (index: number, description: string) =>
+    setFormFiles(prev => prev.map((f, i) => i === index ? { ...f, description } : f));
+
+  const updateLinkMeta = (index: number, meta: string) =>
+    setFormLinks(prev => prev.map((l, i) => i === index ? { ...l, meta } : l));
+
   const handleSave = async () => {
     if (!organizationId || !accessToken) return;
     if (!formTitle.trim()) { toast.error("Title is required"); return; }
@@ -278,6 +304,9 @@ export default function DigitalProductsPage({ organizationId, accessToken }: Pro
         links: formType !== "pdf" ? validLinks : [],
         certificateTemplateId: formIncludeCert && formCertTemplate ? formCertTemplate : undefined,
         status: formStatus,
+        level: formLevel.trim(),
+        coverSubtitle: formCoverSubtitle.trim(),
+        outcomes: formOutcomes.filter(o => o.trim()),
       };
 
       let res: Response;
@@ -608,6 +637,30 @@ export default function DigitalProductsPage({ organizationId, accessToken }: Pro
                   />
                 </div>
 
+                <div>
+                  <Label htmlFor="dp-subtitle">Cover Subtitle</Label>
+                  <p className="text-xs text-gray-400 mb-1">Short line shown on the product cover art</p>
+                  <Input
+                    id="dp-subtitle"
+                    value={formCoverSubtitle}
+                    onChange={(e) => setFormCoverSubtitle(e.target.value)}
+                    placeholder="e.g. 8-week bundle · 2026 cohort"
+                    className="mt-1 bg-white"
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="dp-level">Difficulty Level</Label>
+                  <p className="text-xs text-gray-400 mb-1">Helps buyers know if this is right for them</p>
+                  <Input
+                    id="dp-level"
+                    value={formLevel}
+                    onChange={(e) => setFormLevel(e.target.value)}
+                    placeholder="e.g. Beginner, Intermediate, Beginner → Advanced"
+                    className="mt-1 bg-white"
+                  />
+                </div>
+
                 {/* Product type */}
                 <div>
                   <Label className="mb-2 block">Product Type <span className="text-red-500">*</span></Label>
@@ -692,21 +745,30 @@ export default function DigitalProductsPage({ organizationId, accessToken }: Pro
                       {formFiles.length > 0 && (
                         <ul className="mb-3 space-y-2">
                           {formFiles.map((f, i) => (
-                            <li key={i} className="flex items-center gap-3 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2.5">
-                              <div className={`w-8 h-8 rounded flex items-center justify-center shrink-0 ${typeMeta.iconBg}`}>
-                                <FileText className={`w-4 h-4 ${typeMeta.iconColor}`} />
+                            <li key={i} className="bg-gray-50 border border-gray-200 rounded-lg px-3 py-2.5">
+                              <div className="flex items-center gap-3">
+                                <div className={`w-8 h-8 rounded flex items-center justify-center shrink-0 ${typeMeta.iconBg}`}>
+                                  <FileText className={`w-4 h-4 ${typeMeta.iconColor}`} />
+                                </div>
+                                <div className="flex-1 min-w-0">
+                                  <p className="text-sm font-medium text-gray-800 truncate">{f.name}</p>
+                                  <p className="text-xs text-gray-400">{fileSizeDisplay(f.size)}</p>
+                                </div>
+                                <button
+                                  onClick={() => removeFile(i)}
+                                  className="text-gray-400 hover:text-red-500 transition-colors shrink-0"
+                                  title="Remove file"
+                                >
+                                  <X className="w-4 h-4" />
+                                </button>
                               </div>
-                              <div className="flex-1 min-w-0">
-                                <p className="text-sm font-medium text-gray-800 truncate">{f.name}</p>
-                                <p className="text-xs text-gray-400">{fileSizeDisplay(f.size)}</p>
-                              </div>
-                              <button
-                                onClick={() => removeFile(i)}
-                                className="text-gray-400 hover:text-red-500 transition-colors shrink-0"
-                                title="Remove file"
-                              >
-                                <X className="w-4 h-4" />
-                              </button>
+                              <Input
+                                value={f.description || ""}
+                                onChange={(e) => updateFileDescription(i, e.target.value)}
+                                placeholder="Brief note, e.g. '42-page PDF · includes exercises'"
+                                className="mt-1 text-xs"
+                                style={{ fontSize: 12 }}
+                              />
                             </li>
                           ))}
                         </ul>
@@ -776,6 +838,13 @@ export default function DigitalProductsPage({ organizationId, accessToken }: Pro
                                 <X className="w-4 h-4" />
                               </button>
                             </div>
+                            <Input
+                              value={l.meta || ""}
+                              onChange={(e) => updateLinkMeta(i, e.target.value)}
+                              placeholder="Duration or note, e.g. '5h 20m · streamed'"
+                              className="text-xs pl-10"
+                              style={{ fontSize: 12 }}
+                            />
                             <p className="text-[10px] text-gray-400 pl-10">
                               Supports: YouTube, Vimeo, Google Drive, Loom, Notion, Dropbox, and more
                             </p>
@@ -797,6 +866,47 @@ export default function DigitalProductsPage({ organizationId, accessToken }: Pro
                   {formType === "pdf" && formFiles.length === 0 && (
                     <p className="text-xs text-gray-400 italic">Upload at least one file for buyers to download.</p>
                   )}
+                </div>
+              </div>
+
+              {/* ── Learning Outcomes section ── */}
+              <div className="border-t">
+                <div className="px-6 py-3 bg-gray-50">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-gray-400">Learning Outcomes</p>
+                </div>
+                <div className="px-6 py-5 bg-white">
+                  <div>
+                    <Label className="mb-1 block">Learning Outcomes <span className="text-gray-400 font-normal">(optional)</span></Label>
+                    <p className="text-xs text-gray-400 mb-2">What will buyers be able to do? Each line becomes a bullet on the product page.</p>
+                    <div className="space-y-2">
+                      {formOutcomes.map((outcome, i) => (
+                        <div key={i} className="flex gap-2">
+                          <Input
+                            value={outcome}
+                            onChange={(e) => updateOutcome(i, e.target.value)}
+                            placeholder={`Outcome ${i + 1}, e.g. "Build dashboards in Power BI"`}
+                            className="flex-1 text-sm"
+                          />
+                          <button
+                            type="button"
+                            onClick={() => removeOutcome(i)}
+                            className="text-gray-400 hover:text-red-500"
+                            style={{ visibility: formOutcomes.length === 1 ? "hidden" : "visible" }}
+                          >
+                            <X className="w-4 h-4" />
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                    <button
+                      type="button"
+                      onClick={addOutcome}
+                      className="mt-2 text-sm text-indigo-600 hover:underline flex items-center gap-1"
+                    >
+                      <Plus className="w-3 h-3" />
+                      Add another outcome
+                    </button>
+                  </div>
                 </div>
               </div>
 

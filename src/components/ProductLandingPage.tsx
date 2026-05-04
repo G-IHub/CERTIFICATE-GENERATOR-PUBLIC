@@ -9,12 +9,14 @@ interface ProductFile {
   name: string;
   storagePath: string;
   size: number;
+  description?: string;
 }
 
 interface ProductLink {
   label: string;
   url: string;
-  encrypted: boolean;
+  encrypted?: boolean;
+  meta?: string;
 }
 
 interface Product {
@@ -30,6 +32,9 @@ interface Product {
   files: ProductFile[];
   links: ProductLink[];
   certificateTemplateId?: string;
+  level?: string;
+  coverSubtitle?: string;
+  outcomes?: string[];
 }
 
 interface OrgInfo {
@@ -444,6 +449,11 @@ export default function ProductLandingPage() {
                 >
                   {product.title}
                 </span>
+                {product.coverSubtitle && (
+                  <div style={{ position: "relative", zIndex: 2, marginTop: 16, fontSize: 13, fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "#B33B00", textAlign: "center" }}>
+                    {product.coverSubtitle}
+                  </div>
+                )}
               </div>
             )}
           </div>
@@ -482,6 +492,11 @@ export default function ProductLandingPage() {
                 }}
               >
                 <StarIcon size={10} /> Certificate included
+              </span>
+            )}
+            {product.level && (
+              <span style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "6px 12px", borderRadius: 999, background: "#FFF4ED", color: "#B33B00", border: "1px solid #FFE6D5", fontSize: 12, fontWeight: 600 }}>
+                {product.level}
               </span>
             )}
           </div>
@@ -621,6 +636,9 @@ export default function ProductLandingPage() {
                     </div>
                     <div style={{ flex: 1 }}>
                       <div style={{ fontSize: 14, fontWeight: 500, color: "#0E0E10" }}>{f.name}</div>
+                      <div style={{ fontSize: 12.5, color: "#84848C" }}>
+                        {f.description || `${(f.size / 1024).toFixed(0)} KB · downloadable`}
+                      </div>
                     </div>
                     <span
                       style={{
@@ -672,6 +690,9 @@ export default function ProductLandingPage() {
                     </div>
                     <div style={{ flex: 1 }}>
                       <div style={{ fontSize: 14, fontWeight: 500, color: "#0E0E10" }}>{l.label || "Video lesson"}</div>
+                      <div style={{ fontSize: 12.5, color: "#84848C" }}>
+                        {l.meta || "Access link · no expiry"}
+                      </div>
                     </div>
                     <span
                       style={{
@@ -754,6 +775,25 @@ export default function ProductLandingPage() {
                     Access granted after purchase
                   </div>
                 )}
+              </div>
+            </div>
+          )}
+
+          {/* Learning Outcomes */}
+          {product.outcomes && product.outcomes.filter(o => o.trim()).length > 0 && (
+            <div style={{ marginBottom: 44 }}>
+              <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 600, fontSize: 26, letterSpacing: "-0.02em", color: "#0E0E10", marginBottom: 18 }}>
+                By the end, you'll be able to
+              </h2>
+              <div style={{ display: "grid", gridTemplateColumns: width < 640 ? "1fr" : "repeat(2, 1fr)", gap: 12 }}>
+                {product.outcomes.filter(o => o.trim()).map((outcome, i) => (
+                  <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 12, padding: "16px 18px", border: "1px solid #E5E5E8", borderRadius: 14, background: "white" }}>
+                    <div style={{ width: 22, height: 22, borderRadius: "50%", background: "#F25C0B", display: "grid", placeItems: "center", color: "white", flexShrink: 0, marginTop: 1 }}>
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    </div>
+                    <div style={{ fontSize: 14, color: "#2A2A2E", lineHeight: 1.45 }}>{outcome}</div>
+                  </div>
+                ))}
               </div>
             </div>
           )}

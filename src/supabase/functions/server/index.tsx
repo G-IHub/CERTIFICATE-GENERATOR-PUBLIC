@@ -9327,7 +9327,9 @@ app.post("/make-server-a611b057/digital-products", async (c) => {
     if (error) return c.json({ error }, 401);
 
     const body = await c.req.json();
-    const { orgId, title, description, thumbnailUrl, type, priceNGN, priceUSD, files, links, certificateTemplateId } = body;
+    const { orgId, title, description, thumbnailUrl, type, priceNGN, priceUSD,
+            files, links, certificateTemplateId, status,
+            level, coverSubtitle, outcomes } = body;
 
     if (!orgId || !title || !type) return c.json({ error: "orgId, title, and type are required" }, 400);
     if (!["pdf", "video", "bundle"].includes(type)) return c.json({ error: "type must be pdf, video, or bundle" }, 400);
@@ -9353,6 +9355,9 @@ app.post("/make-server-a611b057/digital-products", async (c) => {
       files: files || [],
       links: links || [],
       certificateTemplateId: certificateTemplateId || null,
+      level: level || "",
+      coverSubtitle: coverSubtitle || "",
+      outcomes: Array.isArray(outcomes) ? outcomes : [],
       createdAt: now,
       updatedAt: now,
     };

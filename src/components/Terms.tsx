@@ -60,7 +60,7 @@ const Terms: React.FC = () => {
                 </h2>
                 <p className="text-gray-600 leading-relaxed pl-10">
                   To the extent permitted by law, Genomac Innovation Hub is not liable
-                  for indirect damages.
+                  for indirect damages made either by creators or users.
                 </p>
               </section>
 

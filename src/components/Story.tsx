@@ -118,7 +118,7 @@ const Story: React.FC = () => {
                 <p className="text-[#696969] text-left text-lg md:text-xl leading-relaxed max-w-7xl mx-auto">
                   Certifyer was born out of a simple but recurring challenge:
                   issuing certificates should not be stressful. Across
-                  trainings, workshops, webinars, and community programs, we
+                  trainings, workshops, webinars, and community courses, we
                   repeatedly encountered the same problem — creating
                   certificates was time-consuming, inconsistent, and often
                   dependent on manual design tools or external designers. What

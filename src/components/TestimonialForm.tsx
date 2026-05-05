@@ -18,12 +18,12 @@ import {
 import { toast } from 'sonner';
 
 interface TestimonialFormProps {
-  program: any;
+  course: any;
   subsidiary: any;
   studentName: string;
 }
 
-export default function TestimonialForm({ program, subsidiary, studentName }: TestimonialFormProps) {
+export default function TestimonialForm({ course, subsidiary, studentName }: TestimonialFormProps) {
   const [testimonialText, setTestimonialText] = useState('');
   const [rating, setRating] = useState(0);
   const [uploadedImage, setUploadedImage] = useState<File | null>(null);
@@ -80,7 +80,7 @@ export default function TestimonialForm({ program, subsidiary, studentName }: Te
             Testimonial Submitted Successfully!
           </h3>
           <p className="text-green-700 mb-4">
-            Thank you for sharing your experience with us. Your feedback helps us improve our programs.
+            Thank you for sharing your experience with us. Your feedback helps us improve our courses.
           </p>
           <Badge variant="secondary" className="bg-green-100 text-green-800">
             Testimonial #{Date.now().toString().slice(-6)}
@@ -98,14 +98,14 @@ export default function TestimonialForm({ program, subsidiary, studentName }: Te
           Share Your Experience
         </CardTitle>
         <CardDescription>
-          Help others by sharing your experience with the {program.name}. Your testimonial will help future learners.
+          Help others by sharing your experience with the {course.name}. Your testimonial will help future learners.
         </CardDescription>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Rating */}
           <div className="space-y-2">
-            <Label>How would you rate this program?</Label>
+            <Label>How would you rate this course?</Label>
             <div className="flex gap-2">
               {[1, 2, 3, 4, 5].map((star) => (
                 <button
@@ -124,7 +124,7 @@ export default function TestimonialForm({ program, subsidiary, studentName }: Te
             </div>
             {rating > 0 && (
               <p className="text-sm text-gray-600">
-                You rated this program {rating} out of 5 stars
+                You rated this course {rating} out of 5 stars
               </p>
             )}
           </div>
@@ -134,7 +134,7 @@ export default function TestimonialForm({ program, subsidiary, studentName }: Te
             <Label htmlFor="testimonial">Written Testimonial</Label>
             <Textarea
               id="testimonial"
-              placeholder="Share your thoughts about the program... What did you learn? How has it helped you? Would you recommend it to others?"
+              placeholder="Share your thoughts about the course... What did you learn? How has it helped you? Would you recommend it to others?"
               value={testimonialText}
               onChange={(e) => setTestimonialText(e.target.value)}
               rows={5}
@@ -223,7 +223,7 @@ export default function TestimonialForm({ program, subsidiary, studentName }: Te
                 <ul className="text-indigo-700 space-y-1">
                   <li>• Help future learners make informed decisions</li>
                   <li>• Celebrate your achievement and inspire others</li>
-                  <li>• Provide valuable feedback to improve our programs</li>
+                  <li>• Provide valuable feedback to improve our courses</li>
                   <li>• Build your professional network and online presence</li>
                 </ul>
               </div>

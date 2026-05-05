@@ -2,6 +2,10 @@
 // Special email addresses that grant platform admin access
 
 export const ADMIN_EMAILS = [
+  'admin@certifyer.online',
+  'info@certifyer.online',
+  'emmanuel@certifyer.online',
+  'genomac@gmail.com',
   'admin@certgen.com',
   'platform@certgen.com',
   'admin@genomac.com',

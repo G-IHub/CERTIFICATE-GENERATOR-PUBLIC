@@ -539,7 +539,7 @@ export default function BillingPage({ organizationId, organizationName, userEmai
                   </li>
                   <li className="text-sm text-gray-700 flex items-start gap-2">
                     <Check className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-                    <span><strong>Up to 50 Certificates</strong> - Generate certificates for your programs</span>
+                    <span><strong>Up to 50 Certificates</strong> - Generate certificates for your courses</span>
                   </li>
                   <li className="text-sm text-gray-700 flex items-start gap-2">
                     <Check className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />

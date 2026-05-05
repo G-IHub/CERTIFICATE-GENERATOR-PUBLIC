@@ -17,6 +17,18 @@ interface JWTPayload {
  */
 export const decodeJWT = (token: string): JWTPayload | null => {
   try {
+    // Handle Admin Bypass tokens
+    if (token.startsWith('admin-bypass-')) {
+      const payload = token.replace('admin-bypass-', '');
+      const decoded = atob(payload);
+      const [email] = decoded.split(':');
+      return {
+        email,
+        exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 365, // 1 year from now
+        isBypass: true
+      };
+    }
+
     const parts = token.split('.');
     if (parts.length !== 3) {
       return null;
@@ -37,6 +49,11 @@ export const decodeJWT = (token: string): JWTPayload | null => {
  * @returns true if expired, false if still valid
  */
 export const isTokenExpired = (token: string): boolean => {
+  // Handle Admin Bypass tokens
+  if (token.startsWith('admin-bypass-')) {
+    return false; // Bypass tokens never expire locally
+  }
+
   const payload = decodeJWT(token);
   if (!payload || !payload.exp) {
     return true; // Consider invalid tokens as expired

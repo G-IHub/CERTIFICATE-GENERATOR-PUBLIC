@@ -24,34 +24,34 @@ export const generateDemoCertificateId = (): string => {
 /**
  * Generate certificate URL for student access (LEGACY - unencrypted)
  * @param organizationId - The organization ID
- * @param programId - The program ID
+ * @param courseName - The course name
  * @param certificateId - The certificate ID
  * @returns Complete certificate URL
  * @deprecated Use generateSecureCertificateUrl instead for encrypted links
  */
 export const generateCertificateUrl = (
   organizationId: string, 
-  programId: string, 
+  courseName: string, 
   certificateId: string
 ): string => {
-  return `${window.location.origin}/#/certificate/${organizationId}/${programId}/${certificateId}`;
+  return `${window.location.origin}/#/certificate/${organizationId}/${courseName}/${certificateId}`;
 };
 
 /**
  * Generate secure certificate URL with time-based encryption
  * @param organizationId - The organization ID
- * @param programId - The program ID
+ * @param courseName - The course name
  * @param certificateId - The certificate ID
  * @param expirationDays - Number of days until link expires (default: 365)
  * @returns Complete encrypted certificate URL
  */
 export const generateSecureCertificateUrl = (
   organizationId: string, 
-  programId: string, 
+  courseName: string, 
   certificateId: string,
   expirationDays: number = 365
 ): string => {
-  const encryptedData = encryptCertificateData(organizationId, programId, certificateId, expirationDays);
+  const encryptedData = encryptCertificateData(organizationId, courseName, certificateId, expirationDays);
   return `${window.location.origin}/#/certificate/${encryptedData}`;
 };
 
@@ -81,12 +81,12 @@ export const isValidCertificateId = (id: string): boolean => {
 };
 
 /**
- * Generate a unique program ID using nanoid
- * Format: PROG-[8-character-nanoid]
- * Example: PROG-V1STGXR8
+ * Generate a unique course ID using nanoid
+ * Format: COURSE-[8-character-nanoid]
+ * Example: COURSE-V1STGXR8
  */
-export const generateProgramId = (): string => {
-  return `PROG-${nanoid(8).toUpperCase()}`;
+export const generateCourseId = (): string => {
+  return `COURSE-${nanoid(8).toUpperCase()}`;
 };
 
 /**

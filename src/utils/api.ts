@@ -233,60 +233,12 @@ export const organizationApi = {
   },
 };
 
-// ==================== PROGRAM API ====================
-
-export const programApi = {
-  create: async (token: string, data: { organizationId: string; program: any }) => {
-    const response = await fetch(`${API_BASE_URL}/programs`, {
-      method: 'POST',
-      headers: getAuthHeaders(token),
-      body: JSON.stringify(data),
-    });
-    
-    if (!response.ok) {
-      const error = await response.json();
-      throw new Error(error.error || 'Failed to create program');
-    }
-    
-    return await response.json();
-  },
-
-  update: async (token: string, organizationId: string, programId: string, updates: any) => {
-    const response = await fetch(`${API_BASE_URL}/programs/${organizationId}/${programId}`, {
-      method: 'PUT',
-      headers: getAuthHeaders(token),
-      body: JSON.stringify(updates),
-    });
-    
-    if (!response.ok) {
-      const error = await response.json();
-      throw new Error(error.error || 'Failed to update program');
-    }
-    
-    return await response.json();
-  },
-
-  delete: async (token: string, organizationId: string, programId: string) => {
-    const response = await fetch(`${API_BASE_URL}/programs/${organizationId}/${programId}`, {
-      method: 'DELETE',
-      headers: getAuthHeaders(token),
-    });
-    
-    if (!response.ok) {
-      const error = await response.json();
-      throw new Error(error.error || 'Failed to delete program');
-    }
-    
-    return await response.json();
-  },
-};
-
 // ==================== CERTIFICATE API ====================
 
 export const certificateApi = {
   generate: async (token: string, data: {
     organizationId: string;
-    programId?: string;
+    courseId?: string;
     certificateHeader?: string;
     courseName?: string;
     courseDescription?: string;
@@ -501,7 +453,6 @@ export const certificateApi = {
     impact?: string;
     courseName: string;
     organizationId: string;
-    programId: string;
   }) => {
     const response = await fetch(`${API_BASE_URL}/certificates/${data.certificateId}/testimonial`, {
       method: 'POST',

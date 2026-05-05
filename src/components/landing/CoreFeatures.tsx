@@ -54,7 +54,7 @@ const CoreFeatures: React.FC = () => {
       icon: gauge,
       title: "Analytics Dashboard",
       checklist: [
-        "Issuance metrics, program performance",
+        "Issuance metrics, course performance",
         "Testimonial response rates",
         "Monthly trends and growth visualization",
       ],

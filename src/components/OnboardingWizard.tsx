@@ -87,10 +87,10 @@ export default function OnboardingWizard({
   const [logo, setLogo] = useState<string>("");
   const [secondaryLogo, setSecondaryLogo] = useState<string>("");
   const [primaryColor, setPrimaryColor] = useState("#ea580c");
-  const [programHeader, setProgramHeader] = useState(
+  const [certificateHeader, setCertificateHeader] = useState(
     "Certificate of Completion",
   );
-  const [courseTitle, setCourseTitle] = useState("My First Program");
+  const [courseName, setCourseName] = useState("My First Course");
   const [description, setDescription] = useState("");
   const [enableEmailRestriction, setEnableEmailRestriction] = useState(false);
   const [signatories, setSignatories] = useState<Signatory[]>([]);
@@ -104,7 +104,7 @@ export default function OnboardingWizard({
     { title: "Welcome", icon: Sparkles },
     { title: "Choose Template", icon: FileText },
     { title: "Customize Dashboard", icon: Palette },
-    { title: "Program Details", icon: FileText },
+    { title: "Course Details", icon: FileText },
     { title: "Add Signatures", icon: PenTool },
     { title: "Success!", icon: Trophy },
   ];
@@ -193,9 +193,9 @@ export default function OnboardingWizard({
         );
       }
 
-      // 2. Create program
-      const programResponse = await fetch(
-        `https://${projectId}.supabase.co/functions/v1/make-server-a611b057/programs`,
+      // 2. Create course
+      const courseResponse = await fetch(
+        `https://${projectId}.supabase.co/functions/v1/make-server-a611b057/courses`,
         {
           method: "POST",
           headers: {
@@ -204,9 +204,9 @@ export default function OnboardingWizard({
           },
           body: JSON.stringify({
             organizationId,
-            program: {
-              name: courseTitle,
-              description: description || "My first program on Certifyer",
+            course: {
+              name: courseName,
+              description: description || "My first course on Certifyer",
               template: selectedTemplate,
               settings: {
                 emailRestriction: enableEmailRestriction,
@@ -216,26 +216,26 @@ export default function OnboardingWizard({
         },
       );
 
-      const programData = await programResponse.json();
+      const courseData = await courseResponse.json();
 
-      if (!programResponse.ok || !programData.program?.id) {
-        console.error("Failed to create program:", programData);
-        toast.error("Failed to create program", {
+      if (!courseResponse.ok || !courseData.course?.id) {
+        console.error("Failed to create course:", courseData);
+        toast.error("Failed to create course", {
           description:
-            programData.error || "There was an error creating your program.",
+            courseData.error || "There was an error creating your course.",
         });
-        throw new Error(programData.error || "Failed to create program");
+        throw new Error(courseData.error || "Failed to create course");
       }
 
-      const programId = programData.program.id;
+      const courseId = courseData.course.id;
 
       // 3. Create certificate with proper backend format
       const certificatePayload = {
         organizationId: organizationId,
-        certificateHeader: programHeader,
-        courseName: courseTitle,
+        certificateHeader: certificateHeader,
+        courseName: courseName,
         courseDescription:
-          description || "Congratulations on completing this program!",
+          description || "Congratulations on completing this course!",
         completionDate: new Date().toISOString().split("T")[0],
         template: selectedTemplate,
         // DO NOT send students array - this creates a shareable link without pre-filled name
@@ -495,11 +495,11 @@ export default function OnboardingWizard({
                             >
                               <CertificateRenderer
                                 templateId={template.id}
-                                header={programHeader}
-                                courseTitle={courseTitle || "Sample Course"}
+                                header={certificateHeader}
+                                courseTitle={courseName || "Sample Course"}
                                 description={
                                   description ||
-                                  "For successfully completing the program"
+                                  "For successfully completing the course"
                                 }
                                 date={new Date().toLocaleDateString("en-US", {
                                   day: "numeric",
@@ -680,15 +680,15 @@ export default function OnboardingWizard({
                 </div>
               )}
 
-              {/* Step 3: Program Details */}
+              {/* Step 3: Course Details */}
               {currentStep === 3 && (
                 <div className="space-y-6 max-w-2xl mx-auto">
                   <div className="text-center">
                     <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                      Program Details
+                      Course Details
                     </h3>
                     <p className="text-gray-600">
-                      Tell us about your program or course
+                      Tell us about your course or training
                     </p>
                   </div>
 
@@ -699,8 +699,8 @@ export default function OnboardingWizard({
                       </label>
                       <input
                         type="text"
-                        value={programHeader}
-                        onChange={(e) => setProgramHeader(e.target.value)}
+                        value={certificateHeader}
+                        onChange={(e) => setCertificateHeader(e.target.value)}
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                         placeholder="Certificate of Completion"
                       />
@@ -708,12 +708,12 @@ export default function OnboardingWizard({
 
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Course/Program Title *
+                        Course Name *
                       </label>
                       <input
                         type="text"
-                        value={courseTitle}
-                        onChange={(e) => setCourseTitle(e.target.value)}
+                        value={courseName}
+                        onChange={(e) => setCourseName(e.target.value)}
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                         placeholder="e.g., Web Development Bootcamp"
                       />

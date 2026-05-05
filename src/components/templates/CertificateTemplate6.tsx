@@ -19,7 +19,7 @@ interface CertificateTemplate6Props {
   signatureUrl2?: string;
   mode?: "student" | "template-selection";
   // Legacy props for backwards compatibility
-  programName?: string;
+  courseName?: string;
   issueDate?: string;
   primaryColor?: string;
   signatories?: Array<{
@@ -47,7 +47,7 @@ export default function CertificateTemplate6({
   signatureUrl2,
   mode = "student",
   // Legacy props
-  programName,
+  courseName,
   issueDate,
   primaryColor = "#ea580c",
   signatories = [],
@@ -57,7 +57,7 @@ export default function CertificateTemplate6({
   const scale =
     mode === "student" ? "transform scale-[0.3]" : "transform scale-100";
   // Use legacy props if provided, otherwise use new standard props
-  const displayProgramName = programName || courseTitle;
+  const displayCourseName = courseName || courseTitle;
   const displayIssueDate = issueDate || date;
   const displayRecipientName = recipientName;
 
@@ -173,7 +173,7 @@ export default function CertificateTemplate6({
               <div className="w-full max-w-md mx-auto h-px bg-gray-800" />
             </div>
 
-            {/* Company/Program Name */}
+            {/* Company/Course Name */}
             <p className="text-sm uppercase font-extrabold tracking-wider text-black mb-4">
               {courseTitle || "Course Title"}
             </p>
@@ -181,7 +181,7 @@ export default function CertificateTemplate6({
             {/* Description */}
             <p className="text-xs text-gray-600 leading-relaxed max-w-2xl mx-auto">
               {description ||
-                `In recognition of outstanding achievement and exceptional dedication to ${displayProgramName}. This certificate acknowledges your commitment to excellence and significant contributions that have made a lasting impact on our organization and community.`}
+                `In recognition of outstanding achievement and exceptional dedication to ${displayCourseName}. This certificate acknowledges your commitment to excellence and significant contributions that have made a lasting impact on our organization and community.`}
             </p>
           </div>
 

@@ -5,7 +5,7 @@ const ENCRYPTION_KEY = 'cert-platform-key-2025';
 
 export interface CertificateData {
   organizationId: string;
-  programId: string;
+  courseName: string;
   certificateId: string;
   timestamp: number;
   expiresAt: number;
@@ -14,14 +14,14 @@ export interface CertificateData {
 /**
  * Encrypt certificate data with expiration
  * @param organizationId - Organization ID
- * @param programId - Program ID (can be course title)
+ * @param courseName - Course Name (can be course title)
  * @param certificateId - Certificate ID
  * @param expirationDays - Number of days until expiration (default: 365)
  * @returns Encrypted string
  */
 export const encryptCertificateData = (
   organizationId: string,
-  programId: string,
+  courseName: string,
   certificateId: string,
   expirationDays: number = 365
 ): string => {
@@ -30,7 +30,7 @@ export const encryptCertificateData = (
 
   const data: CertificateData = {
     organizationId,
-    programId,
+    courseName,
     certificateId,
     timestamp: now,
     expiresAt

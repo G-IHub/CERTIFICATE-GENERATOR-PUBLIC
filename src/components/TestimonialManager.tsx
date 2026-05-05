@@ -29,9 +29,9 @@ const mockTestimonials = [
   {
     id: 1,
     studentName: 'Sarah Johnson',
-    program: 'Bioinformatics Bootcamp',
+    course: 'Bioinformatics Bootcamp',
     rating: 5,
-    text: 'This program completely transformed my understanding of bioinformatics. The hands-on approach and expert instructors made complex concepts easy to grasp.',
+    text: 'This course completely transformed my understanding of bioinformatics. The hands-on approach and expert instructors made complex concepts easy to grasp.',
     type: 'text',
     date: '2024-06-15',
     featured: true
@@ -39,7 +39,7 @@ const mockTestimonials = [
   {
     id: 2,
     studentName: 'Michael Chen',
-    program: 'AI Fundamentals Course',
+    course: 'AI Fundamentals Course',
     rating: 5,
     text: 'Outstanding course content and delivery. I now feel confident applying AI concepts in my research work.',
     type: 'video',
@@ -49,9 +49,9 @@ const mockTestimonials = [
   {
     id: 3,
     studentName: 'Emily Rodriguez',
-    program: 'Bioinformatics Bootcamp',
+    course: 'Bioinformatics Bootcamp',
     rating: 4,
-    text: 'Great program with practical applications. The networking opportunities were invaluable.',
+    text: 'Great course with practical applications. The networking opportunities were invaluable.',
     type: 'image',
     date: '2024-06-13',
     featured: false
@@ -59,7 +59,7 @@ const mockTestimonials = [
   {
     id: 4,
     studentName: 'David Kim',
-    program: 'AI Fundamentals Course',
+    course: 'AI Fundamentals Course',
     rating: 5,
     text: 'Exceeded my expectations! The curriculum is well-structured and the support from instructors is amazing.',
     type: 'text',
@@ -155,7 +155,7 @@ export default function TestimonialManager({ subsidiary }: TestimonialManagerPro
             Testimonial Management
           </CardTitle>
           <CardDescription>
-            View, manage, and moderate testimonials from your program participants
+            View, manage, and moderate testimonials from your course participants
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -216,7 +216,7 @@ export default function TestimonialManager({ subsidiary }: TestimonialManagerPro
                         </Avatar>
                         <div>
                           <h4 className="font-semibold">{testimonial.studentName}</h4>
-                          <p className="text-sm text-gray-600">{testimonial.program}</p>
+                          <p className="text-sm text-gray-600">{testimonial.course}</p>
                         </div>
                       </div>
                       
@@ -292,7 +292,7 @@ export default function TestimonialManager({ subsidiary }: TestimonialManagerPro
                           </Avatar>
                           <div>
                             <h4 className="font-semibold">{testimonial.studentName}</h4>
-                            <p className="text-sm text-gray-600">{testimonial.program}</p>
+                            <p className="text-sm text-gray-600">{testimonial.course}</p>
                           </div>
                         </div>
                         

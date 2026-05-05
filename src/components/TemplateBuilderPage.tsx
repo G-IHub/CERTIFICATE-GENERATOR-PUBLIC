@@ -323,7 +323,7 @@ const TemplateBuilderPage: React.FC<TemplateBuilderPageProps> = ({
                   <div>
                     <h3 className="font-medium mb-1">Save and Use</h3>
                     <p className="text-sm text-gray-600">
-                      Save your template and use it when generating certificates for any program
+                      Save your template and use it when generating certificates for any course
                     </p>
                   </div>
                 </div>

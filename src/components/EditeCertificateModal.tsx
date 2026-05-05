@@ -82,8 +82,8 @@ export function EditCertificateModal({
   const [isLoading, setIsLoading] = useState(false);
 
   // Form state
-  const [programName, setProgramName] = useState("");
-  const [programDescription, setProgramDescription] = useState("");
+  const [courseName, setCourseName] = useState("");
+  const [courseDescription, setCourseDescription] = useState("");
   const [certificateHeader, setCertificateHeader] = useState("");
   const [completionDate, setCompletionDate] = useState("");
   const [selectedSignatories, setSelectedSignatories] = useState<string[]>([]);
@@ -98,8 +98,8 @@ export function EditCertificateModal({
   // Load certificate data into form
   useEffect(() => {
     if (certificate) {
-      setProgramName(certificate.courseName || "");
-      setProgramDescription(certificate.courseDescription || "");
+      setCourseName(certificate.courseName || "");
+      setCourseDescription(certificate.courseDescription || "");
       setCertificateHeader(
         certificate.certificateHeader || "Certificate of Completion",
       );
@@ -151,8 +151,8 @@ export function EditCertificateModal({
 
   const handleSubmit = async () => {
     // Validation
-    if (!programName.trim()) {
-      toast.error("Program name is required");
+    if (!courseName.trim()) {
+      toast.error("Course name is required");
       return;
     }
 
@@ -176,8 +176,8 @@ export function EditCertificateModal({
       const response = await updateCertificate(accessToken, certificate.id, {
         organizationId: certificate.organizationId,
         certificateHeader: certificateHeader.trim(),
-        courseName: programName.trim(),
-        courseDescription: programDescription.trim(),
+        courseName: courseName.trim(),
+        courseDescription: courseDescription.trim(),
         completionDate,
         template: certificate.template,
         signatories: signatories.length > 0 ? signatories : undefined,
@@ -192,10 +192,10 @@ export function EditCertificateModal({
       const updatedCert = {
         ...response.certificates[0],
         certificateUrl: certificate.certificateUrl, // Keep the original URL
-        courseName: programName.trim(),
+        courseName: courseName.trim(),
         certificateHeader: certificateHeader.trim(),
-        courseDescription: programDescription.trim(),
-        program: certificate.program,
+        courseDescription: courseDescription.trim(),
+        course: certificate.course,
         organization: certificate.organization,
       };
 
@@ -249,15 +249,15 @@ export function EditCertificateModal({
 
           {/* Form */}
           <div className="space-y-4">
-            {/* Program Name */}
+            {/* Course Name */}
             <div>
-              <Label htmlFor="programName">
-                Program Name <span className="text-red-500">*</span>
+              <Label htmlFor="courseName">
+                Course Name <span className="text-red-500">*</span>
               </Label>
               <Input
-                id="programName"
-                value={programName}
-                onChange={(e) => setProgramName(e.target.value)}
+                id="courseName"
+                value={courseName}
+                onChange={(e) => setCourseName(e.target.value)}
                 placeholder="e.g., Web Development Bootcamp"
                 disabled={isLoading}
               />
@@ -275,14 +275,14 @@ export function EditCertificateModal({
               />
             </div>
 
-            {/* Program Description */}
+            {/* Course Description */}
             <div>
-              <Label htmlFor="programDescription">Program Description</Label>
+              <Label htmlFor="courseDescription">Course Description</Label>
               <Textarea
-                id="programDescription"
-                value={programDescription}
-                onChange={(e) => setProgramDescription(e.target.value)}
-                placeholder="Brief description of the program"
+                id="courseDescription"
+                value={courseDescription}
+                onChange={(e) => setCourseDescription(e.target.value)}
+                placeholder="Brief description of the course"
                 rows={3}
                 disabled={isLoading}
               />
@@ -410,8 +410,8 @@ export function EditCertificateModal({
               previewProps={{
                 templateId: certificate.template || "1",
                 header: certificateHeader,
-                courseTitle: programName || "Sample Programme",
-                description: programDescription,
+                courseTitle: courseName || "Sample Course",
+                description: courseDescription,
                 date: completionDate,
                 recipientName: "Sample Student",
                 organizationName: certificate.organization?.name,

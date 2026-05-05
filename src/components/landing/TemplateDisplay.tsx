@@ -77,7 +77,7 @@ const TemplateDisplay = () => {
 
   const sampleData = {
     header: 'Certificate of Achievement',
-    courseTitle: 'Professional Development Program',
+    courseTitle: 'Professional Development Course',
     description: 'Successfully completed with distinction',
     date: new Date().toLocaleDateString(),
     recipientName: 'John Doe',

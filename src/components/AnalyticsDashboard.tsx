@@ -49,11 +49,11 @@ const socialShareData = [
   { name: 'WhatsApp', value: 10, color: '#25D366' }
 ];
 
-const programPerformance = [
-  { program: 'Bioinformatics Bootcamp', certificates: 245, engagement: 78, testimonials: 89 },
-  { program: 'AI Fundamentals', certificates: 156, engagement: 82, testimonials: 67 },
-  { program: 'Data Science Basics', certificates: 89, engagement: 65, testimonials: 34 },
-  { program: 'Machine Learning', certificates: 67, engagement: 71, testimonials: 28 }
+const coursePerformance = [
+  { course: 'Bioinformatics Bootcamp', certificates: 245, engagement: 78, testimonials: 89 },
+  { course: 'AI Fundamentals', certificates: 156, engagement: 82, testimonials: 67 },
+  { course: 'Data Science Basics', certificates: 89, engagement: 65, testimonials: 34 },
+  { course: 'Machine Learning', certificates: 67, engagement: 71, testimonials: 28 }
 ];
 
 export default function AnalyticsDashboard({ subsidiary, stats }: AnalyticsDashboardProps) {
@@ -198,28 +198,28 @@ export default function AnalyticsDashboard({ subsidiary, stats }: AnalyticsDashb
         </Card>
       </div>
 
-      {/* Program Performance Table */}
+      {/* Course Performance Table */}
       <Card>
         <CardHeader>
-          <CardTitle>Program Performance Overview</CardTitle>
+          <CardTitle>Course Performance Overview</CardTitle>
           <CardDescription>
-            Detailed breakdown by program showing certificates, engagement, and testimonials
+            Detailed breakdown by course showing certificates, engagement, and testimonials
           </CardDescription>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
-            {programPerformance.map((program, index) => (
+            {coursePerformance.map((course, index) => (
               <div key={index} className="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50">
                 <div className="flex-1">
-                  <h4 className="font-semibold">{program.program}</h4>
+                  <h4 className="font-semibold">{course.course}</h4>
                   <div className="flex items-center gap-4 mt-2 text-sm text-gray-600">
                     <div className="flex items-center gap-1">
                       <Award className="w-4 h-4" />
-                      {program.certificates} certificates
+                      {course.certificates} certificates
                     </div>
                     <div className="flex items-center gap-1">
                       <MessageSquare className="w-4 h-4" />
-                      {program.testimonials} testimonials
+                      {course.testimonials} testimonials
                     </div>
                   </div>
                 </div>
@@ -227,17 +227,17 @@ export default function AnalyticsDashboard({ subsidiary, stats }: AnalyticsDashb
                 <div className="flex items-center gap-4">
                   <div className="text-right">
                     <p className="text-sm text-gray-600">Engagement Rate</p>
-                    <p className="font-semibold">{program.engagement}%</p>
+                    <p className="font-semibold">{course.engagement}%</p>
                   </div>
                   
                   <div className="flex items-center gap-2">
-                    {program.engagement >= 80 && (
+                    {course.engagement >= 80 && (
                       <Badge className="bg-green-100 text-green-800">Excellent</Badge>
                     )}
-                    {program.engagement >= 70 && program.engagement < 80 && (
+                    {course.engagement >= 70 && course.engagement < 80 && (
                       <Badge className="bg-yellow-100 text-yellow-800">Good</Badge>
                     )}
-                    {program.engagement < 70 && (
+                    {course.engagement < 70 && (
                       <Badge className="bg-orange-100 text-orange-800">Needs Improvement</Badge>
                     )}
                   </div>

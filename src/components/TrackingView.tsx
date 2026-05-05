@@ -43,7 +43,7 @@ interface TrackingData {
   downloads: {
     total: number;
     byMonth: Record<string, number>;
-    byProgram: Record<string, number>;
+    byCourse: Record<string, number>;
   };
   timeSpent: {
     totalSeconds: number;
@@ -81,7 +81,7 @@ export default function TrackingView({
           downloads: response.analytics.downloads || {
             total: 0,
             byMonth: {},
-            byProgram: {},
+            byCourse: {},
           },
           timeSpent: response.analytics.timeSpent || {
             totalSeconds: 0,
@@ -155,16 +155,16 @@ export default function TrackingView({
     .sort((a, b) => a.month.localeCompare(b.month))
     .slice(-6); // Last 6 months
 
-  // Format program download data for pie chart
-  const programDownloadData = Object.entries(
-    trackingData.downloads.byProgram || {},
+  // Format course download data for pie chart
+  const courseDownloadData = Object.entries(
+    trackingData.downloads.byCourse || {},
   )
-    .map(([program, count]) => ({
-      name: program.substring(0, 20) + (program.length > 20 ? "..." : ""),
+    .map(([course, count]) => ({
+      name: course.substring(0, 20) + (course.length > 20 ? "..." : ""),
       value: count,
     }))
     .sort((a, b) => b.value - a.value)
-    .slice(0, 5); // Top 5 programs
+    .slice(0, 5); // Top 5 courses
 
   // Calculate average time per session (assuming ~2 min sync intervals)
   const avgSessionMinutes =
@@ -229,16 +229,16 @@ export default function TrackingView({
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
-                Programs Tracked
+                Courses Tracked
               </CardTitle>
               <Award className="h-4 w-4 text-orange-600" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">
-                {Object.keys(trackingData.downloads.byProgram || {}).length}
+                {Object.keys(trackingData.downloads.byCourse || {}).length}
               </div>
               <p className="text-xs text-muted-foreground">
-                Programs with downloads
+                Courses with downloads
               </p>
             </CardContent>
           </Card>
@@ -366,70 +366,66 @@ export default function TrackingView({
         </Card>
       </div>
 
-      {/* Program Downloads Distribution */}
+      {/* Course Downloads Distribution */}
       <Card>
         <CardHeader>
           <CardTitle className="text-base">
-            Downloads by Program (Top 5)
+            Downloads by Course (Top 5)
           </CardTitle>
           <CardDescription>
-            Which programs have the most certificate downloads
+            Which courses have the most certificate downloads
           </CardDescription>
         </CardHeader>
         <CardContent>
-          {programDownloadData.length > 0 ? (
-            <div className="grid md:grid-cols-2 gap-6">
-              <ResponsiveContainer width="100%" height={250}>
-                <PieChart>
-                  <Pie
-                    data={programDownloadData}
-                    cx="50%"
-                    cy="50%"
-                    labelLine={false}
-                    label={({ name, percent }) =>
-                      `${name} (${(percent * 100).toFixed(0)}%)`
-                    }
-                    outerRadius={80}
-                    fill="#8884d8"
-                    dataKey="value"
-                  >
-                    {programDownloadData.map((entry, index) => (
-                      <Cell
-                        key={`cell-${index}`}
-                        fill={COLORS[index % COLORS.length]}
-                      />
-                    ))}
-                  </Pie>
-                  <RechartsTooltip />
-                </PieChart>
-              </ResponsiveContainer>
-
-              <div className="space-y-3">
-                <h4 className="font-semibold text-sm text-gray-700">
-                  Program Breakdown
+          {courseDownloadData.length > 0 ? (
+            <div className="flex flex-col md:flex-row items-center gap-8">
+              <div className="h-64 w-full md:w-1/2">
+                <ResponsiveContainer width="100%" height="100%">
+                  <PieChart>
+                    <Pie
+                      data={courseDownloadData}
+                      cx="50%"
+                      cy="50%"
+                      innerRadius={60}
+                      outerRadius={80}
+                      paddingAngle={5}
+                      dataKey="value"
+                    >
+                      {courseDownloadData.map((entry, index) => (
+                        <Cell
+                          key={`cell-${index}`}
+                          fill={COLORS[index % COLORS.length]}
+                        />
+                      ))}
+                    </Pie>
+                    <Tooltip />
+                  </PieChart>
+                </ResponsiveContainer>
+              </div>
+              <div className="w-full md:w-1/2 space-y-4">
+                <h4 className="text-sm font-semibold text-gray-700">
+                  Course Breakdown
                 </h4>
-                {programDownloadData.map((program, index) => (
+                {courseDownloadData.map((course, index) => (
                   <div
                     key={index}
-                    className="flex items-center justify-between py-2 border-b"
+                    className="flex items-center justify-between"
                   >
                     <div className="flex items-center gap-2">
                       <div
                         className="w-3 h-3 rounded-full"
-                        style={{
-                          backgroundColor: COLORS[index % COLORS.length],
-                        }}
+                        style={{ backgroundColor: COLORS[index % COLORS.length] }}
                       />
-                      <span className="text-sm">{program.name}</span>
+                      <span className="text-sm">{course.name}</span>
                     </div>
-                    <Badge variant="secondary">{program.value} downloads</Badge>
+                    <Badge variant="secondary">{course.value} downloads</Badge>
                   </div>
                 ))}
               </div>
             </div>
           ) : (
-            <div className="h-[250px] flex items-center justify-center text-gray-500">
-              No program download data available yet
+            <div className="h-64 flex flex-col items-center justify-center text-gray-500 gap-2">
+              <p>No course download data available yet</p>
             </div>
           )}
         </CardContent>
@@ -447,7 +443,7 @@ export default function TrackingView({
               <p className="text-sm text-blue-800">
                 <strong>Downloads:</strong> Tracks every time a student
                 downloads a certificate. Helps you understand certificate
-                engagement and popular programs.
+                engagement and popular courses.
               </p>
               <p className="text-sm text-blue-800 mt-2">
                 <strong>Time Tracking:</strong> Automatically tracks your active

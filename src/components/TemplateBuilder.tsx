@@ -43,7 +43,7 @@ import {
   Edit2,
 } from "lucide-react";
 import { toast } from "sonner";
-import type { Organization, Program } from "../App";
+import type { Organization, Course } from "../App";
 
 interface CustomTemplateConfig {
   id: string;
@@ -156,7 +156,7 @@ const TemplateBuilder: React.FC<TemplateBuilderProps> = ({
       title: "CERTIFICATE OF COMPLETION",
       subtitle: "This is to certify that",
       recipientLabel: "has successfully completed",
-      completionText: "Sample Program",
+      completionText: "Sample Course",
       ...existingTemplate?.content,
     },
     elements: {
@@ -177,8 +177,8 @@ const TemplateBuilder: React.FC<TemplateBuilderProps> = ({
   const [saved, setSaved] = useState(false);
   const [editingText, setEditingText] = useState<string | null>(null);
 
-  // Sample program for preview
-  const sampleProgram: Program = {
+  // Sample course for preview
+  const sampleCourse: Course = {
     id: "sample-1",
     name: config.content.completionText,
     template: "modern",
@@ -818,11 +818,11 @@ const TemplateBuilder: React.FC<TemplateBuilderProps> = ({
                           </PopoverContent>
                         </Popover>
 
-                        {/* Program Name - Editable */}
+                        {/* Course Name - Editable */}
                         <Popover
-                          open={editingText === "program"}
+                          open={editingText === "course"}
                           onOpenChange={(open) =>
-                            setEditingText(open ? "program" : null)
+                            setEditingText(open ? "course" : null)
                           }
                         >
                           <PopoverTrigger asChild>
@@ -840,7 +840,7 @@ const TemplateBuilder: React.FC<TemplateBuilderProps> = ({
                           </PopoverTrigger>
                           <PopoverContent className="w-80">
                             <div className="space-y-3">
-                              <h4>Edit Program/Course Name</h4>
+                              <h4>Edit Course Name</h4>
                               <Input
                                 value={config.content.completionText}
                                 onChange={(e) =>
@@ -848,7 +848,7 @@ const TemplateBuilder: React.FC<TemplateBuilderProps> = ({
                                     completionText: e.target.value,
                                   })
                                 }
-                                placeholder="Professional Development Program"
+                                placeholder="Professional Development Course"
                               />
                             </div>
                           </PopoverContent>

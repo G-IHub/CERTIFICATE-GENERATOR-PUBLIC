@@ -35,7 +35,7 @@ interface VerificationResult {
     name: string;
     logo?: string;
   };
-  program?: {
+  course?: {
     name: string;
     description?: string;
   };
@@ -290,7 +290,7 @@ export default function CertificateVerification() {
                     <div className="flex items-center gap-2 mb-2">
                       <Award className="w-5 h-5 text-orange-500" />
                       <span className="text-sm font-medium text-muted-foreground">
-                        Program/Course
+                        Course
                       </span>
                     </div>
                     <p className="font-semibold">
@@ -343,7 +343,7 @@ export default function CertificateVerification() {
                 {/* Description */}
                 {result.certificate.courseDescription && (
                   <div className="pt-6 border-t">
-                    <h4 className="font-semibold mb-2">Program Description</h4>
+                    <h4 className="font-semibold mb-2">Course Description</h4>
                     <p className="text-muted-foreground">
                       {result.certificate.courseDescription}
                     </p>

@@ -1673,7 +1673,7 @@ export default function AdminDashboard({
               <TooltipTrigger asChild>
                 <Button
                   variant="outline"
-                  className={`w-full text-gray-600 bg-black hover:text-red-600 hover:border-red-300 hover:bg-black transition-colors hover:cursor-pointer ${
+                  className={`w-full text-gray-600 bg-black hover:text-red-600 hover:border-orange-400 hover:bg-black transition-colors hover:cursor-pointer ${
                     navCollapsed ? "px-2 hover:cursor-pointer" : ""
                   }`}
                   onClick={() => {
@@ -1686,12 +1686,12 @@ export default function AdminDashboard({
                   }}
                 >
                   <LogOut
-                    className={`w-4 h-4 text-white hover:text-black ${
+                    className={`w-4 h-4 text-white ${
                       navCollapsed ? "" : "mr-2"
                     } flex-shrink-0`}
                   />
                   {!navCollapsed && (
-                    <span className="text-white hover:text-black">
+                    <span className="text-white ">
                       Sign Out
                     </span>
                   )}

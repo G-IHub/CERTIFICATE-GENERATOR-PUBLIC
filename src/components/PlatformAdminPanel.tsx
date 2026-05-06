@@ -54,7 +54,7 @@ import {
   Trash2,
   Wallet,
 } from "lucide-react";
-import { toast } from "sonner@2.0.3";
+import { toast } from "sonner";
 import { publicAnonKey, projectId } from "../utils/supabase/info";
 import BillingSettings from "./BillingSettings";
 import AdminEmailsView from "./AdminEmailsView";
@@ -636,7 +636,7 @@ export default function PlatformAdminPanel({
             size="sm"
             onClick={handleRefresh}
             disabled={refreshing}
-            className={`w-full justify-start text-sm h-8 ${
+            className={`w-full justify-start text-sm h-8 cursor-pointer ${
               !sidebarOpen && "justify-center px-0"
             }`}
           >
@@ -651,7 +651,7 @@ export default function PlatformAdminPanel({
             variant="ghost"
             size="sm"
             onClick={onLogout}
-            className={`w-full justify-start text-sm h-8 text-red-600 hover:text-red-700 hover:bg-red-50 ${
+            className={`w-full justify-start text-sm h-8 text-red-600 hover:text-red-700 hover:bg-gray-400 cursor-pointer ${
               !sidebarOpen && "justify-center px-0"
             }`}
           >
@@ -723,7 +723,7 @@ export default function PlatformAdminPanel({
                   setMobileMenuOpen(false);
                 }}
                 disabled={refreshing}
-                className="w-full justify-start text-sm"
+                className="w-full justify-start text-sm cursor-pointer"
               >
                 <RefreshCw
                   className={`w-4 h-4 mr-2 ${refreshing ? "animate-spin" : ""}`}
@@ -734,7 +734,7 @@ export default function PlatformAdminPanel({
                 variant="ghost"
                 size="sm"
                 onClick={onLogout}
-                className="w-full justify-start text-sm text-red-600 hover:text-red-700 hover:bg-red-50"
+                className="w-full justify-start text-sm text-red-600 hover:text-red-700 hover:bg-red-50 cursor-pointer"
               >
                 <LogOut className="w-4 h-4 mr-2" />
                 Logout

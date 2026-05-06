@@ -2098,6 +2098,9 @@ app.post("/make-server-a611b057/courses", async (c) => {
       createdBy: user.id,
     };
 
+    if (!organization.courses) {
+      organization.courses = [];
+    }
     organization.courses.push(newCourse);
     await kv.set(`org:${organizationId}`, organization);
 
@@ -2135,8 +2138,8 @@ app.put(
         );
       }
 
-      const courseIndex = organization.courses.findIndex(
-        (p) => p.id === courseId,
+      const courseIndex = (organization.courses || []).findIndex(
+        (p: any) => p.id === courseId,
       );
 
       if (courseIndex === -1) {
@@ -2360,10 +2363,10 @@ app.post("/make-server-a611b057/certificates", async (c) => {
           "📊 Attempting to update course statistics for courseId:",
           courseId,
         );
-        const course = organization.courses.find((p) => p.id === courseId);
+        const course = (organization.courses || []).find((p: any) => p.id === courseId);
         if (course) {
           console.log("✅ Course found, updating certificate count");
-          course.certificates += 1;
+          course.certificates = (course.certificates || 0) + 1;
           await kv.set(`org:${organizationId}`, organization);
         } else {
           console.log("⚠️ Course not found in organization");
@@ -2376,9 +2379,10 @@ app.post("/make-server-a611b057/certificates", async (c) => {
     } else {
       // Old workflow: Generate certificates with student details
       console.log("🔄 Generating OLD FORMAT certificates (with student names)");
-      const course = organization.courses.find((p) => p.id === courseId);
-
+      const course = (organization.courses || []).find((p: any) => p.id === courseId);
+      
       if (!course) {
+        console.log("❌ Course not found for old format generation");
         return c.json({ error: "Course not found" }, 404);
       }
 
@@ -2422,7 +2426,7 @@ app.post("/make-server-a611b057/certificates", async (c) => {
       }
 
       // Update course certificate count
-      course.certificates += students.length;
+      course.certificates = (course.certificates || 0) + students.length;
       await kv.set(`org:${organizationId}`, organization);
     }
 
@@ -2510,8 +2514,8 @@ app.get("/make-server-a611b057/certificates/:id", async (c) => {
       }
     }
 
-    const course = organization?.courses.find(
-      (p) => p.id === certificate.courseId,
+    const course = (organization?.courses || []).find(
+      (p: any) => p.id === certificate.courseId,
     );
     console.log(
       "📜 Course found:",
@@ -2712,8 +2716,8 @@ app.delete("/make-server-a611b057/certificates/:id", async (c) => {
 
     // Update course certificate count if applicable
     if (certificate.courseId) {
-      const course = organization.courses.find(
-        (p) => p.id === certificate.courseId,
+      const course = (organization.courses || []).find(
+        (p: any) => p.id === certificate.courseId,
       );
       if (course && course.certificates > 0) {
         course.certificates -= 1;
@@ -2783,8 +2787,8 @@ app.delete("/make-server-a611b057/certificates", async (c) => {
 
         // Update course certificate count if applicable
         if (certificate.courseId) {
-          const course = organization.courses.find(
-            (p) => p.id === certificate.courseId,
+          const course = (organization.courses || []).find(
+            (p: any) => p.id === certificate.courseId,
           );
           if (course && course.certificates > 0) {
             course.certificates -= 1;
@@ -2946,8 +2950,10 @@ app.get("/make-server-a611b057/certificates/:id/verify", async (c) => {
 
     // Get course details if courseId exists
     let course = null;
-    if (certificate.courseId) {
-      course = await kv.get(`course:${certificate.courseId}`);
+    if (certificate.courseId && organization) {
+      course = (organization.courses || []).find(
+        (p: any) => p.id === certificate.courseId,
+      );
     }
 
     console.log("✅ Certificate verified successfully:", certificateId);
@@ -3087,8 +3093,8 @@ app.delete("/make-server-a611b057/courses/:orgId/:courseId", async (c) => {
     }
 
     // Find and remove the course
-    const courseIndex = organization.courses.findIndex(
-      (p) => p.id === courseId,
+    const courseIndex = (organization.courses || []).findIndex(
+      (p: any) => p.id === courseId,
     );
 
     if (courseIndex === -1) {
@@ -3347,8 +3353,8 @@ app.post("/make-server-a611b057/testimonials", async (c) => {
     // Update course testimonial count
     const organization = await kv.get(`org:${certificate.organizationId}`);
     if (organization) {
-      const course = organization.courses.find(
-        (p) => p.id === certificate.courseId,
+      const course = (organization.courses || []).find(
+        (p: any) => p.id === certificate.courseId,
       );
       if (course) {
         course.testimonials += 1;
@@ -10597,3 +10603,4 @@ app.route("/make-server-a611b057/blog", blog.default);
 app.route("/make-server-a611b057/analytics", analytics.default);
 
 Deno.serve(app.fetch);
+

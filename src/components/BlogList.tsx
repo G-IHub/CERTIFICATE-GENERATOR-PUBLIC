@@ -58,7 +58,7 @@ export default function BlogList() {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-gray-50 py-10">
+      <div className="min-h-screen bg-gray-50 py-10 lg:-mt-30">
         <div className="max-w-6xl mx-auto px-4">
           <h1 className="text-3xl font-bold mb-6">Blog</h1>
 
@@ -82,7 +82,7 @@ export default function BlogList() {
                       className="w-full h-40 object-cover"
                     />
                   ) : (
-                    <div className="w-full h-40 flex items-center justify-center bg-gradient-to-br from-orange-100 to-orange-50">
+                    <div className="w-full h-40 flex items-center justify-center bg-linear-to-br from-orange-100 to-orange-50">
                       <span className="text-4xl">📝</span>
                     </div>
                   )}

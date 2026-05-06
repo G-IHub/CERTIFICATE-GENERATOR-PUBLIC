@@ -71,7 +71,7 @@ export default function BlogDetails() {
     return (
       <>
         <Navbar />
-        <div className="min-h-screen bg-gray-50 py-10">
+        <div className="min-h-screen bg-gray-50 py-10 lg:-mt-30">
           <div className="max-w-4xl mx-auto px-4">
             <div className="animate-pulse">
               <div className="h-12 bg-gray-200 rounded mb-4"></div>
@@ -96,7 +96,7 @@ export default function BlogDetails() {
           <h2 className="text-xl font-semibold">Post not found</h2>
           <div className="mt-4">
             <Link to="/blogs" className="text-primary hover:underline">
-              Back to blog list
+              Back to blog
             </Link>
           </div>
         </div>
@@ -114,10 +114,18 @@ export default function BlogDetails() {
         type="article"
       />
       <Navbar />
-      <div className="min-h-screen bg-gray-50 py-10">
-        <div className="max-w-4xl mx-auto px-4">
+      <div className="min-h-screen bg-gray-50 py-10 lg:-mt-30">
+        <div className="my-8 ml-20">
+            <Link
+              to="/blogs"
+              className="inline-flex items-center gap-2 px-4 py-2 text-gray-500 font-semibold rounded-md hover:text-gray-700 "
+            >
+              &larr; Back to Blog
+            </Link>
+          </div>
+        <div className="max-w-4xl mx-auto px-4"> 
           <div className="">
-            <div className="text-center">
+            <div className="text-start">
               <h1 className="text-5xl font-bold">
                 {decodeHtmlEntities(post.title)}
               </h1>
@@ -135,17 +143,17 @@ export default function BlogDetails() {
             {/* WordPress HTML Content */}
             <div className="mt-6 text-gray-800">
               <div
-                className="prose prose-lg max-w-none
+                className="prose prose-xl max-w-none text-2xl text-gray-700 tracking-wide leading-loose
                   prose-headings:font-bold prose-headings:text-gray-900
-                  prose-h1:text-4xl prose-h1:mt-8 prose-h1:mb-4
-                  prose-h2:text-3xl prose-h2:mt-6 prose-h2:mb-3
-                  prose-h3:text-2xl prose-h3:mt-5 prose-h3:mb-2
-                  prose-p:text-gray-700 prose-p:leading-relaxed prose-p:mb-4
+                  prose-h1:text-5xl prose-h1:mt-8 prose-h1:mb-4
+                  prose-h2:text-4xl prose-h2:mt-6 prose-h2:mb-3
+                  prose-h3:text-3xl prose-h3:mt-5 prose-h3:mb-2
+                  prose-p:text-lg prose-p:leading-relaxed prose-p:mb-4
                   prose-a:text-[#FF7700] prose-a:no-underline hover:prose-a:underline
                   prose-strong:text-gray-900 prose-strong:font-semibold
                   prose-ul:list-disc prose-ul:ml-6 prose-ul:mb-4
                   prose-ol:list-decimal prose-ol:ml-6 prose-ol:mb-4
-                  prose-li:text-gray-700 prose-li:mb-1
+                  prose-li:text-lg prose-li:mb-1
                   prose-blockquote:border-l-4 prose-blockquote:border-[#FF7700] 
                   prose-blockquote:pl-4 prose-blockquote:italic prose-blockquote:text-gray-600
                   prose-code:bg-gray-100 prose-code:px-2 prose-code:py-1 prose-code:rounded
@@ -154,15 +162,6 @@ export default function BlogDetails() {
                 dangerouslySetInnerHTML={{ __html: post.content }}
               />
             </div>
-          </div>
-
-          <div className="mt-8">
-            <Link
-              to="/blogs"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-md hover:bg-[#FF6600] transition-colors"
-            >
-              Back to Blog List
-            </Link>
           </div>
         </div>
       </div>

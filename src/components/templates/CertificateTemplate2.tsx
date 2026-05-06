@@ -80,7 +80,7 @@ export default function CertificateTemplate2({
       className={containerClass}
       style={{ transform: `scale(${scale})`, backgroundColor: "transparent" }}
     >
-      <div className="w-800 h-600 flex justify-center shadow-sm rounded relative overflow-hidden bg-[#fbfbfb] py-20 px-10">
+      <div className="w-200 h-150 flex justify-center shadow-sm rounded relative overflow-hidden bg-[#fbfbfb] py-20 px-10">
         <img
           src={topShapeUrl}
           alt="Top Shape"

@@ -33,7 +33,7 @@ interface VerifyResult {
     name: string;
     logo?: string;
   };
-  program?: {
+  course?: {
     name: string;
     description?: string;
   } | null;
@@ -162,7 +162,7 @@ export default function VerificationPage() {
                 {cert.studentName && (
                   <DetailRow icon={<User style={{ width: 16, height: 16, color: "#4f46e5" }} />} label="Certificate Holder" value={cert.studentName} large />
                 )}
-                <DetailRow icon={<Award style={{ width: 16, height: 16, color: "#4f46e5" }} />} label="Programme / Course" value={courseName} />
+                <DetailRow icon={<Award style={{ width: 16, height: 16, color: "#4f46e5" }} />} label="Course" value={courseName} />
                 {cert.certificateHeader && cert.certificateHeader !== courseName && (
                   <DetailRow icon={<Shield style={{ width: 16, height: 16, color: "#4f46e5" }} />} label="Certificate Type" value={cert.certificateHeader} />
                 )}

@@ -42,7 +42,7 @@ const Testimonial: React.FC = () => {
         "The certificate generator is simple and efficient, it is a fast and user-friendly platform that delivers clean, professional certificates with ease. ",
       icon: mercy,
       name: "Mercy Odeyemi",
-      role: "Team Lead, Impact Program",
+      role: "Team Lead, Impact Course",
     },
   ];
   return (

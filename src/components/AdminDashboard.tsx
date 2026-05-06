@@ -125,7 +125,7 @@ const AnalyticsView = React.lazy(() => import("./AnalyticsView"));
 const OrganizationSettings = React.lazy(() => import("./OrganizationSettings"));
 const MonetizationPage = React.lazy(() => import("./MonetizationPage"));
 const DigitalProductsPage = React.lazy(() => import("./DigitalProductsPage"));
-import type { Program, Subsidiary, UserProfile } from "../App";
+import type { Course, Subsidiary, UserProfile } from "../App";
 import {
   LineChart,
   Line,
@@ -169,25 +169,11 @@ interface AdminDashboardProps {
     organizationId: string,
     updates: Partial<Organization>,
   ) => void;
-  onAddProgram: (organizationId: string, newProgram: Program) => void;
-  onUpdateProgramStats: (
-    organizationId: string,
-    programId: string,
-    certificateCount: number,
-  ) => void;
-  onUpdateProgram: (
-    organizationId: string,
-    programId: string,
-    updates: Partial<Program>,
-  ) => void;
   onCreateOrganization?: (name: string) => void;
   accessToken: string | null;
 }
 
-interface ExtendedProgram extends Program {
-  organizationName?: string;
-  organizationId?: string;
-}
+
 
 interface GeneratedCertificate {
   id: string;
@@ -199,7 +185,7 @@ interface GeneratedCertificate {
   completionDate?: string; // New field - for new certificate links
   generatedAt: string;
   certificateUrl: string;
-  program?: Program;
+
   organization?: Organization;
   status?: "active" | "revoked" | "expired";
   emailSent?: boolean;
@@ -211,7 +197,7 @@ interface TestimonialData {
   id: string;
   studentName: string;
   email?: string;
-  program: Program;
+
   organization: Organization;
   rating: number;
   text: string;
@@ -228,9 +214,6 @@ export default function AdminDashboard({
   userProfiles,
   onLogout,
   onUpdateSubsidiary: onUpdateOrganization,
-  onAddProgram,
-  onUpdateProgramStats,
-  onUpdateProgram,
   onCreateOrganization,
   accessToken,
 }: AdminDashboardProps) {
@@ -245,8 +228,7 @@ export default function AdminDashboard({
   const [navCollapsed, setNavCollapsed] = useState<boolean>(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   const [showGenerateModal, setShowGenerateModal] = useState<boolean>(false);
-  const [showNewProgramModal, setShowNewProgramModal] =
-    useState<boolean>(false);
+
   const isMobile = useIsMobile();
 
   // Check for onboarding redirect to certificates section
@@ -342,8 +324,8 @@ export default function AdminDashboard({
   const [genCertificateHeader, setGenCertificateHeader] = useState(
     "Certificate of Completion",
   );
-  const [genProgramName, setGenProgramName] = useState("");
-  const [genProgramDescription, setGenProgramDescription] = useState("");
+  const [genCourseName, setGenCourseName] = useState("");
+  const [genCourseDescription, setGenCourseDescription] = useState("");
   const [genCompletionDate, setGenCompletionDate] = useState(
     new Date().toISOString().split("T")[0],
   );
@@ -551,13 +533,13 @@ export default function AdminDashboard({
               }
 
               // Otherwise, generate encrypted URL from certificate data
-              const programSlug =
+              const courseSlug =
                 cert.courseName?.toLowerCase().replace(/\s+/g, "-") ||
-                cert.programId ||
-                "program";
+                cert.courseId ||
+                "course";
               const encryptedUrl = generateSecureCertificateUrl(
                 cert.organizationId,
-                programSlug,
+                courseSlug,
                 cert.id,
                 365,
               );
@@ -669,7 +651,8 @@ export default function AdminDashboard({
         return;
       }
       try {
-        const res = await fetch(`https://${projectId}.supabase.co/functions/v1/make-server-a611b057/digital-products?orgId=${currentOrganization.id}`, {
+        if (!currentOrganization?.id) return;
+      const res = await fetch(`https://${projectId}.supabase.co/functions/v1/make-server-a611b057/digital-products?orgId=${currentOrganization.id}`, {
           headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" }
         });
         if (res.ok) {
@@ -836,7 +819,7 @@ export default function AdminDashboard({
   const handleCertificatesGenerated = (
     certificates: any[],
     organization: any,
-    program: any,
+    course: any,
   ) => {
     // Add to generated certificates list
     setGenGeneratedCertificates((prev) => [...prev, ...certificates]);
@@ -935,7 +918,6 @@ export default function AdminDashboard({
       return {
         totalCertificates: 0,
         totalTestimonials: 0,
-        totalPrograms: 0,
         averageEngagement: 0,
       };
     }
@@ -945,19 +927,13 @@ export default function AdminDashboard({
     const totalCertificates = hasLoadedCertificates
       ? allCertificates.filter((cert) => cert.organizationId === targetOrg.id)
           .length
-      : targetOrg.programs.reduce(
-          (sum: number, p: Program) => sum + p.certificates,
-          0,
-        );
+      : 0;
 
     const totalTestimonials = hasLoadedTestimonials
       ? allTestimonials.filter((t) => t.organizationId === targetOrg.id).length
-      : targetOrg.programs.reduce(
-          (sum: number, p: Program) => sum + p.testimonials,
-          0,
-        );
+      : 0;
 
-    const totalPrograms = targetOrg.programs.length;
+
 
     const averageEngagement = Math.floor(
       (totalTestimonials / Math.max(totalCertificates, 1)) * 100,
@@ -966,20 +942,13 @@ export default function AdminDashboard({
     return {
       totalCertificates,
       totalTestimonials,
-      totalPrograms,
       averageEngagement,
     };
   };
 
   const stats = getStats();
 
-  // Get programs to display
-  const getDisplayPrograms = (): ExtendedProgram[] => {
-    // Users see their own organization's programs
-    return currentOrganization?.programs || [];
-  };
 
-  const displayPrograms = getDisplayPrograms();
 
   // Helper function to navigate to generate page and reset workflow
   const navigateToGenerate = () => {
@@ -988,25 +957,11 @@ export default function AdminDashboard({
     // Optionally reset other generation state if needed
   };
 
-  // Handle program-specific certificate generation
-  const handleProgramCertificateGeneration = (program: ExtendedProgram) => {
-    // If program has organizationId, use that organization
-    if (program.organizationId) {
-      const organization = organizations.find(
-        (o) => o.id === program.organizationId,
-      );
-      setCurrentOrganization(organization || null);
-    }
-    // Pre-fill the program details and navigate to generate tab
-    setGenProgramName(program.name);
-    setGenProgramDescription(program.description || "");
-    setGenSelectedTemplate(program.template || "modern");
-    setActiveTab("generate");
-  };
+
 
   // Student Experience Preview Functions
   const demoOrganization = currentOrganization || organizations[0];
-  const demoProgram = demoOrganization?.programs[0];
+  const demoCourse = null;
 
   const handleProceedToTestimonial = () => {
     if (!studentName.trim()) {
@@ -1047,12 +1002,12 @@ export default function AdminDashboard({
       return "";
     }
 
-    const programSlug = genProgramName.toLowerCase().replace(/\s+/g, "-");
+    const courseSlug = genCourseName.toLowerCase().replace(/\s+/g, "-");
 
     // Use encrypted URL format - more secure with expiration
     const encryptedUrl = generateSecureCertificateUrl(
       genCurrentUserOrganization.id,
-      programSlug,
+      courseSlug,
       certificateId,
       365, // Valid for 1 year
     );
@@ -1081,7 +1036,7 @@ export default function AdminDashboard({
   };
 
   const genGenerateIndividualCertificate = async () => {
-    if (!genProgramName.trim() || !genCertificateHeader.trim()) {
+    if (!genCourseName.trim() || !genCertificateHeader.trim()) {
       toast.error("Please fill in all required fields");
       return;
     }
@@ -1115,10 +1070,10 @@ export default function AdminDashboard({
       // Generate new certificate
       const response = await certificateApi.generate(accessToken, {
         organizationId: genCurrentUserOrganization.id,
-        programId: undefined,
+        courseId: undefined,
         certificateHeader: genCertificateHeader.trim(),
-        courseName: genProgramName.trim(),
-        courseDescription: genProgramDescription.trim(),
+        courseName: genCourseName.trim(),
+        courseDescription: genCourseDescription.trim(),
         completionDate: genCompletionDate,
         template: genSelectedTemplate, // Add template
         signatories: signatories.length > 0 ? signatories : undefined,
@@ -1139,13 +1094,13 @@ export default function AdminDashboard({
 
       const backendCert = response.certificates[0];
       // Generate encrypted certificate URL for better security
-      const programSlug = genProgramName
+      const courseSlug = genCourseName
         .trim()
         .toLowerCase()
         .replace(/\s+/g, "-");
       const encryptedCertUrl = generateSecureCertificateUrl(
         backendCert.organizationId,
-        programSlug,
+        courseSlug,
         backendCert.id,
         365, // Valid for 1 year
       );
@@ -1158,17 +1113,9 @@ export default function AdminDashboard({
       const certificate = {
         ...response.certificates[0],
         certificateUrl: encryptedPath, // Use encrypted URL instead of plain backend URL
-        courseName: genProgramName.trim(),
+        courseName: genCourseName.trim(),
         certificateHeader: genCertificateHeader.trim(),
-        courseDescription: genProgramDescription.trim(),
-        program: {
-          id: "gen-" + Date.now(),
-          name: genProgramName,
-          description: genProgramDescription,
-          template: genSelectedTemplate,
-          certificates: 0,
-          testimonials: 0,
-        },
+        courseDescription: genCourseDescription.trim(),
         organization: genCurrentUserOrganization,
       };
 
@@ -1184,8 +1131,8 @@ export default function AdminDashboard({
       setGenActiveTab("results");
 
       // Reset form
-      setGenProgramName("");
-      setGenProgramDescription("");
+      setGenCourseName("");
+      setGenCourseDescription("");
       setGenCertificateHeader("Certificate of Completion");
       setGenCompletionDate(new Date().toISOString().split("T")[0]);
       setGenRestrictDownload(false); // Reset restriction toggle
@@ -1238,7 +1185,7 @@ export default function AdminDashboard({
   };
 
   const genGenerateBulkCertificates = () => {
-    if (!genProgramName.trim() || !genBulkStudents.trim()) {
+    if (!genCourseName.trim() || !genBulkStudents.trim()) {
       toast.error("Please fill in all required fields");
       return;
     }
@@ -1264,21 +1211,12 @@ export default function AdminDashboard({
             email: student.email,
             generatedAt: new Date().toISOString(),
             certificateUrl: certificateUrl,
-            programName: genProgramName,
-            programDescription: genProgramDescription,
+            courseName: genCourseName,
+            courseDescription: genCourseDescription,
             templateId: genSelectedTemplate,
             organizationId: genCurrentUserOrganization?.id,
             customMessage: genCustomMessage.trim(),
             completionDate: genCompletionDate,
-            // Keep legacy program object for backwards compatibility
-            program: {
-              id: "gen-" + Date.now(),
-              name: genProgramName,
-              description: genProgramDescription,
-              template: genSelectedTemplate,
-              certificates: 0,
-              testimonials: 0,
-            },
             organization: genCurrentUserOrganization,
           };
         });
@@ -1304,8 +1242,8 @@ export default function AdminDashboard({
             const response = await certificateApi.generate(accessToken, {
               organizationId: genCurrentUserOrganization.id,
               certificateHeader: genCertificateHeader.trim(),
-              courseName: genProgramName.trim(),
-              courseDescription: genProgramDescription.trim(),
+              courseName: genCourseName.trim(),
+              courseDescription: genCourseDescription.trim(),
               completionDate: genCompletionDate,
               template: genSelectedTemplate,
               customTemplateConfig: genCustomTemplateConfig,
@@ -1398,7 +1336,7 @@ export default function AdminDashboard({
 
     const a = document.createElement("a");
     a.href = url;
-    a.download = `certificates-${genProgramName || "export"}-${
+    a.download = `certificates-${genCourseName || "export"}-${
       new Date().toISOString().split("T")[0]
     }.csv`;
     a.click();
@@ -1735,7 +1673,7 @@ export default function AdminDashboard({
               <TooltipTrigger asChild>
                 <Button
                   variant="outline"
-                  className={`w-full text-gray-600 bg-black hover:text-red-600 hover:border-red-300 hover:bg-black transition-colors hover:cursor-pointer ${
+                  className={`w-full text-gray-600 bg-black hover:text-red-600 hover:border-orange-400 hover:bg-black transition-colors hover:cursor-pointer ${
                     navCollapsed ? "px-2 hover:cursor-pointer" : ""
                   }`}
                   onClick={() => {
@@ -1748,12 +1686,12 @@ export default function AdminDashboard({
                   }}
                 >
                   <LogOut
-                    className={`w-4 h-4 text-white hover:text-black ${
+                    className={`w-4 h-4 text-white ${
                       navCollapsed ? "" : "mr-2"
                     } flex-shrink-0`}
                   />
                   {!navCollapsed && (
-                    <span className="text-white hover:text-black">
+                    <span className="text-white ">
                       Sign Out
                     </span>
                   )}
@@ -1949,10 +1887,10 @@ export default function AdminDashboard({
                           </h2>
                           <p className="text-muted-foreground mb-2 text-sm md:text-base">
                             {currentOrganization
-                              ? `Managing certificate programs for ${currentOrganization.name}`
+                              ? `Managing certificates for ${currentOrganization.name}`
                               : organizations.length > 0
-                                ? `Managing certificate programs for your organization`
-                                : "Get started by creating your organization and first program"}
+                                ? `Managing certificates for your organization`
+                                : "Get started by creating your organization and generating your first certificate"}
                           </p>
                           {currentOrganization && (
                             <div className="flex items-center gap-2 text-muted-foreground">
@@ -2007,8 +1945,7 @@ export default function AdminDashboard({
                             </h3>
                             <p className="text-sm text-gray-600 mb-4">
                               Add your organization name to get started with
-                              creating certificate programs and issuing
-                              professional certificates.
+                              creating courses and issuing professional certificates.
                             </p>
                             <Button
                               onClick={() => setActiveTab("settings")}
@@ -2542,7 +2479,7 @@ export default function AdminDashboard({
                               previewProps={{
                                 templateId: genSelectedTemplate || "1",
                                 header: "Certificate of Completion",
-                                courseTitle: "Sample Programme",
+                                courseTitle: "Sample Course",
                                 date: new Date().toISOString().split("T")[0],
                                 recipientName: "Sample Student Name",
                                 organizationName: (
@@ -2605,22 +2542,21 @@ export default function AdminDashboard({
                             </p>
                           </div>
 
-                          {/* Program/Course Name */}
+                          {/* Course Name */}
                           <div className="space-y-2">
-                            <Label htmlFor="genCourseTitle">
-                              Program/Course Name{" "}
-                              <span className="text-red-500">*</span>
+                            <Label htmlFor="gen-course-name">
+                              Course Name <span className="text-red-500">*</span>
                             </Label>
                             <Input
-                              id="genCourseTitle"
-                              value={genProgramName}
+                              id="gen-course-name"
+                              value={genCourseName}
                               onChange={(e) =>
-                                setGenProgramName(e.target.value)
+                                setGenCourseName(e.target.value)
                               }
-                              placeholder="e.g., Advanced Data Analytics Program"
+                              placeholder="e.g., Advanced Data Analytics Course"
                             />
                             <p className="text-xs text-gray-500">
-                              The name of the program or course
+                              The name of the course
                             </p>
                           </div>
 
@@ -2631,15 +2567,15 @@ export default function AdminDashboard({
                             </Label>
                             <Textarea
                               id="genDescription"
-                              value={genProgramDescription}
+                              value={genCourseDescription}
                               onChange={(e) =>
-                                setGenProgramDescription(e.target.value)
+                                setGenCourseDescription(e.target.value)
                               }
-                              placeholder="Additional details about the achievement or program..."
+                              placeholder="Additional details about the achievement or course..."
                               rows={3}
                             />
                             <p className="text-xs text-gray-500">
-                              Optional additional information about the program
+                              Optional additional information about the course
                             </p>
                           </div>
 
@@ -2918,7 +2854,7 @@ export default function AdminDashboard({
                               </PopoverContent>
                             </Popover>
                             <p className="text-xs text-gray-500">
-                              The date when the program was completed
+                              The date when the course was completed
                             </p>
                           </div>
 
@@ -3441,7 +3377,7 @@ export default function AdminDashboard({
                           </div>
 
                           {/* Live Certificate Preview */}
-                          {genProgramName &&
+                          {genCourseName &&
                             genSelectedTemplate &&
                             currentOrganization && (
                               <div className="pt-6">
@@ -3468,8 +3404,8 @@ export default function AdminDashboard({
                                         <CertificateRenderer
                                           templateId={genSelectedTemplate}
                                           header={genCertificateHeader}
-                                          courseTitle={genProgramName}
-                                          description={genProgramDescription}
+                                          courseTitle={genCourseName}
+                                          description={genCourseDescription}
                                           date={genCompletionDate}
                                           recipientName="Sample Student Name"
                                           isPreview={true}
@@ -3572,7 +3508,7 @@ export default function AdminDashboard({
                               disabled={
                                 genIsGenerating ||
                                 !genCertificateHeader.trim() ||
-                                !genProgramName.trim()
+                                !genCourseName.trim()
                               }
                               className="flex-1"
                             >
@@ -3623,8 +3559,8 @@ export default function AdminDashboard({
                                   setGenCertificateHeader(
                                     "Certificate of Completion",
                                   );
-                                  setGenProgramName("");
-                                  setGenProgramDescription("");
+                                  setGenCourseName("");
+                                  setGenCourseDescription("");
                                   setGenCompletionDate(
                                     new Date().toISOString().split("T")[0],
                                   );
@@ -3868,7 +3804,6 @@ export default function AdminDashboard({
                                     <div>
                                       <h3 className="font-semibold text-gray-900">
                                         {cert.courseName ||
-                                          cert.program?.name ||
                                           "Certificate of Completion"}
                                       </h3>
                                       <p className="text-sm text-gray-500 mt-1">
@@ -4172,7 +4107,7 @@ export default function AdminDashboard({
           user={user}
           subsidiaries={organizations}
           currentSubsidiary={currentOrganization}
-          onUpdateProgramStats={onUpdateProgramStats}
+
           onCertificatesGenerated={handleCertificatesGenerated}
           customTemplateConfig={genCustomTemplateConfig}
         />

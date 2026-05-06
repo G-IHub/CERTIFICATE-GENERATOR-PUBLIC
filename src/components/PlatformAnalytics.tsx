@@ -47,7 +47,7 @@ interface OrganizationAnalytics {
 
   // Activity metrics
   totalCertificates: number;
-  totalPrograms: number;
+  totalCourses: number;
   totalTestimonials: number;
 
   // Template usage
@@ -77,7 +77,7 @@ interface UserAnalytics {
 
   // Activity metrics
   totalCertificatesGenerated: number;
-  totalProgramsCreated: number;
+  totalCoursesCreated: number;
 
   // Time metrics
   lastLogin: string;
@@ -247,7 +247,7 @@ export default function PlatformAnalytics({
         "Status",
         "Created",
         "Total Certificates",
-        "Programs",
+        "Courses",
         "Testimonials",
         "Most Used Template",
         "Last Active",
@@ -262,7 +262,7 @@ export default function PlatformAnalytics({
         org.isPremium ? "Premium" : "Free",
         org.createdAt,
         org.totalCertificates,
-        org.totalPrograms,
+        org.totalCourses,
         org.totalTestimonials,
         getTemplateDisplayName(org.mostUsedTemplate),
         org.lastActive,
@@ -290,7 +290,7 @@ export default function PlatformAnalytics({
         "Organization",
         "Created",
         "Certificates Generated",
-        "Programs Created",
+        "Courses Created",
         "Last Login",
         "Certificates This Week",
         "Certificates This Month",
@@ -302,7 +302,7 @@ export default function PlatformAnalytics({
         user.organizationName,
         user.createdAt,
         user.totalCertificatesGenerated,
-        user.totalProgramsCreated,
+        user.totalCoursesCreated,
         user.lastLogin,
         user.certificatesThisWeek,
         user.certificatesThisMonth,
@@ -614,10 +614,10 @@ export default function PlatformAnalytics({
                         </div>
                         <div className="bg-white rounded-lg p-2 border border-gray-200">
                           <p className="text-xs text-gray-500 mb-0.5">
-                            Programs
+                            Courses
                           </p>
                           <p className="text-lg font-bold text-gray-900">
-                            {org.totalPrograms}
+                            {org.totalCourses}
                           </p>
                         </div>
                         <div className="bg-white rounded-lg p-2 border border-gray-200">
@@ -746,10 +746,10 @@ export default function PlatformAnalytics({
                         </div>
                         <div className="bg-white rounded-lg p-2 border border-gray-200">
                           <p className="text-xs text-gray-500 mb-0.5">
-                            Programs
+                            Courses
                           </p>
                           <p className="text-lg font-bold text-gray-900">
-                            {user.totalProgramsCreated}
+                            {user.totalCoursesCreated}
                           </p>
                         </div>
                         <div className="bg-white rounded-lg p-2 border border-gray-200">

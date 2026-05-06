@@ -29,7 +29,7 @@ import BlogList from "./components/BlogList";
 import BlogDetails from "./components/BlogDetails";
 import OnboardingWizard from "./components/OnboardingWizard";
 import CertificateRedirect from "./components/CertificateRedirect";
-import { organizationApi, authApi, programApi } from "./utils/api";
+import { organizationApi, authApi } from "./utils/api";
 import { publicAnonKey, projectId } from "./utils/supabase/info";
 import { toast, Toaster } from "sonner";
 import { isAdminEmail } from "./utils/adminConfig";
@@ -43,18 +43,7 @@ import ProductAccessPage from "./components/ProductAccessPage";
 
 const defaultOrgLogo = "https://via.placeholder.com/256x256.png?text=Org+Logo";
 
-interface Program {
-  id: string;
-  name: string;
-  template: "impact" | "professional" | "advanced";
-  certificates: number;
-  testimonials: number;
-  description: string;
-  duration?: string;
-  prerequisites?: string;
-  createdAt?: string;
-  createdBy?: string;
-}
+
 
 interface Signatory {
   id: string;
@@ -83,9 +72,21 @@ interface Organization {
   shortName: string;
   logo: string;
   primaryColor: string;
-  programs: Program[];
   ownerId: string;
   settings?: OrganizationSettings;
+  courses: Course[];
+}
+
+export interface Course {
+  id: string;
+  name: string;
+  description: string;
+  template?: string;
+  certificates: number;
+  testimonials: number;
+  createdAt: string;
+  createdBy: string;
+  duration?: string; // Optional field for certificate display
 }
 
 interface UserAccount {
@@ -110,11 +111,11 @@ interface UserProfile {
 
 // Export types for use in other components
 export type {
-  Program,
   Organization,
   UserAccount,
   Signatory,
   OrganizationSettings,
+  Course,
 };
 
 export type Subsidiary = Organization;
@@ -339,7 +340,11 @@ export default function App() {
     setIsLoadingOrganizations(true);
     try {
       const response = await organizationApi.getAll(token);
-      setOrganizations(response.organizations || []);
+      const orgs = (response.organizations || []).map((org: any) => ({
+        ...org,
+        courses: org.courses || org.programs || []
+      }));
+      setOrganizations(orgs);
     } catch (error) {
       // Error loading organizations
       setOrganizations([]);
@@ -447,10 +452,14 @@ export default function App() {
           ) {
             setOrganizations((prev) => [
               ...prev,
-              legacyUser.subsidiary as Organization,
+              {
+                ...legacyUser.subsidiary,
+                courses: (legacyUser.subsidiary as any).courses || (legacyUser.subsidiary as any).programs || []
+              } as Organization,
             ]);
           }
         }
+        setIsLoadingOrganizations(false);
       }
     }
   };
@@ -510,145 +519,6 @@ export default function App() {
     }
   };
 
-  // Function to add new program
-  const addProgramToOrganization = async (
-    organizationId: string,
-    newProgram: Program,
-  ) => {
-    if (!accessToken) {
-      // Still update locally for immediate feedback
-      setOrganizations((prev) =>
-        prev.map((org) =>
-          org.id === organizationId
-            ? { ...org, programs: [...org.programs, newProgram] }
-            : org,
-        ),
-      );
-      return;
-    }
-
-    try {
-      // Use programApi instead of direct fetch
-      const data = await programApi.create(accessToken, {
-        organizationId,
-        program: newProgram,
-      });
-
-      // Update local state with backend-confirmed data
-      setOrganizations((prev) =>
-        prev.map((org) =>
-          org.id === organizationId
-            ? { ...org, programs: [...org.programs, data.program] }
-            : org,
-        ),
-      );
-
-      toast.success("Program saved successfully");
-    } catch (error: any) {
-      toast.error(error.message || "Failed to save program");
-
-      // Still update locally as fallback
-      setOrganizations((prev) =>
-        prev.map((org) =>
-          org.id === organizationId
-            ? { ...org, programs: [...org.programs, newProgram] }
-            : org,
-        ),
-      );
-    }
-  };
-
-  // Function to update program statistics
-  const updateProgramStats = async (
-    organizationId: string,
-    programId: string,
-    certificateCount: number,
-  ) => {
-    // Update locally immediately for responsiveness
-    setOrganizations((prev) =>
-      prev.map((org) =>
-        org.id === organizationId
-          ? {
-              ...org,
-              programs: org.programs.map((prog) =>
-                prog.id === programId
-                  ? {
-                      ...prog,
-                      certificates: prog.certificates + certificateCount,
-                    }
-                  : prog,
-              ),
-            }
-          : org,
-      ),
-    );
-
-    // Backend is updated automatically when certificates are generated
-    // The certificate generation API updates the program stats
-  };
-
-  // Function to update program details
-  const updateProgram = async (
-    organizationId: string,
-    programId: string,
-    updates: Partial<Program>,
-  ) => {
-    if (!accessToken) {
-      // Still update locally
-      setOrganizations((prev) =>
-        prev.map((org) =>
-          org.id === organizationId
-            ? {
-                ...org,
-                programs: org.programs.map((prog) =>
-                  prog.id === programId ? { ...prog, ...updates } : prog,
-                ),
-              }
-            : org,
-        ),
-      );
-      return;
-    }
-
-    try {
-      // Use programApi instead of direct fetch
-      const data = await programApi.update(
-        accessToken,
-        organizationId,
-        programId,
-        updates,
-      );
-
-      // Update local state with backend-confirmed data
-      setOrganizations((prev) =>
-        prev.map((org) =>
-          org.id === organizationId
-            ? {
-                ...org,
-                programs: org.programs.map((prog) =>
-                  prog.id === programId ? data.program : prog,
-                ),
-              }
-            : org,
-        ),
-      );
-    } catch (error: any) {
-      // Still update locally as fallback
-      setOrganizations((prev) =>
-        prev.map((org) =>
-          org.id === organizationId
-            ? {
-                ...org,
-                programs: org.programs.map((prog) =>
-                  prog.id === programId ? { ...prog, ...updates } : prog,
-                ),
-              }
-            : org,
-        ),
-      );
-    }
-  };
-
   // Function to create a new organization
   const createOrganization = async (name: string) => {
     if (!currentUser || !accessToken) return;
@@ -658,6 +528,7 @@ export default function App() {
       const newOrg = {
         ...response.organization,
         logo: defaultOrgLogo, // Add default logo
+        courses: [],
       };
 
       setOrganizations((prev) => [...prev, newOrg]);
@@ -860,9 +731,6 @@ export default function App() {
                     userProfiles={[getUserProfile()!]}
                     onLogout={handleLogout}
                     onUpdateSubsidiary={updateOrganization}
-                    onAddProgram={addProgramToOrganization}
-                    onUpdateProgramStats={updateProgramStats}
-                    onUpdateProgram={updateProgram}
                     onCreateOrganization={createOrganization}
                     accessToken={accessToken}
                   />
@@ -984,7 +852,7 @@ export default function App() {
           {/* Student certificate routes - public */}
           {/* Supports both encrypted and legacy formats:
               - Encrypted: /certificate/{encryptedData}
-              - Legacy: /certificate/{orgId}/{programId}/{certId} */}
+              - Legacy: /certificate/{orgId}/{courseId}/{certId} */}
           <Route
             path="/certificate/*"
             element={<StudentCertificate subsidiaries={organizations} />}

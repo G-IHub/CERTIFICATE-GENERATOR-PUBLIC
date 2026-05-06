@@ -295,7 +295,7 @@ export default function TemplatesPage({
                     templateId={template.id}
                     header="Certificate of Completion"
                     courseTitle="Sample Course"
-                    description="For successfully completing the program"
+                    description="For successfully completing the course"
                     date="22nd January 2025"
                     recipientName="John Doe"
                     isPreview={true}

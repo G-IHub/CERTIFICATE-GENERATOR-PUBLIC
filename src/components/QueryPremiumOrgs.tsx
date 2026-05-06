@@ -111,7 +111,7 @@ export default function QueryPremiumOrgs() {
                             <p><span className="font-medium">Owner Email:</span> {org.ownerEmail || 'N/A'}</p>
                             <p><span className="font-medium">Owner ID:</span> {org.ownerId}</p>
                             <p><span className="font-medium">Created:</span> {new Date(org.createdAt).toLocaleString()}</p>
-                            <p><span className="font-medium">Programs:</span> {org.programs?.length || 0}</p>
+                            <p><span className="font-medium">Courses:</span> {org.courses?.length || 0}</p>
                           </div>
                           
                           {org.subscription && (

@@ -91,7 +91,7 @@ export default function SignatoryManagement({
                     onChange={(e) =>
                       onUpdate(signatory.id, "title", e.target.value)
                     }
-                    placeholder="Program Director"
+                    placeholder="Course Director"
                   />
                 </div>
               </div>

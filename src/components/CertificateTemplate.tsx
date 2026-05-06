@@ -9,11 +9,11 @@ import {
   Sparkles,
   Hexagon,
 } from "lucide-react";
-import type { Subsidiary, Program, OrganizationSettings } from "../App";
+import type { Subsidiary, Course, OrganizationSettings } from "../App";
 
 interface CertificateTemplateProps {
   subsidiary: Subsidiary | null;
-  program: Program;
+  course: Course;
   studentName: string;
   certificateId: string;
   completionDate: string;
@@ -25,7 +25,7 @@ interface CertificateTemplateProps {
 
 const CertificateTemplate: React.FC<CertificateTemplateProps> = ({
   subsidiary,
-  program,
+  course,
   studentName,
   certificateId,
   completionDate,
@@ -176,9 +176,9 @@ const CertificateTemplate: React.FC<CertificateTemplateProps> = ({
                 fontFamily: config.typography?.headingFont || "serif",
               }}
             >
-              {program.name}
+              {course.name}
             </h3>
-            {program.description && (
+            {course.description && (
               <p
                 className={`italic max-w-2xl mx-auto ${preview ? "text-xs mt-1" : "text-sm mt-2"}`}
                 style={{
@@ -186,7 +186,7 @@ const CertificateTemplate: React.FC<CertificateTemplateProps> = ({
                   fontFamily: config.typography?.bodyFont || "sans-serif",
                 }}
               >
-                {program.description}
+                {course.description}
               </p>
             )}
           </div>
@@ -592,13 +592,13 @@ const CertificateTemplate: React.FC<CertificateTemplateProps> = ({
       <h3
         className={`${preview ? "text-xl" : "text-2xl"} font-bold text-gray-800 ${preview ? "mb-3" : "mb-6"}`}
       >
-        {program.name}
+        {course.name}
       </h3>
-      {program.description && (
+      {course.description && (
         <p
           className={`text-gray-600 max-w-2xl mx-auto italic ${preview ? "text-sm" : ""}`}
         >
-          {program.description}
+          {course.description}
         </p>
       )}
     </div>
@@ -677,7 +677,7 @@ const CertificateTemplate: React.FC<CertificateTemplateProps> = ({
                 <p className="text-[10px] text-gray-600">
                   Authorized Signature
                 </p>
-                <p className="text-[9px] text-gray-500">Program Director</p>
+                <p className="text-[9px] text-gray-500">Course Director</p>
               </div>
             )}
           </>
@@ -689,9 +689,9 @@ const CertificateTemplate: React.FC<CertificateTemplateProps> = ({
               <p className="text-xl font-bold" style={{ color: styles.accent }}>
                 {formatDate(completionDate)}
               </p>
-              {program.duration && (
+              {course.duration && (
                 <p className="text-sm text-gray-500 mt-1">
-                  Duration: {program.duration}
+                  Duration: {course.duration}
                 </p>
               )}
             </div>
@@ -730,7 +730,7 @@ const CertificateTemplate: React.FC<CertificateTemplateProps> = ({
                   style={{ backgroundColor: styles.accent }}
                 />
                 <p className="text-sm text-gray-600">Authorized Signature</p>
-                <p className="text-xs text-gray-500 mt-1">Program Director</p>
+                <p className="text-xs text-gray-500 mt-1">Course Director</p>
               </div>
             )}
 

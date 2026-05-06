@@ -7,7 +7,7 @@ const API_BASE = `https://${projectId}.supabase.co/functions/v1/make-server-a611
  */
 export async function createShortLink(
   organizationId: string,
-  programId: string,
+  courseName: string,
   certificateId: string,
   certificateData?: any
 ): Promise<{

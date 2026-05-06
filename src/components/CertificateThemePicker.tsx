@@ -78,14 +78,14 @@ export default function CertificateThemePicker({
   const preview = {
     templateId: previewProps?.templateId ?? "1",
     header: previewProps?.header ?? "Certificate of Completion",
-    courseTitle: previewProps?.courseTitle ?? "Sample Programme",
+    courseTitle: previewProps?.courseTitle ?? "Sample Course",
     description: previewProps?.description ?? "This certificate is presented to:",
     date: previewProps?.date ?? new Date().toISOString().split("T")[0],
     recipientName: previewProps?.recipientName ?? "Jane Doe",
     organizationName: previewProps?.organizationName ?? "Your Organization",
     organizationLogo: previewProps?.organizationLogo,
     signatoryName1: previewProps?.signatoryName1 ?? "Director",
-    signatoryTitle1: previewProps?.signatoryTitle1 ?? "Programme Director",
+    signatoryTitle1: previewProps?.signatoryTitle1 ?? "Course Director",
   };
 
   return (

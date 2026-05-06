@@ -78,15 +78,10 @@ interface CertificateGenerationModalProps {
   user: any;
   subsidiaries: any[];
   currentSubsidiary: any;
-  onUpdateProgramStats?: (
-    organizationId: string,
-    programId: string,
-    certificateCount: number,
-  ) => void;
+
   onCertificatesGenerated?: (
     certificates: GeneratedCertificate[],
     organization: any,
-    program: any,
   ) => void;
   customTemplateConfig?: any; // Custom template configuration from Template Builder
 }
@@ -212,12 +207,12 @@ export default function CertificateGenerationModal({
       return "";
     }
 
-    const programSlug = courseName.toLowerCase().replace(/\s+/g, "-");
+    const courseSlug = courseName.toLowerCase().replace(/\s+/g, "-");
 
     // Use encrypted URL format - more secure with expiration
     const encryptedUrl = generateSecureCertificateUrl(
       currentUserOrganization.id,
-      programSlug,
+      courseSlug,
       certificateId,
       365, // Valid for 1 year
     );
@@ -465,7 +460,6 @@ export default function CertificateGenerationModal({
       onCertificatesGenerated(
         generatedCertificates,
         currentUserOrganization,
-        null,
       );
       onClose();
     }
@@ -619,7 +613,7 @@ export default function CertificateGenerationModal({
                       previewProps={{
                         templateId: selectedTemplate || "1",
                         header: "Certificate of Completion",
-                        courseTitle: "Sample Programme",
+                        courseTitle: "Sample Course",
                         date: new Date().toISOString().split("T")[0],
                         recipientName: "Sample Student Name",
                         organizationName: currentUserOrganization?.name,
@@ -677,20 +671,20 @@ export default function CertificateGenerationModal({
                     </p>
                   </div>
 
-                  {/* Program/Course Name */}
+                  {/* Course Name */}
                   <div className="space-y-2">
                     <Label htmlFor="courseName">
-                      Program/Course Name{" "}
+                      Course Name{" "}
                       <span className="text-red-500">*</span>
                     </Label>
                     <Input
                       id="courseName"
                       value={courseName}
                       onChange={(e) => setCourseName(e.target.value)}
-                      placeholder="e.g., Advanced Data Analytics Program"
+                      placeholder="e.g., Advanced Data Analytics Course"
                     />
                     <p className="text-xs text-gray-500">
-                      The name of the program or course
+                      The name of the course
                     </p>
                   </div>
 
@@ -703,11 +697,11 @@ export default function CertificateGenerationModal({
                       id="courseDescription"
                       value={courseDescription}
                       onChange={(e) => setCourseDescription(e.target.value)}
-                      placeholder="Additional details about the achievement or program..."
+                      placeholder="Additional details about the achievement or course..."
                       rows={3}
                     />
                     <p className="text-xs text-gray-500">
-                      Optional additional information about the program
+                      Optional additional information about the course
                     </p>
                   </div>
 
@@ -887,7 +881,7 @@ export default function CertificateGenerationModal({
                       onChange={(e) => setCompletionDate(e.target.value)}
                     />
                     <p className="text-xs text-gray-500">
-                      The date when the program was completed
+                      The date when the course was completed
                     </p>
                   </div>
 

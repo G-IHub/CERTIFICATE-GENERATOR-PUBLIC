@@ -38,7 +38,7 @@ import {
 import { toast } from "sonner";
 import CertificateTemplate from "./CertificateTemplate";
 import CertificateRenderer from "./CertificateRenderer";
-import type { Subsidiary, Program } from "../App";
+import type { Subsidiary, Logo } from "../App";
 import { copyToClipboard } from "../utils/clipboard";
 import { certificateApi, templateApi } from "../utils/api";
 import {
@@ -61,7 +61,7 @@ interface CertificateData {
   id: string;
   studentName?: string; // Optional for new format certificates
   email?: string;
-  program?: Program;
+
   subsidiary?: Subsidiary;
   organization?: Subsidiary; // Backend returns organization instead of subsidiary
   courseName?: string; // New format field
@@ -74,7 +74,7 @@ interface CertificateData {
   verificationCode?: string;
   downloadCount?: number;
   lastAccessed?: string;
-  programId?: string;
+
   organizationId?: string;
   customTemplateConfig?: any; // Custom template configuration
   template?: string; // Template name/style
@@ -93,6 +93,7 @@ interface CertificateData {
   themeColors?: any; // Theme colors
   linkedProductId?: string; // Linked digital product
   linkedProductOrgId?: string; // Org ID for linked product
+  logos?: Logo[]; // Organization logos
 }
 
 const StudentCertificate: React.FC<StudentCertificateProps> = ({
@@ -103,9 +104,28 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
 
   // Handle both encrypted and legacy URL formats
   // Encrypted: /certificate/{encryptedData}
-  // Legacy: /certificate/{orgId}/{programId}/{certId}
-  const { subsidiaryId, programId, certificateId } = params;
-  const wildcardParam = params["*"]; // Catches everything after /certificate/
+  // Legacy 1: /certificate/{orgId}/{courseId}/{certId}
+  // Legacy 2: /certificate/{orgId}/{certId}
+  const wildcardParam = params["*"];
+  
+  let subsidiaryId = params.subsidiaryId;
+  let certificateId = params.certificateId;
+  let courseId = params.courseId;
+
+  // If we are using the wildcard route, parse the parts
+  if (wildcardParam && !certificateId) {
+    const parts = wildcardParam.split("/").filter(Boolean);
+    if (parts.length === 3) {
+      // orgId/courseId/certId
+      subsidiaryId = parts[0];
+      courseId = parts[1];
+      certificateId = parts[2];
+    } else if (parts.length === 2) {
+      // orgId/certId
+      subsidiaryId = parts[0];
+      certificateId = parts[1];
+    }
+  }
 
   const [certificate, setCertificate] = useState<CertificateData | null>(null);
   const [loading, setLoading] = useState(true);
@@ -195,8 +215,8 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
       let actualCertificateId: string | null = null;
       let decryptedData: any = null;
 
-      // Try to decrypt if we have a single encrypted parameter
-      if (wildcardParam && !subsidiaryId && !programId) {
+      // Try to decrypt if we have a single encrypted parameter (no certificateId yet)
+      if (wildcardParam && !certificateId) {
         console.log("🔐 Attempting to decrypt certificate URL...");
         console.log("   - Raw wildcardParam:", wildcardParam);
         console.log("   - wildcardParam length:", wildcardParam.length);
@@ -223,7 +243,6 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
         if (decryptedData) {
           console.log("✅ Successfully decrypted certificate data:");
           console.log("   - Organization ID:", decryptedData.organizationId);
-          console.log("   - Program ID:", decryptedData.programId);
           console.log("   - Certificate ID:", decryptedData.certificateId);
 
           // Check expiration
@@ -245,17 +264,11 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
           return;
         }
       } else if (certificateId) {
-        // Legacy format: /certificate/{orgId}/{programId}/{certId}
+        // Legacy format: /certificate/{orgId}/{certId}
         console.log("📄 Using legacy URL format");
         actualCertificateId = certificateId;
       } else {
         console.log("⚠️ No certificate ID or encrypted data provided");
-        console.log("⚠️ URL params:", {
-          subsidiaryId,
-          programId,
-          certificateId,
-          wildcardParam,
-        });
         setLoading(false);
         return;
       }
@@ -298,16 +311,10 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
           return;
         }
 
-        console.log("📡 API Response received:");
-        console.log("   - Has certificate:", !!response.certificate);
-        console.log("   - Has organization:", !!response.organization);
-        console.log("   - Has program:", !!response.program);
-
         if (response.certificate) {
           console.log("✅ Certificate data received from backend");
           const cert = response.certificate;
           const org = response.organization;
-          const prog = response.program;
           console.log("📄 Certificate details:");
           console.log("   - ID:", cert.id);
           console.log(
@@ -316,11 +323,8 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
           );
           console.log("   - Course Name:", cert.courseName);
           console.log("   - Certificate Header:", cert.certificateHeader);
-          console.log("   - Template:", cert.template);
           console.log("   - Organization ID:", cert.organizationId);
           console.log("   - Organization Name:", org?.name || "(not found)");
-          console.log("   - Program ID:", cert.programId);
-          console.log("   - Program Name:", prog?.name || "(not found)");
           console.log("   - Completion Date:", cert.completionDate);
 
           // Map backend response to CertificateData format
@@ -331,7 +335,6 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
             courseName: cert.courseName, // New format
             certificateHeader: cert.certificateHeader, // New format
             courseDescription: cert.courseDescription, // New format
-            program: prog,
             subsidiary: org,
             organization: org,
             completionDate: cert.completionDate,
@@ -341,7 +344,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
             verificationCode: "VER-" + cert.id.slice(-8),
             downloadCount: cert.downloadCount || 0,
             lastAccessed: new Date().toISOString(),
-            programId: cert.programId,
+
             organizationId: cert.organizationId,
             template: cert.template, // Template ID from backend
             customTemplateConfig: cert.customTemplateConfig, // Custom template config if exists
@@ -356,64 +359,22 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
             themeColors: cert.themeColors, // Theme colors
             linkedProductId: cert.linkedProductId || undefined,
             linkedProductOrgId: cert.orgId || cert.organizationId || undefined,
+            logos: cert.logos || org?.settings?.logos || [],
           };
-
-          console.log("📋 Template Info:", {
-            templateId: cert.template,
-            hasCustomConfig: !!cert.customTemplateConfig,
-          });
-
-          console.log("🔒 Restriction Info:", {
-            restrictDownload: cert.restrictDownload || false,
-            allowedEmailsCount: cert.allowedEmails?.length || 0,
-            allowedEmails: cert.allowedEmails || [],
-          });
 
           setCertificate(certificateData);
           if (cert.customTemplateConfig) {
-            console.log(
-              "🎨 Certificate has customTemplateConfig - using saved design",
-            );
-            console.log(
-              "🎨 Custom config keys:",
-              Object.keys(cert.customTemplateConfig),
-            );
-            console.log(
-              "⚠️ NOT loading template from global library (would overwrite)",
-            );
             // Don't load from global library - certificate already has the config
           } else if (cert.template && cert.template.match(/^template\d+$/)) {
-            // Only load from global library if no customTemplateConfig
-            console.log(
-              "📋 No customTemplateConfig - loading template from backend:",
-              cert.template,
-            );
             try {
               const templateResponse = await templateApi.getById(cert.template);
               if (templateResponse.template) {
                 setTemplateConfig(templateResponse.template.config);
-                console.log(
-                  "✅ Template config loaded from global library:",
-                  templateResponse.template.name,
-                );
               }
             } catch (error) {
               console.error("❌ Failed to load template config:", error);
-              // Not critical - will fall back to default
             }
           }
-
-          // Check if this is a new format certificate without a student name
-          console.log("🔍 CHECKING STUDENT NAME:");
-          console.log("   - cert.studentName value:", cert.studentName);
-          console.log("   - Type:", typeof cert.studentName);
-          console.log("   - Is undefined?", cert.studentName === undefined);
-          console.log("   - Is null?", cert.studentName === null);
-          console.log("   - Is empty string?", cert.studentName === "");
-          console.log(
-            "   - Truthy check (!cert.studentName):",
-            !cert.studentName,
-          );
 
           if (!cert.studentName) {
             // Check if returning from a successful Paystack payment for this cert
@@ -425,21 +386,14 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
               savedCertId === cert.id &&
               savedName
             ) {
-              console.log("✅ Returning from payment — restoring buyer details, skipping name form");
               setEnteredName(savedName);
               if (savedEmail) setEnteredEmail(savedEmail);
               sessionStorage.removeItem("ctfy_buyer_cert");
               sessionStorage.removeItem("ctfy_buyer_name");
               sessionStorage.removeItem("ctfy_buyer_email");
             } else {
-              console.log("📝 No student name - showing name entry form");
               setShowNameForm(true);
             }
-          } else {
-            console.log("✅ Student name present:", cert.studentName);
-            console.log(
-              "📄 Will display certificate directly (no name entry needed)",
-            );
           }
         } else {
           toast.error(
@@ -447,18 +401,8 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
           );
         }
       } catch (error: any) {
-        if (error.stack) console.error("Stack trace:", error.stack);
-
-        // Check if this is a payment required error (402)
         if (error.message && error.message.includes("Payment is required")) {
-          console.log(
-            "💰 Payment required - this is expected, showing name form",
-          );
-          // Don't show error toast - this is expected behavior
-          // We'll show the name form and then the payment modal
           setShowNameForm(true);
-          // Set a minimal certificate object so we can show the form
-          // The actual certificate data will be loaded after payment
           setLoading(false);
           return;
         }
@@ -485,11 +429,8 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
 
   // Prevent layout shift when download starts - always reserve scrollbar space
   useEffect(() => {
-    // Ensure scrollbar space is always reserved to prevent layout shift
     document.documentElement.style.overflowY = "scroll";
-
     return () => {
-      // Clean up on unmount
       document.documentElement.style.overflowY = "";
     };
   }, []);
@@ -498,7 +439,6 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
   useEffect(() => {
     if (isDownloading) {
       document.body.style.overflow = "hidden";
-
       return () => {
         document.body.style.overflow = "";
       };
@@ -528,7 +468,6 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
     );
   };
 
-  // Replace or set crossOrigin on images to avoid canvas tainting during export
   const sanitizeImagesForExport = async (container: HTMLElement) => {
     const TRANSPARENT_PNG =
       "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
@@ -541,14 +480,12 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
         (img) =>
           new Promise<void>((resolve) => {
             try {
-              // If src is absolute and cross-origin, try to request it with anonymous CORS
               const src = img.src || "";
               const isAbsolute = /^https?:\/\//i.test(src);
               const sameOrigin = src.startsWith(window.location.origin);
 
               if (isAbsolute && !sameOrigin) {
                 img.crossOrigin = "anonymous";
-                // Force a reload with cache-bust to attempt CORS fetch
                 const cacheBusted =
                   src + (src.includes("?") ? "&" : "?") + "_cb=" + Date.now();
                 const onload = () => {
@@ -556,28 +493,20 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
                   resolve();
                 };
                 const onerror = () => {
-                  // Replace problematic image with a 1x1 transparent pixel so canvas isn't tainted
                   try {
                     img.src = TRANSPARENT_PNG;
-                  } catch (_) {
-                    // ignore
-                  }
+                  } catch (_) {}
                   img.removeEventListener("load", onload);
                   resolve();
                 };
 
                 img.addEventListener("load", onload, { once: true });
                 img.addEventListener("error", onerror, { once: true });
-                // Reassign to trigger CORS-enabled request
                 try {
                   img.src = cacheBusted;
-                } catch {
-                  // ignore
-                }
-                // Safety timeout in case neither load nor error fires
+                } catch {}
                 setTimeout(() => resolve(), 2500);
               } else {
-                // Local or data URIs are fine
                 resolve();
               }
             } catch (e) {
@@ -588,9 +517,6 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
     );
   };
 
-  // Disable cross-origin stylesheets temporarily to avoid SecurityError when
-  // html-to-image tries to read cssRules from remote stylesheets (e.g., Google
-  // Fonts). Returns a list of sheets that were disabled so they can be re-enabled.
   const disableCrossOriginStyleSheets = (): CSSStyleSheet[] => {
     const disabled: CSSStyleSheet[] = [];
     try {
@@ -601,20 +527,15 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
           if (href) {
             const sheetOrigin = new URL(href, window.location.href).origin;
             if (sheetOrigin !== window.location.origin) {
-              // Disable the stylesheet to prevent cssRules access
               if (sheet.disabled !== undefined) {
                 sheet.disabled = true;
                 disabled.push(sheet as CSSStyleSheet);
               }
             }
           }
-        } catch (e) {
-          // ignore any access errors and continue
-        }
+        } catch (e) {}
       });
-    } catch (e) {
-      // ignore
-    }
+    } catch (e) {}
     return disabled;
   };
 
@@ -622,16 +543,14 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
   const renderCertificateOffscreen = useCallback(async (): Promise<string> => {
     if (!certificate) throw new Error("No certificate data");
 
-    // Offscreen container (render in viewport but invisible for reliable layout)
     const container = document.createElement("div");
     container.style.position = "fixed";
     container.style.left = "0";
     container.style.top = "0";
     container.style.opacity = "0";
     container.style.pointerEvents = "none";
-    container.style.width = "1000px"; // design width
-    container.style.height = "600px"; // design height
-    // container.style.background = "#ffffff";
+    container.style.width = "1000px";
+    container.style.height = "600px";
     container.style.padding = "0";
     container.style.margin = "0";
     container.style.zIndex = "-1";
@@ -639,16 +558,8 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
 
     const root = createRoot(container);
     const cleanup = () => {
-      try {
-        root.unmount();
-      } catch {
-        // offscreen root unmount error
-      }
-      try {
-        container.remove();
-      } catch {
-        // offscreen container remove error
-      }
+      try { root.unmount(); } catch {}
+      try { container.remove(); } catch {}
     };
 
     try {
@@ -664,14 +575,14 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
         >
           <CertificateRenderer
             templateId={
-              certificate.template || progData?.template || "template1"
+              certificate.template || "template1"
             }
             header={
               certificate.certificateHeader || "Certificate of Completion"
             }
-            courseTitle={certificate.courseName || progData?.name || "Course"}
+            courseTitle={certificate.courseName || "Course"}
             description={
-              certificate.courseDescription || progData?.description || ""
+              certificate.courseDescription || ""
             }
             date={certificate.completionDate}
             recipientName={certificate.studentName || enteredName || "Student"}
@@ -693,48 +604,20 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
         </div>,
       );
 
-      // Let React paint
       await new Promise((r) => setTimeout(r, 50));
-
-      // Ensure fonts and images are ready
-      type DocumentWithFonts = Document & {
-        fonts?: { ready?: Promise<unknown> };
-      };
-      const docWithFonts = document as DocumentWithFonts;
-      if (docWithFonts.fonts?.ready) {
-        try {
-          await docWithFonts.fonts.ready;
-        } catch {
-          // fonts.ready wait failed
-        }
-      }
-      const target =
-        (container.querySelector(
-          '#export-root [class*="w-[1000px]"][class*="h-[600px]"]',
-        ) as HTMLElement) ||
-        (container.querySelector("#export-root") as HTMLElement) ||
-        container;
-      try {
-        await sanitizeImagesForExport(target as HTMLElement);
-      } catch (e) {
-        // sanitization failed — continue and attempt to wait for images
-      }
-
+      const target = (container.querySelector('#export-root [class*="w-[1000px]"][class*="h-[600px]"]') as HTMLElement) || (container.querySelector("#export-root") as HTMLElement) || container;
+      try { await sanitizeImagesForExport(target as HTMLElement); } catch (e) {}
       await waitForImages(target as HTMLElement);
 
-      // Measure the actual rendered size of the certificate inside the offscreen container
       const measuredRect = (target as HTMLElement).getBoundingClientRect();
       const measuredWidth = Math.max(1, Math.round(measuredRect.width));
       const measuredHeight = Math.max(1, Math.round(measuredRect.height));
 
-      // Ensure the offscreen container matches the measured size to avoid extra whitespace
       container.style.width = `${measuredWidth}px`;
       container.style.height = `${measuredHeight}px`;
 
       let dataUrl: string;
       try {
-        // Disable cross-origin stylesheets so html-to-image doesn't try to
-        // access cssRules on remote sheets (which throws SecurityError).
         const disabled = disableCrossOriginStyleSheets();
         try {
           const pr = Math.min(200, window.devicePixelRatio || 1);
@@ -747,36 +630,20 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
             quality: .0,
           });
 
-          // Attempt to crop to the inner certificate element if present
-          const cropElem =
-            (target.querySelector(":scope > *") as HTMLElement) || target;
+          const cropElem = (target.querySelector(":scope > *") as HTMLElement) || target;
           if (cropElem && cropElem !== target) {
-            const containerRect = (
-              target as HTMLElement
-            ).getBoundingClientRect();
+            const containerRect = (target as HTMLElement).getBoundingClientRect();
             const cropRect = cropElem.getBoundingClientRect();
             const offsetX = cropRect.left - containerRect.left;
             const offsetY = cropRect.top - containerRect.top;
             try {
-              dataUrl = await cropDataUrl(
-                dataUrl,
-                offsetX * pr,
-                offsetY * pr,
-                cropRect.width * pr,
-                cropRect.height * pr,
-              );
+              dataUrl = await cropDataUrl(dataUrl, offsetX * pr, offsetY * pr, cropRect.width * pr, cropRect.height * pr);
             } catch (e) {
-              // If cropping fails, fall back to full image
               console.warn("Cropping offscreen image failed:", e);
             }
           }
         } finally {
-          // Re-enable any disabled stylesheets
-          try {
-            disabled.forEach((s) => (s.disabled = false));
-          } catch (_) {
-            // ignore
-          }
+          try { disabled.forEach((s) => (s.disabled = false)); } catch (_) {}
         }
       } catch (err: any) {
         console.error("Error generating image in offscreen render:", err);
@@ -788,8 +655,6 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
     }
   }, [certificate]);
 
-  // Crop a dataURL image to the specified rectangle (coordinates relative to the
-  // full image). Returns a new dataURL for the cropped area.
   const cropDataUrl = async (
     dataUrl: string,
     cropX: number,
@@ -824,24 +689,17 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
         }
       };
       img.onerror = (e) => reject(new Error("Failed to load generated image"));
-      // Ensure same-origin for canvas usage
       img.crossOrigin = "anonymous";
       img.src = dataUrl;
     });
   };
 
-  // Capture the on-screen certificate by normalizing transforms/sizes temporarily
   const captureOnscreenNormalized = useCallback(async (): Promise<string> => {
     const root = certificateRef.current as HTMLElement | null;
     if (!root) throw new Error("No onscreen certificate ref");
 
-    // Try to locate the inner certificate canvas
-    const target =
-      (root.querySelector(
-        '[class*="w-[1000px]"][class*="h-[600px]"]',
-      ) as HTMLElement) || root;
+    const target = (root.querySelector('[class*="w-[1000px]"][class*="h-[600px]"]') as HTMLElement) || root;
 
-    // Save previous inline styles to restore later
     const prev: Record<string, string> = {
       transform: target.style.transform,
       width: target.style.width,
@@ -859,9 +717,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
       : {};
 
     try {
-      // Neutralize preview scaling/offsets so the capture area is exact
       target.style.marginLeft = "0";
-      // Calculate actual sizes from the DOM so capture matches the visible certificate
       const targetRect = target.getBoundingClientRect();
       const targetWidth = Math.round(targetRect.width);
       const targetHeight = Math.round(targetRect.height);
@@ -872,34 +728,12 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
         child.style.marginLeft = "0";
       }
 
-      // Ensure assets ready
-      type DocumentWithFonts = Document & {
-        fonts?: { ready?: Promise<unknown> };
-      };
-      const docWithFonts = document as DocumentWithFonts;
-      if (docWithFonts.fonts?.ready) {
-        try {
-          await docWithFonts.fonts.ready;
-        } catch {
-          // fonts.ready wait failed (onscreen)
-        }
-      }
-
-      // Additional delay to ensure fonts are fully rendered and prevent text shift
       await new Promise((resolve) => setTimeout(resolve, 150));
-
-      try {
-        await sanitizeImagesForExport(target);
-      } catch (e) {
-        // ignore
-      }
-
+      try { await sanitizeImagesForExport(target); } catch (e) {}
       await waitForImages(target);
 
       let dataUrl: string;
       try {
-        // Disable cross-origin stylesheets to prevent SecurityError during
-        // css inlining by html-to-image, then re-enable afterwards.
         const disabled = disableCrossOriginStyleSheets();
         try {
           const pr = Math.min(2, window.devicePixelRatio || 1);
@@ -911,34 +745,20 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
             pixelRatio: pr,
           });
 
-          // Crop to inner certificate element if available (remove surrounding whitespace)
-          const cropElem =
-            (target.querySelector(":scope > *") as HTMLElement) || target;
+          const cropElem = (target.querySelector(":scope > *") as HTMLElement) || target;
           if (cropElem && cropElem !== target) {
-            const containerRect = (
-              target as HTMLElement
-            ).getBoundingClientRect();
+            const containerRect = (target as HTMLElement).getBoundingClientRect();
             const cropRect = cropElem.getBoundingClientRect();
             const offsetX = cropRect.left - containerRect.left;
             const offsetY = cropRect.top - containerRect.top;
             try {
-              dataUrl = await cropDataUrl(
-                dataUrl,
-                offsetX * pr,
-                offsetY * pr,
-                cropRect.width * pr,
-                cropRect.height * pr,
-              );
+              dataUrl = await cropDataUrl(dataUrl, offsetX * pr, offsetY * pr, cropRect.width * pr, cropRect.height * pr);
             } catch (e) {
               console.warn("Cropping onscreen image failed:", e);
             }
           }
         } finally {
-          try {
-            disabled.forEach((s) => (s.disabled = false));
-          } catch (_) {
-            // ignore
-          }
+          try { disabled.forEach((s) => (s.disabled = false)); } catch (_) {}
         }
       } catch (err: any) {
         console.error("Error generating image from onscreen capture:", err);
@@ -946,7 +766,6 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
       }
       return dataUrl;
     } finally {
-      // Restore styles
       target.style.transform = prev.transform;
       target.style.width = prev.width;
       target.style.height = prev.height;
@@ -969,30 +788,18 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
     setIsDownloading(true);
     toast.info("Generating image...");
 
-    // Wait for fonts to be loaded before first download to prevent text shift
     if (!fontsLoaded) {
       await new Promise((resolve) => setTimeout(resolve, 500));
     }
 
-    // Try on-screen capture first (usually more robust), then offscreen fallback
     captureOnscreenNormalized()
       .catch((err) => {
-        console.warn(
-          "Onscreen capture failed, falling back to offscreen:",
-          err,
-        );
+        console.warn("Onscreen capture failed, falling back to offscreen:", err);
         return renderCertificateOffscreen();
       })
       .then((dataUrl) => {
-        const courseName =
-          certificate?.courseName ||
-          certificate?.program?.name ||
-          "Certificate";
-        const namePart = (
-          certificate.studentName ||
-          enteredName ||
-          "Student"
-        ).replace(/\s+/g, "_");
+        const courseName = certificate?.courseName || "Certificate";
+        const namePart = (certificate.studentName || enteredName || "Student").replace(/\s+/g, "_");
         const fileName = `${courseName.replace(/\s+/g, "_")}_${namePart}.jpeg`;
 
         const link = document.createElement("a");
@@ -1003,57 +810,36 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
       })
       .catch((err) => {
         console.error("Error generating certificate image:", err);
-        const msg =
-          err?.message ||
-          "An error occurred while generating your certificate. Please try again.";
+        const msg = err?.message || "An error occurred while generating your certificate. Please try again.";
         toast.error(msg);
       })
       .finally(() => {
         setIsDownloading(false);
       });
-  }, [
-    certificate,
-    captureOnscreenNormalized,
-    renderCertificateOffscreen,
-    fontsLoaded,
-  ]);
+  }, [certificate, captureOnscreenNormalized, renderCertificateOffscreen, fontsLoaded]);
 
   const handleShare = (platform: string) => {
     const shareUrl = window.location.href;
-    const courseName =
-      certificate?.courseName || certificate?.program?.name || "Course";
-    const orgName =
-      certificate?.subsidiary?.name ||
-      certificate?.organization?.name ||
-      "Organization";
+    const courseName = certificate?.courseName || "Course";
+    const orgName = certificate?.subsidiary?.name || certificate?.organization?.name || "Organization";
     const text = `I've completed the ${courseName} at ${orgName}! 🎓 #Certificate #Achievement`;
 
     let url = "";
     switch (platform) {
       case "facebook":
-        url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-          shareUrl,
-        )}&quote=${encodeURIComponent(text)}`;
+        url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}&quote=${encodeURIComponent(text)}`;
         break;
       case "twitter":
-        url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
-          text,
-        )}&url=${encodeURIComponent(shareUrl)}`;
+        url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(shareUrl)}`;
         break;
       case "linkedin":
-        url = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
-          shareUrl,
-        )}&summary=${encodeURIComponent(text)}`;
+        url = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}&summary=${encodeURIComponent(text)}`;
         break;
       case "whatsapp":
-        url = `https://wa.me/?text=${encodeURIComponent(
-          text + " " + shareUrl,
-        )}`;
+        url = `https://wa.me/?text=${encodeURIComponent(text + " " + shareUrl)}`;
         break;
       case "email":
-        url = `mailto:?subject=${encodeURIComponent(
-          "My Certificate Achievement",
-        )}&body=${encodeURIComponent(text + "\n\n" + shareUrl)}`;
+        url = `mailto:?subject=${encodeURIComponent("My Certificate Achievement")}&body=${encodeURIComponent(text + "\n\n" + shareUrl)}`;
         break;
     }
 
@@ -1076,22 +862,16 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case "valid":
-        return "bg-green-100 text-green-800";
-      case "revoked":
-        return "bg-red-100 text-red-800";
-      case "expired":
-        return "bg-yellow-100 text-yellow-800";
-      default:
-        return "bg-gray-100 text-gray-800";
+      case "valid": return "bg-green-100 text-green-800";
+      case "revoked": return "bg-red-100 text-red-800";
+      case "expired": return "bg-yellow-100 text-yellow-800";
+      default: return "bg-gray-100 text-gray-800";
     }
   };
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
+      year: "numeric", month: "long", day: "numeric",
     });
   };
 
@@ -1116,84 +896,44 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
         <Card className="w-96">
           <CardContent className="text-center p-8">
             <Award className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-            <h2 className="text-xl font-bold text-gray-800 mb-2">
-              Certificate Not Found
-            </h2>
-            <p className="text-gray-600 mb-4">
-              The certificate you're looking for doesn't exist or may have been
-              removed.
-            </p>
-            <Button variant="outline" onClick={() => window.history.back()}>
-              Go Back
-            </Button>
+            <h2 className="text-xl font-bold text-gray-800 mb-2">Certificate Not Found</h2>
+            <p className="text-gray-600 mb-4">The certificate you're looking for doesn't exist or may have been removed.</p>
+            <Button variant="outline" onClick={() => window.history.back()}>Go Back</Button>
           </CardContent>
         </Card>
       </div>
     );
   }
 
-  // Show name entry form for new format certificates (without pre-filled student name)
   if (showNameForm) {
-    const orgName =
-      certificate.subsidiary?.name ||
-      certificate.organization?.name ||
-      "this organization";
-    const courseName =
-      certificate.courseName || certificate.program?.name || "this course";
-    const orgLogo =
-      certificate.subsidiary?.logo || certificate.organization?.logo;
+    const orgName = certificate.subsidiary?.name || certificate.organization?.name || "this organization";
+    const courseName = certificate.courseName || "this course";
+    const orgLogo = certificate.subsidiary?.logo || certificate.organization?.logo;
 
     const handleFormSubmit = async (e: React.FormEvent) => {
       e.preventDefault();
-
       if (!enteredName.trim()) {
         toast.error("Please enter your name");
         return;
       }
 
-
-      // NEW: Check if download is restricted and validate email
       if (certificate.restrictDownload) {
-        console.log("🔒 Download restriction check:");
-        console.log("  - Restrict Download:", certificate.restrictDownload);
-        console.log("  - Allowed Emails:", certificate.allowedEmails);
-
         if (!enteredEmail.trim()) {
           toast.error("Email address is required for this certificate");
           return;
         }
-
         const emailLower = enteredEmail.trim().toLowerCase();
         const allowedEmails = certificate.allowedEmails || [];
-
-        console.log("  - Entered Email (lowercased):", emailLower);
-        console.log("  - Allowed Emails Array:", allowedEmails);
-        console.log(
-          "  - Is email in allowed list?",
-          allowedEmails.includes(emailLower),
-        );
-
         if (!allowedEmails.includes(emailLower)) {
-          toast.error(
-            "Sorry, you are not authorized to access this certificate. Please contact your instructor if you believe this is an error.",
-          );
+          toast.error("Sorry, you are not authorized to access this certificate. Please contact your instructor if you believe this is an error.");
           return;
         }
-
-        console.log("✅ Email validation passed!");
       }
 
       setIsSubmitting(true);
-
       try {
-        // Save testimonial to backend - title, organization, and impact are now required
-        if (
-          enteredTitle ||
-          enteredOrganization ||
-          enteredImpact.trim() ||
-          enteredTestimonial.trim()
-        ) {
-          const response = await certificateApi.submitTestimonial({
+        if (enteredTitle || enteredOrganization || enteredImpact.trim() || enteredTestimonial.trim()) {
+          await certificateApi.submitTestimonial({
             certificateId: certificate.id,
             studentName: enteredName.trim(),
             email: enteredEmail.trim() || undefined,
@@ -1203,21 +943,10 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
             impact: enteredImpact.trim() || undefined,
             courseName: courseName,
             organizationId: certificate.organizationId || "",
-            programId: certificate.programId || "",
           });
-
-          if (response.success) {
-            console.log("✅ Testimonial saved successfully");
-          }
         }
 
-        // NEW: Check if payment is required
-        if (
-          certificate.monetizationEnabled &&
-          certificate.paymentStatus !== "paid"
-        ) {
-          console.log("💰 Payment required - showing payment modal");
-          // Save buyer details so we can skip re-entry after Paystack redirect
+        if (certificate.monetizationEnabled && certificate.paymentStatus !== "paid") {
           sessionStorage.setItem("ctfy_buyer_cert", certificate.id);
           sessionStorage.setItem("ctfy_buyer_name", enteredName.trim());
           sessionStorage.setItem("ctfy_buyer_email", enteredEmail.trim());
@@ -1225,21 +954,11 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
           setShowPaymentModal(true);
           toast.info("Payment required to access this certificate");
         } else {
-          // No payment required or already paid - show certificate
           setShowNameForm(false);
-          toast.success(
-            enteredTestimonial.trim() || enteredImpact.trim()
-              ? "Thank you for your feedback!"
-              : "Certificate personalized with your name!",
-          );
+          toast.success("Certificate personalized with your name!");
         }
       } catch (error) {
-        console.error("Failed to save testimonial:", error);
-        // Still proceed even if testimonial save fails
-        if (
-          certificate.monetizationEnabled &&
-          certificate.paymentStatus !== "paid"
-        ) {
+        if (certificate.monetizationEnabled && certificate.paymentStatus !== "paid") {
           setShowNameForm(false);
           setShowPaymentModal(true);
         } else {
@@ -1256,7 +975,6 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
       setRecovering(true);
       try {
         await certificatePaymentApi.verify(recoveryRef.trim());
-        // Reload the certificate — it should now be marked paid
         window.location.reload();
       } catch (e: any) {
         toast.error(e.message || "Could not verify that reference. Please check it and try again.");
@@ -1266,167 +984,63 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
     };
 
     return (
-      <div
-        className="min-h-screen bg-gray-50 flex items-center justify-center p-4"
-        key="name-form-container"
-      >
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4" key="name-form-container">
         <Card className="w-full max-w-md">
           <CardContent className="p-8">
             <div className="text-center mb-6">
               {orgLogo ? (
-                <img
-                  src={orgLogo}
-                  alt={`${orgName} logo`}
-                  className="w-16 h-16 object-contain mx-auto mb-4"
-                />
+                <img src={orgLogo} alt={`${orgName} logo`} className="w-16 h-16 object-contain mx-auto mb-4" />
               ) : (
                 <Award className="w-16 h-16 text-primary mx-auto mb-4" />
               )}
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">
-                Complete Your Certificate
-              </h2>
-              <p className="text-gray-600">
-                For <span className="font-semibold">{courseName}</span> from{" "}
-                {orgName}
-              </p>
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">Complete Your Certificate</h2>
+              <p className="text-gray-600">For <span className="font-semibold">{courseName}</span> from {orgName}</p>
             </div>
-
             {certificate.restrictDownload && (
               <Alert className="mb-4 border-orange-300 bg-orange-50">
                 <Shield className="h-4 w-4 text-orange-600" />
                 <AlertDescription className="text-sm text-orange-800">
-                  This certificate has restricted access. You must use an
-                  approved email address to view and download it.
+                  This certificate has restricted access. You must use an approved email address to view and download it.
                 </AlertDescription>
               </Alert>
             )}
-
-            {certificate.monetizationEnabled &&
-              certificate.paymentStatus !== "paid" && (
-                <>
-                  <Alert className="mb-2 border-orange-300 bg-orange-50">
-                    <DollarSign className="h-4 w-4 text-orange-600" />
-                    <AlertDescription className="text-sm text-orange-800">
-                      This certificate requires payment.{" "}
-                      {certificate.certificatePriceMinor ? `₦${((certificate.certificatePriceMinor) / 100).toLocaleString("en-NG", { minimumFractionDigits: 0, maximumFractionDigits: 0 })}` : ""}
-                      {certificate.certificatePriceMinor && certificate.certificatePriceUSDMinor ? " or " : ""}
-                      {certificate.certificatePriceUSDMinor ? `$${((certificate.certificatePriceUSDMinor) / 100).toFixed(2)}` : ""}
-                    </AlertDescription>
-                  </Alert>
-                  {!showRecovery ? (
-                    <button
-                      type="button"
-                      onClick={() => setShowRecovery(true)}
-                      className="text-xs text-orange-500 hover:underline mb-3 block"
-                    >
-                      Already paid? Enter your payment reference
-                    </button>
-                  ) : (
-                    <div className="mb-4 p-3 bg-gray-50 rounded-lg border border-gray-200 space-y-2">
-                      <p className="text-xs font-medium text-gray-700">Enter your Paystack reference (starts with CTFY_)</p>
-                      <div className="flex gap-2">
-                        <input
-                          type="text"
-                          value={recoveryRef}
-                          onChange={e => setRecoveryRef(e.target.value)}
-                          placeholder="CTFY_..."
-                          className="flex-1 text-sm border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-400"
-                        />
-                        <button
-                          type="button"
-                          onClick={handleRecovery}
-                          disabled={recovering}
-                          className="px-3 py-2 text-sm bg-orange-500 text-white rounded-lg hover:bg-orange-600 disabled:opacity-60"
-                        >
-                          {recovering ? "Checking..." : "Verify"}
-                        </button>
-                      </div>
-                      <button type="button" onClick={() => setShowRecovery(false)} className="text-xs text-gray-400 hover:text-gray-600">Cancel</button>
-                    </div>
-                  )}
-                </>
-              )}
-
-            <form
-              onSubmit={handleFormSubmit}
-              className="space-y-4"
-              key="certificate-name-form"
-            >
-              <div>
-                <label
-                  htmlFor="studentName"
-                  className="block text-sm font-medium text-gray-700 mb-2"
-                >
-                  Full Name <span className="text-red-500">*</span>
-                </label>
-                <input
-                  id="studentName"
-                  type="text"
-                  value={enteredName}
-                  onChange={(e) => setEnteredName(e.target.value)}
-                  placeholder="Enter your full name"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
-                  autoFocus
-                  disabled={isSubmitting}
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="studentEmail"
-                  className="block text-sm font-medium text-gray-700 mb-2"
-                >
-                  Email Address{" "}
-                  {certificate.restrictDownload && (
-                    <span className="text-red-500">*</span>
-                  )}
-                  {!certificate.restrictDownload && "(Optional)"}
-                </label>
-                <input
-                  id="studentEmail"
-                  type="email"
-                  value={enteredEmail}
-                  onChange={(e) => setEnteredEmail(e.target.value)}
-                  placeholder="your.email@example.com"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
-                  disabled={isSubmitting}
-                  required={certificate.restrictDownload}
-                />
-                {certificate.restrictDownload ? (
-                  <p className="text-xs text-orange-600 mt-1 flex items-center gap-1">
-                    <Shield className="w-3 h-3" />
-                    Email verification required - only approved students can
-                    access this certificate
-                  </p>
+            {certificate.monetizationEnabled && certificate.paymentStatus !== "paid" && (
+              <>
+                <Alert className="mb-2 border-orange-300 bg-orange-50">
+                  <DollarSign className="h-4 w-4 text-orange-600" />
+                  <AlertDescription className="text-sm text-orange-800">
+                    This certificate requires payment. {certificate.certificatePriceMinor ? `₦${((certificate.certificatePriceMinor) / 100).toLocaleString("en-NG", { minimumFractionDigits: 0, maximumFractionDigits: 0 })}` : ""}
+                  </AlertDescription>
+                </Alert>
+                {!showRecovery ? (
+                  <button type="button" onClick={() => setShowRecovery(true)} className="text-xs text-orange-500 hover:underline mb-3 block">Already paid? Enter your payment reference</button>
                 ) : (
-                  <p className="text-xs text-gray-500 mt-1">
-                    {/* Your email will only be visible to course administrators */}
-                  </p>
+                  <div className="mb-4 p-3 bg-gray-50 rounded-lg border border-gray-200 space-y-2">
+                    <p className="text-xs font-medium text-gray-700">Enter your Paystack reference (starts with CTFY_)</p>
+                    <div className="flex gap-2">
+                      <input type="text" value={recoveryRef} onChange={e => setRecoveryRef(e.target.value)} placeholder="CTFY_..." className="flex-1 text-sm border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-400" />
+                      <button type="button" onClick={handleRecovery} disabled={recovering} className="px-3 py-2 text-sm bg-orange-500 text-white rounded-lg hover:bg-orange-600 disabled:opacity-60">{recovering ? "Checking..." : "Verify"}</button>
+                    </div>
+                    <button type="button" onClick={() => setShowRecovery(false)} className="text-xs text-gray-400 hover:text-gray-600">Cancel</button>
+                  </div>
                 )}
+              </>
+            )}
+            <form onSubmit={handleFormSubmit} className="space-y-4" key="certificate-name-form">
+              <div>
+                <label htmlFor="studentName" className="block text-sm font-medium text-gray-700 mb-2">Full Name <span className="text-red-500">*</span></label>
+                <input id="studentName" type="text" value={enteredName} onChange={(e) => setEnteredName(e.target.value)} placeholder="Enter your full name" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" autoFocus disabled={isSubmitting} />
               </div>
-
-              {/* Testimonial Section */}
+              <div>
+                <label htmlFor="studentEmail" className="block text-sm font-medium text-gray-700 mb-2">Email Address {certificate.restrictDownload && <span className="text-red-500">*</span>}</label>
+                <input id="studentEmail" type="email" value={enteredEmail} onChange={(e) => setEnteredEmail(e.target.value)} placeholder="your.email@example.com" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" disabled={isSubmitting} required={certificate.restrictDownload} />
+              </div>
               <div className="border-t pt-4 mt-4">
-                <h3 className="text-sm font-semibold text-gray-900 mb-3">
-                  Your Feedback (Optional)
-                </h3>
-
+                <h3 className="text-sm font-semibold text-gray-900 mb-3">Your Feedback (Optional)</h3>
                 <div className="space-y-4">
-                  {/* Title Dropdown */}
                   <div>
-                    <label
-                      htmlFor="title"
-                      className="block text-sm font-medium text-gray-700 mb-2"
-                    >
-                      Title
-                    </label>
-                    <select
-                      id="title"
-                      value={enteredTitle}
-                      onChange={(e) => setEnteredTitle(e.target.value)}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white"
-                      disabled={isSubmitting}
-                    >
+                    <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-2">Title</label>
+                    <select id="title" value={enteredTitle} onChange={(e) => setEnteredTitle(e.target.value)} className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white" disabled={isSubmitting}>
                       <option value="">Select title</option>
                       <option value="Mr">Mr</option>
                       <option value="Miss">Miss</option>
@@ -1435,89 +1049,18 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
                       <option value="Prof">Prof</option>
                     </select>
                   </div>
-
-                  {/* Organization */}
                   <div>
-                    <label
-                      htmlFor="organization"
-                      className="block text-sm font-medium text-gray-700 mb-2"
-                    >
-                      Your Organization/Institution/Affiliation
-                    </label>
-                    <input
-                      id="organization"
-                      type="text"
-                      value={enteredOrganization}
-                      onChange={(e) => setEnteredOrganization(e.target.value)}
-                      placeholder="e.g., ABC University, XYZ Corporation"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
-                      disabled={isSubmitting}
-                    />
+                    <label htmlFor="organization" className="block text-sm font-medium text-gray-700 mb-2">Your Organization/Institution/Affiliation</label>
+                    <input id="organization" type="text" value={enteredOrganization} onChange={(e) => setEnteredOrganization(e.target.value)} placeholder="e.g., ABC University, XYZ Corporation" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" disabled={isSubmitting} />
                   </div>
-
-                  {/* Impact Feedback */}
                   <div>
-                    <label
-                      htmlFor="impact"
-                      className="block text-sm font-medium text-gray-700 mb-2"
-                    >
-                      In one sentence, how has the {courseName} program
-                      impacted you, and what would you say to people about participating in it?
-                    </label>
-                    <textarea
-                      id="impact"
-                      value={enteredImpact}
-                      onChange={(e) => setEnteredImpact(e.target.value)}
-                      placeholder="Share your experience and recommendation..."
-                      rows={3}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent resize-none"
-                      disabled={isSubmitting}
-                    />
-                  </div>
-
-                  {/* General Feedback (kept for backward compatibility) */}
-                  <div>
-                    <label
-                      htmlFor="testimonial"
-                      className="block text-sm font-medium text-gray-700 mb-2"
-                    >
-                      Additional Comments (Optional)
-                    </label>
-                    <textarea
-                      id="testimonial"
-                      value={enteredTestimonial}
-                      onChange={(e) => setEnteredTestimonial(e.target.value)}
-                      placeholder="Any additional feedback..."
-                      rows={3}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent resize-none"
-                      disabled={isSubmitting}
-                    />
+                    <label htmlFor="impact" className="block text-sm font-medium text-gray-700 mb-2">Impact</label>
+                    <textarea id="impact" value={enteredImpact} onChange={(e) => setEnteredImpact(e.target.value)} placeholder="Share your experience..." rows={3} className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent resize-none" disabled={isSubmitting} />
                   </div>
                 </div>
-
-                <p className="text-xs text-gray-500 mt-2">
-                  Your feedback helps improve the program for future
-                  participants
-                </p>
               </div>
-
-              <Button
-                type="submit"
-                className="w-full"
-                disabled={
-                  !enteredName.trim() ||
-                  isSubmitting ||
-                  (certificate.restrictDownload && !enteredEmail.trim())
-                }
-              >
-                {isSubmitting ? (
-                  <>
-                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                    Submitting...
-                  </>
-                ) : (
-                  "View My Certificate"
-                )}
+              <Button type="submit" className="w-full" disabled={!enteredName.trim() || isSubmitting || (certificate.restrictDownload && !enteredEmail.trim())}>
+                {isSubmitting ? "Submitting..." : "View My Certificate"}
               </Button>
             </form>
           </CardContent>
@@ -1526,34 +1069,21 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
     );
   }
 
-  // Show payment modal if payment is required
-  if (
-    showPaymentModal &&
-    certificate.monetizationEnabled &&
-    certificate.paymentStatus !== "paid"
-  ) {
-    const courseName =
-      certificate.courseName || certificate.program?.name || "Certificate";
-
+  if (showPaymentModal && certificate.monetizationEnabled && certificate.paymentStatus !== "paid") {
     return (
       <PaystackPaymentModal
         itemId={certificate.id}
         paymentType="certificate"
-        itemName={courseName}
+        itemName={certificate.courseName || "Certificate"}
         priceKobo={certificate.certificatePriceMinor || 0}
         priceUSDCents={certificate.certificatePriceUSDMinor || 0}
         email={enteredEmail}
         buyerName={enteredName}
-        onPaymentComplete={(transactionRef) => {
-          console.log("✅ Payment completed:", transactionRef);
+        onPaymentComplete={() => {
           setPaymentCompleted(true);
           setShowPaymentModal(false);
-          if (certificate) {
-            certificate.paymentStatus = "paid";
-          }
-          toast.success(
-            "Payment successful! You can now view your certificate.",
-          );
+          setCertificate((prev) => (prev ? { ...prev, paymentStatus: "paid" } : null));
+          toast.success("Payment successful! You can now view your certificate.");
         }}
         onClose={() => {
           setShowPaymentModal(false);
@@ -1563,44 +1093,25 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
     );
   }
 
-  // Get the display name (either from certificate data or entered by user)
   const displayName = certificate.studentName || enteredName || "Student";
   const orgData = certificate.subsidiary || certificate.organization;
-  const progData = certificate.program;
 
   return (
     <TooltipProvider>
       <div className="min-h-screen bg-gray-50">
-        {/* Header */}
         <header className="bg-white border-b border-gray-200 shadow-sm">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-16">
               <div className="flex items-center gap-4">
-                {orgData?.logo && (
-                  <img
-                    src={orgData.logo}
-                    alt={orgData.name}
-                    className="h-10 w-auto"
-                  />
-                )}
+                {orgData?.logo && <img src={orgData.logo} alt={orgData.name} className="h-10 w-auto" />}
                 <div>
-                  <h1 className="text-lg font-bold text-gray-900">
-                    {orgData?.name || "Certificate"}
-                  </h1>
+                  <h1 className="text-lg font-bold text-gray-900">{orgData?.name || "Certificate"}</h1>
                   <p className="text-sm text-gray-500">Digital Certificate</p>
                 </div>
               </div>
-
               <div className="flex items-center gap-3">
-                <Badge
-                  className={getStatusColor(certificate.status || "valid")}
-                >
-                  <Shield className="w-3 h-3 mr-1" />
+                <Badge className={getStatusColor(certificate.status || "valid")}>
                   {(certificate.status || "valid").toUpperCase()}
-                </Badge>
-                <Badge variant="outline">
-                  <Globe className="w-3 h-3 mr-1" />
-                  Verified
                 </Badge>
               </div>
             </div>
@@ -1609,61 +1120,30 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-            {/* Certificate Display */}
             <div className="lg:col-span-3">
               <Card className="">
                 <CardContent className="p-0 overflow-hidden">
-                  {/* Scrollable container - horizontal scroll only on smaller screens */}
                   <div className="overflow-x-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
-                    <div
-                      ref={certificateRef}
-                      className="flex justify-center items-center"
-                      style={{
-                        width: "800px",
-                        height: "600px",
-                        minWidth: "800px",
-                        minHeight: "600px",
-                        flexShrink: 0,
-                      }}
-                    >
+                    <div ref={certificateRef} className="flex justify-center items-center" style={{ width: "800px", height: "600px", minWidth: "800px", minHeight: "600px", flexShrink: 0 }}>
                       <CertificateRenderer
-                        templateId={
-                          certificate.template ||
-                          progData?.template ||
-                          "template1"
-                        }
-                        header={
-                          certificate.certificateHeader ||
-                          "Certificate of Completion"
-                        }
-                        courseTitle={
-                          certificate.courseName || progData?.name || "Course"
-                        }
-                        description={
-                          certificate.courseDescription ||
-                          progData?.description ||
-                          ""
-                        }
+                        templateId={certificate.template || "template1"}
+                        header={certificate.certificateHeader || "Certificate of Completion"}
+                        courseTitle={certificate.courseName || "Course"}
+                        description={certificate.courseDescription || ""}
                         date={certificate.completionDate}
                         recipientName={displayName}
                         isPreview={true}
                         mode="student"
                         organizationName={orgData?.name}
                         organizationLogo={orgData?.logo}
-                        organizationLogos={
-                          certificate.logos || orgData?.settings?.logos
-                        }
+                        organizationLogos={certificate.logos || orgData?.settings?.logos}
                         customTemplateConfig={certificate.customTemplateConfig}
                         signatoryName1={certificate.signatories?.[0]?.name}
                         signatoryTitle1={certificate.signatories?.[0]?.title}
-                        signatureUrl1={
-                          certificate.signatories?.[0]?.signatureUrl
-                        }
+                        signatureUrl1={certificate.signatories?.[0]?.signatureUrl}
                         signatoryName2={certificate.signatories?.[1]?.name}
                         signatoryTitle2={certificate.signatories?.[1]?.title}
-                        signatureUrl2={
-                          certificate.signatories?.[1]?.signatureUrl
-                        }
+                        signatureUrl2={certificate.signatories?.[1]?.signatureUrl}
                         themeColors={certificate.themeColors || undefined}
                         certificateId={certificate.id}
                       />
@@ -1671,301 +1151,45 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
                   </div>
                 </CardContent>
               </Card>
-
-              {/* Promo Card: small advertisement and invite */}
-              <div className="mt-4">
-                <Card>
-                  <CardContent className="p-4 flex items-center gap-4">
-                    <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                      <img
-                        src="/logo.png"
-                        alt="Certifyer Logo"
-                        className="w-6 h-6"
-                      />
-                    </div>
-                    <div className="flex-1">
-                      <h4 className="font-semibold">{PLATFORM_NAME}</h4>
-                      <p className="text-sm text-gray-600">
-                        You want to create, issue and verify professional
-                        certificates effortlessly and speedily? Try Certifyer
-                        for free today.
-                      </p>
-                    </div>
-                    <div>
-                      <a
-                        href={PLATFORM_URL}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Button size="sm">
-                          Try Certifyer
-                          <ExternalLink className="w-4 h-4 ml-2" />
-                        </Button>
-                      </a>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
             </div>
 
-            {/* Sidebar */}
             <div className="lg:col-span-1 space-y-6">
-              {/* Actions */}
               <Card>
                 <CardContent className="p-6">
-                  <h3 className="font-bold mb-4 flex items-center gap-2">
-                    <Download className="w-4 h-4" />
-                    Actions
-                  </h3>
+                  <h3 className="font-bold mb-4 flex items-center gap-2">Actions</h3>
                   <div className="space-y-3">
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <Button
-                          onClick={handleDownload}
-                          disabled={isDownloading}
-                          className="w-full"
-                        >
-                          {isDownloading ? (
-                            <>
-                              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                              Generating...
-                            </>
-                          ) : (
-                            <>
-                              <Download className="w-4 h-4 mr-2" />
-                              Download Image
-                            </>
-                          )}
-                        </Button>
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        <p>Download as high-quality image</p>
-                      </TooltipContent>
-                    </Tooltip>
-
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <Button
-                          variant="outline"
-                          onClick={handleCopyLink}
-                          className="w-full"
-                        >
-                          {shareUrlCopied ? (
-                            <CheckCircle className="w-4 h-4 mr-2 text-green-600" />
-                          ) : (
-                            <Copy className="w-4 h-4 mr-2" />
-                          )}
-                          {shareUrlCopied ? "Copied!" : "Copy Link"}
-                        </Button>
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        <p>Copy certificate link to clipboard</p>
-                      </TooltipContent>
-                    </Tooltip>
-
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <Button
-                          variant="outline"
-                          onClick={() => setShowFullDetails(!showFullDetails)}
-                          className="w-full"
-                        >
-                          <Eye className="w-4 h-4 mr-2" />
-                          {showFullDetails ? "Hide" : "Show"} Details
-                        </Button>
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        <p>Toggle certificate details</p>
-                      </TooltipContent>
-                    </Tooltip>
+                    <Button onClick={handleDownload} disabled={isDownloading} className="w-full">
+                      {isDownloading ? "Generating..." : "Download Image"}
+                    </Button>
+                    <Button variant="outline" onClick={handleCopyLink} className="w-full">Copy Link</Button>
+                    <Button variant="outline" onClick={() => setShowFullDetails(!showFullDetails)} className="w-full">
+                      {showFullDetails ? "Hide" : "Show"} Details
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
 
-              {/* Get the Course Bundle CTA */}
               {certificate.linkedProductId && (
-                <div style={{
-                  background: "linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%)",
-                  borderRadius: 12,
-                  padding: "20px 24px",
-                  margin: "0",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  gap: 16,
-                  flexWrap: "wrap" as const,
-                }}>
-                  <div>
-                    <p style={{ margin: 0, color: "white", fontWeight: 700, fontSize: 15 }}>
-                      🎁 Get the Full Course Bundle
-                    </p>
-                    <p style={{ margin: "4px 0 0", color: "rgba(255,255,255,0.8)", fontSize: 13 }}>
-                      Access all course materials, recordings, and resources
-                    </p>
-                  </div>
-                  <a
-                    href={`/#/store/${certificate.linkedProductOrgId || certificate.organizationId}/${certificate.linkedProductId}`}
-                    style={{
-                      background: "white",
-                      color: "#4f46e5",
-                      fontWeight: 700,
-                      fontSize: 13,
-                      padding: "10px 20px",
-                      borderRadius: 8,
-                      textDecoration: "none",
-                      whiteSpace: "nowrap" as const,
-                      flexShrink: 0,
-                    }}
-                  >
-                    View Bundle →
-                  </a>
+                <div style={{ background: "#4f46e5", borderRadius: 12, padding: 20, color: "white" }}>
+                  <p style={{ fontWeight: 700 }}>Get the Full Course Bundle</p>
+                  <a href={`/#/store/${certificate.linkedProductOrgId || certificate.organizationId}/${certificate.linkedProductId}`}>View Bundle →</a>
                 </div>
               )}
 
-              {/* Share */}
               <Card>
                 <CardContent className="p-6">
-                  <h3 className="font-bold mb-4 flex items-center gap-2">
-                    <Share2 className="w-4 h-4" />
-                    Share Achievement
-                  </h3>
-                  <div className="grid grid-cols-2 gap-2">
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={() => handleShare("facebook")}
-                        >
-                          <Facebook className="w-4 h-4" />
-                        </Button>
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        <p>Share on Facebook</p>
-                      </TooltipContent>
-                    </Tooltip>
-
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={() => handleShare("twitter")}
-                        >
-                          <Twitter className="w-4 h-4" />
-                        </Button>
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        <p>Share on Twitter</p>
-                      </TooltipContent>
-                    </Tooltip>
-
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={() => handleShare("linkedin")}
-                        >
-                          <Linkedin className="w-4 h-4" />
-                        </Button>
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        <p>Share on LinkedIn</p>
-                      </TooltipContent>
-                    </Tooltip>
-
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={() => handleShare("whatsapp")}
-                        >
-                          <MessageCircle className="w-4 h-4" />
-                        </Button>
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        <p>Share on WhatsApp</p>
-                      </TooltipContent>
-                    </Tooltip>
-
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={() => handleShare("email")}
-                          className="col-span-2"
-                        >
-                          <Mail className="w-4 h-4 mr-2" />
-                          Email
-                        </Button>
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        <p>Share via email</p>
-                      </TooltipContent>
-                    </Tooltip>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Certificate Info */}
-              <Card>
-                <CardContent className="p-6">
-                  <h3 className="font-bold mb-4 flex items-center gap-2">
-                    <Award className="w-4 h-4" />
-                    Certificate Info
-                  </h3>
+                  <h3 className="font-bold mb-4">Certificate Info</h3>
                   <div className="space-y-3 text-sm">
-                    <div className="flex items-center gap-2">
-                      <User className="w-4 h-4 text-gray-400" />
-                      <span className="text-gray-600">Student:</span>
-                      <span className="font-medium">{displayName}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Building2 className="w-4 h-4 text-gray-400" />
-                      <span className="text-gray-600">Organization:</span>
-                      <span className="font-medium">
-                        {orgData?.name || "N/A"}
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Calendar className="w-4 h-4 text-gray-400" />
-                      <span className="text-gray-600">Completed:</span>
-                      <span className="font-medium">
-                        {formatDate(certificate.completionDate)}
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Shield className="w-4 h-4 text-gray-400" />
-                      <span className="text-gray-600">Certificate ID:</span>
-                      <span className="font-mono text-xs">
-                        {certificate.id}
-                      </span>
-                    </div>
+                    <p>Student: {displayName}</p>
+                    <p>Organization: {orgData?.name || "N/A"}</p>
+                    <p>Completed: {formatDate(certificate.completionDate)}</p>
                   </div>
-
                   {showFullDetails && (
                     <div className="mt-4 pt-4 border-t space-y-3 text-sm">
                       <div>
-                        <span className="text-gray-600">
-                          Course Description:
-                        </span>
-                        <p className="mt-1 text-gray-800">
-                          {certificate.courseDescription ||
-                            progData?.description ||
-                            "N/A"}
-                        </p>
+                        <span className="text-gray-600">Issued On:</span>
+                        <p>{formatDate(certificate.issuedDate)}</p>
                       </div>
-                      {certificate.issuedDate && (
-                        <div>
-                          <span className="text-gray-600">Issued Date:</span>
-                          <p className="font-medium">
-                            {formatDate(certificate.issuedDate)}
-                          </p>
-                        </div>
-                      )}
                       {certificate.verificationCode && (
                         <div>
                           <span className="text-gray-600">

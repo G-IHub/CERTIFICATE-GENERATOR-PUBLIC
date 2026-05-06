@@ -33,7 +33,6 @@ interface Testimonial {
   impact?: string;
   courseName: string;
   organizationId: string;
-  programId?: string;
   submittedAt: string;
 }
 

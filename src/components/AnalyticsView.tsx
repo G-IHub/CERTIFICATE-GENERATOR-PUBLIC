@@ -60,7 +60,7 @@ interface Analytics {
   downloads?: {
     total: number;
     byMonth: Record<string, number>;
-    byProgram: Record<string, number>;
+    byCourse: Record<string, number>;
   };
   timeSpent?: {
     totalSeconds: number;

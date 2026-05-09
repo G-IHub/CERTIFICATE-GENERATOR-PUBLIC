@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import type { ThemeColors } from "../../types/theme";
+import type { Logo } from "../../App";
 import vector from "../../assets/Vector (8).svg";
 import path from "../../assets/path2646.svg";
 import wrapper from "../../assets/Wrapper.svg";
@@ -13,6 +14,7 @@ interface CertificateTemplate13Props {
   isPreview?: boolean;
   organizationName?: string;
   organizationLogo?: string;
+  organizationLogos?: Logo[];
   signatoryName1?: string;
   signatoryTitle1?: string;
   signatureUrl1?: string;
@@ -32,6 +34,7 @@ export default function CertificateTemplate13({
   isPreview = false,
   organizationName = "Your Organization",
   organizationLogo,
+  organizationLogos,
   signatoryName1,
   signatoryTitle1,
   signatureUrl1,
@@ -61,7 +64,16 @@ export default function CertificateTemplate13({
       "https://fonts.googleapis.com/css2?family=Island+Moments&display=swap";
     document.head.appendChild(link2);
 
-    return () => {
+  // Determine which logo(s) to use
+  const logo1 = organizationLogos && organizationLogos[0]?.url
+    ? organizationLogos[0]
+    : null;
+  const logo2 = organizationLogos && organizationLogos[1]?.url
+    ? organizationLogos[1]
+    : null;
+  const fallbackLogo = organizationLogo;
+
+      return () => {
       document.head.removeChild(link1);
       document.head.removeChild(link2);
     };
@@ -87,13 +99,40 @@ export default function CertificateTemplate13({
         <img src={vector} alt="" className="absolute w-11/12" />
         <div className="flex flex-col items-center gap-4 text-center z-40">
           {/* Organization Logo */}
-          {organizationLogo && (
-            <img
-              src={organizationLogo}
-              alt="Organization Logo"
-              className="w-16 h-16 object-contain"
-            />
-          )}
+          <div className="flex">
+            {/* First Logo */}
+            {logo1 ? (
+              <div className="flex items-center">
+                <img
+                  src={logo1.url}
+                  alt={logo1.name || "Logo"}
+                  className="w-16 h-16 object-contain"
+                  
+                />
+              </div>
+            ) : fallbackLogo ? (
+              <img
+                src={fallbackLogo}
+                alt="Logo"
+                className="w-16 h-16 object-contain"
+                
+              />
+            ) : null}
+
+            {/* Second Logo */}
+            {logo2 ? (
+              <div className="flex items-center ml-2">
+                <img
+                  src={logo2.url}
+                  alt="Logo"
+                  className="w-16 h-16 object-contain"
+                  
+                />
+              </div>
+            ) : (
+              <div className="hidden"></div>
+            )}
+          </div>
 
           {/* Header */}
           <div

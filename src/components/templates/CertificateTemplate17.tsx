@@ -1,5 +1,6 @@
 import { useRef, useEffect } from "react";
 import type { ThemeColors } from "../../types/theme";
+import type { Logo } from "../../App";
 import watermark from "../../assets/watermark.png";
 import barcode from "../../assets/barcode.png";
 
@@ -12,6 +13,7 @@ interface CertificateTemplate17Props {
   isPreview?: boolean;
   organizationName?: string;
   organizationLogo?: string;
+  organizationLogos?: Logo[];
   signatoryName1?: string;
   signatoryTitle1?: string;
   signatureUrl1?: string;
@@ -31,6 +33,7 @@ export default function CertificateTemplate17({
   isPreview = false,
   organizationName = "Your Organization",
   organizationLogo,
+  organizationLogos,
   signatoryName1,
   signatoryTitle1,
   signatureUrl1,
@@ -57,7 +60,16 @@ export default function CertificateTemplate17({
       "https://fonts.googleapis.com/css2?family=Momo+Signature&display=swap";
     document.head.appendChild(link2);
 
-    return () => {
+  // Determine which logo(s) to use
+  const logo1 = organizationLogos && organizationLogos[0]?.url
+    ? organizationLogos[0]
+    : null;
+  const logo2 = organizationLogos && organizationLogos[1]?.url
+    ? organizationLogos[1]
+    : null;
+  const fallbackLogo = organizationLogo;
+
+      return () => {
       document.head.removeChild(link1);
       document.head.removeChild(link2);
     };
@@ -97,7 +109,40 @@ export default function CertificateTemplate17({
         <div className="relative w-[200px] h-[600px] flex flex-col overflow-hidden z-10 bg-gradient-to-b from-pink-400 via-purple-900 to-purple-900">
           <div className="flex pt-4">
             <div className="mx-auto">
-              <img src={organizationLogo} alt="logo2" className="w-20" />
+          <div className="flex">
+            {/* First Logo */}
+            {logo1 ? (
+              <div className="flex items-center">
+                <img
+                  src={logo1.url}
+                  alt={logo1.name || "Logo"}
+                  className="w-20"
+                  
+                />
+              </div>
+            ) : fallbackLogo ? (
+              <img
+                src={fallbackLogo}
+                alt="Logo"
+                className="w-20"
+                
+              />
+            ) : null}
+
+            {/* Second Logo */}
+            {logo2 ? (
+              <div className="flex items-center ml-2">
+                <img
+                  src={logo2.url}
+                  alt="Logo"
+                  className="w-20"
+                  
+                />
+              </div>
+            ) : (
+              <div className="hidden"></div>
+            )}
+          </div>
             </div>
           </div>
           <div className="px-2 -mt-1">

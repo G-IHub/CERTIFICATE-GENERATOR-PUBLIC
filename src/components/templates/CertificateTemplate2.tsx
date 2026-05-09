@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import type { ThemeColors } from "../../types/theme";
+import type { Logo } from "../../App";
 import topShapeUrl from "../../assets/upper_shape.png";
 import centerLogoUrl from "../../assets/logo2b.png";
 import patternUrl from "../../assets/Pattern.png";
@@ -75,7 +76,16 @@ export default function CertificateTemplate2({
     ? "w-full mx-auto origin-center overflow-visible flex justify-center"
     : "min-w-[800px] flex justify-center items-center";
 
-  return (
+  // Determine which logo(s) to use
+  const logo1 = organizationLogos && organizationLogos[0]?.url
+    ? organizationLogos[0]
+    : null;
+  const logo2 = organizationLogos && organizationLogos[1]?.url
+    ? organizationLogos[1]
+    : null;
+  const fallbackLogo = organizationLogo;
+
+    return (
     <div
       className={containerClass}
       style={{ transform: `scale(${scale})`, backgroundColor: "transparent" }}
@@ -86,11 +96,40 @@ export default function CertificateTemplate2({
           alt="Top Shape"
           className="absolute w-full top-0 z-10"
         />
-        <img
-          src={organizationLogo}
-          alt="Logo"
-          className="absolute top-6 w-32 left-1/2 -translate-x-1/2 z-10"
-        />
+          <div className="flex">
+            {/* First Logo */}
+            {logo1 ? (
+              <div className="flex items-center">
+                <img
+                  src={logo1.url}
+                  alt={logo1.name || "Logo"}
+                  className="absolute top-6 w-32 left-1/2 -translate-x-1/2 z-10"
+                  
+                />
+              </div>
+            ) : fallbackLogo ? (
+              <img
+                src={fallbackLogo}
+                alt="Logo"
+                className="absolute top-6 w-32 left-1/2 -translate-x-1/2 z-10"
+                
+              />
+            ) : null}
+
+            {/* Second Logo */}
+            {logo2 ? (
+              <div className="flex items-center ml-2">
+                <img
+                  src={logo2.url}
+                  alt="Logo"
+                  className="absolute top-6 w-32 left-1/2 -translate-x-1/2 z-10"
+                  
+                />
+              </div>
+            ) : (
+              <div className="hidden"></div>
+            )}
+          </div>
         <img
           src={patternUrl}
           alt="Pattern"

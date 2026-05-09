@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import type { ThemeColors } from "../../types/theme";
+import type { Logo } from "../../App";
 import patternURL from "../../assets/HEXAGON.png";
 import stampURL from "../../assets/purple_stamp.png";
 
@@ -12,6 +13,7 @@ interface CertificateTemplate9Props {
   isPreview?: boolean;
   organizationName?: string;
   organizationLogo?: string;
+  organizationLogos?: Logo[];
   signatoryName1?: string;
   signatoryTitle1?: string;
   signatureUrl1?: string;
@@ -31,6 +33,7 @@ export default function CertificateTemplate9({
   isPreview = false,
   organizationName = "Your Organization",
   organizationLogo,
+  organizationLogos,
   signatoryName1 = "Bryan Lee",
   signatoryTitle1 = "MANAGER, CTO",
   signatureUrl1,
@@ -55,7 +58,16 @@ export default function CertificateTemplate9({
     day: "numeric",
   });
 
-  return (
+  // Determine which logo(s) to use
+  const logo1 = organizationLogos && organizationLogos[0]?.url
+    ? organizationLogos[0]
+    : null;
+  const logo2 = organizationLogos && organizationLogos[1]?.url
+    ? organizationLogos[1]
+    : null;
+  const fallbackLogo = organizationLogo;
+
+    return (
     <div
       ref={ref}
       style={{ transform: `scale(${scale})`, backgroundColor: "transparent" }}
@@ -69,11 +81,40 @@ export default function CertificateTemplate9({
       <div className="w-20 h-full absolute -left-6 top-0 bg-[#330066] z-10 skew-x-2"></div>
       <div className="w-20 h-full absolute left-10 top-0 bg-[#ff35ff] z-0"></div>
       <div className="flex-col items-center justify-center h-full">
-        <img
-          src={organizationLogo}
-          alt=""
-          className="absolute top-50 left-10 w-40 z-20"
-        />
+          <div className="flex">
+            {/* First Logo */}
+            {logo1 ? (
+              <div className="flex items-center">
+                <img
+                  src={logo1.url}
+                  alt={logo1.name || "Logo"}
+                  className="absolute top-50 left-10 w-40 z-20"
+                  
+                />
+              </div>
+            ) : fallbackLogo ? (
+              <img
+                src={fallbackLogo}
+                alt="Logo"
+                className="absolute top-50 left-10 w-40 z-20"
+                
+              />
+            ) : null}
+
+            {/* Second Logo */}
+            {logo2 ? (
+              <div className="flex items-center ml-2">
+                <img
+                  src={logo2.url}
+                  alt="Logo"
+                  className="absolute top-50 left-10 w-40 z-20"
+                  
+                />
+              </div>
+            ) : (
+              <div className="hidden"></div>
+            )}
+          </div>
         <img
           src={organizationLogo}
           alt=""

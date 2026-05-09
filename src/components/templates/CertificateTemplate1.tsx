@@ -59,7 +59,16 @@ export default function CertificateTemplate1({
   }, []);
 
 
-  return (
+  // Determine which logo(s) to use
+  const logo1 = organizationLogos && organizationLogos[0]?.url
+    ? organizationLogos[0]
+    : null;
+  const logo2 = organizationLogos && organizationLogos[1]?.url
+    ? organizationLogos[1]
+    : null;
+  const fallbackLogo = organizationLogo;
+
+    return (
     <div
       ref={ref}
       style={{
@@ -75,13 +84,40 @@ export default function CertificateTemplate1({
     >
       {/* Header Logo and Organization Name */}
       <div className="absolute top-10 left-10 z-40 flex  justify-center items-center">
-        {organizationLogo && (
-          <img
-            src={organizationLogo}
-            alt="Organization"
-            className="w-20 h-20 object-contain"
-          />
-        )}
+          <div className="flex">
+            {/* First Logo */}
+            {logo1 ? (
+              <div className="flex items-center">
+                <img
+                  src={logo1.url}
+                  alt={logo1.name || "Logo"}
+                  className="w-20 h-20 object-contain"
+                  
+                />
+              </div>
+            ) : fallbackLogo ? (
+              <img
+                src={fallbackLogo}
+                alt="Logo"
+                className="w-20 h-20 object-contain"
+                
+              />
+            ) : null}
+
+            {/* Second Logo */}
+            {logo2 ? (
+              <div className="flex items-center ml-2">
+                <img
+                  src={logo2.url}
+                  alt="Logo"
+                  className="w-20 h-20 object-contain"
+                  
+                />
+              </div>
+            ) : (
+              <div className="hidden"></div>
+            )}
+          </div>
         <div className="text-lg/6">
           <p className="m-0 font-bold">
             {organizationName.split(" ")[0]}

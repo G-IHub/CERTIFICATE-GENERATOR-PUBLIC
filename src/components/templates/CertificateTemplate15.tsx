@@ -1,5 +1,6 @@
 import { useRef, useEffect } from "react";
 import medal from "../../assets/iwdAward.png";
+import type { Logo } from "../../App";
 
 interface CertificateTemplate15Props {
   header?: string;
@@ -10,6 +11,7 @@ interface CertificateTemplate15Props {
   isPreview?: boolean;
   organizationName?: string;
   organizationLogo?: string;
+  organizationLogos?: Logo[];
   signatoryName1?: string;
   signatoryTitle1?: string;
   signatureUrl1?: string;
@@ -28,6 +30,7 @@ export default function CertificateTemplate15({
   isPreview = false,
   organizationName = "Women Techmakers Ogbomoso",
   organizationLogo,
+  organizationLogos,
   signatoryName1 = "Boluwatife Adebisi",
   signatoryTitle1 = "WTM Ogbomoso Ambassador",
   signatureUrl1,
@@ -54,7 +57,16 @@ export default function CertificateTemplate15({
     }
   }, []);
 
-  return (
+  // Determine which logo(s) to use
+  const logo1 = organizationLogos && organizationLogos[0]?.url
+    ? organizationLogos[0]
+    : null;
+  const logo2 = organizationLogos && organizationLogos[1]?.url
+    ? organizationLogos[1]
+    : null;
+  const fallbackLogo = organizationLogo;
+
+    return (
     <div
       ref={ref}
       className={containerClass}
@@ -218,11 +230,40 @@ export default function CertificateTemplate15({
                   src={medal}
                   className="absolute -bottom-3 w-11/12 h-full object-contain"
                 />
+          <div className="flex">
+            {/* First Logo */}
+            {logo1 ? (
+              <div className="flex items-center">
                 <img
-                  alt="Organization Logo"
-                  src={organizationLogo}
+                  src={logo1.url}
+                  alt={logo1.name || "Logo"}
                   className="absolute inset-[29.5%] w-[42%] h-[43%] object-contain"
+                  
                 />
+              </div>
+            ) : fallbackLogo ? (
+              <img
+                src={fallbackLogo}
+                alt="Logo"
+                className="absolute inset-[29.5%] w-[42%] h-[43%] object-contain"
+                
+              />
+            ) : null}
+
+            {/* Second Logo */}
+            {logo2 ? (
+              <div className="flex items-center ml-2">
+                <img
+                  src={logo2.url}
+                  alt="Logo"
+                  className="absolute inset-[29.5%] w-[42%] h-[43%] object-contain"
+                  
+                />
+              </div>
+            ) : (
+              <div className="hidden"></div>
+            )}
+          </div>
               </div>
             </div>
             {/* SIGNATORY 2 */}

@@ -1,6 +1,7 @@
 import React from "react";
 import { Award, Star } from "lucide-react";
 import type { ThemeColors } from "../../types/theme";
+import type { Logo } from "../../App";
 
 interface CertificateTemplate6Props {
   header: string;
@@ -11,6 +12,7 @@ interface CertificateTemplate6Props {
   isPreview?: boolean;
   organizationName?: string;
   organizationLogo?: string;
+  organizationLogos?: Logo[];
   signatoryName1?: string;
   signatoryTitle1?: string;
   signatureUrl1?: string;
@@ -39,6 +41,7 @@ export default function CertificateTemplate6({
   isPreview = false,
   organizationName = "Your Organization",
   organizationLogo,
+  organizationLogos,
   signatoryName1,
   signatoryTitle1,
   signatureUrl1,
@@ -72,7 +75,16 @@ export default function CertificateTemplate6({
     ? "w-full mx-auto origin-center overflow-visible flex justify-center"
     : "min-w-[800px] flex justify-center items-center";
 
-  return (
+  // Determine which logo(s) to use
+  const logo1 = organizationLogos && organizationLogos[0]?.url
+    ? organizationLogos[0]
+    : null;
+  const logo2 = organizationLogos && organizationLogos[1]?.url
+    ? organizationLogos[1]
+    : null;
+  const fallbackLogo = organizationLogo;
+
+    return (
     <div
       className={containerClass}
       style={{ transform: `scale(${scale})`, backgroundColor: "transparent" }}
@@ -127,13 +139,40 @@ export default function CertificateTemplate6({
           <div className="flex items-start gap-8 mb-8">
             <div className="flex flex-col items-center">
               {/* Organization Logo */}
-              {organizationLogo && (
+          <div className="flex">
+            {/* First Logo */}
+            {logo1 ? (
+              <div className="flex items-center">
                 <img
-                  src={organizationLogo}
-                  alt="Organization Logo"
+                  src={logo1.url}
+                  alt={logo1.name || "Logo"}
                   className="w-20 h-20 object-contain mb-4"
+                  
                 />
-              )}
+              </div>
+            ) : fallbackLogo ? (
+              <img
+                src={fallbackLogo}
+                alt="Logo"
+                className="w-20 h-20 object-contain mb-4"
+                
+              />
+            ) : null}
+
+            {/* Second Logo */}
+            {logo2 ? (
+              <div className="flex items-center ml-2">
+                <img
+                  src={logo2.url}
+                  alt="Logo"
+                  className="w-20 h-20 object-contain mb-4"
+                  
+                />
+              </div>
+            ) : (
+              <div className="hidden"></div>
+            )}
+          </div>
             </div>
             {/* Title Section */}
             <div className="flex-1 text-left pt-4">

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import type { ThemeColors } from "../../types/theme";
+import type { Logo } from "../../App";
 // Import ribbon and medal assets directly so the bundler resolves them correctly
 import ribbon1 from "../../assets/Ribbon (1).svg";
 import ribbon2 from "../../assets/Ribbon 2.svg";
@@ -14,6 +15,7 @@ interface CertificateTemplate4Props {
   isPreview?: boolean;
   organizationName?: string;
   organizationLogo?: string;
+  organizationLogos?: Logo[];
   signatoryName1?: string;
   signatoryTitle1?: string;
   signatureUrl1?: string;
@@ -33,6 +35,7 @@ export default function CertificateTemplate4({
   isPreview = false,
   organizationName,
   organizationLogo,
+  organizationLogos,
   signatoryName1,
   signatoryTitle1,
   signatureUrl1,
@@ -67,7 +70,16 @@ export default function CertificateTemplate4({
     day: "numeric",
   });
 
-  return (
+  // Determine which logo(s) to use
+  const logo1 = organizationLogos && organizationLogos[0]?.url
+    ? organizationLogos[0]
+    : null;
+  const logo2 = organizationLogos && organizationLogos[1]?.url
+    ? organizationLogos[1]
+    : null;
+  const fallbackLogo = organizationLogo;
+
+    return (
     <div
       className={containerClass}
       style={{ transform: `scale(${scale})`, backgroundColor: "transparent" }}

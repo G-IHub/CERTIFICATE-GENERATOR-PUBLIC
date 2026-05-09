@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import type { ThemeColors } from "../../types/theme";
+import type { Logo } from "../../App";
 import vector1 from "../../assets/Vector (9).svg";
 import vector2 from "../../assets/Vector (10).svg";
 import vector3 from "../../assets/Vector (11).svg";
@@ -16,6 +17,7 @@ interface CertificateTemplate14Props {
   isPreview?: boolean;
   organizationName?: string;
   organizationLogo?: string;
+  organizationLogos?: Logo[];
   signatoryName1?: string;
   signatoryTitle1?: string;
   signatureUrl1?: string;
@@ -35,6 +37,7 @@ export default function CertificateTemplate14({
   isPreview = false,
   organizationName = "Your Organization",
   organizationLogo,
+  organizationLogos,
   signatoryName1,
   signatoryTitle1,
   signatureUrl1,
@@ -58,7 +61,16 @@ export default function CertificateTemplate14({
       "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
     document.head.appendChild(link1);
 
-    return () => {
+  // Determine which logo(s) to use
+  const logo1 = organizationLogos && organizationLogos[0]?.url
+    ? organizationLogos[0]
+    : null;
+  const logo2 = organizationLogos && organizationLogos[1]?.url
+    ? organizationLogos[1]
+    : null;
+  const fallbackLogo = organizationLogo;
+
+      return () => {
       document.head.removeChild(link1);
     };
   }, []);
@@ -97,13 +109,40 @@ export default function CertificateTemplate14({
             <div className="text-center flex flex-col items-center space-y-4 z-40 absolute w-1/3 left-6">
               <div className="flex flex-col items-center">
                 {/* Organization Logo */}
-                {organizationLogo && (
-                  <img
-                    src={organizationLogo}
-                    alt="Organization Logo"
-                    className="w-20 h-20 object-contain"
-                  />
-                )}
+          <div className="flex">
+            {/* First Logo */}
+            {logo1 ? (
+              <div className="flex items-center">
+                <img
+                  src={logo1.url}
+                  alt={logo1.name || "Logo"}
+                  className="w-20 h-20 object-contain"
+                  
+                />
+              </div>
+            ) : fallbackLogo ? (
+              <img
+                src={fallbackLogo}
+                alt="Logo"
+                className="w-20 h-20 object-contain"
+                
+              />
+            ) : null}
+
+            {/* Second Logo */}
+            {logo2 ? (
+              <div className="flex items-center ml-2">
+                <img
+                  src={logo2.url}
+                  alt="Logo"
+                  className="w-20 h-20 object-contain"
+                  
+                />
+              </div>
+            ) : (
+              <div className="hidden"></div>
+            )}
+          </div>
               </div>
               {/* Header */}
               <div className="flex flex-col gap-4 justify-center items-center text-white text-center">

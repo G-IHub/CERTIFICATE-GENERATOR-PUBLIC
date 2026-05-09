@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import Vector from "../../assets/Vector (1).svg";
 import Flag from "../../assets/Flag.svg";
 import type { ThemeColors } from "../../types/theme";
+import type { Logo } from "../../App";
 
 interface CertificateTemplate11Props {
   header: string;
@@ -12,6 +13,7 @@ interface CertificateTemplate11Props {
   isPreview?: boolean;
   organizationName?: string;
   organizationLogo?: string;
+  organizationLogos?: Logo[];
   signatoryName1?: string;
   signatoryTitle1?: string;
   signatureUrl1?: string;
@@ -31,6 +33,7 @@ export default function CertificateTemplate11({
   isPreview = false,
   organizationName = "Your Organization",
   organizationLogo,
+  organizationLogos,
   signatoryName1 = "Signature",
   signatoryTitle1 = "MANAGER, CTO",
   signatureUrl1,
@@ -67,7 +70,16 @@ export default function CertificateTemplate11({
       "https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900";
     document.head.appendChild(link3);
 
-    return () => {
+  // Determine which logo(s) to use
+  const logo1 = organizationLogos && organizationLogos[0]?.url
+    ? organizationLogos[0]
+    : null;
+  const logo2 = organizationLogos && organizationLogos[1]?.url
+    ? organizationLogos[1]
+    : null;
+  const fallbackLogo = organizationLogo;
+
+      return () => {
       document.head.removeChild(link1);
       document.head.removeChild(link2);
       document.head.removeChild(link3);

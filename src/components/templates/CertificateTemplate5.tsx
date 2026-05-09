@@ -3,6 +3,7 @@ import ribbonUrl from "../../assets/RIBBON.png";
 import gNaturesLogo from "../../assets/g-natures_logo.png";
 import medalUrl from "../../assets/medal.png";
 import type { ThemeColors } from "../../types/theme";
+import type { Logo } from "../../App";
 
 interface CertificateTemplate5Props {
   header?: string;
@@ -13,6 +14,7 @@ interface CertificateTemplate5Props {
   isPreview?: boolean;
   organizationName?: string;
   organizationLogo?: string;
+  organizationLogos?: Logo[];
   signatoryName1?: string;
   signatoryTitle1?: string;
   signatureUrl1?: string;
@@ -32,6 +34,7 @@ export default function CertificateTemplate5({
   isPreview = false,
   organizationName = "G-Natures",
   organizationLogo,
+  organizationLogos,
   signatoryName1 = "Oluwaseyi Abraham Olawale",
   signatoryTitle1 = "Founder & CEO of Genomac Holdings",
   signatureUrl1,
@@ -64,13 +67,34 @@ export default function CertificateTemplate5({
     ? "w-full mx-auto origin-center overflow-visible flex justify-center"
     : "min-w-[1056px] flex justify-center items-center";
 
-  return (
+  // Determine which logo(s) to use
+  const logo1 = organizationLogos && organizationLogos[0]?.url
+    ? organizationLogos[0]
+    : null;
+  const logo2 = organizationLogos && organizationLogos[1]?.url
+    ? organizationLogos[1]
+    : null;
+  const fallbackLogo = organizationLogo;
+
+    return (
     <div className={containerClass} style={{ transform: `scale(${scale})`, backgroundColor: "transparent" }}>
       <div className="w-200 h-150 shadow-sm rounded-sm relative overflow-hidden bg-[#fbfbfb] px-10">
         <div className="w-full h-20 absolute top-0 left-0 z-0" style={{ background: `linear-gradient(to right, ${themeColors?.primary ?? '#14532d'}, ${themeColors?.secondary ?? '#16a34a'}, ${themeColors?.secondary ?? '#16a34a'})` }} />
         <div className="w-40 h-full absolute top-0 right-0 rounded-bl-full z-0" style={{ background: `linear-gradient(to bottom, ${themeColors?.primary ?? '#14532d'}, ${themeColors?.secondary ?? '#16a34a'})` }} />
-
-        <img src={organizationLogo || gNaturesLogo} alt="Logo" className="absolute left-10 top-8 z-10 w-1/12 object-contain" />
+          <div className="flex">
+            {logo1 ? (
+              <div className="flex items-center">
+                <img src={logo1.url} alt={logo1.name || "Logo"} className="absolute left-10 top-8 z-10 w-1/12 object-contain"  />
+              </div>
+            ) : fallbackLogo ? (
+              <img src={fallbackLogo} alt="Logo" className="absolute left-10 top-8 z-10 w-1/12 object-contain"  />
+            ) : null}
+            {logo2 ? (
+              <div className="flex items-center ml-2">
+                <img src={logo2.url} alt="Logo" className="absolute left-10 top-8 z-10 w-1/12 object-contain"  />
+              </div>
+            ) : null}
+          </div>
         <img src={medalUrl} alt="Medal" className="absolute right-0 top-20 z-10 w-1/4 object-contain" />
 
         <div className="flex flex-col gap-8 z-30 w-9/12 mt-30">

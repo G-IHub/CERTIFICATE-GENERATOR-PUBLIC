@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import type { ThemeColors } from "../../types/theme";
+import type { Logo } from "../../App";
 import patternUrl from "../../assets/Pattern.png";
 import leftDecorUrl from "../../assets/ins_left.png";
 import rightDecorUrl from "../../assets/ins_right.png";
@@ -14,6 +15,7 @@ interface CertificateTemplate3Props {
   isPreview?: boolean;
   organizationName?: string;
   organizationLogo?: string;
+  organizationLogos?: Logo[];
   signatoryName1?: string;
   signatoryTitle1?: string;
   signatureUrl1?: string;
@@ -35,6 +37,7 @@ export default function CertificateTemplate3({
   isPreview = false,
   organizationName = "Genomac Institute Inc",
   organizationLogo,
+  organizationLogos,
   signatoryName1 = "Oluwaseyi Abraham Olawale",
   signatoryTitle1 = "Founder & CEO",
   signatureUrl1,
@@ -67,7 +70,16 @@ export default function CertificateTemplate3({
     day: "numeric",
   });
 
-  return (
+  // Determine which logo(s) to use
+  const logo1 = organizationLogos && organizationLogos[0]?.url
+    ? organizationLogos[0]
+    : null;
+  const logo2 = organizationLogos && organizationLogos[1]?.url
+    ? organizationLogos[1]
+    : null;
+  const fallbackLogo = organizationLogo;
+
+    return (
     <div
       className={containerClass}
       style={{ transform: `scale(${scale})`, backgroundColor: "transparent" }}
@@ -91,11 +103,40 @@ export default function CertificateTemplate3({
 
         <div className="absolute top-6 left-16 flex items-center gap-2 z-20">
           {organizationLogo ? (
-            <img
-              src={organizationLogo}
-              alt={organizationName}
-              className="h-20 object-contain"
-            />
+          <div className="flex">
+            {/* First Logo */}
+            {logo1 ? (
+              <div className="flex items-center">
+                <img
+                  src={logo1.url}
+                  alt={logo1.name || "Logo"}
+                  className="h-20 object-contain"
+                  
+                />
+              </div>
+            ) : fallbackLogo ? (
+              <img
+                src={fallbackLogo}
+                alt="Logo"
+                className="h-20 object-contain"
+                
+              />
+            ) : null}
+
+            {/* Second Logo */}
+            {logo2 ? (
+              <div className="flex items-center ml-2">
+                <img
+                  src={logo2.url}
+                  alt="Logo"
+                  className="h-20 object-contain"
+                  
+                />
+              </div>
+            ) : (
+              <div className="hidden"></div>
+            )}
+          </div>
           ) : (
             <img
               src="/assets/GenomacInstitute.png"

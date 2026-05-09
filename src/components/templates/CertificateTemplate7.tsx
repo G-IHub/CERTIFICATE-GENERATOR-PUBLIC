@@ -4,6 +4,7 @@ import upperUrl from "../../assets/UpperShape.png";
 import bottomUrl from "../../assets/BottomShape.png";
 import patternUrl from "../../assets/Pattern.png";
 import ribbonUrl from "../../assets/RIBBON.png";
+import type { Logo } from "../../App";
 
 interface CertificateTemplate7Props {
   header?: string;
@@ -16,6 +17,7 @@ interface CertificateTemplate7Props {
   courseTitle?: string;
   organizationName?: string;
   organizationLogo?: string;
+  organizationLogos?: Logo[];
   signatoryName1?: string;
   signatoryTitle1?: string;
   signatureUrl1?: string;
@@ -37,6 +39,7 @@ export default function CertificateTemplate7({
   courseTitle = "Course Title",
   organizationName = "Your Organization",
   organizationLogo,
+  organizationLogos,
   signatoryName1,
   signatoryTitle1 = "MANAGER, CTO",
   signatureUrl1,
@@ -62,6 +65,15 @@ export default function CertificateTemplate7({
     day: "numeric",
   });
 
+  // Determine which logo(s) to use
+  const logo1 = organizationLogos && organizationLogos[0]?.url
+    ? organizationLogos[0]
+    : null;
+  const logo2 = organizationLogos && organizationLogos[1]?.url
+    ? organizationLogos[1]
+    : null;
+  const fallbackLogo = organizationLogo;
+
   return (
     <div
       className={containerClass}
@@ -84,8 +96,45 @@ export default function CertificateTemplate7({
           className="absolute z-0 top-0 w-full h-full opacity-70"
         />
 
-        <div className="text-center flex flex-col gap-5 items-center w-full z-40 border-2 p-2" style={{ borderColor: themeColors?.secondary ?? '#fdba74' }}>
-          <img src={organizationLogo} alt="logo" className="w-1/9" />
+        <div
+          className="text-center flex flex-col gap-5 items-center w-full z-40 border-2 p-2"
+          style={{ borderColor: themeColors?.secondary ?? "#fdba74" }}
+        >
+          {/* <img src={organizationLogo} alt="logo" className="w-1/9" /> */}
+          <div className="flex">
+            {/* First Logo */}
+            {logo1 ? (
+              <div className="flex items-center">
+                <img
+                  src={logo1.url}
+                  alt={logo1.name || "Logo"}
+                  className="w-16 h-16 object-contain"
+                  style={{ width: 100, height: 100 }}
+                />
+              </div>
+            ) : (
+              <img
+                src={organizationLogo}
+                alt="Logo"
+                className="w-16 h-16 object-contain"
+                style={{ width: 100, height: 100 }}
+              />
+            )}
+
+            {/* Second Logo */}
+            {logo2 ? (
+              <div className="flex items-center">
+                <img
+                  src={logo2.url}
+                  alt="Logo"
+                  className="w-16 h-16 object-contain"
+                  style={{ width: 100, height: 100 }}
+                />
+              </div>
+            ) : (
+              <div className="hidden"></div>
+            )}
+          </div>
           <div className="flex flex-col items-center gap-2">
             <h1 className="text-5xl font-medium">{header1 || "CERTIFICATE"}</h1>
             <p className="text-xl uppercase font-bold tracking-widest">
@@ -95,7 +144,10 @@ export default function CertificateTemplate7({
           <p className="font-bold tracking-tighter text-sm uppercase">
             This Certificate is Proudly Presented to:
           </p>
-          <p className="w-1/2 text-center border-b font-semibold text-3xl tracking-wider" style={{ borderColor: themeColors?.primary ?? '#f97316' }}>
+          <p
+            className="w-1/2 text-center border-b font-semibold text-3xl tracking-wider"
+            style={{ borderColor: themeColors?.primary ?? "#f97316" }}
+          >
             {recipientName}
           </p>
           <p className="text-xs -mt-2 -mb-2 text-black">
@@ -106,7 +158,7 @@ export default function CertificateTemplate7({
           </p>
           <p className="max-w-xl text-sm">{description}</p>
 
-          <p className="font-bold text-black -mt-5" >Date: {formattedDate} </p>
+          <p className="font-bold text-black -mt-5">Date: {formattedDate} </p>
 
           <div className="flex gap-10 w-full items-center justify-center z-50 -mt-5">
             <div className="space-y-2">
@@ -119,7 +171,10 @@ export default function CertificateTemplate7({
                 />
               </div>
               <div className="space-y-0">
-                <p className="text-center text-sm font-medium" style={{ color: themeColors?.primary ?? '#f97316' }}>
+                <p
+                  className="text-center text-sm font-medium"
+                  style={{ color: themeColors?.primary ?? "#f97316" }}
+                >
                   {signatoryName1 || "Oluwaseyi Abraham Olawale"}
                 </p>
                 <p className="text-center text-[9px] italic font-medium">
@@ -142,7 +197,10 @@ export default function CertificateTemplate7({
                 />
               </div>
               <div className="space-y-0">
-                <p className="text-center text-sm font-medium" style={{ color: themeColors?.primary ?? '#f97316' }}>
+                <p
+                  className="text-center text-sm font-medium"
+                  style={{ color: themeColors?.primary ?? "#f97316" }}
+                >
                   {signatoryName2 || "Gloria Adegbole"}
                 </p>
                 <p className="text-center text-[9px] italic font-medium">

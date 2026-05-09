@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import type { ThemeColors } from "../../types/theme";
+import type { Logo } from "../../App";
 import logo from "../../assets/ginsti.png";
 import sign1 from "../../assets/sign1.png";
 import sign2 from "../../assets/signInsti.png";
@@ -15,6 +16,7 @@ interface CertificateTemplate18Props {
   isPreview?: boolean;
   organizationName?: string;
   organizationLogo?: string;
+  organizationLogos?: Logo[];
   signatoryName1?: string;
   signatoryTitle1?: string;
   signatureUrl1?: string;
@@ -34,6 +36,7 @@ export default function CertificateTemplate18({
   isPreview = false,
   organizationName = "Genomac Institute Inc.",
   organizationLogo,
+  organizationLogos,
   signatoryName1,
   signatoryTitle1,
   signatureUrl1,
@@ -58,7 +61,16 @@ export default function CertificateTemplate18({
     ? "w-full mx-auto origin-center overflow-visible flex justify-center"
     : "min-w-[800px] flex justify-center items-center";
 
-  return (
+  // Determine which logo(s) to use
+  const logo1 = organizationLogos && organizationLogos[0]?.url
+    ? organizationLogos[0]
+    : null;
+  const logo2 = organizationLogos && organizationLogos[1]?.url
+    ? organizationLogos[1]
+    : null;
+  const fallbackLogo = organizationLogo;
+
+    return (
     <div
       className={containerClass}
       style={{ transform: `scale(${scale})`, backgroundColor: "transparent" }}
@@ -85,11 +97,20 @@ export default function CertificateTemplate18({
             {/* Header with Logo */}
             <div className="flex text-center mx-auto items-center gap-4 mt-10">
               <p className="ml-6">
-                <img
-                  src={organizationLogo || logo}
-                  alt="logo"
-                  className="w-[80px]"
-                />
+          <div className="flex">
+            {logo1 ? (
+              <div className="flex items-center">
+                <img src={logo1.url} alt={logo1.name || "Logo"} className="w-[80px]"  />
+              </div>
+            ) : fallbackLogo ? (
+              <img src={fallbackLogo} alt="Logo" className="w-[80px]"  />
+            ) : null}
+            {logo2 ? (
+              <div className="flex items-center ml-2">
+                <img src={logo2.url} alt="Logo" className="w-[80px]"  />
+              </div>
+            ) : null}
+          </div>
               </p>
               <div className="text-center ml-3 mt-5">
                 <p className="uppercase font-semibold text-5xl text-purple-700">

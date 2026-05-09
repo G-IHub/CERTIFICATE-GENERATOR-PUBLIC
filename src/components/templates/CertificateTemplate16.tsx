@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import type { ThemeColors } from "../../types/theme";
+import type { Logo } from "../../App";
 import floral from "../../assets/floral.png";
 
 interface CertificateTemplate16Props {
@@ -11,6 +12,7 @@ interface CertificateTemplate16Props {
   isPreview?: boolean;
   organizationName?: string;
   organizationLogo?: string;
+  organizationLogos?: Logo[];
   signatoryName1?: string;
   signatoryTitle1?: string;
   signatureUrl1?: string;
@@ -30,6 +32,7 @@ export default function CertificateTemplate16({
   isPreview = false,
   organizationName = "Your Organization",
   organizationLogo,
+  organizationLogos,
   signatoryName1,
   signatoryTitle1,
   signatureUrl1,
@@ -74,6 +77,15 @@ export default function CertificateTemplate16({
   const hasSignature1 = signatoryName1 || signatoryTitle1 || signatureUrl1;
   const hasSignature2 = signatoryName2 || signatoryTitle2 || signatureUrl2;
 
+  // Determine which logo(s) to use
+  const logo1 = organizationLogos && organizationLogos[0]?.url
+    ? organizationLogos[0]
+    : null;
+  const logo2 = organizationLogos && organizationLogos[1]?.url
+    ? organizationLogos[1]
+    : null;
+  const fallbackLogo = organizationLogo;
+
   return (
     <div className={containerClass}
     style={{ transform: `scale(${scale})`, backgroundColor: "transparent" }}>
@@ -98,14 +110,17 @@ export default function CertificateTemplate16({
               fontFamily: "'Libre Baskerville', serif",
             }}
           >
-            {/* Organization Logo */}
-            {/* {organizationLogo && (
-              <img
-                src={organizationLogo}
-                alt="Organization Logo"
-                className="w-16 h-16 object-contain mb-4"
-              />
-            )} */}
+            {/* Logos */}
+            <div className="flex gap-2 justify-center">
+              {logo1 ? (
+                <img src={logo1.url} alt={logo1.name || "Logo"} className="w-16 h-16 object-contain" />
+              ) : fallbackLogo ? (
+                <img src={fallbackLogo} alt="Logo" className="w-16 h-16 object-contain" />
+              ) : null}
+              {logo2 && (
+                <img src={logo2.url} alt="Logo" className="w-16 h-16 object-contain" />
+              )}
+            </div>
             <img
               src={floral}
               alt=""

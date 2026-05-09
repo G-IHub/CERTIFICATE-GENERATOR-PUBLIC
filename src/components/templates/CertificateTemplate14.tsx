@@ -61,16 +61,7 @@ export default function CertificateTemplate14({
       "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
     document.head.appendChild(link1);
 
-  // Determine which logo(s) to use
-  const logo1 = organizationLogos && organizationLogos[0]?.url
-    ? organizationLogos[0]
-    : null;
-  const logo2 = organizationLogos && organizationLogos[1]?.url
-    ? organizationLogos[1]
-    : null;
-  const fallbackLogo = organizationLogo;
-
-      return () => {
+    return () => {
       document.head.removeChild(link1);
     };
   }, []);
@@ -80,6 +71,15 @@ export default function CertificateTemplate14({
     month: "long",
     day: "numeric",
   });
+
+  // Determine which logo(s) to use
+  const logo1 = organizationLogos && organizationLogos[0]?.url
+    ? organizationLogos[0]
+    : null;
+  const logo2 = organizationLogos && organizationLogos[1]?.url
+    ? organizationLogos[1]
+    : null;
+  const fallbackLogo = organizationLogo;
 
   return (
     <div

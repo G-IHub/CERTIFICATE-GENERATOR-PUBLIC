@@ -103,7 +103,11 @@ export default function TemplateVisibilityManager({
     try {
       // Load all templates without filtering
       const res = await templateApi.getAll();
-      setTemplates(res.templates || []);
+      const allTemplates = res.templates || [];
+      // Sort templates by numeric ID (template1 → template44, custom last)
+      const getNum = (id: string) => { const m = id.match(/template(\d+)$/); return m ? parseInt(m[1], 10) : Infinity; };
+      allTemplates.sort((a: any, b: any) => getNum(a.id) - getNum(b.id));
+      setTemplates(allTemplates);
     } catch (error: any) {
       console.error("Failed to load templates:", error);
       toast.error(error?.message || "Failed to load templates");

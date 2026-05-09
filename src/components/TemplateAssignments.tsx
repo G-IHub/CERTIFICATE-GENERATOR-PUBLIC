@@ -85,7 +85,11 @@ export default function TemplateAssignments({
     try {
       // Load templates
       const templatesRes = await templateApi.getAll();
-      setTemplates(templatesRes.templates || []);
+      const loadedTemplates = templatesRes.templates || [];
+      // Sort templates by numeric ID (template1 → template44, custom last)
+      const getNum = (id: string) => { const m = id.match(/template(\d+)$/); return m ? parseInt(m[1], 10) : Infinity; };
+      loadedTemplates.sort((a: any, b: any) => getNum(a.id) - getNum(b.id));
+      setTemplates(loadedTemplates);
 
       // Load assignments
       if (accessToken) {

@@ -126,9 +126,14 @@ export default function OnboardingWizard({
       );
       const data = await response.json();
       if (data.templates) {
-        setTemplates(data.templates);
-        if (data.templates.length > 0) {
-          setSelectedTemplate(data.templates[0].id);
+        // Sort templates by numeric ID (template1 → template44, custom last)
+        const sorted = [...data.templates].sort((a: any, b: any) => {
+          const num = (id: string) => { const m = id.match(/template(\d+)$/); return m ? parseInt(m[1], 10) : Infinity; };
+          return num(a.id) - num(b.id);
+        });
+        setTemplates(sorted);
+        if (sorted.length > 0) {
+          setSelectedTemplate(sorted[0].id);
         }
       }
     } catch (error) {

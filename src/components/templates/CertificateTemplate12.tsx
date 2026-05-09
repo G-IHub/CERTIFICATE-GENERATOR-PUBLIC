@@ -63,17 +63,7 @@ export default function CertificateTemplate12({
     link2.href =
       "https://fonts.googleapis.com/css2?family=Momo+Signature&display=swap";
     document.head.appendChild(link2);
-
-  // Determine which logo(s) to use
-  const logo1 = organizationLogos && organizationLogos[0]?.url
-    ? organizationLogos[0]
-    : null;
-  const logo2 = organizationLogos && organizationLogos[1]?.url
-    ? organizationLogos[1]
-    : null;
-  const fallbackLogo = organizationLogo;
-
-      return () => {
+    return () => {
       document.head.removeChild(link1);
       document.head.removeChild(link2);
     };
@@ -85,6 +75,17 @@ export default function CertificateTemplate12({
     month: "long",
     day: "numeric",
   });
+
+  // Determine which logo(s) to use
+  const logo1 =
+    organizationLogos && organizationLogos[0]?.url
+      ? organizationLogos[0]
+      : null;
+  const logo2 =
+    organizationLogos && organizationLogos[1]?.url
+      ? organizationLogos[1]
+      : null;
+  const fallbackLogo = organizationLogo;
 
   return (
     <div
@@ -103,40 +104,29 @@ export default function CertificateTemplate12({
         <div className="flex flex-col gap-10 items-start w-5/6 p-10">
           <div className="space-y-2">
             <div className="flex gap-4">
-          <div className="flex">
-            {/* First Logo */}
-            {logo1 ? (
-              <div className="flex items-center">
-                <img
-                  src={logo1.url}
-                  alt={logo1.name || "Logo"}
-                  className="w-10"
-                  
-                />
-              </div>
-            ) : fallbackLogo ? (
-              <img
-                src={fallbackLogo}
-                alt="Logo"
-                className="w-10"
-                
-              />
-            ) : null}
+              <div className="flex">
+                {/* First Logo */}
+                {logo1 ? (
+                  <div className="flex items-center">
+                    <img
+                      src={logo1.url}
+                      alt={logo1.name || "Logo"}
+                      className="w-10"
+                    />
+                  </div>
+                ) : fallbackLogo ? (
+                  <img src={fallbackLogo} alt="Logo" className="w-10" />
+                ) : null}
 
-            {/* Second Logo */}
-            {logo2 ? (
-              <div className="flex items-center ml-2">
-                <img
-                  src={logo2.url}
-                  alt="Logo"
-                  className="w-10"
-                  
-                />
+                {/* Second Logo */}
+                {logo2 ? (
+                  <div className="flex items-center ml-2">
+                    <img src={logo2.url} alt="Logo" className="w-10" />
+                  </div>
+                ) : (
+                  <div className="hidden"></div>
+                )}
               </div>
-            ) : (
-              <div className="hidden"></div>
-            )}
-          </div>
               {/* <h1 className="text-4xl font-ectrabold tracking-widest">SQ</h1> */}
             </div>
             <h3

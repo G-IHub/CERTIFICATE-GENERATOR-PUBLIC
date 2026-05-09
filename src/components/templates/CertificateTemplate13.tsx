@@ -45,8 +45,9 @@ export default function CertificateTemplate13({
   themeColors,
 }: CertificateTemplate13Props) {
   const ref = useRef<HTMLDivElement>(null);
-    const scale = mode === "student" ? "transform-scale-[0.3]" : "transform-scale-100";
-  
+  const scale =
+    mode === "student" ? "transform-scale-[0.3]" : "transform-scale-100";
+
   const containerClass = isPreview
     ? "w-full mx-auto origin-center overflow-visible flex justify-center"
     : "min-w-[1056px] flex justify-center items-center";
@@ -64,16 +65,7 @@ export default function CertificateTemplate13({
       "https://fonts.googleapis.com/css2?family=Island+Moments&display=swap";
     document.head.appendChild(link2);
 
-  // Determine which logo(s) to use
-  const logo1 = organizationLogos && organizationLogos[0]?.url
-    ? organizationLogos[0]
-    : null;
-  const logo2 = organizationLogos && organizationLogos[1]?.url
-    ? organizationLogos[1]
-    : null;
-  const fallbackLogo = organizationLogo;
-
-      return () => {
+    return () => {
       document.head.removeChild(link1);
       document.head.removeChild(link2);
     };
@@ -88,6 +80,17 @@ export default function CertificateTemplate13({
   // Determine signature count
   const hasSignature1 = signatoryName1 || signatoryTitle1 || signatureUrl1;
   const hasSignature2 = signatoryName2 || signatoryTitle2 || signatureUrl2;
+
+  // Determine which logo(s) to use
+  const logo1 =
+    organizationLogos && organizationLogos[0]?.url
+      ? organizationLogos[0]
+      : null;
+  const logo2 =
+    organizationLogos && organizationLogos[1]?.url
+      ? organizationLogos[1]
+      : null;
+  const fallbackLogo = organizationLogo;
 
   return (
     <div className={containerClass}>
@@ -107,7 +110,6 @@ export default function CertificateTemplate13({
                   src={logo1.url}
                   alt={logo1.name || "Logo"}
                   className="w-16 h-16 object-contain"
-                  
                 />
               </div>
             ) : fallbackLogo ? (
@@ -115,7 +117,6 @@ export default function CertificateTemplate13({
                 src={fallbackLogo}
                 alt="Logo"
                 className="w-16 h-16 object-contain"
-                
               />
             ) : null}
 
@@ -126,7 +127,6 @@ export default function CertificateTemplate13({
                   src={logo2.url}
                   alt="Logo"
                   className="w-16 h-16 object-contain"
-                  
                 />
               </div>
             ) : (

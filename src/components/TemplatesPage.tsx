@@ -94,6 +94,12 @@ export default function TemplatesPage({
       // Pass organizationId to get templates filtered by visibility rules
       const res = await templateApi.getAll(organization.id);
       const loaded = res.templates || [];
+      // Sort templates by numeric ID (template1 → template44, custom last)
+      const getTemplateNum = (id: string) => {
+        const m = id.match(/template(\d+)$/);
+        return m ? parseInt(m[1], 10) : Infinity;
+      };
+      loaded.sort((a: any, b: any) => getTemplateNum(a.id) - getTemplateNum(b.id));
       // Debug: log template ids/types to help trace preview issues
       try {
         // eslint-disable-next-line no-console

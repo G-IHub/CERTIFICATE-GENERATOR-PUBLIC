@@ -132,7 +132,7 @@ export default function CertificateTemplate4({
                     src={logo1.url}
                     alt="Logo"
                     className="w-16 h-16 object-contain"
-                    style={{ width: 60, height: 60 }}
+                    style={{ width: 35, height: 35 }}
                   />
                   <p className="text-xs font-thin text-black">{logo1.name} </p>
                 </div>
@@ -140,12 +140,14 @@ export default function CertificateTemplate4({
             ) : (
               <div>
                 <img
-                src={organizationLogo}
-                alt="Logo"
-                className="w-16 h-16 object-contain"
-                style={{ width: 60, height: 60 }}
-              />
-              <p className="text-xs font-thin text-black">{organizationName} </p>
+                  src={organizationLogo}
+                  alt="Logo"
+                  className="w-16 h-16 object-contain"
+                  style={{ width: 35, height: 35 }}
+                />
+                <p className="text-xs font-thin text-black">
+                  {organizationName}{" "}
+                </p>
               </div>
             )}
 
@@ -160,7 +162,7 @@ export default function CertificateTemplate4({
                     src={logo2.url}
                     alt="Logo"
                     className="w-16 h-16 object-contain"
-                    style={{ width: 60, height: 60 }}
+                    style={{ width: 35, height: 35 }}
                   />
                   <p className="text-xs font-thin text-black">{logo2.name} </p>
                 </div>
@@ -189,12 +191,13 @@ export default function CertificateTemplate4({
           <p className="text-xs -mt-2 -mb-2 text-black">
             {/* For participating in the program: */}
           </p>
-          <p className="text-2xl -mt-2 -mb-4 font-bold text-black">
+          <p className="max-w-xl text-lg -mt-5">{description}</p>
+
+          <p className="text-2xl -mt-3 -mb-4 font-bold text-black">
             {courseTitle}
           </p>
-          <p className="max-w-xl text-lg">{description}</p>
 
-          <p className="font-bold text-lg text-black -mt-5 mb-24">
+          <p className="font-bold text-lg text-black mt-1 mb-16">
             Date: {formattedDate}{" "}
           </p>
 

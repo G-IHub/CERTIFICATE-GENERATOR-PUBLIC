@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import type { ThemeColors } from "../../types/theme";
 import type { Logo } from "../../App";
 import { color } from "motion/react";
+import deleteSign from "../../assets/delete.png";
 
 interface Props {
   header: string;
@@ -69,6 +70,12 @@ export default function CertificateTemplate44({
       ? organizationLogos[1]
       : null;
   const fallbackLogo = organizationLogo;
+
+  const formattedDate = new Date(date).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
 
   return (
     // Fixed 800×600 canvas — width/height must stay inline (Tailwind has no w-[800px] preset)
@@ -142,16 +149,33 @@ export default function CertificateTemplate44({
         <div className="flex">
           {logo1 ? (
             <div className="flex items-center gap-2">
-              <img src={logo1.url} alt={logo1.name || "Logo"} className="w-16 object-contain" />
-              <p className="text-sm font-medium m-0" style={{ color: textCol ?? "white" }} >{logo1.name}</p>
+              <img
+                src={logo1.url}
+                alt={logo1.name || "Logo"}
+                className="w-16 object-contain"
+              />
+              <p
+                className="text-sm font-medium m-0"
+                style={{ color: textCol ?? "white" }}
+              >
+                {logo1.name}
+              </p>
             </div>
           ) : fallbackLogo ? (
-            <img src={fallbackLogo} alt="Logo" className="w-16 object-contain" />
+            <img
+              src={fallbackLogo}
+              alt="Logo"
+              className="w-16 object-contain"
+            />
           ) : null}
 
           {logo2 ? (
             <div className="flex items-center gap-2 ml-4">
-              <span className="text-white font-semibold">×</span>
+              <span className="text-white font-semibold">
+                <p className="text-2xl font-bold text-black">
+                  <img src={deleteSign} alt="X" className="w-3 mr-3" />
+                </p>
+              </span>
               <img src={logo2.url} alt="Logo" className="w-16 object-contain" />
               <p className="text-white text-sm font-medium m-0">{logo2.name}</p>
             </div>
@@ -179,15 +203,15 @@ export default function CertificateTemplate44({
       >
         {/* Certificate header label */}
         <p
-          className="text-[11px] font-semibold uppercase tracking-[4px] m-0"
+          className="text-[25px] font-bold uppercase tracking-[4px] m-0"
           style={{ color: teal }}
         >
           {header}
         </p>
 
         {/* Sub-label */}
-        <p className="text-xs m-0" style={{ color: `${textCol}77` }}>
-          This is to certify that
+        <p className="text-md m-0" style={{ color: `${textCol}77` }}>
+          Presented to:
         </p>
 
         {/* Recipient name */}
@@ -203,15 +227,19 @@ export default function CertificateTemplate44({
 
         {/* Teal underline bars */}
         <div className="flex items-center gap-1">
-          <div className="h-[3px] w-[60px] rounded-sm" style={{ background: teal }} />
-          <div className="h-[3px] w-[20px] rounded-sm" style={{ background: `${teal}55` }} />
-          <div className="h-[3px] w-[8px] rounded-sm" style={{ background: `${teal}33` }} />
+          <div
+            className="h-[3px] w-[60px] rounded-sm"
+            style={{ background: teal }}
+          />
+          <div
+            className="h-[3px] w-[20px] rounded-sm"
+            style={{ background: `${teal}55` }}
+          />
+          <div
+            className="h-[3px] w-[8px] rounded-sm"
+            style={{ background: `${teal}33` }}
+          />
         </div>
-
-        {/* Course title */}
-        <strong className="font-extrabold text-2xl" style={{ color: navy }}>
-          {courseTitle}
-        </strong>
 
         {/* Description */}
         <p
@@ -222,6 +250,11 @@ export default function CertificateTemplate44({
             "This certificate is awarded in recognition of outstanding achievement and dedication to professional excellence."}
         </p>
 
+        {/* Course title */}
+        <strong className="font-extrabold text-2xl" style={{ color: navy }}>
+          {courseTitle}
+        </strong>
+
         {/* Date row */}
         <div className="flex items-center gap-6 mt-1">
           <div className="flex items-center gap-2">
@@ -230,8 +263,7 @@ export default function CertificateTemplate44({
               style={{ background: teal }}
             />
             <p className="text-[11px] m-0" style={{ color: `${textCol}88` }}>
-              Date:{" "}
-              <strong style={{ color: textCol }}>{date}</strong>
+              Date: <strong style={{ color: "black" }}>{formattedDate}</strong>
             </p>
           </div>
         </div>

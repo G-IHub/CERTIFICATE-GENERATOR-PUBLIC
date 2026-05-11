@@ -171,20 +171,18 @@ export default function CertificateTemplate44({
 
           {logo2 ? (
             <div className="flex items-center gap-2 ml-4">
-              <span className="text-white font-semibold">
-                <p className="text-2xl font-bold text-white">
-                  <div className="w-3 mr-3"
-                    style={{
-                      backgroundColor: "white",
-                      WebkitMaskImage: `url(${deleteSign})`,
-                      maskImage: `url(${deleteSign})`,
-                      WebkitMaskSize: "contain",
-                      maskSize: "contain",
-                    WebkitMaskRepeat: "no-repeat",
-                    maskRepeat: "no-repeat",
-                  }}> </div>
-                </p>
-              </span>
+              <div
+                className="w-4 h-4 mr-2"
+                style={{
+                  backgroundColor: "white",
+                  WebkitMaskImage: `url(${deleteSign})`,
+                  maskImage: `url(${deleteSign})`,
+                  WebkitMaskSize: "contain",
+                  maskSize: "contain",
+                  WebkitMaskRepeat: "no-repeat",
+                  maskRepeat: "no-repeat",
+                }}
+              />
               <img src={logo2.url} alt="Logo" className="w-16 object-contain" />
               <p className="text-white text-sm font-medium m-0">{logo2.name}</p>
             </div>

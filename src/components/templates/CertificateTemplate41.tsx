@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import type { ThemeColors } from "../../types/theme";
 import type { Logo } from "../../App";
+import deleteSign from "../../assets/delete.png";
 
 interface Props {
   header: string;
@@ -57,7 +58,21 @@ export default function CertificateTemplate41({
     }
   }, []);
 
-  const logos = organizationLogos ?? [];
+  const logo1 =
+    organizationLogos && organizationLogos[0]?.url
+      ? organizationLogos[0]
+      : null;
+  const logo2 =
+    organizationLogos && organizationLogos[1]?.url
+      ? organizationLogos[1]
+      : null;
+  const fallbackLogo = organizationLogo;
+
+  const formattedDate = new Date(date).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
 
   return (
     <div
@@ -112,19 +127,80 @@ export default function CertificateTemplate41({
           padding: "40px 20px",
         }}
       >
-        {organizationLogo || logos[0] ? (
-          <img
-            src={organizationLogo ?? logos[0]?.url}
-            alt="org"
-            style={{
-              width: 64,
-              height: 64,
-              objectFit: "contain",
-              borderRadius: 8,
-              background: "rgba(255,255,255,0.1)",
-              padding: 6,
-            }}
-          />
+        {logo1 || logo2 || fallbackLogo ? (
+          <div className="flex items-center gap-3">
+            {/* Logo 1 Unit */}
+            <div className="flex flex-col items-center gap-1">
+              {logo1 ? (
+                <img
+                  src={logo1.url}
+                  alt="logo"
+                  style={{
+                    width: 45,
+                    height: 45,
+                    objectFit: "contain",
+                    borderRadius: 6,
+                    background: "rgba(255,255,255,0.1)",
+                    padding: 4,
+                  }}
+                />
+              ) : fallbackLogo ? (
+                <img
+                  src={fallbackLogo}
+                  alt="logo"
+                  style={{
+                    width: 45,
+                    height: 45,
+                    objectFit: "contain",
+                    borderRadius: 6,
+                    background: "rgba(255,255,255,0.1)",
+                    padding: 4,
+                  }}
+                />
+              ) : null}
+              <p className="text-[9px] flex flex-col items-center text-white/80 font-medium text-center max-w-[60px] leading-tight">
+                {logo1?.name || organizationName}
+              </p>
+            </div>
+
+            {/* Collaboration Separator */}
+            {logo2 && (
+              <div
+                className="w-3 h-3 -mt-4 flex-shrink-0"
+                style={{
+                  backgroundColor: "white",
+                  WebkitMaskImage: `url(${deleteSign})`,
+                  maskImage: `url(${deleteSign})`,
+                  WebkitMaskSize: "contain",
+                  maskSize: "contain",
+                  WebkitMaskRepeat: "no-repeat",
+                  maskRepeat: "no-repeat",
+                  opacity: 0.8,
+                }}
+              />
+            )}
+
+            {/* Logo 2 Unit */}
+            {logo2 && (
+              <div className="flex flex-col items-center gap-1">
+                <img
+                  src={logo2.url}
+                  alt="logo"
+                  style={{
+                    width: 45,
+                    height: 45,
+                    objectFit: "contain",
+                    borderRadius: 6,
+                    background: "rgba(255,255,255,0.1)",
+                    padding: 4,
+                  }}
+                />
+                <p className="text-[9px] flex flex-col items-center text-white/80 font-medium text-center max-w-[60px] leading-tight">
+                  {logo2.name}
+                </p>
+              </div>
+            )}
+          </div>
         ) : (
           <div
             style={{
@@ -143,7 +219,7 @@ export default function CertificateTemplate41({
           </div>
         )}
 
-        <div style={{ textAlign: "center" }}>
+        {/* <div style={{ textAlign: "center" }}>
           <p
             style={{
               color: "white",
@@ -155,7 +231,7 @@ export default function CertificateTemplate41({
           >
             {organizationName}
           </p>
-        </div>
+        </div> */}
 
         {/* Decorative dots */}
         <div style={{ display: "flex", gap: 6 }}>
@@ -212,7 +288,8 @@ export default function CertificateTemplate41({
           <p
             style={{
               color: `${textCol}99`,
-              fontSize: 10,
+              fontSize: 24,
+              fontWeight: 600,
               letterSpacing: 3,
               textTransform: "uppercase",
               margin: 0,
@@ -242,7 +319,8 @@ export default function CertificateTemplate41({
           {recipientName}
         </p>
         {/* Body text */}
-        <p className="-py-10"
+        <p
+          className="-py-10"
           style={{
             color: primary,
             fontSize: 24,
@@ -267,8 +345,9 @@ export default function CertificateTemplate41({
         {/* Date pill */}
         <div style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
           <div style={{ width: 20, height: 2, background: accent }} />
-          <p style={{ color: `${textCol}99`, fontSize: 11, margin: 0 }}>
-            Awarded on: <strong style={{ color: textCol }}>{date}</strong>
+          <p style={{ color: `${textCol}77`, fontSize: 10, margin: 0 }}>
+            Awarded on:{" "}
+            <strong style={{ color: textCol }}>{formattedDate}</strong>
           </p>
         </div>
         {/* Signatures */}

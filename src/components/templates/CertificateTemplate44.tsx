@@ -156,7 +156,7 @@ export default function CertificateTemplate44({
               />
               <p
                 className="text-sm font-medium m-0"
-                style={{ color: textCol ?? "white" }}
+                style={{ color: "white" }}
               >
                 {logo1.name}
               </p>
@@ -172,8 +172,17 @@ export default function CertificateTemplate44({
           {logo2 ? (
             <div className="flex items-center gap-2 ml-4">
               <span className="text-white font-semibold">
-                <p className="text-2xl font-bold text-black">
-                  <img src={deleteSign} alt="X" className="w-3 mr-3" />
+                <p className="text-2xl font-bold text-white">
+                  <div className="w-3 mr-3"
+                    style={{
+                      backgroundColor: "white",
+                      WebkitMaskImage: `url(${deleteSign})`,
+                      maskImage: `url(${deleteSign})`,
+                      WebkitMaskSize: "contain",
+                      maskSize: "contain",
+                    WebkitMaskRepeat: "no-repeat",
+                    maskRepeat: "no-repeat",
+                  }}> </div>
                 </p>
               </span>
               <img src={logo2.url} alt="Logo" className="w-16 object-contain" />
@@ -210,7 +219,7 @@ export default function CertificateTemplate44({
         </p>
 
         {/* Sub-label */}
-        <p className="text-md m-0" style={{ color: `${textCol}77` }}>
+        <p className="text-md m-0" style={{ color: "black" }}>
           Presented to:
         </p>
 
@@ -262,7 +271,7 @@ export default function CertificateTemplate44({
               className="w-2 h-2 rounded-full"
               style={{ background: teal }}
             />
-            <p className="text-[11px] m-0" style={{ color: `${textCol}88` }}>
+            <p className="text-[11px] m-0" style={{ color: "black" }}>
               Date: <strong style={{ color: "black" }}>{formattedDate}</strong>
             </p>
           </div>

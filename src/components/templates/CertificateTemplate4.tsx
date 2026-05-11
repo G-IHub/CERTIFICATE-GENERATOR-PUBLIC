@@ -127,7 +127,7 @@ export default function CertificateTemplate4({
             {/* First Logo */}
             {logo1 ? (
               <div className="flex items-center">
-                <div>
+                <div className="flex flex-col justify-center items-center">
                   <img
                     src={logo1.url}
                     alt="Logo"
@@ -157,7 +157,7 @@ export default function CertificateTemplate4({
                 <p className="text-2xl font-bold text-black">
                   <img src={deleteSign} alt="X" className="w-3 -mt-4 mr-3" />
                 </p>
-                <div>
+                <div className="flex flex-col justify-center items-center">
                   <img
                     src={logo2.url}
                     alt="Logo"

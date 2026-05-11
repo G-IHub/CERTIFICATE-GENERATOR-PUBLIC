@@ -320,17 +320,6 @@ export default function CertificateTemplate41({
         </p>
         {/* Body text */}
         <p
-          className="-py-10"
-          style={{
-            color: primary,
-            fontSize: 24,
-            fontWeight: 600,
-            margin: 0,
-          }}
-        >
-          {courseTitle}
-        </p>
-        <p
           style={{
             color: textCol,
             fontSize: 12,
@@ -341,6 +330,17 @@ export default function CertificateTemplate41({
         >
           {description ??
             "This certificate is awarded in recognition of commitment, perseverance, and academic achievement."}
+        </p>
+        <p
+          className="-py-10"
+          style={{
+            color: primary,
+            fontSize: 24,
+            fontWeight: 600,
+            margin: 0,
+          }}
+        >
+          {courseTitle}
         </p>
         {/* Date pill */}
         <div style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>

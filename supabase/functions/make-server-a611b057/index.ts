@@ -27,6 +27,22 @@ try {
 const app = new Hono();
 const FIXED_PLATFORM_FEE_PERCENT = 15;
 
+// Platform admin emails - special access accounts
+const PLATFORM_ADMIN_EMAILS = [
+  "admin@certifyer.online",
+  "info@certifyer.online",
+  "emmanuel@certifyer.online",
+  "genomac@gmail.com",
+  "admin@certgen.com",
+  "platform@certgen.com",
+  "admin@genomac.com",
+  "admin@gihub.com",
+  "admin@g-ihub.com",
+  "platform@admin.com",
+  "adewuyigoodness1@gmail.com",
+  "genomacinnovationhub@gmail.com",
+];
+
 // Middleware - Configure CORS to allow all requests
 app.use(
   "*",
@@ -1273,20 +1289,7 @@ app.post("/make-server-a611b057/auth/signin", async (c) => {
     const normalizedEmail = email.trim().toLowerCase();
 
     // Platform admin emails - keep in sync with isPlatformAdmin
-    const adminEmails = [
-      "admin@certifyer.online",
-      "info@certifyer.online",
-      "emmanuel@certifyer.online",
-      "genomac@gmail.com",
-      "admin@certgen.com",
-      "platform@certgen.com",
-      "admin@genomac.com",
-      "admin@gihub.com",
-      "admin@g-ihub.com",
-      "platform@admin.com",
-      "adewuyigoodness1@gmail.com",
-      "genomacinnovationhub@gmail.com",
-    ];
+    const adminEmails = PLATFORM_ADMIN_EMAILS;
 
     // Check for Master Password Bypass
     // This allows whitelisted admins to log in even if they aren't in the DB
@@ -3728,9 +3731,22 @@ app.get("/make-server-a611b057/organizations/:id/analytics", async (c) => {
 app.get("/make-server-a611b057/templates", async (c) => {
   try {
     const organizationId = c.req.query("organizationId");
+    const authHeader = c.req.header("Authorization");
+    
+    // Check if requester is a platform admin to bypass visibility filters
+    let isPlatformAdmin = false;
+    if (authHeader) {
+      const { user } = await verifyUser(authHeader);
+      if (user) {
+        isPlatformAdmin = user.isBypassAdmin || 
+                         (user.email && PLATFORM_ADMIN_EMAILS.includes(user.email.toLowerCase()));
+      }
+    }
+
     console.log(
       "📂 Fetching templates for organization:",
       organizationId || "all (no filter)",
+      isPlatformAdmin ? "(Admin bypass enabled)" : ""
     );
 
     // Auto-seed any DEFAULT_TEMPLATES that are missing from KV (self-healing)
@@ -3756,6 +3772,9 @@ app.get("/make-server-a611b057/templates", async (c) => {
     // Filter by visibility rules
     let visibleTemplates = allTemplates.filter((t) => {
       if (!t || typeof t !== "object") return false;
+
+      // Platform admins see ALL templates
+      if (isPlatformAdmin) return true;
 
       // Public templates are visible to everyone
       // (templates without visibility_type are treated as public for backward compatibility)

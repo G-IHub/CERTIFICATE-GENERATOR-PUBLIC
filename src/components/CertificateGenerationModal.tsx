@@ -569,7 +569,9 @@ export default function CertificateGenerationModal({
                           </div>
                           <div className="flex-1 min-w-0">
                             <p className="font-semibold text-gray-900">
-                              {selectedTemplateName}
+                              {selectedTemplate.match(/template(\d+)$/) 
+                                ? `${selectedTemplate.match(/template(\d+)$/)![1]}: ${selectedTemplateName}`
+                                : selectedTemplateName}
                             </p>
                             <p className="text-sm text-gray-500 capitalize">
                               {selectedTemplate} style

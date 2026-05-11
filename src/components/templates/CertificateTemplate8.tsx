@@ -125,7 +125,6 @@ export default function CertificateTemplate8({
                   src={logo1.url}
                   alt={logo1.name || "Logo"}
                   className="absolute inset-[31%] w-[37%] h-[40%] object-contain"
-                  
                 />
               </div>
             ) : fallbackLogo ? (
@@ -133,7 +132,6 @@ export default function CertificateTemplate8({
                 src={fallbackLogo}
                 alt="Logo"
                 className="absolute inset-[31%] w-[37%] h-[40%] object-contain"
-                
               />
             ) : null}
 
@@ -144,7 +142,6 @@ export default function CertificateTemplate8({
                   src={logo2.url}
                   alt="Logo"
                   className="absolute inset-[31%] w-[37%] h-[40%] object-contain"
-                  
                 />
               </div>
             ) : (
@@ -164,15 +161,12 @@ export default function CertificateTemplate8({
                 <div>
                   <div className="text-[#5691F7] uppercase">
                     <h1 className="text-7xl/14 font-extrabold">
-                      {header.split(" ")[0]}
+                      {header?.split(" ")[0] || "CERTIFICATE"}
                     </h1>
                     <p className="text-4xl tracking-widest font-bold">
-                      {header.split(" ")[1]} {header.split(" ")[2]}
+                      {header?.split(" ").slice(1).join(" ") || "OF ATTENDANCE"}
                     </p>
                   </div>
-                  {/* <p className="mt-2 inline-block bg-linear-to-r from-[#B0FAFF] to-[#4CE4CD] px-4 py-1 shadow-lg font-bold text-xs">
-                    PROUDLY PRESENTED TO
-                  </p> */}
                   <svg viewBox="10 10 350 80" className="w-60">
                     <defs>
                       <linearGradient

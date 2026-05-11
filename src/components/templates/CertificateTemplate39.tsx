@@ -92,7 +92,7 @@ export default function CertificateTemplate39({
         )}
         <div className="text-center">
           <p className="text-sm font-bold tracking-wide text-white m-0">
-            {organizationName.split(" ")[0] || "Genomac"}
+            {organizationName}
           </p>
           <p className="text-xs font-semibold text-white m-0">
             {organizationSlogan}
@@ -411,17 +411,15 @@ export default function CertificateTemplate39({
         {/* Certificate Title */}
         <div>
           <p className="text-lg font-medium tracking-widest uppercase text-white mb-2">
-            CERTIFICATE OF
+            {header?.split(" ")[0] || "CERTIFICATE"}
           </p>
           <p className="text-4xl font-bold uppercase text-white">
-            Completion
+            {header?.split(" ").slice(1).join(" ") || "OF ACHIEVEMENT"}
           </p>
         </div>
 
         {/* Subtitle */}
-        <p className="text-sm text-white">
-          This Certificate is Presented to:
-        </p>
+        <p className="text-sm text-white">This Certificate is Presented to:</p>
 
         {/* Recipient Info */}
         <div className="flex flex-col gap-4 items-center text-center w-full">
@@ -440,8 +438,10 @@ export default function CertificateTemplate39({
 
           {/* Description */}
           <p className="max-w-4/5 text-xs font-bold text-white text-center leading-relaxed">
-            This Is To Certify That The Above-Mentioned Individual Has Completed A
-            Three-Months Training In {courseTitle || "PERSONALIZED RESEARCH TRAINING IN TRANSCRIPTOMINCS"}{" "}
+            This Is To Certify That The Above-Mentioned Individual Has Completed
+            A Three-Months Training In{" "}
+            {courseTitle ||
+              "PERSONALIZED RESEARCH TRAINING IN TRANSCRIPTOMINCS"}{" "}
             Organized by {organizationName}.
           </p>
 
@@ -465,12 +465,8 @@ export default function CertificateTemplate39({
               )}
             </div>
             <div className="text-center text-xs font-semibold text-white">
-              <p className="uppercase m-0 mb-0.5">
-                {signatoryName1}
-              </p>
-              <p className="m-0">
-                {signatoryTitle1}
-              </p>
+              <p className="uppercase m-0 mb-0.5">{signatoryName1}</p>
+              <p className="m-0">{signatoryTitle1}</p>
             </div>
           </div>
 
@@ -486,12 +482,8 @@ export default function CertificateTemplate39({
               )}
             </div>
             <div className="text-center text-xs font-semibold text-white">
-              <p className="uppercase m-0 mb-0.5">
-                {signatoryName2}
-              </p>
-              <p className="m-0">
-                {signatoryTitle2}
-              </p>
+              <p className="uppercase m-0 mb-0.5">{signatoryName2}</p>
+              <p className="m-0">{signatoryTitle2}</p>
             </div>
           </div>
         </div>

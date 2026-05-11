@@ -28,7 +28,6 @@ interface CertificateTemplate3Props {
 
 export default function CertificateTemplate3({
   header = "Of Completion",
-  header1 = "CERTIFICATE",
   courseTitle = "PERSONALIZED RESEARCH TRAINING IN TRANSCRIPTOMICS",
   description =
     "This Is To Certify That The Above-Mentioned Individual Has Completed A Three-Months Training In PERSONALIZED RESEARCH TRAINING IN TRANSCRIPTOMINCS Organized by Genomac Services & Consult.",
@@ -48,17 +47,6 @@ export default function CertificateTemplate3({
   themeColors,
 }: CertificateTemplate3Props) {
   const scale = mode === "student" ? "transform-scale-[0.3]" : "transform-scale-100";
-
-  // useEffect(() => {
-  //   const fontId = "great-vibes-font";
-  //   if (!document.getElementById(fontId)) {
-  //     const link = document.createElement("link");
-  //     link.id = fontId;
-  //     link.rel = "stylesheet";
-  //     link.href = "https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap";
-  //     document.head.appendChild(link);
-  //   }
-  // }, []);
 
   const containerClass = isPreview
     ? "w-full mx-auto origin-center overflow-visible flex justify-center"
@@ -102,7 +90,6 @@ export default function CertificateTemplate3({
         />
 
         <div className="absolute top-6 left-16 flex items-center gap-2 z-20">
-          {organizationLogo ? (
           <div className="flex">
             {/* First Logo */}
             {logo1 ? (
@@ -111,7 +98,6 @@ export default function CertificateTemplate3({
                   src={logo1.url}
                   alt={logo1.name || "Logo"}
                   className="h-20 object-contain"
-                  
                 />
               </div>
             ) : fallbackLogo ? (
@@ -119,7 +105,6 @@ export default function CertificateTemplate3({
                 src={fallbackLogo}
                 alt="Logo"
                 className="h-20 object-contain"
-                
               />
             ) : null}
 
@@ -130,20 +115,12 @@ export default function CertificateTemplate3({
                   src={logo2.url}
                   alt="Logo"
                   className="h-20 object-contain"
-                  
                 />
               </div>
             ) : (
               <div className="hidden"></div>
             )}
           </div>
-          ) : (
-            <img
-              src="/assets/GenomacInstitute.png"
-              alt="Logo"
-              className="h-12 object-contain"
-            />
-          )}
           <p
             className="font-bold text-black text-base leading-tight"
             style={{ fontFamily: "Inter, sans-serif" }}
@@ -155,11 +132,11 @@ export default function CertificateTemplate3({
         <div className="z-30 flex flex-col gap-8 items-center w-full p-8 mt-20">
           <div className="flex flex-col items-center gap-2">
             <h1 className="text-6xl -mt-10 tracking-wider uppercase" style={{ color: themeColors?.primary ?? '#2d0569' }}>
-              {header.split(" ")[0]}
+              {header?.split(" ")[0] || "CERTIFICATE"}
             </h1>
             <div className="relative w-full flex justify-center items-center">
               <p className="text-xl uppercase font-medium tracking-widest bg-transparent italic text-white px-4 py-2 z-30 relative">
-                {header.split(" ")[1]}{" "}{header.split(" ")[2]}
+                {header?.split(" ").slice(1).join(" ") || "Of Completion"}
               </p>
               <img
                 src={ribbonUrl}

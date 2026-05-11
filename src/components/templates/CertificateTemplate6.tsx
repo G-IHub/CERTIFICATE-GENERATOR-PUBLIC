@@ -184,16 +184,16 @@ export default function CertificateTemplate6({
                   letterSpacing: "0.1em",
                 }}
               >
-                {header.split(" ")[0]}
+                {header?.split(" ")[0] || "CERTIFICATE"}
               </h1>
               <h2 className="text-xl tracking-widest text-gray-600 uppercase">
-                {header.split(" ")[1]} {header.split(" ")[2]}
+                {header?.split(" ").slice(1).join(" ") || "OF ACHIEVEMENT"}
               </h2>
             </div>
           </div>
 
           {/* Presentation Text */}
-          <div className="text-center mb-6">
+          <div className="text-center mb-6 w-full">
             <p className="text-sm text-gray-600 uppercase tracking-wide mb-4">
               This certificate is proudly presented to
             </p>
@@ -226,8 +226,8 @@ export default function CertificateTemplate6({
 
           {/* Bottom Section */}
           {/* Signatures - Support up to 2 */}
-          <div className="mt-20 flex justify-between items-end">
-            <div className="flex gap-8 justify-center items-center mt-5">
+          <div className="mt-20 flex justify-between items-end w-full">
+            <div className="flex gap-8 justify-center items-center w-full">
               {/* Signature 1 - Always show if name is provided */}
               {signatoryName1 && (
                 <div

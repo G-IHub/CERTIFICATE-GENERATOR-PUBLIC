@@ -313,7 +313,9 @@ export default function TemplateVisibilityManager({
                   <div>
                     <div className="flex items-center justify-between mb-1">
                       <h4 className="line-clamp-1 font-medium">
-                        {template.name}
+                        {template.id.match(/template(\d+)$/) 
+                          ? `${template.id.match(/template(\d+)$/)![1]}: ${template.name}`
+                          : template.name}
                       </h4>
                     </div>
                     <p className="text-sm text-gray-600 line-clamp-2">

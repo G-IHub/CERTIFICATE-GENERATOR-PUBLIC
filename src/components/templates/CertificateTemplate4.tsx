@@ -1,18 +1,22 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import type { ThemeColors } from "../../types/theme";
+import upperUrl from "../../assets/UpperShape.png";
+import bottomUrl from "../../assets/BottomShape.png";
+import patternUrl from "../../assets/Pattern.png";
+import ribbonUrl from "../../assets/RIBBON.png";
+import deleteSign from "../../assets/delete.png";
 import type { Logo } from "../../App";
-// Import ribbon and medal assets directly so the bundler resolves them correctly
-import ribbon1 from "../../assets/Ribbon (1).svg";
-import ribbon2 from "../../assets/Ribbon 2.svg";
-import medal from "../../assets/Medal.svg";
 
 interface CertificateTemplate4Props {
   header?: string;
-  courseTitle?: string;
+  header1?: string;
+  subheader?: string;
+  // courseTitle: string;
   description?: string;
-  date?: string;
+  date: string;
   recipientName?: string;
   isPreview?: boolean;
+  courseTitle?: string;
   organizationName?: string;
   organizationLogo?: string;
   organizationLogos?: Logo[];
@@ -27,17 +31,20 @@ interface CertificateTemplate4Props {
 }
 
 export default function CertificateTemplate4({
-  header = "CERTIFICATE",
-  courseTitle = "",
-  description = "",
-  date = "",
-  recipientName = "Recipient",
+  header,
+  header1 = "CERTIFICATE",
+  subheader,
+  // courseTitle,
+  description = "This certificate acknowledges your outstanding contribution and dedication to the Design project, showcasing your commitment to excellence, innovation, and teamwork.",
+  date,
+  recipientName = "Name Surname",
   isPreview = false,
-  organizationName,
+  courseTitle = "Course Title",
+  organizationName = "Your Organization",
   organizationLogo,
   organizationLogos,
   signatoryName1,
-  signatoryTitle1,
+  signatoryTitle1 = "MANAGER, CTO",
   signatureUrl1,
   signatoryName2,
   signatoryTitle2,
@@ -45,25 +52,15 @@ export default function CertificateTemplate4({
   mode = "student",
   themeColors,
 }: CertificateTemplate4Props) {
-  const ref = useRef<HTMLDivElement>(null);
+  // scale for preview vs student mode
   const scale =
     mode === "student" ? "transform-scale-[0.3]" : "transform-scale-100";
+
   const containerClass = isPreview
     ? "w-full mx-auto origin-center overflow-visible flex justify-center"
-    : "min-w-[800px] flex justify-center items-center";
+    : "min-w-[1056px] flex justify-center items-center";
 
-  useEffect(() => {
-    const id = "rakkas-font";
-    if (!document.getElementById(id)) {
-      const link = document.createElement("link");
-      link.id = id;
-      link.rel = "stylesheet";
-      link.href =
-        "https://fonts.googleapis.com/css2?family=Rakkas&display=swap";
-      document.head.appendChild(link);
-    }
-  }, []);
-
+  // formatted date
   const formattedDate = new Date(date).toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
@@ -71,150 +68,193 @@ export default function CertificateTemplate4({
   });
 
   // Determine which logo(s) to use
-  const logo1 = organizationLogos && organizationLogos[0]?.url
-    ? organizationLogos[0]
-    : null;
-  const logo2 = organizationLogos && organizationLogos[1]?.url
-    ? organizationLogos[1]
-    : null;
+  const logo1 =
+    organizationLogos && organizationLogos[0]?.url
+      ? organizationLogos[0]
+      : null;
+  const logo2 =
+    organizationLogos && organizationLogos[1]?.url
+      ? organizationLogos[1]
+      : null;
   const fallbackLogo = organizationLogo;
 
-    return (
+  return (
     <div
       className={containerClass}
       style={{ transform: `scale(${scale})`, backgroundColor: "transparent" }}
     >
-      <div
-        ref={ref}
-        className="flex justify-center bg-white items-center shadow-md rounded-lg relative overflow-hidden border"
-        style={{ width: "800px", height: "600px", padding: "24px" }}
-      >
-        <div>
-          {ribbon1 && (
-            <img
-              src={String(ribbon1)}
-              alt="ribbon1"
-              className="absolute z-10 -top-2 left-0"
-              style={{ width: "30%" }}
-            />
-          )}
-          {ribbon2 && (
-            <img
-              src={String(ribbon2)}
-              alt="ribbon2"
-              className="absolute z-10 bottom-0 right-0"
-              style={{ width: "30%" }}
-            />
-          )}
-        </div>
+      <div className="w-[800px] h-[600px] flex justify-center shadow-sm rounded relative overflow-hidden bg-[#fbfbfb] py-10 px-8">
+        {/* Upper Shape - Colorized with Secondary Theme Color */}
+        <div
+          className="absolute top-0 left-0 w-56 h-56 z-10"
+          style={{
+            backgroundColor: themeColors?.secondary ?? "#fdba74",
+            WebkitMaskImage: `url(${upperUrl})`,
+            maskImage: `url(${upperUrl})`,
+            WebkitMaskSize: "contain",
+            maskSize: "contain",
+            WebkitMaskRepeat: "no-repeat",
+            maskRepeat: "no-repeat",
+          }}
+        />
 
-        <div className="bg-white border-4 border-[#314E854D] p-2 ">
-          <div className="bg-white border-2 border-[#314E854D]">
-            <div
-              className="w-full flex flex-col items-center gap-8"
-              style={{ padding: "24px" }}
-            >
-              <h2
-                className="text-3xl tracking-wider font-bold uppercase"
-                style={{ fontFamily: "'Rakkas', serif" }}
-              >
-                {header || "Certificate of Participation"}
-              </h2>
-              <p className="uppercase">proudly presented to</p>
-              <p className="text-4xl font-semibold w-full border-b-2 pb-4 text-center" style={{ borderColor: themeColors?.primary ?? '#314E85', color: themeColors?.primary ?? '#314E85' }}>
-                {recipientName}
-              </p>
-              <p
-                className="font-medium text-2xl"
-                style={{ fontFamily: "cursive" }}
-              >
-                {courseTitle || "Course Title"}
-              </p>
-              <p className="text-center">
-                {description ||
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}
-              </p>
+        {/* Bottom Shape - Colorized with Secondary Theme Color */}
+        <div
+          className="absolute bottom-0 -right-15 w-56 h-56 z-10"
+          style={{
+            backgroundColor: themeColors?.secondary ?? "#fdba74",
+            WebkitMaskImage: `url(${bottomUrl})`,
+            maskImage: `url(${bottomUrl})`,
+            WebkitMaskSize: "contain",
+            maskSize: "contain",
+            WebkitMaskRepeat: "no-repeat",
+            maskRepeat: "no-repeat",
+          }}
+        />
 
-              <div className="flex justify-between items-end">
-                <div className="flex gap-10 justify-center items-center">
-                  {/* Signature 1 - Always show if name is provided */}
-                  {signatoryName1 && (
-                    <div
-                      className="flex flex-col items-center text-center"
-                      style={{ marginTop: -20 }}
-                    >
-                      {signatureUrl1 && (
-                        <img
-                          src={signatureUrl1}
-                          alt={signatoryName1}
-                          className="w-24 h-16 object-contain"
-                          style={{ marginBottom: -12 }}
-                        />
-                      )}
-                      {!signatureUrl1 && (
-                        <div className="w-32 border-b-2 border-gray-400 mb-2" />
-                      )}
-                      <div
-                        className="text-sm font-bold"
-                        style={{ color: "#4D4D4D" }}
-                      >
-                        {signatoryName1}
-                      </div>
-                      {signatoryTitle1 && (
-                        <div className="text-xs font-medium">
-                          {signatoryTitle1}
-                        </div>
-                      )}
-                    </div>
-                  )}
+        <img
+          src={patternUrl}
+          alt="Pattern"
+          className="absolute z-0 top-0 w-full h-full opacity-70"
+        />
 
-                  <img src={medal} alt="medal" className="w-20" />
-
-                  {/* Signature 2 - Always show if name is provided */}
-                  {signatoryName2 && (
-                    <div
-                      className="flex flex-col items-center text-center"
-                      style={{ marginTop: -20 }}
-                    >
-                      {signatureUrl2 && (
-                        <img
-                          src={signatureUrl2}
-                          alt={signatoryName2}
-                          className="w-24 h-16 object-contain"
-                          style={{ marginBottom: -12 }}
-                        />
-                      )}
-                      {!signatureUrl2 && (
-                        <div className="w-32 border-b-2 border-gray-400 mb-2" />
-                      )}
-                      <div
-                        className="text-sm font-bold"
-                        style={{ color: "#4D4D4D" }}
-                      >
-                        {signatoryName2}
-                      </div>
-                      {signatoryTitle2 && (
-                        <div className="text-xs font-medium">
-                          {signatoryTitle2}
-                        </div>
-                      )}
-                    </div>
-                  )}
-
-                  {/* Date display */}
-                  {date && (
-                    <div className="flex flex-col items-center text-center">
-                      <div className="w-32 mt-7 mb-2" />
-                      <div className="text-xs font-bold ">Date</div>
-                      <div
-                        className="text-sm font-medium"
-                        style={{ color: "#4D4D4D" }}
-                      >
-                        {formattedDate || "DATE"}
-                      </div>
-                    </div>
-                  )}
+        <div
+          className="text-center flex flex-col gap-5 items-center w-full z-40 border-2 p-2"
+          style={{ borderColor: themeColors?.secondary ?? "#fdba74" }}
+        >
+          {/* <img src={organizationLogo} alt="logo" className="w-1/9" /> */}
+          <div className="flex">
+            {/* First Logo */}
+            {logo1 ? (
+              <div className="flex items-center">
+                <div>
+                  <img
+                    src={logo1.url}
+                    alt="Logo"
+                    className="w-16 h-16 object-contain"
+                    style={{ width: 60, height: 60 }}
+                  />
+                  <p className="text-xs font-thin text-black">{logo1.name} </p>
                 </div>
+              </div>
+            ) : (
+              <div>
+                <img
+                src={organizationLogo}
+                alt="Logo"
+                className="w-16 h-16 object-contain"
+                style={{ width: 60, height: 60 }}
+              />
+              <p className="text-xs font-thin text-black">{organizationName} </p>
+              </div>
+            )}
+
+            {/* Second Logo */}
+            {logo2 ? (
+              <div className="flex items-center">
+                <p className="text-2xl font-bold text-black">
+                  <img src={deleteSign} alt="X" className="w-3 -mt-4 mr-3" />
+                </p>
+                <div>
+                  <img
+                    src={logo2.url}
+                    alt="Logo"
+                    className="w-16 h-16 object-contain"
+                    style={{ width: 60, height: 60 }}
+                  />
+                  <p className="text-xs font-thin text-black">{logo2.name} </p>
+                </div>
+              </div>
+            ) : (
+              <div className="hidden"></div>
+            )}
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <h1 className="text-4xl font-medium uppercase">
+              {header?.split(" ")[0] || "CERTIFICATE"}
+            </h1>
+            <p className="text-lg uppercase font-bold tracking-widest">
+              {header?.split(" ").slice(1).join(" ") || "OF ACHIEVEMENT"}
+            </p>
+          </div>
+          <p className="font-bold tracking-tighter text-sm uppercase">
+            This Certificate is Proudly Presented to:
+          </p>
+          <p
+            className="w-1/2 text-center border-b font-semibold text-3xl tracking-wider"
+            style={{ borderColor: themeColors?.primary ?? "#f97316" }}
+          >
+            {recipientName}
+          </p>
+          <p className="text-xs -mt-2 -mb-2 text-black">
+            {/* For participating in the program: */}
+          </p>
+          <p className="text-2xl -mt-2 -mb-4 font-bold text-black">
+            {courseTitle}
+          </p>
+          <p className="max-w-xl text-lg">{description}</p>
+
+          <p className="font-bold text-lg text-black -mt-5 mb-24">
+            Date: {formattedDate}{" "}
+          </p>
+
+          <div className="flex gap-10 w-full items-center justify-center z-50 -mt-5">
+            <div className="space-y-2">
+              <div className="border-b w-40 flex justify-center items-center">
+                <img
+                  src={signatureUrl1}
+                  alt=""
+                  className="w-24 h-16 object-contain"
+                  style={{ marginBottom: -12 }}
+                />
+              </div>
+              <div className="space-y-0">
+                <p
+                  className="text-center text-sm font-medium"
+                  style={{ color: themeColors?.primary ?? "#f97316" }}
+                >
+                  {signatoryName1 || "Oluwaseyi Abraham Olawale"}
+                </p>
+                <p className="text-center text-[9px] italic font-medium">
+                  {signatoryTitle1 || "CEO of Genomac Holdings"}
+                </p>
+              </div>
+            </div>
+
+            <div className="w-16 h-16 relative">
+              <div
+                className="w-full h-full"
+                style={{
+                  backgroundColor: themeColors?.primary ?? "#f97316",
+                  WebkitMaskImage: `url(${ribbonUrl})`,
+                  maskImage: `url(${ribbonUrl})`,
+                  WebkitMaskSize: "contain",
+                  maskSize: "contain",
+                  WebkitMaskRepeat: "no-repeat",
+                  maskRepeat: "no-repeat",
+                }}
+              />
+            </div>
+
+            <div className="space-y-2">
+              <div className="border-b w-40 flex justify-center items-center">
+                <img
+                  src={signatureUrl2}
+                  alt=""
+                  className="w-24 h-16 object-contain"
+                  style={{ marginBottom: -12 }}
+                />
+              </div>
+              <div className="space-y-0">
+                <p
+                  className="text-center text-sm font-medium"
+                  style={{ color: themeColors?.primary ?? "#f97316" }}
+                >
+                  {signatoryName2 || "Gloria Adegbole"}
+                </p>
+                <p className="text-center text-[9px] italic font-medium">
+                  {signatoryTitle2 || "Director of G-I Hub"}
+                </p>
               </div>
             </div>
           </div>

@@ -8,8 +8,11 @@ const getAuthHeaders = (token?: string) => {
     'Content-Type': 'application/json',
   };
   
-  if (token) {
-    headers['Authorization'] = `Bearer ${token}`;
+  // Use provided token, or try to get from localStorage, or fall back to public anon key
+  const activeToken = token || localStorage.getItem('accessToken');
+  
+  if (activeToken) {
+    headers['Authorization'] = `Bearer ${activeToken}`;
   } else {
     headers['Authorization'] = `Bearer ${publicAnonKey}`;
   }

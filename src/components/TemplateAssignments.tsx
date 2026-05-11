@@ -245,7 +245,11 @@ export default function TemplateAssignments({
               <CardHeader className="pb-3">
                 <div className="flex items-start justify-between gap-2">
                   <div className="flex-1">
-                    <CardTitle className="text-base">{template.name}</CardTitle>
+                    <CardTitle className="text-base">
+                      {template.id.match(/template(\d+)$/) 
+                        ? `${template.id.match(/template(\d+)$/)![1]}: ${template.name}`
+                        : template.name}
+                    </CardTitle>
                     <CardDescription className="text-xs mt-1 line-clamp-2">
                       {template.description}
                     </CardDescription>

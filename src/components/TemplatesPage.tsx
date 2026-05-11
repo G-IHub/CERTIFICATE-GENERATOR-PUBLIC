@@ -218,7 +218,10 @@ export default function TemplatesPage({
     }
 
     onSelectTemplate?.(template);
-    toast.success(`Selected template: ${template.name}`);
+    const displayName = template.id.match(/template(\d+)$/) 
+      ? `${template.id.match(/template(\d+)$/)![1]}: ${template.name}`
+      : template.name;
+    toast.success(`Selected template: ${displayName}`);
   };
 
   const freeTemplates = templates.filter(
@@ -323,7 +326,11 @@ export default function TemplatesPage({
             <div className="p-4 space-y-3">
               <div>
                 <div className="flex items-center justify-between mb-1">
-                  <h4 className="line-clamp-1">{template.name}</h4>
+                  <h4 className="line-clamp-1">
+                    {template.id.match(/template(\d+)$/) 
+                      ? `${template.id.match(/template(\d+)$/)![1]}: ${template.name}`
+                      : template.name}
+                  </h4>
                   {template.isDefault && template.type !== "premium" && (
                     <Badge variant="secondary" className="text-xs">
                       Free

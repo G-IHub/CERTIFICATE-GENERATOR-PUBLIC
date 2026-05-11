@@ -114,18 +114,17 @@ export default function CertificateTemplate15({
         <div className="relative z-10 h-full flex flex-col justify-between max-w-lg text-center">
           <div>
             <div className="text-white uppercase text-center">
-              <h1 className="text-6xl/10 font-bold">{header.split(" ")[0]}</h1>
+              <h1 className="text-6xl/10 font-bold">
+                {header?.split(" ")[0] || "CERTIFICATE"}
+              </h1>
               <p className="text-2xl tracking-widest font-bold">
-                {header.split(" ")[1]} {header.split(" ")[2]}
+                {header?.split(" ").slice(1).join(" ") || "OF APPRECIATION"}
               </p>
             </div>
             <div className="mt-12">
               <p className="font-semibold text-xs">
                 Volunteer Service Award - IWD 2026 Conference
               </p>
-              {/* <div className="bg-linear-to-l from-[#E4B34A] to-[#FEF7B1] px-6 py-2 text-sm shadow-md shadow-gray-500 font-semibold tracking-wide">
-                PROUDLY PRESENTED TO
-              </div> */}
               <svg viewBox="0 10 300 80" className="w-60 mx-auto">
                 <defs>
                   <linearGradient
@@ -238,7 +237,6 @@ export default function CertificateTemplate15({
                   src={logo1.url}
                   alt={logo1.name || "Logo"}
                   className="absolute inset-[29.5%] w-[42%] h-[43%] object-contain"
-                  
                 />
               </div>
             ) : fallbackLogo ? (
@@ -246,7 +244,6 @@ export default function CertificateTemplate15({
                 src={fallbackLogo}
                 alt="Logo"
                 className="absolute inset-[29.5%] w-[42%] h-[43%] object-contain"
-                
               />
             ) : null}
 
@@ -257,7 +254,6 @@ export default function CertificateTemplate15({
                   src={logo2.url}
                   alt="Logo"
                   className="absolute inset-[29.5%] w-[42%] h-[43%] object-contain"
-                  
                 />
               </div>
             ) : (

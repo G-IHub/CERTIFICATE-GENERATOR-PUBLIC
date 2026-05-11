@@ -58,6 +58,7 @@ export default function CertificateTemplate1({
     }
   }, []);
 
+  organizationName
 
   // Determine which logo(s) to use
   const logo1 = organizationLogos && organizationLogos[0]?.url
@@ -120,10 +121,13 @@ export default function CertificateTemplate1({
           </div>
         <div className="text-lg/6">
           <p className="m-0 font-bold">
-            {organizationName.split(" ")[0]}
+            {organizationName?.split(" ")[0] || "Genomac"}
           </p>
-          <p className="m-0 font-bold">
-          {organizationName.split(" ")[1]}{" "}{organizationName.split(" ")[2]}{" "}{organizationName.split(" ")[3]}
+          <p
+            className="text-lg font-bold tracking-widest text-[#1a1a1a] m-0"
+            style={{ fontFamily: "'Great Vibes', cursive" }}
+          >
+            {organizationName?.split(" ").slice(1).join(" ") || "Services & Consult"}
           </p>
         </div>
       </div>
@@ -439,10 +443,13 @@ export default function CertificateTemplate1({
         {/* Certificate Title */}
         <div>
           <p className="text-3xl font-medium tracking-widest uppercase">
-            {header.split(" ")[0]}{" "}{header.split(" ")[1]}
+            {header?.split(" ")[0] || "Certificate"} {header?.split(" ")[1] || "of"}
           </p>
-          <p className="text-5xl font-bold uppercase ">
-            {header.split(" ")[2]}
+          <p
+            className="text-4xl font-bold tracking-[0.2em] text-[#1a1a1a] m-0"
+            style={{ marginTop: "-10px" }}
+          >
+            {header?.split(" ").slice(2).join(" ") || "Completion"}
           </p>
         </div>
         {/* <p className="text-3xl font-medium uppercase">{header}</p> */}

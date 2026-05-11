@@ -162,14 +162,16 @@ export default function CertificateTemplate19({
           <p className="text-purple-600 w-1/2 text-center border-b border-purple-600 font-semibold text-3xl p-1 tracking-wider">
             {recipientName}
           </p>
-          <p className="-my-7">
-            has successfully completed and actively participated in the:{" "}
+          {/* <p className="-my-7"> </p> */}
+
+          <p className="max-w-xl text-sm -my-5">
+            {description ||
+              "Has successfully completed and actively participated in the:"}
           </p>
           <p className="text-xl uppercase font-bold tracking-widest">
             {courseTitle}
           </p>
           <p className="-my-7">Held on: {formattedDate}</p>
-          <p className="max-w-xl text-sm">{description}</p>
 
           {/* Signatures Section */}
           <div className="flex justify-between items-center">

@@ -47,9 +47,6 @@ export default function CertificateTemplate9({
   const ref = useRef<HTMLDivElement>(null);
   const scale =
     mode === "student" ? "transform-scale-[0.3]" : "transform-scale-100";
-  // const containerClass = isPreview
-  //   ? "w-full mx-auto origin-center overflow-visible flex justify-center"
-  //   : "min-w-[800px] flex justify-center items-center";
 
   // formatted date
   const formattedDate = new Date(date).toLocaleDateString("en-US", {
@@ -71,7 +68,7 @@ export default function CertificateTemplate9({
     <div
       ref={ref}
       style={{ transform: `scale(${scale})`, backgroundColor: "transparent" }}
-      className="w-200 h-150 flex  shadow-sm relative overflow-hidden bg-transparent py-10 px-10"
+      className="w-200 h-150 flex shadow-sm relative overflow-hidden bg-transparent py-10 px-10"
     >
       <img
         src={patternURL}
@@ -89,7 +86,6 @@ export default function CertificateTemplate9({
                   src={logo1.url}
                   alt={logo1.name || "Logo"}
                   className="absolute top-50 left-10 w-40 z-20"
-                  
                 />
               </div>
             ) : fallbackLogo ? (
@@ -97,7 +93,6 @@ export default function CertificateTemplate9({
                 src={fallbackLogo}
                 alt="Logo"
                 className="absolute top-50 left-10 w-40 z-20"
-                
               />
             ) : null}
 
@@ -108,7 +103,6 @@ export default function CertificateTemplate9({
                   src={logo2.url}
                   alt="Logo"
                   className="absolute top-50 left-10 w-40 z-20"
-                  
                 />
               </div>
             ) : (
@@ -125,10 +119,10 @@ export default function CertificateTemplate9({
       <div className="flex flex-col gap-10 z-30 w-9/12 ml-40">
         <div className="">
           <h1 className="text-7xl text-purple-950 font-semibold tracking-tighter">
-            {header?.split(" ")[0]}
+            {header?.split(" ")[0] || "CERTIFICATE"}
           </h1>
           <p className="text-2xl uppercase tracking-widest">
-            {header?.split(" ")[1]} {header?.split(" ")[2]}
+            {header?.split(" ").slice(1).join(" ") || "OF COMPLETION"}
           </p>
         </div>
 
@@ -144,7 +138,6 @@ export default function CertificateTemplate9({
           <p className="text-sm">
             {description}
           </p>
-          {/* <p className="text-sm text-purple-950 font-bold">{formattedDate}</p> */}
         </div>
 
         <div className="flex gap-10 w-full items-center justify-between">

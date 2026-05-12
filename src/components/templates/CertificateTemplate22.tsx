@@ -121,7 +121,7 @@ export default function CertificateTemplate22({
             left: 0,
             right: 0,
             height: "2px",
-            background: `linear-gradient(90deg, ${themeColors?.primary ?? '#6366f1'}, ${themeColors?.secondary ?? themeColors?.primary ?? '#8b5cf6'}, #ec4899, #f59e0b)`,
+            background: `linear-gradient(90deg, ${themeColors?.primary ?? "#6366f1"}, ${themeColors?.secondary ?? themeColors?.primary ?? "#8b5cf6"}, #ec4899, #f59e0b)`,
           }}
         />
 
@@ -140,37 +140,40 @@ export default function CertificateTemplate22({
             }}
           >
             {logosToDisplay.map((logo, index) => (
-              <div
-                key={index}
-                style={{
-                  width: "32px",
-                  height: "32px",
-                  borderRadius: "5px",
-                  background: "rgba(59, 130, 246, 0.1)",
-                  border: "0.5px solid rgba(59, 130, 246, 0.4)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  padding: "5px",
-                  boxShadow: "0 0 7px rgba(59, 130, 246, 0.2)",
-                }}
-              >
-                <img
-                  src={logo.url}
-                  alt={`Logo ${index + 1}`}
+              <div className="flex flex-col items-center gap-2" >
+                <div
+                  key={index}
                   style={{
-                    maxWidth: "100%",
-                    maxHeight: "100%",
-                    objectFit: "contain",
+                    width: "50px",
+                    height: "50px",
+                    borderRadius: "5px",
+                    background: "rgba(59, 130, 246, 0.1)",
+                    border: "0.5px solid rgba(59, 130, 246, 0.4)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    padding: "5px",
+                    boxShadow: "0 0 7px rgba(59, 130, 246, 0.2)",
                   }}
-                />
+                >
+                  <img
+                    src={logo.url}
+                    alt={`Logo ${index + 1}`}
+                    style={{
+                      maxWidth: "100%",
+                      maxHeight: "100%",
+                      objectFit: "contain",
+                    }}
+                  />
+                </div>
+                <p className="text-xs font-thin text-white">{logo.name} </p>
               </div>
             ))}
           </div>
         )}
 
         {/* Organization Name */}
-        <div
+        {/* <div
           style={{
             position: "absolute",
             top: hasLogos ? "59px" : "23px",
@@ -185,7 +188,7 @@ export default function CertificateTemplate22({
           }}
         >
           {organizationName}
-        </div>
+        </div> */}
 
         {/* Main Content Container */}
         <div
@@ -203,7 +206,7 @@ export default function CertificateTemplate22({
             style={{
               fontSize: "30px",
               fontWeight: 500,
-              background: `linear-gradient(135deg, ${themeColors?.primary ?? '#6366f1'} 0%, ${themeColors?.secondary ?? themeColors?.primary ?? '#8b5cf6'} 50%, #ec4899 100%)`,
+              background: `linear-gradient(135deg, ${themeColors?.primary ?? "#6366f1"} 0%, ${themeColors?.secondary ?? themeColors?.primary ?? "#8b5cf6"} 50%, #ec4899 100%)`,
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -221,7 +224,7 @@ export default function CertificateTemplate22({
             style={{
               width: "80px",
               height: "1px",
-              background: `linear-gradient(90deg, transparent, ${themeColors?.primary ?? '#6366f1'}, transparent)`,
+              background: `linear-gradient(90deg, transparent, ${themeColors?.primary ?? "#6366f1"}, transparent)`,
               margin: "0 auto 20px",
             }}
           />
@@ -473,7 +476,7 @@ export default function CertificateTemplate22({
             left: 0,
             right: 0,
             height: "2px",
-            background: `linear-gradient(90deg, #f59e0b, #ec4899, ${themeColors?.secondary ?? themeColors?.primary ?? '#8b5cf6'}, ${themeColors?.primary ?? '#6366f1'})`,
+            background: `linear-gradient(90deg, #f59e0b, #ec4899, ${themeColors?.secondary ?? themeColors?.primary ?? "#8b5cf6"}, ${themeColors?.primary ?? "#6366f1"})`,
           }}
         />
       </div>

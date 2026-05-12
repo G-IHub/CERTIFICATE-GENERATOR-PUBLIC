@@ -119,7 +119,7 @@ export default function CertificateTemplate21({
         </div>
 
         {/* Content */}
-        <div className="relative z-10 flex flex-col items-center justify-center flex-1 px-20 py-16">
+        <div className="mt-10 z-10 flex flex-col items-center justify-center flex-1 px-20 py-16">
           {/* Logo Section */}
           {hasLogos && (
             <div
@@ -138,16 +138,17 @@ export default function CertificateTemplate21({
                 <div
                   key={index}
                   style={{
-                    width: "32px",
-                    height: "32px",
-                    borderRadius: "5px",
-                    background: "rgba(59, 130, 246, 0.1)",
-                    border: "0.5px solid rgba(59, 130, 246, 0.4)",
+                    width: "50px",
+                    height: "50px",
+                    marginTop: "10px",
+                    // borderRadius: "5px",
+                    // background: "rgba(59, 130, 246, 0.1)",
+                    // border: "0.5px solid rgba(59, 130, 246, 0.4)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
                     padding: "5px",
-                    boxShadow: "0 0 7px rgba(59, 130, 246, 0.2)",
+                    // boxShadow: "0 0 7px rgba(59, 130, 246, 0.2)",
                   }}
                 >
                   <img
@@ -164,7 +165,7 @@ export default function CertificateTemplate21({
             </div>
           )}
           {/* Medical Symbol Divider */}
-          <div className="mb-6 flex items-center gap-4">
+          {/* <div className="mb-6 flex items-center gap-4">
             <div className="h-px w-24" style={{ background: `linear-gradient(to right, transparent, ${themeColors?.primary ?? '#14b8a6'})` }}></div>
             <svg width="40" height="40" viewBox="0 0 40 40">
               <circle cx="20" cy="20" r="18" fill={themeColors?.primary ?? '#0d9488'} />
@@ -172,7 +173,7 @@ export default function CertificateTemplate21({
               <rect x="10" y="17" width="20" height="6" fill="white" />
             </svg>
             <div className="h-px w-24" style={{ background: `linear-gradient(to left, transparent, ${themeColors?.primary ?? '#14b8a6'})` }}></div>
-          </div>
+          </div> */}
 
           {/* Certificate Header */}
           <div className="mb-8 text-center">
@@ -209,7 +210,7 @@ export default function CertificateTemplate21({
                   margin: "10px 20px",
                   lineHeight: "1.4",
                   wordWrap: "break-word",
-                  maxWidth: "28%",
+                  maxWidth: "85%",
                   marginLeft: "auto",
                   marginRight: "auto",
                 }}

@@ -161,53 +161,37 @@ export default function CertificateTemplate23({
             }}
           >
             {logosToDisplay.map((logo, index) => (
-              <div
-                key={index}
-                style={{
-                  width: "32px",
-                  height: "32px",
-                  borderRadius: "5px",
-                  background: "rgba(59, 130, 246, 0.1)",
-                  border: "0.5px solid rgba(59, 130, 246, 0.4)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  padding: "5px",
-                  boxShadow: "0 0 7px rgba(59, 130, 246, 0.2)",
-                }}
-              >
-                <img
-                  src={logo.url}
-                  alt={`Logo ${index + 1}`}
+              <div className="flex flex-col items-center gap-2 mt-10">
+                <div
+                  key={index}
                   style={{
-                    maxWidth: "100%",
-                    maxHeight: "100%",
-                    objectFit: "contain",
+                    width: "50px",
+                    height: "50px",
+                    borderRadius: "5px",
+                    // background: "rgba(59, 130, 246, 0.1)",
+                    // border: "0.5px solid rgba(59, 130, 246, 0.4)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    padding: "5px",
+                    // boxShadow: "0 0 7px rgba(59, 130, 246, 0.2)",
                   }}
-                />
+                >
+                  <img
+                    src={logo.url}
+                    alt={`Logo ${index + 1}`}
+                    style={{
+                      maxWidth: "100%",
+                      maxHeight: "100%",
+                      objectFit: "contain",
+                    }}
+                  />
+                </div>
+                <p className="text-xs font-thin text-black">{logo.name} </p>
               </div>
             ))}
           </div>
         )}
-
-        {/* Organization Name */}
-        <div
-          style={{
-            position: "absolute",
-            top: hasLogos ? "59px" : "23px",
-            left: 0,
-            right: 0,
-            textAlign: "center",
-            fontSize: "12px",
-            fontWeight: 400,
-            color: "#2c2c2c",
-            letterSpacing: "2.2px",
-            textTransform: "uppercase",
-            fontFamily: "'Montserrat', sans-serif",
-          }}
-        >
-          {organizationName}
-        </div>
 
         {/* Decorative divider */}
         <div
@@ -219,6 +203,7 @@ export default function CertificateTemplate23({
             display: "flex",
             alignItems: "center",
             gap: "6px",
+            marginTop: "30px",
           }}
         >
           <div
@@ -346,7 +331,7 @@ export default function CertificateTemplate23({
                 textAlign: "center",
                 fontSize: "12px",
                 color: "black",
-                margin: "10px 20px",
+                margin: "10px 10px",
                 lineHeight: "1.4",
                 wordWrap: "break-word",
               }}
@@ -368,6 +353,7 @@ export default function CertificateTemplate23({
             justifyContent: "space-around",
             alignItems: "flex-end",
             padding: "0 57px",
+            marginTop: "-40px",
           }}
         >
           {/* Date */}

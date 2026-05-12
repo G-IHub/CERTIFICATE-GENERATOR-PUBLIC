@@ -136,9 +136,11 @@ export default function CertificateTemplate7({
             )}
           </div>
           <div className="flex flex-col items-center gap-2">
-            <h1 className="text-5xl font-medium">{header1 || "CERTIFICATE"}</h1>
+            <h1 className="text-5xl font-medium uppercase">
+              {header?.split(" ")[0] || "CERTIFICATE"}
+            </h1>
             <p className="text-xl uppercase font-bold tracking-widest">
-              {header}
+              {header?.split(" ").slice(1).join(" ") || "Of Completion"}
             </p>
           </div>
           <p className="font-bold tracking-tighter text-sm uppercase">

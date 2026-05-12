@@ -124,49 +124,54 @@ export default function CertificateTemplate20({
             }}
           >
             {logosToDisplay.map((logo, index) => (
-              <div
-                key={index}
-                style={{
-                  width: "32px",
-                  height: "32px",
-                  borderRadius: "5px",
-                  background: "rgba(59, 130, 246, 0.1)",
-                  border: "0.5px solid rgba(59, 130, 246, 0.4)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  padding: "5px",
-                  boxShadow: "0 0 7px rgba(59, 130, 246, 0.2)",
-                }}
-              >
-                <img
-                  src={logo.url}
-                  alt={`Logo ${index + 1}`}
+              <div className="flex flex-col items-center gap-2">
+                <div
+                  key={index}
                   style={{
-                    maxWidth: "100%",
-                    maxHeight: "100%",
-                    objectFit: "contain",
+                    width: "50px",
+                    height: "50px",
+                    borderRadius: "5px",
+                    background: "rgba(59, 130, 246, 0.1)",
+                    border: "0.5px solid rgba(59, 130, 246, 0.4)",
+                    display: "flex",
+                    // flexDirection: "column",
+                    // color: "white",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    padding: "5px",
+                    boxShadow: "0 0 7px rgba(59, 130, 246, 0.2)",
                   }}
-                />
+                >
+                  <img
+                    src={logo.url}
+                    alt={`Logo ${index + 1}`}
+                    style={{
+                      maxWidth: "100%",
+                      maxHeight: "100%",
+                      objectFit: "contain",
+                    }}
+                  />
+                </div>
+                <p className="text-xs font-thin text-white">{logo.name} </p>
               </div>
             ))}
           </div>
         )}
 
         {/* Content */}
-        <div className="relative z-10 flex flex-col items-center justify-center flex-1 px-12 py-10 text-center">
+        <div className=" z-10 flex flex-col items-center justify-center flex-1 px-12 py-10 text-center">
           {/* Organization Name */}
-          <div className="mb-4 -mt-52">
+          {/* <div className="mb-4 -mt-30">
             <div
               className="text-cyan-400 text-xs font-semibold tracking-widest uppercase"
               style={{ fontFamily: "'Orbitron', sans-serif" }}
             >
               {organizationName}
             </div>
-          </div>
+          </div> */}
 
           {/* Certificate Header */}
-          <div className="mb-3">
+          <div className="-mt-35">
             <h1
               className="text-4xl font-black uppercase tracking-wider mb-1 bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent"
               style={{ fontFamily: "'Orbitron', sans-serif" }}
@@ -177,8 +182,8 @@ export default function CertificateTemplate20({
           </div>
 
           {/* Presented To */}
-          <div className="mb-4">
-            <p className="text-gray-400 text-xs uppercase tracking-widest mb-1">
+          <div className="my-4 ">
+            <p className="text-gray-400 text-sm uppercase tracking-widest mb-1">
               Presented to
             </p>
             <h2
@@ -190,7 +195,7 @@ export default function CertificateTemplate20({
           </div>
 
           {/* Course Title */}
-          <div className="mb-3">
+          <div className="mb-3 ">
             <p className="text-gray-400 text-xs uppercase tracking-widest mb-1">
               For completing
             </p>
@@ -212,7 +217,7 @@ export default function CertificateTemplate20({
                   wordWrap: "break-word",
                   marginLeft: "auto",
                   marginRight: "auto",
-                  maxWidth: "28%",
+                  maxWidth: "85%",
                 }}
               >
                 {description ||
@@ -274,7 +279,7 @@ export default function CertificateTemplate20({
                   <img
                     src={signatureUrl1}
                     alt="Signature 1"
-                    className="w-24 h-16"
+                    className="w-32 h-16"
                     style={{
                       marginBottom: -20,
                       marginLeft: "25px",
@@ -324,7 +329,7 @@ export default function CertificateTemplate20({
                   <img
                     src={signatureUrl2}
                     alt="Signature 2"
-                    className="w-24 h-16"
+                    className="w-32 h-16"
                     style={{
                       marginBottom: -20,
                       marginLeft: "25px",

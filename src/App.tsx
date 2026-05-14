@@ -280,60 +280,109 @@ export default function App() {
     runHealthCheck();
   }, []);
 
-  // Auto-logout when token expires (proactive session management)
+  // User activity tracking for session management
+  const [lastActivity, setLastActivity] = useState<number>(Date.now());
+
+  useEffect(() => {
+    const handleActivity = () => {
+      setLastActivity(Date.now());
+    };
+
+    // Track common user interactions
+    window.addEventListener("mousemove", handleActivity);
+    window.addEventListener("mousedown", handleActivity);
+    window.addEventListener("keypress", handleActivity);
+    window.addEventListener("scroll", handleActivity);
+    window.addEventListener("touchstart", handleActivity);
+
+    return () => {
+      window.removeEventListener("mousemove", handleActivity);
+      window.removeEventListener("mousedown", handleActivity);
+      window.removeEventListener("keypress", handleActivity);
+      window.removeEventListener("scroll", handleActivity);
+      window.removeEventListener("touchstart", handleActivity);
+    };
+  }, []);
+
+  // Auto-logout and session extension when token expires
   useEffect(() => {
     if (!accessToken) {
       return; // No token, nothing to monitor
     }
 
-    // Check if token is already expired
-    if (isTokenExpired(accessToken)) {
-      console.log("🔒 Token is already expired, logging out...");
-      toast.error("Your session has expired. Please sign in again.", {
-        duration: 5000,
-      });
-      handleLogout();
-      return;
-    }
+    // Function to check session status and possibly refresh
+    const checkSession = async () => {
+      if (!accessToken) return;
 
-    // Get remaining time and set up auto-logout
-    const remainingTime = getTokenRemainingTime(accessToken);
-    console.log(
-      `⏰ Token will expire in ${Math.floor(remainingTime / 1000 / 60)} minutes`,
-    );
+      // Check if token is already expired
+      if (isTokenExpired(accessToken)) {
+        console.log("🔒 Token is expired, logging out...");
+        toast.error("Your session has expired. Please sign in again.", {
+          duration: 5000,
+        });
+        handleLogout();
+        return;
+      }
 
-    // Show warning 5 minutes before expiration
-    const warningTime = remainingTime - 5 * 60 * 1000; // 5 minutes before
-    let warningTimeout: NodeJS.Timeout | null = null;
+      const remainingTime = getTokenRemainingTime(accessToken);
+      const minutesRemaining = Math.floor(remainingTime / 1000 / 60);
 
-    if (warningTime > 0) {
-      warningTimeout = setTimeout(() => {
+      // Refresh logic: If token expires in less than 10 minutes AND user was active in last 5 minutes
+      const fiveMinutesInMs = 5 * 60 * 1000;
+      const userWasActiveRecently = Date.now() - lastActivity < fiveMinutesInMs;
+
+      if (minutesRemaining <= 10 && userWasActiveRecently) {
+        console.log("🔄 Session near expiration but user is active. Refreshing session...");
+        try {
+          const response = await authApi.getSession(accessToken);
+          if (response.accessToken) {
+            console.log("✅ Session refreshed successfully");
+            localStorage.setItem("accessToken", response.accessToken);
+            setAccessToken(response.accessToken);
+            
+            // Optional: Update current user if returned
+            if (response.user) {
+              setCurrentUser(response.user);
+            }
+          }
+        } catch (error) {
+          console.error("❌ Failed to refresh session:", error);
+          // If refresh fails and we are very close to expiration, we'll let the auto-logout handle it
+        }
+      }
+
+      // Show warning 5 minutes before expiration if we couldn't refresh
+      if (minutesRemaining === 5) {
         toast.warning(
           "Your session will expire in 5 minutes. Please save your work!",
           {
+            id: "session-warning", // Prevent duplicate toasts
             duration: 10000,
           },
         );
-      }, warningTime);
-    }
-
-    // Auto-logout when token expires
-    const logoutTimeout = setTimeout(() => {
-      console.log("🔒 Token expired, automatically logging out...");
-      toast.error("Your session has expired. Please sign in again.", {
-        duration: 6000,
-      });
-      handleLogout();
-    }, remainingTime);
-
-    // Cleanup timeouts on unmount or when token changes
-    return () => {
-      if (warningTimeout) {
-        clearTimeout(warningTimeout);
       }
+    };
+
+    // Run initial check
+    checkSession();
+
+    // Set up a periodic check every 1 minute
+    const intervalId = setInterval(checkSession, 60 * 1000);
+
+    // Legacy auto-logout fallback for absolute safety
+    const remainingTime = getTokenRemainingTime(accessToken);
+    const logoutTimeout = setTimeout(() => {
+      if (isTokenExpired(accessToken)) {
+        console.log("🔒 Absolute safety timeout: logging out...");
+        handleLogout();
+      }
+    }, remainingTime + 1000);
+
+    return () => {
+      clearInterval(intervalId);
       clearTimeout(logoutTimeout);
     };
-  }, [accessToken]); // Re-run when accessToken changes
+  }, [accessToken, lastActivity]); // Re-run when token or lastActivity changes
 
   // Load organizations for the current user
   const loadOrganizations = async (token: string) => {

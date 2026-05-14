@@ -69,6 +69,7 @@ interface Template {
   type: "default" | "custom" | "premium";
   visibility_type?: "public" | "organization";
   organization_id?: string | null;
+  organization_ids?: string[] | null;
 }
 
 interface Organization {
@@ -123,7 +124,7 @@ export default function TemplateVisibilityManager({
   const handleVisibilityUpdate = async (
     templateId: string,
     visibility_type: "public" | "organization",
-    organization_id?: string,
+    organization_ids?: string[],
   ) => {
     if (!accessToken) {
       toast.error("Unauthorized: Please sign in");
@@ -134,7 +135,9 @@ export default function TemplateVisibilityManager({
     try {
       await templateApi.updateVisibility(accessToken, templateId, {
         visibility_type,
-        organization_id,
+        organization_ids,
+        // Keep single organization_id for backward compatibility
+        organization_id: organization_ids && organization_ids.length > 0 ? organization_ids[0] : undefined,
       });
 
       // Update local state
@@ -144,7 +147,8 @@ export default function TemplateVisibilityManager({
             ? {
                 ...t,
                 visibility_type,
-                organization_id: organization_id || null,
+                organization_ids: organization_ids || [],
+                organization_id: organization_ids && organization_ids.length > 0 ? organization_ids[0] : null,
               }
             : t,
         ),
@@ -163,7 +167,11 @@ export default function TemplateVisibilityManager({
     setSelectedTemplate(template);
     setModalVisibility(template.visibility_type || "public");
     setSelectedOrgIds(
-      template.organization_id ? [template.organization_id] : [],
+      template.organization_ids && template.organization_ids.length > 0
+        ? template.organization_ids
+        : template.organization_id 
+          ? [template.organization_id] 
+          : [],
     );
     setSearchQuery("");
     setShowModal(true);
@@ -181,14 +189,12 @@ export default function TemplateVisibilityManager({
 
     try {
       if (modalVisibility === "public") {
-        await handleVisibilityUpdate(selectedTemplate.id, "public");
+        await handleVisibilityUpdate(selectedTemplate.id, "public", []);
       } else {
-        // For now, we save one organization at a time
-        // In the future, you might want to support multiple organizations per template
         await handleVisibilityUpdate(
           selectedTemplate.id,
           "organization",
-          selectedOrgIds[0],
+          selectedOrgIds,
         );
       }
 
@@ -219,11 +225,22 @@ export default function TemplateVisibilityManager({
 
   const getVisibilityBadge = (template: Template) => {
     if (template.visibility_type === "organization") {
-      const org = organizations.find((o) => o.id === template.organization_id);
+      const orgIds = template.organization_ids || (template.organization_id ? [template.organization_id] : []);
+      
+      if (orgIds.length === 1) {
+        const org = organizations.find((o) => o.id === orgIds[0]);
+        return (
+          <Badge variant="secondary" className="gap-1">
+            <Building2 className="w-3 h-3" />
+            {org?.name || "1 Organization"}
+          </Badge>
+        );
+      }
+      
       return (
         <Badge variant="secondary" className="gap-1">
           <Building2 className="w-3 h-3" />
-          {org?.name || "Unknown Org"}
+          {orgIds.length} Organizations
         </Badge>
       );
     }
@@ -476,9 +493,7 @@ export default function TemplateVisibilityManager({
                     </div>
                     {selectedOrgIds.length > 0 && (
                       <p className="text-xs text-gray-500">
-                        Note: Currently, templates can only be assigned to one
-                        organization at a time. The first selected organization
-                        will be used.
+                        Note: This template will be visible to all selected organizations.
                       </p>
                     )}
                   </div>

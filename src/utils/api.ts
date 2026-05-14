@@ -656,6 +656,7 @@ export const templateApi = {
   updateVisibility: async (token: string, templateId: string, data: {
     visibility_type: 'public' | 'organization';
     organization_id?: string;
+    organization_ids?: string[];
   }) => {
     const response = await fetch(`${API_BASE_URL}/templates/${templateId}/visibility`, {
       method: 'PUT',

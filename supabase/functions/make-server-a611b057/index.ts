@@ -3760,7 +3760,8 @@ app.get("/make-server-a611b057/templates", async (c) => {
         await kv.set(`globaltemplate:${tpl.id}`, {
           ...tpl,
           visibility_type: tpl.visibility_type || "public",
-          organization_id: tpl.organization_id || null,
+          organization_ids: tpl.organization_ids || (tpl.organization_id ? [tpl.organization_id] : []),
+          organization_id: tpl.organization_id || null, // Keep for backward compatibility
         });
         console.log(`✅ Auto-seeded missing template: ${tpl.id}`);
       }
@@ -3784,7 +3785,11 @@ app.get("/make-server-a611b057/templates", async (c) => {
 
       // Organization-specific templates only visible to that organization
       if (t.visibility_type === "organization") {
-        return organizationId && t.organization_id === organizationId;
+        if (!organizationId) return false;
+        
+        // Support both new array and legacy single ID
+        const orgIds = t.organization_ids || (t.organization_id ? [t.organization_id] : []);
+        return orgIds.includes(organizationId);
       }
 
       return false;
@@ -4002,12 +4007,13 @@ app.put("/make-server-a611b057/templates/:id/visibility", async (c) => {
     }
 
     const templateId = c.req.param("id");
-    const { visibility_type, organization_id } = await c.req.json();
+    const { visibility_type, organization_id, organization_ids } = await c.req.json();
 
     console.log("🔐 Update template visibility request:", {
       templateId,
       visibility_type,
       organization_id,
+      organization_ids,
     });
 
     // Validate input
@@ -4023,11 +4029,11 @@ app.put("/make-server-a611b057/templates/:id/visibility", async (c) => {
       );
     }
 
-    if (visibility_type === "organization" && !organization_id) {
+    if (visibility_type === "organization" && (!organization_id && (!organization_ids || organization_ids.length === 0))) {
       return c.json(
         {
           error:
-            "organization_id is required when visibility_type is 'organization'",
+            "organization_id or organization_ids is required when visibility_type is 'organization'",
         },
         400,
       );
@@ -4048,8 +4054,14 @@ app.put("/make-server-a611b057/templates/:id/visibility", async (c) => {
     const updatedTemplate = {
       ...template,
       visibility_type,
+      organization_ids:
+        visibility_type === "organization" 
+          ? (organization_ids || (organization_id ? [organization_id] : []))
+          : [],
       organization_id:
-        visibility_type === "organization" ? organization_id : null,
+        visibility_type === "organization" 
+          ? (organization_id || (organization_ids && organization_ids.length > 0 ? organization_ids[0] : null))
+          : null,
       updatedAt: new Date().toISOString(),
       updatedBy: user.id,
     };
@@ -4062,7 +4074,7 @@ app.put("/make-server-a611b057/templates/:id/visibility", async (c) => {
       template: updatedTemplate,
       message: `Template visibility set to ${visibility_type}${
         visibility_type === "organization"
-          ? ` for organization ${organization_id}`
+          ? ` for organizations: ${updatedTemplate.organization_ids.join(", ")}`
           : ""
       }`,
     });

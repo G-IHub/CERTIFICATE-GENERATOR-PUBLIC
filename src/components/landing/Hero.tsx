@@ -10,7 +10,7 @@ const Hero: React.FC = () => {
     <section className="flex flex-col justify-center mt-8 md:mt-0 md:mb-12 items-center md:flex-row px-6 md:px-28">
       <div className="space-y-3 max-w-lg md:max-w-md">
         <h2 className="font-medium text-4xl md:text-5xl tracking-tight">
-          Generate, Issue, Manage and Monetize Your Certificates and Digital
+          Create, Manage and Monetize Your Certificates and Digital
           Products with Ease
         </h2>
         <p className="text-[#696969] text-xl md:text-lg">

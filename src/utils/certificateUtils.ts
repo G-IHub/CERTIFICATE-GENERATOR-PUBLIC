@@ -34,7 +34,7 @@ export const generateCertificateUrl = (
   courseName: string, 
   certificateId: string
 ): string => {
-  return `${window.location.origin}/#/certificate/${organizationId}/${courseName}/${certificateId}`;
+  return `${window.location.origin}/certificate/${organizationId}/${courseName}/${certificateId}`;
 };
 
 /**
@@ -52,7 +52,7 @@ export const generateSecureCertificateUrl = (
   expirationDays: number = 365
 ): string => {
   const encryptedData = encryptCertificateData(organizationId, courseName, certificateId, expirationDays);
-  return `${window.location.origin}/#/certificate/${encryptedData}`;
+  return `${window.location.origin}/certificate/${encryptedData}`;
 };
 
 /**
@@ -60,11 +60,11 @@ export const generateSecureCertificateUrl = (
  * This creates a much shorter, more shareable URL
  * @param shortCode - The 6-character short code
  * @returns Complete short certificate URL
- * @example https://certifyer.online/#/c/Ab3xY9
+ * @example https://certifyer.online/c/Ab3xY9
  */
 export const generateShortCertificateUrl = (shortCode: string): string => {
   console.warn('generateShortCertificateUrl called but short links are disabled');
-  return '#/';
+  return '/';
 };
 
 /**
@@ -107,10 +107,10 @@ export const normalizeCertificateUrl = (url: string): string => {
 export const buildFullCertificateUrl = (certificateUrl: string | undefined): string => {
   if (!certificateUrl || certificateUrl.trim() === '') {
     console.error('❌ ERROR: Certificate URL is empty or undefined!');
-    return '#/';
+    return '/';
   }
   
   const normalized = normalizeCertificateUrl(certificateUrl);
-  const fullUrl = `${window.location.origin}/#/${normalized}`;
+  const fullUrl = `${window.location.origin}/${normalized}`;
   return fullUrl;
 };

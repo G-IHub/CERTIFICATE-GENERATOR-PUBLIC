@@ -544,7 +544,7 @@ export default function AdminDashboard({
                 365,
               );
               const encryptedPath = encryptedUrl.replace(
-                `${window.location.origin}/#/`,
+                `${window.location.origin}/`,
                 "",
               );
 
@@ -1013,7 +1013,7 @@ export default function AdminDashboard({
     );
 
     // Remove the origin and hash from the URL to get just the path
-    return encryptedUrl.replace(`${window.location.origin}/#/`, "");
+    return encryptedUrl.replace(`${window.location.origin}/`, "");
   };
 
   const parseBulkStudents = (input: string) => {
@@ -1107,7 +1107,7 @@ export default function AdminDashboard({
 
       // Extract just the path (remove origin and hash)
       const encryptedPath = encryptedCertUrl.replace(
-        `${window.location.origin}/#/`,
+        `${window.location.origin}/`,
         "",
       );
       const certificate = {

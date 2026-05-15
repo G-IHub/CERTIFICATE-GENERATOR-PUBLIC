@@ -130,7 +130,7 @@ function ProductCard({ product, orgId }: { product: Product; orgId: string }) {
   const hasCert = !!product.certificateTemplateId;
 
   const handleClick = () => {
-    window.location.href = `/#/store/${orgId}/${product.id}`;
+    window.location.href = `/store/${orgId}/${product.id}`;
   };
 
   return (

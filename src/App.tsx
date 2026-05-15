@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {
-  HashRouter as Router,
+  BrowserRouter as Router,
   Routes,
   Route,
   Navigate,
@@ -681,13 +681,13 @@ export default function App() {
               </div>
               <div className="flex gap-2">
                 <button
-                  onClick={() => (window.location.href = "/#/deploy-guide")}
+                  onClick={() => (window.location.href = "/deploy-guide")}
                   className="px-4 py-1.5 bg-white text-amber-600 rounded-md hover:bg-amber-50 transition-colors flex-shrink-0 text-sm"
                 >
                   Deploy Guide
                 </button>
                 <button
-                  onClick={() => (window.location.href = "/#/health-check")}
+                  onClick={() => (window.location.href = "/health-check")}
                   className="px-4 py-1.5 bg-white text-amber-600 rounded-md hover:bg-amber-50 transition-colors flex-shrink-0 text-sm"
                 >
                   Diagnose
@@ -801,7 +801,7 @@ export default function App() {
                   <TemplateBuilderPage
                     organization={getCurrentUserOrganization()!}
                     isPremiumUser={isOrgPremium(getCurrentUserOrganization())}
-                    onBack={() => (window.location.href = "/#/dashboard")}
+                    onBack={() => (window.location.href = "/dashboard")}
                     accessToken={accessToken}
                   />
                 </div>
@@ -880,17 +880,17 @@ export default function App() {
                   <div className="mt-6 space-y-2">
                     <p className="text-sm font-semibold">Test Links:</p>
                     <a
-                      href="/#/test-cert"
+                      href="/test-cert"
                       className="block text-blue-600 hover:underline"
                     >
-                      → Test /#/test-cert
+                      → Test /test-cert
                     </a>
                     <a
-                      href="/#/certificate/test123"
+                      href="/certificate/test123"
                       className="block text-blue-600 hover:underline"
                       target="_blank"
                     >
-                      → Test /#/certificate/test123 (new tab)
+                      → Test /certificate/test123 (new tab)
                     </a>
                   </div>
                 </div>

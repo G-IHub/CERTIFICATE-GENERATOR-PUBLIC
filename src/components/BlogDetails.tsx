@@ -110,7 +110,7 @@ export default function BlogDetails() {
         title={`${decodeHtmlEntities(post.title)} | Certifyer Blog`}
         description={decodeHtmlEntities(post.excerpt)}
         image={post.image}
-        url={`https://certifyer.online/#/blog/${post.id}`}
+        url={`https://certifyer.online/blog/${post.id}`}
         type="article"
       />
       <Navbar />

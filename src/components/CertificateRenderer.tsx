@@ -101,7 +101,7 @@ export default function CertificateRenderer({
   // QR code — show whenever a certificateId is provided (real or demo)
   const showQR = !!certificateId;
   const verifyUrl = showQR
-    ? `https://certifyer.online/#/verify/${certificateId}`
+    ? `https://certifyer.online/verify/${certificateId}`
     : "";
   const qrSrc = showQR
     ? `https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=${encodeURIComponent(verifyUrl)}&color=000000&bgcolor=ffffff&margin=2&qzone=1`

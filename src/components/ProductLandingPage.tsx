@@ -224,7 +224,7 @@ export default function ProductLandingPage() {
   };
 
   const handleCopy = () => {
-    const url = `https://certifyer.online/#/store/${orgId}/${productId}`;
+    const url = `https://certifyer.online/store/${orgId}/${productId}`;
     navigator.clipboard.writeText(url).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 1600);
@@ -280,7 +280,7 @@ export default function ProductLandingPage() {
           <h2 style={{ fontSize: 20, fontWeight: 600, color: "#0E0E10", marginBottom: 8 }}>Product not found</h2>
           <p style={{ color: "#5C5C63", fontSize: 14, marginBottom: 20 }}>{error}</p>
           <a
-            href={`/#/store/${orgId}`}
+            href={`/store/${orgId}`}
             style={{ color: "#F25C0B", fontWeight: 600, textDecoration: "none", fontSize: 14 }}
           >
             ← Back to Store
@@ -293,7 +293,7 @@ export default function ProductLandingPage() {
   const gradient = TYPE_GRADIENTS[product.type] || TYPE_GRADIENTS.bundle;
   const hasCert = !!product.certificateTemplateId;
   const hasBothPrices = product.priceNGN > 0 && product.priceUSD > 0;
-  const productUrl = `https://certifyer.online/#/store/${orgId}/${productId}`;
+  const productUrl = `https://certifyer.online/store/${orgId}/${productId}`;
   const year = new Date().getFullYear();
   const isMobile = width < 840;
 
@@ -371,7 +371,7 @@ export default function ProductLandingPage() {
       <div style={{ maxWidth: 1140, margin: "0 auto", padding: "16px 24px 0" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13, color: "#84848C" }}>
           <a
-            href={`/#/store/${orgId}`}
+            href={`/store/${orgId}`}
             style={{ color: "#5C5C63", textDecoration: "none", fontWeight: 500 }}
           >
             {org?.name}
@@ -575,7 +575,7 @@ export default function ProductLandingPage() {
               </div>
             </div>
             <a
-              href={`/#/store/${orgId}`}
+              href={`/store/${orgId}`}
               style={{
                 fontSize: 13,
                 fontWeight: 600,

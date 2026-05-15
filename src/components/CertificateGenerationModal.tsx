@@ -218,7 +218,7 @@ export default function CertificateGenerationModal({
     );
 
     // Remove the origin and hash from the URL to get just the path
-    return encryptedUrl.replace(`${window.location.origin}/#/`, "");
+    return encryptedUrl.replace(`${window.location.origin}/`, "");
   };
 
   // Parse bulk students input

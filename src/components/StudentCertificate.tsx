@@ -1172,7 +1172,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
               {certificate.linkedProductId && (
                 <div style={{ background: "#4f46e5", borderRadius: 12, padding: 20, color: "white" }}>
                   <p style={{ fontWeight: 700 }}>Get the Full Course Bundle</p>
-                  <a href={`/#/store/${certificate.linkedProductOrgId || certificate.organizationId}/${certificate.linkedProductId}`}>View Bundle →</a>
+                  <a href={`/store/${certificate.linkedProductOrgId || certificate.organizationId}/${certificate.linkedProductId}`}>View Bundle →</a>
                 </div>
               )}
 

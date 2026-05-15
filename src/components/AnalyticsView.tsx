@@ -309,7 +309,7 @@ export default function AnalyticsView({
                               {link.certificateId}
                             </p>
                             <code className="text-xs text-gray-600">
-                              {window.location.origin}/#/c/{link.code}
+                              {window.location.origin}/c/{link.code}
                             </code>
                           </div>
                           <div className="flex items-center gap-2 ml-4">

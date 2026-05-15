@@ -228,7 +228,7 @@ export default function VerificationPage() {
             <>
               {" · "}
               <a
-                href={`/#/certificate/${certificateId}`}
+                href={`/certificate/${certificateId}`}
                 style={{ color: "#4f46e5", textDecoration: "none" }}
               >
                 View Certificate <ExternalLink style={{ width: 10, height: 10, display: "inline" }} />

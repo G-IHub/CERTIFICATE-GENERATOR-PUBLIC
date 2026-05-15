@@ -264,7 +264,7 @@ export default function ProductAccessPage() {
               </p>
               {certificate.id && (
                 <a
-                  href={`/#/certificate/${certificate.id}`}
+                  href={`/certificate/${certificate.id}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1 mt-3 text-xs font-semibold text-yellow-700 hover:underline"

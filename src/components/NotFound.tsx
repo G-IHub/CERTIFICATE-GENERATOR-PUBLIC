@@ -1,49 +1,65 @@
 import React from "react";
+import { ArrowLeft } from "lucide-react";
 
 export default function NotFound() {
-
-
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-      <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8 text-center">
-        <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-          <svg
-            className="w-8 h-8 text-red-600"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-            />
-          </svg>
+    <div className="min-h-screen bg-[#f2f2f2] flex flex-col items-center justify-center relative overflow-hidden font-serif">
+      {/* Header-like minimalist elements */}
+      <div className="absolute top-0 left-0 w-full p-8 flex justify-between items-center pointer-events-none">
+        <div className="w-8 h-8 bg-black flex items-center justify-center">
+          <span className="text-white text-xs font-bold">C</span>
         </div>
-
-        <h1 className="text-2xl font-bold text-gray-900 mb-2">
-          Page Not Found
-        </h1>
-        <p className="text-gray-600 mb-6">
-          The page you're looking for doesn't exist or couldn't be loaded.
-        </p>
-
-        <div className="flex gap-3">
-          <button
-            onClick={() => (window.location.href = "/")}
-            className="flex-1 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
-          >
-            Go Back Home
-          </button>
-          <button
-            onClick={() => window.location.reload()}
-            className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
-          >
-            Reload Page
-          </button>
+        <div className="flex gap-1 h-4">
+          <div className="w-[1px] h-full bg-black/20" />
+          <div className="w-[1px] h-full bg-black/20" />
+          <div className="w-[1px] h-full bg-black/20" />
         </div>
       </div>
+
+      {/* Massive Background 404 - Structural Typography */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
+        <div className="flex items-center justify-center gap-[2vw] opacity-[0.05]">
+          <span className="text-[35vw] font-bold text-black leading-none">4</span>
+          <div className="w-[20vw] h-[20vw] border-[1.5vw] border-black rounded-full" />
+          <span className="text-[35vw] font-bold text-black leading-none">4</span>
+        </div>
+      </div>
+
+      {/* Main Content - Centered Block */}
+      <div className="relative z-10 text-center px-6 max-w-2xl animate-in fade-in duration-1000">
+        <h2 className="text-4xl md:text-7xl text-black mb-6 font-normal tracking-tight leading-tight">
+          Page Not Available
+        </h2>
+        
+        <div className="w-12 h-[1px] bg-black/20 mx-auto mb-8" />
+
+        <p className="text-sm md:text-lg text-black/60 mb-12 max-w-md mx-auto leading-relaxed">
+          The section you are looking for has been archived or relocated. 
+          Please return to our main sanctuary.
+        </p>
+
+        <button
+          onClick={() => (window.location.href = "/")}
+          className="group relative inline-flex items-center gap-4 px-12 py-5 bg-white border border-black rounded-full text-black hover:bg-black hover:text-white transition-all duration-700 ease-in-out shadow-sm hover:shadow-xl transform hover:-translate-y-1"
+        >
+          <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-2" />
+          <span className="text-xs uppercase tracking-[0.3em] font-medium">Explore Home</span>
+        </button>
+      </div>
+
+      {/* Subtle architectural markers */}
+      <div className="absolute bottom-12 left-12 hidden lg:flex flex-col gap-2">
+        <span className="text-[10px] uppercase tracking-[0.4em] text-black/30 font-sans">Perspective 404</span>
+        <div className="w-20 h-[1px] bg-black/10" />
+      </div>
+
+      <div className="absolute bottom-12 right-12 hidden lg:flex flex-col items-end gap-2">
+        <span className="text-[10px] uppercase tracking-[0.4em] text-black/30 font-sans">Certifyer / 2025</span>
+        <div className="w-20 h-[1px] bg-black/10" />
+      </div>
+      
+      {/* Background grain/texture effect overlay */}
+      <div className="absolute inset-0 pointer-events-none opacity-[0.03] mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/felt.png')]" />
     </div>
   );
 }

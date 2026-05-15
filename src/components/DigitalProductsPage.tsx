@@ -483,7 +483,7 @@ export default function DigitalProductsPage({ organizationId, accessToken }: Pro
 
                     {p.status === "published" && (
                       <a
-                        href={`/#/store/${p.orgId}`}
+                        href={`/store/${p.orgId}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-xs text-indigo-600 flex items-center gap-1 hover:underline"
@@ -501,11 +501,11 @@ export default function DigitalProductsPage({ organizationId, accessToken }: Pro
                       <div className="space-y-2">
                         <div className="flex items-center gap-2">
                           <span className="text-[10px] text-gray-500 flex-1 truncate">
-                            certifyer.online/#/store/{p.orgId}
+                            certifyer.online/store/{p.orgId}
                           </span>
                           <button
                             onClick={() => {
-                              navigator.clipboard.writeText(`https://certifyer.online/#/store/${p.orgId}`)
+                              navigator.clipboard.writeText(`https://certifyer.online/store/${p.orgId}`)
                                 .then(() => toast.success("Link copied!"));
                             }}
                             className="text-[10px] font-medium text-indigo-600 hover:text-indigo-800 shrink-0 px-2 py-0.5 rounded bg-indigo-50 hover:bg-indigo-100 transition-colors"
@@ -515,11 +515,11 @@ export default function DigitalProductsPage({ organizationId, accessToken }: Pro
                         </div>
                         <div className="flex items-center gap-2">
                           <span className="text-[10px] text-gray-500 flex-1 truncate">
-                            certifyer.online/#/store/{p.orgId}/{p.id}
+                            certifyer.online/store/{p.orgId}/{p.id}
                           </span>
                           <button
                             onClick={() => {
-                              navigator.clipboard.writeText(`https://certifyer.online/#/store/${p.orgId}/${p.id}`)
+                              navigator.clipboard.writeText(`https://certifyer.online/store/${p.orgId}/${p.id}`)
                                 .then(() => toast.success("Link copied!"));
                             }}
                             className="text-[10px] font-medium text-indigo-600 hover:text-indigo-800 shrink-0 px-2 py-0.5 rounded bg-indigo-50 hover:bg-indigo-100 transition-colors"

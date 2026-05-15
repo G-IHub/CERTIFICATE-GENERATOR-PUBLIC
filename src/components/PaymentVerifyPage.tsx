@@ -76,7 +76,7 @@ export default function PaymentVerifyPage() {
     if (returnUrl) {
       window.location.href = returnUrl;
     } else {
-      window.location.href = "/#/";
+      window.location.href = "/";
     }
   };
 

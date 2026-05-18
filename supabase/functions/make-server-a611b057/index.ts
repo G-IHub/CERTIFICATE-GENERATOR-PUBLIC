@@ -5377,36 +5377,36 @@ app.delete(
 
         if (userData) {
           console.log(`📧 User email: ${userData.email}`);
-
-          // Delete user from KV store
-          await kv.del(`user:${ownerId}`);
-          console.log(`✅ User data deleted from KV store`);
-
-          // 8. Delete the user's Supabase Auth account
-          console.log(`🗑️ Deleting Supabase Auth account for: ${ownerId}`);
-          try {
-            const supabase = getSupabaseClient();
-            const { error: deleteError } =
-              await supabase.auth.admin.deleteUser(ownerId);
-
-            if (deleteError) {
-              console.error(
-                `❌ Error deleting Supabase Auth user:`,
-                deleteError,
-              );
-              // Continue anyway - KV data is deleted
-            } else {
-              console.log(`✅ Supabase Auth account deleted successfully`);
-            }
-          } catch (authError) {
-            console.error(
-              `❌ Exception deleting Supabase Auth user:`,
-              authError,
-            );
-            // Continue anyway - KV data is deleted
-          }
         } else {
           console.log(`⚠️ User data not found in KV store for: ${ownerId}`);
+        }
+
+        // Delete user from KV store regardless
+        await kv.del(`user:${ownerId}`);
+        console.log(`✅ User data deleted from KV store`);
+
+        // 8. Delete the user's Supabase Auth account
+        console.log(`🗑️ Deleting Supabase Auth account for: ${ownerId}`);
+        try {
+          const supabase = getSupabaseClient();
+          const { error: deleteError } =
+            await supabase.auth.admin.deleteUser(ownerId);
+
+          if (deleteError) {
+            console.error(
+              `❌ Error deleting Supabase Auth user:`,
+              deleteError,
+            );
+            // Continue anyway - KV data is deleted
+          } else {
+            console.log(`✅ Supabase Auth account deleted successfully`);
+          }
+        } catch (authError) {
+          console.error(
+            `❌ Exception deleting Supabase Auth user:`,
+            authError,
+          );
+          // Continue anyway - KV data is deleted
         }
       } else {
         console.log(`⚠️ Organization has no ownerId, skipping user deletion`);

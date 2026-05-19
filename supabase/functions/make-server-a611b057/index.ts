@@ -2517,9 +2517,12 @@ app.get("/make-server-a611b057/certificates/:id", async (c) => {
       }
     }
 
-    const course = (organization?.courses || []).find(
-      (p: any) => p.id === certificate.courseId,
-    );
+    let course;
+    if (organization && Array.isArray(organization.courses)) {
+      course = organization.courses.find(
+        (p: any) => p.id === certificate.courseId,
+      );
+    }
     console.log(
       "📜 Course found:",
       course

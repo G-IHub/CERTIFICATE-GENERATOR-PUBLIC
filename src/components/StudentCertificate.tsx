@@ -1234,7 +1234,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div className="text-center">
               <p className="text-gray-600 mb-2">
-                © 2025 {orgData?.name || "Certificate Platform"}. All rights
+                © {new Date().getFullYear()} {orgData?.name || "Certificate Platform"}. All rights
                 reserved.
               </p>
               <p className="text-sm text-gray-500">

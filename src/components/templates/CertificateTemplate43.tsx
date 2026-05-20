@@ -29,6 +29,7 @@ export default function CertificateTemplate43({
   description,
   date = "2024-01-01",
   recipientName = "Full Name Here",
+   isPreview = false,
   organizationName = "Your Organisation",
   organizationLogo,
   organizationLogos,

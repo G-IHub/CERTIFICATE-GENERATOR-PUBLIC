@@ -1,6 +1,7 @@
 import React from "react";
 import { CheckCircle } from "lucide-react";
-import about_img from "../../assets/about.svg";
+// import about_img from "../../assets/about.svg";
+import about_img from "../../assets/Course_Title_Student.jpeg";
 
 interface KeyBenefit {
   id: number;
@@ -69,7 +70,7 @@ const About: React.FC = () => {
           <img
             src={about_img}
             alt="About illustration"
-            className="w-full max-w-xs sm:max-w-sm md:max-w-md h-auto rounded-lg"
+            className="w-full border-4 max-w-xs sm:max-w-sm md:max-w-md h-auto rounded-lg"
           />
         </div>
       </div>

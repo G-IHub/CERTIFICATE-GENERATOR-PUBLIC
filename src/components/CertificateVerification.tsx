@@ -15,6 +15,7 @@ import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
 import { projectId, publicAnonKey } from "../utils/supabase/info";
 import SEOHead from "./SEOHead";
+import logo from "../assets/logo.png"
 
 const API_BASE_URL = `https://${projectId}.supabase.co/functions/v1/make-server-a611b057`;
 
@@ -175,7 +176,10 @@ export default function CertificateVerification() {
               Back to Homepage
             </Button>
             <div className="flex items-center gap-3">
-              <Shield className="w-8 h-8 text-orange-500" />
+              {/* <Shield className="w-8 h-8 text-orange-500" /> */}
+              <div className="w-16 h-16">
+                <img src={logo} alt="logo" className="w-full h-full" />
+              </div>
               <div>
                 <h1 className="text-3xl font-bold">Certificate Verification</h1>
                 <p className="text-muted-foreground">
@@ -234,7 +238,7 @@ export default function CertificateVerification() {
                       <img
                         src={result.organization.logo}
                         alt={result.organization.name}
-                        className="w-16 h-16 object-contain rounded-lg border"
+                        className="w-16 h-16 object-contain rounded-3xl border"
                       />
                     ) : (
                       <div className="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center">

@@ -112,18 +112,36 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
   let certificateId = params.certificateId;
   let courseId = params.courseId;
 
-  // If we are using the wildcard route, parse the parts
+  let decryptedData: any = null;
+
+  // Attempt decryption first if we have a wildcard parameter and no explicit certificate ID
   if (wildcardParam && !certificateId) {
-    const parts = wildcardParam.split("/").filter(Boolean);
-    if (parts.length === 3) {
-      // orgId/courseId/certId
-      subsidiaryId = parts[0];
-      courseId = parts[1];
-      certificateId = parts[2];
-    } else if (parts.length === 2) {
-      // orgId/certId
-      subsidiaryId = parts[0];
-      certificateId = parts[1];
+    console.log("🔐 Component Level: Attempting to decrypt wildcardParam...");
+    const isAlreadyDecoded = !wildcardParam.includes("%");
+    const paramToDecrypt = isAlreadyDecoded
+      ? encodeURIComponent(wildcardParam)
+      : wildcardParam;
+
+    decryptedData = decryptCertificateData(paramToDecrypt);
+
+    if (decryptedData) {
+      console.log("✅ Component Level: Decryption successful!");
+      subsidiaryId = decryptedData.organizationId;
+      certificateId = decryptedData.certificateId;
+    } else {
+      console.log("ℹ️ Component Level: Decryption failed, falling back to legacy path parsing");
+      // Fallback: Split by '/' if it's the legacy route
+      const parts = wildcardParam.split("/").filter(Boolean);
+      if (parts.length === 3) {
+        // orgId/courseId/certId
+        subsidiaryId = parts[0];
+        courseId = parts[1];
+        certificateId = parts[2];
+      } else if (parts.length === 2) {
+        // orgId/certId
+        subsidiaryId = parts[0];
+        certificateId = parts[1];
+      }
     }
   }
 
@@ -213,60 +231,37 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
   useEffect(() => {
     const fetchCertificate = async () => {
       let actualCertificateId: string | null = null;
-      let decryptedData: any = null;
 
-      // Try to decrypt if we have a single encrypted parameter (no certificateId yet)
-      if (wildcardParam && !certificateId) {
-        console.log("🔐 Attempting to decrypt certificate URL...");
-        console.log("   - Raw wildcardParam:", wildcardParam);
-        console.log("   - wildcardParam length:", wildcardParam.length);
-        console.log("   - Has % characters:", wildcardParam.includes("%"));
-        console.log("   - Has + characters:", wildcardParam.includes("+"));
-        console.log("   - First 50 chars:", wildcardParam.substring(0, 50));
+      if (decryptedData) {
+        console.log("✅ Using decrypted certificate ID:", decryptedData.certificateId);
+        actualCertificateId = decryptedData.certificateId;
 
-        // React Router may have already decoded the URL, so we need to check
-        // If it contains %, it's still encoded. If not, it's already decoded.
-        const isAlreadyDecoded = !wildcardParam.includes("%");
-        console.log(
-          "   - Already URL-decoded by React Router?",
-          isAlreadyDecoded,
-        );
-
-        // Pass the parameter as-is if already decoded, or pass it encoded
-        const paramToDecrypt = isAlreadyDecoded
-          ? encodeURIComponent(wildcardParam)
-          : wildcardParam;
-        console.log("   - Param to decrypt:", paramToDecrypt.substring(0, 50));
-
-        decryptedData = decryptCertificateData(paramToDecrypt);
-
-        if (decryptedData) {
-          console.log("✅ Successfully decrypted certificate data:");
-          console.log("   - Organization ID:", decryptedData.organizationId);
-          console.log("   - Certificate ID:", decryptedData.certificateId);
-
-          // Check expiration
-          const timeRemaining = getCertificateLinkTimeRemaining(wildcardParam);
+        // Check expiration (wildcardParam should exist when decryptedData is set)
+        if (wildcardParam) {
+          const timeRemaining = getCertificateLinkTimeRemaining(
+            wildcardParam.includes("%")
+              ? wildcardParam
+              : encodeURIComponent(wildcardParam),
+          );
           if (timeRemaining !== null) {
             const daysRemaining = Math.floor(
               timeRemaining / (1000 * 60 * 60 * 24),
             );
             console.log(`⏰ Link valid for ${daysRemaining} more days`);
           }
-
-          actualCertificateId = decryptedData.certificateId;
-        } else {
-          console.error(
-            "❌ Failed to decrypt certificate URL - link may be invalid or expired",
-          );
-          toast.error("Invalid or expired certificate link");
-          setLoading(false);
-          return;
         }
       } else if (certificateId) {
         // Legacy format: /certificate/{orgId}/{certId}
         console.log("📄 Using legacy URL format");
         actualCertificateId = certificateId;
+      } else if (wildcardParam) {
+        // Decryption failed and legacy parsing failed (or empty)
+        console.error(
+          "❌ Failed to decrypt certificate URL - link may be invalid or expired",
+        );
+        toast.error("Invalid or expired certificate link");
+        setLoading(false);
+        return;
       } else {
         console.log("⚠️ No certificate ID or encrypted data provided");
         setLoading(false);

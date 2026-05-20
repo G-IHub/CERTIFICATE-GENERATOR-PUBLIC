@@ -51,7 +51,9 @@ export const encryptCertificateData = (
 export const decryptCertificateData = (encryptedData: string): CertificateData | null => {
   try {
     // URL-safe base64 decoding
-    const decodedData = decodeURIComponent(encryptedData);
+    let decodedData = decodeURIComponent(encryptedData);
+    // Normalize spaces to '+' (browser routing/email clients sometimes decode '+' as space)
+    decodedData = decodedData.replace(/ /g, '+');
     const decrypted = CryptoJS.AES.decrypt(decodedData, ENCRYPTION_KEY);
     const dataString = decrypted.toString(CryptoJS.enc.Utf8);
     
@@ -83,7 +85,9 @@ export const decryptCertificateData = (encryptedData: string): CertificateData |
  */
 export const isCertificateLinkExpired = (encryptedData: string): boolean | null => {
   try {
-    const decodedData = decodeURIComponent(encryptedData);
+    let decodedData = decodeURIComponent(encryptedData);
+    // Normalize spaces to '+' (browser routing/email clients sometimes decode '+' as space)
+    decodedData = decodedData.replace(/ /g, '+');
     const decrypted = CryptoJS.AES.decrypt(decodedData, ENCRYPTION_KEY);
     const dataString = decrypted.toString(CryptoJS.enc.Utf8);
     
@@ -103,7 +107,9 @@ export const isCertificateLinkExpired = (encryptedData: string): boolean | null 
  */
 export const getCertificateLinkTimeRemaining = (encryptedData: string): number | null => {
   try {
-    const decodedData = decodeURIComponent(encryptedData);
+    let decodedData = decodeURIComponent(encryptedData);
+    // Normalize spaces to '+' (browser routing/email clients sometimes decode '+' as space)
+    decodedData = decodedData.replace(/ /g, '+');
     const decrypted = CryptoJS.AES.decrypt(decodedData, ENCRYPTION_KEY);
     const dataString = decrypted.toString(CryptoJS.enc.Utf8);
     

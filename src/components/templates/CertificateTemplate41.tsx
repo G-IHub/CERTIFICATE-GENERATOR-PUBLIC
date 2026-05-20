@@ -33,11 +33,11 @@ export default function CertificateTemplate41({
   organizationName = "Your Organisation",
   organizationLogo,
   organizationLogos,
-  signatoryName1 = "Director",
-  signatoryTitle1 = "Chief Executive Officer",
+  signatoryName1,
+  signatoryTitle1,
   signatureUrl1,
-  signatoryName2 = "Registrar",
-  signatoryTitle2 = "Programme Director",
+  signatoryName2,
+  signatoryTitle2,
   signatureUrl2,
   mode = "student",
   themeColors,
@@ -363,7 +363,7 @@ export default function CertificateTemplate41({
               title: signatoryTitle2,
               url: signatureUrl2,
             },
-          ].map((sig, i) => (
+          ].filter(sig => sig.name || sig.title || sig.url).map((sig, i) => (
             <div
               key={i}
               style={{ display: "flex", flexDirection: "column", gap: 4 }}

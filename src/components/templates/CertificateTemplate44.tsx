@@ -80,8 +80,10 @@ export default function CertificateTemplate44({
   return (
     // Fixed 800×600 canvas — width/height must stay inline (Tailwind has no w-[800px] preset)
     <div
-      className="relative overflow-hidden w-200 h-150 shadow-sm"
+      className="relative overflow-hidden"
       style={{
+        width: 800,
+        height: 600,
         background: bg,
         fontFamily: "'DM Sans', sans-serif",
       }}

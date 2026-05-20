@@ -60,9 +60,8 @@ export default function CertificateTemplate42({
   const logos = organizationLogos ?? [];
 
   return (
-    <div className=""  style={{
-      width: "800px", height: "600px",
-      position: "relative",
+    <div style={{
+      width: 800, height: 600, position: "relative",
       background: bg, overflow: "hidden",
       fontFamily: "'EB Garamond', Georgia, serif",
     }}>
@@ -120,7 +119,7 @@ export default function CertificateTemplate42({
 
       {/* Main content */}
       <div style={{
-        position: "absolute", top: 60, left: 40, right: 40, bottom: 90,
+        position: "absolute", top: 96, left: 40, right: 40, bottom: 90,
         display: "flex", flexDirection: "column",
         alignItems: "center", justifyContent: "center",
         textAlign: "center", gap: 12,
@@ -166,7 +165,7 @@ export default function CertificateTemplate42({
 
       {/* Signatures footer */}
       <div style={{
-        position: "absolute", bottom: 40, left: 50, right: 50,
+        position: "absolute", bottom: 28, left: 50, right: 50,
         display: "flex", justifyContent: "space-around",
       }}>
         {[
@@ -184,7 +183,7 @@ export default function CertificateTemplate42({
 
       {/* Subtle background watermark text */}
       <div style={{
-        position: "absolute", bottom: 24, left: 0, right: 0,
+        position: "absolute", bottom: 14, left: 0, right: 0,
         textAlign: "center",
         color: `${gold}33`, fontSize: 9, letterSpacing: 6, textTransform: "uppercase",
         fontFamily: "'Cinzel', serif",

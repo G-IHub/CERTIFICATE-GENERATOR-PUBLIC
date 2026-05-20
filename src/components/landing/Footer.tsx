@@ -141,7 +141,7 @@ const Footer: React.FC = () => {
 
       <div className="flex flex-col gap-4 md:flex-row justify-between items-center border-t pt-4 md:pt-12 border-white/70">
         <div className="text-white/70">
-          <span>@{new Date().getFullYear()} Genomac Innovation Hub. All rights reserved.</span>
+          <span>@2025 Genomac Innovation Hub. All rights reserved.</span>
         </div>
 
         <div className="flex gap-4 text-sm">

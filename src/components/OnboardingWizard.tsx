@@ -888,7 +888,7 @@ export default function OnboardingWizard({
                 disabled={
                   isLoading ||
                   (currentStep === 1 && !selectedTemplate) ||
-                  (currentStep === 3 && !courseTitle)
+                  (currentStep === 3 && !courseName)
                 }
                 className="px-6 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
               >

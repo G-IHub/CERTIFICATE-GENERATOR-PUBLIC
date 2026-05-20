@@ -12,6 +12,7 @@ import {
   Shield,
   Loader2,
 } from "lucide-react";
+import logo from "../assets/logo.png"
 
 const API_BASE = `https://gzawvtlehnujtviahdbv.supabase.co/functions/v1/make-server-a611b057`;
 
@@ -86,12 +87,13 @@ export default function VerificationPage() {
       <div style={{ background: "white", borderBottom: "1px solid #e5e7eb", padding: "0 24px", height: 56, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <Link to="/" style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none" }}>
           <div style={{ width: 28, height: 28, background: "linear-gradient(135deg, #4f46e5, #7c3aed)", borderRadius: 6, display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <Award style={{ width: 16, height: 16, color: "white" }} />
+            {/* <Award style={{ width: 16, height: 16, color: "white" }} /> */}
+            <img src={logo} alt="logo" className="w-full h-full" />
           </div>
           <span style={{ fontWeight: 700, fontSize: 16, color: "#111827" }}>Certifyer</span>
         </Link>
         <span style={{ fontSize: 12, color: "#9ca3af", letterSpacing: 1, textTransform: "uppercase" }}>
-          Certificate Verification
+          Certificate Verification Page
         </span>
       </div>
 

@@ -333,18 +333,24 @@ export default function CertificateTemplate35({
             {recipientName}
           </div>
 
-          {/* Achievement text */}
-          <div
-            style={{
-              fontSize: "11px",
-              color: "#6b7280",
-              fontWeight: 600,
-              marginBottom: "11px",
-              letterSpacing: "0.7px",
-            }}
-          >
-            For Outstanding Performance In
-          </div>
+          {/* Description */}
+          {description && (
+            <p
+              style={{
+                textAlign: "center",
+                fontSize: "11px",
+                color: "#6b7280",
+                fontWeight: 600,
+                margin: "10px 20px",
+                letterSpacing: "0.7px",
+                lineHeight: "1.4",
+                wordWrap: "break-word",
+              }}
+            >
+              {description ||
+                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio commodi incidunt harum, doloremque reprehenderit voluptas aspernatu"}
+            </p>
+          )}
 
           {/* Course Title */}
           <div
@@ -359,27 +365,10 @@ export default function CertificateTemplate35({
           >
             {courseTitle}
           </div>
-
-          {/* Description */}
-          {description && (
-            <p
-              style={{
-                textAlign: "center",
-                fontSize: "12px",
-                color: "black",
-                margin: "10px 20px",
-                lineHeight: "1.4",
-                wordWrap: "break-word",
-              }}
-            >
-              {description ||
-                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio commodi incidunt harum, doloremque reprehenderit voluptas aspernatu"}
-            </p>
-          )}
         </div>
 
         {/* Bottom Section */}
-        <div
+        <div className="items-center"
           style={{
             position: "absolute",
             bottom: "30px",
@@ -387,7 +376,7 @@ export default function CertificateTemplate35({
             right: 0,
             display: "flex",
             justifyContent: "space-around",
-            alignItems: "flex-end",
+            // alignItems: "flex-end",
             padding: "0 64px",
             zIndex: 1,
           }}
@@ -405,7 +394,7 @@ export default function CertificateTemplate35({
                 fontFamily: "'Fira Code', monospace",
               }}
             >
-              {"// date"}
+              {"date"}
             </div>
             <div
               style={{

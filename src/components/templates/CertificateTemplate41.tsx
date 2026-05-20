@@ -47,16 +47,16 @@ export default function CertificateTemplate41({
   const textCol = themeColors?.text ?? "#1a2744";
   const bg = themeColors?.background ?? "#FFFFFF";
 
-  useEffect(() => {
-    const id = "montserrat-font-t41";
-    if (!document.getElementById(id)) {
-      const link = document.createElement("link");
-      link.id = id;
-      link.rel = "stylesheet";
-      link.href = "https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap";
-      document.head.appendChild(link);
-    }
-  }, []);
+  // useEffect(() => {
+  //   const id = "montserrat-font-t41";
+  //   if (!document.getElementById(id)) {
+  //     const link = document.createElement("link");
+  //     link.id = id;
+  //     link.rel = "stylesheet";
+  //     link.href = "https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap";
+  //     document.head.appendChild(link);
+  //   }
+  // }, []);
 
   const logo1 =
     organizationLogos && organizationLogos[0]?.url

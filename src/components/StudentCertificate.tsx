@@ -171,6 +171,9 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
   const [recoveryRef, setRecoveryRef] = useState("");
   const [recovering, setRecovering] = useState(false);
 
+  // Security state
+  const [devToolsOpen, setDevToolsOpen] = useState(false);
+
   // Preload fonts to prevent text shift on first download
   useEffect(() => {
     const preloadFonts = async () => {
@@ -226,6 +229,73 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
     };
 
     preloadFonts();
+  }, []);
+
+  // ── Security: Block print-to-PDF (Ctrl+P / browser print)
+  useEffect(() => {
+    const style = document.createElement('style');
+    style.id = 'cert-print-block';
+    style.innerHTML = `@media print { body { display: none !important; } }`;
+    document.head.appendChild(style);
+    return () => {
+      document.getElementById('cert-print-block')?.remove();
+    };
+  }, []);
+
+  // ── Security: Soft DevTools detection (window size heuristic)
+  useEffect(() => {
+    const THRESHOLD = 160;
+    const check = () => {
+      const open =
+        window.outerWidth - window.innerWidth > THRESHOLD ||
+        window.outerHeight - window.innerHeight > THRESHOLD;
+      setDevToolsOpen((prev) => {
+        if (open && !prev) {
+          toast.warning(
+            "⚠️ Developer tools detected. Certificate content is protected.",
+            { duration: 4000, id: 'devtools-warn' }
+          );
+        }
+        return open;
+      });
+    };
+    check();
+    const id = setInterval(check, 2000);
+    return () => clearInterval(id);
+  }, []);
+
+  // ── Security: Block common developer tools shortcuts & print screen
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // F12
+      if (e.key === 'F12') {
+        e.preventDefault();
+      }
+      // Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C
+      if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j' || e.key === 'C' || e.key === 'c')) {
+        e.preventDefault();
+      }
+      // Ctrl+U (View Source)
+      if (e.ctrlKey && (e.key === 'U' || e.key === 'u')) {
+        e.preventDefault();
+      }
+    };
+    
+    const handleKeyUp = (e: KeyboardEvent) => {
+      if (e.key === 'PrintScreen') {
+        try {
+          navigator.clipboard.writeText('');
+        } catch (err) {}
+        toast.warning("Screenshots are disabled for security reasons.");
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('keyup', handleKeyUp);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('keyup', handleKeyUp);
+    };
   }, []);
 
   useEffect(() => {
@@ -780,6 +850,32 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
       return;
     }
 
+    const displayedName = certificate.studentName || enteredName || "Student";
+
+    // ── Security: Name validation gate — prevent buddy punching
+    const storedName = certificate.studentName;
+    if (storedName) {
+      const normalize = (s: string) =>
+        s.trim().toLowerCase().replace(/\s+/g, ' ');
+      if (normalize(storedName) !== normalize(displayedName)) {
+        toast.error(
+          "Name mismatch. You can only download this certificate with the name it was issued to."
+        );
+        return;
+      }
+    }
+
+    // ── Security: DOM Modification Check
+    const root = certificateRef.current;
+    if (root && displayedName !== "Student") {
+      const textContent = root.textContent || '';
+      // A simple check to ensure the original name is still present in the DOM text
+      if (!textContent.includes(displayedName)) {
+        toast.error("Security alert: Certificate modification detected. Download blocked.");
+        return;
+      }
+    }
+
     setIsDownloading(true);
     toast.info("Generating image...");
 
@@ -787,14 +883,11 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
       await new Promise((resolve) => setTimeout(resolve, 500));
     }
 
-    captureOnscreenNormalized()
-      .catch((err) => {
-        console.warn("Onscreen capture failed, falling back to offscreen:", err);
-        return renderCertificateOffscreen();
-      })
+    // Security: Force offscreen render to ignore any onscreen DOM modifications
+    renderCertificateOffscreen()
       .then((dataUrl) => {
         const courseName = certificate?.courseName || "Certificate";
-        const namePart = (certificate.studentName || enteredName || "Student").replace(/\s+/g, "_");
+        const namePart = displayedName.replace(/\s+/g, "_");
         const fileName = `${courseName.replace(/\s+/g, "_")}_${namePart}.jpeg`;
 
         const link = document.createElement("a");
@@ -811,7 +904,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
       .finally(() => {
         setIsDownloading(false);
       });
-  }, [certificate, captureOnscreenNormalized, renderCertificateOffscreen, fontsLoaded]);
+  }, [certificate, enteredName, renderCertificateOffscreen, fontsLoaded]);
 
   const handleShare = (platform: string) => {
     const shareUrl = window.location.href;
@@ -1119,29 +1212,80 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
               <Card className="">
                 <CardContent className="p-0 overflow-hidden">
                   <div className="overflow-x-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
-                    <div ref={certificateRef} className="flex justify-center items-center" style={{ width: "800px", height: "600px", minWidth: "800px", minHeight: "600px", flexShrink: 0 }}>
-                      <CertificateRenderer
-                        templateId={certificate.template || "template1"}
-                        header={certificate.certificateHeader || "Certificate of Completion"}
-                        courseTitle={certificate.courseName || "Course"}
-                        description={certificate.courseDescription || ""}
-                        date={certificate.completionDate}
-                        recipientName={displayName}
-                        isPreview={true}
-                        mode="student"
-                        organizationName={orgData?.name}
-                        organizationLogo={orgData?.logo}
-                        organizationLogos={certificate.logos || orgData?.settings?.logos}
-                        customTemplateConfig={certificate.customTemplateConfig}
-                        signatoryName1={certificate.signatories?.[0]?.name}
-                        signatoryTitle1={certificate.signatories?.[0]?.title}
-                        signatureUrl1={certificate.signatories?.[0]?.signatureUrl}
-                        signatoryName2={certificate.signatories?.[1]?.name}
-                        signatoryTitle2={certificate.signatories?.[1]?.title}
-                        signatureUrl2={certificate.signatories?.[1]?.signatureUrl}
-                        themeColors={certificate.themeColors || undefined}
-                        certificateId={certificate.id}
-                      />
+                    {/* Wrapper: right-click blocked, text selection disabled, watermark applied */}
+                    <div
+                      style={{ position: 'relative', width: '800px', minWidth: '800px', height: '600px', minHeight: '600px', flexShrink: 0 }}
+                      onContextMenu={(e) => e.preventDefault()}
+                    >
+                      {/* Certificate capture target — watermark is outside this ref */}
+                      <div
+                        ref={certificateRef}
+                        className={`flex justify-center items-center transition-all duration-300 ${devToolsOpen ? 'blur-md select-none opacity-50' : ''}`}
+                        style={{
+                          width: '800px',
+                          height: '600px',
+                          userSelect: 'none',
+                          WebkitTouchCallout: 'none' as any,
+                        }}
+                      >
+                        <CertificateRenderer
+                          templateId={certificate.template || "template1"}
+                          header={certificate.certificateHeader || "Certificate of Completion"}
+                          courseTitle={certificate.courseName || "Course"}
+                          description={certificate.courseDescription || ""}
+                          date={certificate.completionDate}
+                          recipientName={displayName}
+                          isPreview={true}
+                          mode="student"
+                          organizationName={orgData?.name}
+                          organizationLogo={orgData?.logo}
+                          organizationLogos={certificate.logos || orgData?.settings?.logos}
+                          customTemplateConfig={certificate.customTemplateConfig}
+                          signatoryName1={certificate.signatories?.[0]?.name}
+                          signatoryTitle1={certificate.signatories?.[0]?.title}
+                          signatureUrl1={certificate.signatories?.[0]?.signatureUrl}
+                          signatoryName2={certificate.signatories?.[1]?.name}
+                          signatoryTitle2={certificate.signatories?.[1]?.title}
+                          signatureUrl2={certificate.signatories?.[1]?.signatureUrl}
+                          themeColors={certificate.themeColors || undefined}
+                          certificateId={certificate.id}
+                        />
+                      </div>
+
+                      {/* ── Security: On-screen watermark overlay (NOT captured in download) */}
+                      <div
+                        aria-hidden="true"
+                        style={{
+                          position: 'absolute',
+                          inset: 0,
+                          pointerEvents: 'none',
+                          overflow: 'hidden',
+                          zIndex: 10,
+                          display: 'flex',
+                          flexDirection: 'column',
+                          alignItems: 'center',
+                          justifyContent: 'space-around',
+                          padding: '20px 0',
+                        }}
+                      >
+                        {Array.from({ length: 5 }).map((_, i) => (
+                          <div
+                            key={i}
+                            style={{
+                              color: 'rgba(0,0,0,0.10)',
+                              fontSize: 15,
+                              fontWeight: 700,
+                              fontFamily: 'sans-serif',
+                              transform: 'rotate(-25deg)',
+                              whiteSpace: 'nowrap',
+                              userSelect: 'none',
+                              letterSpacing: '0.05em',
+                            }}
+                          >
+                            {displayName} &bull; {new Date().toLocaleDateString()} &bull; certifyer.online
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </CardContent>

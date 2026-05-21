@@ -96,6 +96,45 @@ interface CertificateData {
   logos?: Logo[]; // Organization logos
 }
 
+const cropDataUrl = async (
+  dataUrl: string,
+  cropX: number,
+  cropY: number,
+  cropW: number,
+  cropH: number,
+): Promise<string> => {
+  return await new Promise<string>((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => {
+      try {
+        const canvas = document.createElement("canvas");
+        canvas.width = Math.max(1, Math.round(cropW));
+        canvas.height = Math.max(1, Math.round(cropH));
+        const ctx = canvas.getContext("2d");
+        if (!ctx) return reject(new Error("Canvas context unavailable"));
+        ctx.drawImage(
+          img,
+          Math.round(cropX),
+          Math.round(cropY),
+          Math.round(cropW),
+          Math.round(cropH),
+          0,
+          0,
+          Math.round(cropW),
+          Math.round(cropH),
+        );
+        const out = canvas.toDataURL("image/jpeg", 50.92);
+        resolve(out);
+      } catch (e) {
+        reject(e);
+      }
+    };
+    img.onerror = (e) => reject(new Error("Failed to load generated image"));
+    img.crossOrigin = "anonymous";
+    img.src = dataUrl;
+  });
+};
+
 const StudentCertificate: React.FC<StudentCertificateProps> = ({
   subsidiaries,
 }) => {
@@ -173,6 +212,9 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
 
   // Security state
   const [devToolsOpen, setDevToolsOpen] = useState(false);
+
+  const displayName = certificate?.studentName || enteredName || "Student";
+  const orgData = certificate?.subsidiary || certificate?.organization;
 
   // Preload fonts to prevent text shift on first download
   useEffect(() => {
@@ -650,7 +692,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
               certificate.courseDescription || ""
             }
             date={certificate.completionDate}
-            recipientName={certificate.studentName || enteredName || "Student"}
+            recipientName={displayName}
             isPreview={false}
             mode="student"
             organizationName={orgData?.name}
@@ -718,46 +760,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
     } finally {
       cleanup();
     }
-  }, [certificate]);
-
-  const cropDataUrl = async (
-    dataUrl: string,
-    cropX: number,
-    cropY: number,
-    cropW: number,
-    cropH: number,
-  ): Promise<string> => {
-    return await new Promise<string>((resolve, reject) => {
-      const img = new Image();
-      img.onload = () => {
-        try {
-          const canvas = document.createElement("canvas");
-          canvas.width = Math.max(1, Math.round(cropW));
-          canvas.height = Math.max(1, Math.round(cropH));
-          const ctx = canvas.getContext("2d");
-          if (!ctx) return reject(new Error("Canvas context unavailable"));
-          ctx.drawImage(
-            img,
-            Math.round(cropX),
-            Math.round(cropY),
-            Math.round(cropW),
-            Math.round(cropH),
-            0,
-            0,
-            Math.round(cropW),
-            Math.round(cropH),
-          );
-          const out = canvas.toDataURL("image/jpeg", 50.92);
-          resolve(out);
-        } catch (e) {
-          reject(e);
-        }
-      };
-      img.onerror = (e) => reject(new Error("Failed to load generated image"));
-      img.crossOrigin = "anonymous";
-      img.src = dataUrl;
-    });
-  };
+  }, [certificate, displayName, orgData]);
 
   const captureOnscreenNormalized = useCallback(async (): Promise<string> => {
     const root = certificateRef.current as HTMLElement | null;
@@ -1180,9 +1183,6 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
       />
     );
   }
-
-  const displayName = certificate.studentName || enteredName || "Student";
-  const orgData = certificate.subsidiary || certificate.organization;
 
   return (
     <TooltipProvider>

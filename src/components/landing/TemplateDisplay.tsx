@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import CertificateTemplate1 from '../templates/CertificateTemplate1';
-import CertificateTemplate2 from '../templates/CertificateTemplate2';
-import CertificateTemplate3 from '../templates/CertificateTemplate3';
-import CertificateTemplate4 from '../templates/CertificateTemplate4';
-import CertificateTemplate5 from '../templates/CertificateTemplate5';
+import CertificateTemplate1 from '../templates/CertificateTemplate12';
+import CertificateTemplate2 from '../templates/CertificateTemplate13';
+import CertificateTemplate3 from '../templates/CertificateTemplate14';
+import CertificateTemplate4 from '../templates/CertificateTemplate15';
+import CertificateTemplate5 from '../templates/CertificateTemplate16';
 import PreviewWrapper from '../PreviewWrapper';
 import { AlertCircle } from 'lucide-react';
 

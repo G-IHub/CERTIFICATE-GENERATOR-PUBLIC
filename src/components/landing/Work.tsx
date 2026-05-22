@@ -1,5 +1,6 @@
 import React from "react";
-import work from "../../assets/work.svg";
+import work from "../../assets/CERTIFYER.png";
+// import work from "../../assets/work.svg";
 
 const Work: React.FC = () => {
   return (

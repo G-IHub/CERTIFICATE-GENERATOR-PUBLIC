@@ -1,6 +1,6 @@
 import React from "react";
 import { CheckCircle } from "lucide-react";
-import about_img from "../../assets/about.svg";
+import about_img from "../../assets/about_img.png";
 
 interface KeyBenefit {
   id: number;

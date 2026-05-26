@@ -43,8 +43,6 @@ import ProductAccessPage from "./components/ProductAccessPage";
 
 const defaultOrgLogo = "https://via.placeholder.com/256x256.png?text=Org+Logo";
 
-
-
 interface Signatory {
   id: string;
   name: string;
@@ -218,6 +216,7 @@ export default function App() {
           if (response.user && isAdminEmail(response.user.email)) {
             setIsPlatformAdmin(true);
           } else {
+            setIsPlatformAdmin(false);
             await loadOrganizations(token);
           }
         } catch (error: any) {
@@ -332,14 +331,16 @@ export default function App() {
       const userWasActiveRecently = Date.now() - lastActivity < fiveMinutesInMs;
 
       if (minutesRemaining <= 10 && userWasActiveRecently) {
-        console.log("🔄 Session near expiration but user is active. Refreshing session...");
+        console.log(
+          "🔄 Session near expiration but user is active. Refreshing session...",
+        );
         try {
           const response = await authApi.getSession(accessToken);
           if (response.accessToken) {
             console.log("✅ Session refreshed successfully");
             localStorage.setItem("accessToken", response.accessToken);
             setAccessToken(response.accessToken);
-            
+
             // Optional: Update current user if returned
             if (response.user) {
               setCurrentUser(response.user);
@@ -391,7 +392,7 @@ export default function App() {
       const response = await organizationApi.getAll(token);
       const orgs = (response.organizations || []).map((org: any) => ({
         ...org,
-        courses: org.courses || org.programs || []
+        courses: org.courses || org.programs || [],
       }));
       setOrganizations(orgs);
     } catch (error) {
@@ -438,6 +439,7 @@ export default function App() {
         if (response.user && isAdminEmail(response.user.email)) {
           setIsPlatformAdmin(true);
         } else {
+          setIsPlatformAdmin(false);
           // Load organizations for regular users
           await loadOrganizations(token);
 
@@ -472,6 +474,7 @@ export default function App() {
         if (isAdminEmail(userAccount.email)) {
           setIsPlatformAdmin(true);
         } else {
+          setIsPlatformAdmin(false);
           await loadOrganizations(token);
         }
       } else {
@@ -494,6 +497,7 @@ export default function App() {
         if (isAdminEmail(userAccount.email)) {
           setIsPlatformAdmin(true);
         } else {
+          setIsPlatformAdmin(false);
           // Add the organization if it doesn't exist
           if (
             legacyUser.subsidiary &&
@@ -503,7 +507,10 @@ export default function App() {
               ...prev,
               {
                 ...legacyUser.subsidiary,
-                courses: (legacyUser.subsidiary as any).courses || (legacyUser.subsidiary as any).programs || []
+                courses:
+                  (legacyUser.subsidiary as any).courses ||
+                  (legacyUser.subsidiary as any).programs ||
+                  [],
               } as Organization,
             ]);
           }

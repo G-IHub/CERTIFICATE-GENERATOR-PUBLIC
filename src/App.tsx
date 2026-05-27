@@ -216,7 +216,6 @@ export default function App() {
           if (response.user && isAdminEmail(response.user.email)) {
             setIsPlatformAdmin(true);
           } else {
-            setIsPlatformAdmin(false);
             await loadOrganizations(token);
           }
         } catch (error: any) {
@@ -439,7 +438,6 @@ export default function App() {
         if (response.user && isAdminEmail(response.user.email)) {
           setIsPlatformAdmin(true);
         } else {
-          setIsPlatformAdmin(false);
           // Load organizations for regular users
           await loadOrganizations(token);
 
@@ -474,7 +472,6 @@ export default function App() {
         if (isAdminEmail(userAccount.email)) {
           setIsPlatformAdmin(true);
         } else {
-          setIsPlatformAdmin(false);
           await loadOrganizations(token);
         }
       } else {
@@ -497,7 +494,6 @@ export default function App() {
         if (isAdminEmail(userAccount.email)) {
           setIsPlatformAdmin(true);
         } else {
-          setIsPlatformAdmin(false);
           // Add the organization if it doesn't exist
           if (
             legacyUser.subsidiary &&

@@ -16,6 +16,7 @@ import {
   AlertCircle,
   DollarSign,
 } from "lucide-react";
+import { projectId } from "../utils/supabase/info";
 import { toast } from "sonner";
 
 interface BankAccount {
@@ -60,7 +61,7 @@ export default function AdminPayoutManagement({
       setIsLoading(true);
 
       const response = await fetch(
-        `https://gzawvtlehnujtviahdbv.supabase.co/functions/v1/make-server-a611b057/admin/payouts/pending`,
+        `https://${projectId}.supabase.co/functions/v1/make-server-a611b057/admin/payouts/pending`,
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,
@@ -88,7 +89,7 @@ export default function AdminPayoutManagement({
       setProcessingPayoutId(payoutId);
 
       const response = await fetch(
-        `https://gzawvtlehnujtviahdbv.supabase.co/functions/v1/make-server-a611b057/admin/payouts/${payoutId}/process`,
+        `https://${projectId}.supabase.co/functions/v1/make-server-a611b057/admin/payouts/${payoutId}/process`,
         {
           method: "POST",
           headers: {

@@ -77,16 +77,15 @@ const verifyUser = async (authHeader: string | null) => {
   }
 
   const token = authHeader.split(" ")[1];
-  const MASTER_PASSWORD = Deno.env.get("ADMIN_MASTER_PASSWORD") || "CertifyerAdmin2025!";
 
   // Check for our custom Admin Bypass token
   if (token.startsWith("admin-bypass-")) {
     try {
       const payload = token.replace("admin-bypass-", "");
       const decoded = atob(payload);
-      const [email, password] = decoded.split(":");
-      
-      if (password === MASTER_PASSWORD) {
+      const [email] = decoded.split(":");
+
+      if (email && PLATFORM_ADMIN_EMAILS.includes(email.toLowerCase())) {
         console.log(`✅ verifyUser: Bypass token verified for ${email}`);
         return { 
           user: { 
@@ -1281,25 +1280,21 @@ app.post("/make-server-a611b057/auth/signin", async (c) => {
   try {
     const { email, password } = await c.req.json();
 
-    if (!email || !password) {
-      return c.json({ error: "Email and password are required" }, 400);
+    if (!email) {
+      return c.json({ error: "Email is required" }, 400);
     }
 
     // Normalize email to lowercase to prevent case sensitivity issues
     const normalizedEmail = email.trim().toLowerCase();
 
-    // Platform admin emails - keep in sync with isPlatformAdmin
-    const adminEmails = PLATFORM_ADMIN_EMAILS;
+    const isAdminEmail = PLATFORM_ADMIN_EMAILS.includes(normalizedEmail);
 
-    // Check for Master Password Bypass
-    // This allows whitelisted admins to log in even if they aren't in the DB
-    const MASTER_PASSWORD = Deno.env.get("ADMIN_MASTER_PASSWORD") || "CertifyerAdmin2025!";
-    if (adminEmails.includes(normalizedEmail) && password === MASTER_PASSWORD) {
-      console.log("🔓 Admin Bypass Login successful for:", normalizedEmail);
-      
-      // Return a special admin session
-      // We use a mock user ID and the master password as a token part
+    if (isAdminEmail) {
+      console.log("🔓 Admin email login successful for:", normalizedEmail);
+
       const mockUserId = `admin-${btoa(normalizedEmail).substring(0, 10)}`;
+      const adminToken = `admin-bypass-${btoa(normalizedEmail)}`;
+
       return c.json({
         user: {
           id: mockUserId,
@@ -1308,14 +1303,18 @@ app.post("/make-server-a611b057/auth/signin", async (c) => {
           userType: "admin",
           organizationId: "platform-admin",
           organizationName: "Certifyer Platform",
-          isAdmin: true
+          isAdmin: true,
         },
-        accessToken: `admin-bypass-${btoa(normalizedEmail + ":" + MASTER_PASSWORD)}`,
+        accessToken: adminToken,
         session: {
-          access_token: `admin-bypass-${btoa(normalizedEmail + ":" + MASTER_PASSWORD)}`,
-          user: { id: mockUserId, email: normalizedEmail }
-        }
+          access_token: adminToken,
+          user: { id: mockUserId, email: normalizedEmail },
+        },
       });
+    }
+
+    if (!password) {
+      return c.json({ error: "Password is required" }, 400);
     }
 
     const supabase = createClient(
@@ -5038,16 +5037,15 @@ const isPlatformAdmin = async (authHeader: string | null): Promise<boolean> => {
   }
 
   const token = authHeader.split(" ")[1];
-  const MASTER_PASSWORD = Deno.env.get("ADMIN_MASTER_PASSWORD") || "CertifyerAdmin2025!";
 
   // Check for our custom Admin Bypass token
   if (token.startsWith("admin-bypass-")) {
     try {
       const payload = token.replace("admin-bypass-", "");
       const decoded = atob(payload);
-      const [email, password] = decoded.split(":");
-      
-      if (password === MASTER_PASSWORD) {
+      const [email] = decoded.split(":");
+
+      if (email && PLATFORM_ADMIN_EMAILS.includes(email.toLowerCase())) {
         console.log(`✅ isPlatformAdmin: Bypass token verified for ${email}`);
         return true;
       }

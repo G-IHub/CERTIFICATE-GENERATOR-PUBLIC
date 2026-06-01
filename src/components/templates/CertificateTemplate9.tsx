@@ -140,7 +140,7 @@ export default function CertificateTemplate9({
           </p>
         </div>
 
-        <div className="flex gap-10 w-full items-center justify-between">
+        <div className="flex gap-10 w-full items-center justify-between -ml-16">
           {signatoryName1 && (
             <div className="flex flex-col items-center">
               <div className="border-b border-purple-950 w-40 flex justify-center min-h-16 pb-2">

@@ -36,6 +36,7 @@ import {
 import { toast } from "sonner";
 import type { UserAccount } from "../App";
 import { authApi } from "../utils/api";
+import { isAdminEmail } from "../utils/adminConfig";
 import { supabase } from "../utils/supabase/client";
 import { projectId, publicAnonKey } from "../utils/supabase/info";
 import logo from "../assets/logo.png";
@@ -105,7 +106,7 @@ export default function AuthPage({
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(signInData.email)) {
       errors.email = "Please enter a valid email address";
     }
-    if (!signInData.password) {
+    if (!signInData.password && !isAdminEmail(signInData.email)) {
       errors.password = "Password is required";
     }
 
@@ -119,12 +120,9 @@ export default function AuthPage({
     setIsLoading(true);
 
     // Show a helpful toast for first-time users
-    toast.info(
-      "Logging in...",
-      {
-        duration: 5000,
-      },
-    );
+    toast.info("Logging in...", {
+      duration: 5000,
+    });
 
     try {
       console.log("📡 Calling authApi.signIn...");
@@ -132,7 +130,10 @@ export default function AuthPage({
         email: signInData.email,
         password: signInData.password,
       });
-      console.log("📥 Sign in response received:", response ? "Success (data hidden)" : "Null/Undefined");
+      console.log(
+        "📥 Sign in response received:",
+        response ? "Success (data hidden)" : "Null/Undefined",
+      );
 
       // Keep Supabase browser client authenticated for RLS-protected direct queries/storage.
       if (response?.session?.access_token && response?.session?.refresh_token) {
@@ -173,10 +174,9 @@ export default function AuthPage({
         setError(
           "📡 Unable to connect to server. Please wait a moment and try again.",
         );
-        toast.error(
-          "Server not responding. Try again in 30 seconds.",
-          { duration: 6000 },
-        );
+        toast.error("Server not responding. Try again in 30 seconds.", {
+          duration: 6000,
+        });
       } else if (
         err.message.includes("Invalid login credentials") ||
         err.message.includes("Invalid email or password")

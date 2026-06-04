@@ -29,17 +29,17 @@ export default function CertificateTemplate39({
   courseTitle,
   description,
   date,
-  recipientName = "Adeade Favour Ololade",
+  recipientName,
   isPreview = false,
-  organizationName = "Genomac Services & Consult",
+  organizationName,
   organizationLogo,
   organizationLogos,
-  organizationSlogan = "Services & Consult",
-  signatoryName1 = "Oluwaseyi Abraham Olawale",
-  signatoryTitle1 = "Founder & CEO, Genomac Holdings",
+  organizationSlogan,
+  signatoryName1,
+  signatoryTitle1,
   signatureUrl1,
-  signatoryName2 = "ILESANMI MOTUNRAYO",
-  signatoryTitle2 = "Team Lead, Genomac Services & Consult",
+  signatoryName2,
+  signatoryTitle2,
   signatureUrl2,
   mode = "student",
   certificateId,
@@ -94,9 +94,9 @@ export default function CertificateTemplate39({
           <p className="text-sm font-bold tracking-wide text-white m-0">
             {organizationName}
           </p>
-          <p className="text-xs font-semibold text-white m-0">
+          {/* <p className="text-xs font-semibold text-white m-0">
             {organizationSlogan}
-          </p>
+          </p> */}
         </div>
       </div>
 
@@ -410,7 +410,7 @@ export default function CertificateTemplate39({
       <div className="absolute inset-10 flex flex-col justify-center items-center text-center gap-10 z-30">
         {/* Certificate Title */}
         <div>
-          <p className="text-lg font-medium tracking-widest uppercase text-white mb-2">
+          <p className="text-5xl font-medium tracking-widest uppercase text-white mb-2">
             {header?.split(" ")[0] || "CERTIFICATE"}
           </p>
           <p className="text-4xl font-bold uppercase text-white">

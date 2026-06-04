@@ -2421,6 +2421,7 @@ app.post("/make-server-a611b057/certificates", async (c) => {
           paymentStatus: "unpaid",
           paidAt: null,
           lastPaymentReference: null,
+          themeColors: themeColors || null,
         };
 
         await kv.set(`cert:${certificateId}`, certificate);

@@ -340,6 +340,7 @@ export const certificateApi = {
     signatories?: any[];
     restrictDownload?: boolean;
     allowedEmails?: string[];
+    themeColors?: any;
   }) => {
     console.log('📤 Sending certificate update request:', {
       certificateId,

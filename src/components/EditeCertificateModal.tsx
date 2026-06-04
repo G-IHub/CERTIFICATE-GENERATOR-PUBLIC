@@ -27,6 +27,7 @@ const updateCertificate = async (
     signatories?: any[];
     restrictDownload?: boolean;
     allowedEmails?: string[];
+    themeColors?: any;
   },
 ) => {
   console.log("📤 Sending certificate update request:", {
@@ -183,6 +184,7 @@ export function EditCertificateModal({
         signatories: signatories.length > 0 ? signatories : undefined,
         restrictDownload,
         allowedEmails,
+        themeColors: themeColors ?? null,
       });
 
       if (!response.certificates || response.certificates.length === 0) {

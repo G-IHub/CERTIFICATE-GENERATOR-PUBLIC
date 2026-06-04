@@ -32,17 +32,14 @@ export default function CertificateTemplate39({
   recipientName,
   isPreview = false,
   organizationName,
-  organizationLogo,
   organizationLogos,
-  organizationSlogan,
+  organizationLogo,
   signatoryName1,
   signatoryTitle1,
   signatureUrl1,
   signatoryName2,
   signatoryTitle2,
   signatureUrl2,
-  mode = "student",
-  certificateId,
   themeColors,
 }: CertificateTemplate39Props) {
   const ref = useRef<HTMLDivElement>(null);
@@ -60,6 +57,13 @@ export default function CertificateTemplate39({
 
   const logosToDisplay = organizationLogos || [];
 
+  // Theme support
+  const primary = themeColors?.primary ?? "#80183D";
+  const secondary = themeColors?.secondary ?? "#673A8D";
+  const darkPrimary = themeColors?.primary ? `${themeColors.primary}cc` : "#651C30";
+  const background = themeColors?.background ?? "#1a1a1a";
+  const text = themeColors?.text ?? "#ffffff";
+
   return (
     <div
       ref={ref}
@@ -67,7 +71,7 @@ export default function CertificateTemplate39({
         width: "800px",
         height: "600px",
         position: "relative",
-        background: "#1a1a1a",
+        background: background,
         fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
         overflow: "hidden",
         boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
@@ -91,12 +95,9 @@ export default function CertificateTemplate39({
           />
         )}
         <div className="text-center">
-          <p className="text-sm font-bold tracking-wide text-white m-0">
+          <p className="text-sm font-bold tracking-wide m-0" style={{ color: text }}>
             {organizationName}
           </p>
-          {/* <p className="text-xs font-semibold text-white m-0">
-            {organizationSlogan}
-          </p> */}
         </div>
       </div>
 
@@ -110,7 +111,7 @@ export default function CertificateTemplate39({
             height: 0,
             borderLeft: "50px solid transparent",
             borderRight: "50px solid transparent",
-            borderBottom: "80px solid #673A8D",
+            borderBottom: `80px solid ${secondary}`,
             right: 20,
             top: 0,
           }}
@@ -123,7 +124,7 @@ export default function CertificateTemplate39({
             height: 0,
             borderLeft: "50px solid transparent",
             borderRight: "50px solid transparent",
-            borderBottom: "80px solid #80183D",
+            borderBottom: `80px solid ${primary}`,
             transform: "rotate(180deg)",
             right: 20,
             top: 80,
@@ -137,7 +138,7 @@ export default function CertificateTemplate39({
             height: 0,
             borderLeft: "50px solid transparent",
             borderRight: "50px solid transparent",
-            borderBottom: "80px solid #651C30",
+            borderBottom: `80px solid ${darkPrimary}`,
             right: -30,
             top: 80,
           }}
@@ -150,7 +151,7 @@ export default function CertificateTemplate39({
             height: 0,
             borderLeft: "50px solid transparent",
             borderRight: "50px solid transparent",
-            borderBottom: "80px solid #80183D",
+            borderBottom: `80px solid ${primary}`,
             transform: "rotate(180deg)",
             right: 70,
             top: 0,
@@ -164,7 +165,7 @@ export default function CertificateTemplate39({
             height: 0,
             borderLeft: "30px solid transparent",
             borderRight: "30px solid transparent",
-            borderBottom: "50px solid #673A8D",
+            borderBottom: `50px solid ${secondary}`,
             right: 160,
             top: 8,
           }}
@@ -177,7 +178,7 @@ export default function CertificateTemplate39({
             height: 0,
             borderLeft: "40px solid transparent",
             borderRight: "40px solid transparent",
-            borderBottom: "50px solid #673A8D",
+            borderBottom: `50px solid ${secondary}`,
             transform: "rotate(180deg)",
             right: 0,
             top: 200,
@@ -191,7 +192,7 @@ export default function CertificateTemplate39({
             height: 0,
             borderLeft: "20px solid transparent",
             borderRight: "20px solid transparent",
-            borderBottom: "30px solid #80183D",
+            borderBottom: `30px solid ${secondary}`,
             transform: "rotate(180deg)",
             right: 40,
             top: 256,
@@ -209,7 +210,7 @@ export default function CertificateTemplate39({
             height: 0,
             borderLeft: "30px solid transparent",
             borderRight: "30px solid transparent",
-            borderBottom: "40px solid #80183D",
+            borderBottom: `40px solid ${primary}`,
             transform: "rotate(180deg)",
             right: -40,
             bottom: 120,
@@ -223,7 +224,7 @@ export default function CertificateTemplate39({
             height: 0,
             borderLeft: "30px solid transparent",
             borderRight: "30px solid transparent",
-            borderBottom: "40px solid #673A8D",
+            borderBottom: `40px solid ${secondary}`,
             transform: "rotate(180deg)",
             left: 216,
             bottom: 32,
@@ -237,7 +238,7 @@ export default function CertificateTemplate39({
             height: 0,
             borderLeft: "50px solid transparent",
             borderRight: "50px solid transparent",
-            borderBottom: "60px solid #673A8D",
+            borderBottom: `60px solid ${secondary}`,
             transform: "rotate(180deg)",
             left: -49,
             bottom: 60,
@@ -251,7 +252,7 @@ export default function CertificateTemplate39({
             height: 0,
             borderLeft: "50px solid transparent",
             borderRight: "50px solid transparent",
-            borderBottom: "60px solid #673A8D",
+            borderBottom: `60px solid ${secondary}`,
             transform: "rotate(180deg)",
             left: 50,
             bottom: 60,
@@ -265,7 +266,7 @@ export default function CertificateTemplate39({
             height: 0,
             borderLeft: "50px solid transparent",
             borderRight: "50px solid transparent",
-            borderBottom: "60px solid #80183D",
+            borderBottom: `60px solid ${primary}`,
             left: 100,
             bottom: 60,
           }}
@@ -278,7 +279,7 @@ export default function CertificateTemplate39({
             height: 0,
             borderLeft: "50px solid transparent",
             borderRight: "50px solid transparent",
-            borderBottom: "60px solid #80183D",
+            borderBottom: `60px solid ${primary}`,
             left: 50,
             bottom: 120,
           }}
@@ -291,7 +292,7 @@ export default function CertificateTemplate39({
             height: 0,
             borderLeft: "50px solid transparent",
             borderRight: "50px solid transparent",
-            borderBottom: "60px solid #651C30",
+            borderBottom: `60px solid ${darkPrimary}`,
             transform: "rotate(180deg)",
             left: 0,
             bottom: 120,
@@ -305,7 +306,7 @@ export default function CertificateTemplate39({
             height: 0,
             borderLeft: "50px solid transparent",
             borderRight: "50px solid transparent",
-            borderBottom: "60px solid #673A8D",
+            borderBottom: `60px solid ${secondary}`,
             left: -52,
             bottom: 240,
           }}
@@ -318,7 +319,7 @@ export default function CertificateTemplate39({
             height: 0,
             borderLeft: "50px solid transparent",
             borderRight: "50px solid transparent",
-            borderBottom: "60px solid #80183D",
+            borderBottom: `60px solid ${primary}`,
             transform: "rotate(180deg)",
             left: -52,
             bottom: 180,
@@ -332,7 +333,7 @@ export default function CertificateTemplate39({
             height: 0,
             borderLeft: "50px solid transparent",
             borderRight: "50px solid transparent",
-            borderBottom: "60px solid #80183D",
+            borderBottom: `60px solid ${primary}`,
             transform: "rotate(180deg)",
             left: -52,
             bottom: 300,
@@ -346,7 +347,7 @@ export default function CertificateTemplate39({
             height: 0,
             borderLeft: "50px solid transparent",
             borderRight: "50px solid transparent",
-            borderBottom: "60px solid #651C30",
+            borderBottom: `60px solid ${darkPrimary}`,
             left: 50,
             bottom: 0,
           }}
@@ -359,7 +360,7 @@ export default function CertificateTemplate39({
             height: 0,
             borderLeft: "50px solid transparent",
             borderRight: "50px solid transparent",
-            borderBottom: "60px solid #673A8D",
+            borderBottom: `60px solid ${secondary}`,
             left: -49,
             bottom: 0,
           }}
@@ -372,7 +373,7 @@ export default function CertificateTemplate39({
             height: 0,
             borderLeft: "50px solid transparent",
             borderRight: "50px solid transparent",
-            borderBottom: "60px solid #80183D",
+            borderBottom: `60px solid ${primary}`,
             transform: "rotate(180deg)",
             left: 0,
             bottom: 0,
@@ -386,7 +387,7 @@ export default function CertificateTemplate39({
             height: 0,
             borderLeft: "30px solid transparent",
             borderRight: "30px solid transparent",
-            borderBottom: "40px solid #80183D",
+            borderBottom: `40px solid ${primary}`,
             left: 40,
             top: 192,
           }}
@@ -399,7 +400,7 @@ export default function CertificateTemplate39({
             height: 0,
             borderLeft: "30px solid transparent",
             borderRight: "30px solid transparent",
-            borderBottom: "40px solid #673A8D",
+            borderBottom: `40px solid ${secondary}`,
             left: 40,
             bottom: 200,
           }}
@@ -410,43 +411,45 @@ export default function CertificateTemplate39({
       <div className="absolute inset-10 flex flex-col justify-center items-center text-center gap-10 z-30">
         {/* Certificate Title */}
         <div>
-          <p className="text-5xl font-medium tracking-widest uppercase text-white mb-2">
+          <p className="text-5xl font-medium tracking-widest uppercase mb-2" style={{ color: text }}>
             {header?.split(" ")[0] || "CERTIFICATE"}
           </p>
-          <p className="text-4xl font-bold uppercase text-white">
+          <p className="text-4xl font-bold uppercase" style={{ color: text }}>
             {header?.split(" ").slice(1).join(" ") || "OF ACHIEVEMENT"}
           </p>
         </div>
 
         {/* Subtitle */}
-        <p className="text-sm text-white">This Certificate is Presented to:</p>
+        <p className="text-sm" style={{ color: text }}>This Certificate is Presented to:</p>
 
         {/* Recipient Info */}
         <div className="flex flex-col gap-4 items-center text-center w-full">
           {/* Student Name with underline */}
-          <div className="w-full border-b-2 border-white pb-2">
+          <div className="w-full border-b-2 pb-2" style={{ borderColor: primary }}>
             <div
               style={{
                 fontSize: "40px",
                 fontFamily: "'Great Vibes', cursive",
+                color: text,
               }}
-              className="text-white m-0"
+              className="m-0"
             >
               {recipientName}
             </div>
           </div>
 
           {/* Description */}
-          <p className="max-w-4/5 text-xs font-bold text-white text-center leading-relaxed">
+          <p className="max-w-4/5 text-xs font-bold text-center leading-relaxed" style={{ color: text }}>
             This Is To Certify That The Above-Mentioned Individual Has Completed
             A Three-Months Training In{" "}
-            {courseTitle ||
-              "PERSONALIZED RESEARCH TRAINING IN TRANSCRIPTOMINCS"}{" "}
+            <span style={{ color: primary }}>
+              {courseTitle || "PERSONALIZED RESEARCH TRAINING IN TRANSCRIPTOMINCS"}
+            </span>{" "}
             Organized by {organizationName}.
           </p>
 
           {/* Date */}
-          <p className="text-xs font-semibold text-white border border-white px-4 py-2">
+          <p className="text-xs font-semibold border px-4 py-2" style={{ color: text, borderColor: text }}>
             Held on: {date}
           </p>
         </div>
@@ -455,16 +458,16 @@ export default function CertificateTemplate39({
         <div className="flex gap-10 w-full justify-center items-center">
           {/* Signature 1 */}
           <div className="flex flex-col gap-2 items-center">
-            <div className="border-b border-blue-950 w-40 text-center min-h-10">
+            <div className="border-b w-40 text-center min-h-10" style={{ borderColor: secondary }}>
               {signatureUrl1 && (
                 <img
                   src={signatureUrl1}
                   alt="Signature 1"
-                  className="h-10 object-contain"
+                  className="h-16 ml-5 object-contain"
                 />
               )}
             </div>
-            <div className="text-center text-xs font-semibold text-white">
+            <div className="text-center text-xs font-semibold" style={{ color: text }}>
               <p className="uppercase m-0 mb-0.5">{signatoryName1}</p>
               <p className="m-0">{signatoryTitle1}</p>
             </div>
@@ -472,16 +475,16 @@ export default function CertificateTemplate39({
 
           {/* Signature 2 */}
           <div className="flex flex-col gap-2 items-center">
-            <div className="border-b border-blue-950 w-40 text-center min-h-10">
+            <div className="border-b w-40 text-center min-h-10" style={{ borderColor: secondary }}>
               {signatureUrl2 && (
                 <img
                   src={signatureUrl2}
                   alt="Signature 2"
-                  className="h-10 object-contain"
+                  className="h-16 ml-5 object-contain"
                 />
               )}
             </div>
-            <div className="text-center text-xs font-semibold text-white">
+            <div className="text-center text-xs font-semibold" style={{ color: text }}>
               <p className="uppercase m-0 mb-0.5">{signatoryName2}</p>
               <p className="m-0">{signatoryTitle2}</p>
             </div>

@@ -1,0 +1,1156 @@
+{
+  "RequestItems": {
+    "certifyer-dev-kv": [
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777307447140-4G43BZK89"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777307447140-4G43BZK89"
+                },
+                "email": {
+                  "S": "lawrencelekku32@gmail.com"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "It was a good learning session"
+                },
+                "programId": {
+                  "S": "exploring-free-tools-for-computational-drug-discovery"
+                },
+                "courseName": {
+                  "S": "Exploring Free Tools for Computational Drug Discovery"
+                },
+                "studentName": {
+                  "S": "Lekku Lawrence"
+                },
+                "submittedAt": {
+                  "S": "2026-04-27T16:30:47.140Z"
+                },
+                "organization": {
+                  "S": "Lekku Lawrence"
+                },
+                "certificateId": {
+                  "S": "CERT-1777292132240-K3IVERPYR"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777307553468-C5KD6Y55Y"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777307553468-C5KD6Y55Y"
+                },
+                "email": {
+                  "S": "iqra.riaz@kinnaird.edu.pk"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It was a great learning experience. It helped me understand more about drug discovery."
+                },
+                "programId": {
+                  "S": "exploring-free-tools-for-computational-drug-discovery"
+                },
+                "courseName": {
+                  "S": "Exploring Free Tools for Computational Drug Discovery"
+                },
+                "studentName": {
+                  "S": "iqra Riaz"
+                },
+                "submittedAt": {
+                  "S": "2026-04-27T16:32:33.468Z"
+                },
+                "testimonial": {
+                  "S": "Please arrange more trainings and workshops."
+                },
+                "organization": {
+                  "S": "Kinnaird College"
+                },
+                "certificateId": {
+                  "S": "CERT-1777292132240-K3IVERPYR"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777307713019-Y23VYI1K8"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777307713019-Y23VYI1K8"
+                },
+                "email": {
+                  "S": "iqra.riaz@kinnaird.edu.pk"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It was a great learning experience. It helped me understand more about drug discovery."
+                },
+                "programId": {
+                  "S": "exploring-free-tools-for-computational-drug-discovery"
+                },
+                "courseName": {
+                  "S": "Exploring Free Tools for Computational Drug Discovery"
+                },
+                "studentName": {
+                  "S": "Iqra Riaz"
+                },
+                "submittedAt": {
+                  "S": "2026-04-27T16:35:13.019Z"
+                },
+                "testimonial": {
+                  "S": "Please arrange more workshops."
+                },
+                "organization": {
+                  "S": "Kinnaird College"
+                },
+                "certificateId": {
+                  "S": "CERT-1777292132240-K3IVERPYR"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777307776327-TFSRSQW9F"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777307776327-TFSRSQW9F"
+                },
+                "email": {
+                  "S": "kazmi.aiman.17@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Impressive experience ever"
+                },
+                "programId": {
+                  "S": "exploring-free-tools-for-computational-drug-discovery"
+                },
+                "courseName": {
+                  "S": "Exploring Free Tools for Computational Drug Discovery"
+                },
+                "studentName": {
+                  "S": "Aiman Imran"
+                },
+                "submittedAt": {
+                  "S": "2026-04-27T16:36:16.327Z"
+                },
+                "testimonial": {
+                  "S": "want more opportunities like this"
+                },
+                "organization": {
+                  "S": "Arid Agriculture University Rawalpindi,UIBB"
+                },
+                "certificateId": {
+                  "S": "CERT-1777292132240-K3IVERPYR"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777307918607-BN4QCLLM5"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777307918607-BN4QCLLM5"
+                },
+                "email": {
+                  "S": "diahadiouoba@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "programId": {
+                  "S": "exploring-free-tools-for-computational-drug-discovery"
+                },
+                "courseName": {
+                  "S": "Exploring Free Tools for Computational Drug Discovery"
+                },
+                "studentName": {
+                  "S": "Diahadi Ouoba"
+                },
+                "submittedAt": {
+                  "S": "2026-04-27T16:38:38.607Z"
+                },
+                "organization": {
+                  "S": "Crun"
+                },
+                "certificateId": {
+                  "S": "CERT-1777292132240-K3IVERPYR"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777308101304-67MP7XNHW"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777308101304-67MP7XNHW"
+                },
+                "email": {
+                  "S": "iqra.riaz@kinnaird.edu.pk"
+                },
+                "title": {
+                  "S": "Mrs"
+                },
+                "impact": {
+                  "S": "I learned a lot from this workshop."
+                },
+                "programId": {
+                  "S": "exploring-free-tools-for-computational-drug-discovery"
+                },
+                "courseName": {
+                  "S": "Exploring Free Tools for Computational Drug Discovery"
+                },
+                "studentName": {
+                  "S": "Komal Aslam"
+                },
+                "submittedAt": {
+                  "S": "2026-04-27T16:41:41.304Z"
+                },
+                "testimonial": {
+                  "S": "Thank you for arranging."
+                },
+                "organization": {
+                  "S": "Kinnaird College"
+                },
+                "certificateId": {
+                  "S": "CERT-1777292132240-K3IVERPYR"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777308396498-6E8ZZW1ZS"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777308396498-6E8ZZW1ZS"
+                },
+                "email": {
+                  "S": "iqra.riaz@kinnaird.edu.pk"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "It was a great learning experience."
+                },
+                "programId": {
+                  "S": "exploring-free-tools-for-computational-drug-discovery"
+                },
+                "courseName": {
+                  "S": "Exploring Free Tools for Computational Drug Discovery"
+                },
+                "studentName": {
+                  "S": "Dr. Komal Aslam"
+                },
+                "submittedAt": {
+                  "S": "2026-04-27T16:46:36.498Z"
+                },
+                "testimonial": {
+                  "S": "Thank you for arranging this training."
+                },
+                "organization": {
+                  "S": "Kinnaird College"
+                },
+                "certificateId": {
+                  "S": "CERT-1777292132240-K3IVERPYR"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777308873218-87QY17VBL"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777308873218-87QY17VBL"
+                },
+                "email": {
+                  "S": "saniashakedl@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "programId": {
+                  "S": "exploring-free-tools-for-computational-drug-discovery"
+                },
+                "courseName": {
+                  "S": "Exploring Free Tools for Computational Drug Discovery"
+                },
+                "studentName": {
+                  "S": "Sania Shakeel"
+                },
+                "submittedAt": {
+                  "S": "2026-04-27T16:54:33.218Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1777292132240-K3IVERPYR"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777309102061-WR9TF3UB5"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777309102061-WR9TF3UB5"
+                },
+                "email": {
+                  "S": "senaliabeyrathne@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "programId": {
+                  "S": "exploring-free-tools-for-computational-drug-discovery"
+                },
+                "courseName": {
+                  "S": "Exploring Free Tools for Computational Drug Discovery"
+                },
+                "studentName": {
+                  "S": "Abeyrathne Herath Mudiyanselage Senali Dileka Abeyrathne"
+                },
+                "submittedAt": {
+                  "S": "2026-04-27T16:58:22.061Z"
+                },
+                "organization": {
+                  "S": "University of Colombo"
+                },
+                "certificateId": {
+                  "S": "CERT-1777292132240-K3IVERPYR"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777309770719-UM9C8SI6M"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777309770719-UM9C8SI6M"
+                },
+                "email": {
+                  "S": "R252754R@students.msu.ac.zw"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "it was such an educational program"
+                },
+                "programId": {
+                  "S": "exploring-free-tools-for-computational-drug-discovery"
+                },
+                "courseName": {
+                  "S": "Exploring Free Tools for Computational Drug Discovery"
+                },
+                "studentName": {
+                  "S": "NOKUTENDA MUTSIGWA"
+                },
+                "submittedAt": {
+                  "S": "2026-04-27T17:09:30.719Z"
+                },
+                "testimonial": {
+                  "S": "I recommend and all those who haven't participated to do so given there is another program to be organised"
+                },
+                "organization": {
+                  "S": "MIDLANDS STATE UNIVERSITY"
+                },
+                "certificateId": {
+                  "S": "CERT-1777292132240-K3IVERPYR"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777311479433-QDGVC289C"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777311479433-QDGVC289C"
+                },
+                "email": {
+                  "S": "hananmamadu@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "I will recommend this for anyone, clearly not a waste of time."
+                },
+                "programId": {
+                  "S": "exploring-free-tools-for-computational-drug-discovery"
+                },
+                "courseName": {
+                  "S": "Exploring Free Tools for Computational Drug Discovery"
+                },
+                "studentName": {
+                  "S": "Hanan Mamadu"
+                },
+                "submittedAt": {
+                  "S": "2026-04-27T17:37:59.433Z"
+                },
+                "organization": {
+                  "S": "University of ilorin"
+                },
+                "certificateId": {
+                  "S": "CERT-1777292132240-K3IVERPYR"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777312046019-BHVXPM6P0"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777312046019-BHVXPM6P0"
+                },
+                "email": {
+                  "S": "hananmamadu@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "If you’re willingly to learn, this tool is willing to help, I appreciate the organizers."
+                },
+                "programId": {
+                  "S": "exploring-free-tools-for-computational-drug-discovery"
+                },
+                "courseName": {
+                  "S": "Exploring Free Tools for Computational Drug Discovery"
+                },
+                "studentName": {
+                  "S": "Hanan Mamadu"
+                },
+                "submittedAt": {
+                  "S": "2026-04-27T17:47:26.019Z"
+                },
+                "organization": {
+                  "S": "University of ilorin"
+                },
+                "certificateId": {
+                  "S": "CERT-1777292132240-K3IVERPYR"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777312151089-DN0QRZAY5"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777312151089-DN0QRZAY5"
+                },
+                "email": {
+                  "S": "hananmamadu@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "If you’re willing to learn, this tool is willing to help you, I appreciate the organizers."
+                },
+                "programId": {
+                  "S": "exploring-free-tools-for-computational-drug-discovery"
+                },
+                "courseName": {
+                  "S": "Exploring Free Tools for Computational Drug Discovery"
+                },
+                "studentName": {
+                  "S": "Hanan Mamadu"
+                },
+                "submittedAt": {
+                  "S": "2026-04-27T17:49:11.089Z"
+                },
+                "organization": {
+                  "S": "University of ilorin"
+                },
+                "certificateId": {
+                  "S": "CERT-1777292132240-K3IVERPYR"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777312158174-I7F632YX4"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777312158174-I7F632YX4"
+                },
+                "email": {
+                  "S": "ezumajchisom@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "The program has taught me that this digital era has made simulations to know the impact of drugs in the body without having to get the drugs in contact with the patient. A virtual way of knowing the personalized effect of drugs in a system."
+                },
+                "programId": {
+                  "S": "exploring-free-tools-for-computational-drug-discovery"
+                },
+                "courseName": {
+                  "S": "Exploring Free Tools for Computational Drug Discovery"
+                },
+                "studentName": {
+                  "S": "EZUMA CHISOM JOAN"
+                },
+                "submittedAt": {
+                  "S": "2026-04-27T17:49:18.174Z"
+                },
+                "testimonial": {
+                  "S": "Thank you for the opportunity GENOMAC. I learnt a lot from this webinar"
+                },
+                "organization": {
+                  "S": "University of Nigeria Nsukka"
+                },
+                "certificateId": {
+                  "S": "CERT-1777292132240-K3IVERPYR"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777312456974-JO4QBV564"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777312456974-JO4QBV564"
+                },
+                "email": {
+                  "S": "sanaabdoulaye76@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "programId": {
+                  "S": "exploring-free-tools-for-computational-drug-discovery"
+                },
+                "courseName": {
+                  "S": "Exploring Free Tools for Computational Drug Discovery"
+                },
+                "studentName": {
+                  "S": "Abdoulaye SANA"
+                },
+                "submittedAt": {
+                  "S": "2026-04-27T17:54:16.974Z"
+                },
+                "organization": {
+                  "S": "Joseph KI-ZERBO University"
+                },
+                "certificateId": {
+                  "S": "CERT-1777292132240-K3IVERPYR"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777314188282-KY1KNZ844"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777314188282-KY1KNZ844"
+                },
+                "email": {
+                  "S": "abdulrasaqsidiqotopeyemi@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "The program has provided valuable insights, and I sincerely appreciate the opportunity. I look forward to participating in more such programs in the future."
+                },
+                "programId": {
+                  "S": "exploring-free-tools-for-computational-drug-discovery"
+                },
+                "courseName": {
+                  "S": "Exploring Free Tools for Computational Drug Discovery"
+                },
+                "studentName": {
+                  "S": "Abdulrasaq Sidiqot Opeyemi"
+                },
+                "submittedAt": {
+                  "S": "2026-04-27T18:23:08.282Z"
+                },
+                "organization": {
+                  "S": "Kwara State University"
+                },
+                "certificateId": {
+                  "S": "CERT-1777292132240-K3IVERPYR"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777314997985-ACK44C9ZA"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777314997985-ACK44C9ZA"
+                },
+                "email": {
+                  "S": "ojumoolatimi@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Fantastic"
+                },
+                "programId": {
+                  "S": "exploring-free-tools-for-computational-drug-discovery"
+                },
+                "courseName": {
+                  "S": "Exploring Free Tools for Computational Drug Discovery"
+                },
+                "studentName": {
+                  "S": "Ojumoola Paul Anu"
+                },
+                "submittedAt": {
+                  "S": "2026-04-27T18:36:37.985Z"
+                },
+                "organization": {
+                  "S": "Federal University of Technology, Akure"
+                },
+                "certificateId": {
+                  "S": "CERT-1777292132240-K3IVERPYR"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777316582677-9RZENBU17"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777316582677-9RZENBU17"
+                },
+                "email": {
+                  "S": "oreoluwagloryjoshua@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It was awesome"
+                },
+                "programId": {
+                  "S": "exploring-free-tools-for-computational-drug-discovery"
+                },
+                "courseName": {
+                  "S": "Exploring Free Tools for Computational Drug Discovery"
+                },
+                "studentName": {
+                  "S": "Oreoluwa Odeyon Joshua"
+                },
+                "submittedAt": {
+                  "S": "2026-04-27T19:03:02.677Z"
+                },
+                "testimonial": {
+                  "S": "I’m grateful for the opportunity to learn"
+                },
+                "organization": {
+                  "S": "Helix Biogen Institute"
+                },
+                "certificateId": {
+                  "S": "CERT-1777292132240-K3IVERPYR"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777317287020-NECO8UZYZ"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777317287020-NECO8UZYZ"
+                },
+                "email": {
+                  "S": "razabaltee05@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "programId": {
+                  "S": "exploring-free-tools-for-computational-drug-discovery"
+                },
+                "courseName": {
+                  "S": "Exploring Free Tools for Computational Drug Discovery"
+                },
+                "studentName": {
+                  "S": "GHULAM RAZA"
+                },
+                "submittedAt": {
+                  "S": "2026-04-27T19:14:47.020Z"
+                },
+                "organization": {
+                  "S": "PMAS ARID AGRICULTURAL UNIVERSITY"
+                },
+                "certificateId": {
+                  "S": "CERT-1777292132240-K3IVERPYR"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777317524096-O926OVAIN"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777317524096-O926OVAIN"
+                },
+                "email": {
+                  "S": "razabaltee05@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "programId": {
+                  "S": "exploring-free-tools-for-computational-drug-discovery"
+                },
+                "courseName": {
+                  "S": "Exploring Free Tools for Computational Drug Discovery"
+                },
+                "studentName": {
+                  "S": "GHULAM RAZA"
+                },
+                "submittedAt": {
+                  "S": "2026-04-27T19:18:44.096Z"
+                },
+                "organization": {
+                  "S": "PMAS ARID AGRICULTURAL UNIVERSITY"
+                },
+                "certificateId": {
+                  "S": "CERT-1777292132240-K3IVERPYR"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777320566446-DVDHUN6QM"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777320566446-DVDHUN6QM"
+                },
+                "email": {
+                  "S": "tapso.bao.ange@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "My experience was satisfied and I am very grateful for this opportunity"
+                },
+                "programId": {
+                  "S": "exploring-free-tools-for-computational-drug-discovery"
+                },
+                "courseName": {
+                  "S": "Exploring Free Tools for Computational Drug Discovery"
+                },
+                "studentName": {
+                  "S": "Baowendsom Ange Evodie Tapsoba"
+                },
+                "submittedAt": {
+                  "S": "2026-04-27T20:09:26.446Z"
+                },
+                "organization": {
+                  "S": "This was very interesting… to people who can to participate don’t be afraid"
+                },
+                "certificateId": {
+                  "S": "CERT-1777292132240-K3IVERPYR"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777320931032-5BGWOVSOI"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777320931032-5BGWOVSOI"
+                },
+                "email": {
+                  "S": "sumaira2805@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It made realise technology has a great role in healthcare"
+                },
+                "programId": {
+                  "S": "exploring-free-tools-for-computational-drug-discovery"
+                },
+                "courseName": {
+                  "S": "Exploring Free Tools for Computational Drug Discovery"
+                },
+                "studentName": {
+                  "S": "Sumaira Hashim"
+                },
+                "submittedAt": {
+                  "S": "2026-04-27T20:15:31.032Z"
+                },
+                "organization": {
+                  "S": "Karachi university"
+                },
+                "certificateId": {
+                  "S": "CERT-1777292132240-K3IVERPYR"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777321757867-SOFJSC4NX"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777321757867-SOFJSC4NX"
+                },
+                "email": {
+                  "S": "usmanbukar2000@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "programId": {
+                  "S": "exploring-free-tools-for-computational-drug-discovery"
+                },
+                "courseName": {
+                  "S": "Exploring Free Tools for Computational Drug Discovery"
+                },
+                "studentName": {
+                  "S": "BUKAR USMAN"
+                },
+                "submittedAt": {
+                  "S": "2026-04-27T20:29:17.867Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1777292132240-K3IVERPYR"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777325985963-4N08OFNS9"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777325985963-4N08OFNS9"
+                },
+                "email": {
+                  "S": "nkiruokoro633@gmail.com"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "It has helped me to learn that there can be more natural solutions to health challenges rather than already existing synthetic drugs"
+                },
+                "programId": {
+                  "S": "exploring-free-tools-for-computational-drug-discovery"
+                },
+                "courseName": {
+                  "S": "Exploring Free Tools for Computational Drug Discovery"
+                },
+                "studentName": {
+                  "S": "Okoro Nkiru"
+                },
+                "submittedAt": {
+                  "S": "2026-04-27T21:39:45.963Z"
+                },
+                "organization": {
+                  "S": "University of Nigeria Nsukka"
+                },
+                "certificateId": {
+                  "S": "CERT-1777292132240-K3IVERPYR"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777331022583-YIURBNGWR"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777331022583-YIURBNGWR"
+                },
+                "email": {
+                  "S": "oyindamolaanthonia08@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It strengthened my understanding of computational drug discovery using accessible tools and enhanced my research confidence, and I would strongly encourage others to participate as it offers valuable hands-on experience and practical insights into modern drug development."
+                },
+                "programId": {
+                  "S": "exploring-free-tools-for-computational-drug-discovery"
+                },
+                "courseName": {
+                  "S": "Exploring Free Tools for Computational Drug Discovery"
+                },
+                "studentName": {
+                  "S": "Adeosun Oyindamola Anthonia"
+                },
+                "submittedAt": {
+                  "S": "2026-04-27T23:03:42.583Z"
+                },
+                "testimonial": {
+                  "S": "If programs like this are been held often it will really help widen the scope of our knowledge and also help us make impact in our society at large."
+                },
+                "organization": {
+                  "S": "Ladoke akintola university of technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1777292132240-K3IVERPYR"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

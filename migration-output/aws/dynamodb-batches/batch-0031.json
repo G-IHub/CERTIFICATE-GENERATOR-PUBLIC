@@ -1,0 +1,1120 @@
+{
+  "RequestItems": {
+    "certifyer-dev-kv": [
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611:TEST-1777155281421-LPAM6KH1A"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777155281421-LPAM6KH1A"
+                },
+                "email": {
+                  "S": "ololadebelloaisha@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It's was an eye opening event,it was just a room where your mind will Shift towards building an a meaningful innovation."
+                },
+                "programId": {
+                  "S": "this-certificate-is-awarded-in-recognition-of-your-active-participation-at-the-women-techmakers-ogbomoso-iwd-2026-conference."
+                },
+                "courseName": {
+                  "S": "This certificate is awarded in recognition of your active participation at the Women Techmakers Ogbomoso IWD 2026 Conference."
+                },
+                "studentName": {
+                  "S": "Aisha Ololade Bello"
+                },
+                "submittedAt": {
+                  "S": "2026-04-25T22:14:41.421Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1776431935683-3VW5LZ3JW"
+                },
+                "organizationId": {
+                  "S": "org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611:TEST-1777155790589-Y120DDO26"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777155790589-Y120DDO26"
+                },
+                "email": {
+                  "S": "rumahoyekunle@gmail.com"
+                },
+                "title": {
+                  "S": "Mrs"
+                },
+                "programId": {
+                  "S": "this-certificate-is-awarded-in-recognition-of-your-active-participation-at-the-women-techmakers-ogbomoso-iwd-2026-conference."
+                },
+                "courseName": {
+                  "S": "This certificate is awarded in recognition of your active participation at the Women Techmakers Ogbomoso IWD 2026 Conference."
+                },
+                "studentName": {
+                  "S": "Ruhmah Ololade Ibrahim"
+                },
+                "submittedAt": {
+                  "S": "2026-04-25T22:23:10.589Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1776431935683-3VW5LZ3JW"
+                },
+                "organizationId": {
+                  "S": "org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611:TEST-1777155898420-CMWRZSZ50"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777155898420-CMWRZSZ50"
+                },
+                "email": {
+                  "S": "rumahoyekunle@gmail.com"
+                },
+                "title": {
+                  "S": "Mrs"
+                },
+                "programId": {
+                  "S": "this-certificate-is-awarded-in-recognition-of-your-active-participation-at-the-women-techmakers-ogbomoso-iwd-2026-conference."
+                },
+                "courseName": {
+                  "S": "This certificate is awarded in recognition of your active participation at the Women Techmakers Ogbomoso IWD 2026 Conference."
+                },
+                "studentName": {
+                  "S": "Ibrahim Ruhmah Ololade"
+                },
+                "submittedAt": {
+                  "S": "2026-04-25T22:24:58.420Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1776431935683-3VW5LZ3JW"
+                },
+                "organizationId": {
+                  "S": "org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611:TEST-1777158106987-T4D4O7V3M"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777158106987-T4D4O7V3M"
+                },
+                "email": {
+                  "S": "Tolulopeadeola05@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It really enlightened me and opened my eyes and sense into new things different from what we've know or being used to ."
+                },
+                "programId": {
+                  "S": "this-certificate-is-awarded-in-recognition-of-your-active-participation-at-the-women-techmakers-ogbomoso-iwd-2026-conference."
+                },
+                "courseName": {
+                  "S": "This certificate is awarded in recognition of your active participation at the Women Techmakers Ogbomoso IWD 2026 Conference."
+                },
+                "studentName": {
+                  "S": "Tolulope Adeola Ayodeji"
+                },
+                "submittedAt": {
+                  "S": "2026-04-25T23:01:46.987Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology,  Ogbomosho"
+                },
+                "certificateId": {
+                  "S": "CERT-1776431935683-3VW5LZ3JW"
+                },
+                "organizationId": {
+                  "S": "org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611:TEST-1777158311513-OJ2R2RTL2"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777158311513-OJ2R2RTL2"
+                },
+                "email": {
+                  "S": "ashorodahikmot@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Honestly, I learnt a whole lot, from getting to know that leaders are not born but made, to knowing that I do not need anybody's permission to lead, for me to be a leader, I must have been a follower, make good use of my feminine power and a lot more, that I can't possibly type all here."
+                },
+                "programId": {
+                  "S": "this-certificate-is-awarded-in-recognition-of-your-active-participation-at-the-women-techmakers-ogbomoso-iwd-2026-conference."
+                },
+                "courseName": {
+                  "S": "This certificate is awarded in recognition of your active participation at the Women Techmakers Ogbomoso IWD 2026 Conference."
+                },
+                "studentName": {
+                  "S": "Ashoroda Hikmot"
+                },
+                "submittedAt": {
+                  "S": "2026-04-25T23:05:11.513Z"
+                },
+                "testimonial": {
+                  "S": "The event was really educative and inspiring."
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology, Ogbomoso."
+                },
+                "certificateId": {
+                  "S": "CERT-1776431935683-3VW5LZ3JW"
+                },
+                "organizationId": {
+                  "S": "org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611:TEST-1777158461388-1FHHGL0QX"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777158461388-1FHHGL0QX"
+                },
+                "email": {
+                  "S": "ashorodahikmot@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "."
+                },
+                "programId": {
+                  "S": "this-certificate-is-awarded-in-recognition-of-your-active-participation-at-the-women-techmakers-ogbomoso-iwd-2026-conference."
+                },
+                "courseName": {
+                  "S": "This certificate is awarded in recognition of your active participation at the Women Techmakers Ogbomoso IWD 2026 Conference."
+                },
+                "studentName": {
+                  "S": "Hikmot Olabisi Ashoroda"
+                },
+                "submittedAt": {
+                  "S": "2026-04-25T23:07:41.388Z"
+                },
+                "testimonial": {
+                  "S": "."
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology, Ogbomoso."
+                },
+                "certificateId": {
+                  "S": "CERT-1776431935683-3VW5LZ3JW"
+                },
+                "organizationId": {
+                  "S": "org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611:TEST-1777159401335-DY5R97JEW"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777159401335-DY5R97JEW"
+                },
+                "email": {
+                  "S": "tijaniislamiat02@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "programId": {
+                  "S": "this-certificate-is-awarded-in-recognition-of-your-active-participation-at-the-women-techmakers-ogbomoso-iwd-2026-conference."
+                },
+                "courseName": {
+                  "S": "This certificate is awarded in recognition of your active participation at the Women Techmakers Ogbomoso IWD 2026 Conference."
+                },
+                "studentName": {
+                  "S": "Islamiat Tijani"
+                },
+                "submittedAt": {
+                  "S": "2026-04-25T23:23:21.335Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1776431935683-3VW5LZ3JW"
+                },
+                "organizationId": {
+                  "S": "org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611:TEST-1777159639652-WIYS007I3"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777159639652-WIYS007I3"
+                },
+                "email": {
+                  "S": "tijaniislamiat02@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It's stressed me beyond limit and it feeds my mind with value"
+                },
+                "programId": {
+                  "S": "this-certificate-is-awarded-in-recognition-of-your-active-participation-at-the-women-techmakers-ogbomoso-iwd-2026-conference."
+                },
+                "courseName": {
+                  "S": "This certificate is awarded in recognition of your active participation at the Women Techmakers Ogbomoso IWD 2026 Conference."
+                },
+                "studentName": {
+                  "S": "Islamiat Kofoworola Tijani"
+                },
+                "submittedAt": {
+                  "S": "2026-04-25T23:27:19.652Z"
+                },
+                "organization": {
+                  "S": "tknovaacademy"
+                },
+                "certificateId": {
+                  "S": "CERT-1776431935683-3VW5LZ3JW"
+                },
+                "organizationId": {
+                  "S": "org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611:TEST-1777178168892-ES7LLVOV2"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777178168892-ES7LLVOV2"
+                },
+                "email": {
+                  "S": "almubaraqm2007@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "It was actually an amazing event, truly inspiring and I will be looking forward to their next event. Thanks"
+                },
+                "programId": {
+                  "S": "this-certificate-is-awarded-in-recognition-of-your-active-participation-at-the-women-techmakers-ogbomoso-iwd-2026-conference."
+                },
+                "courseName": {
+                  "S": "This certificate is awarded in recognition of your active participation at the Women Techmakers Ogbomoso IWD 2026 Conference."
+                },
+                "studentName": {
+                  "S": "Madandola Al-Mubaraq Omobolaji"
+                },
+                "submittedAt": {
+                  "S": "2026-04-26T04:36:08.892Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology, Ogbomoso"
+                },
+                "certificateId": {
+                  "S": "CERT-1776431935683-3VW5LZ3JW"
+                },
+                "organizationId": {
+                  "S": "org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611:TEST-1777200381155-JXL0FO82N"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777200381155-JXL0FO82N"
+                },
+                "email": {
+                  "S": "olayiwolaboluwatife05@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "My time at the Women Techmakers was really an amazing one, It got my eyes opened to a lots of things. Personally I lost interest in Tech because I do believe I can't catch up with it but seeing young ladies and women like me doing exceptionally well in it inspired me."
+                },
+                "programId": {
+                  "S": "this-certificate-is-awarded-in-recognition-of-your-active-participation-at-the-women-techmakers-ogbomoso-iwd-2026-conference."
+                },
+                "courseName": {
+                  "S": "This certificate is awarded in recognition of your active participation at the Women Techmakers Ogbomoso IWD 2026 Conference."
+                },
+                "studentName": {
+                  "S": "Olayiwola Boluwatife"
+                },
+                "submittedAt": {
+                  "S": "2026-04-26T10:46:21.155Z"
+                },
+                "testimonial": {
+                  "S": "None"
+                },
+                "organization": {
+                  "S": "Ladoke akintola university of Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1776431935683-3VW5LZ3JW"
+                },
+                "organizationId": {
+                  "S": "org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611:TEST-1777204498997-HTW8OGAJX"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777204498997-HTW8OGAJX"
+                },
+                "email": {
+                  "S": "ifeoluwafavour03@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "programId": {
+                  "S": "this-certificate-is-awarded-in-recognition-of-your-active-participation-at-the-women-techmakers-ogbomoso-iwd-2026-conference."
+                },
+                "courseName": {
+                  "S": "This certificate is awarded in recognition of your active participation at the Women Techmakers Ogbomoso IWD 2026 Conference."
+                },
+                "studentName": {
+                  "S": "Favour Aderoju"
+                },
+                "submittedAt": {
+                  "S": "2026-04-26T11:54:58.997Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1776431935683-3VW5LZ3JW"
+                },
+                "organizationId": {
+                  "S": "org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611:TEST-1777204541142-U2PVA0ZNX"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777204541142-U2PVA0ZNX"
+                },
+                "email": {
+                  "S": "ifeoluwafavour03@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "programId": {
+                  "S": "this-certificate-is-awarded-in-recognition-of-your-active-participation-at-the-women-techmakers-ogbomoso-iwd-2026-conference."
+                },
+                "courseName": {
+                  "S": "This certificate is awarded in recognition of your active participation at the Women Techmakers Ogbomoso IWD 2026 Conference."
+                },
+                "studentName": {
+                  "S": "Aderoju Favour Ifeoluwa"
+                },
+                "submittedAt": {
+                  "S": "2026-04-26T11:55:41.142Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1776431935683-3VW5LZ3JW"
+                },
+                "organizationId": {
+                  "S": "org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611:TEST-1777206526645-XYA3WD6EW"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777206526645-XYA3WD6EW"
+                },
+                "email": {
+                  "S": "abdoulayesafia201@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "My experience was top notch and full of insight."
+                },
+                "programId": {
+                  "S": "this-certificate-is-awarded-in-recognition-of-your-active-participation-at-the-women-techmakers-ogbomoso-iwd-2026-conference."
+                },
+                "courseName": {
+                  "S": "This certificate is awarded in recognition of your active participation at the Women Techmakers Ogbomoso IWD 2026 Conference."
+                },
+                "studentName": {
+                  "S": "Abdoulaye Daba Safia"
+                },
+                "submittedAt": {
+                  "S": "2026-04-26T12:28:46.645Z"
+                },
+                "testimonial": {
+                  "S": "Looking forward to more events like this."
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1776431935683-3VW5LZ3JW"
+                },
+                "organizationId": {
+                  "S": "org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611:TEST-1777219306931-W6Q0B5SRF"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777219306931-W6Q0B5SRF"
+                },
+                "email": {
+                  "S": "muminatabolade49@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "programId": {
+                  "S": "this-certificate-is-awarded-in-recognition-of-your-active-participation-at-the-women-techmakers-ogbomoso-iwd-2026-conference."
+                },
+                "courseName": {
+                  "S": "This certificate is awarded in recognition of your active participation at the Women Techmakers Ogbomoso IWD 2026 Conference."
+                },
+                "studentName": {
+                  "S": "Abdulraheem Muminat Opeyemi"
+                },
+                "submittedAt": {
+                  "S": "2026-04-26T16:01:46.931Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1776431935683-3VW5LZ3JW"
+                },
+                "organizationId": {
+                  "S": "org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611:TEST-1777278359769-T8Q9AJX9R"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777278359769-T8Q9AJX9R"
+                },
+                "email": {
+                  "S": "phavourvic@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "programId": {
+                  "S": "this-certificate-is-awarded-in-recognition-of-your-active-participation-at-the-women-techmakers-ogbomoso-iwd-2026-conference."
+                },
+                "courseName": {
+                  "S": "This certificate is awarded in recognition of your active participation at the Women Techmakers Ogbomoso IWD 2026 Conference."
+                },
+                "studentName": {
+                  "S": "Victoria Olaoye"
+                },
+                "submittedAt": {
+                  "S": "2026-04-27T08:25:59.769Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1776431935683-3VW5LZ3JW"
+                },
+                "organizationId": {
+                  "S": "org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611:TEST-1777279355463-XGWY9UG5Z"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777279355463-XGWY9UG5Z"
+                },
+                "email": {
+                  "S": "sofiatkolade@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "programId": {
+                  "S": "this-certificate-is-awarded-in-recognition-of-your-active-participation-at-the-women-techmakers-ogbomoso-iwd-2026-conference."
+                },
+                "courseName": {
+                  "S": "This certificate is awarded in recognition of your active participation at the Women Techmakers Ogbomoso IWD 2026 Conference."
+                },
+                "studentName": {
+                  "S": "Sofiat Kolade Moteleol"
+                },
+                "submittedAt": {
+                  "S": "2026-04-27T08:42:35.463Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1776431935683-3VW5LZ3JW"
+                },
+                "organizationId": {
+                  "S": "org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611:TEST-1777279412211-HKS76NVKT"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777279412211-HKS76NVKT"
+                },
+                "email": {
+                  "S": "sofiatkolade@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "programId": {
+                  "S": "this-certificate-is-awarded-in-recognition-of-your-active-participation-at-the-women-techmakers-ogbomoso-iwd-2026-conference."
+                },
+                "courseName": {
+                  "S": "This certificate is awarded in recognition of your active participation at the Women Techmakers Ogbomoso IWD 2026 Conference."
+                },
+                "studentName": {
+                  "S": "Sofiat Kolade Moteleola"
+                },
+                "submittedAt": {
+                  "S": "2026-04-27T08:43:32.211Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1776431935683-3VW5LZ3JW"
+                },
+                "organizationId": {
+                  "S": "org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611:TEST-1777279630616-NT94MJ1BX"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777279630616-NT94MJ1BX"
+                },
+                "email": {
+                  "S": "oladoyinolaniyi9@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "I would say this to every woman in tech that you can do everything you put your mind to regardless of your gender"
+                },
+                "programId": {
+                  "S": "this-certificate-is-awarded-in-recognition-of-your-active-participation-at-the-women-techmakers-ogbomoso-iwd-2026-conference."
+                },
+                "courseName": {
+                  "S": "This certificate is awarded in recognition of your active participation at the Women Techmakers Ogbomoso IWD 2026 Conference."
+                },
+                "studentName": {
+                  "S": "Oladoyin Mercy Olaniyi"
+                },
+                "submittedAt": {
+                  "S": "2026-04-27T08:47:10.616Z"
+                },
+                "organization": {
+                  "S": "SQI College of ICT"
+                },
+                "certificateId": {
+                  "S": "CERT-1776431935683-3VW5LZ3JW"
+                },
+                "organizationId": {
+                  "S": "org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611:TEST-1777286422472-J6YIHM1OV"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777286422472-J6YIHM1OV"
+                },
+                "email": {
+                  "S": "ayanwunmiayandeji@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Mind-blowing"
+                },
+                "programId": {
+                  "S": "this-certificate-is-awarded-in-recognition-of-your-active-participation-at-the-women-techmakers-ogbomoso-iwd-2026-conference."
+                },
+                "courseName": {
+                  "S": "This certificate is awarded in recognition of your active participation at the Women Techmakers Ogbomoso IWD 2026 Conference."
+                },
+                "studentName": {
+                  "S": "Ayandeji Ifeoluwa"
+                },
+                "submittedAt": {
+                  "S": "2026-04-27T10:40:22.472Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1776431935683-3VW5LZ3JW"
+                },
+                "organizationId": {
+                  "S": "org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611:TEST-1777292881965-1XM4MURYW"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777292881965-1XM4MURYW"
+                },
+                "email": {
+                  "S": "oreoluwaedu@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It was a great gathering and experience with great mind ....and I learnt a lot"
+                },
+                "programId": {
+                  "S": "this-certificate-is-awarded-in-recognition-of-your-active-participation-at-the-women-techmakers-ogbomoso-iwd-2026-conference."
+                },
+                "courseName": {
+                  "S": "This certificate is awarded in recognition of your active participation at the Women Techmakers Ogbomoso IWD 2026 Conference."
+                },
+                "studentName": {
+                  "S": "Edu Esther Oreoluwa"
+                },
+                "submittedAt": {
+                  "S": "2026-04-27T12:28:01.965Z"
+                },
+                "organization": {
+                  "S": "Lautech"
+                },
+                "certificateId": {
+                  "S": "CERT-1776431935683-3VW5LZ3JW"
+                },
+                "organizationId": {
+                  "S": "org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611:TEST-1777364246421-J0E1ZASPG"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777364246421-J0E1ZASPG"
+                },
+                "email": {
+                  "S": "umorenfavour273@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It was fun and beyond my control expectations \n\nI'll like to recommend it to people that need it"
+                },
+                "programId": {
+                  "S": "this-certificate-is-awarded-in-recognition-of-your-active-participation-at-the-women-techmakers-ogbomoso-iwd-2026-conference."
+                },
+                "courseName": {
+                  "S": "This certificate is awarded in recognition of your active participation at the Women Techmakers Ogbomoso IWD 2026 Conference."
+                },
+                "studentName": {
+                  "S": "Favour Umoren"
+                },
+                "submittedAt": {
+                  "S": "2026-04-28T08:17:26.421Z"
+                },
+                "testimonial": {
+                  "S": "I'll like to attend more of the programme"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1776431935683-3VW5LZ3JW"
+                },
+                "organizationId": {
+                  "S": "org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611:TEST-1777385423566-B1V2ZKZ0A"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777385423566-B1V2ZKZ0A"
+                },
+                "email": {
+                  "S": "okwudilichukwuemmanuella@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "The experience was both inspirational and educational. I would advice everyone interested in tech or even having an interest in following a career path to participate in it"
+                },
+                "programId": {
+                  "S": "this-certificate-is-awarded-in-recognition-of-your-active-participation-at-the-women-techmakers-ogbomoso-iwd-2026-conference."
+                },
+                "courseName": {
+                  "S": "This certificate is awarded in recognition of your active participation at the Women Techmakers Ogbomoso IWD 2026 Conference."
+                },
+                "studentName": {
+                  "S": "Emmanuella Okwudilichukwuu"
+                },
+                "submittedAt": {
+                  "S": "2026-04-28T14:10:23.567Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1776431935683-3VW5LZ3JW"
+                },
+                "organizationId": {
+                  "S": "org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611:TEST-1777385520186-MRHVQGJ91"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777385520186-MRHVQGJ91"
+                },
+                "email": {
+                  "S": "darasimichristianah635@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It was productive and amazing"
+                },
+                "programId": {
+                  "S": "this-certificate-is-awarded-in-recognition-of-your-active-participation-at-the-women-techmakers-ogbomoso-iwd-2026-conference."
+                },
+                "courseName": {
+                  "S": "This certificate is awarded in recognition of your active participation at the Women Techmakers Ogbomoso IWD 2026 Conference."
+                },
+                "studentName": {
+                  "S": "Adeniran darasimi christianah"
+                },
+                "submittedAt": {
+                  "S": "2026-04-28T14:12:00.186Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University"
+                },
+                "certificateId": {
+                  "S": "CERT-1776431935683-3VW5LZ3JW"
+                },
+                "organizationId": {
+                  "S": "org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611:TEST-1777385627942-V121R0WOV"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777385627942-V121R0WOV"
+                },
+                "email": {
+                  "S": "okwudilichukwuemmanuella@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "The experience was both inspirational and educational. I would advice everyone interested in tech or even having a strong career to participate"
+                },
+                "programId": {
+                  "S": "this-certificate-is-awarded-in-recognition-of-your-active-participation-at-the-women-techmakers-ogbomoso-iwd-2026-conference."
+                },
+                "courseName": {
+                  "S": "This certificate is awarded in recognition of your active participation at the Women Techmakers Ogbomoso IWD 2026 Conference."
+                },
+                "studentName": {
+                  "S": "Emmanuella Okwudilichukwu"
+                },
+                "submittedAt": {
+                  "S": "2026-04-28T14:13:47.942Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1776431935683-3VW5LZ3JW"
+                },
+                "organizationId": {
+                  "S": "org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611:TEST-1777391193190-X8Z6AIA7G"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777391193190-X8Z6AIA7G"
+                },
+                "email": {
+                  "S": "isiaqrodiat@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "I would recommend putting all we learnt in the Break the Pattern event into action and you are accountable for everything happening in your life, Keep pushing"
+                },
+                "programId": {
+                  "S": "this-certificate-is-awarded-in-recognition-of-your-active-participation-at-the-women-techmakers-ogbomoso-iwd-2026-conference."
+                },
+                "courseName": {
+                  "S": "This certificate is awarded in recognition of your active participation at the Women Techmakers Ogbomoso IWD 2026 Conference."
+                },
+                "studentName": {
+                  "S": "Isiaq Rodiat Oluwakemi"
+                },
+                "submittedAt": {
+                  "S": "2026-04-28T15:46:33.190Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1776431935683-3VW5LZ3JW"
+                },
+                "organizationId": {
+                  "S": "org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611"
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

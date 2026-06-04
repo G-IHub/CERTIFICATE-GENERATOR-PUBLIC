@@ -1,0 +1,1926 @@
+{
+  "RequestItems": {
+    "certifyer-dev-kv": [
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "activity:org:org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067:1761667119371-glebp"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1761667119371-glebp"
+                },
+                "type": {
+                  "S": "payment_success"
+                },
+                "metadata": {
+                  "M": {
+                    "amount": {
+                      "N": "50000"
+                    },
+                    "planId": {
+                      "S": "premium_yearly"
+                    },
+                    "currency": {
+                      "S": "NGN"
+                    },
+                    "planName": {
+                      "S": "Premium Yearly"
+                    },
+                    "reference": {
+                      "S": "s591csip8v"
+                    }
+                  }
+                },
+                "timestamp": {
+                  "S": "2025-10-28T15:58:39.371Z"
+                },
+                "description": {
+                  "S": "Payment successful for Premium Yearly"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "activity:org:org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067:1761667119489-qphb3k"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1761667119489-qphb3k"
+                },
+                "type": {
+                  "S": "subscription_activated"
+                },
+                "metadata": {
+                  "M": {
+                    "planId": {
+                      "S": "premium_yearly"
+                    },
+                    "duration": {
+                      "N": "365"
+                    },
+                    "planName": {
+                      "S": "Premium Yearly"
+                    },
+                    "startDate": {
+                      "S": "2025-10-28T15:58:39.091Z"
+                    },
+                    "expiryDate": {
+                      "S": "2026-10-28T15:58:39.091Z"
+                    }
+                  }
+                },
+                "timestamp": {
+                  "S": "2025-10-28T15:58:39.489Z"
+                },
+                "description": {
+                  "S": "Premium Yearly subscription activated"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:index:1774876554528-jebgrj696"
+            },
+            "value": {
+              "L": [
+                {
+                  "S": "1776852005771-o1fdulzxp"
+                }
+              ]
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:index:1774876850525-tu2760wpy"
+            },
+            "value": {
+              "L": [
+                {
+                  "S": "1775123244661-q1tykzsqa"
+                },
+                {
+                  "S": "1775140193122-ljewbe8s2"
+                },
+                {
+                  "S": "1775140503266-6r9qqv58s"
+                },
+                {
+                  "S": "1775142177728-7patg6lp9"
+                },
+                {
+                  "S": "1775142189854-qsgl8gxye"
+                },
+                {
+                  "S": "1775142300164-whaimbayv"
+                },
+                {
+                  "S": "1775144353099-48cb63n7e"
+                },
+                {
+                  "S": "1775637656823-u3r4z8vgy"
+                }
+              ]
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:index:1776775994824-437y206wb"
+            },
+            "value": {
+              "L": [
+                {
+                  "S": "1776873459257-0qfap2jtv"
+                },
+                {
+                  "S": "1778078267148-ma2hiu489"
+                },
+                {
+                  "S": "1778078295750-t0qwzwfzc"
+                },
+                {
+                  "S": "1778078296872-roewuafuq"
+                },
+                {
+                  "S": "1778078299627-ofpa7ugqc"
+                },
+                {
+                  "S": "1778078300711-gsw8k8l42"
+                },
+                {
+                  "S": "1778078303691-rnjdhmsg0"
+                },
+                {
+                  "S": "1778078304612-1r8wifbof"
+                },
+                {
+                  "S": "1778078310929-y7mywqgo8"
+                },
+                {
+                  "S": "1778078312205-en8ajtquc"
+                },
+                {
+                  "S": "1778078319014-q874kkhlg"
+                },
+                {
+                  "S": "1778078320182-x1jyyt021"
+                },
+                {
+                  "S": "1778078411748-4h7xpu2jm"
+                },
+                {
+                  "S": "1778078416373-83nw0bwgz"
+                },
+                {
+                  "S": "1778078417951-4vdi6jo6n"
+                },
+                {
+                  "S": "1778078419806-0cz2rsam3"
+                },
+                {
+                  "S": "1778078423087-142sbc3uk"
+                },
+                {
+                  "S": "1778078431719-g1hk1bmmo"
+                },
+                {
+                  "S": "1778078887358-qiem7tf3p"
+                },
+                {
+                  "S": "1778078893670-f5lphbues"
+                },
+                {
+                  "S": "1778078917927-cz9xlm4v5"
+                },
+                {
+                  "S": "1778078924493-f9dxr5fsy"
+                },
+                {
+                  "S": "1778078925158-wln56hn1t"
+                },
+                {
+                  "S": "1778078930989-l152lum4j"
+                },
+                {
+                  "S": "1778078943798-9yxmy9o9c"
+                },
+                {
+                  "S": "1778078950613-ac4t1soi2"
+                },
+                {
+                  "S": "1778078956995-ks38u390b"
+                },
+                {
+                  "S": "1778078958185-zulg5quha"
+                },
+                {
+                  "S": "1778078967777-ipontgahe"
+                },
+                {
+                  "S": "1778078968811-k4tedz0fv"
+                },
+                {
+                  "S": "1778078980640-ctjfg6za0"
+                },
+                {
+                  "S": "1778078981627-ezvzd7p3v"
+                },
+                {
+                  "S": "1778078981886-jfiys2wjh"
+                },
+                {
+                  "S": "1778078982513-qe61h6gtd"
+                },
+                {
+                  "S": "1778078985400-mitczg4sf"
+                },
+                {
+                  "S": "1778078986646-496u0b2pd"
+                },
+                {
+                  "S": "1778078986796-54kn23o2t"
+                },
+                {
+                  "S": "1778078987697-bl6ax0stm"
+                },
+                {
+                  "S": "1778078990171-edeiequk2"
+                },
+                {
+                  "S": "1778078991386-xyu9gnh3a"
+                },
+                {
+                  "S": "1778079676034-fpch4ltgk"
+                },
+                {
+                  "S": "1778079692001-ymmr438ls"
+                },
+                {
+                  "S": "1778079693285-rx5jp8g9w"
+                },
+                {
+                  "S": "1778079694531-903xvcgd1"
+                },
+                {
+                  "S": "1778079695325-kmot9ha0w"
+                },
+                {
+                  "S": "1778079698112-a1glv1hhy"
+                },
+                {
+                  "S": "1778079699322-q0g6y3hb0"
+                },
+                {
+                  "S": "1778079707513-gqfmoi8yx"
+                },
+                {
+                  "S": "1778079708765-uqh8y1z48"
+                },
+                {
+                  "S": "1778079709176-h38okgyx8"
+                },
+                {
+                  "S": "1778079709541-swiqzbg34"
+                },
+                {
+                  "S": "1778079710074-9iu6j7um0"
+                },
+                {
+                  "S": "1778079710896-rx6y3bcid"
+                },
+                {
+                  "S": "1778079713594-igzat6j3m"
+                },
+                {
+                  "S": "1778079715124-kn4wy04cc"
+                },
+                {
+                  "S": "1778079733600-9x0ctusfw"
+                },
+                {
+                  "S": "1778079734660-j1i75yknk"
+                },
+                {
+                  "S": "1778079735977-l3fbx7sfg"
+                },
+                {
+                  "S": "1778079737233-rqsocphr1"
+                },
+                {
+                  "S": "1778079745787-g9a1szcjh"
+                },
+                {
+                  "S": "1778079746798-u6klmg33e"
+                },
+                {
+                  "S": "1778079761846-ta0wnune9"
+                },
+                {
+                  "S": "1778079763065-yx1pzo0qa"
+                },
+                {
+                  "S": "1778079770850-j5aa9sjqj"
+                },
+                {
+                  "S": "1778079771939-j8fh0trjp"
+                },
+                {
+                  "S": "1778079777560-tote0iqfm"
+                },
+                {
+                  "S": "1778079779037-bi9jgjavh"
+                },
+                {
+                  "S": "1778079845767-oc3n2pahy"
+                },
+                {
+                  "S": "1778079847826-uq3pfjj1e"
+                },
+                {
+                  "S": "1778079853171-v90xkjdi7"
+                },
+                {
+                  "S": "1778079853740-rl6dtv25z"
+                },
+                {
+                  "S": "1778081209435-p6qzhehad"
+                },
+                {
+                  "S": "1778081356359-zq10icceo"
+                },
+                {
+                  "S": "1778119966154-c6trgistk"
+                },
+                {
+                  "S": "1778120029580-u441t4rrq"
+                },
+                {
+                  "S": "1778152172274-hepludfxq"
+                },
+                {
+                  "S": "1778807826440-649trdbxg"
+                }
+              ]
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:index:1777037425887-tcqcd70os"
+            },
+            "value": {
+              "L": [
+                {
+                  "S": "1777037777799-9qoe9vgr1"
+                },
+                {
+                  "S": "1777038086493-79orndty9"
+                },
+                {
+                  "S": "1777038131716-h8eumuy6k"
+                },
+                {
+                  "S": "1777038132789-69f2ielo9"
+                },
+                {
+                  "S": "1777038589716-iivne8jmt"
+                },
+                {
+                  "S": "1777038604437-le3llsjq1"
+                },
+                {
+                  "S": "1777039072540-n3wz0niul"
+                },
+                {
+                  "S": "1777039648754-1zm64m4v7"
+                },
+                {
+                  "S": "1777045772123-an24mr28d"
+                },
+                {
+                  "S": "1777045986741-1v2170nj9"
+                },
+                {
+                  "S": "1777117621655-91ixoqt0q"
+                },
+                {
+                  "S": "1777291950522-emmos0w77"
+                },
+                {
+                  "S": "1777300368934-e8wrdypt7"
+                },
+                {
+                  "S": "1777993277530-3ysmb5zqb"
+                },
+                {
+                  "S": "1778076424528-3dg1gn6a4"
+                },
+                {
+                  "S": "1778079416074-rgpct21g1"
+                },
+                {
+                  "S": "1778079428731-84nyscjzv"
+                },
+                {
+                  "S": "1778079429815-wt5hx4mdp"
+                },
+                {
+                  "S": "1778079443596-z97kxy2zs"
+                },
+                {
+                  "S": "1778079444966-v84vjviv2"
+                },
+                {
+                  "S": "1778079449549-ymojrz8n3"
+                },
+                {
+                  "S": "1778079450821-h8ky99a7v"
+                },
+                {
+                  "S": "1778079511220-ggqk7efgv"
+                },
+                {
+                  "S": "1778079513134-2vbv4o3dk"
+                },
+                {
+                  "S": "1778079516830-m2adp9om0"
+                },
+                {
+                  "S": "1778079518233-6maxvby7h"
+                },
+                {
+                  "S": "1778079518635-1jmvufgxt"
+                },
+                {
+                  "S": "1778079519941-rbo68ewdb"
+                },
+                {
+                  "S": "1778079526864-zmtwnxt8l"
+                },
+                {
+                  "S": "1778079528313-ip8hl0ldw"
+                },
+                {
+                  "S": "1778079528779-auh8bvbmv"
+                },
+                {
+                  "S": "1778079530528-ir8e9iz1o"
+                },
+                {
+                  "S": "1778079532706-baa5uk4yp"
+                },
+                {
+                  "S": "1778079534029-rr2idiwsf"
+                },
+                {
+                  "S": "1778079538549-9e1mk6t7m"
+                },
+                {
+                  "S": "1778079540243-7itmsyupc"
+                },
+                {
+                  "S": "1778079547775-3mze6kxq6"
+                },
+                {
+                  "S": "1778079548771-rton7shmg"
+                },
+                {
+                  "S": "1778079552994-yzjgotbsu"
+                },
+                {
+                  "S": "1778079553701-u9k4ro6k8"
+                },
+                {
+                  "S": "1778079572727-gsde0vra9"
+                },
+                {
+                  "S": "1778079574579-otrylf3oc"
+                },
+                {
+                  "S": "1778079575938-a0de8a5rz"
+                },
+                {
+                  "S": "1778079576699-led5cdops"
+                },
+                {
+                  "S": "1778079577498-rjjld7fk0"
+                },
+                {
+                  "S": "1778079579020-r6srr7ic1"
+                },
+                {
+                  "S": "1778079579362-xnnq5vrij"
+                },
+                {
+                  "S": "1778079585037-dri7u5f44"
+                },
+                {
+                  "S": "1778079586423-x61wfib4n"
+                },
+                {
+                  "S": "1778079590656-t8in44ftf"
+                },
+                {
+                  "S": "1778079591919-gcgyvtgfx"
+                },
+                {
+                  "S": "1778079606208-y4pnj3yae"
+                },
+                {
+                  "S": "1778079606480-3ga7gvku1"
+                },
+                {
+                  "S": "1778079621603-wt81mfirc"
+                },
+                {
+                  "S": "1778079623625-cidoe09j7"
+                },
+                {
+                  "S": "1778079623853-e1fig7fsi"
+                },
+                {
+                  "S": "1778079624982-ugmdrepze"
+                },
+                {
+                  "S": "1778079626950-3k24xoi48"
+                },
+                {
+                  "S": "1778079628383-gymzssbaq"
+                },
+                {
+                  "S": "1778079632751-eqmzxcsxp"
+                },
+                {
+                  "S": "1778079634405-u009sgvyr"
+                },
+                {
+                  "S": "1778079640836-tpzydz9wd"
+                },
+                {
+                  "S": "1778079642905-8jdhz6llr"
+                },
+                {
+                  "S": "1778079645946-nj5ylgb66"
+                },
+                {
+                  "S": "1778079647583-3ct5qly5u"
+                },
+                {
+                  "S": "1778079658533-j7awjd7w1"
+                },
+                {
+                  "S": "1778079660676-y6w963fcq"
+                },
+                {
+                  "S": "1778079660809-vnhjpaox8"
+                },
+                {
+                  "S": "1778079662461-i5u6bxbca"
+                },
+                {
+                  "S": "1778079665515-6wahchmvt"
+                },
+                {
+                  "S": "1778079667085-m0uqaztkt"
+                },
+                {
+                  "S": "1778079667238-n4uxm0gl5"
+                },
+                {
+                  "S": "1778079668398-9kxg5hgzl"
+                },
+                {
+                  "S": "1778079668817-ersfcbp19"
+                },
+                {
+                  "S": "1778079669876-ktokf40fu"
+                },
+                {
+                  "S": "1778080461833-9w2gqa5dd"
+                },
+                {
+                  "S": "1778080472658-w8vkfuspz"
+                },
+                {
+                  "S": "1778080474339-xmydu8jhk"
+                },
+                {
+                  "S": "1778080481655-rl9x9w75k"
+                },
+                {
+                  "S": "1778080482735-8wh3gwp34"
+                },
+                {
+                  "S": "1778080492641-pqxii7btv"
+                },
+                {
+                  "S": "1778080493605-0juy3lne6"
+                },
+                {
+                  "S": "1778080494571-jsz721h5w"
+                },
+                {
+                  "S": "1778080495279-thdihsc7s"
+                },
+                {
+                  "S": "1778080495842-srgzr56o9"
+                },
+                {
+                  "S": "1778080496565-vnkdwzhra"
+                },
+                {
+                  "S": "1778080498136-7o4qzq2lm"
+                },
+                {
+                  "S": "1778080499607-jf77jpes2"
+                },
+                {
+                  "S": "1778080504642-d7oy8imwx"
+                },
+                {
+                  "S": "1778080505826-8djip3ucd"
+                },
+                {
+                  "S": "1778080506334-8cbvel899"
+                },
+                {
+                  "S": "1778080507645-dif9t3n4m"
+                },
+                {
+                  "S": "1778080508540-r3vr7c0mn"
+                },
+                {
+                  "S": "1778080509557-gzszylnwj"
+                },
+                {
+                  "S": "1778080510482-mj7yyc88q"
+                },
+                {
+                  "S": "1778080511577-eh52tpvn8"
+                },
+                {
+                  "S": "1778080512835-06hxi16lo"
+                },
+                {
+                  "S": "1778080598510-esctiouo6"
+                },
+                {
+                  "S": "1778080600217-t53tbnz76"
+                },
+                {
+                  "S": "1778080609752-n2x6w0s4j"
+                },
+                {
+                  "S": "1778080611085-q7ooeqa3v"
+                },
+                {
+                  "S": "1778080611807-13meprxdq"
+                },
+                {
+                  "S": "1778080613158-pirapsd83"
+                },
+                {
+                  "S": "1778080614752-kq2ohdood"
+                },
+                {
+                  "S": "1778080616213-kp3ti66z2"
+                },
+                {
+                  "S": "1778080697092-e2h428tt6"
+                },
+                {
+                  "S": "1778080698432-ku150jhk8"
+                },
+                {
+                  "S": "1778080749845-sac8jzuvz"
+                },
+                {
+                  "S": "1778080751662-qje1qq4g0"
+                },
+                {
+                  "S": "1778080787964-e5o8jknwi"
+                },
+                {
+                  "S": "1778080788347-dvrds68fp"
+                },
+                {
+                  "S": "1778080976392-16egvyrrc"
+                },
+                {
+                  "S": "1778081004750-bpvwtrqq3"
+                },
+                {
+                  "S": "1778081006068-d4mbtzhuh"
+                },
+                {
+                  "S": "1778081007469-zltazrokf"
+                },
+                {
+                  "S": "1778081009281-t3s8yerxs"
+                },
+                {
+                  "S": "1778081040914-aqao6axuz"
+                },
+                {
+                  "S": "1778081042361-olda52m4x"
+                },
+                {
+                  "S": "1778081042480-se1r5whwn"
+                },
+                {
+                  "S": "1778081043859-pmzqj4nes"
+                },
+                {
+                  "S": "1778081044470-nlue3zci3"
+                },
+                {
+                  "S": "1778081045280-lzd1zxarv"
+                },
+                {
+                  "S": "1778081062665-l394mjouy"
+                },
+                {
+                  "S": "1778081063689-tvr21zxmn"
+                },
+                {
+                  "S": "1778081063926-a2roe7wyo"
+                },
+                {
+                  "S": "1778081065216-78yr5za5z"
+                },
+                {
+                  "S": "1778081065881-7af030kw6"
+                },
+                {
+                  "S": "1778081066530-diwx0x5ld"
+                },
+                {
+                  "S": "1778081071953-8zgw5kc90"
+                },
+                {
+                  "S": "1778081073794-2fgjoezr7"
+                },
+                {
+                  "S": "1778081107015-azs6qhbp5"
+                },
+                {
+                  "S": "1778081108079-6o8o5nnws"
+                },
+                {
+                  "S": "1778081111130-c7pgaaylj"
+                },
+                {
+                  "S": "1778081111549-yl0y69gak"
+                },
+                {
+                  "S": "1778081118326-4d815x0og"
+                },
+                {
+                  "S": "1778081119698-jih16ajnw"
+                },
+                {
+                  "S": "1778081121619-kz2bea4sm"
+                },
+                {
+                  "S": "1778081122884-ntw4v6zdu"
+                },
+                {
+                  "S": "1778081124643-cu66a15sl"
+                },
+                {
+                  "S": "1778081125670-gphpe7ik8"
+                },
+                {
+                  "S": "1778081130861-pi9arwvw6"
+                },
+                {
+                  "S": "1778081132062-4nkg8xsyn"
+                },
+                {
+                  "S": "1778081132274-xuvry9tpg"
+                },
+                {
+                  "S": "1778081133089-ggnxvwjwm"
+                },
+                {
+                  "S": "1778081133218-lt8frxemo"
+                },
+                {
+                  "S": "1778081133767-gkitx9zof"
+                },
+                {
+                  "S": "1778081143579-3okpzjxjm"
+                },
+                {
+                  "S": "1778081145018-xu9q8hblw"
+                },
+                {
+                  "S": "1778081145632-9cf0mmexc"
+                },
+                {
+                  "S": "1778081146866-2i69cu7rp"
+                },
+                {
+                  "S": "1778081150765-upckkw8v3"
+                },
+                {
+                  "S": "1778081151846-60oa9bnyf"
+                },
+                {
+                  "S": "1778081179596-qzcggbzhz"
+                },
+                {
+                  "S": "1778081181027-i6x3nlgoe"
+                },
+                {
+                  "S": "1778081188547-ihfabnfqz"
+                },
+                {
+                  "S": "1778081189680-j130zuvtk"
+                },
+                {
+                  "S": "1778081190403-tyzbfy5bd"
+                }
+              ]
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1775123244661-q1tykzsqa"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1775123244661-q1tykzsqa"
+                },
+                "date": {
+                  "S": "2026-04-02"
+                },
+                "blog_id": {
+                  "S": "1774876850525-tu2760wpy"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "https://www.certifyer.online/#/blog/1774876850525-tu2760wpy"
+                },
+                "referrer": {
+                  "S": "https://www.certifyer.online/"
+                },
+                "timestamp": {
+                  "S": "2026-04-02T09:47:24.661Z"
+                },
+                "blog_title": {
+                  "S": "10 Proven Secrets to Running a Successful Training Program (From 0 Sales to Sold-Out Classes)"
+                },
+                "session_id": {
+                  "S": "1775123243351-7q1n708r4"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "NULL": true
+                },
+                "scroll_depth": {
+                  "NULL": true
+                },
+                "referrer_type": {
+                  "S": "internal"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1775140193122-ljewbe8s2"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1775140193122-ljewbe8s2"
+                },
+                "date": {
+                  "S": "2026-04-02"
+                },
+                "blog_id": {
+                  "S": "1774876850525-tu2760wpy"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "https://www.certifyer.online/#/blog/1774876850525-tu2760wpy"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-04-02T14:29:53.122Z"
+                },
+                "blog_title": {
+                  "S": "10 Proven Secrets to Running a Successful Training Program (From 0 Sales to Sold-Out Classes)"
+                },
+                "session_id": {
+                  "S": "1775140191231-zap3zywrs"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "N": "17"
+                },
+                "scroll_depth": {
+                  "N": "100"
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1775140503266-6r9qqv58s"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1775140503266-6r9qqv58s"
+                },
+                "date": {
+                  "S": "2026-04-02"
+                },
+                "blog_id": {
+                  "S": "1774876850525-tu2760wpy"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "https://www.certifyer.online/#/blog/1774876850525-tu2760wpy"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-04-02T14:35:03.266Z"
+                },
+                "blog_title": {
+                  "S": "10 Proven Secrets to Running a Successful Training Program (From 0 Sales to Sold-Out Classes)"
+                },
+                "session_id": {
+                  "S": "1775140191231-zap3zywrs"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "NULL": true
+                },
+                "scroll_depth": {
+                  "NULL": true
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1775142177728-7patg6lp9"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1775142177728-7patg6lp9"
+                },
+                "date": {
+                  "S": "2026-04-02"
+                },
+                "blog_id": {
+                  "S": "1774876850525-tu2760wpy"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "https://www.certifyer.online/#/blog/1774876850525-tu2760wpy"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-04-02T15:02:57.728Z"
+                },
+                "blog_title": {
+                  "S": "10 Proven Secrets to Running a Successful Training Program (From 0 Sales to Sold-Out Classes)"
+                },
+                "session_id": {
+                  "S": "1775142177333-4q8rxh7fb"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "NULL": true
+                },
+                "scroll_depth": {
+                  "NULL": true
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1775142189854-qsgl8gxye"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1775142189854-qsgl8gxye"
+                },
+                "date": {
+                  "S": "2026-04-02"
+                },
+                "blog_id": {
+                  "S": "1774876850525-tu2760wpy"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "https://www.certifyer.online/#/blog/1774876850525-tu2760wpy"
+                },
+                "referrer": {
+                  "S": "https://www.linkedin.com/"
+                },
+                "timestamp": {
+                  "S": "2026-04-02T15:03:09.854Z"
+                },
+                "blog_title": {
+                  "S": "10 Proven Secrets to Running a Successful Training Program (From 0 Sales to Sold-Out Classes)"
+                },
+                "session_id": {
+                  "S": "1775142188364-5228ajatv"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "NULL": true
+                },
+                "scroll_depth": {
+                  "NULL": true
+                },
+                "referrer_type": {
+                  "S": "social"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1775142300164-whaimbayv"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1775142300164-whaimbayv"
+                },
+                "date": {
+                  "S": "2026-04-02"
+                },
+                "blog_id": {
+                  "S": "1774876850525-tu2760wpy"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "https://www.certifyer.online/#/blog/1774876850525-tu2760wpy"
+                },
+                "referrer": {
+                  "S": "https://www.linkedin.com/"
+                },
+                "timestamp": {
+                  "S": "2026-04-02T15:05:00.164Z"
+                },
+                "blog_title": {
+                  "S": "10 Proven Secrets to Running a Successful Training Program (From 0 Sales to Sold-Out Classes)"
+                },
+                "session_id": {
+                  "S": "1775142298720-o6pbmyp04"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "NULL": true
+                },
+                "scroll_depth": {
+                  "NULL": true
+                },
+                "referrer_type": {
+                  "S": "social"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1775144353099-48cb63n7e"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1775144353099-48cb63n7e"
+                },
+                "date": {
+                  "S": "2026-04-02"
+                },
+                "blog_id": {
+                  "S": "1774876850525-tu2760wpy"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "https://www.certifyer.online/#/blog/1774876850525-tu2760wpy"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-04-02T15:39:13.099Z"
+                },
+                "blog_title": {
+                  "S": "10 Proven Secrets to Running a Successful Training Program (From 0 Sales to Sold-Out Classes)"
+                },
+                "session_id": {
+                  "S": "1775140191231-zap3zywrs"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "NULL": true
+                },
+                "scroll_depth": {
+                  "NULL": true
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1775637656823-u3r4z8vgy"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1775637656823-u3r4z8vgy"
+                },
+                "date": {
+                  "S": "2026-04-08"
+                },
+                "blog_id": {
+                  "S": "1774876850525-tu2760wpy"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "https://www.certifyer.online/#/blog/1774876850525-tu2760wpy"
+                },
+                "referrer": {
+                  "S": "https://www.google.com/"
+                },
+                "timestamp": {
+                  "S": "2026-04-08T08:40:56.823Z"
+                },
+                "blog_title": {
+                  "S": "10 Proven Secrets to Running a Successful Training Program (From 0 Sales to Sold-Out Classes)"
+                },
+                "session_id": {
+                  "S": "1775637652181-wp1ffm035"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "NULL": true
+                },
+                "scroll_depth": {
+                  "NULL": true
+                },
+                "referrer_type": {
+                  "S": "search"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1776852005771-o1fdulzxp"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1776852005771-o1fdulzxp"
+                },
+                "date": {
+                  "S": "2026-04-22"
+                },
+                "blog_id": {
+                  "S": "1774876554528-jebgrj696"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "http://localhost:3000/#/blog/1774876554528-jebgrj696"
+                },
+                "referrer": {
+                  "S": "http://localhost:3000/"
+                },
+                "timestamp": {
+                  "S": "2026-04-22T10:00:05.771Z"
+                },
+                "blog_title": {
+                  "S": "10 Proven Secrets to Running a Successful Training Program (From 0 Sales to Sold-Out Classes)"
+                },
+                "session_id": {
+                  "S": "1776852009805-elzlolegp"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "N": "23"
+                },
+                "scroll_depth": {
+                  "N": "100"
+                },
+                "referrer_type": {
+                  "S": "internal"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1776873459257-0qfap2jtv"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1776873459257-0qfap2jtv"
+                },
+                "date": {
+                  "S": "2026-04-22"
+                },
+                "blog_id": {
+                  "S": "1776775994824-437y206wb"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "https://www.certifyer.online/#/blog/1776775994824-437y206wb"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-04-22T15:57:39.257Z"
+                },
+                "blog_title": {
+                  "S": "10 Proven Secrets to Running a Successful Training Program (From 0 Sales to Sold-Out Classes)"
+                },
+                "session_id": {
+                  "S": "1776873458294-gw4m095y0"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "NULL": true
+                },
+                "scroll_depth": {
+                  "NULL": true
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1777037777799-9qoe9vgr1"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1777037777799-9qoe9vgr1"
+                },
+                "date": {
+                  "S": "2026-04-24"
+                },
+                "blog_id": {
+                  "S": "1777037425887-tcqcd70os"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "https://www.certifyer.online/#/blog/1777037425887-tcqcd70os"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-04-24T13:36:17.799Z"
+                },
+                "blog_title": {
+                  "S": "The 5-Step Framework To Turn Your Idea Into A Training People Actually Pay For."
+                },
+                "session_id": {
+                  "S": "1777037774604-nj3goeeql"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "N": "61"
+                },
+                "scroll_depth": {
+                  "N": "100"
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1777038086493-79orndty9"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1777038086493-79orndty9"
+                },
+                "date": {
+                  "S": "2026-04-24"
+                },
+                "blog_id": {
+                  "S": "1777037425887-tcqcd70os"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "https://www.certifyer.online/#/blog/1777037425887-tcqcd70os"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-04-24T13:41:26.492Z"
+                },
+                "blog_title": {
+                  "S": "The 5-Step Framework To Turn Your Idea Into A Training People Actually Pay For."
+                },
+                "session_id": {
+                  "S": "1777037774604-nj3goeeql"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "NULL": true
+                },
+                "scroll_depth": {
+                  "NULL": true
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1777038131716-h8eumuy6k"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1777038131716-h8eumuy6k"
+                },
+                "date": {
+                  "S": "2026-04-24"
+                },
+                "blog_id": {
+                  "S": "1777037425887-tcqcd70os"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "https://www.certifyer.online/#/blog/1777037425887-tcqcd70os"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-04-24T13:42:11.716Z"
+                },
+                "blog_title": {
+                  "S": "The 5-Step Framework To Turn Your Idea Into A Training People Actually Pay For."
+                },
+                "session_id": {
+                  "S": "1777038127903-bcysf3vd6"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "NULL": true
+                },
+                "scroll_depth": {
+                  "NULL": true
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1777038132789-69f2ielo9"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1777038132789-69f2ielo9"
+                },
+                "date": {
+                  "S": "2026-04-24"
+                },
+                "blog_id": {
+                  "S": "1777037425887-tcqcd70os"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "https://www.certifyer.online/#/blog/1777037425887-tcqcd70os"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-04-24T13:42:12.789Z"
+                },
+                "blog_title": {
+                  "S": "The 5-Step Framework To Turn Your Idea Into A Training People Actually Pay For."
+                },
+                "session_id": {
+                  "S": "1777038129111-uee9u5byr"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "NULL": true
+                },
+                "scroll_depth": {
+                  "NULL": true
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1777038589716-iivne8jmt"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1777038589716-iivne8jmt"
+                },
+                "date": {
+                  "S": "2026-04-24"
+                },
+                "blog_id": {
+                  "S": "1777037425887-tcqcd70os"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "https://www.certifyer.online/#/blog/1777037425887-tcqcd70os"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-04-24T13:49:49.716Z"
+                },
+                "blog_title": {
+                  "S": "The 5-Step Framework To Turn Your Idea Into A Training People Actually Pay For."
+                },
+                "session_id": {
+                  "S": "1777038589314-ycwty090p"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.7444.175 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "NULL": true
+                },
+                "scroll_depth": {
+                  "NULL": true
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1777038604437-le3llsjq1"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1777038604437-le3llsjq1"
+                },
+                "date": {
+                  "S": "2026-04-24"
+                },
+                "blog_id": {
+                  "S": "1777037425887-tcqcd70os"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "https://www.certifyer.online/#/blog/1777037425887-tcqcd70os"
+                },
+                "referrer": {
+                  "S": "https://www.linkedin.com/"
+                },
+                "timestamp": {
+                  "S": "2026-04-24T13:50:04.437Z"
+                },
+                "blog_title": {
+                  "S": "The 5-Step Framework To Turn Your Idea Into A Training People Actually Pay For."
+                },
+                "session_id": {
+                  "S": "1777038600914-7gyedhg1e"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "NULL": true
+                },
+                "scroll_depth": {
+                  "NULL": true
+                },
+                "referrer_type": {
+                  "S": "social"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1777039072540-n3wz0niul"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1777039072540-n3wz0niul"
+                },
+                "date": {
+                  "S": "2026-04-24"
+                },
+                "blog_id": {
+                  "S": "1777037425887-tcqcd70os"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "https://www.certifyer.online/#/blog/1777037425887-tcqcd70os"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-04-24T13:57:52.540Z"
+                },
+                "blog_title": {
+                  "S": "The 5-Step Framework To Turn Your Idea Into A Training People Actually Pay For."
+                },
+                "session_id": {
+                  "S": "1777039068945-uz723jccx"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "N": "437"
+                },
+                "scroll_depth": {
+                  "N": "67"
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1777039648754-1zm64m4v7"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1777039648754-1zm64m4v7"
+                },
+                "date": {
+                  "S": "2026-04-24"
+                },
+                "blog_id": {
+                  "S": "1777037425887-tcqcd70os"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "https://www.certifyer.online/#/blog/1777037425887-tcqcd70os"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-04-24T14:07:28.754Z"
+                },
+                "blog_title": {
+                  "S": "The 5-Step Framework To Turn Your Idea Into A Training People Actually Pay For."
+                },
+                "session_id": {
+                  "S": "1777039645188-qnapxdrkr"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "N": "22"
+                },
+                "scroll_depth": {
+                  "N": "100"
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1777045772123-an24mr28d"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1777045772123-an24mr28d"
+                },
+                "date": {
+                  "S": "2026-04-24"
+                },
+                "blog_id": {
+                  "S": "1777037425887-tcqcd70os"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "https://www.certifyer.online/#/blog/1777037425887-tcqcd70os"
+                },
+                "referrer": {
+                  "S": "http://lnkd.in/"
+                },
+                "timestamp": {
+                  "S": "2026-04-24T15:49:32.123Z"
+                },
+                "blog_title": {
+                  "S": "The 5-Step Framework To Turn Your Idea Into A Training People Actually Pay For."
+                },
+                "session_id": {
+                  "S": "1777045770098-kfbdmq3ea"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Linux; Android 10; vivo 2015 Build/QP1A.190711.020; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/147.0.7727.56 Mobile Safari/537.36 [LinkedInApp]/2.271.47"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "NULL": true
+                },
+                "scroll_depth": {
+                  "NULL": true
+                },
+                "referrer_type": {
+                  "S": "referral"
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

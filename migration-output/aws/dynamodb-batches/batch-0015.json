@@ -1,0 +1,2998 @@
+{
+  "RequestItems": {
+    "certifyer-dev-kv": [
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "cert:CERT-1768304501424-TKHMX4XSK"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "CERT-1768304501424-TKHMX4XSK"
+                },
+                "status": {
+                  "S": "active"
+                },
+                "template": {
+                  "S": "template1"
+                },
+                "programId": {
+                  "S": "test-allowedlist-4"
+                },
+                "courseName": {
+                  "S": "Test AllowedList 4"
+                },
+                "generatedAt": {
+                  "S": "2026-01-13T11:41:41.425Z"
+                },
+                "signatories": {
+                  "L": [
+                    {
+                      "M": {
+                        "id": {
+                          "S": "sig-1761035653490"
+                        },
+                        "name": {
+                          "S": "Goodness Adewuyi"
+                        },
+                        "title": {
+                          "S": "Chief Executive Officer, Grownish"
+                        },
+                        "signatureUrl": {
+                          "S": "https://gzawvtlehnujtviahdbv.supabase.co/storage/v1/object/sign/make-a611b057-uploads/org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067/signature-1761035714848.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zZWZmYzMyMS1mZjJmLTQ5YzYtYjczNi04NjQ1MDFmN2ZjNjgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtYWtlLWE2MTFiMDU3LXVwbG9hZHMvb3JnLWM2NWM5ZTEyLTc1NDQtNDYxYS05OGU0LTgzOTJjYTE5Nzg4NS0xNzYwNTM1ODMzMDY3L3NpZ25hdHVyZS0xNzYxMDM1NzE0ODQ4LnBuZyIsImlhdCI6MTc2MTAzNTcxNSwiZXhwIjoxNzkyNTcxNzE1fQ.LC7S2yw0uOLgizSkG7JKeuC_w3FdwrBIG4tH_I0xW0w"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "downloadCount": {
+                  "N": "0"
+                },
+                "certificateUrl": {
+                  "S": "certificate/org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067/test-allowedlist-4/CERT-1768304501424-TKHMX4XSK"
+                },
+                "completionDate": {
+                  "S": "2026-01-13"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                },
+                "certificateHeader": {
+                  "S": "Certificate of Completion"
+                },
+                "courseDescription": {
+                  "S": "National Association of Quantity Surveying Students"
+                },
+                "customTemplateConfig": {
+                  "NULL": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "cert:CERT-1768305439020-M9RO56NUF"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "CERT-1768305439020-M9RO56NUF"
+                },
+                "status": {
+                  "S": "active"
+                },
+                "template": {
+                  "S": "template1"
+                },
+                "programId": {
+                  "S": "test-allowedlist-5"
+                },
+                "courseName": {
+                  "S": "Test AllowedList 5"
+                },
+                "generatedAt": {
+                  "S": "2026-01-13T11:57:19.020Z"
+                },
+                "signatories": {
+                  "L": []
+                },
+                "downloadCount": {
+                  "N": "0"
+                },
+                "certificateUrl": {
+                  "S": "certificate/org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067/test-allowedlist-5/CERT-1768305439020-M9RO56NUF"
+                },
+                "completionDate": {
+                  "S": "2026-01-13"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                },
+                "certificateHeader": {
+                  "S": "Certificate of Completion"
+                },
+                "courseDescription": {
+                  "S": "_vercel.genomacholdings.com"
+                },
+                "customTemplateConfig": {
+                  "NULL": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "cert:CERT-1768308956557-TI4TL8BTG"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "CERT-1768308956557-TI4TL8BTG"
+                },
+                "status": {
+                  "S": "active"
+                },
+                "template": {
+                  "S": "template1"
+                },
+                "programId": {
+                  "S": "advanced-web-dev-22"
+                },
+                "courseName": {
+                  "S": "Advanced Web Dev 22"
+                },
+                "generatedAt": {
+                  "S": "2026-01-13T12:55:56.557Z"
+                },
+                "signatories": {
+                  "L": [
+                    {
+                      "M": {
+                        "id": {
+                          "S": "sig-1761035653490"
+                        },
+                        "name": {
+                          "S": "Goodness Adewuyi"
+                        },
+                        "title": {
+                          "S": "Chief Executive Officer, Grownish"
+                        },
+                        "signatureUrl": {
+                          "S": "https://gzawvtlehnujtviahdbv.supabase.co/storage/v1/object/sign/make-a611b057-uploads/org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067/signature-1761035714848.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zZWZmYzMyMS1mZjJmLTQ5YzYtYjczNi04NjQ1MDFmN2ZjNjgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtYWtlLWE2MTFiMDU3LXVwbG9hZHMvb3JnLWM2NWM5ZTEyLTc1NDQtNDYxYS05OGU0LTgzOTJjYTE5Nzg4NS0xNzYwNTM1ODMzMDY3L3NpZ25hdHVyZS0xNzYxMDM1NzE0ODQ4LnBuZyIsImlhdCI6MTc2MTAzNTcxNSwiZXhwIjoxNzkyNTcxNzE1fQ.LC7S2yw0uOLgizSkG7JKeuC_w3FdwrBIG4tH_I0xW0w"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "downloadCount": {
+                  "N": "0"
+                },
+                "certificateUrl": {
+                  "S": "certificate/org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067/advanced-web-dev-22/CERT-1768308956557-TI4TL8BTG"
+                },
+                "completionDate": {
+                  "S": "2026-01-13"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                },
+                "certificateHeader": {
+                  "S": "Certificate of Completion"
+                },
+                "courseDescription": {
+                  "S": ""
+                },
+                "customTemplateConfig": {
+                  "NULL": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "cert:CERT-1768312270526-C9IR18RSY"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "CERT-1768312270526-C9IR18RSY"
+                },
+                "status": {
+                  "S": "active"
+                },
+                "template": {
+                  "S": "template1"
+                },
+                "programId": {
+                  "S": "advanced-web-dev-13"
+                },
+                "courseName": {
+                  "S": "Advanced Web Dev 13"
+                },
+                "generatedAt": {
+                  "S": "2026-01-13T13:51:10.526Z"
+                },
+                "signatories": {
+                  "L": [
+                    {
+                      "M": {
+                        "id": {
+                          "S": "sig-1761035653490"
+                        },
+                        "name": {
+                          "S": "Goodness Adewuyi"
+                        },
+                        "title": {
+                          "S": "Chief Executive Officer, Grownish"
+                        },
+                        "signatureUrl": {
+                          "S": "https://gzawvtlehnujtviahdbv.supabase.co/storage/v1/object/sign/make-a611b057-uploads/org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067/signature-1761035714848.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zZWZmYzMyMS1mZjJmLTQ5YzYtYjczNi04NjQ1MDFmN2ZjNjgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtYWtlLWE2MTFiMDU3LXVwbG9hZHMvb3JnLWM2NWM5ZTEyLTc1NDQtNDYxYS05OGU0LTgzOTJjYTE5Nzg4NS0xNzYwNTM1ODMzMDY3L3NpZ25hdHVyZS0xNzYxMDM1NzE0ODQ4LnBuZyIsImlhdCI6MTc2MTAzNTcxNSwiZXhwIjoxNzkyNTcxNzE1fQ.LC7S2yw0uOLgizSkG7JKeuC_w3FdwrBIG4tH_I0xW0w"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "downloadCount": {
+                  "N": "0"
+                },
+                "certificateUrl": {
+                  "S": "certificate/org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067/advanced-web-dev-13/CERT-1768312270526-C9IR18RSY"
+                },
+                "completionDate": {
+                  "S": "2026-01-13"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                },
+                "certificateHeader": {
+                  "S": "Certificate of Completion"
+                },
+                "courseDescription": {
+                  "S": ""
+                },
+                "customTemplateConfig": {
+                  "NULL": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "cert:CERT-1768312670620-GI0VKKNSH"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "CERT-1768312670620-GI0VKKNSH"
+                },
+                "status": {
+                  "S": "active"
+                },
+                "template": {
+                  "S": "template1"
+                },
+                "programId": {
+                  "S": "advanced-web-dev-01"
+                },
+                "courseName": {
+                  "S": "Advanced Web Dev 01"
+                },
+                "generatedAt": {
+                  "S": "2026-01-13T13:57:50.620Z"
+                },
+                "signatories": {
+                  "L": [
+                    {
+                      "M": {
+                        "id": {
+                          "S": "sig-1761035653490"
+                        },
+                        "name": {
+                          "S": "Goodness Adewuyi"
+                        },
+                        "title": {
+                          "S": "Chief Executive Officer, Grownish"
+                        },
+                        "signatureUrl": {
+                          "S": "https://gzawvtlehnujtviahdbv.supabase.co/storage/v1/object/sign/make-a611b057-uploads/org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067/signature-1761035714848.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zZWZmYzMyMS1mZjJmLTQ5YzYtYjczNi04NjQ1MDFmN2ZjNjgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtYWtlLWE2MTFiMDU3LXVwbG9hZHMvb3JnLWM2NWM5ZTEyLTc1NDQtNDYxYS05OGU0LTgzOTJjYTE5Nzg4NS0xNzYwNTM1ODMzMDY3L3NpZ25hdHVyZS0xNzYxMDM1NzE0ODQ4LnBuZyIsImlhdCI6MTc2MTAzNTcxNSwiZXhwIjoxNzkyNTcxNzE1fQ.LC7S2yw0uOLgizSkG7JKeuC_w3FdwrBIG4tH_I0xW0w"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "downloadCount": {
+                  "N": "0"
+                },
+                "certificateUrl": {
+                  "S": "certificate/org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067/advanced-web-dev-01/CERT-1768312670620-GI0VKKNSH"
+                },
+                "completionDate": {
+                  "S": "2026-01-13"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                },
+                "certificateHeader": {
+                  "S": "Certificate of Completion"
+                },
+                "courseDescription": {
+                  "S": ""
+                },
+                "customTemplateConfig": {
+                  "NULL": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "cert:CERT-1768313658740-RQSNTGRDU"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "CERT-1768313658740-RQSNTGRDU"
+                },
+                "status": {
+                  "S": "active"
+                },
+                "template": {
+                  "S": "template1"
+                },
+                "programId": {
+                  "S": "advanced-web-dev-13"
+                },
+                "courseName": {
+                  "S": "Advanced Web Dev 13"
+                },
+                "generatedAt": {
+                  "S": "2026-01-13T14:14:18.740Z"
+                },
+                "signatories": {
+                  "L": [
+                    {
+                      "M": {
+                        "id": {
+                          "S": "sig-1761035653490"
+                        },
+                        "name": {
+                          "S": "Goodness Adewuyi"
+                        },
+                        "title": {
+                          "S": "Chief Executive Officer, Grownish"
+                        },
+                        "signatureUrl": {
+                          "S": "https://gzawvtlehnujtviahdbv.supabase.co/storage/v1/object/sign/make-a611b057-uploads/org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067/signature-1761035714848.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zZWZmYzMyMS1mZjJmLTQ5YzYtYjczNi04NjQ1MDFmN2ZjNjgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtYWtlLWE2MTFiMDU3LXVwbG9hZHMvb3JnLWM2NWM5ZTEyLTc1NDQtNDYxYS05OGU0LTgzOTJjYTE5Nzg4NS0xNzYwNTM1ODMzMDY3L3NpZ25hdHVyZS0xNzYxMDM1NzE0ODQ4LnBuZyIsImlhdCI6MTc2MTAzNTcxNSwiZXhwIjoxNzkyNTcxNzE1fQ.LC7S2yw0uOLgizSkG7JKeuC_w3FdwrBIG4tH_I0xW0w"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "downloadCount": {
+                  "N": "0"
+                },
+                "certificateUrl": {
+                  "S": "certificate/org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067/advanced-web-dev-13/CERT-1768313658740-RQSNTGRDU"
+                },
+                "completionDate": {
+                  "S": "2026-01-13"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                },
+                "certificateHeader": {
+                  "S": "Certificate of Completion"
+                },
+                "courseDescription": {
+                  "S": ""
+                },
+                "customTemplateConfig": {
+                  "NULL": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "cert:CERT-1768315532688-59CP0MQKX"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "CERT-1768315532688-59CP0MQKX"
+                },
+                "status": {
+                  "S": "active"
+                },
+                "template": {
+                  "S": "template1"
+                },
+                "programId": {
+                  "S": "advanced-web-dev-04"
+                },
+                "courseName": {
+                  "S": "Advanced Web Dev 04"
+                },
+                "generatedAt": {
+                  "S": "2026-01-13T14:45:32.688Z"
+                },
+                "signatories": {
+                  "L": []
+                },
+                "allowedEmails": {
+                  "L": [
+                    {
+                      "S": "adewuyigoodness1@gmail.com"
+                    },
+                    {
+                      "S": "student1@test.com"
+                    }
+                  ]
+                },
+                "downloadCount": {
+                  "N": "0"
+                },
+                "certificateUrl": {
+                  "S": "certificate/org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067/advanced-web-dev-04/CERT-1768315532688-59CP0MQKX"
+                },
+                "completionDate": {
+                  "S": "2026-01-13"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                },
+                "restrictDownload": {
+                  "BOOL": true
+                },
+                "certificateHeader": {
+                  "S": "Certificate of Completion"
+                },
+                "courseDescription": {
+                  "S": ""
+                },
+                "customTemplateConfig": {
+                  "NULL": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "cert:CERT-1769169123138-646E5XAA5"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "CERT-1769169123138-646E5XAA5"
+                },
+                "status": {
+                  "S": "active"
+                },
+                "template": {
+                  "S": "template17"
+                },
+                "programId": {
+                  "S": "template-17"
+                },
+                "courseName": {
+                  "S": "Template 17"
+                },
+                "generatedAt": {
+                  "S": "2026-01-23T11:52:03.138Z"
+                },
+                "signatories": {
+                  "L": []
+                },
+                "allowedEmails": {
+                  "L": []
+                },
+                "downloadCount": {
+                  "N": "0"
+                },
+                "certificateUrl": {
+                  "S": "certificate/org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067/template-17/CERT-1769169123138-646E5XAA5"
+                },
+                "completionDate": {
+                  "S": "2026-01-23"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                },
+                "restrictDownload": {
+                  "BOOL": false
+                },
+                "certificateHeader": {
+                  "S": "Certificate of Completion"
+                },
+                "courseDescription": {
+                  "S": ""
+                },
+                "customTemplateConfig": {
+                  "NULL": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "cert:CERT-1769777869093-WSY9HZL3V"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "CERT-1769777869093-WSY9HZL3V"
+                },
+                "status": {
+                  "S": "active"
+                },
+                "template": {
+                  "S": "template10"
+                },
+                "programId": {
+                  "S": "ai-&-machine-learning"
+                },
+                "courseName": {
+                  "S": "AI & Machine Learning"
+                },
+                "generatedAt": {
+                  "S": "2026-01-30T12:57:49.093Z"
+                },
+                "signatories": {
+                  "L": []
+                },
+                "allowedEmails": {
+                  "L": []
+                },
+                "downloadCount": {
+                  "N": "0"
+                },
+                "certificateUrl": {
+                  "S": "certificate/org-8d4c1d63-1451-44e0-aeaa-7151a8766f9b-1769777752071/ai-&-machine-learning/CERT-1769777869093-WSY9HZL3V"
+                },
+                "completionDate": {
+                  "S": "2026-01-30"
+                },
+                "organizationId": {
+                  "S": "org-8d4c1d63-1451-44e0-aeaa-7151a8766f9b-1769777752071"
+                },
+                "restrictDownload": {
+                  "BOOL": false
+                },
+                "certificateHeader": {
+                  "S": "Certificate of Completion"
+                },
+                "courseDescription": {
+                  "S": ""
+                },
+                "customTemplateConfig": {
+                  "NULL": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "cert:CERT-1770037492745-6QOU5CGR2"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "CERT-1770037492745-6QOU5CGR2"
+                },
+                "status": {
+                  "S": "active"
+                },
+                "template": {
+                  "S": "template17"
+                },
+                "programId": {
+                  "S": "template-17-test"
+                },
+                "courseName": {
+                  "S": "Template 17 Test"
+                },
+                "generatedAt": {
+                  "S": "2026-02-02T13:04:52.745Z"
+                },
+                "signatories": {
+                  "L": [
+                    {
+                      "M": {
+                        "id": {
+                          "S": "sig-1761035653490"
+                        },
+                        "name": {
+                          "S": "Goodness Adewuyi"
+                        },
+                        "title": {
+                          "S": "Chief Executive Officer, Grownish"
+                        },
+                        "signatureUrl": {
+                          "S": "https://gzawvtlehnujtviahdbv.supabase.co/storage/v1/object/sign/make-a611b057-uploads/org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067/signature-1761035714848.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zZWZmYzMyMS1mZjJmLTQ5YzYtYjczNi04NjQ1MDFmN2ZjNjgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtYWtlLWE2MTFiMDU3LXVwbG9hZHMvb3JnLWM2NWM5ZTEyLTc1NDQtNDYxYS05OGU0LTgzOTJjYTE5Nzg4NS0xNzYwNTM1ODMzMDY3L3NpZ25hdHVyZS0xNzYxMDM1NzE0ODQ4LnBuZyIsImlhdCI6MTc2MTAzNTcxNSwiZXhwIjoxNzkyNTcxNzE1fQ.LC7S2yw0uOLgizSkG7JKeuC_w3FdwrBIG4tH_I0xW0w"
+                        }
+                      }
+                    },
+                    {
+                      "M": {
+                        "id": {
+                          "S": "sig-1761035653490"
+                        },
+                        "name": {
+                          "S": "Goodness Adewuyi"
+                        },
+                        "title": {
+                          "S": "Chief Executive Officer, Grownish"
+                        },
+                        "signatureUrl": {
+                          "S": "https://gzawvtlehnujtviahdbv.supabase.co/storage/v1/object/sign/make-a611b057-uploads/org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067/signature-1761035714848.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zZWZmYzMyMS1mZjJmLTQ5YzYtYjczNi04NjQ1MDFmN2ZjNjgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtYWtlLWE2MTFiMDU3LXVwbG9hZHMvb3JnLWM2NWM5ZTEyLTc1NDQtNDYxYS05OGU0LTgzOTJjYTE5Nzg4NS0xNzYwNTM1ODMzMDY3L3NpZ25hdHVyZS0xNzYxMDM1NzE0ODQ4LnBuZyIsImlhdCI6MTc2MTAzNTcxNSwiZXhwIjoxNzkyNTcxNzE1fQ.LC7S2yw0uOLgizSkG7JKeuC_w3FdwrBIG4tH_I0xW0w"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "allowedEmails": {
+                  "L": []
+                },
+                "downloadCount": {
+                  "N": "0"
+                },
+                "certificateUrl": {
+                  "S": "certificate/org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067/template-17-test/CERT-1770037492745-6QOU5CGR2"
+                },
+                "completionDate": {
+                  "S": "2026-02-02"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                },
+                "restrictDownload": {
+                  "BOOL": false
+                },
+                "certificateHeader": {
+                  "S": "Certificate of Completion"
+                },
+                "courseDescription": {
+                  "S": ""
+                },
+                "customTemplateConfig": {
+                  "NULL": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "cert:CERT-1770115107684-LFGTP6FO6"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "CERT-1770115107684-LFGTP6FO6"
+                },
+                "status": {
+                  "S": "active"
+                },
+                "template": {
+                  "S": "template18"
+                },
+                "programId": {
+                  "S": "hands-on-bioinformatics-workflow"
+                },
+                "courseName": {
+                  "S": "Hands-on Bioinformatics Workflow"
+                },
+                "generatedAt": {
+                  "S": "2026-02-03T10:38:27.684Z"
+                },
+                "signatories": {
+                  "L": [
+                    {
+                      "M": {
+                        "id": {
+                          "S": "sig-1770112268224"
+                        },
+                        "name": {
+                          "S": "Oluwaseyi Olawale"
+                        },
+                        "title": {
+                          "S": "Founder/CEO, Genomac Holdings"
+                        },
+                        "signatureUrl": {
+                          "S": "https://gzawvtlehnujtviahdbv.supabase.co/storage/v1/object/sign/make-a611b057-uploads/org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447/signature-1770112414395.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zZWZmYzMyMS1mZjJmLTQ5YzYtYjczNi04NjQ1MDFmN2ZjNjgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtYWtlLWE2MTFiMDU3LXVwbG9hZHMvb3JnLTZmMmE5OGM5LTAzMDEtNGY1Ni05OWFhLTJhMzVmNWZjODQzYS0xNzY5NTIyNjU3NDQ3L3NpZ25hdHVyZS0xNzcwMTEyNDE0Mzk1LnBuZyIsImlhdCI6MTc3MDExMjQxNCwiZXhwIjoxODAxNjQ4NDE0fQ.6mhwttaP3q1AZJtYcwqmW9qz_J0Nav2KqcfkwVrP4yo"
+                        }
+                      }
+                    },
+                    {
+                      "M": {
+                        "id": {
+                          "S": "sig-1770112420689"
+                        },
+                        "name": {
+                          "S": "Oluwaseun Agboola"
+                        },
+                        "title": {
+                          "S": "Director, Genomac Institute Inc."
+                        },
+                        "signatureUrl": {
+                          "S": "https://gzawvtlehnujtviahdbv.supabase.co/storage/v1/object/sign/make-a611b057-uploads/org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447/signature-1770112455411.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zZWZmYzMyMS1mZjJmLTQ5YzYtYjczNi04NjQ1MDFmN2ZjNjgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtYWtlLWE2MTFiMDU3LXVwbG9hZHMvb3JnLTZmMmE5OGM5LTAzMDEtNGY1Ni05OWFhLTJhMzVmNWZjODQzYS0xNzY5NTIyNjU3NDQ3L3NpZ25hdHVyZS0xNzcwMTEyNDU1NDExLnBuZyIsImlhdCI6MTc3MDExMjQ1NSwiZXhwIjoxODAxNjQ4NDU1fQ.ikBxmlrVwJYYOmyiCGuU1F4H1y8kchpBnxRc0aTRUj8"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "allowedEmails": {
+                  "L": [
+                    {
+                      "S": "genomacinc@gmail.com"
+                    },
+                    {
+                      "S": "emmanuelayomide028@gmail.com"
+                    },
+                    {
+                      "S": "fatimaazka80@gmail.com"
+                    },
+                    {
+                      "S": "kakudirayhan@gmail.com"
+                    },
+                    {
+                      "S": "mehajraawan@gmail.com"
+                    },
+                    {
+                      "S": "qurat0108@gmail.com"
+                    },
+                    {
+                      "S": "asyavet018@gmail.com"
+                    },
+                    {
+                      "S": "eharleyulysses@gmail.com"
+                    },
+                    {
+                      "S": "folorunshohawawu2019@gmail.com"
+                    },
+                    {
+                      "S": "cafrancois06@gmail.com"
+                    },
+                    {
+                      "S": "teebellah@gmail.com"
+                    },
+                    {
+                      "S": "emaikano08@gmail.com"
+                    },
+                    {
+                      "S": "abir0mhadhbi@gmail.com"
+                    },
+                    {
+                      "S": "syrine.bennaceur@etudiant-fst.utm.tn"
+                    },
+                    {
+                      "S": "rahma.riahi@etudiant-fst.utm.tn"
+                    },
+                    {
+                      "S": "fatimashehuibrahim641@gmail.com"
+                    },
+                    {
+                      "S": "nasirhamid.nhs@gmail.com"
+                    },
+                    {
+                      "S": "alexandraufuoma@gmail.com"
+                    },
+                    {
+                      "S": "rayaanfakher@gmail.com"
+                    },
+                    {
+                      "S": "s.zaibk01@gmail.com"
+                    },
+                    {
+                      "S": "mohamednour.chourou@etudiant-fst.utm.tn"
+                    },
+                    {
+                      "S": "clementchilambe81@gmail.com"
+                    },
+                    {
+                      "S": "muhammadalamin1414@gmail.com"
+                    },
+                    {
+                      "S": "macmacosy@gmail.com"
+                    },
+                    {
+                      "S": "rabiahaider404@gmail.com"
+                    },
+                    {
+                      "S": "aneesahsan135@gmail.com"
+                    },
+                    {
+                      "S": "hauwauisaturaki@gmail.com"
+                    },
+                    {
+                      "S": "maybinchitalu88@gmail.com"
+                    },
+                    {
+                      "S": "sanjanaalai3@gmail.com"
+                    },
+                    {
+                      "S": "zeeyakubu16.zy@gmail.com"
+                    },
+                    {
+                      "S": "uzma.ahsaan1926@gmail.com"
+                    },
+                    {
+                      "S": "mungosaliy2003@gmail.com"
+                    },
+                    {
+                      "S": "ikramausmanbala@gmail.com"
+                    },
+                    {
+                      "S": "abdulmutalibchado@gmail.com"
+                    },
+                    {
+                      "S": "shemaiahmaqx97lufeyo@gmail.com"
+                    },
+                    {
+                      "S": "moso@up.edu.ph"
+                    },
+                    {
+                      "S": "harshdeepsin0611@gmail.com"
+                    },
+                    {
+                      "S": "yousranajeeb2001@gmail.com"
+                    },
+                    {
+                      "S": "ghada.mahjoub@insat.ucar.tn"
+                    },
+                    {
+                      "S": "abelhuleji2004@gmail.com"
+                    },
+                    {
+                      "S": "khaoulaguizani5@gmail.com"
+                    },
+                    {
+                      "S": "parulsharma200111@gmail.com"
+                    },
+                    {
+                      "S": "eshawa44@gmail.com"
+                    },
+                    {
+                      "S": "nanouboukhelata@yahoo.fr"
+                    },
+                    {
+                      "S": "rawahamukhtar8@gmail.com"
+                    },
+                    {
+                      "S": "atchayaramb@gmail.com"
+                    },
+                    {
+                      "S": "kefimwingi@gmail.com"
+                    },
+                    {
+                      "S": "ahmedwalidsaid11@gmail.com"
+                    },
+                    {
+                      "S": "quratulainjaved000@gmail.com"
+                    },
+                    {
+                      "S": "t.menasria@univ-batna2.dz"
+                    },
+                    {
+                      "S": "famina4meone@gmail.com"
+                    },
+                    {
+                      "S": "ndjavier.ritm@gmail.com"
+                    },
+                    {
+                      "S": "titusonugba@gmail.com"
+                    },
+                    {
+                      "S": "mercyerioluwaadewusi@gmail.com"
+                    },
+                    {
+                      "S": "sarabashir022@gmail.com"
+                    },
+                    {
+                      "S": "blessingmpande4@gmail.com"
+                    },
+                    {
+                      "S": "ayeshashoukat5288@gmail.com"
+                    },
+                    {
+                      "S": "bhuwandahal30@gmail.com"
+                    },
+                    {
+                      "S": "aimentwari807@gmail.com"
+                    },
+                    {
+                      "S": "aminakusherkii06@gmail.com"
+                    },
+                    {
+                      "S": "udemej40@gmail.com"
+                    },
+                    {
+                      "S": "funkweesther1@gmail.com"
+                    },
+                    {
+                      "S": "nahidagha91@gmail.com"
+                    },
+                    {
+                      "S": "hikmat03159666088@gmail.com"
+                    },
+                    {
+                      "S": "sakatuchilando@gmail.com"
+                    },
+                    {
+                      "S": "dinaabdelrazig@gmail.com"
+                    },
+                    {
+                      "S": "joshiyukta16@gmail.com"
+                    },
+                    {
+                      "S": "a2yazdan.kmu@gmail.com"
+                    },
+                    {
+                      "S": "mousab819@gmail.com"
+                    },
+                    {
+                      "S": "tkchitlog@gmail.com"
+                    },
+                    {
+                      "S": "mbuyujohn30@gmail.com"
+                    },
+                    {
+                      "S": "sherinvgeorge95@gmail.com"
+                    },
+                    {
+                      "S": "matongolorato@gmail.com"
+                    },
+                    {
+                      "S": "bohaalamal20@gmail.com"
+                    },
+                    {
+                      "S": "salmaahmedmoh@gmail.com"
+                    },
+                    {
+                      "S": "bandamainess07@gmail.com"
+                    },
+                    {
+                      "S": "neliap329@gmail.com"
+                    },
+                    {
+                      "S": "rajaamail24@gmail.com"
+                    },
+                    {
+                      "S": "gidemone@gmail.com"
+                    },
+                    {
+                      "S": "jaspreet.kaur.bi28@iilm.edu"
+                    },
+                    {
+                      "S": "marwa.air13@gmail.com"
+                    },
+                    {
+                      "S": "hatimhassanhamid@gmail.com"
+                    },
+                    {
+                      "S": "otokpaoche5@gmail.com"
+                    },
+                    {
+                      "S": "hadjer.2237@gmail.com"
+                    },
+                    {
+                      "S": "emmanuelkasonde1999@gmail.com"
+                    },
+                    {
+                      "S": "jaspreetsukheeja004@gmail.com"
+                    },
+                    {
+                      "S": "merai0neurociencia@gmail.com"
+                    },
+                    {
+                      "S": "isani3003@gmail.com"
+                    },
+                    {
+                      "S": "moizmalik.735@gmail.com"
+                    },
+                    {
+                      "S": "arjunmalli206@gmail.com"
+                    },
+                    {
+                      "S": "isachadoisa1@gmail.com"
+                    },
+                    {
+                      "S": "daghari21@gmail.com"
+                    },
+                    {
+                      "S": "deganakaryll@gmail.com"
+                    },
+                    {
+                      "S": "daghri21@gmail.com"
+                    },
+                    {
+                      "S": "mzmlawd@gmail.com"
+                    },
+                    {
+                      "S": "namraalvi12@gmail.com"
+                    },
+                    {
+                      "S": "siragmaya2005@gmail.com"
+                    },
+                    {
+                      "S": "ssomeiza1990@gmail.com"
+                    },
+                    {
+                      "S": "hira.rehan100@gmail.com"
+                    },
+                    {
+                      "S": "susmitha2002nimmagadda@gmail.com"
+                    },
+                    {
+                      "S": "shreshtapulijala@gmail.com"
+                    },
+                    {
+                      "S": "gaurvikhattar72@gmail.com"
+                    },
+                    {
+                      "S": "manasayenumula47@gmail.com"
+                    },
+                    {
+                      "S": "tvnslamrutha18@gmail.com"
+                    },
+                    {
+                      "S": "lubanashikfa@gmail.com"
+                    },
+                    {
+                      "S": "neha.aquiline@gmail.com"
+                    },
+                    {
+                      "S": "siliveruakhila7@gmail.com"
+                    },
+                    {
+                      "S": "imanish04@gmail.com"
+                    },
+                    {
+                      "S": "clementebube55@gmail.com"
+                    },
+                    {
+                      "S": "elhadaddonia525@gmail.com"
+                    },
+                    {
+                      "S": "rahmazaidmaghraby@gmail.com"
+                    },
+                    {
+                      "S": "bayanosama2003@hotmail.com"
+                    },
+                    {
+                      "S": "samina.ejazsyed@iub.edu.pk"
+                    },
+                    {
+                      "S": "douniabenamirouche@gmail.com"
+                    },
+                    {
+                      "S": "gabrielelorm08@gmail.com"
+                    },
+                    {
+                      "S": "hibhutta.a2002@gmail.com"
+                    },
+                    {
+                      "S": "binismaeely197@gmail.com"
+                    },
+                    {
+                      "S": "abidamagaji922@gmail.com"
+                    },
+                    {
+                      "S": "godabharath2004@gmail.com"
+                    },
+                    {
+                      "S": "anasosam2005@gmail.com"
+                    },
+                    {
+                      "S": "vemgalmounika@gmail.com"
+                    },
+                    {
+                      "S": "safaseedahmad@gmail.com"
+                    },
+                    {
+                      "S": "ekram.hassan85@gmail.com"
+                    },
+                    {
+                      "S": "lateefahhassan465@gmail.com"
+                    },
+                    {
+                      "S": "precioushappiness023@gmail.com"
+                    },
+                    {
+                      "S": "rahmakhamies614@gmail.com"
+                    },
+                    {
+                      "S": "blessed.atharvagangurde@gmail.com"
+                    },
+                    {
+                      "S": "fatimaalhass750@gmail.com"
+                    }
+                  ]
+                },
+                "downloadCount": {
+                  "N": "0"
+                },
+                "certificateUrl": {
+                  "S": "certificate/org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447/hands-on-bioinformatics-workflow/CERT-1770115107684-LFGTP6FO6"
+                },
+                "completionDate": {
+                  "S": "2026-01-30"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                },
+                "restrictDownload": {
+                  "BOOL": true
+                },
+                "certificateHeader": {
+                  "S": "Certificate of Participation"
+                },
+                "courseDescription": {
+                  "S": "This workshop focused on practical bioinformatics analysis, including data preprocessing, sequence analysis, and application of reproducible workflows for biological research."
+                },
+                "customTemplateConfig": {
+                  "NULL": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "cert:CERT-1770128682254-V6Y1TA39C"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "CERT-1770128682254-V6Y1TA39C"
+                },
+                "status": {
+                  "S": "active"
+                },
+                "template": {
+                  "S": "template3"
+                },
+                "programId": {
+                  "S": "advanced-machine-learning-course"
+                },
+                "courseName": {
+                  "S": "Advanced Machine Learning Course"
+                },
+                "generatedAt": {
+                  "S": "2026-02-03T14:24:42.254Z"
+                },
+                "signatories": {
+                  "L": []
+                },
+                "allowedEmails": {
+                  "L": []
+                },
+                "downloadCount": {
+                  "N": "0"
+                },
+                "certificateUrl": {
+                  "S": "certificate/org-80489fc8-0606-4f17-8f54-26dd35e90b09-1770128477253/advanced-machine-learning-course/CERT-1770128682254-V6Y1TA39C"
+                },
+                "completionDate": {
+                  "S": "2026-02-03"
+                },
+                "organizationId": {
+                  "S": "org-80489fc8-0606-4f17-8f54-26dd35e90b09-1770128477253"
+                },
+                "restrictDownload": {
+                  "BOOL": false
+                },
+                "certificateHeader": {
+                  "S": "Certificate of Completion"
+                },
+                "courseDescription": {
+                  "S": ""
+                },
+                "customTemplateConfig": {
+                  "NULL": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "cert:CERT-1770131675683-Y1M5MRGC0"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "CERT-1770131675683-Y1M5MRGC0"
+                },
+                "status": {
+                  "S": "active"
+                },
+                "template": {
+                  "S": "template1"
+                },
+                "programId": {
+                  "S": "machine-learning"
+                },
+                "courseName": {
+                  "S": "Machine Learning"
+                },
+                "generatedAt": {
+                  "S": "2026-02-03T15:14:35.683Z"
+                },
+                "signatories": {
+                  "L": [
+                    {
+                      "M": {
+                        "id": {
+                          "S": "sig-1770131247524"
+                        },
+                        "name": {
+                          "S": "Humble"
+                        },
+                        "title": {
+                          "S": "CEO & Founder"
+                        },
+                        "signatureUrl": {
+                          "S": "https://gzawvtlehnujtviahdbv.supabase.co/storage/v1/object/sign/make-a611b057-uploads/org-80489fc8-0606-4f17-8f54-26dd35e90b09-1770128477253/signature-1770131337685.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zZWZmYzMyMS1mZjJmLTQ5YzYtYjczNi04NjQ1MDFmN2ZjNjgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtYWtlLWE2MTFiMDU3LXVwbG9hZHMvb3JnLTgwNDg5ZmM4LTA2MDYtNGYxNy04ZjU0LTI2ZGQzNWU5MGIwOS0xNzcwMTI4NDc3MjUzL3NpZ25hdHVyZS0xNzcwMTMxMzM3Njg1LnBuZyIsImlhdCI6MTc3MDEzMTMzNywiZXhwIjoxODAxNjY3MzM3fQ.CE9hh-Sw0K5eEbCpg1-sqVsWamvPrMTjg1Bq2YuzMS4"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "allowedEmails": {
+                  "L": []
+                },
+                "downloadCount": {
+                  "N": "0"
+                },
+                "certificateUrl": {
+                  "S": "certificate/org-80489fc8-0606-4f17-8f54-26dd35e90b09-1770128477253/machine-learning/CERT-1770131675683-Y1M5MRGC0"
+                },
+                "completionDate": {
+                  "S": "2026-02-03"
+                },
+                "organizationId": {
+                  "S": "org-80489fc8-0606-4f17-8f54-26dd35e90b09-1770128477253"
+                },
+                "restrictDownload": {
+                  "BOOL": false
+                },
+                "certificateHeader": {
+                  "S": "Certificate of Completion"
+                },
+                "courseDescription": {
+                  "S": ""
+                },
+                "customTemplateConfig": {
+                  "NULL": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "cert:CERT-1770202497856-Q4BJNPDHU"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "CERT-1770202497856-Q4BJNPDHU"
+                },
+                "status": {
+                  "S": "active"
+                },
+                "template": {
+                  "S": "template18"
+                },
+                "programId": {
+                  "S": "template-18"
+                },
+                "courseName": {
+                  "S": "Template 18"
+                },
+                "generatedAt": {
+                  "S": "2026-02-04T10:54:57.856Z"
+                },
+                "signatories": {
+                  "L": [
+                    {
+                      "M": {
+                        "id": {
+                          "S": "sig-1761035653490"
+                        },
+                        "name": {
+                          "S": "Goodness Adewuyi"
+                        },
+                        "title": {
+                          "S": "Chief Executive Officer, Grownish"
+                        },
+                        "signatureUrl": {
+                          "S": "https://gzawvtlehnujtviahdbv.supabase.co/storage/v1/object/sign/make-a611b057-uploads/org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067/signature-1761035714848.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zZWZmYzMyMS1mZjJmLTQ5YzYtYjczNi04NjQ1MDFmN2ZjNjgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtYWtlLWE2MTFiMDU3LXVwbG9hZHMvb3JnLWM2NWM5ZTEyLTc1NDQtNDYxYS05OGU0LTgzOTJjYTE5Nzg4NS0xNzYwNTM1ODMzMDY3L3NpZ25hdHVyZS0xNzYxMDM1NzE0ODQ4LnBuZyIsImlhdCI6MTc2MTAzNTcxNSwiZXhwIjoxNzkyNTcxNzE1fQ.LC7S2yw0uOLgizSkG7JKeuC_w3FdwrBIG4tH_I0xW0w"
+                        }
+                      }
+                    },
+                    {
+                      "M": {
+                        "id": {
+                          "S": "sig-1761035653490"
+                        },
+                        "name": {
+                          "S": "Goodness Adewuyi"
+                        },
+                        "title": {
+                          "S": "Chief Executive Officer, Grownish"
+                        },
+                        "signatureUrl": {
+                          "S": "https://gzawvtlehnujtviahdbv.supabase.co/storage/v1/object/sign/make-a611b057-uploads/org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067/signature-1761035714848.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zZWZmYzMyMS1mZjJmLTQ5YzYtYjczNi04NjQ1MDFmN2ZjNjgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtYWtlLWE2MTFiMDU3LXVwbG9hZHMvb3JnLWM2NWM5ZTEyLTc1NDQtNDYxYS05OGU0LTgzOTJjYTE5Nzg4NS0xNzYwNTM1ODMzMDY3L3NpZ25hdHVyZS0xNzYxMDM1NzE0ODQ4LnBuZyIsImlhdCI6MTc2MTAzNTcxNSwiZXhwIjoxNzkyNTcxNzE1fQ.LC7S2yw0uOLgizSkG7JKeuC_w3FdwrBIG4tH_I0xW0w"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "allowedEmails": {
+                  "L": []
+                },
+                "downloadCount": {
+                  "N": "0"
+                },
+                "certificateUrl": {
+                  "S": "certificate/org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067/template-18/CERT-1770202497856-Q4BJNPDHU"
+                },
+                "completionDate": {
+                  "S": "2026-02-04"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                },
+                "restrictDownload": {
+                  "BOOL": false
+                },
+                "certificateHeader": {
+                  "S": "Certificate of Completion"
+                },
+                "courseDescription": {
+                  "S": ""
+                },
+                "customTemplateConfig": {
+                  "NULL": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "cert:CERT-1770375576488-XU5NR1TCG"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "CERT-1770375576488-XU5NR1TCG"
+                },
+                "status": {
+                  "S": "active"
+                },
+                "template": {
+                  "S": "template1"
+                },
+                "programId": {
+                  "S": "bioinformatics-workflow"
+                },
+                "courseName": {
+                  "S": "BIOINFORMATICS WORKFLOW"
+                },
+                "generatedAt": {
+                  "S": "2026-02-06T10:59:36.488Z"
+                },
+                "signatories": {
+                  "L": []
+                },
+                "allowedEmails": {
+                  "L": []
+                },
+                "downloadCount": {
+                  "N": "0"
+                },
+                "certificateUrl": {
+                  "S": "certificate/org-5b6ef551-f3b2-489c-9c9c-513546666a6c-1770375314735/bioinformatics-workflow/CERT-1770375576488-XU5NR1TCG"
+                },
+                "completionDate": {
+                  "S": "2026-01-30"
+                },
+                "organizationId": {
+                  "S": "org-5b6ef551-f3b2-489c-9c9c-513546666a6c-1770375314735"
+                },
+                "restrictDownload": {
+                  "BOOL": false
+                },
+                "certificateHeader": {
+                  "S": "Certificate of participation"
+                },
+                "courseDescription": {
+                  "S": "BIOINFORMATICS ANALYSIS"
+                },
+                "customTemplateConfig": {
+                  "NULL": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "cert:CERT-1770387207392-EM962LDEM"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "CERT-1770387207392-EM962LDEM"
+                },
+                "status": {
+                  "S": "active"
+                },
+                "template": {
+                  "S": "template1"
+                },
+                "programId": {
+                  "S": "certifyer-app-test"
+                },
+                "courseName": {
+                  "S": "Certifyer App Test"
+                },
+                "generatedAt": {
+                  "S": "2026-02-06T14:13:27.393Z"
+                },
+                "signatories": {
+                  "L": [
+                    {
+                      "M": {
+                        "id": {
+                          "S": "sig-1770386999574"
+                        },
+                        "name": {
+                          "S": "Goodness Adewuyi"
+                        },
+                        "title": {
+                          "S": "CEO, Grownish"
+                        },
+                        "signatureUrl": {
+                          "S": "https://gzawvtlehnujtviahdbv.supabase.co/storage/v1/object/sign/make-a611b057-uploads/org-6a3b7686-27bd-40ed-9b81-b868112e5117-1770386867706/signature-1770387006238.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zZWZmYzMyMS1mZjJmLTQ5YzYtYjczNi04NjQ1MDFmN2ZjNjgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtYWtlLWE2MTFiMDU3LXVwbG9hZHMvb3JnLTZhM2I3Njg2LTI3YmQtNDBlZC05YjgxLWI4NjgxMTJlNTExNy0xNzcwMzg2ODY3NzA2L3NpZ25hdHVyZS0xNzcwMzg3MDA2MjM4LnBuZyIsImlhdCI6MTc3MDM4NzAwNiwiZXhwIjoxODAxOTIzMDA2fQ.53YsvrnSj_NCkGVb0D_TCg7I59Ywc1rnWflrB-JPIt0"
+                        }
+                      }
+                    },
+                    {
+                      "M": {
+                        "id": {
+                          "S": "sig-1770387030325"
+                        },
+                        "name": {
+                          "S": "Omotolani Afolayan"
+                        },
+                        "title": {
+                          "S": "COO, Grownish"
+                        },
+                        "signatureUrl": {
+                          "S": "https://gzawvtlehnujtviahdbv.supabase.co/storage/v1/object/sign/make-a611b057-uploads/org-6a3b7686-27bd-40ed-9b81-b868112e5117-1770386867706/signature-1770387047706.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zZWZmYzMyMS1mZjJmLTQ5YzYtYjczNi04NjQ1MDFmN2ZjNjgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtYWtlLWE2MTFiMDU3LXVwbG9hZHMvb3JnLTZhM2I3Njg2LTI3YmQtNDBlZC05YjgxLWI4NjgxMTJlNTExNy0xNzcwMzg2ODY3NzA2L3NpZ25hdHVyZS0xNzcwMzg3MDQ3NzA2LnBuZyIsImlhdCI6MTc3MDM4NzA0OCwiZXhwIjoxODAxOTIzMDQ4fQ.1PExYRX5-pzw2TNTBmvoo-BHMAftPk4B_gFEoNFE-fY"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "allowedEmails": {
+                  "L": []
+                },
+                "downloadCount": {
+                  "N": "0"
+                },
+                "certificateUrl": {
+                  "S": "certificate/org-6a3b7686-27bd-40ed-9b81-b868112e5117-1770386867706/certifyer-app-test/CERT-1770387207392-EM962LDEM"
+                },
+                "completionDate": {
+                  "S": "2026-02-06"
+                },
+                "organizationId": {
+                  "S": "org-6a3b7686-27bd-40ed-9b81-b868112e5117-1770386867706"
+                },
+                "restrictDownload": {
+                  "BOOL": false
+                },
+                "certificateHeader": {
+                  "S": "Certificate of Participation"
+                },
+                "courseDescription": {
+                  "S": "For participating in the live test of the new app, Certifyer."
+                },
+                "customTemplateConfig": {
+                  "NULL": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "cert:CERT-1770389992470-66N42LAZX"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "CERT-1770389992470-66N42LAZX"
+                },
+                "status": {
+                  "S": "active"
+                },
+                "template": {
+                  "S": "template1"
+                },
+                "programId": {
+                  "S": "bioinformatics"
+                },
+                "courseName": {
+                  "S": "Bioinformatics"
+                },
+                "generatedAt": {
+                  "S": "2026-02-06T14:59:52.470Z"
+                },
+                "signatories": {
+                  "L": []
+                },
+                "allowedEmails": {
+                  "L": []
+                },
+                "downloadCount": {
+                  "N": "0"
+                },
+                "certificateUrl": {
+                  "S": "certificate/org-404bfe24-6597-482e-a99c-a4671e66921b-1770389541348/bioinformatics/CERT-1770389992470-66N42LAZX"
+                },
+                "completionDate": {
+                  "S": "2026-02-06"
+                },
+                "organizationId": {
+                  "S": "org-404bfe24-6597-482e-a99c-a4671e66921b-1770389541348"
+                },
+                "restrictDownload": {
+                  "BOOL": false
+                },
+                "certificateHeader": {
+                  "S": "Certificate of Completion"
+                },
+                "courseDescription": {
+                  "S": "successfully participating in the fully funded program on:\n\nHANDS-ON BIOINFORMATICS WORKFLOW\n\nThis workshop focused on practical bioinformatics analysis, including data preprocessing, sequence analysis, and application of reproducible workflows for biological research."
+                },
+                "customTemplateConfig": {
+                  "NULL": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "cert:CERT-1770653794825-YGQS7UK2B"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "CERT-1770653794825-YGQS7UK2B"
+                },
+                "status": {
+                  "S": "active"
+                },
+                "template": {
+                  "S": "template1"
+                },
+                "programId": {
+                  "S": "test-verification-link"
+                },
+                "courseName": {
+                  "S": "Test Verification Link"
+                },
+                "generatedAt": {
+                  "S": "2026-02-09T16:16:34.825Z"
+                },
+                "signatories": {
+                  "L": [
+                    {
+                      "M": {
+                        "id": {
+                          "S": "sig-1761035653490"
+                        },
+                        "name": {
+                          "S": "Goodness Adewuyi"
+                        },
+                        "title": {
+                          "S": "Chief Executive Officer, Grownish"
+                        },
+                        "signatureUrl": {
+                          "S": "https://gzawvtlehnujtviahdbv.supabase.co/storage/v1/object/sign/make-a611b057-uploads/org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067/signature-1761035714848.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zZWZmYzMyMS1mZjJmLTQ5YzYtYjczNi04NjQ1MDFmN2ZjNjgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtYWtlLWE2MTFiMDU3LXVwbG9hZHMvb3JnLWM2NWM5ZTEyLTc1NDQtNDYxYS05OGU0LTgzOTJjYTE5Nzg4NS0xNzYwNTM1ODMzMDY3L3NpZ25hdHVyZS0xNzYxMDM1NzE0ODQ4LnBuZyIsImlhdCI6MTc2MTAzNTcxNSwiZXhwIjoxNzkyNTcxNzE1fQ.LC7S2yw0uOLgizSkG7JKeuC_w3FdwrBIG4tH_I0xW0w"
+                        }
+                      }
+                    },
+                    {
+                      "M": {
+                        "id": {
+                          "S": "sig-1762879806049"
+                        },
+                        "name": {
+                          "S": "Jane Smith"
+                        },
+                        "title": {
+                          "S": "Program Coordinator"
+                        },
+                        "signatureUrl": {
+                          "S": "https://gzawvtlehnujtviahdbv.supabase.co/storage/v1/object/sign/make-a611b057-uploads/org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067/signature-1765984288864.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zZWZmYzMyMS1mZjJmLTQ5YzYtYjczNi04NjQ1MDFmN2ZjNjgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtYWtlLWE2MTFiMDU3LXVwbG9hZHMvb3JnLWM2NWM5ZTEyLTc1NDQtNDYxYS05OGU0LTgzOTJjYTE5Nzg4NS0xNzYwNTM1ODMzMDY3L3NpZ25hdHVyZS0xNzY1OTg0Mjg4ODY0LnBuZyIsImlhdCI6MTc2NTk4NDI4OSwiZXhwIjoxNzk3NTIwMjg5fQ.OZrrAznMv3ztvzHwUZcsER0MW8dcwOi-4WnVyb1Jf1M"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "allowedEmails": {
+                  "L": []
+                },
+                "downloadCount": {
+                  "N": "0"
+                },
+                "certificateUrl": {
+                  "S": "certificate/org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067/test-verification-link/CERT-1770653794825-YGQS7UK2B"
+                },
+                "completionDate": {
+                  "S": "2026-02-09"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                },
+                "restrictDownload": {
+                  "BOOL": false
+                },
+                "certificateHeader": {
+                  "S": "Certificate of Completion"
+                },
+                "courseDescription": {
+                  "S": "jfwefioefe test"
+                },
+                "customTemplateConfig": {
+                  "NULL": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "cert:CERT-1771337529539-AAGJGCXEY"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "CERT-1771337529539-AAGJGCXEY"
+                },
+                "status": {
+                  "S": "active"
+                },
+                "template": {
+                  "S": "template18"
+                },
+                "programId": {
+                  "S": "data-driven-health:-bridging-bioinformatics-and-pharmacology-for-effective-interventions."
+                },
+                "courseName": {
+                  "S": "Data-Driven Health: Bridging Bioinformatics and Pharmacology for Effective Interventions."
+                },
+                "generatedAt": {
+                  "S": "2026-02-17T14:12:09.540Z"
+                },
+                "signatories": {
+                  "L": [
+                    {
+                      "M": {
+                        "id": {
+                          "S": "sig-1770112268224"
+                        },
+                        "name": {
+                          "S": "Oluwaseyi Olawale"
+                        },
+                        "title": {
+                          "S": "Founder/CEO, Genomac Holdings"
+                        },
+                        "signatureUrl": {
+                          "S": "https://gzawvtlehnujtviahdbv.supabase.co/storage/v1/object/sign/make-a611b057-uploads/org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447/signature-1770112414395.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zZWZmYzMyMS1mZjJmLTQ5YzYtYjczNi04NjQ1MDFmN2ZjNjgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtYWtlLWE2MTFiMDU3LXVwbG9hZHMvb3JnLTZmMmE5OGM5LTAzMDEtNGY1Ni05OWFhLTJhMzVmNWZjODQzYS0xNzY5NTIyNjU3NDQ3L3NpZ25hdHVyZS0xNzcwMTEyNDE0Mzk1LnBuZyIsImlhdCI6MTc3MDExMjQxNCwiZXhwIjoxODAxNjQ4NDE0fQ.6mhwttaP3q1AZJtYcwqmW9qz_J0Nav2KqcfkwVrP4yo"
+                        }
+                      }
+                    },
+                    {
+                      "M": {
+                        "id": {
+                          "S": "sig-1770112420689"
+                        },
+                        "name": {
+                          "S": "Oluwaseun Agboola"
+                        },
+                        "title": {
+                          "S": "Director, Genomac Institute Inc."
+                        },
+                        "signatureUrl": {
+                          "S": "https://gzawvtlehnujtviahdbv.supabase.co/storage/v1/object/sign/make-a611b057-uploads/org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447/signature-1770112455411.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zZWZmYzMyMS1mZjJmLTQ5YzYtYjczNi04NjQ1MDFmN2ZjNjgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtYWtlLWE2MTFiMDU3LXVwbG9hZHMvb3JnLTZmMmE5OGM5LTAzMDEtNGY1Ni05OWFhLTJhMzVmNWZjODQzYS0xNzY5NTIyNjU3NDQ3L3NpZ25hdHVyZS0xNzcwMTEyNDU1NDExLnBuZyIsImlhdCI6MTc3MDExMjQ1NSwiZXhwIjoxODAxNjQ4NDU1fQ.ikBxmlrVwJYYOmyiCGuU1F4H1y8kchpBnxRc0aTRUj8"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "allowedEmails": {
+                  "L": [
+                    {
+                      "S": "yusra.nayab87@gmail.com"
+                    },
+                    {
+                      "S": "arifabbas1414@gmail.com"
+                    },
+                    {
+                      "S": "ibrahimshafiu12@gmail.com"
+                    },
+                    {
+                      "S": "kunyenjegregory@gmail.com"
+                    },
+                    {
+                      "S": "haladuusman10@gmail.com"
+                    },
+                    {
+                      "S": "ahmadaliumar231@gmail.com"
+                    },
+                    {
+                      "S": "ganeshnaraboinaganesh@gmail.com"
+                    },
+                    {
+                      "S": "yetipayne18@gmail.com"
+                    },
+                    {
+                      "S": "hira.rehan100@gmail.com"
+                    },
+                    {
+                      "S": "usmankahout46@gmail.com"
+                    },
+                    {
+                      "S": "osuosumusa@gmail.com"
+                    },
+                    {
+                      "S": "lmkaugama93@gmail.com"
+                    },
+                    {
+                      "S": "noumanbiotech555@gmail.com"
+                    },
+                    {
+                      "S": "sarraabdelkarim2022@gmail.com"
+                    },
+                    {
+                      "S": "roheematademolujss3b@gmail.com"
+                    },
+                    {
+                      "S": "ayeshashoukat5288@gmail.com"
+                    },
+                    {
+                      "S": "mohammadzaharaddeen43@gmail.com"
+                    },
+                    {
+                      "S": "bhuwandahal30@gmail.com"
+                    },
+                    {
+                      "S": "tsnymfw12@gmail.com"
+                    },
+                    {
+                      "S": "syrine.bennaceur@etudiant-fst.utm.tn"
+                    },
+                    {
+                      "S": "bashbabynana@gmail.com"
+                    },
+                    {
+                      "S": "elijahbwalya69@gmail.com"
+                    },
+                    {
+                      "S": "rabiahaider404@gmail.com"
+                    },
+                    {
+                      "S": "muhammadbanda17@gmail.com"
+                    },
+                    {
+                      "S": "olusegunkehindejones@gmail.com"
+                    },
+                    {
+                      "S": "cleverchindumba23@gmail.com"
+                    },
+                    {
+                      "S": "rahmazaidmaghraby@gmail.com"
+                    },
+                    {
+                      "S": "johnayobamimatthias@gmail.com"
+                    },
+                    {
+                      "S": "rayaanfakher@gmail.com"
+                    },
+                    {
+                      "S": "marliussangu@gmail.com"
+                    },
+                    {
+                      "S": "mbuyujohn30@gmail.com"
+                    },
+                    {
+                      "S": "jaspreetsukheeja004@gmail.com"
+                    },
+                    {
+                      "S": "binismaeely136@gmail.com"
+                    },
+                    {
+                      "S": "abdulmutalibchado@gmail.com"
+                    },
+                    {
+                      "S": "daghari21@gmail.com"
+                    },
+                    {
+                      "S": "hlazunovaolha@gmail.com"
+                    },
+                    {
+                      "S": "aweemmanuel0014@gmail.com"
+                    },
+                    {
+                      "S": "teebellah@gmail.com"
+                    },
+                    {
+                      "S": "asamupiusine@gmail.com"
+                    },
+                    {
+                      "S": "hibhutta.a2002@gmail.com"
+                    },
+                    {
+                      "S": "aamirajmal2001@gmail.com"
+                    },
+                    {
+                      "S": "piusmayowaesther@gmail.com"
+                    },
+                    {
+                      "S": "neha.aquiline@gmail.com"
+                    },
+                    {
+                      "S": "halimashuaibsalihu@gmail.com"
+                    },
+                    {
+                      "S": "hamasowemilimo@gmail.com"
+                    },
+                    {
+                      "S": "temioseniope123@gmail.com"
+                    },
+                    {
+                      "S": "mavis.biomed20@gmail.com"
+                    },
+                    {
+                      "S": "mayo.oyetunde1@gmail.com"
+                    },
+                    {
+                      "S": "madewale96@gmail.com"
+                    },
+                    {
+                      "S": "usmanojochenemi28@gmail.com"
+                    },
+                    {
+                      "S": "gabrielelorm08@gmail.com"
+                    },
+                    {
+                      "S": "nadavictorm@gmail.com"
+                    },
+                    {
+                      "S": "eharleyulysses@gmail.com"
+                    },
+                    {
+                      "S": "mumarad90@gmail.com"
+                    },
+                    {
+                      "S": "folamiabarnabas@gmail.com"
+                    },
+                    {
+                      "S": "shemaiahmaqx97lufeyo@gmail.com"
+                    },
+                    {
+                      "S": "yushaubellotangzee@gmail.com"
+                    },
+                    {
+                      "S": "evanzdgeniusking@gmail.com"
+                    },
+                    {
+                      "S": "amirtoyeeb@yahoo.com"
+                    },
+                    {
+                      "S": "nickycarloys@gmail.com"
+                    },
+                    {
+                      "S": "asyavet018@gmail.com"
+                    },
+                    {
+                      "S": "zulunoah431@gmail.com"
+                    },
+                    {
+                      "S": "sayosarah7@gmail.com"
+                    },
+                    {
+                      "S": "mousab819@gmail.com"
+                    },
+                    {
+                      "S": "otunlataiwo@gmail.com"
+                    },
+                    {
+                      "S": "dedzoedennis@gmail.com"
+                    },
+                    {
+                      "S": "gaurvikhattar72@gmail.com"
+                    },
+                    {
+                      "S": "clementebube55@gmail.com"
+                    },
+                    {
+                      "S": "molkabenmansour65@gmail.com"
+                    },
+                    {
+                      "S": "abdulazizdahiru59@gmail.com"
+                    },
+                    {
+                      "S": "maikudidaniel022@gmail.com"
+                    },
+                    {
+                      "S": "princemf001@gmail.com"
+                    },
+                    {
+                      "S": "ekecadaobi@gmail.com"
+                    },
+                    {
+                      "S": "jamarain7866@gmail.com"
+                    },
+                    {
+                      "S": "imsajjad030@gmail.com"
+                    },
+                    {
+                      "S": "seeratmattoo494@gmail.com"
+                    },
+                    {
+                      "S": "sharonadeyemi75@gmail.com"
+                    },
+                    {
+                      "S": "chaudharysajid007@gmail.com"
+                    },
+                    {
+                      "S": "224092205@stu.ukzn.ac.za"
+                    },
+                    {
+                      "S": "precioushappiness023@gmail.com"
+                    },
+                    {
+                      "S": "akpanmfon48@gmail.com"
+                    },
+                    {
+                      "S": "wizanakazwe118@gmail.com"
+                    },
+                    {
+                      "S": "sharonadeyemi77@gmail.com"
+                    },
+                    {
+                      "S": "martinnjobvu45@gmail.com"
+                    },
+                    {
+                      "S": "ayeshatabassum565@gmail.com"
+                    },
+                    {
+                      "S": "abimbolaolokesusi5@gmail.com"
+                    },
+                    {
+                      "S": "izma.mohsin1@gmail.com"
+                    },
+                    {
+                      "S": "tahabinhusnain1@gmail.com"
+                    },
+                    {
+                      "S": "anastaciachris@gmail.com"
+                    },
+                    {
+                      "S": "razaanjumkasli@gmail.com"
+                    },
+                    {
+                      "S": "esther05oyegoke@gmail.com"
+                    },
+                    {
+                      "S": "gowastella19@gmail.com"
+                    },
+                    {
+                      "S": "sahirk2002@gmail.com"
+                    },
+                    {
+                      "S": "nwobifranklin3@gmail.com"
+                    },
+                    {
+                      "S": "mungosaliy2003@gmail.com"
+                    },
+                    {
+                      "S": "bayanosama2003@hotmail.com"
+                    },
+                    {
+                      "S": "siddiqarani932@gmail.com"
+                    },
+                    {
+                      "S": "abdullahibinharoon@gmail.com"
+                    },
+                    {
+                      "S": "godabharath2004@gmail.com"
+                    },
+                    {
+                      "S": "muhdyushau100@gmail.com"
+                    },
+                    {
+                      "S": "najeeevullah@gmail.com"
+                    },
+                    {
+                      "S": "successtips57@gmail.com"
+                    },
+                    {
+                      "S": "waititugitungo@gmail.com"
+                    },
+                    {
+                      "S": "ishanibhattacharjee365@gmail.com"
+                    },
+                    {
+                      "S": "duesifaith99@gmail.com"
+                    },
+                    {
+                      "S": "oforiabdulrashid7@gmail.com"
+                    },
+                    {
+                      "S": "ikramafridi107@gmail.com"
+                    },
+                    {
+                      "S": "rahma.riahi@etudiant-fst.utm.tn"
+                    },
+                    {
+                      "S": "dashenaanma26@gmail.com"
+                    },
+                    {
+                      "S": "ekram.hassan85@gmail.com"
+                    },
+                    {
+                      "S": "nwajefavour05@gmail.com"
+                    },
+                    {
+                      "S": "terhembaferdinand5@gmail.com"
+                    },
+                    {
+                      "S": "bohaalamal20@gmail.com"
+                    },
+                    {
+                      "S": "aribanaseem28@gmail.com"
+                    },
+                    {
+                      "S": "rajibdhakal45@gmail.com"
+                    },
+                    {
+                      "S": "harshdeepsin0611@gmail.com"
+                    },
+                    {
+                      "S": "oparaugopurity@gmail.com"
+                    },
+                    {
+                      "S": "mairajsheikh086@gmail.com"
+                    },
+                    {
+                      "S": "godisablechiweoke@gmail.com"
+                    },
+                    {
+                      "S": "aneesahsan135@gmail.com"
+                    },
+                    {
+                      "S": "princesswuyep@gmail.com"
+                    },
+                    {
+                      "S": "abir0mhadhbi@gmail.com"
+                    },
+                    {
+                      "S": "okunyomiezekiel@gmail.com"
+                    },
+                    {
+                      "S": "devadasgambeeram@gmail.com"
+                    },
+                    {
+                      "S": "alemneshhailemariam6@gmail.com"
+                    },
+                    {
+                      "S": "medinaabdulmuminu@gmail.com"
+                    },
+                    {
+                      "S": "agbonyemenefua@gmail.com"
+                    },
+                    {
+                      "S": "princess64raheemat@gmail.com"
+                    },
+                    {
+                      "S": "fathiaomotoyosi6@gmail.com"
+                    },
+                    {
+                      "S": "namraalvi12@gmail.com"
+                    },
+                    {
+                      "S": "wphyllis984@gmail.com"
+                    },
+                    {
+                      "S": "adeola.ala2015@gmail.com"
+                    },
+                    {
+                      "S": "siyabjahan@gmail.com"
+                    },
+                    {
+                      "S": "abigailtolulope5@gmail.com"
+                    },
+                    {
+                      "S": "7063008374ajit@gmail.com"
+                    },
+                    {
+                      "S": "andrewokoyo100@gmail.com"
+                    },
+                    {
+                      "S": "febamof2006@gmail.com"
+                    },
+                    {
+                      "S": "flashyfunmi@gmail.com"
+                    },
+                    {
+                      "S": "gargthashan555@gmail.com"
+                    },
+                    {
+                      "S": "victorolafimihan7@gmail.com"
+                    },
+                    {
+                      "S": "ajagunebelejoan@gmail.com"
+                    },
+                    {
+                      "S": "nabeelmoniawala@gmail.com"
+                    },
+                    {
+                      "S": "abdullahakhtar556@gmail.com"
+                    },
+                    {
+                      "S": "dyromasangwi@gmail.com"
+                    },
+                    {
+                      "S": "sokajibade@gmail.com"
+                    },
+                    {
+                      "S": "rabiatsalihu63@gmail.com"
+                    },
+                    {
+                      "S": "abubakarsalisu534@gmail.com"
+                    },
+                    {
+                      "S": "muhaabdullah754@gmail.com"
+                    },
+                    {
+                      "S": "abdullahtahir1474@gmail.com"
+                    },
+                    {
+                      "S": "alamiinmuhammada@gmail.com"
+                    },
+                    {
+                      "S": "apmpbt786@gmail.com"
+                    },
+                    {
+                      "S": "adewolebenedicta5@gmail.com"
+                    },
+                    {
+                      "S": "wawan.a.setiawan@gmail.com"
+                    },
+                    {
+                      "S": "ochinyeref@gmail.com"
+                    },
+                    {
+                      "S": "sasokwah@gmail.com"
+                    },
+                    {
+                      "S": "nadeesewmini.s@gmail.com"
+                    },
+                    {
+                      "S": "ngokav@gmail.com"
+                    },
+                    {
+                      "S": "emma.effanga@gmail.com"
+                    },
+                    {
+                      "S": "nuhushafin@gmail.com"
+                    },
+                    {
+                      "S": "abdulrazakmuhammadnasir@gmail.com"
+                    },
+                    {
+                      "S": "awotokun.femi@bouesti.edu.ng"
+                    },
+                    {
+                      "S": "bhavsarparam90@gmail.com"
+                    },
+                    {
+                      "S": "ezehngobless@gmail.com"
+                    },
+                    {
+                      "S": "saqib9039041@gmail.com"
+                    },
+                    {
+                      "S": "rowenwalid308@gmail.com"
+                    },
+                    {
+                      "S": "godsonchukwumaobi@gmail.com"
+                    },
+                    {
+                      "S": "obanyechinedu@gmail.com"
+                    },
+                    {
+                      "S": "anye.suh007@gmail.com"
+                    },
+                    {
+                      "S": "nechibvutefelistas@gmail.com"
+                    },
+                    {
+                      "S": "ttinat01@gmail.com"
+                    },
+                    {
+                      "S": "rishabdev0@gmail.com"
+                    },
+                    {
+                      "S": "stanklinnwaejim@gmail.com"
+                    },
+                    {
+                      "S": "shaileshkushwahakushwaha3@gmail.com"
+                    },
+                    {
+                      "S": "adejokejanet777@gmail.com"
+                    },
+                    {
+                      "S": "saintandema@gmail.com"
+                    },
+                    {
+                      "S": "kochfameone@gmail.com"
+                    },
+                    {
+                      "S": "amoon.ar120@gmail.com"
+                    },
+                    {
+                      "S": "rawiyaa.16@gmail.com"
+                    },
+                    {
+                      "S": "muhammadsaqibsadiq58@gmail.com"
+                    },
+                    {
+                      "S": "raji0866@pg.babcock.edu.ng"
+                    },
+                    {
+                      "S": "blessing.duru2008@gmail.com"
+                    },
+                    {
+                      "S": "esraa.m.h.elshiekh@gmail.com"
+                    },
+                    {
+                      "S": "anjumrazaa7@gmail.com"
+                    },
+                    {
+                      "S": "shreyadawande07@gmail.com"
+                    },
+                    {
+                      "S": "ameerhamzatk193@gmail.com"
+                    },
+                    {
+                      "S": "olusogamayowa67@gmail.com"
+                    },
+                    {
+                      "S": "sanaabdoulaye76@gmail.com"
+                    },
+                    {
+                      "S": "sal4research@gmail.com"
+                    },
+                    {
+                      "S": "umadamu.mth@buk.edu.ng"
+                    },
+                    {
+                      "S": "bukkymimi27@gmail.com"
+                    },
+                    {
+                      "S": "solajp@gmail.com"
+                    },
+                    {
+                      "S": "ohemujohn6@gmail.com"
+                    },
+                    {
+                      "S": "abedeborah921@gmail.com"
+                    },
+                    {
+                      "S": "misspama1772@gmail.com"
+                    },
+                    {
+                      "S": "ojewaleifeoluwa7@gmail.com"
+                    },
+                    {
+                      "S": "samianadeem103@gmail.com"
+                    },
+                    {
+                      "S": "illrich633@gmail.com"
+                    },
+                    {
+                      "S": "anthonyanyale6@gmail.com"
+                    },
+                    {
+                      "S": "genomacinc@gmail.com"
+                    }
+                  ]
+                },
+                "downloadCount": {
+                  "N": "0"
+                },
+                "certificateUrl": {
+                  "S": "certificate/org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447/data-driven-health:-bridging-bioinformatics-and-pharmacology-for-effective-interventions./CERT-1771337529539-AAGJGCXEY"
+                },
+                "completionDate": {
+                  "S": "2026-02-13"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                },
+                "restrictDownload": {
+                  "BOOL": true
+                },
+                "certificateHeader": {
+                  "S": "Certificate of Completion"
+                },
+                "courseDescription": {
+                  "S": "The program provided participants with practical insights and knowledge at the intersection of bioinformatics, pharmacology, and data-driven health solutions, fostering learning, engagement, and professional growth."
+                },
+                "customTemplateConfig": {
+                  "NULL": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "cert:CERT-1771340812549-NIT5QO2TX"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "CERT-1771340812549-NIT5QO2TX"
+                },
+                "status": {
+                  "S": "active"
+                },
+                "template": {
+                  "S": "template6"
+                },
+                "programId": {
+                  "S": "advanced-web-dev-22"
+                },
+                "courseName": {
+                  "S": "Advanced Web Dev 22"
+                },
+                "generatedAt": {
+                  "S": "2026-02-17T15:06:52.549Z"
+                },
+                "signatories": {
+                  "L": [
+                    {
+                      "M": {
+                        "id": {
+                          "S": "sig-1761035653490"
+                        },
+                        "name": {
+                          "S": "Goodness Adewuyi"
+                        },
+                        "title": {
+                          "S": "Chief Executive Officer, Grownish"
+                        },
+                        "signatureUrl": {
+                          "S": "https://gzawvtlehnujtviahdbv.supabase.co/storage/v1/object/sign/make-a611b057-uploads/org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067/signature-1761035714848.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zZWZmYzMyMS1mZjJmLTQ5YzYtYjczNi04NjQ1MDFmN2ZjNjgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtYWtlLWE2MTFiMDU3LXVwbG9hZHMvb3JnLWM2NWM5ZTEyLTc1NDQtNDYxYS05OGU0LTgzOTJjYTE5Nzg4NS0xNzYwNTM1ODMzMDY3L3NpZ25hdHVyZS0xNzYxMDM1NzE0ODQ4LnBuZyIsImlhdCI6MTc2MTAzNTcxNSwiZXhwIjoxNzkyNTcxNzE1fQ.LC7S2yw0uOLgizSkG7JKeuC_w3FdwrBIG4tH_I0xW0w"
+                        }
+                      }
+                    },
+                    {
+                      "M": {
+                        "id": {
+                          "S": "sig-1762879806049"
+                        },
+                        "name": {
+                          "S": "Jane Smith"
+                        },
+                        "title": {
+                          "S": "Program Coordinator"
+                        },
+                        "signatureUrl": {
+                          "S": "https://gzawvtlehnujtviahdbv.supabase.co/storage/v1/object/sign/make-a611b057-uploads/org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067/signature-1765984288864.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zZWZmYzMyMS1mZjJmLTQ5YzYtYjczNi04NjQ1MDFmN2ZjNjgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtYWtlLWE2MTFiMDU3LXVwbG9hZHMvb3JnLWM2NWM5ZTEyLTc1NDQtNDYxYS05OGU0LTgzOTJjYTE5Nzg4NS0xNzYwNTM1ODMzMDY3L3NpZ25hdHVyZS0xNzY1OTg0Mjg4ODY0LnBuZyIsImlhdCI6MTc2NTk4NDI4OSwiZXhwIjoxNzk3NTIwMjg5fQ.OZrrAznMv3ztvzHwUZcsER0MW8dcwOi-4WnVyb1Jf1M"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "allowedEmails": {
+                  "L": []
+                },
+                "downloadCount": {
+                  "N": "0"
+                },
+                "certificateUrl": {
+                  "S": "certificate/org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067/advanced-web-dev-22/CERT-1771340812549-NIT5QO2TX"
+                },
+                "completionDate": {
+                  "S": "2026-02-17"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                },
+                "restrictDownload": {
+                  "BOOL": false
+                },
+                "certificateHeader": {
+                  "S": "Certificate of Completion"
+                },
+                "courseDescription": {
+                  "S": ""
+                },
+                "customTemplateConfig": {
+                  "NULL": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "cert:CERT-1771342634875-W35QB61LT"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "CERT-1771342634875-W35QB61LT"
+                },
+                "status": {
+                  "S": "active"
+                },
+                "template": {
+                  "S": "template6"
+                },
+                "programId": {
+                  "S": "data-driven-health:-bridging-bioinformatics-and-pharmacology-for-effective-interventions."
+                },
+                "courseName": {
+                  "S": "Data-Driven Health: Bridging Bioinformatics and Pharmacology for Effective Interventions."
+                },
+                "generatedAt": {
+                  "S": "2026-02-17T15:37:14.875Z"
+                },
+                "signatories": {
+                  "L": [
+                    {
+                      "M": {
+                        "id": {
+                          "S": "sig-1770112268224"
+                        },
+                        "name": {
+                          "S": "Oluwaseyi Olawale"
+                        },
+                        "title": {
+                          "S": "Founder/CEO, Genomac Holdings"
+                        },
+                        "signatureUrl": {
+                          "S": "https://gzawvtlehnujtviahdbv.supabase.co/storage/v1/object/sign/make-a611b057-uploads/org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447/signature-1770112414395.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zZWZmYzMyMS1mZjJmLTQ5YzYtYjczNi04NjQ1MDFmN2ZjNjgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtYWtlLWE2MTFiMDU3LXVwbG9hZHMvb3JnLTZmMmE5OGM5LTAzMDEtNGY1Ni05OWFhLTJhMzVmNWZjODQzYS0xNzY5NTIyNjU3NDQ3L3NpZ25hdHVyZS0xNzcwMTEyNDE0Mzk1LnBuZyIsImlhdCI6MTc3MDExMjQxNCwiZXhwIjoxODAxNjQ4NDE0fQ.6mhwttaP3q1AZJtYcwqmW9qz_J0Nav2KqcfkwVrP4yo"
+                        }
+                      }
+                    },
+                    {
+                      "M": {
+                        "id": {
+                          "S": "sig-1770112420689"
+                        },
+                        "name": {
+                          "S": "Oluwaseun Agboola"
+                        },
+                        "title": {
+                          "S": "Director, Genomac Institute Inc."
+                        },
+                        "signatureUrl": {
+                          "S": "https://gzawvtlehnujtviahdbv.supabase.co/storage/v1/object/sign/make-a611b057-uploads/org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447/signature-1770112455411.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zZWZmYzMyMS1mZjJmLTQ5YzYtYjczNi04NjQ1MDFmN2ZjNjgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtYWtlLWE2MTFiMDU3LXVwbG9hZHMvb3JnLTZmMmE5OGM5LTAzMDEtNGY1Ni05OWFhLTJhMzVmNWZjODQzYS0xNzY5NTIyNjU3NDQ3L3NpZ25hdHVyZS0xNzcwMTEyNDU1NDExLnBuZyIsImlhdCI6MTc3MDExMjQ1NSwiZXhwIjoxODAxNjQ4NDU1fQ.ikBxmlrVwJYYOmyiCGuU1F4H1y8kchpBnxRc0aTRUj8"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "allowedEmails": {
+                  "L": []
+                },
+                "downloadCount": {
+                  "N": "0"
+                },
+                "certificateUrl": {
+                  "S": "certificate/org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447/data-driven-health:-bridging-bioinformatics-and-pharmacology-for-effective-interventions./CERT-1771342634875-W35QB61LT"
+                },
+                "completionDate": {
+                  "S": "2026-02-13"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                },
+                "restrictDownload": {
+                  "BOOL": false
+                },
+                "certificateHeader": {
+                  "S": "Certificate of Completion"
+                },
+                "courseDescription": {
+                  "S": "In recognition of your invaluable contribution as a speaker at the above webinar. Your expertise, insights, and commitment to knowledge sharing have greatly enriched our participants and advanced the goals of this program."
+                },
+                "customTemplateConfig": {
+                  "NULL": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "cert:CERT-1771347070454-TQF3CHGW0"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "CERT-1771347070454-TQF3CHGW0"
+                },
+                "status": {
+                  "S": "active"
+                },
+                "template": {
+                  "S": "template1"
+                },
+                "programId": {
+                  "S": "advance-techniques-in-veterinary-surgery"
+                },
+                "updatedAt": {
+                  "S": "2026-04-27T09:55:57.125Z"
+                },
+                "courseName": {
+                  "S": "Advance Techniques in Veterinary Surgery"
+                },
+                "updated_at": {
+                  "S": "2026-02-17T16:58:31.357Z"
+                },
+                "course_name": {
+                  "S": "Advance Techniques in Veterinary Surgery"
+                },
+                "generatedAt": {
+                  "S": "2026-02-17T16:51:10.454Z"
+                },
+                "signatories": {
+                  "L": [
+                    {
+                      "M": {
+                        "id": {
+                          "S": "sig-1771346997995"
+                        },
+                        "name": {
+                          "S": "Prof.  Dr. Roger Smith"
+                        },
+                        "title": {
+                          "S": "Professor of Equine Orthopaedics at the Royal Veterinary College, London."
+                        },
+                        "signatureUrl": {
+                          "S": ""
+                        }
+                      }
+                    },
+                    {
+                      "M": {
+                        "id": {
+                          "S": "sig-1771346701895"
+                        },
+                        "name": {
+                          "S": " Prof. Dr. Stuart Reid"
+                        },
+                        "title": {
+                          "S": "Principal of the Royal Veterinary College (RVC), RCVS specialist in veterinary epidemiology/public health"
+                        },
+                        "signatureUrl": {
+                          "S": ""
+                        }
+                      }
+                    }
+                  ]
+                },
+                "template_id": {
+                  "S": "template1"
+                },
+                "themeColors": {
+                  "NULL": true
+                },
+                "program_name": {
+                  "S": "Advance Techniques in Veterinary Surgery"
+                },
+                "allowedEmails": {
+                  "L": []
+                },
+                "downloadCount": {
+                  "N": "0"
+                },
+                "paymentStatus": {
+                  "S": "unpaid"
+                },
+                "allowed_emails": {
+                  "L": []
+                },
+                "certificateUrl": {
+                  "S": "certificate/org-b4830126-59fc-42fb-9a2a-2ef56411d77b-1771346388967/advance-techniques-in-veterinary-surgery/CERT-1771347070454-TQF3CHGW0"
+                },
+                "completionDate": {
+                  "S": "2026-02-10"
+                },
+                "organizationId": {
+                  "S": "org-b4830126-59fc-42fb-9a2a-2ef56411d77b-1771346388967"
+                },
+                "completion_date": {
+                  "S": "2026-02-10"
+                },
+                "restrictDownload": {
+                  "BOOL": false
+                },
+                "certificateHeader": {
+                  "S": "Certificate of Completion"
+                },
+                "courseDescription": {
+                  "S": ""
+                },
+                "restrict_download": {
+                  "BOOL": false
+                },
+                "certificate_header": {
+                  "S": "Certificate of Completion"
+                },
+                "platformFeePercent": {
+                  "N": "15"
+                },
+                "monetizationEnabled": {
+                  "BOOL": false
+                },
+                "program_description": {
+                  "S": "This certifies advanced proficiency in veterinary surgical techniques, including minimally invasive procedures, laparoscopic and laser-assisted interventions, and complex orthopedic and soft tissue surgeries.\nSuch expertise reflects a high standard of clinical precision, integration of advanced imaging and anesthetic protocols, and a commitment to optimal patient outcomes and welfare."
+                },
+                "customTemplateConfig": {
+                  "NULL": true
+                },
+                "certificatePriceMinor": {
+                  "N": "0"
+                },
+                "certificatePriceUSDMinor": {
+                  "N": "0"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "cert:CERT-1771518794674-OXF424ZPA"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "CERT-1771518794674-OXF424ZPA"
+                },
+                "status": {
+                  "S": "active"
+                },
+                "template": {
+                  "S": "template1"
+                },
+                "programId": {
+                  "S": "advanced-data-analysis-program"
+                },
+                "courseName": {
+                  "S": "Advanced Data Analysis Program"
+                },
+                "generatedAt": {
+                  "S": "2026-02-19T16:33:14.674Z"
+                },
+                "signatories": {
+                  "L": []
+                },
+                "allowedEmails": {
+                  "L": []
+                },
+                "downloadCount": {
+                  "N": "0"
+                },
+                "certificateUrl": {
+                  "S": "certificate/org-0bcbebd7-ecc6-4671-99a8-550a67bb8769-1771518417635/advanced-data-analysis-program/CERT-1771518794674-OXF424ZPA"
+                },
+                "completionDate": {
+                  "S": "2026-02-19"
+                },
+                "organizationId": {
+                  "S": "org-0bcbebd7-ecc6-4671-99a8-550a67bb8769-1771518417635"
+                },
+                "restrictDownload": {
+                  "BOOL": false
+                },
+                "certificateHeader": {
+                  "S": "Certificate of Completion"
+                },
+                "courseDescription": {
+                  "S": ""
+                },
+                "customTemplateConfig": {
+                  "NULL": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "cert:CERT-1771851561733-LQJJWAT2A"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "CERT-1771851561733-LQJJWAT2A"
+                },
+                "status": {
+                  "S": "active"
+                },
+                "template": {
+                  "S": "template1"
+                },
+                "programId": {
+                  "S": "certifyer-test"
+                },
+                "courseName": {
+                  "S": "Certifyer Test"
+                },
+                "generatedAt": {
+                  "S": "2026-02-23T12:59:21.733Z"
+                },
+                "signatories": {
+                  "L": [
+                    {
+                      "M": {
+                        "id": {
+                          "S": "sig-1771851436188"
+                        },
+                        "name": {
+                          "S": "Goodness Adewuyi"
+                        },
+                        "title": {
+                          "S": "CEO, Certifyer"
+                        },
+                        "signatureUrl": {
+                          "S": "https://gzawvtlehnujtviahdbv.supabase.co/storage/v1/object/sign/make-a611b057-uploads/org-1c9708ef-0479-4df9-94ba-ace08da2750c-1771851391039/signature-1771851455253.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zZWZmYzMyMS1mZjJmLTQ5YzYtYjczNi04NjQ1MDFmN2ZjNjgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtYWtlLWE2MTFiMDU3LXVwbG9hZHMvb3JnLTFjOTcwOGVmLTA0NzktNGRmOS05NGJhLWFjZTA4ZGEyNzUwYy0xNzcxODUxMzkxMDM5L3NpZ25hdHVyZS0xNzcxODUxNDU1MjUzLnBuZyIsImlhdCI6MTc3MTg1MTQ1NSwiZXhwIjoxODAzMzg3NDU1fQ.gi6PN3iqU4prLyLmQ1ouHLGpx94cSn_D37yTGFMGHvI"
+                        }
+                      }
+                    },
+                    {
+                      "M": {
+                        "id": {
+                          "S": "sig-1771851457345"
+                        },
+                        "name": {
+                          "S": "Lydia Afolayan"
+                        },
+                        "title": {
+                          "S": "COO, Certifyer"
+                        },
+                        "signatureUrl": {
+                          "S": "https://gzawvtlehnujtviahdbv.supabase.co/storage/v1/object/sign/make-a611b057-uploads/org-1c9708ef-0479-4df9-94ba-ace08da2750c-1771851391039/signature-1771851482777.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zZWZmYzMyMS1mZjJmLTQ5YzYtYjczNi04NjQ1MDFmN2ZjNjgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtYWtlLWE2MTFiMDU3LXVwbG9hZHMvb3JnLTFjOTcwOGVmLTA0NzktNGRmOS05NGJhLWFjZTA4ZGEyNzUwYy0xNzcxODUxMzkxMDM5L3NpZ25hdHVyZS0xNzcxODUxNDgyNzc3LnBuZyIsImlhdCI6MTc3MTg1MTQ4MywiZXhwIjoxODAzMzg3NDgzfQ.GzKSBfrpjxnGGf4fOMt8oyY8705rHGhKLnmUBRPMkf8"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "allowedEmails": {
+                  "L": []
+                },
+                "downloadCount": {
+                  "N": "0"
+                },
+                "certificateUrl": {
+                  "S": "certificate/org-1c9708ef-0479-4df9-94ba-ace08da2750c-1771851391039/certifyer-test/CERT-1771851561733-LQJJWAT2A"
+                },
+                "completionDate": {
+                  "S": "2026-02-23"
+                },
+                "organizationId": {
+                  "S": "org-1c9708ef-0479-4df9-94ba-ace08da2750c-1771851391039"
+                },
+                "restrictDownload": {
+                  "BOOL": false
+                },
+                "certificateHeader": {
+                  "S": "Certificate of Completion"
+                },
+                "courseDescription": {
+                  "S": "For participating in the test course, Certifyer"
+                },
+                "customTemplateConfig": {
+                  "NULL": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "cert:CERT-1771852307642-OX9FO1NI5"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "CERT-1771852307642-OX9FO1NI5"
+                },
+                "status": {
+                  "S": "active"
+                },
+                "template": {
+                  "S": "template1"
+                },
+                "programId": {
+                  "S": "certifyer-walkthrough"
+                },
+                "courseName": {
+                  "S": "Certifyer Walkthrough"
+                },
+                "generatedAt": {
+                  "S": "2026-02-23T13:11:47.642Z"
+                },
+                "signatories": {
+                  "L": [
+                    {
+                      "M": {
+                        "id": {
+                          "S": "sig-1771852188723"
+                        },
+                        "name": {
+                          "S": "Goodness Adewuyi"
+                        },
+                        "title": {
+                          "S": "CEO, Certifyer"
+                        },
+                        "signatureUrl": {
+                          "S": "https://gzawvtlehnujtviahdbv.supabase.co/storage/v1/object/sign/make-a611b057-uploads/org-9c7d2509-0bfc-4de7-8817-9ca02ee4a922-1771852142291/signature-1771852215168.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zZWZmYzMyMS1mZjJmLTQ5YzYtYjczNi04NjQ1MDFmN2ZjNjgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtYWtlLWE2MTFiMDU3LXVwbG9hZHMvb3JnLTljN2QyNTA5LTBiZmMtNGRlNy04ODE3LTljYTAyZWU0YTkyMi0xNzcxODUyMTQyMjkxL3NpZ25hdHVyZS0xNzcxODUyMjE1MTY4LnBuZyIsImlhdCI6MTc3MTg1MjIxNiwiZXhwIjoxODAzMzg4MjE2fQ.is094aPtQ3co3NXR59KtzMCSUBHWpTM1YC1aalcD3OY"
+                        }
+                      }
+                    },
+                    {
+                      "M": {
+                        "id": {
+                          "S": "sig-1771852207102"
+                        },
+                        "name": {
+                          "S": "Lydia Afolayan"
+                        },
+                        "title": {
+                          "S": "COO, Certifyer"
+                        },
+                        "signatureUrl": {
+                          "S": "https://gzawvtlehnujtviahdbv.supabase.co/storage/v1/object/sign/make-a611b057-uploads/org-9c7d2509-0bfc-4de7-8817-9ca02ee4a922-1771852142291/signature-1771852241634.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zZWZmYzMyMS1mZjJmLTQ5YzYtYjczNi04NjQ1MDFmN2ZjNjgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtYWtlLWE2MTFiMDU3LXVwbG9hZHMvb3JnLTljN2QyNTA5LTBiZmMtNGRlNy04ODE3LTljYTAyZWU0YTkyMi0xNzcxODUyMTQyMjkxL3NpZ25hdHVyZS0xNzcxODUyMjQxNjM0LnBuZyIsImlhdCI6MTc3MTg1MjI0MiwiZXhwIjoxODAzMzg4MjQyfQ.UCFEE29SXVX68fhcqOWZKrQ6qmPIEA7NQz5asfOReJA"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "allowedEmails": {
+                  "L": []
+                },
+                "downloadCount": {
+                  "N": "0"
+                },
+                "certificateUrl": {
+                  "S": "certificate/org-9c7d2509-0bfc-4de7-8817-9ca02ee4a922-1771852142291/certifyer-walkthrough/CERT-1771852307642-OX9FO1NI5"
+                },
+                "completionDate": {
+                  "S": "2026-02-23"
+                },
+                "organizationId": {
+                  "S": "org-9c7d2509-0bfc-4de7-8817-9ca02ee4a922-1771852142291"
+                },
+                "restrictDownload": {
+                  "BOOL": false
+                },
+                "certificateHeader": {
+                  "S": "Certificate of Completion"
+                },
+                "courseDescription": {
+                  "S": "FOr participating in Certifyer Walkthrough"
+                },
+                "customTemplateConfig": {
+                  "NULL": true
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

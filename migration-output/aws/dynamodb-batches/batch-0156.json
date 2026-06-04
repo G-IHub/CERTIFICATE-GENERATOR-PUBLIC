@@ -1,0 +1,1150 @@
+{
+  "RequestItems": {
+    "certifyer-dev-kv": [
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777454512010-O7RHHU0DZ"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777454512010-O7RHHU0DZ"
+                },
+                "email": {
+                  "S": "gladysegunjobi6@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "programId": {
+                  "S": "bioinformatics-approaches-to-understanding-microbial-roles-in-bioremediation"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Approaches to Understanding Microbial Roles in Bioremediation"
+                },
+                "studentName": {
+                  "S": "f"
+                },
+                "submittedAt": {
+                  "S": "2026-04-29T09:21:52.010Z"
+                },
+                "organization": {
+                  "S": "fd"
+                },
+                "certificateId": {
+                  "S": "CERT-1777454464212-2Q03HU1LV"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777454836418-49AZKC1Z2"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777454836418-49AZKC1Z2"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "programId": {
+                  "S": "amr-genomic-intelligence"
+                },
+                "courseName": {
+                  "S": "AMR Genomic Intelligence"
+                },
+                "studentName": {
+                  "S": "jj"
+                },
+                "submittedAt": {
+                  "S": "2026-04-29T09:27:16.418Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1774430725862-0G643UCHU"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777454842411-FWGDJDAHV"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777454842411-FWGDJDAHV"
+                },
+                "email": {
+                  "S": "jayaswaroopatillapudi@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "A new way of idea through bioinformatics for bioremediation, which is used impact the environment"
+                },
+                "programId": {
+                  "S": "bioinformatics-approaches-to-understanding-microbial-roles-in-bioremediation"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Approaches to Understanding Microbial Roles in Bioremediation"
+                },
+                "studentName": {
+                  "S": "JAYA SWAROOOPA TILLAPUDI"
+                },
+                "submittedAt": {
+                  "S": "2026-04-29T09:27:22.411Z"
+                },
+                "organization": {
+                  "S": "Andhra University college of engineering"
+                },
+                "certificateId": {
+                  "S": "CERT-1777454464212-2Q03HU1LV"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777454843732-ITS6QR5RC"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777454843732-ITS6QR5RC"
+                },
+                "email": {
+                  "S": "amos.ofori@stu.ucc.edu.gh"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Perfect"
+                },
+                "programId": {
+                  "S": "bioinformatics-approaches-to-understanding-microbial-roles-in-bioremediation"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Approaches to Understanding Microbial Roles in Bioremediation"
+                },
+                "studentName": {
+                  "S": "AMOS OFORI"
+                },
+                "submittedAt": {
+                  "S": "2026-04-29T09:27:23.732Z"
+                },
+                "testimonial": {
+                  "S": "Very impactful"
+                },
+                "organization": {
+                  "S": "UNIVERSITY OF CAPE COAST"
+                },
+                "certificateId": {
+                  "S": "CERT-1777454464212-2Q03HU1LV"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777455006288-E2CCFS5NO"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777455006288-E2CCFS5NO"
+                },
+                "title": {
+                  "S": "Prof"
+                },
+                "programId": {
+                  "S": "amr-genomic-intelligence"
+                },
+                "courseName": {
+                  "S": "AMR Genomic Intelligence"
+                },
+                "studentName": {
+                  "S": "Joshua Mbanga"
+                },
+                "submittedAt": {
+                  "S": "2026-04-29T09:30:06.288Z"
+                },
+                "organization": {
+                  "S": "National University of Science and Technology, Zimbabwe"
+                },
+                "certificateId": {
+                  "S": "CERT-1774430725862-0G643UCHU"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777455037907-NVMLYRXXG"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777455037907-NVMLYRXXG"
+                },
+                "email": {
+                  "S": "adekolamahamudat@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It was really impactful fun and insightful"
+                },
+                "programId": {
+                  "S": "this-certificate-is-awarded-in-recognition-of-your-active-participation-at-the-women-techmakers-ogbomoso-iwd-2026-conference."
+                },
+                "courseName": {
+                  "S": "This certificate is awarded in recognition of your active participation at the Women Techmakers Ogbomoso IWD 2026 Conference."
+                },
+                "studentName": {
+                  "S": "Adekola Mahamudat Opeyemi"
+                },
+                "submittedAt": {
+                  "S": "2026-04-29T09:30:37.907Z"
+                },
+                "testimonial": {
+                  "S": "None"
+                },
+                "organization": {
+                  "S": "Lautech"
+                },
+                "certificateId": {
+                  "S": "CERT-1776431935683-3VW5LZ3JW"
+                },
+                "organizationId": {
+                  "S": "org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777455057087-ETS15A3SI"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777455057087-ETS15A3SI"
+                },
+                "email": {
+                  "S": "da123mayini@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Ça ma permis de comprendre le rôle microbien dans la bioremediation"
+                },
+                "programId": {
+                  "S": "bioinformatics-approaches-to-understanding-microbial-roles-in-bioremediation"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Approaches to Understanding Microbial Roles in Bioremediation"
+                },
+                "studentName": {
+                  "S": "Mayini Da"
+                },
+                "submittedAt": {
+                  "S": "2026-04-29T09:30:57.087Z"
+                },
+                "organization": {
+                  "S": "Université Joseph KI ZERBO"
+                },
+                "certificateId": {
+                  "S": "CERT-1777454464212-2Q03HU1LV"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777455318944-AYBMGVSQS"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777455318944-AYBMGVSQS"
+                },
+                "email": {
+                  "S": "da123mayini@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Ça ma permis de comprendre le rôle microbien dans la bioremediation"
+                },
+                "programId": {
+                  "S": "bioinformatics-approaches-to-understanding-microbial-roles-in-bioremediation"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Approaches to Understanding Microbial Roles in Bioremediation"
+                },
+                "studentName": {
+                  "S": "Mayini Da"
+                },
+                "submittedAt": {
+                  "S": "2026-04-29T09:35:18.944Z"
+                },
+                "organization": {
+                  "S": "Université Joseph KI ZERBO"
+                },
+                "certificateId": {
+                  "S": "CERT-1777454464212-2Q03HU1LV"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777455526734-I0MSFYEJD"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777455526734-I0MSFYEJD"
+                },
+                "email": {
+                  "S": "amos.ofori@stu.ucc.edu.gh"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Perfect"
+                },
+                "programId": {
+                  "S": "bioinformatics-approaches-to-understanding-microbial-roles-in-bioremediation"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Approaches to Understanding Microbial Roles in Bioremediation"
+                },
+                "studentName": {
+                  "S": "AMOS OFORI"
+                },
+                "submittedAt": {
+                  "S": "2026-04-29T09:38:46.734Z"
+                },
+                "testimonial": {
+                  "S": "impactful"
+                },
+                "organization": {
+                  "S": "UNIVERSITY OF CAPE COAST,GHANA"
+                },
+                "certificateId": {
+                  "S": "CERT-1777454464212-2Q03HU1LV"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777455649477-LKVAGOBPX"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777455649477-LKVAGOBPX"
+                },
+                "email": {
+                  "S": "amos.ofori@stu.ucc.edu.gh"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Perfect"
+                },
+                "programId": {
+                  "S": "bioinformatics-approaches-to-understanding-microbial-roles-in-bioremediation"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Approaches to Understanding Microbial Roles in Bioremediation"
+                },
+                "studentName": {
+                  "S": "OFORI  AMOS"
+                },
+                "submittedAt": {
+                  "S": "2026-04-29T09:40:49.477Z"
+                },
+                "testimonial": {
+                  "S": "impactful"
+                },
+                "organization": {
+                  "S": "UNIVERSITY OF CAPE COAST,GHANA"
+                },
+                "certificateId": {
+                  "S": "CERT-1777454464212-2Q03HU1LV"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777455852021-0RGIBGNUP"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777455852021-0RGIBGNUP"
+                },
+                "email": {
+                  "S": "evelynadarsco@gmail.com"
+                },
+                "impact": {
+                  "S": "The Bioinformatics approahes programme has helped me  to know that  genes in microbes can be studied and know which one is effective for bioremediation. The people are doing so well and I would like to enjoy more of their impactful webinar . I appreciate you"
+                },
+                "programId": {
+                  "S": "bioinformatics-approaches-to-understanding-microbial-roles-in-bioremediation"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Approaches to Understanding Microbial Roles in Bioremediation"
+                },
+                "studentName": {
+                  "S": "Adarkwah Evelyn"
+                },
+                "submittedAt": {
+                  "S": "2026-04-29T09:44:12.021Z"
+                },
+                "organization": {
+                  "S": "University for Development studies"
+                },
+                "certificateId": {
+                  "S": "CERT-1777454464212-2Q03HU1LV"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777456048850-5R1KB45N1"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777456048850-5R1KB45N1"
+                },
+                "email": {
+                  "S": "amos.ofori@stu.ucc.edu.gh"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Perfect"
+                },
+                "programId": {
+                  "S": "bioinformatics-approaches-to-understanding-microbial-roles-in-bioremediation"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Approaches to Understanding Microbial Roles in Bioremediation"
+                },
+                "studentName": {
+                  "S": "OFORI  AMOS"
+                },
+                "submittedAt": {
+                  "S": "2026-04-29T09:47:28.850Z"
+                },
+                "testimonial": {
+                  "S": "Impactful"
+                },
+                "organization": {
+                  "S": "UNIVERSITY OF CAPE COAST,GHANA"
+                },
+                "certificateId": {
+                  "S": "CERT-1777454464212-2Q03HU1LV"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777456102278-QX4756FQA"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777456102278-QX4756FQA"
+                },
+                "email": {
+                  "S": "rhodasennie@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "The Bioinformatics Approaches to Understanding Microbial Roles in Bioremediation program strengthened my ability to apply computational tools to real-world environmental microbiology problems, and I would strongly encourage others to participate for its practical, research-oriented learning experience and relevance to emerging scientific challenges."
+                },
+                "programId": {
+                  "S": "bioinformatics-approaches-to-understanding-microbial-roles-in-bioremediation"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Approaches to Understanding Microbial Roles in Bioremediation"
+                },
+                "studentName": {
+                  "S": "Rhoda Dorcas Sennie"
+                },
+                "submittedAt": {
+                  "S": "2026-04-29T09:48:22.278Z"
+                },
+                "organization": {
+                  "S": "University of Cape Coast"
+                },
+                "certificateId": {
+                  "S": "CERT-1777454464212-2Q03HU1LV"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777456189290-7OB16B0FB"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777456189290-7OB16B0FB"
+                },
+                "email": {
+                  "S": "afiaamponsah646@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It has broadened my understanding on microbial roles in bioremediation. It has boasted my interest in bioinformatics."
+                },
+                "programId": {
+                  "S": "bioinformatics-approaches-to-understanding-microbial-roles-in-bioremediation"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Approaches to Understanding Microbial Roles in Bioremediation"
+                },
+                "studentName": {
+                  "S": "Afia Amponsah Boateng"
+                },
+                "submittedAt": {
+                  "S": "2026-04-29T09:49:49.290Z"
+                },
+                "testimonial": {
+                  "S": "It was an exceptional training"
+                },
+                "organization": {
+                  "S": "University For Development Studies, Tam"
+                },
+                "certificateId": {
+                  "S": "CERT-1777454464212-2Q03HU1LV"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777456300969-4I9AO87KV"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777456300969-4I9AO87KV"
+                },
+                "email": {
+                  "S": "nwekebenedicta786@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "I learnt microorganisms around us ,can use detoxify contaminated environment"
+                },
+                "programId": {
+                  "S": "bioinformatics-approaches-to-understanding-microbial-roles-in-bioremediation"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Approaches to Understanding Microbial Roles in Bioremediation"
+                },
+                "studentName": {
+                  "S": "Nweke Nkiruka Benedicta"
+                },
+                "submittedAt": {
+                  "S": "2026-04-29T09:51:40.969Z"
+                },
+                "testimonial": {
+                  "S": "Knowledge is power"
+                },
+                "organization": {
+                  "S": "LAUTECH"
+                },
+                "certificateId": {
+                  "S": "CERT-1777454464212-2Q03HU1LV"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777456776468-WEZ2J7TDA"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777456776468-WEZ2J7TDA"
+                },
+                "email": {
+                  "S": "anekweifeoma01@gmail.com"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "programId": {
+                  "S": "bioinformatics-approaches-to-understanding-microbial-roles-in-bioremediation"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Approaches to Understanding Microbial Roles in Bioremediation"
+                },
+                "studentName": {
+                  "S": "Ifeoma Ijeoma Anekwe"
+                },
+                "submittedAt": {
+                  "S": "2026-04-29T09:59:36.468Z"
+                },
+                "organization": {
+                  "S": "Enugu State University of science and Technology, College of Medicine,Enugu state"
+                },
+                "certificateId": {
+                  "S": "CERT-1777454464212-2Q03HU1LV"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777456934862-VE2LVCSG1"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777456934862-VE2LVCSG1"
+                },
+                "email": {
+                  "S": "anekweifeoma01@gmail.com"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "programId": {
+                  "S": "bioinformatics-approaches-to-understanding-microbial-roles-in-bioremediation"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Approaches to Understanding Microbial Roles in Bioremediation"
+                },
+                "studentName": {
+                  "S": "Ifeoma  Ijeoma  Anekwe"
+                },
+                "submittedAt": {
+                  "S": "2026-04-29T10:02:14.862Z"
+                },
+                "organization": {
+                  "S": "Enugu State University of science and Technology, College of Medicine,Enugu state"
+                },
+                "certificateId": {
+                  "S": "CERT-1777454464212-2Q03HU1LV"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777458307127-ICKMLP77V"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777458307127-ICKMLP77V"
+                },
+                "email": {
+                  "S": "colbounty2002@gmail.com"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "programId": {
+                  "S": "bioinformatics-approaches-to-understanding-microbial-roles-in-bioremediation"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Approaches to Understanding Microbial Roles in Bioremediation"
+                },
+                "studentName": {
+                  "S": "Collins Emeka Odu"
+                },
+                "submittedAt": {
+                  "S": "2026-04-29T10:25:07.127Z"
+                },
+                "organization": {
+                  "S": "University of Maiduguri"
+                },
+                "certificateId": {
+                  "S": "CERT-1777454464212-2Q03HU1LV"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777459256251-9V90BH0RG"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777459256251-9V90BH0RG"
+                },
+                "email": {
+                  "S": "laideoje@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Interesting and very educational"
+                },
+                "programId": {
+                  "S": "exploring-free-tools-for-computational-drug-discovery"
+                },
+                "courseName": {
+                  "S": "Exploring Free Tools for Computational Drug Discovery"
+                },
+                "studentName": {
+                  "S": "Olaide Ojewale"
+                },
+                "submittedAt": {
+                  "S": "2026-04-29T10:40:56.251Z"
+                },
+                "testimonial": {
+                  "S": "It’s an eye opener"
+                },
+                "organization": {
+                  "S": "AIMN"
+                },
+                "certificateId": {
+                  "S": "CERT-1777292132240-K3IVERPYR"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777459384951-Q3NSFSZ1R"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777459384951-Q3NSFSZ1R"
+                },
+                "email": {
+                  "S": "marthaattambire1983@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "The program helped me understand how microbes can clean the environment using bioinformatics, and I encourage others to join because it is useful and practical."
+                },
+                "programId": {
+                  "S": "bioinformatics-approaches-to-understanding-microbial-roles-in-bioremediation"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Approaches to Understanding Microbial Roles in Bioremediation"
+                },
+                "studentName": {
+                  "S": "Atambire Martha Ayinebisa"
+                },
+                "submittedAt": {
+                  "S": "2026-04-29T10:43:04.951Z"
+                },
+                "organization": {
+                  "S": "University of Development Studies"
+                },
+                "certificateId": {
+                  "S": "CERT-1777454464212-2Q03HU1LV"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777459484649-RARL2L51Y"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777459484649-RARL2L51Y"
+                },
+                "email": {
+                  "S": "comfortabioye888@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "I learnt more about bioinformatics in general"
+                },
+                "programId": {
+                  "S": "bioinformatics-approaches-to-understanding-microbial-roles-in-bioremediation"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Approaches to Understanding Microbial Roles in Bioremediation"
+                },
+                "studentName": {
+                  "S": "Comfort Abioye"
+                },
+                "submittedAt": {
+                  "S": "2026-04-29T10:44:44.649Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1777454464212-2Q03HU1LV"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777459553859-8CCQFDGLY"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777459553859-8CCQFDGLY"
+                },
+                "email": {
+                  "S": "emekaezeh51@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "programId": {
+                  "S": "bioinformatics-approaches-to-understanding-microbial-roles-in-bioremediation"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Approaches to Understanding Microbial Roles in Bioremediation"
+                },
+                "studentName": {
+                  "S": "Chukwuemeka Cornelius Ezeh"
+                },
+                "submittedAt": {
+                  "S": "2026-04-29T10:45:53.859Z"
+                },
+                "organization": {
+                  "S": "University of Nigeria Nsukka"
+                },
+                "certificateId": {
+                  "S": "CERT-1777454464212-2Q03HU1LV"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777459794014-A3F71RWSE"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777459794014-A3F71RWSE"
+                },
+                "email": {
+                  "S": "ayinlajoshua087@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "it is amazing"
+                },
+                "programId": {
+                  "S": "genomac-malaria-innovation-competition"
+                },
+                "courseName": {
+                  "S": "Genomac Malaria Innovation Competition"
+                },
+                "studentName": {
+                  "S": "Ayinla Joshua"
+                },
+                "submittedAt": {
+                  "S": "2026-04-29T10:49:54.014Z"
+                },
+                "organization": {
+                  "S": "LAUTECH"
+                },
+                "certificateId": {
+                  "S": "CERT-1777459600139-LZNZHMVFD"
+                },
+                "organizationId": {
+                  "S": "org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777459970696-ESXB0DY6F"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777459970696-ESXB0DY6F"
+                },
+                "email": {
+                  "S": "gattamotunrayo1@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "I recommend more people to further participate in this, as it is a way of bringing solution to future world problem"
+                },
+                "programId": {
+                  "S": "bioinformatics-approaches-to-understanding-microbial-roles-in-bioremediation"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Approaches to Understanding Microbial Roles in Bioremediation"
+                },
+                "studentName": {
+                  "S": "Gatta Motunrayo Tracy"
+                },
+                "submittedAt": {
+                  "S": "2026-04-29T10:52:50.696Z"
+                },
+                "organization": {
+                  "S": "Federal University of Oyeekiti Ekiti state"
+                },
+                "certificateId": {
+                  "S": "CERT-1777454464212-2Q03HU1LV"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777460067739-B87TVMXHK"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777460067739-B87TVMXHK"
+                },
+                "email": {
+                  "S": "adepojuabdullahiayomide@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Learn the basics of omics and its analysis approach (bioinformatics) with how the means of eradicating microbes in the population."
+                },
+                "programId": {
+                  "S": "bioinformatics-approaches-to-understanding-microbial-roles-in-bioremediation"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Approaches to Understanding Microbial Roles in Bioremediation"
+                },
+                "studentName": {
+                  "S": "Adepoju Abdullahi Ayomide"
+                },
+                "submittedAt": {
+                  "S": "2026-04-29T10:54:27.739Z"
+                },
+                "testimonial": {
+                  "S": "Nil"
+                },
+                "organization": {
+                  "S": "Corp members"
+                },
+                "certificateId": {
+                  "S": "CERT-1777454464212-2Q03HU1LV"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,1060 @@
+{
+  "RequestItems": {
+    "certifyer-dev-kv": [
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777987819275-GZNUIQ23O"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777987819275-GZNUIQ23O"
+                },
+                "email": {
+                  "S": "oluwaseyifunmiesther7@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It was great and very impactful"
+                },
+                "programId": {
+                  "S": "ogbomoso-tech-and-entrepreneurship-ignite-2026"
+                },
+                "courseName": {
+                  "S": "OGBOMOSO TECH AND ENTREPRENEURSHIP IGNITE 2026"
+                },
+                "studentName": {
+                  "S": "Ajayi Oluwaseyifunmi Esther"
+                },
+                "submittedAt": {
+                  "S": "2026-05-05T13:30:19.275Z"
+                },
+                "testimonial": {
+                  "S": "More programs like that if it can be done more than once in a year"
+                },
+                "organization": {
+                  "S": "LAUTECH"
+                },
+                "certificateId": {
+                  "S": "CERT-1777946792503-DASFMON71"
+                },
+                "organizationId": {
+                  "S": "org-f54289d3-e416-4ffb-9d59-02176ae8cf36-1777500413705"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777987843903-NZ1H3OSLJ"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777987843903-NZ1H3OSLJ"
+                },
+                "email": {
+                  "S": "adeolaa102@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "programId": {
+                  "S": "ogbomoso-tech-and-entrepreneurship-ignite-2026"
+                },
+                "courseName": {
+                  "S": "OGBOMOSO TECH AND ENTREPRENEURSHIP IGNITE 2026"
+                },
+                "studentName": {
+                  "S": "ADEAGBO ADEOLA GRACE"
+                },
+                "submittedAt": {
+                  "S": "2026-05-05T13:30:43.903Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1777946792503-DASFMON71"
+                },
+                "organizationId": {
+                  "S": "org-f54289d3-e416-4ffb-9d59-02176ae8cf36-1777500413705"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777989932453-POKRNL45I"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777989932453-POKRNL45I"
+                },
+                "email": {
+                  "S": "akinkunmimustopha@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "A very insightful and interesting event"
+                },
+                "programId": {
+                  "S": "ogbomoso-tech-and-entrepreneurship-ignite-2026"
+                },
+                "courseName": {
+                  "S": "OGBOMOSO TECH AND ENTREPRENEURSHIP IGNITE 2026"
+                },
+                "studentName": {
+                  "S": "ABDULRAHMON Mustopha Akinkunmi"
+                },
+                "submittedAt": {
+                  "S": "2026-05-05T14:05:32.453Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology, Ogbomosho."
+                },
+                "certificateId": {
+                  "S": "CERT-1777946792503-DASFMON71"
+                },
+                "organizationId": {
+                  "S": "org-f54289d3-e416-4ffb-9d59-02176ae8cf36-1777500413705"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777992183332-28R9WS0EN"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777992183332-28R9WS0EN"
+                },
+                "email": {
+                  "S": "umarmusaabubakar890@gmail.com"
+                },
+                "programId": {
+                  "S": "exploring-free-tools-for-computational-drug-discovery"
+                },
+                "courseName": {
+                  "S": "Exploring Free Tools for Computational Drug Discovery"
+                },
+                "studentName": {
+                  "S": "Umar Musa Abubakar"
+                },
+                "submittedAt": {
+                  "S": "2026-05-05T14:43:03.333Z"
+                },
+                "organization": {
+                  "S": "Gombe state university"
+                },
+                "certificateId": {
+                  "S": "CERT-1777292132240-K3IVERPYR"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778009938881-ESGZHUMEN"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778009938881-ESGZHUMEN"
+                },
+                "email": {
+                  "S": "kehindeboluwatife284@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Local problem when solved become global opportunity"
+                },
+                "courseName": {
+                  "S": "OGBOMOSO TECH AND ENTREPRENEURSHIP IGNITE 2026"
+                },
+                "studentName": {
+                  "S": "kehinde Boluwatife eniola"
+                },
+                "submittedAt": {
+                  "S": "2026-05-05T19:38:58.881Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1777946792503-DASFMON71"
+                },
+                "organizationId": {
+                  "S": "org-f54289d3-e416-4ffb-9d59-02176ae8cf36-1777500413705"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778009995260-K8B9NUTL9"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778009995260-K8B9NUTL9"
+                },
+                "email": {
+                  "S": "Adekolai187@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Learn a life lesson and learn"
+                },
+                "courseName": {
+                  "S": "OGBOMOSO TECH AND ENTREPRENEURSHIP IGNITE 2026"
+                },
+                "studentName": {
+                  "S": "Adekola Ibrahim Alamu"
+                },
+                "submittedAt": {
+                  "S": "2026-05-05T19:39:55.261Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola university"
+                },
+                "certificateId": {
+                  "S": "CERT-1777946792503-DASFMON71"
+                },
+                "organizationId": {
+                  "S": "org-f54289d3-e416-4ffb-9d59-02176ae8cf36-1777500413705"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778010065350-LJEM9HRSX"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778010065350-LJEM9HRSX"
+                },
+                "email": {
+                  "S": "ataraxisclothing1@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It was a moment of learning, unlearning and relearning.\nThank you so much, OTEI TEAM for this amazing event. Looking forward to more of it."
+                },
+                "courseName": {
+                  "S": "OGBOMOSO TECH AND ENTREPRENEURSHIP IGNITE 2026"
+                },
+                "studentName": {
+                  "S": "EBO PEACE FIYINFOLUWA"
+                },
+                "submittedAt": {
+                  "S": "2026-05-05T19:41:05.350Z"
+                },
+                "organization": {
+                  "S": "ATARAXIS CLOTHING"
+                },
+                "certificateId": {
+                  "S": "CERT-1777946792503-DASFMON71"
+                },
+                "organizationId": {
+                  "S": "org-f54289d3-e416-4ffb-9d59-02176ae8cf36-1777500413705"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778010217461-CN205XMZH"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778010217461-CN205XMZH"
+                },
+                "email": {
+                  "S": "kanyinsolafunmilayo832@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "The event was really impactful."
+                },
+                "courseName": {
+                  "S": "OGBOMOSO TECH AND ENTREPRENEURSHIP IGNITE 2026"
+                },
+                "studentName": {
+                  "S": "Adewole Kanyinsola"
+                },
+                "submittedAt": {
+                  "S": "2026-05-05T19:43:37.461Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University"
+                },
+                "certificateId": {
+                  "S": "CERT-1777946792503-DASFMON71"
+                },
+                "organizationId": {
+                  "S": "org-f54289d3-e416-4ffb-9d59-02176ae8cf36-1777500413705"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778010359661-22NFOTNXM"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778010359661-22NFOTNXM"
+                },
+                "email": {
+                  "S": "simeonremilekun@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "OTEI open my eye to a new idea and am excited to be part of this vision"
+                },
+                "courseName": {
+                  "S": "OGBOMOSO TECH AND ENTREPRENEURSHIP IGNITE 2026"
+                },
+                "studentName": {
+                  "S": "Adeleke Simeon oluwaremilekun"
+                },
+                "submittedAt": {
+                  "S": "2026-05-05T19:45:59.661Z"
+                },
+                "organization": {
+                  "S": "Ladoke akintola university of technology adding to my s"
+                },
+                "certificateId": {
+                  "S": "CERT-1777946792503-DASFMON71"
+                },
+                "organizationId": {
+                  "S": "org-f54289d3-e416-4ffb-9d59-02176ae8cf36-1777500413705"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778010694241-LKG3RQQ9W"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778010694241-LKG3RQQ9W"
+                },
+                "email": {
+                  "S": "graceamos534@gmail.com"
+                },
+                "title": {
+                  "S": "Mrs"
+                },
+                "impact": {
+                  "S": "Great learning more"
+                },
+                "courseName": {
+                  "S": "OGBOMOSO TECH AND ENTREPRENEURSHIP IGNITE 2026"
+                },
+                "studentName": {
+                  "S": "Oladejo Grace Bosede"
+                },
+                "submittedAt": {
+                  "S": "2026-05-05T19:51:34.241Z"
+                },
+                "organization": {
+                  "S": "BJCUBES"
+                },
+                "certificateId": {
+                  "S": "CERT-1777946792503-DASFMON71"
+                },
+                "organizationId": {
+                  "S": "org-f54289d3-e416-4ffb-9d59-02176ae8cf36-1777500413705"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778010787831-TH8SVF4JY"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778010787831-TH8SVF4JY"
+                },
+                "email": {
+                  "S": "graceamos534@gmail.com"
+                },
+                "title": {
+                  "S": "Mrs"
+                },
+                "impact": {
+                  "S": "Great time learning more on entrepreneurship"
+                },
+                "courseName": {
+                  "S": "OGBOMOSO TECH AND ENTREPRENEURSHIP IGNITE 2026"
+                },
+                "studentName": {
+                  "S": "Oladejo Grace Bosede"
+                },
+                "submittedAt": {
+                  "S": "2026-05-05T19:53:07.831Z"
+                },
+                "organization": {
+                  "S": "BJCUBES"
+                },
+                "certificateId": {
+                  "S": "CERT-1777946792503-DASFMON71"
+                },
+                "organizationId": {
+                  "S": "org-f54289d3-e416-4ffb-9d59-02176ae8cf36-1777500413705"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778010916863-5OE1BFAY8"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778010916863-5OE1BFAY8"
+                },
+                "email": {
+                  "S": "adeayomiomotayo@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "The event changed my perspective on entrepreneurship by showing that starting small with the right digital tools can lead to big impact. It also motivated me to explore tech-based solutions for real-life problems.\nGoing forward, I plan to apply these insights by improving my digital skills, exploring startup ideas, and actively participating in tech communities."
+                },
+                "courseName": {
+                  "S": "OGBOMOSO TECH AND ENTREPRENEURSHIP IGNITE 2026"
+                },
+                "studentName": {
+                  "S": "Omotayo Ayomide Omolola"
+                },
+                "submittedAt": {
+                  "S": "2026-05-05T19:55:16.863Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology (LAUTECH)"
+                },
+                "certificateId": {
+                  "S": "CERT-1777946792503-DASFMON71"
+                },
+                "organizationId": {
+                  "S": "org-f54289d3-e416-4ffb-9d59-02176ae8cf36-1777500413705"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778011068941-FDAKY4J1G"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778011068941-FDAKY4J1G"
+                },
+                "email": {
+                  "S": "adeayomiomotayo@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "The event changed my perspective on entrepreneurship by showing that starting small with the right digital tools can lead to big impact. It also motivated me to explore tech-based solutions for real-life problems.\nGoing forward, I plan to apply these insights by improving my digital skills, exploring startup ideas, and actively participating in tech communities."
+                },
+                "courseName": {
+                  "S": "OGBOMOSO TECH AND ENTREPRENEURSHIP IGNITE 2026"
+                },
+                "studentName": {
+                  "S": "Omotayo Ayomide Omolola"
+                },
+                "submittedAt": {
+                  "S": "2026-05-05T19:57:48.941Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology (LAUTECH)"
+                },
+                "certificateId": {
+                  "S": "CERT-1777946792503-DASFMON71"
+                },
+                "organizationId": {
+                  "S": "org-f54289d3-e416-4ffb-9d59-02176ae8cf36-1777500413705"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778011303100-FXMQF9DC9"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778011303100-FXMQF9DC9"
+                },
+                "email": {
+                  "S": "maryomotoyosiolodude@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "courseName": {
+                  "S": "OGBOMOSO TECH AND ENTREPRENEURSHIP IGNITE 2026"
+                },
+                "studentName": {
+                  "S": "MARY OMOTOYOSI OLODUDE"
+                },
+                "submittedAt": {
+                  "S": "2026-05-05T20:01:43.100Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology ogbomoso Oyo State"
+                },
+                "certificateId": {
+                  "S": "CERT-1777946792503-DASFMON71"
+                },
+                "organizationId": {
+                  "S": "org-f54289d3-e416-4ffb-9d59-02176ae8cf36-1777500413705"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778011523827-7UGWDJJZL"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778011523827-7UGWDJJZL"
+                },
+                "email": {
+                  "S": "olasunboeniola1@gmail.com"
+                },
+                "title": {
+                  "S": "Mrs"
+                },
+                "impact": {
+                  "S": "It was wonderful"
+                },
+                "courseName": {
+                  "S": "OGBOMOSO TECH AND ENTREPRENEURSHIP IGNITE 2026"
+                },
+                "studentName": {
+                  "S": "Olasunbo Eniola"
+                },
+                "submittedAt": {
+                  "S": "2026-05-05T20:05:23.827Z"
+                },
+                "organization": {
+                  "S": "Lautech"
+                },
+                "certificateId": {
+                  "S": "CERT-1777946792503-DASFMON71"
+                },
+                "organizationId": {
+                  "S": "org-f54289d3-e416-4ffb-9d59-02176ae8cf36-1777500413705"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778011688557-F2O9JTOP1"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778011688557-F2O9JTOP1"
+                },
+                "email": {
+                  "S": "ojopromise733@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "This program didn’t just add to what I know,it changed how I think. It also made me  more intentional about my personal growth and more interest in entrepreneurship."
+                },
+                "courseName": {
+                  "S": "OGBOMOSO TECH AND ENTREPRENEURSHIP IGNITE 2026"
+                },
+                "studentName": {
+                  "S": "Ojo Promise Racheal"
+                },
+                "submittedAt": {
+                  "S": "2026-05-05T20:08:08.558Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola Univesity of Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1777946792503-DASFMON71"
+                },
+                "organizationId": {
+                  "S": "org-f54289d3-e416-4ffb-9d59-02176ae8cf36-1777500413705"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778011750029-D2WDTXY74"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778011750029-D2WDTXY74"
+                },
+                "email": {
+                  "S": "oonyinye38@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "courseName": {
+                  "S": "OGBOMOSO TECH AND ENTREPRENEURSHIP IGNITE 2026"
+                },
+                "studentName": {
+                  "S": "Okafor Onyinyechi Perpetual"
+                },
+                "submittedAt": {
+                  "S": "2026-05-05T20:09:10.029Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1777946792503-DASFMON71"
+                },
+                "organizationId": {
+                  "S": "org-f54289d3-e416-4ffb-9d59-02176ae8cf36-1777500413705"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778011787636-Q6QATZOK4"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778011787636-Q6QATZOK4"
+                },
+                "email": {
+                  "S": "moyosoreabiola58@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "The program was a great one.i learnt a lot about how to solve-solve welllll-scale.its was an eye open program"
+                },
+                "courseName": {
+                  "S": "OGBOMOSO TECH AND ENTREPRENEURSHIP IGNITE 2026"
+                },
+                "studentName": {
+                  "S": "Abiola boluwatife barakat"
+                },
+                "submittedAt": {
+                  "S": "2026-05-05T20:09:47.636Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1777946792503-DASFMON71"
+                },
+                "organizationId": {
+                  "S": "org-f54289d3-e416-4ffb-9d59-02176ae8cf36-1777500413705"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778011894815-VIZJTFSE8"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778011894815-VIZJTFSE8"
+                },
+                "email": {
+                  "S": "lignot2020@gmail.com"
+                },
+                "impact": {
+                  "S": "The program was so amazing."
+                },
+                "courseName": {
+                  "S": "OGBOMOSO TECH AND ENTREPRENEURSHIP IGNITE 2026"
+                },
+                "studentName": {
+                  "S": "Jimoh Alli Babatunde"
+                },
+                "submittedAt": {
+                  "S": "2026-05-05T20:11:34.815Z"
+                },
+                "organization": {
+                  "S": "Ladoke akintola university of technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1777946792503-DASFMON71"
+                },
+                "organizationId": {
+                  "S": "org-f54289d3-e416-4ffb-9d59-02176ae8cf36-1777500413705"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778011995449-FXOSZFKGY"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778011995449-FXOSZFKGY"
+                },
+                "email": {
+                  "S": "adejumoolamiposi17@gmail.com"
+                },
+                "courseName": {
+                  "S": "OGBOMOSO TECH AND ENTREPRENEURSHIP IGNITE 2026"
+                },
+                "studentName": {
+                  "S": "Olamiposi Adejumo"
+                },
+                "submittedAt": {
+                  "S": "2026-05-05T20:13:15.449Z"
+                },
+                "organization": {
+                  "S": "LAUTECH"
+                },
+                "certificateId": {
+                  "S": "CERT-1777946792503-DASFMON71"
+                },
+                "organizationId": {
+                  "S": "org-f54289d3-e416-4ffb-9d59-02176ae8cf36-1777500413705"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778012194018-CTBSD9M4E"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778012194018-CTBSD9M4E"
+                },
+                "email": {
+                  "S": "preciousadedamola4@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "The programme was impactful and I learnt that I can start a business in a small or local place abd it will go global"
+                },
+                "courseName": {
+                  "S": "OGBOMOSO TECH AND ENTREPRENEURSHIP IGNITE 2026"
+                },
+                "studentName": {
+                  "S": "Adekanmbi Precious Adedamola"
+                },
+                "submittedAt": {
+                  "S": "2026-05-05T20:16:34.018Z"
+                },
+                "organization": {
+                  "S": "LADOKE AKINTOLA UNIVERSITY OF TECHNOLOGY"
+                },
+                "certificateId": {
+                  "S": "CERT-1777946792503-DASFMON71"
+                },
+                "organizationId": {
+                  "S": "org-f54289d3-e416-4ffb-9d59-02176ae8cf36-1777500413705"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778012331823-IQH1P63N1"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778012331823-IQH1P63N1"
+                },
+                "email": {
+                  "S": "Sherubami@student.lautech.edu.ng"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "The Ogbomoso Tech and Entrepreneurship Ignite (OTEI) 2026 program has served as a powerful catalyst for local innovation by equipping attendees with critical digital skills and regulatory knowledge, It helps in connecting with others that participate in a transformative opportunity to bridge the gap between creative vision and sustainable business growth."
+                },
+                "courseName": {
+                  "S": "OGBOMOSO TECH AND ENTREPRENEURSHIP IGNITE 2026"
+                },
+                "studentName": {
+                  "S": "Erubami Simbiat Hannah"
+                },
+                "submittedAt": {
+                  "S": "2026-05-05T20:18:51.823Z"
+                },
+                "organization": {
+                  "S": "LAUTECH"
+                },
+                "certificateId": {
+                  "S": "CERT-1777946792503-DASFMON71"
+                },
+                "organizationId": {
+                  "S": "org-f54289d3-e416-4ffb-9d59-02176ae8cf36-1777500413705"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778012362884-DIINXPIBR"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778012362884-DIINXPIBR"
+                },
+                "email": {
+                  "S": "adedokunsuccess07@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "It was great"
+                },
+                "courseName": {
+                  "S": "OGBOMOSO TECH AND ENTREPRENEURSHIP IGNITE 2026"
+                },
+                "studentName": {
+                  "S": "Adedokun Temitayo"
+                },
+                "submittedAt": {
+                  "S": "2026-05-05T20:19:22.884Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1777946792503-DASFMON71"
+                },
+                "organizationId": {
+                  "S": "org-f54289d3-e416-4ffb-9d59-02176ae8cf36-1777500413705"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778012553274-S1E82DGUW"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778012553274-S1E82DGUW"
+                },
+                "email": {
+                  "S": "adedoyinsulefavour@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "courseName": {
+                  "S": "OGBOMOSO TECH AND ENTREPRENEURSHIP IGNITE 2026"
+                },
+                "studentName": {
+                  "S": "Adedoyin-Sule Favour"
+                },
+                "submittedAt": {
+                  "S": "2026-05-05T20:22:33.274Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1777946792503-DASFMON71"
+                },
+                "organizationId": {
+                  "S": "org-f54289d3-e416-4ffb-9d59-02176ae8cf36-1777500413705"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778012676054-9RT9IYSZP"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778012676054-9RT9IYSZP"
+                },
+                "email": {
+                  "S": "phebetoluwanimi@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Amazing"
+                },
+                "courseName": {
+                  "S": "OGBOMOSO TECH AND ENTREPRENEURSHIP IGNITE 2026"
+                },
+                "studentName": {
+                  "S": "Odebisi Peace Oluwaferanmi"
+                },
+                "submittedAt": {
+                  "S": "2026-05-05T20:24:36.054Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology Ogbomosho Oyo state"
+                },
+                "certificateId": {
+                  "S": "CERT-1777946792503-DASFMON71"
+                },
+                "organizationId": {
+                  "S": "org-f54289d3-e416-4ffb-9d59-02176ae8cf36-1777500413705"
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

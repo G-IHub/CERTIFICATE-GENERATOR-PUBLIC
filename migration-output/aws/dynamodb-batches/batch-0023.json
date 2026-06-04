@@ -1,0 +1,957 @@
+{
+  "RequestItems": {
+    "certifyer-dev-kv": [
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "globaltemplate:template9"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "template9"
+                },
+                "name": {
+                  "S": "Academic Endurance"
+                },
+                "type": {
+                  "S": "default"
+                },
+                "config": {
+                  "M": {
+                    "colors": {
+                      "M": {
+                        "accent": {
+                          "S": "#ea580c"
+                        },
+                        "primary": {
+                          "S": "#dc2626"
+                        },
+                        "secondary": {
+                          "S": "#991b1b"
+                        }
+                      }
+                    },
+                    "layout": {
+                      "S": "academic"
+                    }
+                  }
+                },
+                "createdAt": {
+                  "S": "2026-03-25T11:42:39.350Z"
+                },
+                "isDefault": {
+                  "BOOL": true
+                },
+                "updatedAt": {
+                  "S": "2026-05-14T15:59:46.636Z"
+                },
+                "updatedBy": {
+                  "S": "admin-YWRtaW5AZ2"
+                },
+                "description": {
+                  "S": "Perfect for educational institutions"
+                },
+                "organization_id": {
+                  "S": "org-05fa8eb3-3b85-4d75-b7a3-59baf7750797-1770890718661"
+                },
+                "visibility_type": {
+                  "S": "organization"
+                },
+                "organization_ids": {
+                  "L": [
+                    {
+                      "S": "org-05fa8eb3-3b85-4d75-b7a3-59baf7750797-1770890718661"
+                    },
+                    {
+                      "S": "org-5b6ef551-f3b2-489c-9c9c-513546666a6c-1770375314735"
+                    },
+                    {
+                      "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                    },
+                    {
+                      "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                    },
+                    {
+                      "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                    },
+                    {
+                      "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                    },
+                    {
+                      "S": "org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824"
+                    },
+                    {
+                      "S": "org-47c077c6-caac-407c-aeb4-31d2f1ce8004-1778146566844"
+                    },
+                    {
+                      "S": "org-1cab9388-5728-4646-9178-26dc1fa778fa-1769444130796"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "invoice:inv_1776369851454_yftu"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "inv_1776369851454_yftu"
+                },
+                "type": {
+                  "S": "certificate"
+                },
+                "status": {
+                  "S": "paid"
+                },
+                "currency": {
+                  "S": "NGN"
+                },
+                "issuedAt": {
+                  "S": "2026-04-16T20:04:12.004Z"
+                },
+                "sellerId": {
+                  "S": "53e77cf8-e8b7-488a-9925-d2a03e6d0ea2"
+                },
+                "buyerName": {
+                  "S": "Oluwaseyi Abraham Olawale"
+                },
+                "reference": {
+                  "S": "CTFY_1776369785364_6AG9FD"
+                },
+                "buyerEmail": {
+                  "S": "genomachub@gmail.com"
+                },
+                "amountTotal": {
+                  "N": "100000"
+                },
+                "platformFee": {
+                  "N": "7000"
+                },
+                "sellerOrgId": {
+                  "S": "org-53e77cf8-e8b7-488a-9925-d2a03e6d0ea2-1772793192106"
+                },
+                "productTitle": {
+                  "S": "genomics mentorship"
+                },
+                "certificateId": {
+                  "S": "CERT-1776369755584-HYJG1NEZ3"
+                },
+                "sellerEarning": {
+                  "N": "93000"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "invoice:inv_1776417746127_t95o"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "inv_1776417746127_t95o"
+                },
+                "type": {
+                  "S": "certificate"
+                },
+                "status": {
+                  "S": "paid"
+                },
+                "currency": {
+                  "S": "NGN"
+                },
+                "issuedAt": {
+                  "S": "2026-04-17T09:22:26.506Z"
+                },
+                "sellerId": {
+                  "S": "53e77cf8-e8b7-488a-9925-d2a03e6d0ea2"
+                },
+                "buyerName": {
+                  "S": "Goodie"
+                },
+                "reference": {
+                  "S": "CTFY_1776417724780_VREZ5C"
+                },
+                "buyerEmail": {
+                  "S": "adewuyigoodness1@gmail.com"
+                },
+                "amountTotal": {
+                  "N": "500000"
+                },
+                "platformFee": {
+                  "N": "35000"
+                },
+                "sellerOrgId": {
+                  "S": "org-53e77cf8-e8b7-488a-9925-d2a03e6d0ea2-1772793192106"
+                },
+                "productTitle": {
+                  "S": "Advanced Web Dev 12"
+                },
+                "certificateId": {
+                  "S": "CERT-1776417685363-PS6RQRDNQ"
+                },
+                "sellerEarning": {
+                  "N": "465000"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "invoice:inv_1776424809454_jgl6"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "inv_1776424809454_jgl6"
+                },
+                "type": {
+                  "S": "certificate"
+                },
+                "status": {
+                  "S": "paid"
+                },
+                "currency": {
+                  "S": "NGN"
+                },
+                "issuedAt": {
+                  "S": "2026-04-17T11:20:09.833Z"
+                },
+                "sellerId": {
+                  "S": "53e77cf8-e8b7-488a-9925-d2a03e6d0ea2"
+                },
+                "buyerName": {
+                  "S": "Chrestotes"
+                },
+                "reference": {
+                  "S": "CTFY_1776424786488_Y3Z4EJ"
+                },
+                "buyerEmail": {
+                  "S": "adewuyigoodness1@gmail.com"
+                },
+                "amountTotal": {
+                  "N": "500000"
+                },
+                "platformFee": {
+                  "N": "35000"
+                },
+                "sellerOrgId": {
+                  "S": "org-53e77cf8-e8b7-488a-9925-d2a03e6d0ea2-1772793192106"
+                },
+                "productTitle": {
+                  "S": "Test Course Pay"
+                },
+                "certificateId": {
+                  "S": "CERT-1776424735943-GUINZZJ37"
+                },
+                "sellerEarning": {
+                  "N": "465000"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "monetization:settings"
+            },
+            "value": {
+              "M": {
+                "updatedAt": {
+                  "S": "2026-04-16T20:18:16.823Z"
+                },
+                "payoutSchedule": {
+                  "S": "weekly_monday"
+                },
+                "platformFeePercent": {
+                  "N": "7"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_products:org-53e77cf8-e8b7-488a-9925-d2a03e6d0ea2-1772793192106"
+            },
+            "value": {
+              "L": [
+                {
+                  "S": "PROD_1776859279878_GWZMKR"
+                }
+              ]
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_sessions:org-0247c311-46ac-49da-82e1-c5a06948c56f-1771519528742"
+            },
+            "value": {
+              "M": {
+                "lastUpdated": {
+                  "S": "2026-02-19T16:48:56.774Z"
+                },
+                "sessionsByUser": {
+                  "M": {
+                    "0247c311-46ac-49da-82e1-c5a06948c56f": {
+                      "N": "159"
+                    }
+                  }
+                },
+                "totalTimeSpent": {
+                  "N": "159"
+                },
+                "sessionsByMonth": {
+                  "M": {
+                    "2026-02": {
+                      "N": "159"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_sessions:org-06473ee5-6fba-4517-a87f-c9b1d133a08c-1772633451858"
+            },
+            "value": {
+              "M": {
+                "lastUpdated": {
+                  "S": "2026-03-28T12:40:35.248Z"
+                },
+                "sessionsByUser": {
+                  "M": {
+                    "06473ee5-6fba-4517-a87f-c9b1d133a08c": {
+                      "N": "3765"
+                    }
+                  }
+                },
+                "totalTimeSpent": {
+                  "N": "3765"
+                },
+                "sessionsByMonth": {
+                  "M": {
+                    "2026-03": {
+                      "N": "3765"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_sessions:org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+            },
+            "value": {
+              "M": {
+                "lastUpdated": {
+                  "S": "2026-05-22T15:05:16.276Z"
+                },
+                "sessionsByUser": {
+                  "M": {
+                    "09b6c345-0ec4-4cd9-a23d-bd3b67c15110": {
+                      "N": "38296"
+                    }
+                  }
+                },
+                "totalTimeSpent": {
+                  "N": "38296"
+                },
+                "sessionsByMonth": {
+                  "M": {
+                    "2026-03": {
+                      "N": "9216"
+                    },
+                    "2026-04": {
+                      "N": "8649"
+                    },
+                    "2026-05": {
+                      "N": "20431"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_sessions:org-0a6af063-e6ce-415f-9f19-e03b2a214cef-1776522645053"
+            },
+            "value": {
+              "M": {
+                "lastUpdated": {
+                  "S": "2026-04-18T14:39:22.881Z"
+                },
+                "sessionsByUser": {
+                  "M": {
+                    "0a6af063-e6ce-415f-9f19-e03b2a214cef": {
+                      "N": "473"
+                    }
+                  }
+                },
+                "totalTimeSpent": {
+                  "N": "473"
+                },
+                "sessionsByMonth": {
+                  "M": {
+                    "2026-04": {
+                      "N": "473"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_sessions:org-0ae927c8-7404-43ce-9478-66a4eb7be005-1771498915247"
+            },
+            "value": {
+              "M": {
+                "lastUpdated": {
+                  "S": "2026-02-19T20:43:13.848Z"
+                },
+                "sessionsByUser": {
+                  "M": {
+                    "0ae927c8-7404-43ce-9478-66a4eb7be005": {
+                      "N": "4961"
+                    }
+                  }
+                },
+                "totalTimeSpent": {
+                  "N": "4961"
+                },
+                "sessionsByMonth": {
+                  "M": {
+                    "2026-02": {
+                      "N": "4961"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_sessions:org-0bcbebd7-ecc6-4671-99a8-550a67bb8769-1771518417635"
+            },
+            "value": {
+              "M": {
+                "lastUpdated": {
+                  "S": "2026-02-19T16:33:35.253Z"
+                },
+                "sessionsByUser": {
+                  "M": {
+                    "0bcbebd7-ecc6-4671-99a8-550a67bb8769": {
+                      "N": "351"
+                    }
+                  }
+                },
+                "totalTimeSpent": {
+                  "N": "351"
+                },
+                "sessionsByMonth": {
+                  "M": {
+                    "2026-02": {
+                      "N": "351"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_sessions:org-132cf813-7605-4664-9949-5ede977b91da-1772638113825"
+            },
+            "value": {
+              "M": {
+                "lastUpdated": {
+                  "S": "2026-03-04T16:01:17.743Z"
+                },
+                "sessionsByUser": {
+                  "M": {
+                    "132cf813-7605-4664-9949-5ede977b91da": {
+                      "N": "1739"
+                    }
+                  }
+                },
+                "totalTimeSpent": {
+                  "N": "1739"
+                },
+                "sessionsByMonth": {
+                  "M": {
+                    "2026-03": {
+                      "N": "1739"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_sessions:org-1a39152c-0816-43b9-9cef-e141ccb19350-1771597719189"
+            },
+            "value": {
+              "M": {
+                "lastUpdated": {
+                  "S": "2026-05-22T15:49:25.851Z"
+                },
+                "sessionsByUser": {
+                  "M": {
+                    "1a39152c-0816-43b9-9cef-e141ccb19350": {
+                      "N": "12359"
+                    }
+                  }
+                },
+                "totalTimeSpent": {
+                  "N": "12359"
+                },
+                "sessionsByMonth": {
+                  "M": {
+                    "2026-02": {
+                      "N": "3312"
+                    },
+                    "2026-05": {
+                      "N": "9047"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_sessions:org-1c9708ef-0479-4df9-94ba-ace08da2750c-1771851391039"
+            },
+            "value": {
+              "M": {
+                "lastUpdated": {
+                  "S": "2026-02-23T13:07:03.560Z"
+                },
+                "sessionsByUser": {
+                  "M": {
+                    "1c9708ef-0479-4df9-94ba-ace08da2750c": {
+                      "N": "623"
+                    }
+                  }
+                },
+                "totalTimeSpent": {
+                  "N": "623"
+                },
+                "sessionsByMonth": {
+                  "M": {
+                    "2026-02": {
+                      "N": "623"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_sessions:org-1cab9388-5728-4646-9178-26dc1fa778fa-1769444130796"
+            },
+            "value": {
+              "M": {
+                "lastUpdated": {
+                  "S": "2026-05-26T10:44:03.362Z"
+                },
+                "sessionsByUser": {
+                  "M": {
+                    "1cab9388-5728-4646-9178-26dc1fa778fa": {
+                      "N": "64493"
+                    }
+                  }
+                },
+                "totalTimeSpent": {
+                  "N": "64493"
+                },
+                "sessionsByMonth": {
+                  "M": {
+                    "2026-04": {
+                      "N": "29885"
+                    },
+                    "2026-05": {
+                      "N": "34608"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_sessions:org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611"
+            },
+            "value": {
+              "M": {
+                "lastUpdated": {
+                  "S": "2026-05-22T07:15:51.655Z"
+                },
+                "sessionsByUser": {
+                  "M": {
+                    "2bd9344d-f123-44ae-a6c7-36a9c5e68971": {
+                      "N": "5220"
+                    }
+                  }
+                },
+                "totalTimeSpent": {
+                  "N": "5220"
+                },
+                "sessionsByMonth": {
+                  "M": {
+                    "2026-04": {
+                      "N": "4367"
+                    },
+                    "2026-05": {
+                      "N": "853"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_sessions:org-332e0971-c870-4811-b466-e461281953f2-1779027674161"
+            },
+            "value": {
+              "M": {
+                "lastUpdated": {
+                  "S": "2026-05-18T12:59:31.989Z"
+                },
+                "sessionsByUser": {
+                  "M": {
+                    "332e0971-c870-4811-b466-e461281953f2": {
+                      "N": "180"
+                    }
+                  }
+                },
+                "totalTimeSpent": {
+                  "N": "180"
+                },
+                "sessionsByMonth": {
+                  "M": {
+                    "2026-05": {
+                      "N": "180"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_sessions:org-35e7bb25-6700-4ed6-a45b-a606715b64ac-1774266452561"
+            },
+            "value": {
+              "M": {
+                "lastUpdated": {
+                  "S": "2026-03-23T12:47:26.797Z"
+                },
+                "sessionsByUser": {
+                  "M": {
+                    "35e7bb25-6700-4ed6-a45b-a606715b64ac": {
+                      "N": "3427"
+                    }
+                  }
+                },
+                "totalTimeSpent": {
+                  "N": "3427"
+                },
+                "sessionsByMonth": {
+                  "M": {
+                    "2026-03": {
+                      "N": "3427"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_sessions:org-35fddd9d-62a6-4c50-9957-b887a6532489-1773181671360"
+            },
+            "value": {
+              "M": {
+                "lastUpdated": {
+                  "S": "2026-03-10T22:32:02.858Z"
+                },
+                "sessionsByUser": {
+                  "M": {
+                    "35fddd9d-62a6-4c50-9957-b887a6532489": {
+                      "N": "213"
+                    }
+                  }
+                },
+                "totalTimeSpent": {
+                  "N": "213"
+                },
+                "sessionsByMonth": {
+                  "M": {
+                    "2026-03": {
+                      "N": "213"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_sessions:org-3844d71a-0fd9-40bf-8ef8-a82db878c920-1773245010086"
+            },
+            "value": {
+              "M": {
+                "lastUpdated": {
+                  "S": "2026-03-11T16:07:59.937Z"
+                },
+                "sessionsByUser": {
+                  "M": {
+                    "3844d71a-0fd9-40bf-8ef8-a82db878c920": {
+                      "N": "186"
+                    }
+                  }
+                },
+                "totalTimeSpent": {
+                  "N": "186"
+                },
+                "sessionsByMonth": {
+                  "M": {
+                    "2026-03": {
+                      "N": "186"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_sessions:org-3db61dd7-6222-4478-8ab3-ad69b30c8573-1777734893577"
+            },
+            "value": {
+              "M": {
+                "lastUpdated": {
+                  "S": "2026-05-02T15:18:29.187Z"
+                },
+                "sessionsByUser": {
+                  "M": {
+                    "3db61dd7-6222-4478-8ab3-ad69b30c8573": {
+                      "N": "204"
+                    }
+                  }
+                },
+                "totalTimeSpent": {
+                  "N": "204"
+                },
+                "sessionsByMonth": {
+                  "M": {
+                    "2026-05": {
+                      "N": "204"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_sessions:org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+            },
+            "value": {
+              "M": {
+                "lastUpdated": {
+                  "S": "2026-05-26T09:52:18.280Z"
+                },
+                "sessionsByUser": {
+                  "M": {
+                    "4464bbca-3855-41c2-83cf-ae82c34b5579": {
+                      "N": "16226"
+                    }
+                  }
+                },
+                "totalTimeSpent": {
+                  "N": "16226"
+                },
+                "sessionsByMonth": {
+                  "M": {
+                    "2026-04": {
+                      "N": "10469"
+                    },
+                    "2026-05": {
+                      "N": "5757"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_sessions:org-47c077c6-caac-407c-aeb4-31d2f1ce8004-1778146566844"
+            },
+            "value": {
+              "M": {
+                "lastUpdated": {
+                  "S": "2026-05-07T10:35:52.292Z"
+                },
+                "sessionsByUser": {
+                  "M": {
+                    "47c077c6-caac-407c-aeb4-31d2f1ce8004": {
+                      "N": "3376"
+                    }
+                  }
+                },
+                "totalTimeSpent": {
+                  "N": "3376"
+                },
+                "sessionsByMonth": {
+                  "M": {
+                    "2026-05": {
+                      "N": "3376"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_sessions:org-5095b6c3-2687-4d53-874a-72d42944484c-1774775763836"
+            },
+            "value": {
+              "M": {
+                "lastUpdated": {
+                  "S": "2026-03-29T20:40:44.665Z"
+                },
+                "sessionsByUser": {
+                  "M": {
+                    "5095b6c3-2687-4d53-874a-72d42944484c": {
+                      "N": "704"
+                    }
+                  }
+                },
+                "totalTimeSpent": {
+                  "N": "704"
+                },
+                "sessionsByMonth": {
+                  "M": {
+                    "2026-03": {
+                      "N": "704"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,1045 @@
+{
+  "RequestItems": {
+    "certifyer-dev-kv": [
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780303863456-CGZR24W8W"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780303863456-CGZR24W8W"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Good"
+                },
+                "courseName": {
+                  "S": "LinkedIn Locals Bamenda"
+                },
+                "studentName": {
+                  "S": "Nji Quinivette"
+                },
+                "submittedAt": {
+                  "S": "2026-06-01T08:51:03.456Z"
+                },
+                "organization": {
+                  "S": "LinkedIn Locals"
+                },
+                "certificateId": {
+                  "S": "CERT-1780297095030-AGWYMEXN1"
+                },
+                "organizationId": {
+                  "S": "org-80f0d6d3-127d-497a-807d-41c1804800fd-1780291956400"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780303973529-8HG4OWM2U"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780303973529-8HG4OWM2U"
+                },
+                "email": {
+                  "S": "cynthiafeck6@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Goo"
+                },
+                "courseName": {
+                  "S": "LinkedIn Locals Bamenda"
+                },
+                "studentName": {
+                  "S": "Musa Semu-Ketural"
+                },
+                "submittedAt": {
+                  "S": "2026-06-01T08:52:53.529Z"
+                },
+                "organization": {
+                  "S": "LinkedIn Locals"
+                },
+                "certificateId": {
+                  "S": "CERT-1780297095030-AGWYMEXN1"
+                },
+                "organizationId": {
+                  "S": "org-80f0d6d3-127d-497a-807d-41c1804800fd-1780291956400"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780304089012-CBXH12MZP"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780304089012-CBXH12MZP"
+                },
+                "email": {
+                  "S": "cynthiafeck6@gmail.com"
+                },
+                "title": {
+                  "S": "Mrs"
+                },
+                "impact": {
+                  "S": "Good"
+                },
+                "courseName": {
+                  "S": "LinkedIn Locals Bamenda"
+                },
+                "studentName": {
+                  "S": "Beri Wilma Jato"
+                },
+                "submittedAt": {
+                  "S": "2026-06-01T08:54:49.012Z"
+                },
+                "organization": {
+                  "S": "LinkedIn Locals"
+                },
+                "certificateId": {
+                  "S": "CERT-1780297095030-AGWYMEXN1"
+                },
+                "organizationId": {
+                  "S": "org-80f0d6d3-127d-497a-807d-41c1804800fd-1780291956400"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780304175227-4FVSA6Y7J"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780304175227-4FVSA6Y7J"
+                },
+                "email": {
+                  "S": "cynthiafeck6@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Good"
+                },
+                "courseName": {
+                  "S": "LinkedIn Locals Bamenda"
+                },
+                "studentName": {
+                  "S": "Etame Trinity"
+                },
+                "submittedAt": {
+                  "S": "2026-06-01T08:56:15.227Z"
+                },
+                "organization": {
+                  "S": "LinkedIn Locals"
+                },
+                "certificateId": {
+                  "S": "CERT-1780297095030-AGWYMEXN1"
+                },
+                "organizationId": {
+                  "S": "org-80f0d6d3-127d-497a-807d-41c1804800fd-1780291956400"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780304258128-0J180OWN8"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780304258128-0J180OWN8"
+                },
+                "email": {
+                  "S": "cynthiafeck6@gmail.com"
+                },
+                "title": {
+                  "S": "Mrs"
+                },
+                "impact": {
+                  "S": "Gooy"
+                },
+                "courseName": {
+                  "S": "LinkedIn Locals Bamenda"
+                },
+                "studentName": {
+                  "S": "Ngwashi Rose Mary"
+                },
+                "submittedAt": {
+                  "S": "2026-06-01T08:57:38.128Z"
+                },
+                "organization": {
+                  "S": "LinkedIn Locals"
+                },
+                "certificateId": {
+                  "S": "CERT-1780297095030-AGWYMEXN1"
+                },
+                "organizationId": {
+                  "S": "org-80f0d6d3-127d-497a-807d-41c1804800fd-1780291956400"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780304328593-994MP68J5"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780304328593-994MP68J5"
+                },
+                "email": {
+                  "S": "cynthiafeck6@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Good"
+                },
+                "courseName": {
+                  "S": "LinkedIn Locals Bamenda"
+                },
+                "studentName": {
+                  "S": "Tuh Betsy"
+                },
+                "submittedAt": {
+                  "S": "2026-06-01T08:58:48.593Z"
+                },
+                "organization": {
+                  "S": "LinkedIn Locals"
+                },
+                "certificateId": {
+                  "S": "CERT-1780297095030-AGWYMEXN1"
+                },
+                "organizationId": {
+                  "S": "org-80f0d6d3-127d-497a-807d-41c1804800fd-1780291956400"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780304430658-MQHTQZH4P"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780304430658-MQHTQZH4P"
+                },
+                "email": {
+                  "S": "cynthiafeck6@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Good"
+                },
+                "courseName": {
+                  "S": "LinkedIn Locals Bamenda"
+                },
+                "studentName": {
+                  "S": "Jaff Gareth"
+                },
+                "submittedAt": {
+                  "S": "2026-06-01T09:00:30.658Z"
+                },
+                "organization": {
+                  "S": "LinkedIn Locals"
+                },
+                "certificateId": {
+                  "S": "CERT-1780297095030-AGWYMEXN1"
+                },
+                "organizationId": {
+                  "S": "org-80f0d6d3-127d-497a-807d-41c1804800fd-1780291956400"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780304504273-0J6R92W8M"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780304504273-0J6R92W8M"
+                },
+                "email": {
+                  "S": "cynthiafeck6@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Good"
+                },
+                "courseName": {
+                  "S": "LinkedIn Locals Bamenda"
+                },
+                "studentName": {
+                  "S": "Tafrey Samira"
+                },
+                "submittedAt": {
+                  "S": "2026-06-01T09:01:44.273Z"
+                },
+                "organization": {
+                  "S": "LinkedIn Locals"
+                },
+                "certificateId": {
+                  "S": "CERT-1780297095030-AGWYMEXN1"
+                },
+                "organizationId": {
+                  "S": "org-80f0d6d3-127d-497a-807d-41c1804800fd-1780291956400"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780304574356-AFJURN18H"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780304574356-AFJURN18H"
+                },
+                "email": {
+                  "S": "cynthiafeck6@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Good"
+                },
+                "courseName": {
+                  "S": "LinkedIn Locals Bamenda"
+                },
+                "studentName": {
+                  "S": "Brenda Abestine"
+                },
+                "submittedAt": {
+                  "S": "2026-06-01T09:02:54.356Z"
+                },
+                "organization": {
+                  "S": "LinkedIn Locals"
+                },
+                "certificateId": {
+                  "S": "CERT-1780297095030-AGWYMEXN1"
+                },
+                "organizationId": {
+                  "S": "org-80f0d6d3-127d-497a-807d-41c1804800fd-1780291956400"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780304703693-IJ4DAL3GJ"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780304703693-IJ4DAL3GJ"
+                },
+                "email": {
+                  "S": "cynthiafeck6@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Good"
+                },
+                "courseName": {
+                  "S": "LinkedIn Locals Bamenda"
+                },
+                "studentName": {
+                  "S": "Chefah vera Nchotou"
+                },
+                "submittedAt": {
+                  "S": "2026-06-01T09:05:03.693Z"
+                },
+                "organization": {
+                  "S": "LinkedIn Locals"
+                },
+                "certificateId": {
+                  "S": "CERT-1780297095030-AGWYMEXN1"
+                },
+                "organizationId": {
+                  "S": "org-80f0d6d3-127d-497a-807d-41c1804800fd-1780291956400"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780304873048-84PKWUE1A"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780304873048-84PKWUE1A"
+                },
+                "email": {
+                  "S": "cynthiafeck6@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Good"
+                },
+                "courseName": {
+                  "S": "LinkedIn Locals Bamenda"
+                },
+                "studentName": {
+                  "S": "Chafah vera Nchotou"
+                },
+                "submittedAt": {
+                  "S": "2026-06-01T09:07:53.048Z"
+                },
+                "organization": {
+                  "S": "LinkedIn Locals"
+                },
+                "certificateId": {
+                  "S": "CERT-1780297095030-AGWYMEXN1"
+                },
+                "organizationId": {
+                  "S": "org-80f0d6d3-127d-497a-807d-41c1804800fd-1780291956400"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780305004295-BO1XINL7Y"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780305004295-BO1XINL7Y"
+                },
+                "email": {
+                  "S": "cynthiafeck6@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Good"
+                },
+                "courseName": {
+                  "S": "LinkedIn Locals Bamenda"
+                },
+                "studentName": {
+                  "S": "Fien Franka"
+                },
+                "submittedAt": {
+                  "S": "2026-06-01T09:10:04.295Z"
+                },
+                "organization": {
+                  "S": "LinkedIn Locals"
+                },
+                "certificateId": {
+                  "S": "CERT-1780297095030-AGWYMEXN1"
+                },
+                "organizationId": {
+                  "S": "org-80f0d6d3-127d-497a-807d-41c1804800fd-1780291956400"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780316358503-DFE9PFOMG"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780316358503-DFE9PFOMG"
+                },
+                "email": {
+                  "S": "beckley.ikhajiagbe@uniben.edu"
+                },
+                "title": {
+                  "S": "Prof"
+                },
+                "courseName": {
+                  "S": "The Future of Environmental Biotechnology: Innovation, Impact, and Global Sustainability"
+                },
+                "studentName": {
+                  "S": "Beckley Ikhajiagbe"
+                },
+                "submittedAt": {
+                  "S": "2026-06-01T12:19:18.503Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1780316233463-QX42NEEJB"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780316391677-DUVYBW2HM"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780316391677-DUVYBW2HM"
+                },
+                "email": {
+                  "S": "cynthiafeck6@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Beautiful"
+                },
+                "courseName": {
+                  "S": "LinkedIn Locals Bamenda"
+                },
+                "studentName": {
+                  "S": "FECK CYNTHIA AMECK"
+                },
+                "submittedAt": {
+                  "S": "2026-06-01T12:19:51.677Z"
+                },
+                "organization": {
+                  "S": "LinkedIn Locals"
+                },
+                "certificateId": {
+                  "S": "CERT-1780297095030-AGWYMEXN1"
+                },
+                "organizationId": {
+                  "S": "org-80f0d6d3-127d-497a-807d-41c1804800fd-1780291956400"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780318374922-KBFDI12G3"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780318374922-KBFDI12G3"
+                },
+                "email": {
+                  "S": "adeguneniola19@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "My time studying Policy Advocacy in Genomics highlighted a critical truth: as genomic medicine advances, our policies must evolve just as fast to prevent widening health disparities. I gained deep insights into the ethical challenges of genetic data ownership, informed consent, and the necessity of diverse datasets in clinical research. Moving forward, I feel equipped to advocate for inclusive policies that protect marginalized populations and ensure that the life-saving benefits of genomics are equitably distributed, not just reserved for a privileged few."
+                },
+                "courseName": {
+                  "S": "The Future of Environmental Biotechnology: Innovation, Impact, and Global Sustainability"
+                },
+                "studentName": {
+                  "S": "ADEGUN ENIOLA"
+                },
+                "submittedAt": {
+                  "S": "2026-06-01T12:52:54.922Z"
+                },
+                "organization": {
+                  "S": "Lagos state ministry of health"
+                },
+                "certificateId": {
+                  "S": "CERT-1780315447781-IQF0IHGGV"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780323062512-WU0F7DFQ6"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780323062512-WU0F7DFQ6"
+                },
+                "email": {
+                  "S": "Priscillasani05@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "courseName": {
+                  "S": "The Future of Environmental Biotechnology: Innovation, Impact, and Global Sustainability"
+                },
+                "studentName": {
+                  "S": "Priscilla Sani Ojochegbe"
+                },
+                "submittedAt": {
+                  "S": "2026-06-01T14:11:02.512Z"
+                },
+                "organization": {
+                  "S": "PAUU University"
+                },
+                "certificateId": {
+                  "S": "CERT-1780315447781-IQF0IHGGV"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780323535448-K05VT9NIL"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780323535448-K05VT9NIL"
+                },
+                "email": {
+                  "S": "vigilmedical@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "I now has better understanding on how biotechnology can be used to curb environmental pollution."
+                },
+                "courseName": {
+                  "S": "The Future of Environmental Biotechnology: Innovation, Impact, and Global Sustainability"
+                },
+                "studentName": {
+                  "S": "Odunowo Oluwaseyi"
+                },
+                "submittedAt": {
+                  "S": "2026-06-01T14:18:55.448Z"
+                },
+                "organization": {
+                  "S": "Vigil Medical Diagnostic services"
+                },
+                "certificateId": {
+                  "S": "CERT-1780315447781-IQF0IHGGV"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780324985335-7MZ15A94V"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780324985335-7MZ15A94V"
+                },
+                "email": {
+                  "S": "alloysiusessel5@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "It was very educational"
+                },
+                "courseName": {
+                  "S": "The Future of Environmental Biotechnology: Innovation, Impact, and Global Sustainability"
+                },
+                "studentName": {
+                  "S": "Essel Alloysius"
+                },
+                "submittedAt": {
+                  "S": "2026-06-01T14:43:05.335Z"
+                },
+                "organization": {
+                  "S": "University of Health and Allied Sciences"
+                },
+                "certificateId": {
+                  "S": "CERT-1780315447781-IQF0IHGGV"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780326818096-UCIP0RVZ1"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780326818096-UCIP0RVZ1"
+                },
+                "email": {
+                  "S": "chidiebereonwubu@gmail.com"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "Very impactful"
+                },
+                "courseName": {
+                  "S": "The Future of Environmental Biotechnology: Innovation, Impact, and Global Sustainability"
+                },
+                "studentName": {
+                  "S": "Chidiebere Promise Ndubueze"
+                },
+                "submittedAt": {
+                  "S": "2026-06-01T15:13:38.096Z"
+                },
+                "organization": {
+                  "S": "University of nigeria teaching hospital ituku-ozalla enugu"
+                },
+                "certificateId": {
+                  "S": "CERT-1780317892097-F69OD770X"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780331295238-42QBK6BGD"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780331295238-42QBK6BGD"
+                },
+                "email": {
+                  "S": "amli48762743@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "I was able to learn a lot about the environment and it's problematic issues and how to use biotechnological knowledge to solve them"
+                },
+                "courseName": {
+                  "S": "The Future of Environmental Biotechnology: Innovation, Impact, and Global Sustainability"
+                },
+                "studentName": {
+                  "S": "MUSTAPHA ALI"
+                },
+                "submittedAt": {
+                  "S": "2026-06-01T16:28:15.238Z"
+                },
+                "organization": {
+                  "S": "UNIVERSITY FOR DEVELOPMENT STUDIES"
+                },
+                "certificateId": {
+                  "S": "CERT-1780315447781-IQF0IHGGV"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780340685261-HYA4AVNYM"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780340685261-HYA4AVNYM"
+                },
+                "email": {
+                  "S": "jv.atansuyi@gmail.com"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "courseName": {
+                  "S": "The Future of Environmental Biotechnology: Innovation, Impact, and Global Sustainability"
+                },
+                "studentName": {
+                  "S": "Adewale Johnson Atansuyi"
+                },
+                "submittedAt": {
+                  "S": "2026-06-01T19:04:45.261Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1780315447781-IQF0IHGGV"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780394912074-YEHBAXCVD"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780394912074-YEHBAXCVD"
+                },
+                "email": {
+                  "S": "afolayanomotolani30@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "courseName": {
+                  "S": "Course Title"
+                },
+                "studentName": {
+                  "S": "Omotolani Lydia Afolayan"
+                },
+                "submittedAt": {
+                  "S": "2026-06-02T10:08:32.074Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1780394889222-HIJS2SC1P"
+                },
+                "organizationId": {
+                  "S": "org-c4e7a07b-562d-4068-968c-7d8bee0cec2e-1767182844779"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780395001281-SHLIWXW1Y"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780395001281-SHLIWXW1Y"
+                },
+                "email": {
+                  "S": "afolayanomotolani30@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "courseName": {
+                  "S": "Course Title"
+                },
+                "studentName": {
+                  "S": "Omotolani Lydia Afolayan"
+                },
+                "submittedAt": {
+                  "S": "2026-06-02T10:10:01.281Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1780394985719-FIYV5W0MA"
+                },
+                "organizationId": {
+                  "S": "org-c4e7a07b-562d-4068-968c-7d8bee0cec2e-1767182844779"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780395036260-H3M4Q9S49"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780395036260-H3M4Q9S49"
+                },
+                "email": {
+                  "S": "afolayanomotolani30@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "courseName": {
+                  "S": "Course Title"
+                },
+                "studentName": {
+                  "S": "Omotolani Lydia Afolayan"
+                },
+                "submittedAt": {
+                  "S": "2026-06-02T10:10:36.260Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1780394985719-FIYV5W0MA"
+                },
+                "organizationId": {
+                  "S": "org-c4e7a07b-562d-4068-968c-7d8bee0cec2e-1767182844779"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780395416595-MDEU0OTIC"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780395416595-MDEU0OTIC"
+                },
+                "email": {
+                  "S": "njokuabigail787@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "This was an insightful session"
+                },
+                "courseName": {
+                  "S": "The Future of Environmental Biotechnology: Innovation, Impact, and Global Sustainability"
+                },
+                "studentName": {
+                  "S": "Njoku Abigail Chisom"
+                },
+                "submittedAt": {
+                  "S": "2026-06-02T10:16:56.595Z"
+                },
+                "organization": {
+                  "S": "University of Nigeria, Nsukka"
+                },
+                "certificateId": {
+                  "S": "CERT-1780315447781-IQF0IHGGV"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

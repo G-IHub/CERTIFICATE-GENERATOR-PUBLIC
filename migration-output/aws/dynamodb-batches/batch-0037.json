@@ -1,0 +1,1006 @@
+{
+  "RequestItems": {
+    "certifyer-dev-kv": [
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6364e4ee-97a9-45f6-9682-a11025e85f68-1776520611278:TEST-1776521047743-1G3V9VYCY"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1776521047743-1G3V9VYCY"
+                },
+                "email": {
+                  "S": "nafeesaholayemi@gmail.com"
+                },
+                "impact": {
+                  "S": "It was really impactful and informative."
+                },
+                "programId": {
+                  "S": "writing"
+                },
+                "courseName": {
+                  "S": "Writing"
+                },
+                "studentName": {
+                  "S": "Nafeesah Olayemi Olapade"
+                },
+                "submittedAt": {
+                  "S": "2026-04-18T14:04:07.743Z"
+                },
+                "organization": {
+                  "S": "The Prolific Writers' Hub"
+                },
+                "certificateId": {
+                  "S": "CERT-1776520960222-NR7XAVHK4"
+                },
+                "organizationId": {
+                  "S": "org-6364e4ee-97a9-45f6-9682-a11025e85f68-1776520611278"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-64c0888d-bcc2-45d2-8e6d-cf5166fa3817-1761747099850:TEST-1762165318805-W44XUULP1"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1762165318805-W44XUULP1"
+                },
+                "programId": {
+                  "S": "advanced-web-dev-22"
+                },
+                "courseName": {
+                  "S": "Advanced Web Dev 22"
+                },
+                "studentName": {
+                  "S": "Goodness Adewuyi"
+                },
+                "submittedAt": {
+                  "S": "2025-11-03T10:21:58.805Z"
+                },
+                "testimonial": {
+                  "S": "Lormen fuibw if qywdvuq dqwuo qwydlb h weqw qlh.qw"
+                },
+                "certificateId": {
+                  "S": "CERT-1761748060861-HRPGBV8H4"
+                },
+                "organizationId": {
+                  "S": "org-64c0888d-bcc2-45d2-8e6d-cf5166fa3817-1761747099850"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6973f446-a68e-4018-b1b6-f40020c0bc81-1779097877874:TEST-1779263548881-FKI4J4BB8"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1779263548881-FKI4J4BB8"
+                },
+                "email": {
+                  "S": "oladoyinolaniyi9@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "courseName": {
+                  "S": "The Architecture of Becoming"
+                },
+                "studentName": {
+                  "S": "Oladoyin Mercy Olaniyi"
+                },
+                "submittedAt": {
+                  "S": "2026-05-20T07:52:28.881Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1779208025517-4V4NIELI4"
+                },
+                "organizationId": {
+                  "S": "org-6973f446-a68e-4018-b1b6-f40020c0bc81-1779097877874"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6973f446-a68e-4018-b1b6-f40020c0bc81-1779097877874:TEST-1779263844931-B9MVFUY18"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1779263844931-B9MVFUY18"
+                },
+                "email": {
+                  "S": "oladoyinolaniyi9@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "courseName": {
+                  "S": "The Architecture of Becoming"
+                },
+                "studentName": {
+                  "S": "Oladoyin Mercy Olaniyi"
+                },
+                "submittedAt": {
+                  "S": "2026-05-20T07:57:24.931Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1779208025517-4V4NIELI4"
+                },
+                "organizationId": {
+                  "S": "org-6973f446-a68e-4018-b1b6-f40020c0bc81-1779097877874"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6973f446-a68e-4018-b1b6-f40020c0bc81-1779097877874:TEST-1779271743154-H38IO0NTZ"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1779271743154-H38IO0NTZ"
+                },
+                "email": {
+                  "S": "thevictoradekunle@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "courseName": {
+                  "S": "The Architecture of Becoming"
+                },
+                "studentName": {
+                  "S": "Victor Adekunle"
+                },
+                "submittedAt": {
+                  "S": "2026-05-20T10:09:03.154Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1779208025517-4V4NIELI4"
+                },
+                "organizationId": {
+                  "S": "org-6973f446-a68e-4018-b1b6-f40020c0bc81-1779097877874"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6973f446-a68e-4018-b1b6-f40020c0bc81-1779097877874:TEST-1779274411585-WAH8KWNRG"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1779274411585-WAH8KWNRG"
+                },
+                "email": {
+                  "S": "oladoyinolaniyi9@gmail.com"
+                },
+                "title": {
+                  "S": "Prof"
+                },
+                "courseName": {
+                  "S": "The Architecture of Becoming"
+                },
+                "studentName": {
+                  "S": "Oladoyin Mercy Olaniyi"
+                },
+                "submittedAt": {
+                  "S": "2026-05-20T10:53:31.585Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1779208025517-4V4NIELI4"
+                },
+                "organizationId": {
+                  "S": "org-6973f446-a68e-4018-b1b6-f40020c0bc81-1779097877874"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6973f446-a68e-4018-b1b6-f40020c0bc81-1779097877874:TEST-1779275406065-7H6GQ93OM"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1779275406065-7H6GQ93OM"
+                },
+                "email": {
+                  "S": "ayomideolumide922@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Wonderful experience"
+                },
+                "courseName": {
+                  "S": "The Architecture of Becoming"
+                },
+                "studentName": {
+                  "S": "Olumide Ayomide"
+                },
+                "submittedAt": {
+                  "S": "2026-05-20T11:10:06.065Z"
+                },
+                "organization": {
+                  "S": "Scaleoo Graphics"
+                },
+                "certificateId": {
+                  "S": "CERT-1779208025517-4V4NIELI4"
+                },
+                "organizationId": {
+                  "S": "org-6973f446-a68e-4018-b1b6-f40020c0bc81-1779097877874"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6973f446-a68e-4018-b1b6-f40020c0bc81-1779097877874:TEST-1779276638645-XHJH6Y947"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1779276638645-XHJH6Y947"
+                },
+                "email": {
+                  "S": "oladoyinolaniyi9@gmail.com"
+                },
+                "title": {
+                  "S": "Mrs"
+                },
+                "courseName": {
+                  "S": "The Architecture of Becoming"
+                },
+                "studentName": {
+                  "S": "Oladoyin Mercy Olaniyi"
+                },
+                "submittedAt": {
+                  "S": "2026-05-20T11:30:38.645Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1779208025517-4V4NIELI4"
+                },
+                "organizationId": {
+                  "S": "org-6973f446-a68e-4018-b1b6-f40020c0bc81-1779097877874"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6973f446-a68e-4018-b1b6-f40020c0bc81-1779097877874:TEST-1779277352929-78IQ7V3JQ"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1779277352929-78IQ7V3JQ"
+                },
+                "email": {
+                  "S": "oladoyinolaniyi9@gmail.com"
+                },
+                "title": {
+                  "S": "Mrs"
+                },
+                "courseName": {
+                  "S": "The Architecture of Becoming"
+                },
+                "studentName": {
+                  "S": "Oladoyin Mercy Olaniyi"
+                },
+                "submittedAt": {
+                  "S": "2026-05-20T11:42:32.929Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1779208025517-4V4NIELI4"
+                },
+                "organizationId": {
+                  "S": "org-6973f446-a68e-4018-b1b6-f40020c0bc81-1779097877874"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6973f446-a68e-4018-b1b6-f40020c0bc81-1779097877874:TEST-1779278193349-02BCEX9V7"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1779278193349-02BCEX9V7"
+                },
+                "email": {
+                  "S": "ayodelefavour811@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "courseName": {
+                  "S": "The Architecture of Becoming"
+                },
+                "studentName": {
+                  "S": "Favour Ayodele"
+                },
+                "submittedAt": {
+                  "S": "2026-05-20T11:56:33.349Z"
+                },
+                "organization": {
+                  "S": "LAUTECH"
+                },
+                "certificateId": {
+                  "S": "CERT-1779208025517-4V4NIELI4"
+                },
+                "organizationId": {
+                  "S": "org-6973f446-a68e-4018-b1b6-f40020c0bc81-1779097877874"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6973f446-a68e-4018-b1b6-f40020c0bc81-1779097877874:TEST-1779278222174-CWK6C8GY9"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1779278222174-CWK6C8GY9"
+                },
+                "email": {
+                  "S": "ayodelefavour811@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "courseName": {
+                  "S": "The Architecture of Becoming"
+                },
+                "studentName": {
+                  "S": "Favour Ayodele"
+                },
+                "submittedAt": {
+                  "S": "2026-05-20T11:57:02.174Z"
+                },
+                "organization": {
+                  "S": "LAUTECH"
+                },
+                "certificateId": {
+                  "S": "CERT-1779208025517-4V4NIELI4"
+                },
+                "organizationId": {
+                  "S": "org-6973f446-a68e-4018-b1b6-f40020c0bc81-1779097877874"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6973f446-a68e-4018-b1b6-f40020c0bc81-1779097877874:TEST-1779278249656-WQ8VZYZOU"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1779278249656-WQ8VZYZOU"
+                },
+                "email": {
+                  "S": "oladoyinolaniyi9@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "courseName": {
+                  "S": "Attendee"
+                },
+                "studentName": {
+                  "S": "Oladoyin Mercy Olaniyi"
+                },
+                "submittedAt": {
+                  "S": "2026-05-20T11:57:29.656Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1779278119374-P7TXZSKEZ"
+                },
+                "organizationId": {
+                  "S": "org-6973f446-a68e-4018-b1b6-f40020c0bc81-1779097877874"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6973f446-a68e-4018-b1b6-f40020c0bc81-1779097877874:TEST-1779278438392-U7U1IVIVT"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1779278438392-U7U1IVIVT"
+                },
+                "email": {
+                  "S": "adedayodaniel1711@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "courseName": {
+                  "S": "The Architecture of Becoming"
+                },
+                "studentName": {
+                  "S": "Adedayo Daniel"
+                },
+                "submittedAt": {
+                  "S": "2026-05-20T12:00:38.392Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1779208025517-4V4NIELI4"
+                },
+                "organizationId": {
+                  "S": "org-6973f446-a68e-4018-b1b6-f40020c0bc81-1779097877874"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6973f446-a68e-4018-b1b6-f40020c0bc81-1779097877874:TEST-1779278688006-VC2SQZADP"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1779278688006-VC2SQZADP"
+                },
+                "email": {
+                  "S": "atinukeemiabata@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "I learnt a whole lot from every speakers."
+                },
+                "courseName": {
+                  "S": "The Architecture of Becoming"
+                },
+                "studentName": {
+                  "S": "Emiabata Atinuke Gloria"
+                },
+                "submittedAt": {
+                  "S": "2026-05-20T12:04:48.006Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1779208025517-4V4NIELI4"
+                },
+                "organizationId": {
+                  "S": "org-6973f446-a68e-4018-b1b6-f40020c0bc81-1779097877874"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6973f446-a68e-4018-b1b6-f40020c0bc81-1779097877874:TEST-1779278862529-ZAUF8TSI1"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1779278862529-ZAUF8TSI1"
+                },
+                "email": {
+                  "S": "oladejosharon@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "I learnt that creativity can be beyond just creating,your character has a big impact in it."
+                },
+                "courseName": {
+                  "S": "The Architecture of Becoming"
+                },
+                "studentName": {
+                  "S": "Oladejo Sharon"
+                },
+                "submittedAt": {
+                  "S": "2026-05-20T12:07:42.529Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of technology Ogbomoso"
+                },
+                "certificateId": {
+                  "S": "CERT-1779208025517-4V4NIELI4"
+                },
+                "organizationId": {
+                  "S": "org-6973f446-a68e-4018-b1b6-f40020c0bc81-1779097877874"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6973f446-a68e-4018-b1b6-f40020c0bc81-1779097877874:TEST-1779279027194-TGDMW4CG9"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1779279027194-TGDMW4CG9"
+                },
+                "email": {
+                  "S": "wemimoadekunle7@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "You do not do too many things at a time if you actually want growth"
+                },
+                "courseName": {
+                  "S": "The Architecture of Becoming"
+                },
+                "studentName": {
+                  "S": "Adekunle Dorcas Wemimo"
+                },
+                "submittedAt": {
+                  "S": "2026-05-20T12:10:27.194Z"
+                },
+                "organization": {
+                  "S": "Protocol"
+                },
+                "certificateId": {
+                  "S": "CERT-1779208025517-4V4NIELI4"
+                },
+                "organizationId": {
+                  "S": "org-6973f446-a68e-4018-b1b6-f40020c0bc81-1779097877874"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6973f446-a68e-4018-b1b6-f40020c0bc81-1779097877874:TEST-1779279136432-CB05XRZ70"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1779279136432-CB05XRZ70"
+                },
+                "email": {
+                  "S": "oladoyinolaniyi9@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "courseName": {
+                  "S": "Attendee"
+                },
+                "studentName": {
+                  "S": "Oladoyin Mercy Olaniyi"
+                },
+                "submittedAt": {
+                  "S": "2026-05-20T12:12:16.432Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1779278119374-P7TXZSKEZ"
+                },
+                "organizationId": {
+                  "S": "org-6973f446-a68e-4018-b1b6-f40020c0bc81-1779097877874"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6973f446-a68e-4018-b1b6-f40020c0bc81-1779097877874:TEST-1779279329268-QQSHT8BGQ"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1779279329268-QQSHT8BGQ"
+                },
+                "email": {
+                  "S": "abrahamprecious270@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "My experience that the event was top notch , I was able to contribute in my own little way by writing content. I was part of the content creation team and it was lovely taking pictures of people, interviewing them and seeing their lovely and wonderful smile"
+                },
+                "courseName": {
+                  "S": "The Architecture of Becoming"
+                },
+                "studentName": {
+                  "S": "Abraham Precious oluwadunmininu"
+                },
+                "submittedAt": {
+                  "S": "2026-05-20T12:15:29.268Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola university of technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1779208025517-4V4NIELI4"
+                },
+                "organizationId": {
+                  "S": "org-6973f446-a68e-4018-b1b6-f40020c0bc81-1779097877874"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6973f446-a68e-4018-b1b6-f40020c0bc81-1779097877874:TEST-1779279350427-FAORCA9JE"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1779279350427-FAORCA9JE"
+                },
+                "email": {
+                  "S": "ojopromise733@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "The program made me understand that my talent isn't enough to keep me in a room but my character and that's my valuable asset that multiplies the most."
+                },
+                "courseName": {
+                  "S": "The Architecture of Becoming"
+                },
+                "studentName": {
+                  "S": "Promise Racheal Ojo"
+                },
+                "submittedAt": {
+                  "S": "2026-05-20T12:15:50.427Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola Univesity of Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1779208025517-4V4NIELI4"
+                },
+                "organizationId": {
+                  "S": "org-6973f446-a68e-4018-b1b6-f40020c0bc81-1779097877874"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6973f446-a68e-4018-b1b6-f40020c0bc81-1779097877874:TEST-1779279460334-BZC15PLOF"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1779279460334-BZC15PLOF"
+                },
+                "email": {
+                  "S": "dahunsiayomiposi@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It was a truly impactful experience; I gained new knowledge and had the opportunity to connect with some amazing people."
+                },
+                "courseName": {
+                  "S": "The Architecture of Becoming"
+                },
+                "studentName": {
+                  "S": "DAHUNSI Ayomiposi Busola"
+                },
+                "submittedAt": {
+                  "S": "2026-05-20T12:17:40.334Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology, Ogbomoso."
+                },
+                "certificateId": {
+                  "S": "CERT-1779208025517-4V4NIELI4"
+                },
+                "organizationId": {
+                  "S": "org-6973f446-a68e-4018-b1b6-f40020c0bc81-1779097877874"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6973f446-a68e-4018-b1b6-f40020c0bc81-1779097877874:TEST-1779279641261-QBQTZOZO7"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1779279641261-QBQTZOZO7"
+                },
+                "email": {
+                  "S": "muwafaqojo@gmail.com"
+                },
+                "courseName": {
+                  "S": "The Architecture of Becoming"
+                },
+                "studentName": {
+                  "S": "Ojo Muwafaq Oluwadamilare"
+                },
+                "submittedAt": {
+                  "S": "2026-05-20T12:20:41.261Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1779208025517-4V4NIELI4"
+                },
+                "organizationId": {
+                  "S": "org-6973f446-a68e-4018-b1b6-f40020c0bc81-1779097877874"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6973f446-a68e-4018-b1b6-f40020c0bc81-1779097877874:TEST-1779280393648-V10IS3E9W"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1779280393648-V10IS3E9W"
+                },
+                "email": {
+                  "S": "alukosharone@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "courseName": {
+                  "S": "The Architecture of Becoming"
+                },
+                "studentName": {
+                  "S": "Aluko Sharon Enibukun"
+                },
+                "submittedAt": {
+                  "S": "2026-05-20T12:33:13.648Z"
+                },
+                "organization": {
+                  "S": "Beyond Creativity Defining Character"
+                },
+                "certificateId": {
+                  "S": "CERT-1779208025517-4V4NIELI4"
+                },
+                "organizationId": {
+                  "S": "org-6973f446-a68e-4018-b1b6-f40020c0bc81-1779097877874"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6973f446-a68e-4018-b1b6-f40020c0bc81-1779097877874:TEST-1779280908685-RST19BUAL"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1779280908685-RST19BUAL"
+                },
+                "email": {
+                  "S": "ayodelefavour811@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "It was an impactful and insightful event 🎯"
+                },
+                "courseName": {
+                  "S": "Attendee"
+                },
+                "studentName": {
+                  "S": "Favour Ayodele"
+                },
+                "submittedAt": {
+                  "S": "2026-05-20T12:41:48.685Z"
+                },
+                "organization": {
+                  "S": "LAUTECH"
+                },
+                "certificateId": {
+                  "S": "CERT-1779278119374-P7TXZSKEZ"
+                },
+                "organizationId": {
+                  "S": "org-6973f446-a68e-4018-b1b6-f40020c0bc81-1779097877874"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6973f446-a68e-4018-b1b6-f40020c0bc81-1779097877874:TEST-1779280979752-XIVZE4Q8U"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1779280979752-XIVZE4Q8U"
+                },
+                "email": {
+                  "S": "ayodelefavour811@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Insightful 🎯"
+                },
+                "courseName": {
+                  "S": "Attendee"
+                },
+                "studentName": {
+                  "S": "Favour Ayodele"
+                },
+                "submittedAt": {
+                  "S": "2026-05-20T12:42:59.752Z"
+                },
+                "organization": {
+                  "S": "LAUTECH"
+                },
+                "certificateId": {
+                  "S": "CERT-1779278119374-P7TXZSKEZ"
+                },
+                "organizationId": {
+                  "S": "org-6973f446-a68e-4018-b1b6-f40020c0bc81-1779097877874"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6973f446-a68e-4018-b1b6-f40020c0bc81-1779097877874:TEST-1779281169392-GKSEK2WSS"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1779281169392-GKSEK2WSS"
+                },
+                "email": {
+                  "S": "ayodelefavour811@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Insightful 🎯"
+                },
+                "courseName": {
+                  "S": "Attendee"
+                },
+                "studentName": {
+                  "S": "Favour Ayodele"
+                },
+                "submittedAt": {
+                  "S": "2026-05-20T12:46:09.392Z"
+                },
+                "organization": {
+                  "S": "LAUTECH"
+                },
+                "certificateId": {
+                  "S": "CERT-1779278119374-P7TXZSKEZ"
+                },
+                "organizationId": {
+                  "S": "org-6973f446-a68e-4018-b1b6-f40020c0bc81-1779097877874"
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

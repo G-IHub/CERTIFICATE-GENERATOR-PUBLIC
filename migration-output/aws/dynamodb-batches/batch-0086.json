@@ -1,0 +1,1078 @@
+{
+  "RequestItems": {
+    "certifyer-dev-kv": [
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1777518529301-XW1BJ8QYC"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777518529301-XW1BJ8QYC"
+                },
+                "email": {
+                  "S": "fatimarazzaq004@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "The session was very informative and good. I have learned a lot of things in the session. The speaker explained the session in a good way . Thanks."
+                },
+                "programId": {
+                  "S": "bioinformatics-approaches-to-understanding-microbial-roles-in-bioremediation"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Approaches to Understanding Microbial Roles in Bioremediation"
+                },
+                "studentName": {
+                  "S": "Fatima Razzaq"
+                },
+                "submittedAt": {
+                  "S": "2026-04-30T03:08:49.301Z"
+                },
+                "organization": {
+                  "S": "Bzu Multan"
+                },
+                "certificateId": {
+                  "S": "CERT-1777454464212-2Q03HU1LV"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1777536892154-K1L7T2Y11"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777536892154-K1L7T2Y11"
+                },
+                "email": {
+                  "S": "zahratahir1221@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Ok"
+                },
+                "programId": {
+                  "S": "bioinformatics-approaches-to-understanding-microbial-roles-in-bioremediation"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Approaches to Understanding Microbial Roles in Bioremediation"
+                },
+                "studentName": {
+                  "S": "Zahra Tahir"
+                },
+                "submittedAt": {
+                  "S": "2026-04-30T08:14:52.154Z"
+                },
+                "organization": {
+                  "S": "Comsats University Islamabad"
+                },
+                "certificateId": {
+                  "S": "CERT-1777454464212-2Q03HU1LV"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1777558794442-XFFQ1HP9E"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777558794442-XFFQ1HP9E"
+                },
+                "email": {
+                  "S": "joseogbazi@gmail.com"
+                },
+                "title": {
+                  "S": "Mrs"
+                },
+                "impact": {
+                  "S": "This has impacted me through an assurance that  identification and analysis by bioinformatics  approaches can pinpoint the specific microbe and bioremediation that can accelerate the process of bioleaching. This when deployed will reduce environmental pollution by poisonous metals. Participation by others will facilitate/encourage more research in the subject area to support Public Health in the community."
+                },
+                "programId": {
+                  "S": "bioinformatics-approaches-to-understanding-microbial-roles-in-bioremediation"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Approaches to Understanding Microbial Roles in Bioremediation"
+                },
+                "studentName": {
+                  "S": "Josephine Ogbazi"
+                },
+                "submittedAt": {
+                  "S": "2026-04-30T14:19:54.442Z"
+                },
+                "organization": {
+                  "S": "Royal Omicron limited"
+                },
+                "certificateId": {
+                  "S": "CERT-1777454464212-2Q03HU1LV"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1777564827711-MB33H0DEQ"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777564827711-MB33H0DEQ"
+                },
+                "email": {
+                  "S": "deladermdagadu@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "As an Agriculture student, it has helped me to understand more the roles of microbials in the sector of Agriculture."
+                },
+                "programId": {
+                  "S": "bioinformatics-approaches-to-understanding-microbial-roles-in-bioremediation"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Approaches to Understanding Microbial Roles in Bioremediation"
+                },
+                "studentName": {
+                  "S": "Alexander Kwabla Dagadu"
+                },
+                "submittedAt": {
+                  "S": "2026-04-30T16:00:27.711Z"
+                },
+                "organization": {
+                  "S": "University of Cape Coast"
+                },
+                "certificateId": {
+                  "S": "CERT-1777454464212-2Q03HU1LV"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1777571515707-R1FD9V71D"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777571515707-R1FD9V71D"
+                },
+                "email": {
+                  "S": "afriyieadepa405684@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It has made me to gain insight on how  Bioinformatics can be used to analyze microorganisms and  understand their roles in environmental cleanup through Bioremediation."
+                },
+                "programId": {
+                  "S": "bioinformatics-approaches-to-understanding-microbial-roles-in-bioremediation"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Approaches to Understanding Microbial Roles in Bioremediation"
+                },
+                "studentName": {
+                  "S": "Acheampong Esther Afriyie"
+                },
+                "submittedAt": {
+                  "S": "2026-04-30T17:51:55.707Z"
+                },
+                "organization": {
+                  "S": "University of Cape Coast"
+                },
+                "certificateId": {
+                  "S": "CERT-1777454464212-2Q03HU1LV"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1777619953382-QW72EHG1F"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777619953382-QW72EHG1F"
+                },
+                "email": {
+                  "S": "millicentosas08@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "The program offered a comprehensive look at the power of bioinformatics in solving ecological challenges, and I would encourage anyone interested in the field to join for its high-quality insights and practical applications as there is a lot of knowledge to be gained"
+                },
+                "programId": {
+                  "S": "bioinformatics-approaches-to-understanding-microbial-roles-in-bioremediation"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Approaches to Understanding Microbial Roles in Bioremediation"
+                },
+                "studentName": {
+                  "S": "OSAIBUEKUN OSAYEMWENRE MILLICENT"
+                },
+                "submittedAt": {
+                  "S": "2026-05-01T07:19:13.382Z"
+                },
+                "organization": {
+                  "S": "University of Benin"
+                },
+                "certificateId": {
+                  "S": "CERT-1777454464212-2Q03HU1LV"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1777873888196-X2U7VYEE4"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777873888196-X2U7VYEE4"
+                },
+                "email": {
+                  "S": "adeola.ala2015@gmail.com"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "programId": {
+                  "S": "bioinformatics-approaches-to-understanding-microbial-roles-in-bioremediation"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Approaches to Understanding Microbial Roles in Bioremediation"
+                },
+                "studentName": {
+                  "S": "Adeola Ala"
+                },
+                "submittedAt": {
+                  "S": "2026-05-04T05:51:28.196Z"
+                },
+                "organization": {
+                  "S": "University of Ibadan, Ibadan, Nigeria"
+                },
+                "certificateId": {
+                  "S": "CERT-1777454464212-2Q03HU1LV"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1778151359552-GMX7T5V5U"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778151359552-GMX7T5V5U"
+                },
+                "email": {
+                  "S": "maramhamami7@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "courseName": {
+                  "S": "Train-the-Trainers Initiative in Genomics & Bioinformatics"
+                },
+                "studentName": {
+                  "S": "Maram Hammami"
+                },
+                "submittedAt": {
+                  "S": "2026-05-07T10:55:59.552Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1773157668544-F5P2KMI6M"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1778207911677-932C3NCQ3"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778207911677-932C3NCQ3"
+                },
+                "email": {
+                  "S": "osagiede.oe@lasustech.edu.ng"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "The training has broadened my knowledge on Genomics and Bioinformatics."
+                },
+                "courseName": {
+                  "S": "Train-the-Trainers Initiative in Genomics & Bioinformatics"
+                },
+                "studentName": {
+                  "S": "Osagiede Omo Emmanuel"
+                },
+                "submittedAt": {
+                  "S": "2026-05-08T02:38:31.677Z"
+                },
+                "organization": {
+                  "S": "Lagos State University of Science and Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1773157668544-F5P2KMI6M"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1778306057602-I4801EAW8"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778306057602-I4801EAW8"
+                },
+                "email": {
+                  "S": "msaadnauman64@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "courseName": {
+                  "S": "Train-the-Trainers Initiative in Genomics & Bioinformatics"
+                },
+                "studentName": {
+                  "S": "Jovaria"
+                },
+                "submittedAt": {
+                  "S": "2026-05-09T05:54:17.602Z"
+                },
+                "organization": {
+                  "S": "University of Agriculture Faisalabad"
+                },
+                "certificateId": {
+                  "S": "CERT-1773157668544-F5P2KMI6M"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824:TEST-1777459794014-A3F71RWSE"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777459794014-A3F71RWSE"
+                },
+                "email": {
+                  "S": "ayinlajoshua087@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "it is amazing"
+                },
+                "programId": {
+                  "S": "genomac-malaria-innovation-competition"
+                },
+                "courseName": {
+                  "S": "Genomac Malaria Innovation Competition"
+                },
+                "studentName": {
+                  "S": "Ayinla Joshua"
+                },
+                "submittedAt": {
+                  "S": "2026-04-29T10:49:54.014Z"
+                },
+                "organization": {
+                  "S": "LAUTECH"
+                },
+                "certificateId": {
+                  "S": "CERT-1777459600139-LZNZHMVFD"
+                },
+                "organizationId": {
+                  "S": "org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824:TEST-1777460071205-MST31TSXS"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777460071205-MST31TSXS"
+                },
+                "email": {
+                  "S": "ayinlajoshua087@gmail.com"
+                },
+                "programId": {
+                  "S": "genomac-malaria-innovation-competition"
+                },
+                "courseName": {
+                  "S": "Genomac Malaria Innovation Competition"
+                },
+                "studentName": {
+                  "S": "Ayinla Joshua"
+                },
+                "submittedAt": {
+                  "S": "2026-04-29T10:54:31.205Z"
+                },
+                "organization": {
+                  "S": "LAUTECH"
+                },
+                "certificateId": {
+                  "S": "CERT-1777459600139-LZNZHMVFD"
+                },
+                "organizationId": {
+                  "S": "org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824:TEST-1777470998284-Z2MX02707"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777470998284-Z2MX02707"
+                },
+                "email": {
+                  "S": "ayinlajoshua087@gmail.com"
+                },
+                "programId": {
+                  "S": "genomac-malaria-innovation-competition"
+                },
+                "courseName": {
+                  "S": "Genomac Malaria Innovation Competition"
+                },
+                "studentName": {
+                  "S": "Ayinla Joshua"
+                },
+                "submittedAt": {
+                  "S": "2026-04-29T13:56:38.284Z"
+                },
+                "organization": {
+                  "S": "LAUTECH"
+                },
+                "certificateId": {
+                  "S": "CERT-1777459600139-LZNZHMVFD"
+                },
+                "organizationId": {
+                  "S": "org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824:TEST-1777976751046-XKQEYSTWD"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777976751046-XKQEYSTWD"
+                },
+                "email": {
+                  "S": "idowuolupri084@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "programId": {
+                  "S": "genomac-malaria-innovation-competition"
+                },
+                "courseName": {
+                  "S": "Genomac Malaria Innovation Competition"
+                },
+                "studentName": {
+                  "S": "Idowu Priscilla Oluwatosin"
+                },
+                "submittedAt": {
+                  "S": "2026-05-05T10:25:51.046Z"
+                },
+                "organization": {
+                  "S": "Nill"
+                },
+                "certificateId": {
+                  "S": "CERT-1777459600139-LZNZHMVFD"
+                },
+                "organizationId": {
+                  "S": "org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824:TEST-1777977270794-OSQRIORWV"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777977270794-OSQRIORWV"
+                },
+                "email": {
+                  "S": "afosam47@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "It's very insightful and engaging."
+                },
+                "programId": {
+                  "S": "genomac-malaria-innovation-competition"
+                },
+                "courseName": {
+                  "S": "Genomac Malaria Innovation Competition"
+                },
+                "studentName": {
+                  "S": "SAMUEL BAMIDELE AFOLABI"
+                },
+                "submittedAt": {
+                  "S": "2026-05-05T10:34:30.794Z"
+                },
+                "testimonial": {
+                  "S": "I'm thrilled and happy to participate in the competition. It was insightful and provided me with more exposure on emerging applications of malaria research in computational biology field.\n\nIt's a great initiatives and I'm glad to be a beneficiary of the program."
+                },
+                "organization": {
+                  "S": "Federal University Oye-Ekiti, Nigeria."
+                },
+                "certificateId": {
+                  "S": "CERT-1777459600139-LZNZHMVFD"
+                },
+                "organizationId": {
+                  "S": "org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824:TEST-1777983493543-SOTZ4RD20"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777983493543-SOTZ4RD20"
+                },
+                "email": {
+                  "S": "patriciaoyeronkedare@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It has helped me to gain more insight on malaria and in silico methods"
+                },
+                "programId": {
+                  "S": "genomac-malaria-innovation-competition"
+                },
+                "courseName": {
+                  "S": "Genomac Malaria Innovation Competition"
+                },
+                "studentName": {
+                  "S": "OGUNDARE PATRICIA OYERONKE"
+                },
+                "submittedAt": {
+                  "S": "2026-05-05T12:18:13.543Z"
+                },
+                "organization": {
+                  "S": "Functional Food, Nutraceuticals & Phytomedicine Research Lab, Biochemistry Department, Federal University of Technology Akure, Nigeria"
+                },
+                "certificateId": {
+                  "S": "CERT-1777459600139-LZNZHMVFD"
+                },
+                "organizationId": {
+                  "S": "org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824:TEST-1778063353192-QWXGEG70Q"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778063353192-QWXGEG70Q"
+                },
+                "email": {
+                  "S": "mahmudnahimat7@gmail.com"
+                },
+                "title": {
+                  "S": "Mrs"
+                },
+                "courseName": {
+                  "S": "Genomac Malaria Innovation Competition"
+                },
+                "studentName": {
+                  "S": "Mahmud Nahimat"
+                },
+                "submittedAt": {
+                  "S": "2026-05-06T10:29:13.192Z"
+                },
+                "organization": {
+                  "S": "Kwara State University"
+                },
+                "certificateId": {
+                  "S": "CERT-1777459600139-LZNZHMVFD"
+                },
+                "organizationId": {
+                  "S": "org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824:TEST-1778063354346-DEZNGNFWI"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778063354346-DEZNGNFWI"
+                },
+                "email": {
+                  "S": "akanomary34@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "courseName": {
+                  "S": "Genomac Malaria Innovation Competition"
+                },
+                "studentName": {
+                  "S": "Akano Mary Iyanuoluwa"
+                },
+                "submittedAt": {
+                  "S": "2026-05-06T10:29:14.346Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1777459600139-LZNZHMVFD"
+                },
+                "organizationId": {
+                  "S": "org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824:TEST-1778063434986-54K9VKCS1"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778063434986-54K9VKCS1"
+                },
+                "email": {
+                  "S": "ademusanpeter@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "courseName": {
+                  "S": "Genomac Malaria Innovation Competition"
+                },
+                "studentName": {
+                  "S": "Ademusan Peter Precious"
+                },
+                "submittedAt": {
+                  "S": "2026-05-06T10:30:34.986Z"
+                },
+                "organization": {
+                  "S": "University of Ilorin"
+                },
+                "certificateId": {
+                  "S": "CERT-1777459600139-LZNZHMVFD"
+                },
+                "organizationId": {
+                  "S": "org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824:TEST-1778063832541-KQALGW47S"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778063832541-KQALGW47S"
+                },
+                "email": {
+                  "S": "susan.tome@students.jkuat.ac.ke"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "courseName": {
+                  "S": "Genomac Malaria Innovation Competition"
+                },
+                "studentName": {
+                  "S": "Tome Susan Kunaai"
+                },
+                "submittedAt": {
+                  "S": "2026-05-06T10:37:12.541Z"
+                },
+                "organization": {
+                  "S": "Jomo Kenyatta university of Agriculture and Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1777459600139-LZNZHMVFD"
+                },
+                "organizationId": {
+                  "S": "org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824:TEST-1778063924067-LT9RRGZGC"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778063924067-LT9RRGZGC"
+                },
+                "email": {
+                  "S": "danielsethambuvi@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Mind blowing"
+                },
+                "courseName": {
+                  "S": "Genomac Malaria Innovation Competition"
+                },
+                "studentName": {
+                  "S": "DANIEL SETH AMBUVI"
+                },
+                "submittedAt": {
+                  "S": "2026-05-06T10:38:44.067Z"
+                },
+                "organization": {
+                  "S": "Jomo Kenyatta University of Agriculture and Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1777459600139-LZNZHMVFD"
+                },
+                "organizationId": {
+                  "S": "org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824:TEST-1778063990391-5HZ46ZRAV"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778063990391-5HZ46ZRAV"
+                },
+                "email": {
+                  "S": "danielsethambuvi@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Mind blowing"
+                },
+                "courseName": {
+                  "S": "Genomac Malaria Innovation Competition"
+                },
+                "studentName": {
+                  "S": "DANIEL SETH AMBUVI"
+                },
+                "submittedAt": {
+                  "S": "2026-05-06T10:39:50.391Z"
+                },
+                "organization": {
+                  "S": "Jomo Kenyatta University of Agriculture and Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1777459600139-LZNZHMVFD"
+                },
+                "organizationId": {
+                  "S": "org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824:TEST-1778064503801-E18KQLGHZ"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778064503801-E18KQLGHZ"
+                },
+                "email": {
+                  "S": "tetuibanton@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "It gives me an insight to writing  good reviews"
+                },
+                "courseName": {
+                  "S": "Genomac Malaria Innovation Competition"
+                },
+                "studentName": {
+                  "S": "Adekilekun Toyyib Adedapo"
+                },
+                "submittedAt": {
+                  "S": "2026-05-06T10:48:23.801Z"
+                },
+                "organization": {
+                  "S": "University of Ilesa, Osun state"
+                },
+                "certificateId": {
+                  "S": "CERT-1777459600139-LZNZHMVFD"
+                },
+                "organizationId": {
+                  "S": "org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824:TEST-1778065604243-TTLWBQTVE"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778065604243-TTLWBQTVE"
+                },
+                "email": {
+                  "S": "Emmanuelchristian266@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "courseName": {
+                  "S": "Genomac Malaria Innovation Competition"
+                },
+                "studentName": {
+                  "S": "Job Emmanuel Christian"
+                },
+                "submittedAt": {
+                  "S": "2026-05-06T11:06:44.243Z"
+                },
+                "organization": {
+                  "S": "University of Lagos"
+                },
+                "certificateId": {
+                  "S": "CERT-1777459600139-LZNZHMVFD"
+                },
+                "organizationId": {
+                  "S": "org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824:TEST-1778066824030-0A21L2AL9"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778066824030-0A21L2AL9"
+                },
+                "email": {
+                  "S": "O.kemiadeleke@gmail.com"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "courseName": {
+                  "S": "Genomac Malaria Innovation Competition"
+                },
+                "studentName": {
+                  "S": "Adeleke Bilikis Oluwakemi"
+                },
+                "submittedAt": {
+                  "S": "2026-05-06T11:27:04.030Z"
+                },
+                "organization": {
+                  "S": "Brookfield Center for Lifestyle Medicine"
+                },
+                "certificateId": {
+                  "S": "CERT-1777459600139-LZNZHMVFD"
+                },
+                "organizationId": {
+                  "S": "org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824"
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,1171 @@
+{
+  "RequestItems": {
+    "certifyer-dev-kv": [
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1773367048782-VUDRFS8FX"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773367048782-VUDRFS8FX"
+                },
+                "email": {
+                  "S": "bilal.daniya@fuhsa.edu.ng"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "Excellent"
+                },
+                "programId": {
+                  "S": "train-the-trainers-initiative-in-genomics-&-bioinformatics"
+                },
+                "courseName": {
+                  "S": "Train-the-Trainers Initiative in Genomics & Bioinformatics"
+                },
+                "studentName": {
+                  "S": "Bilal Ibrahim Dan-Iya"
+                },
+                "submittedAt": {
+                  "S": "2026-03-13T01:57:28.782Z"
+                },
+                "organization": {
+                  "S": "Federal University of Health Sciences, Azare"
+                },
+                "certificateId": {
+                  "S": "CERT-1773157668544-F5P2KMI6M"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1773378596941-QUJS5GJ97"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773378596941-QUJS5GJ97"
+                },
+                "email": {
+                  "S": "sajjadali4044@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Good"
+                },
+                "programId": {
+                  "S": "train-the-trainers-initiative-in-genomics-&-bioinformatics"
+                },
+                "courseName": {
+                  "S": "Train-the-Trainers Initiative in Genomics & Bioinformatics"
+                },
+                "studentName": {
+                  "S": "Sajjad Ali"
+                },
+                "submittedAt": {
+                  "S": "2026-03-13T05:09:56.942Z"
+                },
+                "testimonial": {
+                  "S": "Ok"
+                },
+                "organization": {
+                  "S": "Hazara university Mansehra"
+                },
+                "certificateId": {
+                  "S": "CERT-1773157668544-F5P2KMI6M"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1773386110735-UVR5XKHCP"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773386110735-UVR5XKHCP"
+                },
+                "email": {
+                  "S": "hauwaskalgo@wufpbk.edu.ng"
+                },
+                "title": {
+                  "S": "Mrs"
+                },
+                "impact": {
+                  "S": "The training has enlightened me to the importance of genomics and bioinformatics and the various pathways and procedures involved so that the desired result can be obtained"
+                },
+                "programId": {
+                  "S": "train-the-trainers-initiative-in-genomics-&-bioinformatics"
+                },
+                "courseName": {
+                  "S": "Train-the-Trainers Initiative in Genomics & Bioinformatics"
+                },
+                "studentName": {
+                  "S": "Hauwa Mohammed kalgo"
+                },
+                "submittedAt": {
+                  "S": "2026-03-13T07:15:10.735Z"
+                },
+                "testimonial": {
+                  "S": "This is a very good and generous initiative, keep it up"
+                },
+                "organization": {
+                  "S": "Waziri Umaru Federal Polytechnic Birnin kebbi, Nigeria"
+                },
+                "certificateId": {
+                  "S": "CERT-1773157668544-F5P2KMI6M"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1773395946535-S2OPE18H5"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773395946535-S2OPE18H5"
+                },
+                "email": {
+                  "S": "giwa.muyiwa84@gmail.com"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "Quite eventful"
+                },
+                "programId": {
+                  "S": "train-the-trainers-initiative-in-genomics-&-bioinformatics"
+                },
+                "courseName": {
+                  "S": "Train-the-Trainers Initiative in Genomics & Bioinformatics"
+                },
+                "studentName": {
+                  "S": "Giwa O. Emmanuel"
+                },
+                "submittedAt": {
+                  "S": "2026-03-13T09:59:06.535Z"
+                },
+                "organization": {
+                  "S": "Rufus Giwa Polytechnic Owo Ondo State Nigeria"
+                },
+                "certificateId": {
+                  "S": "CERT-1773157668544-F5P2KMI6M"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1773396536727-SN6P677PR"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773396536727-SN6P677PR"
+                },
+                "email": {
+                  "S": "giwa.muyiwa84@gmail.com"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "Quite Eventful"
+                },
+                "programId": {
+                  "S": "train-the-trainers-initiative-in-genomics-&-bioinformatics"
+                },
+                "courseName": {
+                  "S": "Train-the-Trainers Initiative in Genomics & Bioinformatics"
+                },
+                "studentName": {
+                  "S": "GIWA O. EMMANUEL"
+                },
+                "submittedAt": {
+                  "S": "2026-03-13T10:08:56.727Z"
+                },
+                "organization": {
+                  "S": "Rufus Giwa Polytechnic Owo Ondo State Nigeria"
+                },
+                "certificateId": {
+                  "S": "CERT-1773157668544-F5P2KMI6M"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1773396836838-8MRTT87IX"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773396836838-8MRTT87IX"
+                },
+                "email": {
+                  "S": "giwa.muyiwa84@gmail.com"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "quite eventful"
+                },
+                "programId": {
+                  "S": "train-the-trainers-initiative-in-genomics-&-bioinformatics"
+                },
+                "courseName": {
+                  "S": "Train-the-Trainers Initiative in Genomics & Bioinformatics"
+                },
+                "studentName": {
+                  "S": "Giwa O. Emmanuel"
+                },
+                "submittedAt": {
+                  "S": "2026-03-13T10:13:56.838Z"
+                },
+                "organization": {
+                  "S": "Rufus Giwa Polytechnic, Owo, Ondo State."
+                },
+                "certificateId": {
+                  "S": "CERT-1773157668544-F5P2KMI6M"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1773396998890-9PDYVMHGP"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773396998890-9PDYVMHGP"
+                },
+                "email": {
+                  "S": "seunstan@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Looking at a further career projection in regenerative medicine, the training in genomics and bioinformatics has laid a fine background to build upon in engaging genomic manipulation to bring about advancements and interventions in the medical world for prevailing medical issues."
+                },
+                "programId": {
+                  "S": "train-the-trainers-initiative-in-genomics-&-bioinformatics"
+                },
+                "courseName": {
+                  "S": "Train-the-Trainers Initiative in Genomics & Bioinformatics"
+                },
+                "studentName": {
+                  "S": "Oloruntobi Olutayo"
+                },
+                "submittedAt": {
+                  "S": "2026-03-13T10:16:38.890Z"
+                },
+                "organization": {
+                  "S": "Lead City University"
+                },
+                "certificateId": {
+                  "S": "CERT-1773157668544-F5P2KMI6M"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1773403342719-ASJRJM6ET"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773403342719-ASJRJM6ET"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "."
+                },
+                "programId": {
+                  "S": "train-the-trainers-initiative-in-genomics-&-bioinformatics"
+                },
+                "courseName": {
+                  "S": "Train-the-Trainers Initiative in Genomics & Bioinformatics"
+                },
+                "studentName": {
+                  "S": "Goodie"
+                },
+                "submittedAt": {
+                  "S": "2026-03-13T12:02:22.719Z"
+                },
+                "organization": {
+                  "S": "Certifyer"
+                },
+                "certificateId": {
+                  "S": "CERT-1773157668544-F5P2KMI6M"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1773403658801-AWN82K9J3"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773403658801-AWN82K9J3"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "."
+                },
+                "programId": {
+                  "S": "train-the-trainers-initiative-in-genomics-&-bioinformatics"
+                },
+                "courseName": {
+                  "S": "Train-the-Trainers Initiative in Genomics & Bioinformatics"
+                },
+                "studentName": {
+                  "S": "Goodie"
+                },
+                "submittedAt": {
+                  "S": "2026-03-13T12:07:38.801Z"
+                },
+                "organization": {
+                  "S": "Certifyer"
+                },
+                "certificateId": {
+                  "S": "CERT-1773157668544-F5P2KMI6M"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1773405581508-QBRCQ2BHD"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773405581508-QBRCQ2BHD"
+                },
+                "email": {
+                  "S": "clementchilambe81@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "It was wonderful"
+                },
+                "programId": {
+                  "S": "train-the-trainers-initiative-in-genomics-&-bioinformatics"
+                },
+                "courseName": {
+                  "S": "Train-the-Trainers Initiative in Genomics & Bioinformatics"
+                },
+                "studentName": {
+                  "S": "Clement Chilambe"
+                },
+                "submittedAt": {
+                  "S": "2026-03-13T12:39:41.508Z"
+                },
+                "organization": {
+                  "S": "Mulungushi University"
+                },
+                "certificateId": {
+                  "S": "CERT-1773157668544-F5P2KMI6M"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1773405813833-9MI7EGW9V"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773405813833-9MI7EGW9V"
+                },
+                "email": {
+                  "S": "clementchilambe81@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Wonderful"
+                },
+                "programId": {
+                  "S": "train-the-trainers-initiative-in-genomics-&-bioinformatics"
+                },
+                "courseName": {
+                  "S": "Train-the-Trainers Initiative in Genomics & Bioinformatics"
+                },
+                "studentName": {
+                  "S": "Chilambe Clement"
+                },
+                "submittedAt": {
+                  "S": "2026-03-13T12:43:33.833Z"
+                },
+                "organization": {
+                  "S": "Mulungushi University"
+                },
+                "certificateId": {
+                  "S": "CERT-1773157668544-F5P2KMI6M"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1773410271357-YRQ1U02DZ"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773410271357-YRQ1U02DZ"
+                },
+                "email": {
+                  "S": "ajharuna1075@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "I have learnt how to analyse genomic data"
+                },
+                "programId": {
+                  "S": "train-the-trainers-initiative-in-genomics-&-bioinformatics"
+                },
+                "courseName": {
+                  "S": "Train-the-Trainers Initiative in Genomics & Bioinformatics"
+                },
+                "studentName": {
+                  "S": "Haruna Adamu"
+                },
+                "submittedAt": {
+                  "S": "2026-03-13T13:57:51.357Z"
+                },
+                "organization": {
+                  "S": "Gombe State University"
+                },
+                "certificateId": {
+                  "S": "CERT-1773157668544-F5P2KMI6M"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1773415181066-8HUW93HTL"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773415181066-8HUW93HTL"
+                },
+                "email": {
+                  "S": "loreolu@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "My knowledge has increased"
+                },
+                "programId": {
+                  "S": "train-the-trainers-initiative-in-genomics-&-bioinformatics"
+                },
+                "courseName": {
+                  "S": "Train-the-Trainers Initiative in Genomics & Bioinformatics"
+                },
+                "studentName": {
+                  "S": "Adekusibe Diekoloreoluwa Adefeyikemi"
+                },
+                "submittedAt": {
+                  "S": "2026-03-13T15:19:41.066Z"
+                },
+                "organization": {
+                  "S": "Olabisi Onabanjo University"
+                },
+                "certificateId": {
+                  "S": "CERT-1773157668544-F5P2KMI6M"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1773426871623-TNFW4AERW"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773426871623-TNFW4AERW"
+                },
+                "email": {
+                  "S": "otwandeandrea@gmail.com"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "It has built my capacity in research skills especially in the field of genomics"
+                },
+                "programId": {
+                  "S": "train-the-trainers-initiative-in-genomics-&-bioinformatics"
+                },
+                "courseName": {
+                  "S": "Train-the-Trainers Initiative in Genomics & Bioinformatics"
+                },
+                "studentName": {
+                  "S": "Andrea Otwande"
+                },
+                "submittedAt": {
+                  "S": "2026-03-13T18:34:31.623Z"
+                },
+                "testimonial": {
+                  "S": "None"
+                },
+                "organization": {
+                  "S": "Kisii University"
+                },
+                "certificateId": {
+                  "S": "CERT-1773157668544-F5P2KMI6M"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1773428647246-GPKKJPG80"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773428647246-GPKKJPG80"
+                },
+                "email": {
+                  "S": "mary.okesola@augustineuniversity.edu.ng"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "This train has shown clearly the stress-free way to \ngo about research and publication."
+                },
+                "programId": {
+                  "S": "train-the-trainers-initiative-in-genomics-&-bioinformatics"
+                },
+                "courseName": {
+                  "S": "Train-the-Trainers Initiative in Genomics & Bioinformatics"
+                },
+                "studentName": {
+                  "S": "MARY ABIOLA OKESOLA"
+                },
+                "submittedAt": {
+                  "S": "2026-03-13T19:04:07.246Z"
+                },
+                "organization": {
+                  "S": "Augustine University"
+                },
+                "certificateId": {
+                  "S": "CERT-1773157668544-F5P2KMI6M"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1773431688478-BAJKE6315"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773431688478-BAJKE6315"
+                },
+                "email": {
+                  "S": "aliyusumayya51@gmail.com"
+                },
+                "title": {
+                  "S": "Mrs"
+                },
+                "impact": {
+                  "S": "Good"
+                },
+                "programId": {
+                  "S": "train-the-trainers-initiative-in-genomics-&-bioinformatics"
+                },
+                "courseName": {
+                  "S": "Train-the-Trainers Initiative in Genomics & Bioinformatics"
+                },
+                "studentName": {
+                  "S": "Khadija Muhammad Auwal"
+                },
+                "submittedAt": {
+                  "S": "2026-03-13T19:54:48.478Z"
+                },
+                "testimonial": {
+                  "S": "Thank you"
+                },
+                "organization": {
+                  "S": "Kaduna State University"
+                },
+                "certificateId": {
+                  "S": "CERT-1773157668544-F5P2KMI6M"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1773431966710-F1KVYGAQV"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773431966710-F1KVYGAQV"
+                },
+                "email": {
+                  "S": "dr.oluwatosinjesuyon14@gmail.com"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "It was a baptism into genomics research"
+                },
+                "programId": {
+                  "S": "train-the-trainers-initiative-in-genomics-&-bioinformatics"
+                },
+                "courseName": {
+                  "S": "Train-the-Trainers Initiative in Genomics & Bioinformatics"
+                },
+                "studentName": {
+                  "S": "Oluwatosin M. A. Jesuyon"
+                },
+                "submittedAt": {
+                  "S": "2026-03-13T19:59:26.711Z"
+                },
+                "testimonial": {
+                  "S": "I want to know more and be able to research and publish in genomics"
+                },
+                "organization": {
+                  "S": "Federal University Oye-Ekiti, Ekiti State"
+                },
+                "certificateId": {
+                  "S": "CERT-1773157668544-F5P2KMI6M"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1773433423245-VB3LEU3IJ"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773433423245-VB3LEU3IJ"
+                },
+                "email": {
+                  "S": "abederiba@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Fantastic training"
+                },
+                "programId": {
+                  "S": "train-the-trainers-initiative-in-genomics-&-bioinformatics"
+                },
+                "courseName": {
+                  "S": "Train-the-Trainers Initiative in Genomics & Bioinformatics"
+                },
+                "studentName": {
+                  "S": "Deriba Abera Beyene"
+                },
+                "submittedAt": {
+                  "S": "2026-03-13T20:23:43.245Z"
+                },
+                "testimonial": {
+                  "S": "Add more days"
+                },
+                "organization": {
+                  "S": "Addis Ababa University, Ethiopia"
+                },
+                "certificateId": {
+                  "S": "CERT-1773157668544-F5P2KMI6M"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1773437669268-2UBIM4IF2"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773437669268-2UBIM4IF2"
+                },
+                "email": {
+                  "S": "efasela@yahoo.co.uk"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Very insightful"
+                },
+                "programId": {
+                  "S": "train-the-trainers-initiative-in-genomics-&-bioinformatics"
+                },
+                "courseName": {
+                  "S": "Train-the-Trainers Initiative in Genomics & Bioinformatics"
+                },
+                "studentName": {
+                  "S": "Fasela Olusesan Emmanuel"
+                },
+                "submittedAt": {
+                  "S": "2026-03-13T21:34:29.268Z"
+                },
+                "testimonial": {
+                  "S": "Please continue"
+                },
+                "organization": {
+                  "S": "Nigerian institute of medical research, NIMR, lagos."
+                },
+                "certificateId": {
+                  "S": "CERT-1773157668544-F5P2KMI6M"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1773486917445-A7ZUX8NOA"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773486917445-A7ZUX8NOA"
+                },
+                "email": {
+                  "S": "akpanudoh@uniuyo.edu.ng"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "Great"
+                },
+                "programId": {
+                  "S": "train-the-trainers-initiative-in-genomics-&-bioinformatics"
+                },
+                "courseName": {
+                  "S": "Train-the-Trainers Initiative in Genomics & Bioinformatics"
+                },
+                "studentName": {
+                  "S": "Akaninyene U. Akpan"
+                },
+                "submittedAt": {
+                  "S": "2026-03-14T11:15:17.445Z"
+                },
+                "testimonial": {
+                  "S": "Great"
+                },
+                "organization": {
+                  "S": "University of Uyo"
+                },
+                "certificateId": {
+                  "S": "CERT-1773157668544-F5P2KMI6M"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1773491763028-6HFBSAOJG"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773491763028-6HFBSAOJG"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "I am a better Graduate Research Assistant now"
+                },
+                "programId": {
+                  "S": "train-the-trainers-initiative-in-genomics-&-bioinformatics"
+                },
+                "courseName": {
+                  "S": "Train-the-Trainers Initiative in Genomics & Bioinformatics"
+                },
+                "studentName": {
+                  "S": "Ifeoma P. Oparaugo"
+                },
+                "submittedAt": {
+                  "S": "2026-03-14T12:36:03.028Z"
+                },
+                "organization": {
+                  "S": "Federal University of Technology Owerri (FUTO), Imo State, Nigeria."
+                },
+                "certificateId": {
+                  "S": "CERT-1773157668544-F5P2KMI6M"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1773494979866-JLS5M7TP6"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773494979866-JLS5M7TP6"
+                },
+                "email": {
+                  "S": "abuisaf2016@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "I found it very educative and as such I strongly suggest that lecturers should join the program"
+                },
+                "programId": {
+                  "S": "train-the-trainers-initiative-in-genomics-&-bioinformatics"
+                },
+                "courseName": {
+                  "S": "Train-the-Trainers Initiative in Genomics & Bioinformatics"
+                },
+                "studentName": {
+                  "S": "Isah, Abubakar"
+                },
+                "submittedAt": {
+                  "S": "2026-03-14T13:29:39.866Z"
+                },
+                "organization": {
+                  "S": "Department of Botany, Ahmadu Bello University Zaria"
+                },
+                "certificateId": {
+                  "S": "CERT-1773157668544-F5P2KMI6M"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1773499363474-HLWPOLP36"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773499363474-HLWPOLP36"
+                },
+                "email": {
+                  "S": "egwa28@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "It's was a great pleasure attending the training. I believe the knowledge I have Garnered through the training will help me and my students explore more on genomics and bioinformatics"
+                },
+                "programId": {
+                  "S": "train-the-trainers-initiative-in-genomics-&-bioinformatics"
+                },
+                "courseName": {
+                  "S": "Train-the-Trainers Initiative in Genomics & Bioinformatics"
+                },
+                "studentName": {
+                  "S": "Adamu Yabagi Muhammad"
+                },
+                "submittedAt": {
+                  "S": "2026-03-14T14:42:43.474Z"
+                },
+                "organization": {
+                  "S": "Federal University of Agriculture Mubi Adamawa state"
+                },
+                "certificateId": {
+                  "S": "CERT-1773157668544-F5P2KMI6M"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1773500257916-5ZPEE3BFW"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773500257916-5ZPEE3BFW"
+                },
+                "email": {
+                  "S": "tulasi.satyendra@gmail.com"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "Awesome and enriching experience"
+                },
+                "programId": {
+                  "S": "train-the-trainers-initiative-in-genomics-&-bioinformatics"
+                },
+                "courseName": {
+                  "S": "Train-the-Trainers Initiative in Genomics & Bioinformatics"
+                },
+                "studentName": {
+                  "S": "B Tulasi Satyendra"
+                },
+                "submittedAt": {
+                  "S": "2026-03-14T14:57:37.916Z"
+                },
+                "organization": {
+                  "S": "Mahatma Gandhi Cancer hospital and Research Institute"
+                },
+                "certificateId": {
+                  "S": "CERT-1773157668544-F5P2KMI6M"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1773503919833-JQGUVNIUR"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773503919833-JQGUVNIUR"
+                },
+                "email": {
+                  "S": "victoralabi84@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "This has been an eye opener for me, I’m grateful for the opportunity and I would like to encourage lecturers and academics to participate as I believe it’s a game changer for the research community"
+                },
+                "programId": {
+                  "S": "train-the-trainers-initiative-in-genomics-&-bioinformatics"
+                },
+                "courseName": {
+                  "S": "Train-the-Trainers Initiative in Genomics & Bioinformatics"
+                },
+                "studentName": {
+                  "S": "ALABI VICTOR JESULEKE"
+                },
+                "submittedAt": {
+                  "S": "2026-03-14T15:58:39.833Z"
+                },
+                "organization": {
+                  "S": "University of Ibadan"
+                },
+                "certificateId": {
+                  "S": "CERT-1773157668544-F5P2KMI6M"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

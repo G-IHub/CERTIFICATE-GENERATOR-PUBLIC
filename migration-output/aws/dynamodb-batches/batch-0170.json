@@ -1,0 +1,1030 @@
+{
+  "RequestItems": {
+    "certifyer-dev-kv": [
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778582703604-8SNNVDXPV"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778582703604-8SNNVDXPV"
+                },
+                "email": {
+                  "S": "zoelavender360@gmail.com"
+                },
+                "courseName": {
+                  "S": "MedxTech Summit'26"
+                },
+                "studentName": {
+                  "S": "Phillips Damilola Zoe"
+                },
+                "submittedAt": {
+                  "S": "2026-05-12T10:45:03.604Z"
+                },
+                "organization": {
+                  "S": "Babcock University"
+                },
+                "certificateId": {
+                  "S": "CERT-1778521811251-0WRAHUIHI"
+                },
+                "organizationId": {
+                  "S": "org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778582970941-4XQ9JOEOI"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778582970941-4XQ9JOEOI"
+                },
+                "email": {
+                  "S": "akandemoyosoreoluwa@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It was a wonderful experience"
+                },
+                "courseName": {
+                  "S": "MedxTech Summit'26"
+                },
+                "studentName": {
+                  "S": "Moyosore Akande"
+                },
+                "submittedAt": {
+                  "S": "2026-05-12T10:49:30.941Z"
+                },
+                "organization": {
+                  "S": "Babcock University"
+                },
+                "certificateId": {
+                  "S": "CERT-1778521811251-0WRAHUIHI"
+                },
+                "organizationId": {
+                  "S": "org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778583177720-662Z39Z1Z"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778583177720-662Z39Z1Z"
+                },
+                "email": {
+                  "S": "utiboy95@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Was very insightful and thought provoking"
+                },
+                "courseName": {
+                  "S": "MedxTech Summit'26"
+                },
+                "studentName": {
+                  "S": "Eyo Utibeabasi"
+                },
+                "submittedAt": {
+                  "S": "2026-05-12T10:52:57.721Z"
+                },
+                "organization": {
+                  "S": "Nysc Corper"
+                },
+                "certificateId": {
+                  "S": "CERT-1778521811251-0WRAHUIHI"
+                },
+                "organizationId": {
+                  "S": "org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778583334933-ZAQGFRCGP"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778583334933-ZAQGFRCGP"
+                },
+                "email": {
+                  "S": "olamijiire7@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "I was able to learn from great minds and see the world beyond medicine (creativity, leadership, greatness and passion)"
+                },
+                "courseName": {
+                  "S": "MedxTech Summit'26"
+                },
+                "studentName": {
+                  "S": "Omotunde Olamijiire Zaina"
+                },
+                "submittedAt": {
+                  "S": "2026-05-12T10:55:34.933Z"
+                },
+                "organization": {
+                  "S": "Babcock University"
+                },
+                "certificateId": {
+                  "S": "CERT-1778521811251-0WRAHUIHI"
+                },
+                "organizationId": {
+                  "S": "org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778583456320-9OF43ZTAW"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778583456320-9OF43ZTAW"
+                },
+                "email": {
+                  "S": "ajeawesome01@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "courseName": {
+                  "S": "MedxTech Summit'26"
+                },
+                "studentName": {
+                  "S": "Gabriel Ajewole"
+                },
+                "submittedAt": {
+                  "S": "2026-05-12T10:57:36.321Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1778521811251-0WRAHUIHI"
+                },
+                "organizationId": {
+                  "S": "org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778583502114-VIYU5M29G"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778583502114-VIYU5M29G"
+                },
+                "email": {
+                  "S": "ajeawesome01@gmail.com"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "courseName": {
+                  "S": "MedxTech Summit'26"
+                },
+                "studentName": {
+                  "S": "Gabriel Ajewole"
+                },
+                "submittedAt": {
+                  "S": "2026-05-12T10:58:22.114Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1778521811251-0WRAHUIHI"
+                },
+                "organizationId": {
+                  "S": "org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778583649820-NLN758RR2"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778583649820-NLN758RR2"
+                },
+                "email": {
+                  "S": "caineetido@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It was resourceful"
+                },
+                "courseName": {
+                  "S": "MedxTech Summit'26"
+                },
+                "studentName": {
+                  "S": "Etido Etetim Ubom"
+                },
+                "submittedAt": {
+                  "S": "2026-05-12T11:00:49.820Z"
+                },
+                "organization": {
+                  "S": "Getslim Bariatric Center, Lagos"
+                },
+                "certificateId": {
+                  "S": "CERT-1778521811251-0WRAHUIHI"
+                },
+                "organizationId": {
+                  "S": "org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778583887842-QM89KQ1U7"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778583887842-QM89KQ1U7"
+                },
+                "email": {
+                  "S": "damiloawo@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It was an insightful experience"
+                },
+                "courseName": {
+                  "S": "MedxTech Summit'26"
+                },
+                "studentName": {
+                  "S": "Awogbemi Oluwadamilola"
+                },
+                "submittedAt": {
+                  "S": "2026-05-12T11:04:47.842Z"
+                },
+                "organization": {
+                  "S": "Babcock University"
+                },
+                "certificateId": {
+                  "S": "CERT-1778521811251-0WRAHUIHI"
+                },
+                "organizationId": {
+                  "S": "org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778584463067-WFR9515MI"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778584463067-WFR9515MI"
+                },
+                "email": {
+                  "S": "mikailibrahimaremu@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "courseName": {
+                  "S": "MedxTech Summit'26"
+                },
+                "studentName": {
+                  "S": "Ibrahim Aremu Mikail"
+                },
+                "submittedAt": {
+                  "S": "2026-05-12T11:14:23.068Z"
+                },
+                "organization": {
+                  "S": "Ekounimed"
+                },
+                "certificateId": {
+                  "S": "CERT-1778521811251-0WRAHUIHI"
+                },
+                "organizationId": {
+                  "S": "org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778584925890-UM6N9FBT7"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778584925890-UM6N9FBT7"
+                },
+                "email": {
+                  "S": "madelola51@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "courseName": {
+                  "S": "MedxTech Summit'26"
+                },
+                "studentName": {
+                  "S": "Osinmade Diamond Oluwadamilola"
+                },
+                "submittedAt": {
+                  "S": "2026-05-12T11:22:05.890Z"
+                },
+                "organization": {
+                  "S": "Achievers University, Owo"
+                },
+                "certificateId": {
+                  "S": "CERT-1778521811251-0WRAHUIHI"
+                },
+                "organizationId": {
+                  "S": "org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778585023350-QZ1SPMDRG"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778585023350-QZ1SPMDRG"
+                },
+                "email": {
+                  "S": "madelola51@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "courseName": {
+                  "S": "MedxTech Summit'26"
+                },
+                "studentName": {
+                  "S": "Osinmade Diamond Oluwadamilola"
+                },
+                "submittedAt": {
+                  "S": "2026-05-12T11:23:43.350Z"
+                },
+                "organization": {
+                  "S": "Achievers University, Owo"
+                },
+                "certificateId": {
+                  "S": "CERT-1778521811251-0WRAHUIHI"
+                },
+                "organizationId": {
+                  "S": "org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778585119067-0U2Y0SW8J"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778585119067-0U2Y0SW8J"
+                },
+                "email": {
+                  "S": "madelola51@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "courseName": {
+                  "S": "MedxTech Summit'26"
+                },
+                "studentName": {
+                  "S": "Diamond Osinmade"
+                },
+                "submittedAt": {
+                  "S": "2026-05-12T11:25:19.067Z"
+                },
+                "organization": {
+                  "S": "Achievers University, Owo"
+                },
+                "certificateId": {
+                  "S": "CERT-1778521811251-0WRAHUIHI"
+                },
+                "organizationId": {
+                  "S": "org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778585138002-ILX0X7SVA"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778585138002-ILX0X7SVA"
+                },
+                "email": {
+                  "S": "moyinoluwaasana@gmail.com"
+                },
+                "courseName": {
+                  "S": "MedxTech Summit'26"
+                },
+                "studentName": {
+                  "S": "Asana Moyinoluwa"
+                },
+                "submittedAt": {
+                  "S": "2026-05-12T11:25:38.002Z"
+                },
+                "organization": {
+                  "S": "Babcock University"
+                },
+                "certificateId": {
+                  "S": "CERT-1778521811251-0WRAHUIHI"
+                },
+                "organizationId": {
+                  "S": "org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778586420140-LCAEB7459"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778586420140-LCAEB7459"
+                },
+                "email": {
+                  "S": "marvellousoluwaseunajayi@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "My eyes opened to the urgent need for Innovation in our healthcare system in Nigeria. \n\nAnd the need to design solutions that solve our immediate problems."
+                },
+                "courseName": {
+                  "S": "MedxTech Summit'26"
+                },
+                "studentName": {
+                  "S": "Ajayi Marvellous Oluwaseun"
+                },
+                "submittedAt": {
+                  "S": "2026-05-12T11:47:00.140Z"
+                },
+                "organization": {
+                  "S": "CAREFLOE"
+                },
+                "certificateId": {
+                  "S": "CERT-1778521811251-0WRAHUIHI"
+                },
+                "organizationId": {
+                  "S": "org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778586795104-LFLW48VZ5"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778586795104-LFLW48VZ5"
+                },
+                "email": {
+                  "S": "erisdigitalmarketing@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "courseName": {
+                  "S": "MedxTech Summit'26"
+                },
+                "studentName": {
+                  "S": "Erioluwa Olumide Segun-Dipe"
+                },
+                "submittedAt": {
+                  "S": "2026-05-12T11:53:15.104Z"
+                },
+                "organization": {
+                  "S": "Remote Doctor"
+                },
+                "certificateId": {
+                  "S": "CERT-1778521811251-0WRAHUIHI"
+                },
+                "organizationId": {
+                  "S": "org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778586958666-HXP6RC439"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778586958666-HXP6RC439"
+                },
+                "email": {
+                  "S": "erisdigitalmarketing@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "courseName": {
+                  "S": "MedxTech Summit'26"
+                },
+                "studentName": {
+                  "S": "Erioluwa Segun-Dipe"
+                },
+                "submittedAt": {
+                  "S": "2026-05-12T11:55:58.666Z"
+                },
+                "organization": {
+                  "S": "Remote Doctor"
+                },
+                "certificateId": {
+                  "S": "CERT-1778521811251-0WRAHUIHI"
+                },
+                "organizationId": {
+                  "S": "org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778587319914-E2IEH8HMI"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778587319914-E2IEH8HMI"
+                },
+                "email": {
+                  "S": "topstark202003@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "It was a real eye opener getting to listen to individuals make a positive change in the healthcare sector."
+                },
+                "courseName": {
+                  "S": "MedxTech Summit'26"
+                },
+                "studentName": {
+                  "S": "OMOLAYO Temitope Emmanuel"
+                },
+                "submittedAt": {
+                  "S": "2026-05-12T12:01:59.914Z"
+                },
+                "organization": {
+                  "S": "Soshin Analytics"
+                },
+                "certificateId": {
+                  "S": "CERT-1778521811251-0WRAHUIHI"
+                },
+                "organizationId": {
+                  "S": "org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778587375535-X5NRH2E7K"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778587375535-X5NRH2E7K"
+                },
+                "email": {
+                  "S": "topstark202003@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "courseName": {
+                  "S": "MedxTech Summit'26"
+                },
+                "studentName": {
+                  "S": "Omolayo Temitope Emmanuel"
+                },
+                "submittedAt": {
+                  "S": "2026-05-12T12:02:55.535Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1778521811251-0WRAHUIHI"
+                },
+                "organizationId": {
+                  "S": "org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778587678828-MFTU90DR3"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778587678828-MFTU90DR3"
+                },
+                "email": {
+                  "S": "odyprecious136@gmail.com"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "It was an awesome experience. A big thank you to the organisers and speakers."
+                },
+                "courseName": {
+                  "S": "MedxTech Summit'26"
+                },
+                "studentName": {
+                  "S": "Odot-Itoro Precious Udofia"
+                },
+                "submittedAt": {
+                  "S": "2026-05-12T12:07:58.828Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1778521811251-0WRAHUIHI"
+                },
+                "organizationId": {
+                  "S": "org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778588047487-5I4E79NON"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778588047487-5I4E79NON"
+                },
+                "email": {
+                  "S": "mishaeldestiny@gmail.com"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "It was informative, Educating and motivating"
+                },
+                "courseName": {
+                  "S": "MedxTech Summit'26"
+                },
+                "studentName": {
+                  "S": "Chukwunwoike Mishael"
+                },
+                "submittedAt": {
+                  "S": "2026-05-12T12:14:07.487Z"
+                },
+                "organization": {
+                  "S": "Delta State University, Abraka, Delta State."
+                },
+                "certificateId": {
+                  "S": "CERT-1778521811251-0WRAHUIHI"
+                },
+                "organizationId": {
+                  "S": "org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778591139091-X8KZ9YK8X"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778591139091-X8KZ9YK8X"
+                },
+                "email": {
+                  "S": "cokorie87@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "The MedxTech is indeed a charge transmitter. This summit challenged me and redefined my perspective on healthcare and technology. I gained so much insight and was great imparted."
+                },
+                "courseName": {
+                  "S": "MedxTech Summit'26"
+                },
+                "studentName": {
+                  "S": "Okorie-Ezema Comfort I."
+                },
+                "submittedAt": {
+                  "S": "2026-05-12T13:05:39.091Z"
+                },
+                "organization": {
+                  "S": "Babcock University"
+                },
+                "certificateId": {
+                  "S": "CERT-1778521811251-0WRAHUIHI"
+                },
+                "organizationId": {
+                  "S": "org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778591711362-2CRG97CXG"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778591711362-2CRG97CXG"
+                },
+                "email": {
+                  "S": "mutmohinahadedayo@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It's was great meeting women who do great things"
+                },
+                "courseName": {
+                  "S": "This certificate is awarded in recognition of your active participation at the Women Techmakers Ogbomoso IWD 2026 Conference."
+                },
+                "studentName": {
+                  "S": "Gbadero Mutmohinah"
+                },
+                "submittedAt": {
+                  "S": "2026-05-12T13:15:11.362Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University Of Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1776431935683-3VW5LZ3JW"
+                },
+                "organizationId": {
+                  "S": "org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778591785145-7D28UX27W"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778591785145-7D28UX27W"
+                },
+                "email": {
+                  "S": "mutmohinahadedayo@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It was great"
+                },
+                "courseName": {
+                  "S": "This certificate is awarded in recognition of your active participation at the Women Techmakers Ogbomoso IWD 2026 Conference."
+                },
+                "studentName": {
+                  "S": "Gbadero Mutmohinah Adedayo"
+                },
+                "submittedAt": {
+                  "S": "2026-05-12T13:16:25.146Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University Of Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1776431935683-3VW5LZ3JW"
+                },
+                "organizationId": {
+                  "S": "org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778592890777-8EOKD3UFR"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778592890777-8EOKD3UFR"
+                },
+                "email": {
+                  "S": "ofodurufrancis@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "MedxTech taught me that indeed the world is evolving, and that AI perfectly complements medicine especially in this region of the world. Healthcare becomes seamless and more effective."
+                },
+                "courseName": {
+                  "S": "MedxTech Summit'26"
+                },
+                "studentName": {
+                  "S": "Ofoduru Francis"
+                },
+                "submittedAt": {
+                  "S": "2026-05-12T13:34:50.777Z"
+                },
+                "organization": {
+                  "S": "Bingham University"
+                },
+                "certificateId": {
+                  "S": "CERT-1778521811251-0WRAHUIHI"
+                },
+                "organizationId": {
+                  "S": "org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778593127027-VFT9LYE77"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778593127027-VFT9LYE77"
+                },
+                "email": {
+                  "S": "hardeyboyeah@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "The seminar improved my knowledge and skills."
+                },
+                "courseName": {
+                  "S": "MedxTech Summit'26"
+                },
+                "studentName": {
+                  "S": "BAMISHE ADEGBOYEGA ISAAC"
+                },
+                "submittedAt": {
+                  "S": "2026-05-12T13:38:47.027Z"
+                },
+                "organization": {
+                  "S": "University of Lagos"
+                },
+                "certificateId": {
+                  "S": "CERT-1778521811251-0WRAHUIHI"
+                },
+                "organizationId": {
+                  "S": "org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486"
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

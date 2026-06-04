@@ -1,0 +1,1381 @@
+{
+  "RequestItems": {
+    "certifyer-dev-kv": [
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1778081004750-bpvwtrqq3"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1778081004750-bpvwtrqq3"
+                },
+                "date": {
+                  "S": "2026-05-06"
+                },
+                "blog_id": {
+                  "S": "1777037425887-tcqcd70os"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "http://localhost:3000/#/blog/1777037425887-tcqcd70os"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-05-06T15:23:24.750Z"
+                },
+                "blog_title": {
+                  "S": "The 5-Step Framework To Turn Your Idea Into A Training People Actually Pay For."
+                },
+                "session_id": {
+                  "S": "1778078265414-bsnca7w8u"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "N": "31"
+                },
+                "scroll_depth": {
+                  "N": "76"
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1778081006068-d4mbtzhuh"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1778081006068-d4mbtzhuh"
+                },
+                "date": {
+                  "S": "2026-05-06"
+                },
+                "blog_id": {
+                  "S": "1777037425887-tcqcd70os"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "http://localhost:3000/#/blog/1777037425887-tcqcd70os"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-05-06T15:23:26.068Z"
+                },
+                "blog_title": {
+                  "S": "The 5-Step Framework To Turn Your Idea Into A Training People Actually Pay For."
+                },
+                "session_id": {
+                  "S": "1778078265414-bsnca7w8u"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "NULL": true
+                },
+                "scroll_depth": {
+                  "NULL": true
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1778081007469-zltazrokf"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1778081007469-zltazrokf"
+                },
+                "date": {
+                  "S": "2026-05-06"
+                },
+                "blog_id": {
+                  "S": "1777037425887-tcqcd70os"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "http://localhost:3000/#/blog/1777037425887-tcqcd70os"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-05-06T15:23:27.469Z"
+                },
+                "blog_title": {
+                  "S": "The 5-Step Framework To Turn Your Idea Into A Training People Actually Pay For."
+                },
+                "session_id": {
+                  "S": "1778078265414-bsnca7w8u"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "NULL": true
+                },
+                "scroll_depth": {
+                  "NULL": true
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1778081009281-t3s8yerxs"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1778081009281-t3s8yerxs"
+                },
+                "date": {
+                  "S": "2026-05-06"
+                },
+                "blog_id": {
+                  "S": "1777037425887-tcqcd70os"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "http://localhost:3000/#/blog/1777037425887-tcqcd70os"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-05-06T15:23:29.281Z"
+                },
+                "blog_title": {
+                  "S": "The 5-Step Framework To Turn Your Idea Into A Training People Actually Pay For."
+                },
+                "session_id": {
+                  "S": "1778078265414-bsnca7w8u"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "NULL": true
+                },
+                "scroll_depth": {
+                  "NULL": true
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1778081040914-aqao6axuz"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1778081040914-aqao6axuz"
+                },
+                "date": {
+                  "S": "2026-05-06"
+                },
+                "blog_id": {
+                  "S": "1777037425887-tcqcd70os"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "http://localhost:3000/#/blog/1777037425887-tcqcd70os"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-05-06T15:24:00.914Z"
+                },
+                "blog_title": {
+                  "S": "The 5-Step Framework To Turn Your Idea Into A Training People Actually Pay For."
+                },
+                "session_id": {
+                  "S": "1778078265414-bsnca7w8u"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "NULL": true
+                },
+                "scroll_depth": {
+                  "NULL": true
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1778081042361-olda52m4x"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1778081042361-olda52m4x"
+                },
+                "date": {
+                  "S": "2026-05-06"
+                },
+                "blog_id": {
+                  "S": "1777037425887-tcqcd70os"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "http://localhost:3000/#/blog/1777037425887-tcqcd70os"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-05-06T15:24:02.361Z"
+                },
+                "blog_title": {
+                  "S": "The 5-Step Framework To Turn Your Idea Into A Training People Actually Pay For."
+                },
+                "session_id": {
+                  "S": "1778078265414-bsnca7w8u"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "NULL": true
+                },
+                "scroll_depth": {
+                  "NULL": true
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1778081042480-se1r5whwn"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1778081042480-se1r5whwn"
+                },
+                "date": {
+                  "S": "2026-05-06"
+                },
+                "blog_id": {
+                  "S": "1777037425887-tcqcd70os"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "http://localhost:3000/#/blog/1777037425887-tcqcd70os"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-05-06T15:24:02.480Z"
+                },
+                "blog_title": {
+                  "S": "The 5-Step Framework To Turn Your Idea Into A Training People Actually Pay For."
+                },
+                "session_id": {
+                  "S": "1778078265414-bsnca7w8u"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "NULL": true
+                },
+                "scroll_depth": {
+                  "NULL": true
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1778081043859-pmzqj4nes"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1778081043859-pmzqj4nes"
+                },
+                "date": {
+                  "S": "2026-05-06"
+                },
+                "blog_id": {
+                  "S": "1777037425887-tcqcd70os"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "http://localhost:3000/#/blog/1777037425887-tcqcd70os"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-05-06T15:24:03.859Z"
+                },
+                "blog_title": {
+                  "S": "The 5-Step Framework To Turn Your Idea Into A Training People Actually Pay For."
+                },
+                "session_id": {
+                  "S": "1778078265414-bsnca7w8u"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "NULL": true
+                },
+                "scroll_depth": {
+                  "NULL": true
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1778081044470-nlue3zci3"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1778081044470-nlue3zci3"
+                },
+                "date": {
+                  "S": "2026-05-06"
+                },
+                "blog_id": {
+                  "S": "1777037425887-tcqcd70os"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "http://localhost:3000/#/blog/1777037425887-tcqcd70os"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-05-06T15:24:04.470Z"
+                },
+                "blog_title": {
+                  "S": "The 5-Step Framework To Turn Your Idea Into A Training People Actually Pay For."
+                },
+                "session_id": {
+                  "S": "1778078265414-bsnca7w8u"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "NULL": true
+                },
+                "scroll_depth": {
+                  "NULL": true
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1778081045280-lzd1zxarv"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1778081045280-lzd1zxarv"
+                },
+                "date": {
+                  "S": "2026-05-06"
+                },
+                "blog_id": {
+                  "S": "1777037425887-tcqcd70os"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "http://localhost:3000/#/blog/1777037425887-tcqcd70os"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-05-06T15:24:05.280Z"
+                },
+                "blog_title": {
+                  "S": "The 5-Step Framework To Turn Your Idea Into A Training People Actually Pay For."
+                },
+                "session_id": {
+                  "S": "1778078265414-bsnca7w8u"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "N": "17"
+                },
+                "scroll_depth": {
+                  "N": "49"
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1778081062665-l394mjouy"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1778081062665-l394mjouy"
+                },
+                "date": {
+                  "S": "2026-05-06"
+                },
+                "blog_id": {
+                  "S": "1777037425887-tcqcd70os"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "http://localhost:3000/#/blog/1777037425887-tcqcd70os"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-05-06T15:24:22.665Z"
+                },
+                "blog_title": {
+                  "S": "The 5-Step Framework To Turn Your Idea Into A Training People Actually Pay For."
+                },
+                "session_id": {
+                  "S": "1778078265414-bsnca7w8u"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "NULL": true
+                },
+                "scroll_depth": {
+                  "NULL": true
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1778081063689-tvr21zxmn"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1778081063689-tvr21zxmn"
+                },
+                "date": {
+                  "S": "2026-05-06"
+                },
+                "blog_id": {
+                  "S": "1777037425887-tcqcd70os"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "http://localhost:3000/#/blog/1777037425887-tcqcd70os"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-05-06T15:24:23.689Z"
+                },
+                "blog_title": {
+                  "S": "The 5-Step Framework To Turn Your Idea Into A Training People Actually Pay For."
+                },
+                "session_id": {
+                  "S": "1778078265414-bsnca7w8u"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "NULL": true
+                },
+                "scroll_depth": {
+                  "NULL": true
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1778081063926-a2roe7wyo"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1778081063926-a2roe7wyo"
+                },
+                "date": {
+                  "S": "2026-05-06"
+                },
+                "blog_id": {
+                  "S": "1777037425887-tcqcd70os"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "http://localhost:3000/#/blog/1777037425887-tcqcd70os"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-05-06T15:24:23.926Z"
+                },
+                "blog_title": {
+                  "S": "The 5-Step Framework To Turn Your Idea Into A Training People Actually Pay For."
+                },
+                "session_id": {
+                  "S": "1778078265414-bsnca7w8u"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "NULL": true
+                },
+                "scroll_depth": {
+                  "NULL": true
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1778081065216-78yr5za5z"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1778081065216-78yr5za5z"
+                },
+                "date": {
+                  "S": "2026-05-06"
+                },
+                "blog_id": {
+                  "S": "1777037425887-tcqcd70os"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "http://localhost:3000/#/blog/1777037425887-tcqcd70os"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-05-06T15:24:25.216Z"
+                },
+                "blog_title": {
+                  "S": "The 5-Step Framework To Turn Your Idea Into A Training People Actually Pay For."
+                },
+                "session_id": {
+                  "S": "1778078265414-bsnca7w8u"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "NULL": true
+                },
+                "scroll_depth": {
+                  "NULL": true
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1778081065881-7af030kw6"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1778081065881-7af030kw6"
+                },
+                "date": {
+                  "S": "2026-05-06"
+                },
+                "blog_id": {
+                  "S": "1777037425887-tcqcd70os"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "http://localhost:3000/#/blog/1777037425887-tcqcd70os"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-05-06T15:24:25.881Z"
+                },
+                "blog_title": {
+                  "S": "The 5-Step Framework To Turn Your Idea Into A Training People Actually Pay For."
+                },
+                "session_id": {
+                  "S": "1778078265414-bsnca7w8u"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "N": "5"
+                },
+                "scroll_depth": {
+                  "N": "47"
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1778081066530-diwx0x5ld"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1778081066530-diwx0x5ld"
+                },
+                "date": {
+                  "S": "2026-05-06"
+                },
+                "blog_id": {
+                  "S": "1777037425887-tcqcd70os"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "http://localhost:3000/#/blog/1777037425887-tcqcd70os"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-05-06T15:24:26.530Z"
+                },
+                "blog_title": {
+                  "S": "The 5-Step Framework To Turn Your Idea Into A Training People Actually Pay For."
+                },
+                "session_id": {
+                  "S": "1778078265414-bsnca7w8u"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "NULL": true
+                },
+                "scroll_depth": {
+                  "NULL": true
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1778081071953-8zgw5kc90"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1778081071953-8zgw5kc90"
+                },
+                "date": {
+                  "S": "2026-05-06"
+                },
+                "blog_id": {
+                  "S": "1777037425887-tcqcd70os"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "http://localhost:3000/#/blog/1777037425887-tcqcd70os"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-05-06T15:24:31.953Z"
+                },
+                "blog_title": {
+                  "S": "The 5-Step Framework To Turn Your Idea Into A Training People Actually Pay For."
+                },
+                "session_id": {
+                  "S": "1778078265414-bsnca7w8u"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "NULL": true
+                },
+                "scroll_depth": {
+                  "NULL": true
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1778081073794-2fgjoezr7"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1778081073794-2fgjoezr7"
+                },
+                "date": {
+                  "S": "2026-05-06"
+                },
+                "blog_id": {
+                  "S": "1777037425887-tcqcd70os"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "http://localhost:3000/#/blog/1777037425887-tcqcd70os"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-05-06T15:24:33.794Z"
+                },
+                "blog_title": {
+                  "S": "The 5-Step Framework To Turn Your Idea Into A Training People Actually Pay For."
+                },
+                "session_id": {
+                  "S": "1778078265414-bsnca7w8u"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "NULL": true
+                },
+                "scroll_depth": {
+                  "NULL": true
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1778081107015-azs6qhbp5"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1778081107015-azs6qhbp5"
+                },
+                "date": {
+                  "S": "2026-05-06"
+                },
+                "blog_id": {
+                  "S": "1777037425887-tcqcd70os"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "http://localhost:3000/#/blog/1777037425887-tcqcd70os"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-05-06T15:25:07.015Z"
+                },
+                "blog_title": {
+                  "S": "The 5-Step Framework To Turn Your Idea Into A Training People Actually Pay For."
+                },
+                "session_id": {
+                  "S": "1778078265414-bsnca7w8u"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "N": "33"
+                },
+                "scroll_depth": {
+                  "N": "48"
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1778081108079-6o8o5nnws"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1778081108079-6o8o5nnws"
+                },
+                "date": {
+                  "S": "2026-05-06"
+                },
+                "blog_id": {
+                  "S": "1777037425887-tcqcd70os"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "http://localhost:3000/#/blog/1777037425887-tcqcd70os"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-05-06T15:25:08.079Z"
+                },
+                "blog_title": {
+                  "S": "The 5-Step Framework To Turn Your Idea Into A Training People Actually Pay For."
+                },
+                "session_id": {
+                  "S": "1778078265414-bsnca7w8u"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "NULL": true
+                },
+                "scroll_depth": {
+                  "NULL": true
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1778081111130-c7pgaaylj"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1778081111130-c7pgaaylj"
+                },
+                "date": {
+                  "S": "2026-05-06"
+                },
+                "blog_id": {
+                  "S": "1777037425887-tcqcd70os"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "http://localhost:3000/#/blog/1777037425887-tcqcd70os"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-05-06T15:25:11.130Z"
+                },
+                "blog_title": {
+                  "S": "The 5-Step Framework To Turn Your Idea Into A Training People Actually Pay For."
+                },
+                "session_id": {
+                  "S": "1778078265414-bsnca7w8u"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "NULL": true
+                },
+                "scroll_depth": {
+                  "NULL": true
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1778081111549-yl0y69gak"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1778081111549-yl0y69gak"
+                },
+                "date": {
+                  "S": "2026-05-06"
+                },
+                "blog_id": {
+                  "S": "1777037425887-tcqcd70os"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "http://localhost:3000/#/blog/1777037425887-tcqcd70os"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-05-06T15:25:11.549Z"
+                },
+                "blog_title": {
+                  "S": "The 5-Step Framework To Turn Your Idea Into A Training People Actually Pay For."
+                },
+                "session_id": {
+                  "S": "1778078265414-bsnca7w8u"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "NULL": true
+                },
+                "scroll_depth": {
+                  "NULL": true
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1778081118326-4d815x0og"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1778081118326-4d815x0og"
+                },
+                "date": {
+                  "S": "2026-05-06"
+                },
+                "blog_id": {
+                  "S": "1777037425887-tcqcd70os"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "http://localhost:3000/#/blog/1777037425887-tcqcd70os"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-05-06T15:25:18.326Z"
+                },
+                "blog_title": {
+                  "S": "The 5-Step Framework To Turn Your Idea Into A Training People Actually Pay For."
+                },
+                "session_id": {
+                  "S": "1778078265414-bsnca7w8u"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "N": "7"
+                },
+                "scroll_depth": {
+                  "N": "57"
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1778081119698-jih16ajnw"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1778081119698-jih16ajnw"
+                },
+                "date": {
+                  "S": "2026-05-06"
+                },
+                "blog_id": {
+                  "S": "1777037425887-tcqcd70os"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "http://localhost:3000/#/blog/1777037425887-tcqcd70os"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-05-06T15:25:19.698Z"
+                },
+                "blog_title": {
+                  "S": "The 5-Step Framework To Turn Your Idea Into A Training People Actually Pay For."
+                },
+                "session_id": {
+                  "S": "1778078265414-bsnca7w8u"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "NULL": true
+                },
+                "scroll_depth": {
+                  "NULL": true
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1778081121619-kz2bea4sm"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1778081121619-kz2bea4sm"
+                },
+                "date": {
+                  "S": "2026-05-06"
+                },
+                "blog_id": {
+                  "S": "1777037425887-tcqcd70os"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "http://localhost:3000/#/blog/1777037425887-tcqcd70os"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-05-06T15:25:21.619Z"
+                },
+                "blog_title": {
+                  "S": "The 5-Step Framework To Turn Your Idea Into A Training People Actually Pay For."
+                },
+                "session_id": {
+                  "S": "1778078265414-bsnca7w8u"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "NULL": true
+                },
+                "scroll_depth": {
+                  "NULL": true
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

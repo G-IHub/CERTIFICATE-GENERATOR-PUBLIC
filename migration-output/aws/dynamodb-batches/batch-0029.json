@@ -1,0 +1,1102 @@
+{
+  "RequestItems": {
+    "certifyer-dev-kv": [
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401:TEST-1777117572943-0DPOVD4W1"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777117572943-0DPOVD4W1"
+                },
+                "email": {
+                  "S": "kelvins.tanson@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "It has introduced new concepts I previously didn’t think about regarding metagenomics to me"
+                },
+                "programId": {
+                  "S": "metagenomics-for-public-health-research"
+                },
+                "courseName": {
+                  "S": "Metagenomics for Public Health Research"
+                },
+                "studentName": {
+                  "S": "Tanson Senyo Kelvin"
+                },
+                "submittedAt": {
+                  "S": "2026-04-25T11:46:12.943Z"
+                },
+                "organization": {
+                  "S": "University of Health and Allied Sciences"
+                },
+                "certificateId": {
+                  "S": "CERT-1777041833936-XNTRW1R8F"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401:TEST-1777136142796-E2MCLYRSR"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777136142796-E2MCLYRSR"
+                },
+                "email": {
+                  "S": "marufislamiyat01@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Metagenomics is a beautiful study that helps to control and monitor outbreaks before they become serious health issues."
+                },
+                "programId": {
+                  "S": "metagenomics-for-public-health-research"
+                },
+                "courseName": {
+                  "S": "Metagenomics for Public Health Research"
+                },
+                "studentName": {
+                  "S": "Maruf Islamiyat Ayomide"
+                },
+                "submittedAt": {
+                  "S": "2026-04-25T16:55:42.796Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1777041833936-XNTRW1R8F"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401:TEST-1777374004983-FDMORERWY"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777374004983-FDMORERWY"
+                },
+                "email": {
+                  "S": "kujabim@uni-greifswald.de"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It really leverage my understanding of metagenomics analysis and I am happy to utilize this knowledge to my current data analysis of my metagenomics project currently on ongoing.  Thank you all for this wonderful course"
+                },
+                "programId": {
+                  "S": "metagenomics-for-public-health-research"
+                },
+                "courseName": {
+                  "S": "Metagenomics for Public Health Research"
+                },
+                "studentName": {
+                  "S": "Mariama A Kujabi"
+                },
+                "submittedAt": {
+                  "S": "2026-04-28T11:00:04.983Z"
+                },
+                "organization": {
+                  "S": "University of Greifswald"
+                },
+                "certificateId": {
+                  "S": "CERT-1777041833936-XNTRW1R8F"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401:TEST-1778594051186-LPO8BZ6WP"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778594051186-LPO8BZ6WP"
+                },
+                "email": {
+                  "S": "kochfameone@gmail.com"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "courseName": {
+                  "S": "2-month Virtual Biocoding Bootcamp"
+                },
+                "studentName": {
+                  "S": "OKOCHA AFAMEFUNA"
+                },
+                "submittedAt": {
+                  "S": "2026-05-12T13:54:11.186Z"
+                },
+                "organization": {
+                  "S": "LAGOS UNIVERSITY TEACHING HOSPITAL (LUTH), LAGOS"
+                },
+                "certificateId": {
+                  "S": "CERT-1773759817780-52GNSUHZX"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401:TEST-1779461636045-2NX05GHCJ"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1779461636045-2NX05GHCJ"
+                },
+                "email": {
+                  "S": "tayoayedogba@gmail.com"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "My Experience at the Viral Genomics Workshop\n\nThe workshop was insightful and practical. It deepened my understanding of viral sequencing and bioinformatics analysis, with clear explanations and hands-on sessions. The facilitators were engaging, and ready to answer every question. \n\nOverall, it strengthened my skills and gave me a clearer perspective on applying genomics in public health."
+                },
+                "courseName": {
+                  "S": "VIRAL GENOMICS WORKSHOP"
+                },
+                "studentName": {
+                  "S": "Omotayo Akinpelumi Ayedogba"
+                },
+                "submittedAt": {
+                  "S": "2026-05-22T14:53:56.045Z"
+                },
+                "organization": {
+                  "S": "University of Medical Sciences, Ondo"
+                },
+                "certificateId": {
+                  "S": "CERT-1779357498643-NEBFHQRD4"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-1cab9388-5728-4646-9178-26dc1fa778fa-1769444130796:TEST-1775641102977-BS4FEMPYS"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775641102977-BS4FEMPYS"
+                },
+                "email": {
+                  "S": "mofeoluwablessing99@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "letter"
+                },
+                "programId": {
+                  "S": "cancer-genomics"
+                },
+                "courseName": {
+                  "S": "Cancer Genomics"
+                },
+                "studentName": {
+                  "S": "Blessing Mofeoluwa"
+                },
+                "submittedAt": {
+                  "S": "2026-04-08T09:38:22.977Z"
+                },
+                "organization": {
+                  "S": "Genomac"
+                },
+                "certificateId": {
+                  "S": "CERT-1769596896015-AFY6XATCO"
+                },
+                "organizationId": {
+                  "S": "org-1cab9388-5728-4646-9178-26dc1fa778fa-1769444130796"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-1cab9388-5728-4646-9178-26dc1fa778fa-1769444130796:TEST-1775649030760-VUJNL9G7W"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775649030760-VUJNL9G7W"
+                },
+                "email": {
+                  "S": "mofeoluwablessing99@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "higgh"
+                },
+                "programId": {
+                  "S": "cancer-genomics"
+                },
+                "courseName": {
+                  "S": "Cancer Genomics"
+                },
+                "studentName": {
+                  "S": "Blessing Mofeoluwa"
+                },
+                "submittedAt": {
+                  "S": "2026-04-08T11:50:30.760Z"
+                },
+                "organization": {
+                  "S": "Genomac"
+                },
+                "certificateId": {
+                  "S": "CERT-1775648948971-BQ3PNIP3C"
+                },
+                "organizationId": {
+                  "S": "org-1cab9388-5728-4646-9178-26dc1fa778fa-1769444130796"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-1cab9388-5728-4646-9178-26dc1fa778fa-1769444130796:TEST-1775651388874-45QIHMA3N"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775651388874-45QIHMA3N"
+                },
+                "email": {
+                  "S": "iloblessing84@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "ghh"
+                },
+                "programId": {
+                  "S": "cancer-genomics"
+                },
+                "courseName": {
+                  "S": "Cancer Genomics"
+                },
+                "studentName": {
+                  "S": "Ilo Afolake Afolake"
+                },
+                "submittedAt": {
+                  "S": "2026-04-08T12:29:48.874Z"
+                },
+                "organization": {
+                  "S": "Genomac"
+                },
+                "certificateId": {
+                  "S": "CERT-1775650961407-FUKGHIYEG"
+                },
+                "organizationId": {
+                  "S": "org-1cab9388-5728-4646-9178-26dc1fa778fa-1769444130796"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-1cab9388-5728-4646-9178-26dc1fa778fa-1769444130796:TEST-1775653125206-F5G4A1Z56"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775653125206-F5G4A1Z56"
+                },
+                "email": {
+                  "S": "olangez2020@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Perfect"
+                },
+                "programId": {
+                  "S": "cancer-genomics"
+                },
+                "courseName": {
+                  "S": "Cancer Genomics"
+                },
+                "studentName": {
+                  "S": "Ezeh Oluchi Angela"
+                },
+                "submittedAt": {
+                  "S": "2026-04-08T12:58:45.206Z"
+                },
+                "organization": {
+                  "S": "Genomac"
+                },
+                "certificateId": {
+                  "S": "CERT-1775650961407-FUKGHIYEG"
+                },
+                "organizationId": {
+                  "S": "org-1cab9388-5728-4646-9178-26dc1fa778fa-1769444130796"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-1cab9388-5728-4646-9178-26dc1fa778fa-1769444130796:TEST-1775654796938-TRUXGIPLS"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775654796938-TRUXGIPLS"
+                },
+                "email": {
+                  "S": "okaforjachi@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Perfect"
+                },
+                "programId": {
+                  "S": "cancer-genomics"
+                },
+                "courseName": {
+                  "S": "Cancer Genomics"
+                },
+                "studentName": {
+                  "S": "Jalumchukwunma Ifunanya Okafor"
+                },
+                "submittedAt": {
+                  "S": "2026-04-08T13:26:36.938Z"
+                },
+                "organization": {
+                  "S": "Genomac"
+                },
+                "certificateId": {
+                  "S": "CERT-1775650961407-FUKGHIYEG"
+                },
+                "organizationId": {
+                  "S": "org-1cab9388-5728-4646-9178-26dc1fa778fa-1769444130796"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-1cab9388-5728-4646-9178-26dc1fa778fa-1769444130796:TEST-1775655355747-UC8DYZ10C"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775655355747-UC8DYZ10C"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Stressful"
+                },
+                "programId": {
+                  "S": "cancer-genomics"
+                },
+                "courseName": {
+                  "S": "Cancer Genomics"
+                },
+                "studentName": {
+                  "S": "Tulasi Satyendra Boddeda"
+                },
+                "submittedAt": {
+                  "S": "2026-04-08T13:35:55.747Z"
+                },
+                "organization": {
+                  "S": "Genomac"
+                },
+                "certificateId": {
+                  "S": "CERT-1775650961407-FUKGHIYEG"
+                },
+                "organizationId": {
+                  "S": "org-1cab9388-5728-4646-9178-26dc1fa778fa-1769444130796"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-1cab9388-5728-4646-9178-26dc1fa778fa-1769444130796:TEST-1775657592837-TRQ9J8YHT"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775657592837-TRQ9J8YHT"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "perfect"
+                },
+                "programId": {
+                  "S": "infectious-disease"
+                },
+                "courseName": {
+                  "S": "Infectious Disease"
+                },
+                "studentName": {
+                  "S": "Ayorinde David Ajibola"
+                },
+                "submittedAt": {
+                  "S": "2026-04-08T14:13:12.837Z"
+                },
+                "organization": {
+                  "S": "Genomac"
+                },
+                "certificateId": {
+                  "S": "CERT-1775651633964-TOTRQ7PCX"
+                },
+                "organizationId": {
+                  "S": "org-1cab9388-5728-4646-9178-26dc1fa778fa-1769444130796"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-1cab9388-5728-4646-9178-26dc1fa778fa-1769444130796:TEST-1775657688463-C8QLWNA52"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775657688463-C8QLWNA52"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "perfect"
+                },
+                "programId": {
+                  "S": "infectious-disease"
+                },
+                "courseName": {
+                  "S": "Infectious Disease"
+                },
+                "studentName": {
+                  "S": "OLISA Olasunkanmi Micheal"
+                },
+                "submittedAt": {
+                  "S": "2026-04-08T14:14:48.463Z"
+                },
+                "organization": {
+                  "S": "Genomac"
+                },
+                "certificateId": {
+                  "S": "CERT-1775651633964-TOTRQ7PCX"
+                },
+                "organizationId": {
+                  "S": "org-1cab9388-5728-4646-9178-26dc1fa778fa-1769444130796"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-1cab9388-5728-4646-9178-26dc1fa778fa-1769444130796:TEST-1775658048769-UX1IPQN0D"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775658048769-UX1IPQN0D"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "perfect"
+                },
+                "programId": {
+                  "S": "cancer-genomics"
+                },
+                "courseName": {
+                  "S": "Cancer Genomics"
+                },
+                "studentName": {
+                  "S": "Adeotan Abosede Ibidun"
+                },
+                "submittedAt": {
+                  "S": "2026-04-08T14:20:48.769Z"
+                },
+                "organization": {
+                  "S": "Genomac"
+                },
+                "certificateId": {
+                  "S": "CERT-1775650961407-FUKGHIYEG"
+                },
+                "organizationId": {
+                  "S": "org-1cab9388-5728-4646-9178-26dc1fa778fa-1769444130796"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-1cab9388-5728-4646-9178-26dc1fa778fa-1769444130796:TEST-1775728354139-U7ICJMCN2"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775728354139-U7ICJMCN2"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Perfect"
+                },
+                "programId": {
+                  "S": "cancer-genomics"
+                },
+                "courseName": {
+                  "S": "Cancer Genomics"
+                },
+                "studentName": {
+                  "S": "Nurakant Neupane"
+                },
+                "submittedAt": {
+                  "S": "2026-04-09T09:52:34.139Z"
+                },
+                "organization": {
+                  "S": "Genomac"
+                },
+                "certificateId": {
+                  "S": "CERT-1775650961407-FUKGHIYEG"
+                },
+                "organizationId": {
+                  "S": "org-1cab9388-5728-4646-9178-26dc1fa778fa-1769444130796"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-1cab9388-5728-4646-9178-26dc1fa778fa-1769444130796:TEST-1775738777484-4CXBQC6AL"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775738777484-4CXBQC6AL"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Perfect"
+                },
+                "programId": {
+                  "S": "epidermiology-and-public-health"
+                },
+                "courseName": {
+                  "S": "Epidermiology and Public Health"
+                },
+                "studentName": {
+                  "S": "Andrea Otwande"
+                },
+                "submittedAt": {
+                  "S": "2026-04-09T12:46:17.484Z"
+                },
+                "organization": {
+                  "S": "Genomac"
+                },
+                "certificateId": {
+                  "S": "CERT-1775729573092-Z17EIVRAC"
+                },
+                "organizationId": {
+                  "S": "org-1cab9388-5728-4646-9178-26dc1fa778fa-1769444130796"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-1cab9388-5728-4646-9178-26dc1fa778fa-1769444130796:TEST-1776081944520-ZT7OFEBWY"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1776081944520-ZT7OFEBWY"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "PERFECT"
+                },
+                "programId": {
+                  "S": "cancer-genomics"
+                },
+                "courseName": {
+                  "S": "Cancer Genomics"
+                },
+                "studentName": {
+                  "S": "Rahmat Hassan Salis"
+                },
+                "submittedAt": {
+                  "S": "2026-04-13T12:05:44.520Z"
+                },
+                "organization": {
+                  "S": "Genomac"
+                },
+                "certificateId": {
+                  "S": "CERT-1775650961407-FUKGHIYEG"
+                },
+                "organizationId": {
+                  "S": "org-1cab9388-5728-4646-9178-26dc1fa778fa-1769444130796"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-1cab9388-5728-4646-9178-26dc1fa778fa-1769444130796:TEST-1776082482878-2KPDI8V6N"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1776082482878-2KPDI8V6N"
+                },
+                "title": {
+                  "S": "Mrs"
+                },
+                "impact": {
+                  "S": "Perfect"
+                },
+                "programId": {
+                  "S": "drug-design-and-development"
+                },
+                "courseName": {
+                  "S": "Drug Design and Development"
+                },
+                "studentName": {
+                  "S": "Protyusa Deb"
+                },
+                "submittedAt": {
+                  "S": "2026-04-13T12:14:42.878Z"
+                },
+                "organization": {
+                  "S": "Genomac"
+                },
+                "certificateId": {
+                  "S": "CERT-1775729674382-OGDSLCA9C"
+                },
+                "organizationId": {
+                  "S": "org-1cab9388-5728-4646-9178-26dc1fa778fa-1769444130796"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-1cab9388-5728-4646-9178-26dc1fa778fa-1769444130796:TEST-1776082726792-37K4CV0AA"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1776082726792-37K4CV0AA"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Perfect"
+                },
+                "programId": {
+                  "S": "drug-design-and-development"
+                },
+                "courseName": {
+                  "S": "Drug Design and Development"
+                },
+                "studentName": {
+                  "S": "OLALEKAN TOHEEB ADESINA"
+                },
+                "submittedAt": {
+                  "S": "2026-04-13T12:18:46.792Z"
+                },
+                "organization": {
+                  "S": "Genomac"
+                },
+                "certificateId": {
+                  "S": "CERT-1775729674382-OGDSLCA9C"
+                },
+                "organizationId": {
+                  "S": "org-1cab9388-5728-4646-9178-26dc1fa778fa-1769444130796"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-1cab9388-5728-4646-9178-26dc1fa778fa-1769444130796:TEST-1776084718914-OCKJ64JRS"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1776084718914-OCKJ64JRS"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "perfect"
+                },
+                "programId": {
+                  "S": "drug-design-and-development"
+                },
+                "courseName": {
+                  "S": "Drug Design and Development"
+                },
+                "studentName": {
+                  "S": "OWOLABI SAMSUDEEN ABIODUN"
+                },
+                "submittedAt": {
+                  "S": "2026-04-13T12:51:58.914Z"
+                },
+                "organization": {
+                  "S": "Genomac"
+                },
+                "certificateId": {
+                  "S": "CERT-1775729674382-OGDSLCA9C"
+                },
+                "organizationId": {
+                  "S": "org-1cab9388-5728-4646-9178-26dc1fa778fa-1769444130796"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-1cab9388-5728-4646-9178-26dc1fa778fa-1769444130796:TEST-1776085068904-Z6MR6UKQ3"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1776085068904-Z6MR6UKQ3"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Perfect"
+                },
+                "programId": {
+                  "S": "anti-cancer-research-and-development"
+                },
+                "courseName": {
+                  "S": "Anti-Cancer Research and Development"
+                },
+                "studentName": {
+                  "S": "John, Daniel Effiong"
+                },
+                "submittedAt": {
+                  "S": "2026-04-13T12:57:48.904Z"
+                },
+                "organization": {
+                  "S": "Genomac"
+                },
+                "certificateId": {
+                  "S": "CERT-1775729778111-36XDAKEF8"
+                },
+                "organizationId": {
+                  "S": "org-1cab9388-5728-4646-9178-26dc1fa778fa-1769444130796"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-1cab9388-5728-4646-9178-26dc1fa778fa-1769444130796:TEST-1776085608306-GPM4H0V33"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1776085608306-GPM4H0V33"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Perfect"
+                },
+                "programId": {
+                  "S": "anti-cancer-research-and-development"
+                },
+                "courseName": {
+                  "S": "Anti-Cancer Research and Development"
+                },
+                "studentName": {
+                  "S": "Peter Hanna"
+                },
+                "submittedAt": {
+                  "S": "2026-04-13T13:06:48.306Z"
+                },
+                "organization": {
+                  "S": "Genomac"
+                },
+                "certificateId": {
+                  "S": "CERT-1775729778111-36XDAKEF8"
+                },
+                "organizationId": {
+                  "S": "org-1cab9388-5728-4646-9178-26dc1fa778fa-1769444130796"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-1cab9388-5728-4646-9178-26dc1fa778fa-1769444130796:TEST-1776088162759-HVX44FN1I"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1776088162759-HVX44FN1I"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "perfect"
+                },
+                "programId": {
+                  "S": "anti-cancer-research-and-development"
+                },
+                "courseName": {
+                  "S": "Anti-Cancer Research and Development"
+                },
+                "studentName": {
+                  "S": "Emmanuella Cyril Chinemerem"
+                },
+                "submittedAt": {
+                  "S": "2026-04-13T13:49:22.759Z"
+                },
+                "organization": {
+                  "S": "Genomac"
+                },
+                "certificateId": {
+                  "S": "CERT-1775729778111-36XDAKEF8"
+                },
+                "organizationId": {
+                  "S": "org-1cab9388-5728-4646-9178-26dc1fa778fa-1769444130796"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-1cab9388-5728-4646-9178-26dc1fa778fa-1769444130796:TEST-1777287943639-72PMZOM9F"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777287943639-72PMZOM9F"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "good"
+                },
+                "programId": {
+                  "S": "epidermiology-and-public-health"
+                },
+                "courseName": {
+                  "S": "Epidermiology and Public Health"
+                },
+                "studentName": {
+                  "S": "Bada Mubarak Mobolaji"
+                },
+                "submittedAt": {
+                  "S": "2026-04-27T11:05:43.639Z"
+                },
+                "organization": {
+                  "S": "Genomac"
+                },
+                "certificateId": {
+                  "S": "CERT-1775729573092-Z17EIVRAC"
+                },
+                "organizationId": {
+                  "S": "org-1cab9388-5728-4646-9178-26dc1fa778fa-1769444130796"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-1cab9388-5728-4646-9178-26dc1fa778fa-1769444130796:TEST-1777288454226-CG13E5MNB"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777288454226-CG13E5MNB"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "GOOD"
+                },
+                "programId": {
+                  "S": "anti-cancer-research-and-development"
+                },
+                "courseName": {
+                  "S": "Anti-Cancer Research and Development"
+                },
+                "studentName": {
+                  "S": "NYAKITI ESTHER ADHIAMBO"
+                },
+                "submittedAt": {
+                  "S": "2026-04-27T11:14:14.226Z"
+                },
+                "organization": {
+                  "S": "Genomac"
+                },
+                "certificateId": {
+                  "S": "CERT-1775729778111-36XDAKEF8"
+                },
+                "organizationId": {
+                  "S": "org-1cab9388-5728-4646-9178-26dc1fa778fa-1769444130796"
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

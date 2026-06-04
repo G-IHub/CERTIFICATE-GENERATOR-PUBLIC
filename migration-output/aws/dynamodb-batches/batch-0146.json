@@ -1,0 +1,1135 @@
+{
+  "RequestItems": {
+    "certifyer-dev-kv": [
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1776246724022-4EXVXPAFC"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1776246724022-4EXVXPAFC"
+                },
+                "email": {
+                  "S": "mungullemay@gmail.com"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "It was insightful."
+                },
+                "programId": {
+                  "S": "molecular-docking-and-drug-design-course"
+                },
+                "courseName": {
+                  "S": "MOLECULAR DOCKING AND DRUG DESIGN course"
+                },
+                "studentName": {
+                  "S": "May Chao Mungulle"
+                },
+                "submittedAt": {
+                  "S": "2026-04-15T09:52:04.022Z"
+                },
+                "organization": {
+                  "S": "Mount Kenya University"
+                },
+                "certificateId": {
+                  "S": "CERT-1776244424370-EO2A0CI6T"
+                },
+                "organizationId": {
+                  "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1776247326948-75M5VWAMM"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1776247326948-75M5VWAMM"
+                },
+                "email": {
+                  "S": "constancelawrence80@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It has enlightened and given me a broader understanding of how drugs are discovered and designed."
+                },
+                "programId": {
+                  "S": "molecular-docking-and-drug-design-course"
+                },
+                "courseName": {
+                  "S": "MOLECULAR DOCKING AND DRUG DESIGN course"
+                },
+                "studentName": {
+                  "S": "Constance Ihuoma Nkpurukwe"
+                },
+                "submittedAt": {
+                  "S": "2026-04-15T10:02:06.948Z"
+                },
+                "organization": {
+                  "S": "Rivers State University"
+                },
+                "certificateId": {
+                  "S": "CERT-1776244424370-EO2A0CI6T"
+                },
+                "organizationId": {
+                  "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1776261302113-UVBBBP0TR"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1776261302113-UVBBBP0TR"
+                },
+                "email": {
+                  "S": "afolayanomotolani30@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "esrdtgfgjhkl"
+                },
+                "programId": {
+                  "S": "women-techmakers-ogbomoso-iwd-2026-conference"
+                },
+                "courseName": {
+                  "S": "Women Techmakers Ogbomoso IWD 2026 Conference"
+                },
+                "studentName": {
+                  "S": "Omotolani Afolayan"
+                },
+                "submittedAt": {
+                  "S": "2026-04-15T13:55:02.113Z"
+                },
+                "testimonial": {
+                  "S": "dsfdgfhj"
+                },
+                "organization": {
+                  "S": "Hanguk"
+                },
+                "certificateId": {
+                  "S": "CERT-1776261279536-DLJI4QWCI"
+                },
+                "organizationId": {
+                  "S": "org-c4e7a07b-562d-4068-968c-7d8bee0cec2e-1767182844779"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1776262082544-T5ERQ6D7M"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1776262082544-T5ERQ6D7M"
+                },
+                "email": {
+                  "S": "afolayanomotolani30@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "ttttttttgu"
+                },
+                "programId": {
+                  "S": "women-techmakers-ogbomoso-iwd-2026-conference"
+                },
+                "courseName": {
+                  "S": "Women Techmakers Ogbomoso IWD 2026 Conference"
+                },
+                "studentName": {
+                  "S": "Omotolani Afolayan"
+                },
+                "submittedAt": {
+                  "S": "2026-04-15T14:08:02.544Z"
+                },
+                "organization": {
+                  "S": "ert"
+                },
+                "certificateId": {
+                  "S": "CERT-1776261279536-DLJI4QWCI"
+                },
+                "organizationId": {
+                  "S": "org-c4e7a07b-562d-4068-968c-7d8bee0cec2e-1767182844779"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1776273836107-GJG3Z7728"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1776273836107-GJG3Z7728"
+                },
+                "email": {
+                  "S": "afolayanomotolani30@gmail.com"
+                },
+                "title": {
+                  "S": "Mrs"
+                },
+                "impact": {
+                  "S": "oiuyhtghkjl"
+                },
+                "programId": {
+                  "S": "women-techmakers-ogbomoso-iwd-2026-conference"
+                },
+                "courseName": {
+                  "S": "Women Techmakers Ogbomoso IWD 2026 Conference"
+                },
+                "studentName": {
+                  "S": "Omotolani Afolayan"
+                },
+                "submittedAt": {
+                  "S": "2026-04-15T17:23:56.107Z"
+                },
+                "organization": {
+                  "S": "uytrtyuiop"
+                },
+                "certificateId": {
+                  "S": "CERT-1776273812045-JRGUZO6MM"
+                },
+                "organizationId": {
+                  "S": "org-c4e7a07b-562d-4068-968c-7d8bee0cec2e-1767182844779"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1776274939748-KUA3JS4YO"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1776274939748-KUA3JS4YO"
+                },
+                "email": {
+                  "S": "afolayanomotolani30@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "dsfdgffgh"
+                },
+                "programId": {
+                  "S": "women-techmakers-ogbomoso-iwd-2026-conference"
+                },
+                "courseName": {
+                  "S": "Women Techmakers Ogbomoso IWD 2026 Conference"
+                },
+                "studentName": {
+                  "S": "Afolayan Omotolani"
+                },
+                "submittedAt": {
+                  "S": "2026-04-15T17:42:19.748Z"
+                },
+                "organization": {
+                  "S": "qwerty"
+                },
+                "certificateId": {
+                  "S": "CERT-1776273812045-JRGUZO6MM"
+                },
+                "organizationId": {
+                  "S": "org-c4e7a07b-562d-4068-968c-7d8bee0cec2e-1767182844779"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1776277064470-HV0RN2HDI"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1776277064470-HV0RN2HDI"
+                },
+                "email": {
+                  "S": "jaredmisonge@gmail.com"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "It was informative"
+                },
+                "programId": {
+                  "S": "molecular-docking-and-drug-design-course"
+                },
+                "courseName": {
+                  "S": "MOLECULAR DOCKING AND DRUG DESIGN course"
+                },
+                "studentName": {
+                  "S": "Jared Onyancha"
+                },
+                "submittedAt": {
+                  "S": "2026-04-15T18:17:44.470Z"
+                },
+                "testimonial": {
+                  "S": "The software had troubles, given an opportunity, I will train again"
+                },
+                "organization": {
+                  "S": "Mount Kenya University"
+                },
+                "certificateId": {
+                  "S": "CERT-1776244424370-EO2A0CI6T"
+                },
+                "organizationId": {
+                  "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1776277091924-YI3GVW0NQ"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1776277091924-YI3GVW0NQ"
+                },
+                "email": {
+                  "S": "afolayanomotolani30@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "sdfdgyhujhikl"
+                },
+                "programId": {
+                  "S": "women-techmakers-ogbomoso-iwd-2026-conference"
+                },
+                "courseName": {
+                  "S": "Women Techmakers Ogbomoso IWD 2026 Conference"
+                },
+                "studentName": {
+                  "S": "Omotolani Afolayan"
+                },
+                "submittedAt": {
+                  "S": "2026-04-15T18:18:11.924Z"
+                },
+                "organization": {
+                  "S": "Hanguk"
+                },
+                "certificateId": {
+                  "S": "CERT-1776277073352-NEJMGD46P"
+                },
+                "organizationId": {
+                  "S": "org-c4e7a07b-562d-4068-968c-7d8bee0cec2e-1767182844779"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1776277191092-VA568AEUC"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1776277191092-VA568AEUC"
+                },
+                "email": {
+                  "S": "jaredmisonge@gmail.com"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "Educative indeed"
+                },
+                "programId": {
+                  "S": "molecular-docking-and-drug-design-course"
+                },
+                "courseName": {
+                  "S": "MOLECULAR DOCKING AND DRUG DESIGN course"
+                },
+                "studentName": {
+                  "S": "Dr. Jared Misonge Onyancha"
+                },
+                "submittedAt": {
+                  "S": "2026-04-15T18:19:51.092Z"
+                },
+                "testimonial": {
+                  "S": "Given opportunity I will train more"
+                },
+                "organization": {
+                  "S": "Mount Kenya University"
+                },
+                "certificateId": {
+                  "S": "CERT-1776244424370-EO2A0CI6T"
+                },
+                "organizationId": {
+                  "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1776288071518-98I72HU1S"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1776288071518-98I72HU1S"
+                },
+                "email": {
+                  "S": "molkabenmansour65@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "This program strengthened my ability to integrate bioinformatics with pharmacological insights for more effective, data-driven teaching and research"
+                },
+                "programId": {
+                  "S": "data-driven-health:-bridging-bioinformatics-and-pharmacology-for-effective-interventions."
+                },
+                "courseName": {
+                  "S": "Data-Driven Health: Bridging Bioinformatics and Pharmacology for Effective Interventions."
+                },
+                "studentName": {
+                  "S": "MOLKA BEN MANSOUR"
+                },
+                "submittedAt": {
+                  "S": "2026-04-15T21:21:11.519Z"
+                },
+                "organization": {
+                  "S": "faculty of science of tunisia"
+                },
+                "certificateId": {
+                  "S": "CERT-1771337529539-AAGJGCXEY"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1776295389289-RGUTHF2A4"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1776295389289-RGUTHF2A4"
+                },
+                "email": {
+                  "S": "marouane13naoual@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Good"
+                },
+                "programId": {
+                  "S": "biocoding-bootcamp"
+                },
+                "courseName": {
+                  "S": "2-month Virtual Biocoding Bootcamp"
+                },
+                "studentName": {
+                  "S": "Marouane naoual"
+                },
+                "submittedAt": {
+                  "S": "2026-04-15T23:23:09.289Z"
+                },
+                "organization": {
+                  "S": "Um6ss"
+                },
+                "certificateId": {
+                  "S": "CERT-1773759817780-52GNSUHZX"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1776350961997-EBVWJW0MG"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1776350961997-EBVWJW0MG"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "I have learnt how to use molecular docking in drug research, and I will encourage my coleagues to enroll for same."
+                },
+                "programId": {
+                  "S": "molecular-docking-and-drug-design-course"
+                },
+                "courseName": {
+                  "S": "MOLECULAR DOCKING AND DRUG DESIGN course"
+                },
+                "studentName": {
+                  "S": "Adam Olaitan Abdulkareem"
+                },
+                "submittedAt": {
+                  "S": "2026-04-16T14:49:21.997Z"
+                },
+                "organization": {
+                  "S": "University of Ilorin, Ilorin, Nigeria"
+                },
+                "certificateId": {
+                  "S": "CERT-1776244424370-EO2A0CI6T"
+                },
+                "organizationId": {
+                  "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1776353062596-85AJLP5E0"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1776353062596-85AJLP5E0"
+                },
+                "email": {
+                  "S": "adewuyigoodness1@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "h"
+                },
+                "programId": {
+                  "S": "women-techmakers-ogbomoso-iwd-2026-conference"
+                },
+                "courseName": {
+                  "S": "Women Techmakers Ogbomoso IWD 2026 Conference"
+                },
+                "studentName": {
+                  "S": "Goodness Adewuyi"
+                },
+                "submittedAt": {
+                  "S": "2026-04-16T15:24:22.596Z"
+                },
+                "organization": {
+                  "S": "Certifyer"
+                },
+                "certificateId": {
+                  "S": "CERT-1776351982765-YP1AL5Z4G"
+                },
+                "organizationId": {
+                  "S": "org-53e77cf8-e8b7-488a-9925-d2a03e6d0ea2-1772793192106"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1776369886432-0DPA1240F"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1776369886432-0DPA1240F"
+                },
+                "email": {
+                  "S": "genomachub@gmail.com"
+                },
+                "programId": {
+                  "S": "genomics-mentorship"
+                },
+                "courseName": {
+                  "S": "genomics mentorship"
+                },
+                "studentName": {
+                  "S": "Oluwaseyi Abraham Olawale"
+                },
+                "submittedAt": {
+                  "S": "2026-04-16T20:04:46.432Z"
+                },
+                "organization": {
+                  "S": "Genomac Hub"
+                },
+                "certificateId": {
+                  "S": "CERT-1776369755584-HYJG1NEZ3"
+                },
+                "organizationId": {
+                  "S": "org-53e77cf8-e8b7-488a-9925-d2a03e6d0ea2-1772793192106"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1776369931744-1B0C2KC6A"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1776369931744-1B0C2KC6A"
+                },
+                "email": {
+                  "S": "genomachub@gmail.com"
+                },
+                "programId": {
+                  "S": "genomics-mentorship"
+                },
+                "courseName": {
+                  "S": "genomics mentorship"
+                },
+                "studentName": {
+                  "S": "Oluwaseyi Abraham Olawale"
+                },
+                "submittedAt": {
+                  "S": "2026-04-16T20:05:31.744Z"
+                },
+                "organization": {
+                  "S": "Genomac Hub"
+                },
+                "certificateId": {
+                  "S": "CERT-1776369755584-HYJG1NEZ3"
+                },
+                "organizationId": {
+                  "S": "org-53e77cf8-e8b7-488a-9925-d2a03e6d0ea2-1772793192106"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1776369997694-91N3YUZ8Y"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1776369997694-91N3YUZ8Y"
+                },
+                "email": {
+                  "S": "genomachub@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "great one"
+                },
+                "programId": {
+                  "S": "genomics-mentorship"
+                },
+                "courseName": {
+                  "S": "genomics mentorship"
+                },
+                "studentName": {
+                  "S": "Oluwaseyi Abraham Olawale"
+                },
+                "submittedAt": {
+                  "S": "2026-04-16T20:06:37.694Z"
+                },
+                "organization": {
+                  "S": "Genomac Hub"
+                },
+                "certificateId": {
+                  "S": "CERT-1776369755584-HYJG1NEZ3"
+                },
+                "organizationId": {
+                  "S": "org-53e77cf8-e8b7-488a-9925-d2a03e6d0ea2-1772793192106"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1776370789688-WPEA1IECX"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1776370789688-WPEA1IECX"
+                },
+                "email": {
+                  "S": "genomachub@gmail.com"
+                },
+                "programId": {
+                  "S": "genomics-mentorship"
+                },
+                "courseName": {
+                  "S": "genomics mentorship"
+                },
+                "studentName": {
+                  "S": "Oluwaseyi Abraham Olawale"
+                },
+                "submittedAt": {
+                  "S": "2026-04-16T20:19:49.688Z"
+                },
+                "organization": {
+                  "S": "Genomac Hub"
+                },
+                "certificateId": {
+                  "S": "CERT-1776369755584-HYJG1NEZ3"
+                },
+                "organizationId": {
+                  "S": "org-53e77cf8-e8b7-488a-9925-d2a03e6d0ea2-1772793192106"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1776437087157-EWRWSPM3M"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1776437087157-EWRWSPM3M"
+                },
+                "email": {
+                  "S": "afolayanomotolani30@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "wertyj"
+                },
+                "programId": {
+                  "S": "women-techmakers-ogbomoso-iwd-2026-conference"
+                },
+                "courseName": {
+                  "S": "Women Techmakers Ogbomoso IWD 2026 Conference"
+                },
+                "studentName": {
+                  "S": "Omotolani Afolayan"
+                },
+                "submittedAt": {
+                  "S": "2026-04-17T14:44:47.157Z"
+                },
+                "organization": {
+                  "S": "Genomac"
+                },
+                "certificateId": {
+                  "S": "CERT-1776437067641-3JX0JPW5P"
+                },
+                "organizationId": {
+                  "S": "org-c4e7a07b-562d-4068-968c-7d8bee0cec2e-1767182844779"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1776437193439-OK8DHTJI2"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1776437193439-OK8DHTJI2"
+                },
+                "email": {
+                  "S": "afolayanomotolani30@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "wedgfhjk"
+                },
+                "programId": {
+                  "S": "women-techmakers-ogbomoso-iwd-2026-conference"
+                },
+                "courseName": {
+                  "S": "Women Techmakers Ogbomoso IWD 2026 Conference"
+                },
+                "studentName": {
+                  "S": "Omotolani Lydia Afolayan"
+                },
+                "submittedAt": {
+                  "S": "2026-04-17T14:46:33.439Z"
+                },
+                "organization": {
+                  "S": "Genomac"
+                },
+                "certificateId": {
+                  "S": "CERT-1776437174389-QHRSQ18VY"
+                },
+                "organizationId": {
+                  "S": "org-c4e7a07b-562d-4068-968c-7d8bee0cec2e-1767182844779"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1776521047743-1G3V9VYCY"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1776521047743-1G3V9VYCY"
+                },
+                "email": {
+                  "S": "nafeesaholayemi@gmail.com"
+                },
+                "impact": {
+                  "S": "It was really impactful and informative."
+                },
+                "programId": {
+                  "S": "writing"
+                },
+                "courseName": {
+                  "S": "Writing"
+                },
+                "studentName": {
+                  "S": "Nafeesah Olayemi Olapade"
+                },
+                "submittedAt": {
+                  "S": "2026-04-18T14:04:07.743Z"
+                },
+                "organization": {
+                  "S": "The Prolific Writers' Hub"
+                },
+                "certificateId": {
+                  "S": "CERT-1776520960222-NR7XAVHK4"
+                },
+                "organizationId": {
+                  "S": "org-6364e4ee-97a9-45f6-9682-a11025e85f68-1776520611278"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1776629609295-RIWSQE0U6"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1776629609295-RIWSQE0U6"
+                },
+                "email": {
+                  "S": "nnaemekaokorie620@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "programId": {
+                  "S": "amr-genomics-with-r-(beginner-crash-course)"
+                },
+                "courseName": {
+                  "S": "AMR Genomics with R Program (Beginner crash course)"
+                },
+                "studentName": {
+                  "S": "Okorie Nnaemeka"
+                },
+                "submittedAt": {
+                  "S": "2026-04-19T20:13:29.295Z"
+                },
+                "organization": {
+                  "S": "Ebonyi State University Abakaliki Ebonyi State"
+                },
+                "certificateId": {
+                  "S": "CERT-1775639874946-DXG1KC1IB"
+                },
+                "organizationId": {
+                  "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1776631222328-THTRFYO7V"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1776631222328-THTRFYO7V"
+                },
+                "email": {
+                  "S": "bayogbenro10@gmail.com"
+                },
+                "impact": {
+                  "S": "With more practical training,  I hope to start implementing the knowledge acquired."
+                },
+                "programId": {
+                  "S": "amr-genomics-with-r-(beginner-crash-course)"
+                },
+                "courseName": {
+                  "S": "AMR Genomics with R Program (Beginner crash course)"
+                },
+                "studentName": {
+                  "S": "Michael Adebayo Adegbenro"
+                },
+                "submittedAt": {
+                  "S": "2026-04-19T20:40:22.328Z"
+                },
+                "testimonial": {
+                  "S": "None"
+                },
+                "organization": {
+                  "S": "University of Medical Sciences, Ondo State,  Nigeria."
+                },
+                "certificateId": {
+                  "S": "CERT-1775639874946-DXG1KC1IB"
+                },
+                "organizationId": {
+                  "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1776631433044-KZA82ORXR"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1776631433044-KZA82ORXR"
+                },
+                "email": {
+                  "S": "bayogbenro10@gmail.com"
+                },
+                "impact": {
+                  "S": "I hope to implement the knowledge acquired in my research endeavours."
+                },
+                "programId": {
+                  "S": "amr-genomics-with-r-(beginner-crash-course)"
+                },
+                "courseName": {
+                  "S": "AMR Genomics with R Program (Beginner crash course)"
+                },
+                "studentName": {
+                  "S": "Michael Adebayo Adegbenro"
+                },
+                "submittedAt": {
+                  "S": "2026-04-19T20:43:53.044Z"
+                },
+                "testimonial": {
+                  "S": "None"
+                },
+                "organization": {
+                  "S": "University of Medical Sciences, Ondo State,  Nigeria"
+                },
+                "certificateId": {
+                  "S": "CERT-1775639874946-DXG1KC1IB"
+                },
+                "organizationId": {
+                  "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1776631864189-QKJGS3MUP"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1776631864189-QKJGS3MUP"
+                },
+                "email": {
+                  "S": "bayogbenro10@gmail.com"
+                },
+                "impact": {
+                  "S": "Not too pleasant due to poor network connectivity"
+                },
+                "programId": {
+                  "S": "amr-genomics-with-r-(beginner-crash-course)"
+                },
+                "courseName": {
+                  "S": "AMR Genomics with R Program (Beginner crash course)"
+                },
+                "studentName": {
+                  "S": "Michael Adebayo Adegbenro"
+                },
+                "submittedAt": {
+                  "S": "2026-04-19T20:51:04.190Z"
+                },
+                "organization": {
+                  "S": "University of Medical Sciences,  Ondo State,  Nigeria"
+                },
+                "certificateId": {
+                  "S": "CERT-1775639874946-DXG1KC1IB"
+                },
+                "organizationId": {
+                  "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1776632411159-VKK9I27OY"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1776632411159-VKK9I27OY"
+                },
+                "email": {
+                  "S": "ojolayi9@gmail.com"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "Fundamental of R"
+                },
+                "programId": {
+                  "S": "amr-genomics-with-r-(beginner-crash-course)"
+                },
+                "courseName": {
+                  "S": "AMR Genomics with R Program (Beginner crash course)"
+                },
+                "studentName": {
+                  "S": "Ojo Olayiwola Stephen"
+                },
+                "submittedAt": {
+                  "S": "2026-04-19T21:00:11.159Z"
+                },
+                "organization": {
+                  "S": "University of Ilesa"
+                },
+                "certificateId": {
+                  "S": "CERT-1775639874946-DXG1KC1IB"
+                },
+                "organizationId": {
+                  "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

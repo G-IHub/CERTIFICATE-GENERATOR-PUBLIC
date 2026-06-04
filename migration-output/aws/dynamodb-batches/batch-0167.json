@@ -1,0 +1,1063 @@
+{
+  "RequestItems": {
+    "certifyer-dev-kv": [
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778250342436-TB6H97B3P"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778250342436-TB6H97B3P"
+                },
+                "email": {
+                  "S": "celineanioche5@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It was amazing. \nI learned a whole lot just like a continuation of what I did in my B.Sc"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Course 201"
+                },
+                "studentName": {
+                  "S": "Celine Chidera Anioche"
+                },
+                "submittedAt": {
+                  "S": "2026-05-08T14:25:42.436Z"
+                },
+                "organization": {
+                  "S": "GENOMAC INSTITUTE"
+                },
+                "certificateId": {
+                  "S": "CERT-1773764855164-V2EITDTXI"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778250478633-IKJMP33L3"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778250478633-IKJMP33L3"
+                },
+                "email": {
+                  "S": "ayindefaith194@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "This project open my eyes to a lot of things concerning bio-informatics, driving me to do more research."
+                },
+                "courseName": {
+                  "S": "Genomac Malaria Innovation Competition"
+                },
+                "studentName": {
+                  "S": "AYINDE FAITH OYEYEMI"
+                },
+                "submittedAt": {
+                  "S": "2026-05-08T14:27:58.633Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1777459600139-LZNZHMVFD"
+                },
+                "organizationId": {
+                  "S": "org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778250526041-2XNBRVYXC"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778250526041-2XNBRVYXC"
+                },
+                "email": {
+                  "S": "zainabkalsoom44@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Course 201"
+                },
+                "studentName": {
+                  "S": "Zainab kalsoom"
+                },
+                "submittedAt": {
+                  "S": "2026-05-08T14:28:46.041Z"
+                },
+                "organization": {
+                  "S": "Quaid I Azam University Islamabad"
+                },
+                "certificateId": {
+                  "S": "CERT-1773764855164-V2EITDTXI"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778250609810-WBOG9JSPO"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778250609810-WBOG9JSPO"
+                },
+                "email": {
+                  "S": "zainabkalsoom44@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Course 201"
+                },
+                "studentName": {
+                  "S": "Zainab kalsoom"
+                },
+                "submittedAt": {
+                  "S": "2026-05-08T14:30:09.810Z"
+                },
+                "organization": {
+                  "S": "Quaid I Azam University Islamabad"
+                },
+                "certificateId": {
+                  "S": "CERT-1773764855164-V2EITDTXI"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778250742119-D5XLU6NZR"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778250742119-D5XLU6NZR"
+                },
+                "email": {
+                  "S": "ayindefaith194@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Thie project was really impactful, driving me to study and impacting insightful and equipping knowledge in the area of bio-informatics"
+                },
+                "courseName": {
+                  "S": "Genomac Malaria Innovation Competition"
+                },
+                "studentName": {
+                  "S": "AYINDE FAITH OYEYEMI"
+                },
+                "submittedAt": {
+                  "S": "2026-05-08T14:32:22.119Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1777459600139-LZNZHMVFD"
+                },
+                "organizationId": {
+                  "S": "org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778250998419-VA4PYQVC6"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778250998419-VA4PYQVC6"
+                },
+                "email": {
+                  "S": "ayindefaith194@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "The project was really impactful driving me into studying and knowing more about bio-informatics. It equipped my mindset into contributing my own quota into finding solution to the world problem."
+                },
+                "courseName": {
+                  "S": "Genomac Malaria Innovation Competition"
+                },
+                "studentName": {
+                  "S": "AYINDE FAITH OYEYEMI"
+                },
+                "submittedAt": {
+                  "S": "2026-05-08T14:36:38.419Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1777459600139-LZNZHMVFD"
+                },
+                "organizationId": {
+                  "S": "org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778253890967-LUB790KVP"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778253890967-LUB790KVP"
+                },
+                "email": {
+                  "S": "mayowaogunsusi@gmail.com"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "Impacful training session"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Course 201"
+                },
+                "studentName": {
+                  "S": "Mayowa Ogunsusi"
+                },
+                "submittedAt": {
+                  "S": "2026-05-08T15:24:50.967Z"
+                },
+                "organization": {
+                  "S": "Landmark University"
+                },
+                "certificateId": {
+                  "S": "CERT-1773764855164-V2EITDTXI"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778254059073-1QJ9IFAJX"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778254059073-1QJ9IFAJX"
+                },
+                "email": {
+                  "S": "mayowaogunsusi@gmail.com"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "Impacful training session"
+                },
+                "courseName": {
+                  "S": "MOLECULAR DOCKING AND DRUG DESIGN course"
+                },
+                "studentName": {
+                  "S": "Mayowa Ogunsusi"
+                },
+                "submittedAt": {
+                  "S": "2026-05-08T15:27:39.073Z"
+                },
+                "organization": {
+                  "S": "Landmark University"
+                },
+                "certificateId": {
+                  "S": "CERT-1776244424370-EO2A0CI6T"
+                },
+                "organizationId": {
+                  "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778255175895-IEYIU99AT"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778255175895-IEYIU99AT"
+                },
+                "email": {
+                  "S": "abunabeelandnabeela20@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "This programme really inspired me to delve into molecular diagnosis using latest computational application of Bioinformatics"
+                },
+                "courseName": {
+                  "S": "Genomac Malaria Innovation Competition"
+                },
+                "studentName": {
+                  "S": "Yahaya Babangida Musa"
+                },
+                "submittedAt": {
+                  "S": "2026-05-08T15:46:15.895Z"
+                },
+                "organization": {
+                  "S": "Premier Medicare and specialist Clinic Bauchi"
+                },
+                "certificateId": {
+                  "S": "CERT-1777459600139-LZNZHMVFD"
+                },
+                "organizationId": {
+                  "S": "org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778257555333-M6MK49BM2"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778257555333-M6MK49BM2"
+                },
+                "email": {
+                  "S": "ajeawesome01@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "I had an incredible experience"
+                },
+                "courseName": {
+                  "S": "MedxTech Summit'26"
+                },
+                "studentName": {
+                  "S": "Gabriel Ajewole"
+                },
+                "submittedAt": {
+                  "S": "2026-05-08T16:25:55.333Z"
+                },
+                "organization": {
+                  "S": "Registration Team Lead"
+                },
+                "certificateId": {
+                  "S": "CERT-1778257271777-TX673LPG2"
+                },
+                "organizationId": {
+                  "S": "org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778265984868-O2FL4VMXJ"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778265984868-O2FL4VMXJ"
+                },
+                "email": {
+                  "S": "wahlex4real@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "The writing challenge was really an amazing experience. Thank you, Genomac for the opportunity"
+                },
+                "courseName": {
+                  "S": "Genomac Malaria Innovation Competition"
+                },
+                "studentName": {
+                  "S": "Abdulbaki Alfa-Ibrahim Adio"
+                },
+                "submittedAt": {
+                  "S": "2026-05-08T18:46:24.868Z"
+                },
+                "organization": {
+                  "S": "Usmanu Danfodiyo University, Sokoto"
+                },
+                "certificateId": {
+                  "S": "CERT-1777459600139-LZNZHMVFD"
+                },
+                "organizationId": {
+                  "S": "org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778266404191-KK5F88BLT"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778266404191-KK5F88BLT"
+                },
+                "email": {
+                  "S": "wahlex4real@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "The writing challenge was really an amazing experience. Thank you, Genomac for the opportunity"
+                },
+                "courseName": {
+                  "S": "Genomac Malaria Innovation Competition"
+                },
+                "studentName": {
+                  "S": "Ibrahim Abdulbaki"
+                },
+                "submittedAt": {
+                  "S": "2026-05-08T18:53:24.191Z"
+                },
+                "organization": {
+                  "S": "Usmanu Danfodiyo University, Sokoto"
+                },
+                "certificateId": {
+                  "S": "CERT-1777459600139-LZNZHMVFD"
+                },
+                "organizationId": {
+                  "S": "org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778266572663-AYNQH92S0"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778266572663-AYNQH92S0"
+                },
+                "email": {
+                  "S": "wahlex4real@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "The writing challenge was really an amazing experience. Thank you, Genomac for the opportunity"
+                },
+                "courseName": {
+                  "S": "Genomac Malaria Innovation Competition"
+                },
+                "studentName": {
+                  "S": "Abdulbaki Alfa-Ibrahim Adio"
+                },
+                "submittedAt": {
+                  "S": "2026-05-08T18:56:12.663Z"
+                },
+                "organization": {
+                  "S": "Usmanu Danfodiyo University, Sokoto"
+                },
+                "certificateId": {
+                  "S": "CERT-1777459600139-LZNZHMVFD"
+                },
+                "organizationId": {
+                  "S": "org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778281501473-MYAHT392M"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778281501473-MYAHT392M"
+                },
+                "email": {
+                  "S": "salihusulaiman100@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "I learnt how to access plasmoDB"
+                },
+                "courseName": {
+                  "S": "Genomac Malaria Innovation Competition"
+                },
+                "studentName": {
+                  "S": "Salihu Sulaiman"
+                },
+                "submittedAt": {
+                  "S": "2026-05-08T23:05:01.473Z"
+                },
+                "organization": {
+                  "S": "Toro"
+                },
+                "certificateId": {
+                  "S": "CERT-1777459600139-LZNZHMVFD"
+                },
+                "organizationId": {
+                  "S": "org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778290103075-BKA6K8284"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778290103075-BKA6K8284"
+                },
+                "email": {
+                  "S": "ojopromise733@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "This program didn’t just add to what I know—it changed how I think. It made me more intentional about my personal growth and helped me develop interest in entrepreneurship."
+                },
+                "courseName": {
+                  "S": "OGBOMOSO TECH AND ENTREPRENEURSHIP IGNITE 2026"
+                },
+                "studentName": {
+                  "S": "Promise Racheal Ojo"
+                },
+                "submittedAt": {
+                  "S": "2026-05-09T01:28:23.075Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola Univesity of Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1777946792503-DASFMON71"
+                },
+                "organizationId": {
+                  "S": "org-f54289d3-e416-4ffb-9d59-02176ae8cf36-1777500413705"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778290179144-FPYHKZKWQ"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778290179144-FPYHKZKWQ"
+                },
+                "email": {
+                  "S": "ojopromise733@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "This program didn’t just add to what I know—it changed how I think. It made me more intentional about my personal growth and helped me develop interest in entrepreneurship."
+                },
+                "courseName": {
+                  "S": "OGBOMOSO TECH AND ENTREPRENEURSHIP IGNITE 2026"
+                },
+                "studentName": {
+                  "S": "PROMISE RACHEAL OJO"
+                },
+                "submittedAt": {
+                  "S": "2026-05-09T01:29:39.144Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola Univesity of Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1777946792503-DASFMON71"
+                },
+                "organizationId": {
+                  "S": "org-f54289d3-e416-4ffb-9d59-02176ae8cf36-1777500413705"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778306057602-I4801EAW8"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778306057602-I4801EAW8"
+                },
+                "email": {
+                  "S": "msaadnauman64@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "courseName": {
+                  "S": "Train-the-Trainers Initiative in Genomics & Bioinformatics"
+                },
+                "studentName": {
+                  "S": "Jovaria"
+                },
+                "submittedAt": {
+                  "S": "2026-05-09T05:54:17.602Z"
+                },
+                "organization": {
+                  "S": "University of Agriculture Faisalabad"
+                },
+                "certificateId": {
+                  "S": "CERT-1773157668544-F5P2KMI6M"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778325409633-IV8I64K7B"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778325409633-IV8I64K7B"
+                },
+                "email": {
+                  "S": "wskatema1@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Studying the fundamentals of Bioinformatics had a significant impact on my understanding of modern biological and medical sciences because since I am a forensic scientist so it helps me combines biology, computer science, mathematics, and statistics information to analyze and interpret biological data. This field plays an important role in my research, healthcare, and biotechnology.\nIt also helps me understand complex biological information such as DNA, RNA, and protein sequences in depth. It also allows me to the analysis of large datasets generated through genomic and molecular studies.\nThe study of bioinformatics enables me to identify genes, study protein structures, and understand gene expression and mutations, which are essential in genetics and molecular biology as well as forensic investigations."
+                },
+                "courseName": {
+                  "S": "Bioinformatics Course 201"
+                },
+                "studentName": {
+                  "S": "Wendy S Katema"
+                },
+                "submittedAt": {
+                  "S": "2026-05-09T11:16:49.633Z"
+                },
+                "organization": {
+                  "S": "Zimbabwe Future Foundation International (ZFFI)"
+                },
+                "certificateId": {
+                  "S": "CERT-1773764855164-V2EITDTXI"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778352769540-ZX0DA4CAK"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778352769540-ZX0DA4CAK"
+                },
+                "email": {
+                  "S": "olasconet101@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "I gain experience about digital networking and data analysis"
+                },
+                "courseName": {
+                  "S": "OGBOMOSO TECH AND ENTREPRENEURSHIP IGNITE 2026"
+                },
+                "studentName": {
+                  "S": "Aderoju Muhammed Olalekan"
+                },
+                "submittedAt": {
+                  "S": "2026-05-09T18:52:49.540Z"
+                },
+                "organization": {
+                  "S": "Lautech"
+                },
+                "certificateId": {
+                  "S": "CERT-1777946792503-DASFMON71"
+                },
+                "organizationId": {
+                  "S": "org-f54289d3-e416-4ffb-9d59-02176ae8cf36-1777500413705"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778357234647-76ZIQRNUD"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778357234647-76ZIQRNUD"
+                },
+                "email": {
+                  "S": "hammedmuyideen883@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "So educative program"
+                },
+                "courseName": {
+                  "S": "OGBOMOSO TECH AND ENTREPRENEURSHIP IGNITE 2026"
+                },
+                "studentName": {
+                  "S": "Hammed Muyideen"
+                },
+                "submittedAt": {
+                  "S": "2026-05-09T20:07:14.647Z"
+                },
+                "organization": {
+                  "S": "LAUTECH"
+                },
+                "certificateId": {
+                  "S": "CERT-1777946792503-DASFMON71"
+                },
+                "organizationId": {
+                  "S": "org-f54289d3-e416-4ffb-9d59-02176ae8cf36-1777500413705"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778445651708-MVZ64Q3MD"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778445651708-MVZ64Q3MD"
+                },
+                "email": {
+                  "S": "oladipupoo446@gmail.com"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Course 201"
+                },
+                "studentName": {
+                  "S": "Oladipupo Olaoluwa"
+                },
+                "submittedAt": {
+                  "S": "2026-05-10T20:40:51.708Z"
+                },
+                "organization": {
+                  "S": "Giit"
+                },
+                "certificateId": {
+                  "S": "CERT-1773764855164-V2EITDTXI"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778501999465-C7G9TI2S5"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778501999465-C7G9TI2S5"
+                },
+                "email": {
+                  "S": "salawuajibola7@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Very educative and informative"
+                },
+                "courseName": {
+                  "S": "Exploring Free Tools for Computational Drug Discovery"
+                },
+                "studentName": {
+                  "S": "Ajibola Salawu"
+                },
+                "submittedAt": {
+                  "S": "2026-05-11T12:19:59.465Z"
+                },
+                "organization": {
+                  "S": "University of Ibadan"
+                },
+                "certificateId": {
+                  "S": "CERT-1777292132240-K3IVERPYR"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778502385551-W010CRS70"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778502385551-W010CRS70"
+                },
+                "email": {
+                  "S": "tiamiyumariam2004@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "courseName": {
+                  "S": "MOLECULAR DOCKING AND DRUG DESIGN course"
+                },
+                "studentName": {
+                  "S": "Tiamiyu Mariam Bidemi"
+                },
+                "submittedAt": {
+                  "S": "2026-05-11T12:26:25.551Z"
+                },
+                "organization": {
+                  "S": "GENOMACS LABS"
+                },
+                "certificateId": {
+                  "S": "CERT-1776244424370-EO2A0CI6T"
+                },
+                "organizationId": {
+                  "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778507609530-SG7KHAOA8"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778507609530-SG7KHAOA8"
+                },
+                "email": {
+                  "S": "tiamiyumariam2004@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "The course improved my understanding of bioinformatics tools, molecular docking, and computer-aided drug design technique."
+                },
+                "courseName": {
+                  "S": "MOLECULAR DOCKING AND DRUG DESIGN course"
+                },
+                "studentName": {
+                  "S": "Tiamiyu Mariam Bidemi"
+                },
+                "submittedAt": {
+                  "S": "2026-05-11T13:53:29.530Z"
+                },
+                "organization": {
+                  "S": "GENOMAC LABS"
+                },
+                "certificateId": {
+                  "S": "CERT-1776244424370-EO2A0CI6T"
+                },
+                "organizationId": {
+                  "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778508414672-J9QTLUC9V"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778508414672-J9QTLUC9V"
+                },
+                "email": {
+                  "S": "tiamiyumariam2004@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "The course improved my understanding of bioinformatics tools, molecular docking, and computer-aided drug design techniques."
+                },
+                "courseName": {
+                  "S": "MOLECULAR DOCKING AND DRUG DESIGN course"
+                },
+                "studentName": {
+                  "S": "Tiamiyu Mariam Bidemi"
+                },
+                "submittedAt": {
+                  "S": "2026-05-11T14:06:54.672Z"
+                },
+                "organization": {
+                  "S": "GENOMAC LABS"
+                },
+                "certificateId": {
+                  "S": "CERT-1776244424370-EO2A0CI6T"
+                },
+                "organizationId": {
+                  "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

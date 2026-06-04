@@ -1,0 +1,1168 @@
+{
+  "RequestItems": {
+    "certifyer-dev-kv": [
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447:TEST-1773947033673-T6A0VPM3Y"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773947033673-T6A0VPM3Y"
+                },
+                "email": {
+                  "S": "malaykayyz684@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "I'll highly recommend this hands on workflow to all the researchers and students who wants to get into Microbial profiling through metagenomics or Bioinformatics in general."
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "Malayka Ayyaz"
+                },
+                "submittedAt": {
+                  "S": "2026-03-19T19:03:53.673Z"
+                },
+                "organization": {
+                  "S": "Government College University Lahore"
+                },
+                "certificateId": {
+                  "S": "CERT-1773749898351-VL1FSHIUN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447:TEST-1773949706898-BMF7F4D6E"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773949706898-BMF7F4D6E"
+                },
+                "email": {
+                  "S": "naumanaziz86@gmail.com"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "Wonderful experience of learning"
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "Nauman Aziz"
+                },
+                "submittedAt": {
+                  "S": "2026-03-19T19:48:26.898Z"
+                },
+                "organization": {
+                  "S": "University of veterinary and animal sciences,Lahore, Pakistan"
+                },
+                "certificateId": {
+                  "S": "CERT-1773749898351-VL1FSHIUN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447:TEST-1773950621190-U7LQJHRP3"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773950621190-U7LQJHRP3"
+                },
+                "email": {
+                  "S": "iamjosyfaluyi@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It was nice \nI really loved it"
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "Josephine Faluyi"
+                },
+                "submittedAt": {
+                  "S": "2026-03-19T20:03:41.190Z"
+                },
+                "organization": {
+                  "S": "Lagos State University Ojo"
+                },
+                "certificateId": {
+                  "S": "CERT-1773749898351-VL1FSHIUN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447:TEST-1773965922273-P4G99MZUB"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773965922273-P4G99MZUB"
+                },
+                "email": {
+                  "S": "alishiffi1408@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Satisfactory"
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "Alishba Sadia"
+                },
+                "submittedAt": {
+                  "S": "2026-03-20T00:18:42.273Z"
+                },
+                "organization": {
+                  "S": "University of the Punjab"
+                },
+                "certificateId": {
+                  "S": "CERT-1773749898351-VL1FSHIUN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447:TEST-1773984805901-SNXBKQZM7"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773984805901-SNXBKQZM7"
+                },
+                "email": {
+                  "S": "okellomoses1989@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "The hand-on Metagenomics workflow session was a great learning podium where i learny so many skills and interactive atmosphere where science was made beleiveable and pratical . They skills i learnt can be tarnsfered to bench work and impacting more knowledge to other collegues at the institute."
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "Okello Moses Odongo"
+                },
+                "submittedAt": {
+                  "S": "2026-03-20T05:33:25.901Z"
+                },
+                "testimonial": {
+                  "S": "I wish we can have more physical engagements, this would creat more atmosphere for better learning for others"
+                },
+                "organization": {
+                  "S": "Uganda Virus Research Institute"
+                },
+                "certificateId": {
+                  "S": "CERT-1773749898351-VL1FSHIUN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447:TEST-1773992334753-6VI2GTHJI"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773992334753-6VI2GTHJI"
+                },
+                "email": {
+                  "S": "jaspreet.kaur.bi28@iilm.edu"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It  was an insightful session. I really gaind lot of knowledge and techniques which I can future apply in my project and research worl"
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "Jaspreet kaur Sukheeja"
+                },
+                "submittedAt": {
+                  "S": "2026-03-20T07:38:54.753Z"
+                },
+                "organization": {
+                  "S": "IILM university greater Noida"
+                },
+                "certificateId": {
+                  "S": "CERT-1773749898351-VL1FSHIUN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447:TEST-1774011458172-GBM706TO3"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774011458172-GBM706TO3"
+                },
+                "email": {
+                  "S": "kanaktripathi06@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Experienced many things it helps me in my further research work"
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "Kanak Tripathi"
+                },
+                "submittedAt": {
+                  "S": "2026-03-20T12:57:38.172Z"
+                },
+                "organization": {
+                  "S": "Banaras Hindu University"
+                },
+                "certificateId": {
+                  "S": "CERT-1773749898351-VL1FSHIUN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447:TEST-1774011547035-14IC0ZHLP"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774011547035-14IC0ZHLP"
+                },
+                "email": {
+                  "S": "kanaktripathi06@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Experienced many things which will help full for my further research work"
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "Kanak Tripathi"
+                },
+                "submittedAt": {
+                  "S": "2026-03-20T12:59:07.035Z"
+                },
+                "organization": {
+                  "S": "Banaras Hindu University"
+                },
+                "certificateId": {
+                  "S": "CERT-1773749898351-VL1FSHIUN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447:TEST-1774022611118-9GVJEJAEN"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774022611118-9GVJEJAEN"
+                },
+                "email": {
+                  "S": "rabiahaider9991@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It was good."
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "RABIA HAIDER"
+                },
+                "submittedAt": {
+                  "S": "2026-03-20T16:03:31.118Z"
+                },
+                "organization": {
+                  "S": "University of the Punjab"
+                },
+                "certificateId": {
+                  "S": "CERT-1773749898351-VL1FSHIUN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447:TEST-1774032382929-7XX0TDV2D"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774032382929-7XX0TDV2D"
+                },
+                "email": {
+                  "S": "maybinchitalu88@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "This workshop opened my eyes of the great possibilities out there"
+                },
+                "programId": {
+                  "S": "hands-on-bioinformatics-workflow"
+                },
+                "courseName": {
+                  "S": "Hands-on Bioinformatics Workflow"
+                },
+                "studentName": {
+                  "S": "Maybin Chitalu"
+                },
+                "submittedAt": {
+                  "S": "2026-03-20T18:46:22.929Z"
+                },
+                "testimonial": {
+                  "S": "Am lucky I attended this meeting"
+                },
+                "organization": {
+                  "S": "MULUNGUSHI UNIVERSITY"
+                },
+                "certificateId": {
+                  "S": "CERT-1770115107684-LFGTP6FO6"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447:TEST-1774036719033-MBNHHFD7G"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774036719033-MBNHHFD7G"
+                },
+                "email": {
+                  "S": "olacube2001@gmail.com"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "It has enhanced my bioinformatic experience"
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "olayinka olaniyan"
+                },
+                "submittedAt": {
+                  "S": "2026-03-20T19:58:39.033Z"
+                },
+                "organization": {
+                  "S": "Adeleke Univeristy"
+                },
+                "certificateId": {
+                  "S": "CERT-1773749898351-VL1FSHIUN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447:TEST-1774076270652-1CRGL5VTT"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774076270652-1CRGL5VTT"
+                },
+                "email": {
+                  "S": "owusutabri25@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "this program has open my eyes on contamination control"
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "Eugene Osei Owusu"
+                },
+                "submittedAt": {
+                  "S": "2026-03-21T06:57:50.652Z"
+                },
+                "organization": {
+                  "S": "Food and Drugs Authority"
+                },
+                "certificateId": {
+                  "S": "CERT-1773749898351-VL1FSHIUN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447:TEST-1774116153875-FAYZZ19N6"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774116153875-FAYZZ19N6"
+                },
+                "email": {
+                  "S": "chinaezeokoye@gmail.com"
+                },
+                "title": {
+                  "S": "Mrs"
+                },
+                "impact": {
+                  "S": "It helped to give me more clarity in my microbial research"
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "Chinaeze Therese Okoye"
+                },
+                "submittedAt": {
+                  "S": "2026-03-21T18:02:33.875Z"
+                },
+                "organization": {
+                  "S": "University of Port Harcourt"
+                },
+                "certificateId": {
+                  "S": "CERT-1773749898351-VL1FSHIUN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447:TEST-1774117063802-HDHOTIM0T"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774117063802-HDHOTIM0T"
+                },
+                "email": {
+                  "S": "chinaezeokoye@gmail.com"
+                },
+                "title": {
+                  "S": "Mrs"
+                },
+                "impact": {
+                  "S": "It helped me with clarity in my microbial research"
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "CHINAEZE THERESE OKOYE"
+                },
+                "submittedAt": {
+                  "S": "2026-03-21T18:17:43.802Z"
+                },
+                "organization": {
+                  "S": "University of Port Harcourt"
+                },
+                "certificateId": {
+                  "S": "CERT-1773749898351-VL1FSHIUN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447:TEST-1774117137359-APH2HSOCE"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774117137359-APH2HSOCE"
+                },
+                "email": {
+                  "S": "chinaezeokoye@gmail.com"
+                },
+                "title": {
+                  "S": "Mrs"
+                },
+                "impact": {
+                  "S": "It helped me with clarity in my microbial research"
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "Chinaeze Therese Okoye"
+                },
+                "submittedAt": {
+                  "S": "2026-03-21T18:18:57.359Z"
+                },
+                "organization": {
+                  "S": "University of Port Harcourt"
+                },
+                "certificateId": {
+                  "S": "CERT-1773749898351-VL1FSHIUN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447:TEST-1774117379817-48LB426VV"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774117379817-48LB426VV"
+                },
+                "email": {
+                  "S": "chinaezeokoye@gmail.com"
+                },
+                "title": {
+                  "S": "Mrs"
+                },
+                "impact": {
+                  "S": "It helped me with clarity in my microbial research"
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "Chinaeze Therese Okoye"
+                },
+                "submittedAt": {
+                  "S": "2026-03-21T18:22:59.817Z"
+                },
+                "organization": {
+                  "S": "University of Port Harcourt"
+                },
+                "certificateId": {
+                  "S": "CERT-1773749898351-VL1FSHIUN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447:TEST-1774133763184-H93FMS6TM"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774133763184-H93FMS6TM"
+                },
+                "email": {
+                  "S": "Abksadiq1992@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "To understand genomics"
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "Abubakar muhammad"
+                },
+                "submittedAt": {
+                  "S": "2026-03-21T22:56:03.184Z"
+                },
+                "testimonial": {
+                  "S": "To build my carrier"
+                },
+                "organization": {
+                  "S": "Federal university Dutse."
+                },
+                "certificateId": {
+                  "S": "CERT-1773749898351-VL1FSHIUN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447:TEST-1774180192767-HG6Y79G73"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774180192767-HG6Y79G73"
+                },
+                "email": {
+                  "S": "allahsrahma.adekola@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "The Hands-on Metagenomics Workflow for Microbial Profiling program strengthened my practical skills in modern microbial analysis and data interpretation, and I strongly encourage fellow lecturers to participate as it enhances both teaching quality and research capability in today’s genomics-driven scientific landscape."
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "Rahmat Adekola Eniola"
+                },
+                "submittedAt": {
+                  "S": "2026-03-22T11:49:52.767Z"
+                },
+                "organization": {
+                  "S": "University of Abuja"
+                },
+                "certificateId": {
+                  "S": "CERT-1773749898351-VL1FSHIUN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447:TEST-1774181291481-58HYND4HF"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774181291481-58HYND4HF"
+                },
+                "email": {
+                  "S": "allahsrahma.adekola@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "The Hands-on Metagenomics Workflow for Microbial Profiling program strengthened my practical skills in modern microbial analysis and data interpretation, and I strongly encourage fellow lecturers to participate as it enhances both teaching quality and research capability in today’s genomics-driven scientific landscape."
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "Rahmat Adekola Eniola"
+                },
+                "submittedAt": {
+                  "S": "2026-03-22T12:08:11.481Z"
+                },
+                "organization": {
+                  "S": "University of Abuja"
+                },
+                "certificateId": {
+                  "S": "CERT-1773749898351-VL1FSHIUN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447:TEST-1774181911522-HCD3Z97TY"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774181911522-HCD3Z97TY"
+                },
+                "email": {
+                  "S": "alan.shaji.0021@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Its very helpful"
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "Alan Shaji"
+                },
+                "submittedAt": {
+                  "S": "2026-03-22T12:18:31.522Z"
+                },
+                "organization": {
+                  "S": "Saveetha University Chennai"
+                },
+                "certificateId": {
+                  "S": "CERT-1773749898351-VL1FSHIUN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447:TEST-1774194129272-WS7L0QGOW"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774194129272-WS7L0QGOW"
+                },
+                "email": {
+                  "S": "gargthashan555@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Very interactive session"
+                },
+                "programId": {
+                  "S": "data-driven-health:-bridging-bioinformatics-and-pharmacology-for-effective-interventions."
+                },
+                "courseName": {
+                  "S": "Data-Driven Health: Bridging Bioinformatics and Pharmacology for Effective Interventions."
+                },
+                "studentName": {
+                  "S": "Thashan Garg"
+                },
+                "submittedAt": {
+                  "S": "2026-03-22T15:42:09.272Z"
+                },
+                "organization": {
+                  "S": "ISF College of Pharmacy, Moga"
+                },
+                "certificateId": {
+                  "S": "CERT-1771337529539-AAGJGCXEY"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447:TEST-1774451607686-A7MPMZ8Q5"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774451607686-A7MPMZ8Q5"
+                },
+                "email": {
+                  "S": "hira.rehan100@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Good"
+                },
+                "programId": {
+                  "S": "hands-on-bioinformatics-workflow"
+                },
+                "courseName": {
+                  "S": "Hands-on Bioinformatics Workflow"
+                },
+                "studentName": {
+                  "S": "Hira Rehan"
+                },
+                "submittedAt": {
+                  "S": "2026-03-25T15:13:27.686Z"
+                },
+                "organization": {
+                  "S": "Sir Syed university of engineering and technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1770115107684-LFGTP6FO6"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447:TEST-1774553071109-QV3Q7TE61"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774553071109-QV3Q7TE61"
+                },
+                "email": {
+                  "S": "maybinchitalu88@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Exception and eye opening"
+                },
+                "programId": {
+                  "S": "hands-on-bioinformatics-workflow"
+                },
+                "courseName": {
+                  "S": "Hands-on Bioinformatics Workflow"
+                },
+                "studentName": {
+                  "S": "MAYBIN CHITALU"
+                },
+                "submittedAt": {
+                  "S": "2026-03-26T19:24:31.109Z"
+                },
+                "testimonial": {
+                  "S": "Wish to attend more meetings like this"
+                },
+                "organization": {
+                  "S": "MULUNGUSHI UNIVERSITY"
+                },
+                "certificateId": {
+                  "S": "CERT-1770115107684-LFGTP6FO6"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447:TEST-1774629757820-J0JVDK9VP"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774629757820-J0JVDK9VP"
+                },
+                "email": {
+                  "S": "itabdul.ana@buk.edu.ng"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "It was a wonderful experience to me being the first time to engage such a webiner. Although being the first timer, with virtually zero experience in bioinformatics, the session was an eye-opener for me on how to venture into genetic world with confidence.\nI really enjoyed the session throughout and the simplistic approach of the presenter while delivering what seemingly to be a complex terrain to people like myself. I got to know more about the differences between the alpha and beta-biodiversities, and how to identify millions of bacteria without need to cell culture."
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "Idris Abdu Tela"
+                },
+                "submittedAt": {
+                  "S": "2026-03-27T16:42:37.820Z"
+                },
+                "organization": {
+                  "S": "Bayero University Kano"
+                },
+                "certificateId": {
+                  "S": "CERT-1773749898351-VL1FSHIUN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447:TEST-1774631811715-P68K451TV"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774631811715-P68K451TV"
+                },
+                "email": {
+                  "S": "hadizaliyuu@gmail.com"
+                },
+                "title": {
+                  "S": "Mrs"
+                },
+                "impact": {
+                  "S": "Awesome"
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "HADIZA ALIYU"
+                },
+                "submittedAt": {
+                  "S": "2026-03-27T17:16:51.715Z"
+                },
+                "organization": {
+                  "S": "NBRDA"
+                },
+                "certificateId": {
+                  "S": "CERT-1773749898351-VL1FSHIUN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

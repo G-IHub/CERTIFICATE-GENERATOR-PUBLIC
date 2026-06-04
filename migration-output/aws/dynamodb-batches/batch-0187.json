@@ -1,0 +1,1072 @@
+{
+  "RequestItems": {
+    "certifyer-dev-kv": [
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1779740875005-RVKWI29GU"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1779740875005-RVKWI29GU"
+                },
+                "email": {
+                  "S": "gloriagbolahan@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It was indeed beyond creativity"
+                },
+                "courseName": {
+                  "S": "Attendee"
+                },
+                "studentName": {
+                  "S": "Gbolahan Gloria Oluwatemilorun"
+                },
+                "submittedAt": {
+                  "S": "2026-05-25T20:27:55.005Z"
+                },
+                "organization": {
+                  "S": "Lautech"
+                },
+                "certificateId": {
+                  "S": "CERT-1779278119374-P7TXZSKEZ"
+                },
+                "organizationId": {
+                  "S": "org-6973f446-a68e-4018-b1b6-f40020c0bc81-1779097877874"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1779741226019-AU61BJYTO"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1779741226019-AU61BJYTO"
+                },
+                "email": {
+                  "S": "oladipupohameedat93@gmail"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "I’m really happy and grateful that I attended the conference. It was a great experience for me because I was able to learn a lot of new things that will help me in my skill and career journey. The conference opened my mind to think more deeply about my future and how I can improve myself. I also gained valuable knowledge, inspiration, and motivation from the speakers and activities. Overall, it was impactful and I’m glad I had the opportunity to be part of it."
+                },
+                "courseName": {
+                  "S": "BEYOND THE DEGREE Conference"
+                },
+                "studentName": {
+                  "S": "Oladipupo Hameedah olayinka"
+                },
+                "submittedAt": {
+                  "S": "2026-05-25T20:33:46.019Z"
+                },
+                "organization": {
+                  "S": "LAUTECH"
+                },
+                "certificateId": {
+                  "S": "CERT-1779713227349-AIHX12TIL"
+                },
+                "organizationId": {
+                  "S": "org-6ed593e0-0620-4f50-9e62-a94e9cf7bbd3-1772532196103"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1779741565057-JTD56LX25"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1779741565057-JTD56LX25"
+                },
+                "email": {
+                  "S": "dolafimihan8@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "The Beyond the Degree program was a rewarding experience. Volunteering gave me hands-on event management practice and a great sense of fulfillment from helping my peers gain valuable career insights"
+                },
+                "courseName": {
+                  "S": "BEYOND THE DEGREE Conference"
+                },
+                "studentName": {
+                  "S": "Damilola Olafimihan Al-Ameen"
+                },
+                "submittedAt": {
+                  "S": "2026-05-25T20:39:25.057Z"
+                },
+                "organization": {
+                  "S": "Lautech"
+                },
+                "certificateId": {
+                  "S": "CERT-1779713227349-AIHX12TIL"
+                },
+                "organizationId": {
+                  "S": "org-6ed593e0-0620-4f50-9e62-a94e9cf7bbd3-1772532196103"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1779741928220-U2IZP94EN"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1779741928220-U2IZP94EN"
+                },
+                "email": {
+                  "S": "loveolatunji21@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Joined the volunteer media team to create content, my main impact has been helping translate our work into content people actually engage with. I’ve contributed by creating visuals, editing short videos. \nIt was a great privilege to work with scientists Victor 🙏"
+                },
+                "courseName": {
+                  "S": "BEYOND THE DEGREE Conference"
+                },
+                "studentName": {
+                  "S": "Olatunji Love"
+                },
+                "submittedAt": {
+                  "S": "2026-05-25T20:45:28.220Z"
+                },
+                "organization": {
+                  "S": "God's Favorite 🥺🥰"
+                },
+                "certificateId": {
+                  "S": "CERT-1779713227349-AIHX12TIL"
+                },
+                "organizationId": {
+                  "S": "org-6ed593e0-0620-4f50-9e62-a94e9cf7bbd3-1772532196103"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1779741943748-IKNWO67A7"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1779741943748-IKNWO67A7"
+                },
+                "email": {
+                  "S": "victoriajolaoye@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "The Beyond the Degree program was a masterclass in community building. Volunteering allowed me to network with like-minded individuals, sharpen my communication skills, and play a direct role in creating a successful, impactful event for the LAUTECH community"
+                },
+                "courseName": {
+                  "S": "BEYOND THE DEGREE Conference"
+                },
+                "studentName": {
+                  "S": "Olaoye Victoria jejelola"
+                },
+                "submittedAt": {
+                  "S": "2026-05-25T20:45:43.748Z"
+                },
+                "organization": {
+                  "S": "LAUTECH"
+                },
+                "certificateId": {
+                  "S": "CERT-1779713227349-AIHX12TIL"
+                },
+                "organizationId": {
+                  "S": "org-6ed593e0-0620-4f50-9e62-a94e9cf7bbd3-1772532196103"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1779742986499-VS194YFJK"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1779742986499-VS194YFJK"
+                },
+                "email": {
+                  "S": "loveolatunji21@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Since joining the volunteer media team, my main impact has been helping translate our work into content people actually engage with. I’ve contributed by creating visuals, editing short videos, \nIt was a great privilege to work with Scientists Victor 🙏"
+                },
+                "courseName": {
+                  "S": "BEYOND THE DEGREE Conference"
+                },
+                "studentName": {
+                  "S": "Olatunji Love"
+                },
+                "submittedAt": {
+                  "S": "2026-05-25T21:03:06.499Z"
+                },
+                "organization": {
+                  "S": "Lautech"
+                },
+                "certificateId": {
+                  "S": "CERT-1779713227349-AIHX12TIL"
+                },
+                "organizationId": {
+                  "S": "org-6ed593e0-0620-4f50-9e62-a94e9cf7bbd3-1772532196103"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1779743312144-3X88C3YX4"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1779743312144-3X88C3YX4"
+                },
+                "email": {
+                  "S": "loveolatunji21@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Since joining the volunteer media team, my main impact has been helping translate our work into content people actually engage with. I’ve contributed by creating visuals, editing short videos. \nIt's was a privilege to work with scientists Victor🙏"
+                },
+                "courseName": {
+                  "S": "BEYOND THE DEGREE Conference"
+                },
+                "studentName": {
+                  "S": "Olatunji Love"
+                },
+                "submittedAt": {
+                  "S": "2026-05-25T21:08:32.144Z"
+                },
+                "organization": {
+                  "S": "Lautech"
+                },
+                "certificateId": {
+                  "S": "CERT-1779713227349-AIHX12TIL"
+                },
+                "organizationId": {
+                  "S": "org-6ed593e0-0620-4f50-9e62-a94e9cf7bbd3-1772532196103"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1779743419123-S8OIBHTO8"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1779743419123-S8OIBHTO8"
+                },
+                "email": {
+                  "S": "loveolatunji21@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Since joining the volunteer media team, my main impact has been helping translate our work into content people actually engage with. I’ve contributed by creating visuals, editing short videos. \nIt's was a great privilege to work with scientists Victor🙏"
+                },
+                "courseName": {
+                  "S": "BEYOND THE DEGREE Conference"
+                },
+                "studentName": {
+                  "S": "Olatunji Love"
+                },
+                "submittedAt": {
+                  "S": "2026-05-25T21:10:19.123Z"
+                },
+                "organization": {
+                  "S": "Lautech"
+                },
+                "certificateId": {
+                  "S": "CERT-1779713227349-AIHX12TIL"
+                },
+                "organizationId": {
+                  "S": "org-6ed593e0-0620-4f50-9e62-a94e9cf7bbd3-1772532196103"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1779823902592-MXZJQUH7V"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1779823902592-MXZJQUH7V"
+                },
+                "email": {
+                  "S": "olayinkatemiloluwa2008@gmail.com"
+                },
+                "impact": {
+                  "S": "The conference was so helpful and impactfull\nIf it were to hold again,I will definitely attend it"
+                },
+                "courseName": {
+                  "S": "BEYOND THE DEGREE Conference"
+                },
+                "studentName": {
+                  "S": "Olayinka Temiloluwa Grace"
+                },
+                "submittedAt": {
+                  "S": "2026-05-26T19:31:42.592Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1779713227349-AIHX12TIL"
+                },
+                "organizationId": {
+                  "S": "org-6ed593e0-0620-4f50-9e62-a94e9cf7bbd3-1772532196103"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780092089503-7RWJJX1HM"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780092089503-7RWJJX1HM"
+                },
+                "email": {
+                  "S": "ahmadujoy69@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It was a very impactful event"
+                },
+                "courseName": {
+                  "S": "BEYOND THE DEGREE Conference"
+                },
+                "studentName": {
+                  "S": "ahmadu joy"
+                },
+                "submittedAt": {
+                  "S": "2026-05-29T22:01:29.503Z"
+                },
+                "organization": {
+                  "S": "LAUTECH"
+                },
+                "certificateId": {
+                  "S": "CERT-1779719825719-00XIHDUZE"
+                },
+                "organizationId": {
+                  "S": "org-6ed593e0-0620-4f50-9e62-a94e9cf7bbd3-1772532196103"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780092459604-B1JQQD0D7"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780092459604-B1JQQD0D7"
+                },
+                "email": {
+                  "S": "akinpeluminafisat55@gmail.com"
+                },
+                "impact": {
+                  "S": "The event is so interesting and helpful"
+                },
+                "courseName": {
+                  "S": "BEYOND THE DEGREE Conference"
+                },
+                "studentName": {
+                  "S": "Akinpelu Nafisat Opeyemi"
+                },
+                "submittedAt": {
+                  "S": "2026-05-29T22:07:39.604Z"
+                },
+                "organization": {
+                  "S": "Lautech"
+                },
+                "certificateId": {
+                  "S": "CERT-1779719825719-00XIHDUZE"
+                },
+                "organizationId": {
+                  "S": "org-6ed593e0-0620-4f50-9e62-a94e9cf7bbd3-1772532196103"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780093017554-WW68340K4"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780093017554-WW68340K4"
+                },
+                "email": {
+                  "S": "olayinkatemiloluwa2008@gmail.com"
+                },
+                "impact": {
+                  "S": "It was great"
+                },
+                "courseName": {
+                  "S": "BEYOND THE DEGREE Conference"
+                },
+                "studentName": {
+                  "S": "Olayinka Temiloluwa Grace"
+                },
+                "submittedAt": {
+                  "S": "2026-05-29T22:16:57.554Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1779719825719-00XIHDUZE"
+                },
+                "organizationId": {
+                  "S": "org-6ed593e0-0620-4f50-9e62-a94e9cf7bbd3-1772532196103"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780094381070-H9Z9A7K2T"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780094381070-H9Z9A7K2T"
+                },
+                "email": {
+                  "S": "ibitoyeoluwatayo5@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Beyond the Degree conference was a very impactful and insightful event. It was really an eye opener for me."
+                },
+                "courseName": {
+                  "S": "BEYOND THE DEGREE Conference"
+                },
+                "studentName": {
+                  "S": "Ibitoye Oluwatayo Goodness"
+                },
+                "submittedAt": {
+                  "S": "2026-05-29T22:39:41.070Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1779719825719-00XIHDUZE"
+                },
+                "organizationId": {
+                  "S": "org-6ed593e0-0620-4f50-9e62-a94e9cf7bbd3-1772532196103"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780094506704-YOE2F6ESF"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780094506704-YOE2F6ESF"
+                },
+                "email": {
+                  "S": "ibitoyeoluwatayo5@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "It was a really inspiring and insightful event."
+                },
+                "courseName": {
+                  "S": "BEYOND THE DEGREE Conference"
+                },
+                "studentName": {
+                  "S": "Ibitoye Oluwatayo Goodness"
+                },
+                "submittedAt": {
+                  "S": "2026-05-29T22:41:46.704Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1779719825719-00XIHDUZE"
+                },
+                "organizationId": {
+                  "S": "org-6ed593e0-0620-4f50-9e62-a94e9cf7bbd3-1772532196103"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780124188227-HUQSU7O9S"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780124188227-HUQSU7O9S"
+                },
+                "email": {
+                  "S": "isojaelizabeth@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Beyond the Degree — My Experience\n\nAttending Beyond the Degree was truly an eye-opener for me. Here are the key things I took away:\nBalancing CGPA with Business\nYou don't have to choose between your grades and building something. With the right mindset and structure, both can thrive side by side.\nManaging Your Time\nTime is your most valuable asset as a student. Learning how to plan your day and protect your hours is what separates those who just get by from those who get ahead.\nKnowing What You Want\nBefore you can build anything meaningful, you need clarity. When you know your direction, every decision becomes easier.\nBuilding Valuable Relationships\nNot just networking — real connections. The people you meet and invest in genuinely will open doors that no certificate ever could.\nWhy Skills and Certification Outperform\nA degree shows you can learn. Skills show you can do. Certifications give you proof. In today's world, proof of ability matters more than the paper on your wall.\nFinding Leverage\nDiscover what you do better than most and lean into it. That is your edge.\nLearn to Solve Problems\nPeople pay for solutions. If you can walk into a room and fix something others can't, you will never be without opportunity.\nGet Visible as Quickly as Possible\nDon't wait until you feel ready. Share your work, show up, and let people know what you're building. Visibility creates opportunities."
+                },
+                "courseName": {
+                  "S": "BEYOND THE DEGREE Conference"
+                },
+                "studentName": {
+                  "S": "Elizabeth Wuraola Isoja"
+                },
+                "submittedAt": {
+                  "S": "2026-05-30T06:56:28.227Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology, Ogbomoso, Oyo state"
+                },
+                "certificateId": {
+                  "S": "CERT-1779719825719-00XIHDUZE"
+                },
+                "organizationId": {
+                  "S": "org-6ed593e0-0620-4f50-9e62-a94e9cf7bbd3-1772532196103"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780128892651-FSD5XTHKK"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780128892651-FSD5XTHKK"
+                },
+                "email": {
+                  "S": "ajagbesamuel2024@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "This programme review my hidden skills that I have hoping to start for a long period of time. And I able to meet my colleague that are in the same field of skills"
+                },
+                "courseName": {
+                  "S": "BEYOND THE DEGREE Conference"
+                },
+                "studentName": {
+                  "S": "Ajagbe Samuel Gbotemi"
+                },
+                "submittedAt": {
+                  "S": "2026-05-30T08:14:52.651Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1779719825719-00XIHDUZE"
+                },
+                "organizationId": {
+                  "S": "org-6ed593e0-0620-4f50-9e62-a94e9cf7bbd3-1772532196103"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780131289212-6DQXW0AH7"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780131289212-6DQXW0AH7"
+                },
+                "email": {
+                  "S": "froofficial787@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It was really an impactful event that shaped my mindset into becoming a better person while still making money."
+                },
+                "courseName": {
+                  "S": "BEYOND THE DEGREE Conference"
+                },
+                "studentName": {
+                  "S": "OJO FAVOUR RUTH"
+                },
+                "submittedAt": {
+                  "S": "2026-05-30T08:54:49.212Z"
+                },
+                "organization": {
+                  "S": "LAUTECH"
+                },
+                "certificateId": {
+                  "S": "CERT-1779719825719-00XIHDUZE"
+                },
+                "organizationId": {
+                  "S": "org-6ed593e0-0620-4f50-9e62-a94e9cf7bbd3-1772532196103"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780138717924-MHOPJTDPD"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780138717924-MHOPJTDPD"
+                },
+                "email": {
+                  "S": "amehdivine420@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "I learnt I can be a business owner and still manage to ace my grades, by balancing it through knowing what I want, time management, building valuable relationship"
+                },
+                "courseName": {
+                  "S": "BEYOND THE DEGREE Conference"
+                },
+                "studentName": {
+                  "S": "Divine Ameh Okhonfoh"
+                },
+                "submittedAt": {
+                  "S": "2026-05-30T10:58:37.924Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1779719825719-00XIHDUZE"
+                },
+                "organizationId": {
+                  "S": "org-6ed593e0-0620-4f50-9e62-a94e9cf7bbd3-1772532196103"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780150787087-MKDE1YL7G"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780150787087-MKDE1YL7G"
+                },
+                "email": {
+                  "S": "inioluwaglory2007@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Know what you want"
+                },
+                "courseName": {
+                  "S": "BEYOND THE DEGREE Conference"
+                },
+                "studentName": {
+                  "S": "Akintayo Inioluwa Glory"
+                },
+                "submittedAt": {
+                  "S": "2026-05-30T14:19:47.087Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology Ogbomoso, Oyo state"
+                },
+                "certificateId": {
+                  "S": "CERT-1779719825719-00XIHDUZE"
+                },
+                "organizationId": {
+                  "S": "org-6ed593e0-0620-4f50-9e62-a94e9cf7bbd3-1772532196103"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780157685013-APKDQ1E9M"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780157685013-APKDQ1E9M"
+                },
+                "email": {
+                  "S": "inioluwaglory2007@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Know what you want"
+                },
+                "courseName": {
+                  "S": "BEYOND THE DEGREE Conference"
+                },
+                "studentName": {
+                  "S": "Akintayo Inioluwa Glory"
+                },
+                "submittedAt": {
+                  "S": "2026-05-30T16:14:45.013Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology Ogbomoso, Oyo state"
+                },
+                "certificateId": {
+                  "S": "CERT-1779719825719-00XIHDUZE"
+                },
+                "organizationId": {
+                  "S": "org-6ed593e0-0620-4f50-9e62-a94e9cf7bbd3-1772532196103"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780165996001-IZVURC2B3"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780165996001-IZVURC2B3"
+                },
+                "email": {
+                  "S": "samuelelijah569@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "I really encounter a deep understanding about mind opening, my mind was opened to a lot of things I've been ignorant of"
+                },
+                "courseName": {
+                  "S": "BEYOND THE DEGREE Conference"
+                },
+                "studentName": {
+                  "S": "Samuel Elijah Ifeoluwa"
+                },
+                "submittedAt": {
+                  "S": "2026-05-30T18:33:16.001Z"
+                },
+                "organization": {
+                  "S": "Osun State University, Osogbo"
+                },
+                "certificateId": {
+                  "S": "CERT-1779719825719-00XIHDUZE"
+                },
+                "organizationId": {
+                  "S": "org-6ed593e0-0620-4f50-9e62-a94e9cf7bbd3-1772532196103"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780170793773-0UO7T2TG1"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780170793773-0UO7T2TG1"
+                },
+                "email": {
+                  "S": "oyeeliayo@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "The conference gave me first-hand information most people will never disclose to you.\nIt was worth everything and I am glad I didn't miss it."
+                },
+                "courseName": {
+                  "S": "BEYOND THE DEGREE Conference"
+                },
+                "studentName": {
+                  "S": "Oyelami Elizabeth Ayomide"
+                },
+                "submittedAt": {
+                  "S": "2026-05-30T19:53:13.773Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1779719825719-00XIHDUZE"
+                },
+                "organizationId": {
+                  "S": "org-6ed593e0-0620-4f50-9e62-a94e9cf7bbd3-1772532196103"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780176097639-HLJW540N5"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780176097639-HLJW540N5"
+                },
+                "email": {
+                  "S": "oyeeliayo@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "The conference made me learn some first-hand information most people will never disclose to you out there for free!\nIt was worth everything and I am glad I attended."
+                },
+                "courseName": {
+                  "S": "BEYOND THE DEGREE Conference"
+                },
+                "studentName": {
+                  "S": "Oyelami Elizabeth Ayomide"
+                },
+                "submittedAt": {
+                  "S": "2026-05-30T21:21:37.639Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1779719825719-00XIHDUZE"
+                },
+                "organizationId": {
+                  "S": "org-6ed593e0-0620-4f50-9e62-a94e9cf7bbd3-1772532196103"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780250515254-KKKM1BRWV"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780250515254-KKKM1BRWV"
+                },
+                "email": {
+                  "S": "adeewuraadekunle10@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "The program was impactful as I learnt some tips on how to upscale a business, it stood out for me. Although I would suggest that future programs should not take that long. It might get people bored. I almost left before the end of the program. This is just my honest feedback though. But overall it was amazing. Thank you"
+                },
+                "courseName": {
+                  "S": "BEYOND THE DEGREE Conference"
+                },
+                "studentName": {
+                  "S": "DEBORAH ADEEWURA ADEKUNLE"
+                },
+                "submittedAt": {
+                  "S": "2026-05-31T18:01:55.254Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1779719825719-00XIHDUZE"
+                },
+                "organizationId": {
+                  "S": "org-6ed593e0-0620-4f50-9e62-a94e9cf7bbd3-1772532196103"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780260399121-DSRO6VZDA"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780260399121-DSRO6VZDA"
+                },
+                "email": {
+                  "S": "isojaelizabeth@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Beyond the Degree — My Experience\nAttending Beyond the Degree was truly an eye-opener for me. Here are the key things I took away:\nBalancing CGPA with Business\nYou don't have to choose between your grades and building something. With the right mindset and structure, both can thrive side by side.\nManaging Your Time\nTime is your most valuable asset as a student. Learning how to plan your day and protect your hours is what separates those who just get by from those who get ahead.\nKnowing What You Want\nBefore you can build anything meaningful, you need clarity. When you know your direction, every decision becomes easier.\nBuilding Valuable Relationships\nNot just networking — real connections. The people you meet and invest in genuinely will open doors that no certificate ever could.\nWhy Skills and Certification Outperform\nA degree shows you can learn. Skills show you can do. Certifications give you proof. In today's world, proof of ability matters more than the paper on your wall.\nFinding Leverage\nDiscover what you do better than most and lean into it. That is your edge.\nLearn to Solve Problems\nPeople pay for solutions. If you can walk into a room and fix something others can't, you will never be without opportunity.\nGet Visible as Quickly as Possible\nDon't wait until you feel ready. Share your work, show up, and let people know what you're building. Visibility creates opportunities."
+                },
+                "courseName": {
+                  "S": "BEYOND THE DEGREE Conference"
+                },
+                "studentName": {
+                  "S": "Elizabeth Wuraola Isoja"
+                },
+                "submittedAt": {
+                  "S": "2026-05-31T20:46:39.121Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology, Ogbomoso, Oyo state"
+                },
+                "certificateId": {
+                  "S": "CERT-1779719825719-00XIHDUZE"
+                },
+                "organizationId": {
+                  "S": "org-6ed593e0-0620-4f50-9e62-a94e9cf7bbd3-1772532196103"
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

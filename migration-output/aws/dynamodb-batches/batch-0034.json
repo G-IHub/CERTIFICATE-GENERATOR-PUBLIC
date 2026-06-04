@@ -1,0 +1,1162 @@
+{
+  "RequestItems": {
+    "certifyer-dev-kv": [
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226:TEST-1775739643446-4XVNSP0XU"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775739643446-4XVNSP0XU"
+                },
+                "email": {
+                  "S": "awodokunomobolanle@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "A great experience"
+                },
+                "programId": {
+                  "S": "amr-genomics-with-r-(beginner-crash-course)"
+                },
+                "courseName": {
+                  "S": "AMR Genomics with R Program (Beginner crash course)"
+                },
+                "studentName": {
+                  "S": "Awodokun Olanrewaju Omobolanle"
+                },
+                "submittedAt": {
+                  "S": "2026-04-09T13:00:43.446Z"
+                },
+                "organization": {
+                  "S": "Ekiti State University"
+                },
+                "certificateId": {
+                  "S": "CERT-1775639874946-DXG1KC1IB"
+                },
+                "organizationId": {
+                  "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226:TEST-1775740089765-FUARKA6WQ"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775740089765-FUARKA6WQ"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "Ggg"
+                },
+                "programId": {
+                  "S": "amr-genomics-with-r-(beginner-crash-course)"
+                },
+                "courseName": {
+                  "S": "AMR Genomics with R Program (Beginner crash course)"
+                },
+                "studentName": {
+                  "S": "Blessing"
+                },
+                "submittedAt": {
+                  "S": "2026-04-09T13:08:09.765Z"
+                },
+                "organization": {
+                  "S": "Ennovate Lab"
+                },
+                "certificateId": {
+                  "S": "CERT-1775639874946-DXG1KC1IB"
+                },
+                "organizationId": {
+                  "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226:TEST-1775740179257-2B65KUFPO"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775740179257-2B65KUFPO"
+                },
+                "email": {
+                  "S": "kujabim@uni-greifswald.de"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Good start and beginner friendly course. lecturers know the course material in hand."
+                },
+                "programId": {
+                  "S": "amr-genomics-with-r-(beginner-crash-course)"
+                },
+                "courseName": {
+                  "S": "AMR Genomics with R Program (Beginner crash course)"
+                },
+                "studentName": {
+                  "S": "Mariama A Kujabi"
+                },
+                "submittedAt": {
+                  "S": "2026-04-09T13:09:39.257Z"
+                },
+                "organization": {
+                  "S": "University of Greifswald"
+                },
+                "certificateId": {
+                  "S": "CERT-1775639874946-DXG1KC1IB"
+                },
+                "organizationId": {
+                  "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226:TEST-1775740225769-KQJCUUE2D"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775740225769-KQJCUUE2D"
+                },
+                "email": {
+                  "S": "faridahabdulmajeed70@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "This is very enlightening"
+                },
+                "programId": {
+                  "S": "amr-genomics-with-r-(beginner-crash-course)"
+                },
+                "courseName": {
+                  "S": "AMR Genomics with R Program (Beginner crash course)"
+                },
+                "studentName": {
+                  "S": "Abdulmajeed Faridah Adekunbi"
+                },
+                "submittedAt": {
+                  "S": "2026-04-09T13:10:25.769Z"
+                },
+                "organization": {
+                  "S": "University of Ilorin"
+                },
+                "certificateId": {
+                  "S": "CERT-1775639874946-DXG1KC1IB"
+                },
+                "organizationId": {
+                  "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226:TEST-1775740292345-2HUVZSOKE"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775740292345-2HUVZSOKE"
+                },
+                "email": {
+                  "S": "chinaezeokoye@gmail.com"
+                },
+                "title": {
+                  "S": "Mrs"
+                },
+                "impact": {
+                  "S": "Good"
+                },
+                "programId": {
+                  "S": "amr-genomics-with-r-(beginner-crash-course)"
+                },
+                "courseName": {
+                  "S": "AMR Genomics with R Program (Beginner crash course)"
+                },
+                "studentName": {
+                  "S": "Chinaeze Therese Okoye"
+                },
+                "submittedAt": {
+                  "S": "2026-04-09T13:11:32.345Z"
+                },
+                "organization": {
+                  "S": "University of Port Harcourt"
+                },
+                "certificateId": {
+                  "S": "CERT-1775639874946-DXG1KC1IB"
+                },
+                "organizationId": {
+                  "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226:TEST-1775741003327-F1X7Y9HKT"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775741003327-F1X7Y9HKT"
+                },
+                "email": {
+                  "S": "tomisinmaryo@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Nil"
+                },
+                "programId": {
+                  "S": "amr-genomics-with-r-(beginner-crash-course)"
+                },
+                "courseName": {
+                  "S": "AMR Genomics with R Program (Beginner crash course)"
+                },
+                "studentName": {
+                  "S": "Olatunde Tomisin Mary"
+                },
+                "submittedAt": {
+                  "S": "2026-04-09T13:23:23.327Z"
+                },
+                "organization": {
+                  "S": "Nil"
+                },
+                "certificateId": {
+                  "S": "CERT-1775639874946-DXG1KC1IB"
+                },
+                "organizationId": {
+                  "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226:TEST-1775741210691-TIBZCE21H"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775741210691-TIBZCE21H"
+                },
+                "email": {
+                  "S": "peczela@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It has."
+                },
+                "programId": {
+                  "S": "amr-genomics-with-r-(beginner-crash-course)"
+                },
+                "courseName": {
+                  "S": "AMR Genomics with R Program (Beginner crash course)"
+                },
+                "studentName": {
+                  "S": "Edebiri Peculiar Imadeyo"
+                },
+                "submittedAt": {
+                  "S": "2026-04-09T13:26:50.691Z"
+                },
+                "testimonial": {
+                  "S": "The instructor was really fast, my only hope is the recordings which am grateful for."
+                },
+                "organization": {
+                  "S": "Rivers State University, Port-Harcourt, Rivers State, Nigeria."
+                },
+                "certificateId": {
+                  "S": "CERT-1775639874946-DXG1KC1IB"
+                },
+                "organizationId": {
+                  "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226:TEST-1775741288503-PPTT3GXWK"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775741288503-PPTT3GXWK"
+                },
+                "email": {
+                  "S": "talhashahidk91@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It was a decent experience!"
+                },
+                "programId": {
+                  "S": "amr-genomics-with-r-(beginner-crash-course)"
+                },
+                "courseName": {
+                  "S": "AMR Genomics with R Program (Beginner crash course)"
+                },
+                "studentName": {
+                  "S": "Fatima Shahid"
+                },
+                "submittedAt": {
+                  "S": "2026-04-09T13:28:08.503Z"
+                },
+                "organization": {
+                  "S": "Government college university faislabad"
+                },
+                "certificateId": {
+                  "S": "CERT-1775639874946-DXG1KC1IB"
+                },
+                "organizationId": {
+                  "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226:TEST-1775741808072-Q7L3WMJ26"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775741808072-Q7L3WMJ26"
+                },
+                "email": {
+                  "S": "onifademayowa27@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "The experience was lovely and the course was taught with all simplicity"
+                },
+                "programId": {
+                  "S": "amr-genomics-with-r-(beginner-crash-course)"
+                },
+                "courseName": {
+                  "S": "AMR Genomics with R Program (Beginner crash course)"
+                },
+                "studentName": {
+                  "S": "Onifade Christianah Ayooye"
+                },
+                "submittedAt": {
+                  "S": "2026-04-09T13:36:48.072Z"
+                },
+                "testimonial": {
+                  "S": "Nothing really"
+                },
+                "organization": {
+                  "S": "University of Ibadan"
+                },
+                "certificateId": {
+                  "S": "CERT-1775639874946-DXG1KC1IB"
+                },
+                "organizationId": {
+                  "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226:TEST-1775742360067-YJLIIUTXX"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775742360067-YJLIIUTXX"
+                },
+                "email": {
+                  "S": "abdulazizdahiru59@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "The program is very impactful as it shows how to use R and RStudio in a simplest clear ways"
+                },
+                "programId": {
+                  "S": "amr-genomics-with-r-(beginner-crash-course)"
+                },
+                "courseName": {
+                  "S": "AMR Genomics with R Program (Beginner crash course)"
+                },
+                "studentName": {
+                  "S": "DAHIRU ABDULAZIZ"
+                },
+                "submittedAt": {
+                  "S": "2026-04-09T13:46:00.067Z"
+                },
+                "testimonial": {
+                  "S": "It's very impactful workshop"
+                },
+                "organization": {
+                  "S": "Kano State Polytechnic, School of Technology Kano"
+                },
+                "certificateId": {
+                  "S": "CERT-1775639874946-DXG1KC1IB"
+                },
+                "organizationId": {
+                  "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226:TEST-1775742511003-8R4T5LOAK"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775742511003-8R4T5LOAK"
+                },
+                "email": {
+                  "S": "adetoyin73@yahoo.com"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "Very impactful and simplified, recommended to others"
+                },
+                "programId": {
+                  "S": "amr-genomics-with-r-(beginner-crash-course)"
+                },
+                "courseName": {
+                  "S": "AMR Genomics with R Program (Beginner crash course)"
+                },
+                "studentName": {
+                  "S": "Shakirat Ajenifujah-Solebo"
+                },
+                "submittedAt": {
+                  "S": "2026-04-09T13:48:31.003Z"
+                },
+                "organization": {
+                  "S": "National Biotechnology Development Agency"
+                },
+                "certificateId": {
+                  "S": "CERT-1775639874946-DXG1KC1IB"
+                },
+                "organizationId": {
+                  "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226:TEST-1775742587611-2DGKN8WWO"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775742587611-2DGKN8WWO"
+                },
+                "email": {
+                  "S": "romokemi1@gmail.com"
+                },
+                "title": {
+                  "S": "Mrs"
+                },
+                "impact": {
+                  "S": "The training is impactful"
+                },
+                "programId": {
+                  "S": "amr-genomics-with-r-(beginner-crash-course)"
+                },
+                "courseName": {
+                  "S": "AMR Genomics with R Program (Beginner crash course)"
+                },
+                "studentName": {
+                  "S": "Izekor Tawakalitu Romoke"
+                },
+                "submittedAt": {
+                  "S": "2026-04-09T13:49:47.611Z"
+                },
+                "organization": {
+                  "S": "NIMR"
+                },
+                "certificateId": {
+                  "S": "CERT-1775639874946-DXG1KC1IB"
+                },
+                "organizationId": {
+                  "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226:TEST-1775743026305-0PE5ZTFMS"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775743026305-0PE5ZTFMS"
+                },
+                "email": {
+                  "S": "romokemi1@gmail.com"
+                },
+                "title": {
+                  "S": "Mrs"
+                },
+                "impact": {
+                  "S": "Impactful"
+                },
+                "programId": {
+                  "S": "amr-genomics-with-r-(beginner-crash-course)"
+                },
+                "courseName": {
+                  "S": "AMR Genomics with R Program (Beginner crash course)"
+                },
+                "studentName": {
+                  "S": "Izekor Tawakalitu Romoke"
+                },
+                "submittedAt": {
+                  "S": "2026-04-09T13:57:06.305Z"
+                },
+                "organization": {
+                  "S": "NIMR"
+                },
+                "certificateId": {
+                  "S": "CERT-1775639874946-DXG1KC1IB"
+                },
+                "organizationId": {
+                  "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226:TEST-1775748771970-6FV8LQZ02"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775748771970-6FV8LQZ02"
+                },
+                "email": {
+                  "S": "karatibuw@nm-aist.ac.tz"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Great"
+                },
+                "programId": {
+                  "S": "amr-genomics-with-r-(beginner-crash-course)"
+                },
+                "courseName": {
+                  "S": "AMR Genomics with R Program (Beginner crash course)"
+                },
+                "studentName": {
+                  "S": "William Richard Karatibu"
+                },
+                "submittedAt": {
+                  "S": "2026-04-09T15:32:51.970Z"
+                },
+                "testimonial": {
+                  "S": "Good"
+                },
+                "organization": {
+                  "S": "Tanzania Agricultural Research Institute"
+                },
+                "certificateId": {
+                  "S": "CERT-1775639874946-DXG1KC1IB"
+                },
+                "organizationId": {
+                  "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226:TEST-1775762232726-TYZC7OI75"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775762232726-TYZC7OI75"
+                },
+                "title": {
+                  "S": "Mrs"
+                },
+                "impact": {
+                  "S": "Nice experience"
+                },
+                "programId": {
+                  "S": "amr-genomics-with-r-(beginner-crash-course)"
+                },
+                "courseName": {
+                  "S": "AMR Genomics with R Program (Beginner crash course)"
+                },
+                "studentName": {
+                  "S": "Malasowe Bridget Ogheneovo"
+                },
+                "submittedAt": {
+                  "S": "2026-04-09T19:17:12.726Z"
+                },
+                "organization": {
+                  "S": "University of Delta, Agbor"
+                },
+                "certificateId": {
+                  "S": "CERT-1775639874946-DXG1KC1IB"
+                },
+                "organizationId": {
+                  "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226:TEST-1775769182782-QH0NCQK5U"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775769182782-QH0NCQK5U"
+                },
+                "email": {
+                  "S": "ahmadbahjah2004@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "It was quite enlightening."
+                },
+                "programId": {
+                  "S": "amr-genomics-with-r-(beginner-crash-course)"
+                },
+                "courseName": {
+                  "S": "AMR Genomics with R Program (Beginner crash course)"
+                },
+                "studentName": {
+                  "S": "Ahmed Bahjatu Saleh"
+                },
+                "submittedAt": {
+                  "S": "2026-04-09T21:13:02.782Z"
+                },
+                "organization": {
+                  "S": "Northwest University Kano, Nigeria."
+                },
+                "certificateId": {
+                  "S": "CERT-1775639874946-DXG1KC1IB"
+                },
+                "organizationId": {
+                  "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226:TEST-1775815056906-92NXWNRP3"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775815056906-92NXWNRP3"
+                },
+                "email": {
+                  "S": "zonia.bashir129@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It was a great experience and woukd recommend to others"
+                },
+                "programId": {
+                  "S": "amr-genomics-with-r-(beginner-crash-course)"
+                },
+                "courseName": {
+                  "S": "AMR Genomics with R Program (Beginner crash course)"
+                },
+                "studentName": {
+                  "S": "Zonia Bashir"
+                },
+                "submittedAt": {
+                  "S": "2026-04-10T09:57:36.906Z"
+                },
+                "organization": {
+                  "S": "University of the Punjab, Lahore"
+                },
+                "certificateId": {
+                  "S": "CERT-1775639874946-DXG1KC1IB"
+                },
+                "organizationId": {
+                  "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226:TEST-1775824519769-D5ILOFZ16"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775824519769-D5ILOFZ16"
+                },
+                "email": {
+                  "S": "cezeobiora@unilag.edu.ng"
+                },
+                "title": {
+                  "S": "Prof"
+                },
+                "impact": {
+                  "S": "I still need more training on this. I couldn't join fully at this time"
+                },
+                "programId": {
+                  "S": "amr-genomics-with-r-(beginner-crash-course)"
+                },
+                "courseName": {
+                  "S": "AMR Genomics with R Program (Beginner crash course)"
+                },
+                "studentName": {
+                  "S": "Ezeobiora Chijioke Emmanuel"
+                },
+                "submittedAt": {
+                  "S": "2026-04-10T12:35:19.769Z"
+                },
+                "testimonial": {
+                  "S": "Let me know when next this programme will come up"
+                },
+                "organization": {
+                  "S": "University of Lagos"
+                },
+                "certificateId": {
+                  "S": "CERT-1775639874946-DXG1KC1IB"
+                },
+                "organizationId": {
+                  "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226:TEST-1775991166827-EKRVOT6Z2"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775991166827-EKRVOT6Z2"
+                },
+                "email": {
+                  "S": "oforlucia25@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "This course has impacted in my journey into Bioinformatics. I am able to understand how to use the functions in R studio."
+                },
+                "programId": {
+                  "S": "amr-genomics-with-r-(beginner-crash-course)"
+                },
+                "courseName": {
+                  "S": "AMR Genomics with R Program (Beginner crash course)"
+                },
+                "studentName": {
+                  "S": "Ofor Lucia Chinonye"
+                },
+                "submittedAt": {
+                  "S": "2026-04-12T10:52:46.827Z"
+                },
+                "organization": {
+                  "S": "Genomac Institute"
+                },
+                "certificateId": {
+                  "S": "CERT-1775639874946-DXG1KC1IB"
+                },
+                "organizationId": {
+                  "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226:TEST-1776037044018-8TMA9MPIC"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1776037044018-8TMA9MPIC"
+                },
+                "email": {
+                  "S": "kimpolayiwola@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It was very concise, help me remember and learn new things about R"
+                },
+                "programId": {
+                  "S": "amr-genomics-with-r-(beginner-crash-course)"
+                },
+                "courseName": {
+                  "S": "AMR Genomics with R Program (Beginner crash course)"
+                },
+                "studentName": {
+                  "S": "Olamiposi Kimberly Taiwo Olayiwola"
+                },
+                "submittedAt": {
+                  "S": "2026-04-12T23:37:24.018Z"
+                },
+                "organization": {
+                  "S": "Afe babalola university, Ado Ekiti"
+                },
+                "certificateId": {
+                  "S": "CERT-1775639874946-DXG1KC1IB"
+                },
+                "organizationId": {
+                  "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226:TEST-1776038363241-1VD4073RS"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1776038363241-1VD4073RS"
+                },
+                "email": {
+                  "S": "oforlucia25@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "As a beginner pivoting my career into bioinformatics, It has provided a foundational knowledge."
+                },
+                "programId": {
+                  "S": "amr-genomics-with-r-(beginner-crash-course)"
+                },
+                "courseName": {
+                  "S": "AMR Genomics with R Program (Beginner crash course)"
+                },
+                "studentName": {
+                  "S": "Ofor Lucia Chinonye"
+                },
+                "submittedAt": {
+                  "S": "2026-04-12T23:59:23.241Z"
+                },
+                "organization": {
+                  "S": "Genomac Institute"
+                },
+                "certificateId": {
+                  "S": "CERT-1775639874946-DXG1KC1IB"
+                },
+                "organizationId": {
+                  "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226:TEST-1776100268719-F0OIUGZWF"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1776100268719-F0OIUGZWF"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "The knowledge gained has significantly improved my preliminary knowledge about R program"
+                },
+                "programId": {
+                  "S": "amr-genomics-with-r-(beginner-crash-course)"
+                },
+                "courseName": {
+                  "S": "AMR Genomics with R Program (Beginner crash course)"
+                },
+                "studentName": {
+                  "S": "Elizabeth Oluwatoyin Abe"
+                },
+                "submittedAt": {
+                  "S": "2026-04-13T17:11:08.719Z"
+                },
+                "organization": {
+                  "S": "University of Ibadan Nigeria"
+                },
+                "certificateId": {
+                  "S": "CERT-1775639874946-DXG1KC1IB"
+                },
+                "organizationId": {
+                  "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226:TEST-1776246271742-57JFZF54M"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1776246271742-57JFZF54M"
+                },
+                "email": {
+                  "S": "kingsejim@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Highly Educative and proficiency"
+                },
+                "programId": {
+                  "S": "molecular-docking-and-drug-design-course"
+                },
+                "courseName": {
+                  "S": "MOLECULAR DOCKING AND DRUG DESIGN course"
+                },
+                "studentName": {
+                  "S": "Ejim Kingsley Obiora"
+                },
+                "submittedAt": {
+                  "S": "2026-04-15T09:44:31.742Z"
+                },
+                "organization": {
+                  "S": "Federal polytechnic Bida Niger state"
+                },
+                "certificateId": {
+                  "S": "CERT-1776244424370-EO2A0CI6T"
+                },
+                "organizationId": {
+                  "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226:TEST-1776246690090-7DZOQGQ6A"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1776246690090-7DZOQGQ6A"
+                },
+                "email": {
+                  "S": "PreciousIk15@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It has given me broader knowledge on a process of computational drug design which will be invaluable to my future endavours"
+                },
+                "programId": {
+                  "S": "molecular-docking-and-drug-design-course"
+                },
+                "courseName": {
+                  "S": "MOLECULAR DOCKING AND DRUG DESIGN course"
+                },
+                "studentName": {
+                  "S": "Precious Ikechukwu"
+                },
+                "submittedAt": {
+                  "S": "2026-04-15T09:51:30.090Z"
+                },
+                "organization": {
+                  "S": "Genomac Institute"
+                },
+                "certificateId": {
+                  "S": "CERT-1776244424370-EO2A0CI6T"
+                },
+                "organizationId": {
+                  "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226:TEST-1776246724022-4EXVXPAFC"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1776246724022-4EXVXPAFC"
+                },
+                "email": {
+                  "S": "mungullemay@gmail.com"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "It was insightful."
+                },
+                "programId": {
+                  "S": "molecular-docking-and-drug-design-course"
+                },
+                "courseName": {
+                  "S": "MOLECULAR DOCKING AND DRUG DESIGN course"
+                },
+                "studentName": {
+                  "S": "May Chao Mungulle"
+                },
+                "submittedAt": {
+                  "S": "2026-04-15T09:52:04.022Z"
+                },
+                "organization": {
+                  "S": "Mount Kenya University"
+                },
+                "certificateId": {
+                  "S": "CERT-1776244424370-EO2A0CI6T"
+                },
+                "organizationId": {
+                  "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

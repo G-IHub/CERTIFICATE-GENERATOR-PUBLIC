@@ -1,0 +1,1381 @@
+{
+  "RequestItems": {
+    "certifyer-dev-kv": [
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1777045986741-1v2170nj9"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1777045986741-1v2170nj9"
+                },
+                "date": {
+                  "S": "2026-04-24"
+                },
+                "blog_id": {
+                  "S": "1777037425887-tcqcd70os"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "https://www.certifyer.online/#/blog/1777037425887-tcqcd70os"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-04-24T15:53:06.741Z"
+                },
+                "blog_title": {
+                  "S": "The 5-Step Framework To Turn Your Idea Into A Training People Actually Pay For."
+                },
+                "session_id": {
+                  "S": "1777045983372-r4tdd5bg0"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Mobile Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "NULL": true
+                },
+                "scroll_depth": {
+                  "NULL": true
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1777117621655-91ixoqt0q"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1777117621655-91ixoqt0q"
+                },
+                "date": {
+                  "S": "2026-04-25"
+                },
+                "blog_id": {
+                  "S": "1777037425887-tcqcd70os"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "https://www.certifyer.online/#/blog/1777037425887-tcqcd70os"
+                },
+                "referrer": {
+                  "S": "https://www.certifyer.online/"
+                },
+                "timestamp": {
+                  "S": "2026-04-25T11:47:01.655Z"
+                },
+                "blog_title": {
+                  "S": "The 5-Step Framework To Turn Your Idea Into A Training People Actually Pay For."
+                },
+                "session_id": {
+                  "S": "1777117621464-it8lo2wsg"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "N": "11795"
+                },
+                "scroll_depth": {
+                  "N": "100"
+                },
+                "referrer_type": {
+                  "S": "internal"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1777291950522-emmos0w77"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1777291950522-emmos0w77"
+                },
+                "date": {
+                  "S": "2026-04-27"
+                },
+                "blog_id": {
+                  "S": "1777037425887-tcqcd70os"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "https://www.certifyer.online/#/blog/1777037425887-tcqcd70os"
+                },
+                "referrer": {
+                  "S": "https://www.linkedin.com/"
+                },
+                "timestamp": {
+                  "S": "2026-04-27T12:12:30.522Z"
+                },
+                "blog_title": {
+                  "S": "The 5-Step Framework To Turn Your Idea Into A Training People Actually Pay For."
+                },
+                "session_id": {
+                  "S": "1777291950953-9mstkt1ak"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "NULL": true
+                },
+                "scroll_depth": {
+                  "NULL": true
+                },
+                "referrer_type": {
+                  "S": "social"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1777300368934-e8wrdypt7"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1777300368934-e8wrdypt7"
+                },
+                "date": {
+                  "S": "2026-04-27"
+                },
+                "blog_id": {
+                  "S": "1777037425887-tcqcd70os"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "https://www.certifyer.online/#/blog/1777037425887-tcqcd70os"
+                },
+                "referrer": {
+                  "S": "https://www.linkedin.com/"
+                },
+                "timestamp": {
+                  "S": "2026-04-27T14:32:48.934Z"
+                },
+                "blog_title": {
+                  "S": "The 5-Step Framework To Turn Your Idea Into A Training People Actually Pay For."
+                },
+                "session_id": {
+                  "S": "1777291950953-9mstkt1ak"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "N": "4"
+                },
+                "scroll_depth": {
+                  "N": "0"
+                },
+                "referrer_type": {
+                  "S": "social"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1777993277530-3ysmb5zqb"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1777993277530-3ysmb5zqb"
+                },
+                "date": {
+                  "S": "2026-05-05"
+                },
+                "blog_id": {
+                  "S": "1777037425887-tcqcd70os"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "https://www.certifyer.online/#/blog/1777037425887-tcqcd70os"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-05-05T15:01:17.530Z"
+                },
+                "blog_title": {
+                  "S": "The 5-Step Framework To Turn Your Idea Into A Training People Actually Pay For."
+                },
+                "session_id": {
+                  "S": "1777993277284-7odsiis1n"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "NULL": true
+                },
+                "scroll_depth": {
+                  "NULL": true
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1778076424528-3dg1gn6a4"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1778076424528-3dg1gn6a4"
+                },
+                "date": {
+                  "S": "2026-05-06"
+                },
+                "blog_id": {
+                  "S": "1777037425887-tcqcd70os"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "https://www.certifyer.online/#/blog/1777037425887-tcqcd70os"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-05-06T14:07:04.528Z"
+                },
+                "blog_title": {
+                  "S": "The 5-Step Framework To Turn Your Idea Into A Training People Actually Pay For."
+                },
+                "session_id": {
+                  "S": "1778076422622-7uxepir7z"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "NULL": true
+                },
+                "scroll_depth": {
+                  "NULL": true
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1778078267148-ma2hiu489"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1778078267148-ma2hiu489"
+                },
+                "date": {
+                  "S": "2026-05-06"
+                },
+                "blog_id": {
+                  "S": "1776775994824-437y206wb"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "http://localhost:3000/#/blog/1776775994824-437y206wb"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-05-06T14:37:47.148Z"
+                },
+                "blog_title": {
+                  "S": "10 Proven Secrets to Running a Successful Training Program (From 0 Sales to Sold-Out Classes)"
+                },
+                "session_id": {
+                  "S": "1778078265414-bsnca7w8u"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "N": "29"
+                },
+                "scroll_depth": {
+                  "N": "0"
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1778078295750-t0qwzwfzc"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1778078295750-t0qwzwfzc"
+                },
+                "date": {
+                  "S": "2026-05-06"
+                },
+                "blog_id": {
+                  "S": "1776775994824-437y206wb"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "http://localhost:3000/#/blog/1776775994824-437y206wb"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-05-06T14:38:15.750Z"
+                },
+                "blog_title": {
+                  "S": "10 Proven Secrets to Running a Successful Training Program (From 0 Sales to Sold-Out Classes)"
+                },
+                "session_id": {
+                  "S": "1778078265414-bsnca7w8u"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "NULL": true
+                },
+                "scroll_depth": {
+                  "NULL": true
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1778078296872-roewuafuq"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1778078296872-roewuafuq"
+                },
+                "date": {
+                  "S": "2026-05-06"
+                },
+                "blog_id": {
+                  "S": "1776775994824-437y206wb"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "http://localhost:3000/#/blog/1776775994824-437y206wb"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-05-06T14:38:16.872Z"
+                },
+                "blog_title": {
+                  "S": "10 Proven Secrets to Running a Successful Training Program (From 0 Sales to Sold-Out Classes)"
+                },
+                "session_id": {
+                  "S": "1778078265414-bsnca7w8u"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "NULL": true
+                },
+                "scroll_depth": {
+                  "NULL": true
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1778078299627-ofpa7ugqc"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1778078299627-ofpa7ugqc"
+                },
+                "date": {
+                  "S": "2026-05-06"
+                },
+                "blog_id": {
+                  "S": "1776775994824-437y206wb"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "http://localhost:3000/#/blog/1776775994824-437y206wb"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-05-06T14:38:19.627Z"
+                },
+                "blog_title": {
+                  "S": "10 Proven Secrets to Running a Successful Training Program (From 0 Sales to Sold-Out Classes)"
+                },
+                "session_id": {
+                  "S": "1778078265414-bsnca7w8u"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "NULL": true
+                },
+                "scroll_depth": {
+                  "NULL": true
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1778078300711-gsw8k8l42"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1778078300711-gsw8k8l42"
+                },
+                "date": {
+                  "S": "2026-05-06"
+                },
+                "blog_id": {
+                  "S": "1776775994824-437y206wb"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "http://localhost:3000/#/blog/1776775994824-437y206wb"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-05-06T14:38:20.711Z"
+                },
+                "blog_title": {
+                  "S": "10 Proven Secrets to Running a Successful Training Program (From 0 Sales to Sold-Out Classes)"
+                },
+                "session_id": {
+                  "S": "1778078265414-bsnca7w8u"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "NULL": true
+                },
+                "scroll_depth": {
+                  "NULL": true
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1778078303691-rnjdhmsg0"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1778078303691-rnjdhmsg0"
+                },
+                "date": {
+                  "S": "2026-05-06"
+                },
+                "blog_id": {
+                  "S": "1776775994824-437y206wb"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "http://localhost:3000/#/blog/1776775994824-437y206wb"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-05-06T14:38:23.691Z"
+                },
+                "blog_title": {
+                  "S": "10 Proven Secrets to Running a Successful Training Program (From 0 Sales to Sold-Out Classes)"
+                },
+                "session_id": {
+                  "S": "1778078265414-bsnca7w8u"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "NULL": true
+                },
+                "scroll_depth": {
+                  "NULL": true
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1778078304612-1r8wifbof"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1778078304612-1r8wifbof"
+                },
+                "date": {
+                  "S": "2026-05-06"
+                },
+                "blog_id": {
+                  "S": "1776775994824-437y206wb"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "http://localhost:3000/#/blog/1776775994824-437y206wb"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-05-06T14:38:24.612Z"
+                },
+                "blog_title": {
+                  "S": "10 Proven Secrets to Running a Successful Training Program (From 0 Sales to Sold-Out Classes)"
+                },
+                "session_id": {
+                  "S": "1778078265414-bsnca7w8u"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "N": "7"
+                },
+                "scroll_depth": {
+                  "N": "0"
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1778078310929-y7mywqgo8"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1778078310929-y7mywqgo8"
+                },
+                "date": {
+                  "S": "2026-05-06"
+                },
+                "blog_id": {
+                  "S": "1776775994824-437y206wb"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "http://localhost:3000/#/blog/1776775994824-437y206wb"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-05-06T14:38:30.929Z"
+                },
+                "blog_title": {
+                  "S": "10 Proven Secrets to Running a Successful Training Program (From 0 Sales to Sold-Out Classes)"
+                },
+                "session_id": {
+                  "S": "1778078265414-bsnca7w8u"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "NULL": true
+                },
+                "scroll_depth": {
+                  "NULL": true
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1778078312205-en8ajtquc"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1778078312205-en8ajtquc"
+                },
+                "date": {
+                  "S": "2026-05-06"
+                },
+                "blog_id": {
+                  "S": "1776775994824-437y206wb"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "http://localhost:3000/#/blog/1776775994824-437y206wb"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-05-06T14:38:32.205Z"
+                },
+                "blog_title": {
+                  "S": "10 Proven Secrets to Running a Successful Training Program (From 0 Sales to Sold-Out Classes)"
+                },
+                "session_id": {
+                  "S": "1778078265414-bsnca7w8u"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "N": "6"
+                },
+                "scroll_depth": {
+                  "N": "0"
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1778078319014-q874kkhlg"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1778078319014-q874kkhlg"
+                },
+                "date": {
+                  "S": "2026-05-06"
+                },
+                "blog_id": {
+                  "S": "1776775994824-437y206wb"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "http://localhost:3000/#/blog/1776775994824-437y206wb"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-05-06T14:38:39.014Z"
+                },
+                "blog_title": {
+                  "S": "10 Proven Secrets to Running a Successful Training Program (From 0 Sales to Sold-Out Classes)"
+                },
+                "session_id": {
+                  "S": "1778078265414-bsnca7w8u"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "NULL": true
+                },
+                "scroll_depth": {
+                  "NULL": true
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1778078320182-x1jyyt021"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1778078320182-x1jyyt021"
+                },
+                "date": {
+                  "S": "2026-05-06"
+                },
+                "blog_id": {
+                  "S": "1776775994824-437y206wb"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "http://localhost:3000/#/blog/1776775994824-437y206wb"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-05-06T14:38:40.182Z"
+                },
+                "blog_title": {
+                  "S": "10 Proven Secrets to Running a Successful Training Program (From 0 Sales to Sold-Out Classes)"
+                },
+                "session_id": {
+                  "S": "1778078265414-bsnca7w8u"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "N": "87"
+                },
+                "scroll_depth": {
+                  "N": "100"
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1778078411748-4h7xpu2jm"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1778078411748-4h7xpu2jm"
+                },
+                "date": {
+                  "S": "2026-05-06"
+                },
+                "blog_id": {
+                  "S": "1776775994824-437y206wb"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "http://localhost:3000/#/blog/1776775994824-437y206wb"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-05-06T14:40:11.748Z"
+                },
+                "blog_title": {
+                  "S": "10 Proven Secrets to Running a Successful Training Program (From 0 Sales to Sold-Out Classes)"
+                },
+                "session_id": {
+                  "S": "1778078265414-bsnca7w8u"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "NULL": true
+                },
+                "scroll_depth": {
+                  "NULL": true
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1778078416373-83nw0bwgz"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1778078416373-83nw0bwgz"
+                },
+                "date": {
+                  "S": "2026-05-06"
+                },
+                "blog_id": {
+                  "S": "1776775994824-437y206wb"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "http://localhost:3000/#/blog/1776775994824-437y206wb"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-05-06T14:40:16.373Z"
+                },
+                "blog_title": {
+                  "S": "10 Proven Secrets to Running a Successful Training Program (From 0 Sales to Sold-Out Classes)"
+                },
+                "session_id": {
+                  "S": "1778078265414-bsnca7w8u"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "N": "8"
+                },
+                "scroll_depth": {
+                  "N": "100"
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1778078417951-4vdi6jo6n"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1778078417951-4vdi6jo6n"
+                },
+                "date": {
+                  "S": "2026-05-06"
+                },
+                "blog_id": {
+                  "S": "1776775994824-437y206wb"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "http://localhost:3000/#/blog/1776775994824-437y206wb"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-05-06T14:40:17.951Z"
+                },
+                "blog_title": {
+                  "S": "10 Proven Secrets to Running a Successful Training Program (From 0 Sales to Sold-Out Classes)"
+                },
+                "session_id": {
+                  "S": "1778078265414-bsnca7w8u"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "NULL": true
+                },
+                "scroll_depth": {
+                  "NULL": true
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1778078419806-0cz2rsam3"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1778078419806-0cz2rsam3"
+                },
+                "date": {
+                  "S": "2026-05-06"
+                },
+                "blog_id": {
+                  "S": "1776775994824-437y206wb"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "http://localhost:3000/#/blog/1776775994824-437y206wb"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-05-06T14:40:19.806Z"
+                },
+                "blog_title": {
+                  "S": "10 Proven Secrets to Running a Successful Training Program (From 0 Sales to Sold-Out Classes)"
+                },
+                "session_id": {
+                  "S": "1778078265414-bsnca7w8u"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "NULL": true
+                },
+                "scroll_depth": {
+                  "NULL": true
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1778078423087-142sbc3uk"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1778078423087-142sbc3uk"
+                },
+                "date": {
+                  "S": "2026-05-06"
+                },
+                "blog_id": {
+                  "S": "1776775994824-437y206wb"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "http://localhost:3000/#/blog/1776775994824-437y206wb"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-05-06T14:40:23.087Z"
+                },
+                "blog_title": {
+                  "S": "10 Proven Secrets to Running a Successful Training Program (From 0 Sales to Sold-Out Classes)"
+                },
+                "session_id": {
+                  "S": "1778078265414-bsnca7w8u"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "N": "9"
+                },
+                "scroll_depth": {
+                  "N": "0"
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1778078431719-g1hk1bmmo"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1778078431719-g1hk1bmmo"
+                },
+                "date": {
+                  "S": "2026-05-06"
+                },
+                "blog_id": {
+                  "S": "1776775994824-437y206wb"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "http://localhost:3000/#/blog/1776775994824-437y206wb"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-05-06T14:40:31.718Z"
+                },
+                "blog_title": {
+                  "S": "10 Proven Secrets to Running a Successful Training Program (From 0 Sales to Sold-Out Classes)"
+                },
+                "session_id": {
+                  "S": "1778078265414-bsnca7w8u"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "N": "451"
+                },
+                "scroll_depth": {
+                  "N": "0"
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1778078887358-qiem7tf3p"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1778078887358-qiem7tf3p"
+                },
+                "date": {
+                  "S": "2026-05-06"
+                },
+                "blog_id": {
+                  "S": "1776775994824-437y206wb"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "http://localhost:3000/#/blog/1776775994824-437y206wb"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-05-06T14:48:07.358Z"
+                },
+                "blog_title": {
+                  "S": "10 Proven Secrets to Running a Successful Training Program (From 0 Sales to Sold-Out Classes)"
+                },
+                "session_id": {
+                  "S": "1778078265414-bsnca7w8u"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "N": "8"
+                },
+                "scroll_depth": {
+                  "N": "0"
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1778078893670-f5lphbues"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1778078893670-f5lphbues"
+                },
+                "date": {
+                  "S": "2026-05-06"
+                },
+                "blog_id": {
+                  "S": "1776775994824-437y206wb"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "http://localhost:3000/#/blog/1776775994824-437y206wb"
+                },
+                "referrer": {
+                  "S": "direct"
+                },
+                "timestamp": {
+                  "S": "2026-05-06T14:48:13.670Z"
+                },
+                "blog_title": {
+                  "S": "10 Proven Secrets to Running a Successful Training Program (From 0 Sales to Sold-Out Classes)"
+                },
+                "session_id": {
+                  "S": "1778078265414-bsnca7w8u"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "N": "27"
+                },
+                "scroll_depth": {
+                  "N": "0"
+                },
+                "referrer_type": {
+                  "S": "direct"
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

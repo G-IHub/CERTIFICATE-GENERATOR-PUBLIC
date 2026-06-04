@@ -1,0 +1,1186 @@
+{
+  "RequestItems": {
+    "certifyer-dev-kv": [
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1774436066200-XPDPGUJCF"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774436066200-XPDPGUJCF"
+                },
+                "email": {
+                  "S": "rumbidxaigumi@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Obtained knowledge on the tools and softwares to use for genomic data analysis"
+                },
+                "programId": {
+                  "S": "amr-genomic-intelligence"
+                },
+                "courseName": {
+                  "S": "AMR Genomic Intelligence"
+                },
+                "studentName": {
+                  "S": "Rumbidzai Gumi"
+                },
+                "submittedAt": {
+                  "S": "2026-03-25T10:54:26.200Z"
+                },
+                "organization": {
+                  "S": "Harare Institute Of Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1774428235034-RC5V3EIF7"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1774436809533-2EA1VHVQ2"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774436809533-2EA1VHVQ2"
+                },
+                "email": {
+                  "S": "josephjoshuajesufunmiwo@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "I learnt about phages, and understanding genomics."
+                },
+                "programId": {
+                  "S": "amr-genomic-intelligence"
+                },
+                "courseName": {
+                  "S": "AMR Genomic Intelligence"
+                },
+                "studentName": {
+                  "S": "Joseph Joshua Jesufunmiwo"
+                },
+                "submittedAt": {
+                  "S": "2026-03-25T11:06:49.533Z"
+                },
+                "testimonial": {
+                  "S": "Nil"
+                },
+                "organization": {
+                  "S": "Obafemi Awolowo University"
+                },
+                "certificateId": {
+                  "S": "CERT-1774428235034-RC5V3EIF7"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1774441205627-ZGYD4X4YL"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774441205627-ZGYD4X4YL"
+                },
+                "email": {
+                  "S": "elohorebivwiere@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Impactful."
+                },
+                "programId": {
+                  "S": "amr-genomic-intelligence"
+                },
+                "courseName": {
+                  "S": "AMR Genomic Intelligence"
+                },
+                "studentName": {
+                  "S": "Ebivwiere Elohor"
+                },
+                "submittedAt": {
+                  "S": "2026-03-25T12:20:05.627Z"
+                },
+                "testimonial": {
+                  "S": "Nil"
+                },
+                "organization": {
+                  "S": "Obafemi Awolowo university"
+                },
+                "certificateId": {
+                  "S": "CERT-1774428235034-RC5V3EIF7"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1774441408080-FSHFIB1OM"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774441408080-FSHFIB1OM"
+                },
+                "email": {
+                  "S": "elohorebivwiere@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It was impactful, I got to learn that AMR has a deeper meaning and I would encourage lecturers to participate so that they can expand their knowledge about AMR generally."
+                },
+                "programId": {
+                  "S": "amr-genomic-intelligence"
+                },
+                "courseName": {
+                  "S": "AMR Genomic Intelligence"
+                },
+                "studentName": {
+                  "S": "Ebivwiere Elohor Tracy"
+                },
+                "submittedAt": {
+                  "S": "2026-03-25T12:23:28.080Z"
+                },
+                "testimonial": {
+                  "S": "Nil"
+                },
+                "organization": {
+                  "S": "Obafemi Awolowo university"
+                },
+                "certificateId": {
+                  "S": "CERT-1774428235034-RC5V3EIF7"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1774443144089-XXA9JPWYC"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774443144089-XXA9JPWYC"
+                },
+                "email": {
+                  "S": "malaykayyz684@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It was very informative and practical I would recommend it to anyone who is interested in AMR and Bioinformatics."
+                },
+                "programId": {
+                  "S": "amr-genomic-intelligence"
+                },
+                "courseName": {
+                  "S": "AMR Genomic Intelligence"
+                },
+                "studentName": {
+                  "S": "Malayka Ayyaz"
+                },
+                "submittedAt": {
+                  "S": "2026-03-25T12:52:24.089Z"
+                },
+                "organization": {
+                  "S": "Government College University Lahore"
+                },
+                "certificateId": {
+                  "S": "CERT-1774428235034-RC5V3EIF7"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1774449870491-XZ5K9LW7O"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774449870491-XZ5K9LW7O"
+                },
+                "email": {
+                  "S": "nalikoro.edu.com2024@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "It was really a wonderful session"
+                },
+                "programId": {
+                  "S": "amr-genomic-intelligence"
+                },
+                "courseName": {
+                  "S": "AMR Genomic Intelligence"
+                },
+                "studentName": {
+                  "S": "Hassan Kabir Muhammad"
+                },
+                "submittedAt": {
+                  "S": "2026-03-25T14:44:30.491Z"
+                },
+                "organization": {
+                  "S": "Antimicrobial resistance club kaduna state university"
+                },
+                "certificateId": {
+                  "S": "CERT-1774428235034-RC5V3EIF7"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1774450074020-PXM9Z7JPF"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774450074020-PXM9Z7JPF"
+                },
+                "email": {
+                  "S": "nalikoro.edu.com2024@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "It was really a wonderful session"
+                },
+                "programId": {
+                  "S": "amr-genomic-intelligence"
+                },
+                "courseName": {
+                  "S": "AMR Genomic Intelligence"
+                },
+                "studentName": {
+                  "S": "Hassan Kabir Muhammad"
+                },
+                "submittedAt": {
+                  "S": "2026-03-25T14:47:54.020Z"
+                },
+                "organization": {
+                  "S": "Antimicrobial resistance club kaduna state university"
+                },
+                "certificateId": {
+                  "S": "CERT-1774428235034-RC5V3EIF7"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1774450581084-9K5CTP8VU"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774450581084-9K5CTP8VU"
+                },
+                "email": {
+                  "S": "faizakanwal916@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Good experience"
+                },
+                "programId": {
+                  "S": "amr-genomic-intelligence"
+                },
+                "courseName": {
+                  "S": "AMR Genomic Intelligence"
+                },
+                "studentName": {
+                  "S": "FAIZA KANWAL"
+                },
+                "submittedAt": {
+                  "S": "2026-03-25T14:56:21.084Z"
+                },
+                "testimonial": {
+                  "S": "No"
+                },
+                "organization": {
+                  "S": "The Islamia University of Bahawalpur"
+                },
+                "certificateId": {
+                  "S": "CERT-1774428235034-RC5V3EIF7"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1774450792246-W9CXB1LII"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774450792246-W9CXB1LII"
+                },
+                "email": {
+                  "S": "faizakanwal916@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Good"
+                },
+                "programId": {
+                  "S": "amr-genomic-intelligence"
+                },
+                "courseName": {
+                  "S": "AMR Genomic Intelligence"
+                },
+                "studentName": {
+                  "S": "FAIZA KANWAL"
+                },
+                "submittedAt": {
+                  "S": "2026-03-25T14:59:52.246Z"
+                },
+                "testimonial": {
+                  "S": "No"
+                },
+                "organization": {
+                  "S": "The Islamia University of Bahawalpur"
+                },
+                "certificateId": {
+                  "S": "CERT-1774428235034-RC5V3EIF7"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1774451012516-H0X3QAZJB"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774451012516-H0X3QAZJB"
+                },
+                "email": {
+                  "S": "andrewkisamhar30@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "The session was a great one, it has broaden my understanding of specific  DNA sequencing for AMR genes."
+                },
+                "programId": {
+                  "S": "amr-genomic-intelligence"
+                },
+                "courseName": {
+                  "S": "AMR Genomic Intelligence"
+                },
+                "studentName": {
+                  "S": "Kisamhar Andrew Peinurta"
+                },
+                "submittedAt": {
+                  "S": "2026-03-25T15:03:32.516Z"
+                },
+                "organization": {
+                  "S": "University of Calabar"
+                },
+                "certificateId": {
+                  "S": "CERT-1774428235034-RC5V3EIF7"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1774451607686-A7MPMZ8Q5"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774451607686-A7MPMZ8Q5"
+                },
+                "email": {
+                  "S": "hira.rehan100@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Good"
+                },
+                "programId": {
+                  "S": "hands-on-bioinformatics-workflow"
+                },
+                "courseName": {
+                  "S": "Hands-on Bioinformatics Workflow"
+                },
+                "studentName": {
+                  "S": "Hira Rehan"
+                },
+                "submittedAt": {
+                  "S": "2026-03-25T15:13:27.686Z"
+                },
+                "organization": {
+                  "S": "Sir Syed university of engineering and technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1770115107684-LFGTP6FO6"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1774453751847-5FOC03OQ5"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774453751847-5FOC03OQ5"
+                },
+                "email": {
+                  "S": "aneesahsan135@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "It was good"
+                },
+                "programId": {
+                  "S": "amr-genomic-intelligence"
+                },
+                "courseName": {
+                  "S": "AMR Genomic Intelligence"
+                },
+                "studentName": {
+                  "S": "Muhammad Anees Ehsan"
+                },
+                "submittedAt": {
+                  "S": "2026-03-25T15:49:11.847Z"
+                },
+                "testimonial": {
+                  "S": "No"
+                },
+                "organization": {
+                  "S": "Ucp"
+                },
+                "certificateId": {
+                  "S": "CERT-1774428235034-RC5V3EIF7"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1774470278652-PSHU0IQJV"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774470278652-PSHU0IQJV"
+                },
+                "email": {
+                  "S": "desmondboampong@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "It has really opened my eyes into certain things that i was blind about in the field"
+                },
+                "programId": {
+                  "S": "amr-genomic-intelligence"
+                },
+                "courseName": {
+                  "S": "AMR Genomic Intelligence"
+                },
+                "studentName": {
+                  "S": "Desmond Sarfo Boampong"
+                },
+                "submittedAt": {
+                  "S": "2026-03-25T20:24:38.652Z"
+                },
+                "organization": {
+                  "S": "University of Cape Coast"
+                },
+                "certificateId": {
+                  "S": "CERT-1774428235034-RC5V3EIF7"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1774512936558-COE9K2B6P"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774512936558-COE9K2B6P"
+                },
+                "email": {
+                  "S": "mehnazakhtar2600@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "its great"
+                },
+                "programId": {
+                  "S": "amr-genomic-intelligence"
+                },
+                "courseName": {
+                  "S": "AMR Genomic Intelligence"
+                },
+                "studentName": {
+                  "S": "Mehnaz Akhtar"
+                },
+                "submittedAt": {
+                  "S": "2026-03-26T08:15:36.559Z"
+                },
+                "organization": {
+                  "S": "University of Education Lahore"
+                },
+                "certificateId": {
+                  "S": "CERT-1774428235034-RC5V3EIF7"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1774513745704-0ALQX1LY8"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774513745704-0ALQX1LY8"
+                },
+                "email": {
+                  "S": "mehnazakhtar2600@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Its great"
+                },
+                "programId": {
+                  "S": "amr-genomic-intelligence"
+                },
+                "courseName": {
+                  "S": "AMR Genomic Intelligence"
+                },
+                "studentName": {
+                  "S": "Mehnaz Akhtar"
+                },
+                "submittedAt": {
+                  "S": "2026-03-26T08:29:05.704Z"
+                },
+                "organization": {
+                  "S": "University of Education Lahore"
+                },
+                "certificateId": {
+                  "S": "CERT-1774428235034-RC5V3EIF7"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1774537105180-7ZH7FL04M"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774537105180-7ZH7FL04M"
+                },
+                "email": {
+                  "S": "fayowoledennis990@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "It was a great experience.  I got to understand the basics of microbial resistance.  I'll beseech others to check out on Genomac institute for more blockbusters."
+                },
+                "programId": {
+                  "S": "amr-genomic-intelligence"
+                },
+                "courseName": {
+                  "S": "AMR Genomic Intelligence"
+                },
+                "studentName": {
+                  "S": "Fayowole Dennis Ogunbiyi"
+                },
+                "submittedAt": {
+                  "S": "2026-03-26T14:58:25.181Z"
+                },
+                "organization": {
+                  "S": "Adekunle Ajasin University"
+                },
+                "certificateId": {
+                  "S": "CERT-1774428235034-RC5V3EIF7"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1774537295474-B0VSSZNLV"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774537295474-B0VSSZNLV"
+                },
+                "email": {
+                  "S": "fayowoledennis990@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "A great and spectacular experience."
+                },
+                "programId": {
+                  "S": "amr-genomic-intelligence"
+                },
+                "courseName": {
+                  "S": "AMR Genomic Intelligence"
+                },
+                "studentName": {
+                  "S": "Fayowole Dennis Ogunbiyi"
+                },
+                "submittedAt": {
+                  "S": "2026-03-26T15:01:35.474Z"
+                },
+                "organization": {
+                  "S": "Adekunle Ajasin University Akungba akoko."
+                },
+                "certificateId": {
+                  "S": "CERT-1774428235034-RC5V3EIF7"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1774553071109-QV3Q7TE61"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774553071109-QV3Q7TE61"
+                },
+                "email": {
+                  "S": "maybinchitalu88@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Exception and eye opening"
+                },
+                "programId": {
+                  "S": "hands-on-bioinformatics-workflow"
+                },
+                "courseName": {
+                  "S": "Hands-on Bioinformatics Workflow"
+                },
+                "studentName": {
+                  "S": "MAYBIN CHITALU"
+                },
+                "submittedAt": {
+                  "S": "2026-03-26T19:24:31.109Z"
+                },
+                "testimonial": {
+                  "S": "Wish to attend more meetings like this"
+                },
+                "organization": {
+                  "S": "MULUNGUSHI UNIVERSITY"
+                },
+                "certificateId": {
+                  "S": "CERT-1770115107684-LFGTP6FO6"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1774569849188-F7UR6DZYD"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774569849188-F7UR6DZYD"
+                },
+                "email": {
+                  "S": "victoriaidowu2020@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "I am more knowledgeable about Genomics"
+                },
+                "programId": {
+                  "S": "amr-genomic-intelligence"
+                },
+                "courseName": {
+                  "S": "AMR Genomic Intelligence"
+                },
+                "studentName": {
+                  "S": "IDOWU VICTORIA OLUWASEYI"
+                },
+                "submittedAt": {
+                  "S": "2026-03-27T00:04:09.189Z"
+                },
+                "organization": {
+                  "S": "Promise Hospitals"
+                },
+                "certificateId": {
+                  "S": "CERT-1774428235034-RC5V3EIF7"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1774578747917-YOBGNNX8Q"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774578747917-YOBGNNX8Q"
+                },
+                "email": {
+                  "S": "sharkhalid252@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Very beneficial secision for me"
+                },
+                "programId": {
+                  "S": "amr-genomic-intelligence"
+                },
+                "courseName": {
+                  "S": "AMR Genomic Intelligence"
+                },
+                "studentName": {
+                  "S": "Khalid Hussain Shar"
+                },
+                "submittedAt": {
+                  "S": "2026-03-27T02:32:27.917Z"
+                },
+                "testimonial": {
+                  "S": "It's great work"
+                },
+                "organization": {
+                  "S": "Dr MA kazi Institute Of Chemistry UOS"
+                },
+                "certificateId": {
+                  "S": "CERT-1774428235034-RC5V3EIF7"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1774589762924-GR3PK6XF1"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774589762924-GR3PK6XF1"
+                },
+                "email": {
+                  "S": "fayowoledennis990@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Great"
+                },
+                "programId": {
+                  "S": "amr-genomic-intelligence"
+                },
+                "courseName": {
+                  "S": "AMR Genomic Intelligence"
+                },
+                "studentName": {
+                  "S": "Fayowole Dennis Ogunbiyi"
+                },
+                "submittedAt": {
+                  "S": "2026-03-27T05:36:02.924Z"
+                },
+                "organization": {
+                  "S": "Adekunle Ajasin University Akungba akoko."
+                },
+                "certificateId": {
+                  "S": "CERT-1774428235034-RC5V3EIF7"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1774597012119-U5THV6RCU"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774597012119-U5THV6RCU"
+                },
+                "email": {
+                  "S": "mbkzlm61@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "This is a very important and insightful session."
+                },
+                "programId": {
+                  "S": "amr-genomic-intelligence"
+                },
+                "courseName": {
+                  "S": "AMR Genomic Intelligence"
+                },
+                "studentName": {
+                  "S": "Mbekezeli Moyo"
+                },
+                "submittedAt": {
+                  "S": "2026-03-27T07:36:52.119Z"
+                },
+                "organization": {
+                  "S": "National University of Science and Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1774428235034-RC5V3EIF7"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1774609662355-BCRYEXEL0"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774609662355-BCRYEXEL0"
+                },
+                "email": {
+                  "S": "victoriaidowu2020@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Great additional knowledge on Genomics"
+                },
+                "programId": {
+                  "S": "amr-genomic-intelligence"
+                },
+                "courseName": {
+                  "S": "AMR Genomic Intelligence"
+                },
+                "studentName": {
+                  "S": "IDOWU VICTORIA OLUWASEYI"
+                },
+                "submittedAt": {
+                  "S": "2026-03-27T11:07:42.355Z"
+                },
+                "organization": {
+                  "S": "Promise Hospitals"
+                },
+                "certificateId": {
+                  "S": "CERT-1774428235034-RC5V3EIF7"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1774620061813-DBQ89YQMJ"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774620061813-DBQ89YQMJ"
+                },
+                "email": {
+                  "S": "josephjoshuajesufunmiwo@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Nil"
+                },
+                "programId": {
+                  "S": "amr-genomic-intelligence"
+                },
+                "courseName": {
+                  "S": "AMR Genomic Intelligence"
+                },
+                "studentName": {
+                  "S": "JOSEPH JOSHUA JESUFUNMIWO"
+                },
+                "submittedAt": {
+                  "S": "2026-03-27T14:01:01.813Z"
+                },
+                "testimonial": {
+                  "S": "Nil"
+                },
+                "organization": {
+                  "S": "Obafemi Awolowo University"
+                },
+                "certificateId": {
+                  "S": "CERT-1774428235034-RC5V3EIF7"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1774621631526-QMZBDFYF6"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774621631526-QMZBDFYF6"
+                },
+                "email": {
+                  "S": "aneesahsan135@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "It's good"
+                },
+                "programId": {
+                  "S": "amr-genomic-intelligence"
+                },
+                "courseName": {
+                  "S": "AMR Genomic Intelligence"
+                },
+                "studentName": {
+                  "S": "Muhammad Anees Ehsan"
+                },
+                "submittedAt": {
+                  "S": "2026-03-27T14:27:11.526Z"
+                },
+                "testimonial": {
+                  "S": "No"
+                },
+                "organization": {
+                  "S": "Ucp"
+                },
+                "certificateId": {
+                  "S": "CERT-1774428235034-RC5V3EIF7"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

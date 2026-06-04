@@ -1,0 +1,1039 @@
+{
+  "RequestItems": {
+    "certifyer-dev-kv": [
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447:TEST-1778249254358-VVNA0HRN0"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778249254358-VVNA0HRN0"
+                },
+                "email": {
+                  "S": "opetydave24@gmail.com"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Course 201"
+                },
+                "studentName": {
+                  "S": "David Anuoluwapo Oyeniran"
+                },
+                "submittedAt": {
+                  "S": "2026-05-08T14:07:34.358Z"
+                },
+                "organization": {
+                  "S": "Elizade University, Ilara-Mokin"
+                },
+                "certificateId": {
+                  "S": "CERT-1773764855164-V2EITDTXI"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447:TEST-1778249674349-HMCFDOQSU"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778249674349-HMCFDOQSU"
+                },
+                "email": {
+                  "S": "celineanioche5@gmail.com"
+                },
+                "impact": {
+                  "S": "It was amazing \nI learnt a whole alot, like a continuation of what I did in my B.Sc"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Course 201"
+                },
+                "studentName": {
+                  "S": "Celine Chidera Anioche"
+                },
+                "submittedAt": {
+                  "S": "2026-05-08T14:14:34.349Z"
+                },
+                "organization": {
+                  "S": "GENOMAC INSTITUTE"
+                },
+                "certificateId": {
+                  "S": "CERT-1773764855164-V2EITDTXI"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447:TEST-1778249908870-DGDGJH4O9"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778249908870-DGDGJH4O9"
+                },
+                "email": {
+                  "S": "celineanioche5@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It was amazing \nI learnt a whole lot, just like a continuation of what I did in my B.Sc"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Course 201"
+                },
+                "studentName": {
+                  "S": "Celine Chidera Anioche"
+                },
+                "submittedAt": {
+                  "S": "2026-05-08T14:18:28.870Z"
+                },
+                "organization": {
+                  "S": "GENOMAC INSTITUTE"
+                },
+                "certificateId": {
+                  "S": "CERT-1773764855164-V2EITDTXI"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447:TEST-1778250342436-TB6H97B3P"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778250342436-TB6H97B3P"
+                },
+                "email": {
+                  "S": "celineanioche5@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It was amazing. \nI learned a whole lot just like a continuation of what I did in my B.Sc"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Course 201"
+                },
+                "studentName": {
+                  "S": "Celine Chidera Anioche"
+                },
+                "submittedAt": {
+                  "S": "2026-05-08T14:25:42.436Z"
+                },
+                "organization": {
+                  "S": "GENOMAC INSTITUTE"
+                },
+                "certificateId": {
+                  "S": "CERT-1773764855164-V2EITDTXI"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447:TEST-1778250526041-2XNBRVYXC"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778250526041-2XNBRVYXC"
+                },
+                "email": {
+                  "S": "zainabkalsoom44@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Course 201"
+                },
+                "studentName": {
+                  "S": "Zainab kalsoom"
+                },
+                "submittedAt": {
+                  "S": "2026-05-08T14:28:46.041Z"
+                },
+                "organization": {
+                  "S": "Quaid I Azam University Islamabad"
+                },
+                "certificateId": {
+                  "S": "CERT-1773764855164-V2EITDTXI"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447:TEST-1778250609810-WBOG9JSPO"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778250609810-WBOG9JSPO"
+                },
+                "email": {
+                  "S": "zainabkalsoom44@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Course 201"
+                },
+                "studentName": {
+                  "S": "Zainab kalsoom"
+                },
+                "submittedAt": {
+                  "S": "2026-05-08T14:30:09.810Z"
+                },
+                "organization": {
+                  "S": "Quaid I Azam University Islamabad"
+                },
+                "certificateId": {
+                  "S": "CERT-1773764855164-V2EITDTXI"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447:TEST-1778253890967-LUB790KVP"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778253890967-LUB790KVP"
+                },
+                "email": {
+                  "S": "mayowaogunsusi@gmail.com"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "Impacful training session"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Course 201"
+                },
+                "studentName": {
+                  "S": "Mayowa Ogunsusi"
+                },
+                "submittedAt": {
+                  "S": "2026-05-08T15:24:50.967Z"
+                },
+                "organization": {
+                  "S": "Landmark University"
+                },
+                "certificateId": {
+                  "S": "CERT-1773764855164-V2EITDTXI"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447:TEST-1778325409633-IV8I64K7B"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778325409633-IV8I64K7B"
+                },
+                "email": {
+                  "S": "wskatema1@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Studying the fundamentals of Bioinformatics had a significant impact on my understanding of modern biological and medical sciences because since I am a forensic scientist so it helps me combines biology, computer science, mathematics, and statistics information to analyze and interpret biological data. This field plays an important role in my research, healthcare, and biotechnology.\nIt also helps me understand complex biological information such as DNA, RNA, and protein sequences in depth. It also allows me to the analysis of large datasets generated through genomic and molecular studies.\nThe study of bioinformatics enables me to identify genes, study protein structures, and understand gene expression and mutations, which are essential in genetics and molecular biology as well as forensic investigations."
+                },
+                "courseName": {
+                  "S": "Bioinformatics Course 201"
+                },
+                "studentName": {
+                  "S": "Wendy S Katema"
+                },
+                "submittedAt": {
+                  "S": "2026-05-09T11:16:49.633Z"
+                },
+                "organization": {
+                  "S": "Zimbabwe Future Foundation International (ZFFI)"
+                },
+                "certificateId": {
+                  "S": "CERT-1773764855164-V2EITDTXI"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447:TEST-1778445651708-MVZ64Q3MD"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778445651708-MVZ64Q3MD"
+                },
+                "email": {
+                  "S": "oladipupoo446@gmail.com"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Course 201"
+                },
+                "studentName": {
+                  "S": "Oladipupo Olaoluwa"
+                },
+                "submittedAt": {
+                  "S": "2026-05-10T20:40:51.708Z"
+                },
+                "organization": {
+                  "S": "Giit"
+                },
+                "certificateId": {
+                  "S": "CERT-1773764855164-V2EITDTXI"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447:TEST-1778501999465-C7G9TI2S5"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778501999465-C7G9TI2S5"
+                },
+                "email": {
+                  "S": "salawuajibola7@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Very educative and informative"
+                },
+                "courseName": {
+                  "S": "Exploring Free Tools for Computational Drug Discovery"
+                },
+                "studentName": {
+                  "S": "Ajibola Salawu"
+                },
+                "submittedAt": {
+                  "S": "2026-05-11T12:19:59.465Z"
+                },
+                "organization": {
+                  "S": "University of Ibadan"
+                },
+                "certificateId": {
+                  "S": "CERT-1777292132240-K3IVERPYR"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447:TEST-1778778437135-DJ0YI3QJ0"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778778437135-DJ0YI3QJ0"
+                },
+                "email": {
+                  "S": "rajaamail24@gmail.com"
+                },
+                "title": {
+                  "S": "Mrs"
+                },
+                "courseName": {
+                  "S": "Hands-on Bioinformatics Workflow"
+                },
+                "studentName": {
+                  "S": "Rajaa Abuelgassim Osman Mohammed"
+                },
+                "submittedAt": {
+                  "S": "2026-05-14T17:07:17.135Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1770115107684-LFGTP6FO6"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447:TEST-1778813676552-JZU6AMQK5"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778813676552-JZU6AMQK5"
+                },
+                "email": {
+                  "S": "imammuslihudeen2025@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "It actually shape my understanding"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Course 201"
+                },
+                "studentName": {
+                  "S": "Salawu Musiliyu Ayofe"
+                },
+                "submittedAt": {
+                  "S": "2026-05-15T02:54:36.552Z"
+                },
+                "organization": {
+                  "S": "Fountain University Osogbo"
+                },
+                "certificateId": {
+                  "S": "CERT-1773764855164-V2EITDTXI"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-828fe94b-ac4b-4bd2-96c4-f3affd1d6304-1776698048689:TEST-1776698913158-NWO6L7A2V"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1776698913158-NWO6L7A2V"
+                },
+                "email": {
+                  "S": "toluwanimiomotolani@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "So good"
+                },
+                "programId": {
+                  "S": "advanced-digital-marketing-program"
+                },
+                "courseName": {
+                  "S": "Advanced Digital marketing program"
+                },
+                "studentName": {
+                  "S": "Muili Toluwanimi"
+                },
+                "submittedAt": {
+                  "S": "2026-04-20T15:28:33.158Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1776698861872-YKW5Z5ZCR"
+                },
+                "organizationId": {
+                  "S": "org-828fe94b-ac4b-4bd2-96c4-f3affd1d6304-1776698048689"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486:TEST-1778257555333-M6MK49BM2"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778257555333-M6MK49BM2"
+                },
+                "email": {
+                  "S": "ajeawesome01@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "I had an incredible experience"
+                },
+                "courseName": {
+                  "S": "MedxTech Summit'26"
+                },
+                "studentName": {
+                  "S": "Gabriel Ajewole"
+                },
+                "submittedAt": {
+                  "S": "2026-05-08T16:25:55.333Z"
+                },
+                "organization": {
+                  "S": "Registration Team Lead"
+                },
+                "certificateId": {
+                  "S": "CERT-1778257271777-TX673LPG2"
+                },
+                "organizationId": {
+                  "S": "org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486:TEST-1778537069505-PMU0T0SEW"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778537069505-PMU0T0SEW"
+                },
+                "email": {
+                  "S": "emmanuelogelle@gmail.com"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "courseName": {
+                  "S": "MedxTech Summit'26"
+                },
+                "studentName": {
+                  "S": "Emmanuel Chukwudum Ogelle"
+                },
+                "submittedAt": {
+                  "S": "2026-05-11T22:04:29.505Z"
+                },
+                "organization": {
+                  "S": "Blessed Specialist Hospital"
+                },
+                "certificateId": {
+                  "S": "CERT-1778521811251-0WRAHUIHI"
+                },
+                "organizationId": {
+                  "S": "org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486:TEST-1778537252810-QPG745ZGW"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778537252810-QPG745ZGW"
+                },
+                "email": {
+                  "S": "insbyasot@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Glad I was part of the event, so insightful"
+                },
+                "courseName": {
+                  "S": "MedxTech Summit'26"
+                },
+                "studentName": {
+                  "S": "Segun Olaoluwa Awoniyi"
+                },
+                "submittedAt": {
+                  "S": "2026-05-11T22:07:32.810Z"
+                },
+                "organization": {
+                  "S": "Asotins & Co"
+                },
+                "certificateId": {
+                  "S": "CERT-1778521811251-0WRAHUIHI"
+                },
+                "organizationId": {
+                  "S": "org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486:TEST-1778537270954-5M5T2FLT8"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778537270954-5M5T2FLT8"
+                },
+                "email": {
+                  "S": "chinazaorakwelu24@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Driving innovation in healthcare through technology and improving lives with medical solutions."
+                },
+                "courseName": {
+                  "S": "MedxTech Summit'26"
+                },
+                "studentName": {
+                  "S": "Orakwelu Chinaza Vivian"
+                },
+                "submittedAt": {
+                  "S": "2026-05-11T22:07:50.954Z"
+                },
+                "organization": {
+                  "S": "Nnamdi Azikiwe University, Awka, Anambra State"
+                },
+                "certificateId": {
+                  "S": "CERT-1778521811251-0WRAHUIHI"
+                },
+                "organizationId": {
+                  "S": "org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486:TEST-1778537283650-O62TIIR78"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778537283650-O62TIIR78"
+                },
+                "email": {
+                  "S": "dbala.ontech@gmail.com"
+                },
+                "courseName": {
+                  "S": "MedxTech Summit'26"
+                },
+                "studentName": {
+                  "S": "David Bala"
+                },
+                "submittedAt": {
+                  "S": "2026-05-11T22:08:03.650Z"
+                },
+                "organization": {
+                  "S": "College of Medicine University of Lagos"
+                },
+                "certificateId": {
+                  "S": "CERT-1778521811251-0WRAHUIHI"
+                },
+                "organizationId": {
+                  "S": "org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486:TEST-1778537518361-81253UJHM"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778537518361-81253UJHM"
+                },
+                "email": {
+                  "S": "mishaeldestiny@gmail.com"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "Quite informative"
+                },
+                "courseName": {
+                  "S": "MedxTech Summit'26"
+                },
+                "studentName": {
+                  "S": "Chukwunwoike Mishael"
+                },
+                "submittedAt": {
+                  "S": "2026-05-11T22:11:58.361Z"
+                },
+                "organization": {
+                  "S": "Delta State University, Abraka, Delta State"
+                },
+                "certificateId": {
+                  "S": "CERT-1778521811251-0WRAHUIHI"
+                },
+                "organizationId": {
+                  "S": "org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486:TEST-1778537600342-48CXJRUMB"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778537600342-48CXJRUMB"
+                },
+                "email": {
+                  "S": "samuelagboola019@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "It was an insightful programme for me, I now see beyond the medical field. And I'm also challenged to do better in my field as well as out it."
+                },
+                "courseName": {
+                  "S": "MedxTech Summit'26"
+                },
+                "studentName": {
+                  "S": "Agboola Samuel Godwin"
+                },
+                "submittedAt": {
+                  "S": "2026-05-11T22:13:20.342Z"
+                },
+                "organization": {
+                  "S": "Reliance Family Clinics Lekki"
+                },
+                "certificateId": {
+                  "S": "CERT-1778521811251-0WRAHUIHI"
+                },
+                "organizationId": {
+                  "S": "org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486:TEST-1778538350079-FFQSU0S2M"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778538350079-FFQSU0S2M"
+                },
+                "email": {
+                  "S": "boluwatifehdaniels@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "The summit was impactful and was pleased with the different sessions and innovations"
+                },
+                "courseName": {
+                  "S": "MedxTech Summit'26"
+                },
+                "studentName": {
+                  "S": "Ajao-Benson Daniel Boluwatife"
+                },
+                "submittedAt": {
+                  "S": "2026-05-11T22:25:50.079Z"
+                },
+                "organization": {
+                  "S": "Federal School of Biomedical Engineering Lagos University Teaching Hospital"
+                },
+                "certificateId": {
+                  "S": "CERT-1778521811251-0WRAHUIHI"
+                },
+                "organizationId": {
+                  "S": "org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486:TEST-1778538500161-J2RZCH6B1"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778538500161-J2RZCH6B1"
+                },
+                "email": {
+                  "S": "nwezemarvellous25@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Opened my eyes to new possibilities out there"
+                },
+                "courseName": {
+                  "S": "MedxTech Summit'26"
+                },
+                "studentName": {
+                  "S": "Nweze Marvellous Chiamaka"
+                },
+                "submittedAt": {
+                  "S": "2026-05-11T22:28:20.161Z"
+                },
+                "organization": {
+                  "S": "Madonna University"
+                },
+                "certificateId": {
+                  "S": "CERT-1778521811251-0WRAHUIHI"
+                },
+                "organizationId": {
+                  "S": "org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486:TEST-1778538754198-SWP80HXP9"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778538754198-SWP80HXP9"
+                },
+                "email": {
+                  "S": "ibukunoluwaqueen20@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "courseName": {
+                  "S": "MedxTech Summit'26"
+                },
+                "studentName": {
+                  "S": "Omosehin Ibukunoluwa Queen"
+                },
+                "submittedAt": {
+                  "S": "2026-05-11T22:32:34.198Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1778521811251-0WRAHUIHI"
+                },
+                "organizationId": {
+                  "S": "org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486:TEST-1778538859628-RBY38J58Q"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778538859628-RBY38J58Q"
+                },
+                "email": {
+                  "S": "ebubegeorge64@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "MedXTech was truly and an important event I could not  have missed, I learnt from the speakers and I'm grateful for the opportunity to join the community and be a part of the event."
+                },
+                "courseName": {
+                  "S": "MedxTech Summit'26"
+                },
+                "studentName": {
+                  "S": "Ebube George"
+                },
+                "submittedAt": {
+                  "S": "2026-05-11T22:34:19.628Z"
+                },
+                "organization": {
+                  "S": "Geomega Tech"
+                },
+                "certificateId": {
+                  "S": "CERT-1778521811251-0WRAHUIHI"
+                },
+                "organizationId": {
+                  "S": "org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486:TEST-1778538879611-LD59A435I"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778538879611-LD59A435I"
+                },
+                "email": {
+                  "S": "isaacmauton84@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "The conversation around restoring mobility and improving quality of life through innovation is something I find deeply inspiring, especially as a biomedical engineering student.\nI’m particularly interested in this space and would love to learn, contribute, and grow within it"
+                },
+                "courseName": {
+                  "S": "MedxTech Summit'26"
+                },
+                "studentName": {
+                  "S": "Isaac Mauton Elizabeth"
+                },
+                "submittedAt": {
+                  "S": "2026-05-11T22:34:39.611Z"
+                },
+                "organization": {
+                  "S": "Bells university of Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1778521811251-0WRAHUIHI"
+                },
+                "organizationId": {
+                  "S": "org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486"
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

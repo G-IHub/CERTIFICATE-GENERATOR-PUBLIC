@@ -1,0 +1,1024 @@
+{
+  "RequestItems": {
+    "certifyer-dev-kv": [
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778140577588-J5PEVUSZR"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778140577588-J5PEVUSZR"
+                },
+                "email": {
+                  "S": "ajosephopeyemi@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "courseName": {
+                  "S": "OGBOMOSO TECH AND ENTREPRENEURSHIP IGNITE 2026"
+                },
+                "studentName": {
+                  "S": "Joseph Opeyemi Adegbenjo"
+                },
+                "submittedAt": {
+                  "S": "2026-05-07T07:56:17.588Z"
+                },
+                "organization": {
+                  "S": "Joe Dynamic Art"
+                },
+                "certificateId": {
+                  "S": "CERT-1777946792503-DASFMON71"
+                },
+                "organizationId": {
+                  "S": "org-f54289d3-e416-4ffb-9d59-02176ae8cf36-1777500413705"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778148132840-U9G2SH17U"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778148132840-U9G2SH17U"
+                },
+                "email": {
+                  "S": "idokomathewidoko@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "courseName": {
+                  "S": "Genomac Malaria Innovation Competition"
+                },
+                "studentName": {
+                  "S": "Idoko Mathew Idoko"
+                },
+                "submittedAt": {
+                  "S": "2026-05-07T10:02:12.840Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1777459600139-LZNZHMVFD"
+                },
+                "organizationId": {
+                  "S": "org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778150379293-7SI48C2L5"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778150379293-7SI48C2L5"
+                },
+                "email": {
+                  "S": "lucy.afahanam97@yahoo.com"
+                },
+                "impact": {
+                  "S": "It was a wonderful experience"
+                },
+                "courseName": {
+                  "S": "Genomac Malaria Innovation Competition"
+                },
+                "studentName": {
+                  "S": "Lucy Emmanuel Afahanam"
+                },
+                "submittedAt": {
+                  "S": "2026-05-07T10:39:39.293Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1777459600139-LZNZHMVFD"
+                },
+                "organizationId": {
+                  "S": "org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778150455805-B74T9BPWV"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778150455805-B74T9BPWV"
+                },
+                "email": {
+                  "S": "oluwalonimiodunayo@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Being part of this program gave me the opportunity to connect with inspiring people, learn from experienced speakers, and gain valuable exposure to teamwork, leadership, and event coordination. It also strengthened my passion for community impact and personal growth."
+                },
+                "courseName": {
+                  "S": "OGBOMOSO TECH AND ENTREPRENEURSHIP IGNITE 2026"
+                },
+                "studentName": {
+                  "S": "Oluwalonimi Ayo-Akinjole"
+                },
+                "submittedAt": {
+                  "S": "2026-05-07T10:40:55.805Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1778080188492-28GA921FG"
+                },
+                "organizationId": {
+                  "S": "org-f54289d3-e416-4ffb-9d59-02176ae8cf36-1777500413705"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778151359552-GMX7T5V5U"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778151359552-GMX7T5V5U"
+                },
+                "email": {
+                  "S": "maramhamami7@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "courseName": {
+                  "S": "Train-the-Trainers Initiative in Genomics & Bioinformatics"
+                },
+                "studentName": {
+                  "S": "Maram Hammami"
+                },
+                "submittedAt": {
+                  "S": "2026-05-07T10:55:59.552Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1773157668544-F5P2KMI6M"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778153409115-PI9AEMA5W"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778153409115-PI9AEMA5W"
+                },
+                "email": {
+                  "S": "akinwaleisaac87@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "It was impactful, and I learnt alot.\nAnd I had opportunity to connect with new people"
+                },
+                "courseName": {
+                  "S": "OGBOMOSO TECH AND ENTREPRENEURSHIP IGNITE 2026"
+                },
+                "studentName": {
+                  "S": "Akinwale Isaac Oluwafemi"
+                },
+                "submittedAt": {
+                  "S": "2026-05-07T11:30:09.115Z"
+                },
+                "organization": {
+                  "S": "Lautech University"
+                },
+                "certificateId": {
+                  "S": "CERT-1778080188492-28GA921FG"
+                },
+                "organizationId": {
+                  "S": "org-f54289d3-e416-4ffb-9d59-02176ae8cf36-1777500413705"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778157849096-XQCI0BYI2"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778157849096-XQCI0BYI2"
+                },
+                "email": {
+                  "S": "amamchukwuvalentine@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Was very enlightening and interesting"
+                },
+                "courseName": {
+                  "S": "Genomac Malaria Innovation Competition"
+                },
+                "studentName": {
+                  "S": "Amamchukwu Valentine Chisom"
+                },
+                "submittedAt": {
+                  "S": "2026-05-07T12:44:09.097Z"
+                },
+                "organization": {
+                  "S": "Chukwuemeka Odumegwu Ojukwu University, Anambra State"
+                },
+                "certificateId": {
+                  "S": "CERT-1777459600139-LZNZHMVFD"
+                },
+                "organizationId": {
+                  "S": "org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778158155584-M770XXQEA"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778158155584-M770XXQEA"
+                },
+                "email": {
+                  "S": "amamchukwuvalentine@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Was good"
+                },
+                "courseName": {
+                  "S": "Genomac Malaria Innovation Competition"
+                },
+                "studentName": {
+                  "S": "Amamchukwu Valentine Chisom"
+                },
+                "submittedAt": {
+                  "S": "2026-05-07T12:49:15.584Z"
+                },
+                "organization": {
+                  "S": "SeQuenceFx"
+                },
+                "certificateId": {
+                  "S": "CERT-1777459600139-LZNZHMVFD"
+                },
+                "organizationId": {
+                  "S": "org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778166045118-9DBNCLDD5"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778166045118-9DBNCLDD5"
+                },
+                "email": {
+                  "S": "ayomideakanbi610@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "courseName": {
+                  "S": "OGBOMOSO TECH AND ENTREPRENEURSHIP IGNITE 2026"
+                },
+                "studentName": {
+                  "S": "Akanbi Ayomide"
+                },
+                "submittedAt": {
+                  "S": "2026-05-07T15:00:45.118Z"
+                },
+                "organization": {
+                  "S": "Education"
+                },
+                "certificateId": {
+                  "S": "CERT-1777946792503-DASFMON71"
+                },
+                "organizationId": {
+                  "S": "org-f54289d3-e416-4ffb-9d59-02176ae8cf36-1777500413705"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778166731399-CICWWYF46"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778166731399-CICWWYF46"
+                },
+                "email": {
+                  "S": "johnbabalola626@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "courseName": {
+                  "S": "OGBOMOSO TECH AND ENTREPRENEURSHIP IGNITE 2026"
+                },
+                "studentName": {
+                  "S": "Taiwo Babalola"
+                },
+                "submittedAt": {
+                  "S": "2026-05-07T15:12:11.399Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola university of technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1777946792503-DASFMON71"
+                },
+                "organizationId": {
+                  "S": "org-f54289d3-e416-4ffb-9d59-02176ae8cf36-1777500413705"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778182964248-LU9GZI7X4"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778182964248-LU9GZI7X4"
+                },
+                "email": {
+                  "S": "adeolaprecious006@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "courseName": {
+                  "S": "OGBOMOSO TECH AND ENTREPRENEURSHIP IGNITE 2026"
+                },
+                "studentName": {
+                  "S": "Adebowale Adeola Precious"
+                },
+                "submittedAt": {
+                  "S": "2026-05-07T19:42:44.248Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology, Ogbomoso"
+                },
+                "certificateId": {
+                  "S": "CERT-1777946792503-DASFMON71"
+                },
+                "organizationId": {
+                  "S": "org-f54289d3-e416-4ffb-9d59-02176ae8cf36-1777500413705"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778183448257-YE901U693"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778183448257-YE901U693"
+                },
+                "email": {
+                  "S": "akin4real26@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "I took the session on how to build a business that is in line with the banking requirement and legal framework of Nigeria."
+                },
+                "courseName": {
+                  "S": "OGBOMOSO TECH AND ENTREPRENEURSHIP IGNITE 2026"
+                },
+                "studentName": {
+                  "S": "Emmanuel Akíntáyọ̀ Àlàbí"
+                },
+                "submittedAt": {
+                  "S": "2026-05-07T19:50:48.257Z"
+                },
+                "organization": {
+                  "S": "VehAuction"
+                },
+                "certificateId": {
+                  "S": "CERT-1777946792503-DASFMON71"
+                },
+                "organizationId": {
+                  "S": "org-f54289d3-e416-4ffb-9d59-02176ae8cf36-1777500413705"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778185011864-TM49FLL2H"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778185011864-TM49FLL2H"
+                },
+                "email": {
+                  "S": "israeladekola8@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "it was really amazing"
+                },
+                "courseName": {
+                  "S": "OGBOMOSO TECH AND ENTREPRENEURSHIP IGNITE 2026"
+                },
+                "studentName": {
+                  "S": "Adekola Israel"
+                },
+                "submittedAt": {
+                  "S": "2026-05-07T20:16:51.864Z"
+                },
+                "organization": {
+                  "S": "Tilux"
+                },
+                "certificateId": {
+                  "S": "CERT-1777946792503-DASFMON71"
+                },
+                "organizationId": {
+                  "S": "org-f54289d3-e416-4ffb-9d59-02176ae8cf36-1777500413705"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778186728092-WZT7FQ4Y7"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778186728092-WZT7FQ4Y7"
+                },
+                "email": {
+                  "S": "muminatabolade49@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "courseName": {
+                  "S": "OGBOMOSO TECH AND ENTREPRENEURSHIP IGNITE 2026"
+                },
+                "studentName": {
+                  "S": "Abdulraheem Muminat Opeyemi"
+                },
+                "submittedAt": {
+                  "S": "2026-05-07T20:45:28.092Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1777946792503-DASFMON71"
+                },
+                "organizationId": {
+                  "S": "org-f54289d3-e416-4ffb-9d59-02176ae8cf36-1777500413705"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778188739297-TBRIRQI18"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778188739297-TBRIRQI18"
+                },
+                "email": {
+                  "S": "thesamuelolaiya1@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "It was full of knowledge. I really learn a lot on especially on web 3 blockchain, on how to make money with it"
+                },
+                "courseName": {
+                  "S": "OGBOMOSO TECH AND ENTREPRENEURSHIP IGNITE 2026"
+                },
+                "studentName": {
+                  "S": "Olaiya Samuel"
+                },
+                "submittedAt": {
+                  "S": "2026-05-07T21:18:59.297Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology LAUTECH, Ogbomoso, Oyo state."
+                },
+                "certificateId": {
+                  "S": "CERT-1777946792503-DASFMON71"
+                },
+                "organizationId": {
+                  "S": "org-f54289d3-e416-4ffb-9d59-02176ae8cf36-1777500413705"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778195568486-Q7IRT9JUI"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778195568486-Q7IRT9JUI"
+                },
+                "email": {
+                  "S": "preciousokedare1@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "courseName": {
+                  "S": "This certificate is awarded in recognition of your active participation at the Women Techmakers Ogbomoso IWD 2026 Conference."
+                },
+                "studentName": {
+                  "S": "Precious Okedare"
+                },
+                "submittedAt": {
+                  "S": "2026-05-07T23:12:48.486Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1776431935683-3VW5LZ3JW"
+                },
+                "organizationId": {
+                  "S": "org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778207911677-932C3NCQ3"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778207911677-932C3NCQ3"
+                },
+                "email": {
+                  "S": "osagiede.oe@lasustech.edu.ng"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "The training has broadened my knowledge on Genomics and Bioinformatics."
+                },
+                "courseName": {
+                  "S": "Train-the-Trainers Initiative in Genomics & Bioinformatics"
+                },
+                "studentName": {
+                  "S": "Osagiede Omo Emmanuel"
+                },
+                "submittedAt": {
+                  "S": "2026-05-08T02:38:31.677Z"
+                },
+                "organization": {
+                  "S": "Lagos State University of Science and Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1773157668544-F5P2KMI6M"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778224883921-3AYJUH0YO"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778224883921-3AYJUH0YO"
+                },
+                "email": {
+                  "S": "martinsola38@yahoo.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Insight and opportunities for self development and business growth."
+                },
+                "courseName": {
+                  "S": "OGBOMOSO TECH AND ENTREPRENEURSHIP IGNITE 2026"
+                },
+                "studentName": {
+                  "S": "Martins Adedeji OLA"
+                },
+                "submittedAt": {
+                  "S": "2026-05-08T07:21:23.921Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1777946792503-DASFMON71"
+                },
+                "organizationId": {
+                  "S": "org-f54289d3-e416-4ffb-9d59-02176ae8cf36-1777500413705"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778225190561-LNRCKI168"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778225190561-LNRCKI168"
+                },
+                "email": {
+                  "S": "martinsola38@yahoo.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "It was full of insight and opportunities. It was a great experience."
+                },
+                "courseName": {
+                  "S": "OGBOMOSO TECH AND ENTREPRENEURSHIP IGNITE 2026"
+                },
+                "studentName": {
+                  "S": "Martins Adedeji OLA"
+                },
+                "submittedAt": {
+                  "S": "2026-05-08T07:26:30.561Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1778080188492-28GA921FG"
+                },
+                "organizationId": {
+                  "S": "org-f54289d3-e416-4ffb-9d59-02176ae8cf36-1777500413705"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778245552637-S7DZWPXWM"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778245552637-S7DZWPXWM"
+                },
+                "email": {
+                  "S": "ephraimnwu@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Happy to be part of the competition"
+                },
+                "courseName": {
+                  "S": "Genomac Malaria Innovation Competition"
+                },
+                "studentName": {
+                  "S": "EPHRAIM NWUNUJI"
+                },
+                "submittedAt": {
+                  "S": "2026-05-08T13:05:52.637Z"
+                },
+                "organization": {
+                  "S": "Federal University teaching hospital Wukari Taraba state"
+                },
+                "certificateId": {
+                  "S": "CERT-1777459600139-LZNZHMVFD"
+                },
+                "organizationId": {
+                  "S": "org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778248472711-FAMQQQQUC"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778248472711-FAMQQQQUC"
+                },
+                "email": {
+                  "S": "muhdsameenugumel@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Gain experience"
+                },
+                "courseName": {
+                  "S": "Genomac Malaria Innovation Competition"
+                },
+                "studentName": {
+                  "S": "Muhd Sameenu Gumel"
+                },
+                "submittedAt": {
+                  "S": "2026-05-08T13:54:32.711Z"
+                },
+                "organization": {
+                  "S": "Federal University Dutse Jigawa State"
+                },
+                "certificateId": {
+                  "S": "CERT-1777459600139-LZNZHMVFD"
+                },
+                "organizationId": {
+                  "S": "org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778249153007-P8PK1WZWC"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778249153007-P8PK1WZWC"
+                },
+                "email": {
+                  "S": "imammuslihudeen2025@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "It was interesting and really assist in mastering the fundamental in terms of base calling and variant analysis."
+                },
+                "courseName": {
+                  "S": "Bioinformatics Course 201"
+                },
+                "studentName": {
+                  "S": "Musiliyu Ayofe"
+                },
+                "submittedAt": {
+                  "S": "2026-05-08T14:05:53.007Z"
+                },
+                "organization": {
+                  "S": "Fountain University Osogbo"
+                },
+                "certificateId": {
+                  "S": "CERT-1773764855164-V2EITDTXI"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778249254358-VVNA0HRN0"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778249254358-VVNA0HRN0"
+                },
+                "email": {
+                  "S": "opetydave24@gmail.com"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Course 201"
+                },
+                "studentName": {
+                  "S": "David Anuoluwapo Oyeniran"
+                },
+                "submittedAt": {
+                  "S": "2026-05-08T14:07:34.358Z"
+                },
+                "organization": {
+                  "S": "Elizade University, Ilara-Mokin"
+                },
+                "certificateId": {
+                  "S": "CERT-1773764855164-V2EITDTXI"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778249674349-HMCFDOQSU"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778249674349-HMCFDOQSU"
+                },
+                "email": {
+                  "S": "celineanioche5@gmail.com"
+                },
+                "impact": {
+                  "S": "It was amazing \nI learnt a whole alot, like a continuation of what I did in my B.Sc"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Course 201"
+                },
+                "studentName": {
+                  "S": "Celine Chidera Anioche"
+                },
+                "submittedAt": {
+                  "S": "2026-05-08T14:14:34.349Z"
+                },
+                "organization": {
+                  "S": "GENOMAC INSTITUTE"
+                },
+                "certificateId": {
+                  "S": "CERT-1773764855164-V2EITDTXI"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1778249908870-DGDGJH4O9"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778249908870-DGDGJH4O9"
+                },
+                "email": {
+                  "S": "celineanioche5@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It was amazing \nI learnt a whole lot, just like a continuation of what I did in my B.Sc"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Course 201"
+                },
+                "studentName": {
+                  "S": "Celine Chidera Anioche"
+                },
+                "submittedAt": {
+                  "S": "2026-05-08T14:18:28.870Z"
+                },
+                "organization": {
+                  "S": "GENOMAC INSTITUTE"
+                },
+                "certificateId": {
+                  "S": "CERT-1773764855164-V2EITDTXI"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

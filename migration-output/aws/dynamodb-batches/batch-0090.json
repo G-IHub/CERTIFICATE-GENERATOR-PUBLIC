@@ -1,0 +1,991 @@
+{
+  "RequestItems": {
+    "certifyer-dev-kv": [
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067:TEST-1764853311384-LSDU9MG3G"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1764853311384-LSDU9MG3G"
+                },
+                "email": {
+                  "S": "adewuyigoodness1@gmail.com"
+                },
+                "programId": {
+                  "S": "test-course-title-and-signature-2"
+                },
+                "courseName": {
+                  "S": "Test course title and signature 2"
+                },
+                "studentName": {
+                  "S": "Goodie"
+                },
+                "submittedAt": {
+                  "S": "2025-12-04T13:01:51.384Z"
+                },
+                "testimonial": {
+                  "S": "Brazil..."
+                },
+                "certificateId": {
+                  "S": "CERT-1763719382904-I2TAP4KRY"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067:TEST-1764855581387-LZW4WFF0D"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1764855581387-LZW4WFF0D"
+                },
+                "email": {
+                  "S": "adewuyigoodness1@gmail.com"
+                },
+                "programId": {
+                  "S": "test-course-title-and-signature-2"
+                },
+                "courseName": {
+                  "S": "Test course title and signature 2"
+                },
+                "studentName": {
+                  "S": "Goodness Adewuyi"
+                },
+                "submittedAt": {
+                  "S": "2025-12-04T13:39:41.387Z"
+                },
+                "testimonial": {
+                  "S": "Academics..."
+                },
+                "certificateId": {
+                  "S": "CERT-1763719382904-I2TAP4KRY"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067:TEST-1764941234965-O7478C0WE"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1764941234965-O7478C0WE"
+                },
+                "email": {
+                  "S": "adewuyigoodness2@gmail.com"
+                },
+                "programId": {
+                  "S": "test-course-title-and-signature-2"
+                },
+                "courseName": {
+                  "S": "Test course title and signature 2"
+                },
+                "studentName": {
+                  "S": "Goodie"
+                },
+                "submittedAt": {
+                  "S": "2025-12-05T13:27:14.965Z"
+                },
+                "testimonial": {
+                  "S": "Nigeria..."
+                },
+                "certificateId": {
+                  "S": "CERT-1763719382904-I2TAP4KRY"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067:TEST-1764942458521-D8LJ9PSZO"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1764942458521-D8LJ9PSZO"
+                },
+                "email": {
+                  "S": "adewuyigoodness3@gmail.com"
+                },
+                "programId": {
+                  "S": "test-course-title-and-signature-2"
+                },
+                "courseName": {
+                  "S": "Test course title and signature 2"
+                },
+                "studentName": {
+                  "S": "Goodie"
+                },
+                "submittedAt": {
+                  "S": "2025-12-05T13:47:38.521Z"
+                },
+                "testimonial": {
+                  "S": "Feedback 3"
+                },
+                "certificateId": {
+                  "S": "CERT-1763719382904-I2TAP4KRY"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067:TEST-1764942525821-UF2JMW8YX"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1764942525821-UF2JMW8YX"
+                },
+                "email": {
+                  "S": "adewuyigoodness4@gmail.com"
+                },
+                "programId": {
+                  "S": "test-course-title-and-signature-2"
+                },
+                "courseName": {
+                  "S": "Test course title and signature 2"
+                },
+                "studentName": {
+                  "S": "Goodie"
+                },
+                "submittedAt": {
+                  "S": "2025-12-05T13:48:45.821Z"
+                },
+                "testimonial": {
+                  "S": "Feedback 4"
+                },
+                "certificateId": {
+                  "S": "CERT-1763719382904-I2TAP4KRY"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067:TEST-1764942603518-1UVHTRVD4"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1764942603518-1UVHTRVD4"
+                },
+                "email": {
+                  "S": "adewuyigoodness4@gmail.com"
+                },
+                "programId": {
+                  "S": "test-course-title-and-signature-2"
+                },
+                "courseName": {
+                  "S": "Test course title and signature 2"
+                },
+                "studentName": {
+                  "S": "Goodie"
+                },
+                "submittedAt": {
+                  "S": "2025-12-05T13:50:03.518Z"
+                },
+                "testimonial": {
+                  "S": "Feedback 5"
+                },
+                "certificateId": {
+                  "S": "CERT-1763719382904-I2TAP4KRY"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067:TEST-1764942626601-082KVZBXD"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1764942626601-082KVZBXD"
+                },
+                "email": {
+                  "S": "adewuyigoodness6@gmail.com"
+                },
+                "programId": {
+                  "S": "test-course-title-and-signature-2"
+                },
+                "courseName": {
+                  "S": "Test course title and signature 2"
+                },
+                "studentName": {
+                  "S": "Goodie"
+                },
+                "submittedAt": {
+                  "S": "2025-12-05T13:50:26.601Z"
+                },
+                "testimonial": {
+                  "S": "Feedback 6"
+                },
+                "certificateId": {
+                  "S": "CERT-1763719382904-I2TAP4KRY"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067:TEST-1764942666295-YP6MP28NI"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1764942666295-YP6MP28NI"
+                },
+                "email": {
+                  "S": "adewuyigoodness7@gmail.com"
+                },
+                "programId": {
+                  "S": "test-course-title-and-signature-2"
+                },
+                "courseName": {
+                  "S": "Test course title and signature 2"
+                },
+                "studentName": {
+                  "S": "Goodie"
+                },
+                "submittedAt": {
+                  "S": "2025-12-05T13:51:06.295Z"
+                },
+                "testimonial": {
+                  "S": "Feedback 7"
+                },
+                "certificateId": {
+                  "S": "CERT-1763719382904-I2TAP4KRY"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067:TEST-1764942859923-TPRSKZ79U"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1764942859923-TPRSKZ79U"
+                },
+                "email": {
+                  "S": "adewuyigoodness7@gmail.com"
+                },
+                "programId": {
+                  "S": "test-course-title-and-signature-2"
+                },
+                "courseName": {
+                  "S": "Test course title and signature 2"
+                },
+                "studentName": {
+                  "S": "Goodie"
+                },
+                "submittedAt": {
+                  "S": "2025-12-05T13:54:19.923Z"
+                },
+                "testimonial": {
+                  "S": "Feedback 7"
+                },
+                "certificateId": {
+                  "S": "CERT-1763719382904-I2TAP4KRY"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067:TEST-1764942891280-5FHMY1AKE"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1764942891280-5FHMY1AKE"
+                },
+                "email": {
+                  "S": "adewuyigoodness7@gmail.com"
+                },
+                "programId": {
+                  "S": "test-course-title-and-signature-2"
+                },
+                "courseName": {
+                  "S": "Test course title and signature 2"
+                },
+                "studentName": {
+                  "S": "Goodie"
+                },
+                "submittedAt": {
+                  "S": "2025-12-05T13:54:51.280Z"
+                },
+                "testimonial": {
+                  "S": "Feedback 7"
+                },
+                "certificateId": {
+                  "S": "CERT-1763719382904-I2TAP4KRY"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067:TEST-1765197445152-3F5UKZT43"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1765197445152-3F5UKZT43"
+                },
+                "email": {
+                  "S": "adewuyigoodness1@gmail.com"
+                },
+                "programId": {
+                  "S": "webinar"
+                },
+                "courseName": {
+                  "S": "Webinar"
+                },
+                "studentName": {
+                  "S": "Goodie"
+                },
+                "submittedAt": {
+                  "S": "2025-12-08T12:37:25.152Z"
+                },
+                "testimonial": {
+                  "S": "ivioewe"
+                },
+                "certificateId": {
+                  "S": "CERT-1765197274443-0WIDYYNDF"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067:TEST-1765532971804-0OE3VXZL5"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1765532971804-0OE3VXZL5"
+                },
+                "email": {
+                  "S": "adewuyigoodness1@gmail.com"
+                },
+                "programId": {
+                  "S": "software-development"
+                },
+                "courseName": {
+                  "S": "Software Development"
+                },
+                "studentName": {
+                  "S": "Goodness Adewuyi"
+                },
+                "submittedAt": {
+                  "S": "2025-12-12T09:49:31.804Z"
+                },
+                "testimonial": {
+                  "S": "Thanks."
+                },
+                "certificateId": {
+                  "S": "CERT-1763720469590-76G9FNAWE"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-cb757858-424e-44fe-ace7-3c11131de213-1765989677277:TEST-1765990119834-0P9Y5TI3I"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1765990119834-0P9Y5TI3I"
+                },
+                "email": {
+                  "S": "adewuyigoodness1@gmail.com"
+                },
+                "programId": {
+                  "S": "the-future-of-digital-learning-&-monetization"
+                },
+                "courseName": {
+                  "S": "The Future of Digital Learning & Monetization"
+                },
+                "studentName": {
+                  "S": "Goodness Adewuyi"
+                },
+                "submittedAt": {
+                  "S": "2025-12-17T16:48:39.834Z"
+                },
+                "testimonial": {
+                  "S": "I loved the webinar, thank you!"
+                },
+                "certificateId": {
+                  "S": "CERT-1765990012602-2ZO6I9DKI"
+                },
+                "organizationId": {
+                  "S": "org-cb757858-424e-44fe-ace7-3c11131de213-1765989677277"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-cb757858-424e-44fe-ace7-3c11131de213-1765989677277:TEST-1765991751176-P9N6CRM66"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1765991751176-P9N6CRM66"
+                },
+                "email": {
+                  "S": "osiagorchibuezehenry@gmail.com"
+                },
+                "programId": {
+                  "S": "the-future-of-digital-learning-&-monetization"
+                },
+                "courseName": {
+                  "S": "The Future of Digital Learning & Monetization"
+                },
+                "studentName": {
+                  "S": "OSIAGOR, HENRY CHIBUEZE"
+                },
+                "submittedAt": {
+                  "S": "2025-12-17T17:15:51.176Z"
+                },
+                "testimonial": {
+                  "S": "It was impactful"
+                },
+                "certificateId": {
+                  "S": "CERT-1765990012602-2ZO6I9DKI"
+                },
+                "organizationId": {
+                  "S": "org-cb757858-424e-44fe-ace7-3c11131de213-1765989677277"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-cb757858-424e-44fe-ace7-3c11131de213-1765989677277:TEST-1765991755929-D6VVZ1IBJ"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1765991755929-D6VVZ1IBJ"
+                },
+                "email": {
+                  "S": "sidraansari.edu@gmail.com"
+                },
+                "programId": {
+                  "S": "the-future-of-digital-learning-&-monetization"
+                },
+                "courseName": {
+                  "S": "The Future of Digital Learning & Monetization"
+                },
+                "studentName": {
+                  "S": "Sidra Ansari"
+                },
+                "submittedAt": {
+                  "S": "2025-12-17T17:15:55.929Z"
+                },
+                "testimonial": {
+                  "S": "Good workshop"
+                },
+                "certificateId": {
+                  "S": "CERT-1765990012602-2ZO6I9DKI"
+                },
+                "organizationId": {
+                  "S": "org-cb757858-424e-44fe-ace7-3c11131de213-1765989677277"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-cb757858-424e-44fe-ace7-3c11131de213-1765989677277:TEST-1765992027184-2NNP5RGYO"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1765992027184-2NNP5RGYO"
+                },
+                "email": {
+                  "S": "serahbosede@gmail.com"
+                },
+                "programId": {
+                  "S": "the-future-of-digital-learning-&-monetization"
+                },
+                "courseName": {
+                  "S": "The Future of Digital Learning & Monetization"
+                },
+                "studentName": {
+                  "S": "SERAH BOSEDE AJAYI"
+                },
+                "submittedAt": {
+                  "S": "2025-12-17T17:20:27.184Z"
+                },
+                "testimonial": {
+                  "S": "It was an interesting excellent and valuable session"
+                },
+                "certificateId": {
+                  "S": "CERT-1765990012602-2ZO6I9DKI"
+                },
+                "organizationId": {
+                  "S": "org-cb757858-424e-44fe-ace7-3c11131de213-1765989677277"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-cb757858-424e-44fe-ace7-3c11131de213-1765989677277:TEST-1765992115780-Y0DYZE08B"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1765992115780-Y0DYZE08B"
+                },
+                "email": {
+                  "S": "serahbosede@gmail.com"
+                },
+                "programId": {
+                  "S": "the-future-of-digital-learning-&-monetization"
+                },
+                "courseName": {
+                  "S": "The Future of Digital Learning & Monetization"
+                },
+                "studentName": {
+                  "S": "Serah Bosede Ajayi"
+                },
+                "submittedAt": {
+                  "S": "2025-12-17T17:21:55.780Z"
+                },
+                "testimonial": {
+                  "S": "It was an amazing session"
+                },
+                "certificateId": {
+                  "S": "CERT-1765990012602-2ZO6I9DKI"
+                },
+                "organizationId": {
+                  "S": "org-cb757858-424e-44fe-ace7-3c11131de213-1765989677277"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-cb757858-424e-44fe-ace7-3c11131de213-1765989677277:TEST-1765992319421-4UXR8VNMM"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1765992319421-4UXR8VNMM"
+                },
+                "email": {
+                  "S": "adelakunabdulrahman11@gmail.com"
+                },
+                "programId": {
+                  "S": "the-future-of-digital-learning-&-monetization"
+                },
+                "courseName": {
+                  "S": "The Future of Digital Learning & Monetization"
+                },
+                "studentName": {
+                  "S": "Adelakun Abdulrahman Kehinde"
+                },
+                "submittedAt": {
+                  "S": "2025-12-17T17:25:19.421Z"
+                },
+                "testimonial": {
+                  "S": "It was very amazing"
+                },
+                "certificateId": {
+                  "S": "CERT-1765990012602-2ZO6I9DKI"
+                },
+                "organizationId": {
+                  "S": "org-cb757858-424e-44fe-ace7-3c11131de213-1765989677277"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-cb757858-424e-44fe-ace7-3c11131de213-1765989677277:TEST-1765992604898-X3NA3AYQR"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1765992604898-X3NA3AYQR"
+                },
+                "email": {
+                  "S": "chinnilo@yahoo.fr"
+                },
+                "programId": {
+                  "S": "the-future-of-digital-learning-&-monetization"
+                },
+                "courseName": {
+                  "S": "The Future of Digital Learning & Monetization"
+                },
+                "studentName": {
+                  "S": "Curiace Théodule Coffi HINNILO"
+                },
+                "submittedAt": {
+                  "S": "2025-12-17T17:30:04.898Z"
+                },
+                "testimonial": {
+                  "S": "I like it"
+                },
+                "certificateId": {
+                  "S": "CERT-1765990012602-2ZO6I9DKI"
+                },
+                "organizationId": {
+                  "S": "org-cb757858-424e-44fe-ace7-3c11131de213-1765989677277"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-cb757858-424e-44fe-ace7-3c11131de213-1765989677277:TEST-1765993251099-BWSKFRHFC"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1765993251099-BWSKFRHFC"
+                },
+                "programId": {
+                  "S": "the-future-of-digital-learning-&-monetization"
+                },
+                "courseName": {
+                  "S": "The Future of Digital Learning & Monetization"
+                },
+                "studentName": {
+                  "S": "Muzammil Ashfaq"
+                },
+                "submittedAt": {
+                  "S": "2025-12-17T17:40:51.099Z"
+                },
+                "testimonial": {
+                  "S": "Nice"
+                },
+                "certificateId": {
+                  "S": "CERT-1765990012602-2ZO6I9DKI"
+                },
+                "organizationId": {
+                  "S": "org-cb757858-424e-44fe-ace7-3c11131de213-1765989677277"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-cb757858-424e-44fe-ace7-3c11131de213-1765989677277:TEST-1765993881058-Y2RL1SP5D"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1765993881058-Y2RL1SP5D"
+                },
+                "programId": {
+                  "S": "the-future-of-digital-learning-&-monetization"
+                },
+                "courseName": {
+                  "S": "The Future of Digital Learning & Monetization"
+                },
+                "studentName": {
+                  "S": "Muzammil Ashfaq"
+                },
+                "submittedAt": {
+                  "S": "2025-12-17T17:51:21.058Z"
+                },
+                "testimonial": {
+                  "S": "Nice"
+                },
+                "certificateId": {
+                  "S": "CERT-1765990012602-2ZO6I9DKI"
+                },
+                "organizationId": {
+                  "S": "org-cb757858-424e-44fe-ace7-3c11131de213-1765989677277"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-cb757858-424e-44fe-ace7-3c11131de213-1765989677277:TEST-1765993973290-H02E1ZMZR"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1765993973290-H02E1ZMZR"
+                },
+                "programId": {
+                  "S": "the-future-of-digital-learning-&-monetization"
+                },
+                "courseName": {
+                  "S": "The Future of Digital Learning & Monetization"
+                },
+                "studentName": {
+                  "S": "Johar Abbas"
+                },
+                "submittedAt": {
+                  "S": "2025-12-17T17:52:53.290Z"
+                },
+                "testimonial": {
+                  "S": "Good"
+                },
+                "certificateId": {
+                  "S": "CERT-1765990012602-2ZO6I9DKI"
+                },
+                "organizationId": {
+                  "S": "org-cb757858-424e-44fe-ace7-3c11131de213-1765989677277"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-cb757858-424e-44fe-ace7-3c11131de213-1765989677277:TEST-1765994016531-DUSLLCHWH"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1765994016531-DUSLLCHWH"
+                },
+                "email": {
+                  "S": "lugarddamilare2000@gmail.com"
+                },
+                "programId": {
+                  "S": "the-future-of-digital-learning-&-monetization"
+                },
+                "courseName": {
+                  "S": "The Future of Digital Learning & Monetization"
+                },
+                "studentName": {
+                  "S": "Lugard Damilola"
+                },
+                "submittedAt": {
+                  "S": "2025-12-17T17:53:36.531Z"
+                },
+                "testimonial": {
+                  "S": "The sessions was insightful."
+                },
+                "certificateId": {
+                  "S": "CERT-1765990012602-2ZO6I9DKI"
+                },
+                "organizationId": {
+                  "S": "org-cb757858-424e-44fe-ace7-3c11131de213-1765989677277"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-cb757858-424e-44fe-ace7-3c11131de213-1765989677277:TEST-1765994026203-8RITEZDTO"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1765994026203-8RITEZDTO"
+                },
+                "programId": {
+                  "S": "the-future-of-digital-learning-&-monetization"
+                },
+                "courseName": {
+                  "S": "The Future of Digital Learning & Monetization"
+                },
+                "studentName": {
+                  "S": "Ali Jawad"
+                },
+                "submittedAt": {
+                  "S": "2025-12-17T17:53:46.203Z"
+                },
+                "testimonial": {
+                  "S": "Well Done"
+                },
+                "certificateId": {
+                  "S": "CERT-1765990012602-2ZO6I9DKI"
+                },
+                "organizationId": {
+                  "S": "org-cb757858-424e-44fe-ace7-3c11131de213-1765989677277"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-cb757858-424e-44fe-ace7-3c11131de213-1765989677277:TEST-1765994082224-F2KWZ7P1F"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1765994082224-F2KWZ7P1F"
+                },
+                "programId": {
+                  "S": "the-future-of-digital-learning-&-monetization"
+                },
+                "courseName": {
+                  "S": "The Future of Digital Learning & Monetization"
+                },
+                "studentName": {
+                  "S": "Ans Tanveer Hashmi"
+                },
+                "submittedAt": {
+                  "S": "2025-12-17T17:54:42.224Z"
+                },
+                "testimonial": {
+                  "S": "Nice"
+                },
+                "certificateId": {
+                  "S": "CERT-1765990012602-2ZO6I9DKI"
+                },
+                "organizationId": {
+                  "S": "org-cb757858-424e-44fe-ace7-3c11131de213-1765989677277"
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

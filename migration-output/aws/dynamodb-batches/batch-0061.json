@@ -1,0 +1,1042 @@
+{
+  "RequestItems": {
+    "certifyer-dev-kv": [
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486:TEST-1778757065743-SD3R9RKQU"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778757065743-SD3R9RKQU"
+                },
+                "email": {
+                  "S": "jessyandrews22@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Mind-blowing, impactful and enlightening."
+                },
+                "courseName": {
+                  "S": "MedxTech Summit'26"
+                },
+                "studentName": {
+                  "S": "Jessica Andy-Omezi"
+                },
+                "submittedAt": {
+                  "S": "2026-05-14T11:11:05.743Z"
+                },
+                "organization": {
+                  "S": "MedxTech"
+                },
+                "certificateId": {
+                  "S": "CERT-1778522382880-4UOM9LH4O"
+                },
+                "organizationId": {
+                  "S": "org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486:TEST-1778758432961-O8OR9FIDY"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778758432961-O8OR9FIDY"
+                },
+                "email": {
+                  "S": "ekemdianezi@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "courseName": {
+                  "S": "MedxTech Summit'26"
+                },
+                "studentName": {
+                  "S": "Anezi Ekemdi"
+                },
+                "submittedAt": {
+                  "S": "2026-05-14T11:33:52.961Z"
+                },
+                "organization": {
+                  "S": "MedxTech"
+                },
+                "certificateId": {
+                  "S": "CERT-1778522382880-4UOM9LH4O"
+                },
+                "organizationId": {
+                  "S": "org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486:TEST-1778758804298-IBBLI6UBK"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778758804298-IBBLI6UBK"
+                },
+                "email": {
+                  "S": "wiz0isaac@gmail.com"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "courseName": {
+                  "S": "MedxTech Summit'26"
+                },
+                "studentName": {
+                  "S": "Isaac Akinsika"
+                },
+                "submittedAt": {
+                  "S": "2026-05-14T11:40:04.298Z"
+                },
+                "organization": {
+                  "S": "MedxTech Initiative"
+                },
+                "certificateId": {
+                  "S": "CERT-1778525159811-SBJZE9GAC"
+                },
+                "organizationId": {
+                  "S": "org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486:TEST-1778760032045-LDMSD4QY2"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778760032045-LDMSD4QY2"
+                },
+                "email": {
+                  "S": "adeyeraoluwamayokun@gmail.com"
+                },
+                "impact": {
+                  "S": "To show up more intentionally"
+                },
+                "courseName": {
+                  "S": "MedxTech Summit'26"
+                },
+                "studentName": {
+                  "S": "Oluwamayokun Iyunade Adeyera"
+                },
+                "submittedAt": {
+                  "S": "2026-05-14T12:00:32.045Z"
+                },
+                "organization": {
+                  "S": "University of Ilorin"
+                },
+                "certificateId": {
+                  "S": "CERT-1778521811251-0WRAHUIHI"
+                },
+                "organizationId": {
+                  "S": "org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486:TEST-1778763826854-E9RC04WP4"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778763826854-E9RC04WP4"
+                },
+                "email": {
+                  "S": "insbyasot@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Very insightful"
+                },
+                "courseName": {
+                  "S": "MedxTech Summit'26"
+                },
+                "studentName": {
+                  "S": "Segun Olaoluwa Awoniyi"
+                },
+                "submittedAt": {
+                  "S": "2026-05-14T13:03:46.854Z"
+                },
+                "organization": {
+                  "S": "Ekiti State University"
+                },
+                "certificateId": {
+                  "S": "CERT-1778521811251-0WRAHUIHI"
+                },
+                "organizationId": {
+                  "S": "org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486:TEST-1778769506145-M5BUB6AOL"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778769506145-M5BUB6AOL"
+                },
+                "email": {
+                  "S": "ochayipaulochayi@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "courseName": {
+                  "S": "MedxTech Summit'26"
+                },
+                "studentName": {
+                  "S": "Ochayi Paul"
+                },
+                "submittedAt": {
+                  "S": "2026-05-14T14:38:26.146Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1778521811251-0WRAHUIHI"
+                },
+                "organizationId": {
+                  "S": "org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486:TEST-1778772301083-TMTYDC08F"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778772301083-TMTYDC08F"
+                },
+                "email": {
+                  "S": "olanrewajutolu35@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "courseName": {
+                  "S": "MedxTech Summit'26"
+                },
+                "studentName": {
+                  "S": "Toluwanimi Peter Olanrewaju"
+                },
+                "submittedAt": {
+                  "S": "2026-05-14T15:25:01.083Z"
+                },
+                "organization": {
+                  "S": "The Creativerse Hub Limited"
+                },
+                "certificateId": {
+                  "S": "CERT-1778522382880-4UOM9LH4O"
+                },
+                "organizationId": {
+                  "S": "org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486:TEST-1778789665839-ULAWBGTC2"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778789665839-ULAWBGTC2"
+                },
+                "email": {
+                  "S": "dominiono248@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "courseName": {
+                  "S": "MedxTech Summit'26"
+                },
+                "studentName": {
+                  "S": "Dominion Oje"
+                },
+                "submittedAt": {
+                  "S": "2026-05-14T20:14:25.839Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1778521811251-0WRAHUIHI"
+                },
+                "organizationId": {
+                  "S": "org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486:TEST-1778797618873-8KVF9GKEF"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778797618873-8KVF9GKEF"
+                },
+                "email": {
+                  "S": "abisolaogunbunmi@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "MM"
+                },
+                "courseName": {
+                  "S": "MedxTech Summit'26"
+                },
+                "studentName": {
+                  "S": "Ogunbunmi Abisola"
+                },
+                "submittedAt": {
+                  "S": "2026-05-14T22:26:58.873Z"
+                },
+                "organization": {
+                  "S": "MM"
+                },
+                "certificateId": {
+                  "S": "CERT-1778522382880-4UOM9LH4O"
+                },
+                "organizationId": {
+                  "S": "org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486:TEST-1778857750444-6KLRTE1AT"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778857750444-6KLRTE1AT"
+                },
+                "email": {
+                  "S": "faithosatoyinbo@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Co-Lead Registration team"
+                },
+                "courseName": {
+                  "S": "MedxTech Summit'26"
+                },
+                "studentName": {
+                  "S": "Faith Osatoyinbo"
+                },
+                "submittedAt": {
+                  "S": "2026-05-15T15:09:10.445Z"
+                },
+                "organization": {
+                  "S": "University of Ilorin"
+                },
+                "certificateId": {
+                  "S": "CERT-1778522382880-4UOM9LH4O"
+                },
+                "organizationId": {
+                  "S": "org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486:TEST-1778931904982-VQJA4JZI2"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778931904982-VQJA4JZI2"
+                },
+                "email": {
+                  "S": "dominiono248@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "courseName": {
+                  "S": "MedxTech Summit'26"
+                },
+                "studentName": {
+                  "S": "Dominion Oje"
+                },
+                "submittedAt": {
+                  "S": "2026-05-16T11:45:04.982Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1778521811251-0WRAHUIHI"
+                },
+                "organizationId": {
+                  "S": "org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486:TEST-1778933046823-U5ZLNZ3IY"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778933046823-U5ZLNZ3IY"
+                },
+                "email": {
+                  "S": "ibtisamagiri@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "An insightful experience"
+                },
+                "courseName": {
+                  "S": "MedxTech Summit'26"
+                },
+                "studentName": {
+                  "S": "Agiri Ibtisam Adesola"
+                },
+                "submittedAt": {
+                  "S": "2026-05-16T12:04:06.823Z"
+                },
+                "organization": {
+                  "S": "Bells University of Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1778521811251-0WRAHUIHI"
+                },
+                "organizationId": {
+                  "S": "org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486:TEST-1779008756724-J9YW04FB1"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1779008756724-J9YW04FB1"
+                },
+                "email": {
+                  "S": "Okunadegrace27@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "courseName": {
+                  "S": "MedxTech Summit'26"
+                },
+                "studentName": {
+                  "S": "Okunade Grace Oluwasanufummi"
+                },
+                "submittedAt": {
+                  "S": "2026-05-17T09:05:56.724Z"
+                },
+                "organization": {
+                  "S": "University of Ilorin"
+                },
+                "certificateId": {
+                  "S": "CERT-1778521811251-0WRAHUIHI"
+                },
+                "organizationId": {
+                  "S": "org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486:TEST-1779008812764-IYUBYEQQO"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1779008812764-IYUBYEQQO"
+                },
+                "email": {
+                  "S": "okunadegrace27@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "courseName": {
+                  "S": "MedxTech Summit'26"
+                },
+                "studentName": {
+                  "S": "Okunade Grace Oluwasanufunmi"
+                },
+                "submittedAt": {
+                  "S": "2026-05-17T09:06:52.764Z"
+                },
+                "organization": {
+                  "S": "University of Ilorin"
+                },
+                "certificateId": {
+                  "S": "CERT-1778521811251-0WRAHUIHI"
+                },
+                "organizationId": {
+                  "S": "org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486:TEST-1779092728297-9WXT27OR0"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1779092728297-9WXT27OR0"
+                },
+                "email": {
+                  "S": "OCHAYIPAULOCHAYI@GMAIL.COM"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "courseName": {
+                  "S": "MedxTech Summit'26"
+                },
+                "studentName": {
+                  "S": "PAUL OCHAYI"
+                },
+                "submittedAt": {
+                  "S": "2026-05-18T08:25:28.297Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1778521811251-0WRAHUIHI"
+                },
+                "organizationId": {
+                  "S": "org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-9cde30fb-b9fb-4714-8a35-2d6b6adcb9a0-1764673686619:TEST-1764674248319-0FFZPQZKI"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1764674248319-0FFZPQZKI"
+                },
+                "programId": {
+                  "S": "software-development"
+                },
+                "courseName": {
+                  "S": "Software Development"
+                },
+                "studentName": {
+                  "S": "Goodie"
+                },
+                "submittedAt": {
+                  "S": "2025-12-02T11:17:28.319Z"
+                },
+                "testimonial": {
+                  "S": "Aovejwvbewufbwe vwe"
+                },
+                "certificateId": {
+                  "S": "CERT-1764674211804-QSX8KKWF5"
+                },
+                "organizationId": {
+                  "S": "org-9cde30fb-b9fb-4714-8a35-2d6b6adcb9a0-1764673686619"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1773136924128-JD5XCE3AY"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773136924128-JD5XCE3AY"
+                },
+                "email": {
+                  "S": "adewuyigoodness1@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "programId": {
+                  "S": "train-the-trainers-initiative-in-genomics-&-bioinformatics"
+                },
+                "courseName": {
+                  "S": "Train-the-Trainers Initiative in Genomics & Bioinformatics"
+                },
+                "studentName": {
+                  "S": "Goodness Adewuyi"
+                },
+                "submittedAt": {
+                  "S": "2026-03-10T10:02:04.128Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1773136721995-VX3LAFZ8S"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1773137735917-2L7YUE7G6"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773137735917-2L7YUE7G6"
+                },
+                "email": {
+                  "S": "sefiijeboi21@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "programId": {
+                  "S": "train-the-trainers-initiative-in-genomics-&-bioinformatics"
+                },
+                "courseName": {
+                  "S": "Train-the-Trainers Initiative in Genomics & Bioinformatics"
+                },
+                "studentName": {
+                  "S": "IJEBOI SEFI OMOLE"
+                },
+                "submittedAt": {
+                  "S": "2026-03-10T10:15:35.917Z"
+                },
+                "organization": {
+                  "S": "GENOMAC"
+                },
+                "certificateId": {
+                  "S": "CERT-1773136721995-VX3LAFZ8S"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1773141178566-JOCLSZUGV"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773141178566-JOCLSZUGV"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Certifyer"
+                },
+                "programId": {
+                  "S": "train-the-trainers-initiative-in-genomics-&-bioinformatics"
+                },
+                "courseName": {
+                  "S": "Train-the-Trainers Initiative in Genomics & Bioinformatics"
+                },
+                "studentName": {
+                  "S": "Goodie"
+                },
+                "submittedAt": {
+                  "S": "2026-03-10T11:12:58.566Z"
+                },
+                "organization": {
+                  "S": "Certifyer"
+                },
+                "certificateId": {
+                  "S": "CERT-1773136721995-VX3LAFZ8S"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1773143884513-SOF7PTWC8"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773143884513-SOF7PTWC8"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "."
+                },
+                "programId": {
+                  "S": "train-the-trainers-initiative-in-genomics-&-bioinformatics"
+                },
+                "courseName": {
+                  "S": "Train-the-Trainers Initiative in Genomics & Bioinformatics"
+                },
+                "studentName": {
+                  "S": "Goodie"
+                },
+                "submittedAt": {
+                  "S": "2026-03-10T11:58:04.513Z"
+                },
+                "organization": {
+                  "S": "Certifyer"
+                },
+                "certificateId": {
+                  "S": "CERT-1773143843149-VWMZPMX4L"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1773145191466-68SV53SW8"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773145191466-68SV53SW8"
+                },
+                "email": {
+                  "S": "sefiijeboi21@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "FKHJHJ;I"
+                },
+                "programId": {
+                  "S": "train-the-trainers-initiative-in-genomics-&-bioinformatics"
+                },
+                "courseName": {
+                  "S": "Train-the-Trainers Initiative in Genomics & Bioinformatics"
+                },
+                "studentName": {
+                  "S": "IJEBOI SEFI OMOLE"
+                },
+                "submittedAt": {
+                  "S": "2026-03-10T12:19:51.466Z"
+                },
+                "organization": {
+                  "S": "GENOMAC"
+                },
+                "certificateId": {
+                  "S": "CERT-1773143843149-VWMZPMX4L"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1773148319597-W9E26H2HB"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773148319597-W9E26H2HB"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "Informative"
+                },
+                "programId": {
+                  "S": "train-the-trainers-initiative-in-genomics-&-bioinformatics"
+                },
+                "courseName": {
+                  "S": "Train-the-Trainers Initiative in Genomics & Bioinformatics"
+                },
+                "studentName": {
+                  "S": "Kingsley Egbe"
+                },
+                "submittedAt": {
+                  "S": "2026-03-10T13:11:59.597Z"
+                },
+                "organization": {
+                  "S": "Philomath University"
+                },
+                "certificateId": {
+                  "S": "CERT-1773143843149-VWMZPMX4L"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1773148345249-OG8E33GLN"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773148345249-OG8E33GLN"
+                },
+                "email": {
+                  "S": "bssdutse@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "So glad to be part of this great transformatory initiative"
+                },
+                "programId": {
+                  "S": "train-the-trainers-initiative-in-genomics-&-bioinformatics"
+                },
+                "courseName": {
+                  "S": "Train-the-Trainers Initiative in Genomics & Bioinformatics"
+                },
+                "studentName": {
+                  "S": "Badamasi Suleiman"
+                },
+                "submittedAt": {
+                  "S": "2026-03-10T13:12:25.249Z"
+                },
+                "organization": {
+                  "S": "Sule Lamido University, Kafin Hausa, Jigawa State, Nigeria"
+                },
+                "certificateId": {
+                  "S": "CERT-1773143843149-VWMZPMX4L"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1773148355640-7FNCWGL6V"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773148355640-7FNCWGL6V"
+                },
+                "email": {
+                  "S": "hajab83@gmail.com"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "It was a very exciting and refreshing session"
+                },
+                "programId": {
+                  "S": "train-the-trainers-initiative-in-genomics-&-bioinformatics"
+                },
+                "courseName": {
+                  "S": "Train-the-Trainers Initiative in Genomics & Bioinformatics"
+                },
+                "studentName": {
+                  "S": "Hajara Abubakar Sadiq"
+                },
+                "submittedAt": {
+                  "S": "2026-03-10T13:12:35.640Z"
+                },
+                "organization": {
+                  "S": "Northwest University Kano"
+                },
+                "certificateId": {
+                  "S": "CERT-1773143843149-VWMZPMX4L"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1773148404865-YKC2UA36L"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773148404865-YKC2UA36L"
+                },
+                "email": {
+                  "S": "najahtulahi@gmail.com"
+                },
+                "title": {
+                  "S": "Mrs"
+                },
+                "impact": {
+                  "S": "It is an eye opener training"
+                },
+                "programId": {
+                  "S": "train-the-trainers-initiative-in-genomics-&-bioinformatics"
+                },
+                "courseName": {
+                  "S": "Train-the-Trainers Initiative in Genomics & Bioinformatics"
+                },
+                "studentName": {
+                  "S": "Najahtulahi Opeyemi Ibrahim"
+                },
+                "submittedAt": {
+                  "S": "2026-03-10T13:13:24.865Z"
+                },
+                "organization": {
+                  "S": "University of Lagos"
+                },
+                "certificateId": {
+                  "S": "CERT-1773143843149-VWMZPMX4L"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

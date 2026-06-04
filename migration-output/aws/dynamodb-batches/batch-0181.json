@@ -1,0 +1,856 @@
+{
+  "RequestItems": {
+    "certifyer-dev-kv": [
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "user:6a55d3a7-01a1-40cb-baf9-1f2a844a3e58"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "6a55d3a7-01a1-40cb-baf9-1f2a844a3e58"
+                },
+                "email": {
+                  "S": "adewuyigoodness0@gmail.com"
+                },
+                "fullName": {
+                  "S": "Goodness Adewuyi"
+                },
+                "userType": {
+                  "S": "company"
+                },
+                "createdAt": {
+                  "S": "2026-02-06T14:03:34.091Z"
+                },
+                "organizationId": {
+                  "S": "org-6a55d3a7-01a1-40cb-baf9-1f2a844a3e58-1770386613690"
+                },
+                "organizationName": {
+                  "S": "Grownish Tech Company"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "user:6dda353f-6567-4efe-9789-e1fc7f3e4c31"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "6dda353f-6567-4efe-9789-e1fc7f3e4c31"
+                },
+                "email": {
+                  "S": "abdulazizdahiru59@gmail.com"
+                },
+                "fullName": {
+                  "S": "Dahiru Abdulaziz "
+                },
+                "userType": {
+                  "S": "company"
+                },
+                "createdAt": {
+                  "S": "2026-03-19T21:57:25.606Z"
+                },
+                "organizationId": {
+                  "S": "org-6dda353f-6567-4efe-9789-e1fc7f3e4c31-1773957444984"
+                },
+                "organizationName": {
+                  "S": "Kana State Polytechnic, School of Technology, Department of life Science "
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "user:6ed593e0-0620-4f50-9e62-a94e9cf7bbd3"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "6ed593e0-0620-4f50-9e62-a94e9cf7bbd3"
+                },
+                "email": {
+                  "S": "victorboluwatife77@gmail.com"
+                },
+                "fullName": {
+                  "S": "Victor Ogunrinde"
+                },
+                "userType": {
+                  "S": "company"
+                },
+                "createdAt": {
+                  "S": "2026-03-03T10:03:16.534Z"
+                },
+                "organizationId": {
+                  "S": "org-6ed593e0-0620-4f50-9e62-a94e9cf7bbd3-1772532196103"
+                },
+                "organizationName": {
+                  "S": "Scientist Victor Enterprise"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "user:6f2a98c9-0301-4f56-99aa-2a35f5fc843a"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "6f2a98c9-0301-4f56-99aa-2a35f5fc843a"
+                },
+                "email": {
+                  "S": "genomacinc@gmail.com"
+                },
+                "fullName": {
+                  "S": "Mercy Odeyemi"
+                },
+                "userType": {
+                  "S": "company"
+                },
+                "createdAt": {
+                  "S": "2026-01-27T14:04:18.656Z"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                },
+                "organizationName": {
+                  "S": "Genomac Institute Impact Programs"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "user:74a879db-bb10-4dd1-8a4a-246cc6251c3a"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "74a879db-bb10-4dd1-8a4a-246cc6251c3a"
+                },
+                "email": {
+                  "S": "ayodelefavour811@gmail.com"
+                },
+                "fullName": {
+                  "S": "Favour Ayodele"
+                },
+                "userType": {
+                  "S": "company"
+                },
+                "createdAt": {
+                  "S": "2026-05-24T04:42:03.449Z"
+                },
+                "organizationId": {
+                  "S": "org-74a879db-bb10-4dd1-8a4a-246cc6251c3a-1779597722451"
+                },
+                "organizationName": {
+                  "S": "Moonspace Network "
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "user:7c8fe682-ec94-4b8c-ade4-e805351e391e"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "7c8fe682-ec94-4b8c-ade4-e805351e391e"
+                },
+                "email": {
+                  "S": "goldenprofessionaleduconsult@gmail.com"
+                },
+                "fullName": {
+                  "S": "Kin Agholor"
+                },
+                "userType": {
+                  "S": "company"
+                },
+                "createdAt": {
+                  "S": "2026-02-09T19:48:11.503Z"
+                },
+                "organizationId": {
+                  "S": "org-7c8fe682-ec94-4b8c-ade4-e805351e391e-1770666490458"
+                },
+                "organizationName": {
+                  "S": "Golden Professional Edconsult"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "user:80489fc8-0606-4f17-8f54-26dd35e90b09"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "80489fc8-0606-4f17-8f54-26dd35e90b09"
+                },
+                "email": {
+                  "S": "etzhumblex@gmail.com"
+                },
+                "fullName": {
+                  "S": "Humble"
+                },
+                "userType": {
+                  "S": "company"
+                },
+                "createdAt": {
+                  "S": "2026-02-03T14:21:18.169Z"
+                },
+                "organizationId": {
+                  "S": "org-80489fc8-0606-4f17-8f54-26dd35e90b09-1770128477253"
+                },
+                "organizationName": {
+                  "S": "Humble's Organization"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "user:828fe94b-ac4b-4bd2-96c4-f3affd1d6304"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "828fe94b-ac4b-4bd2-96c4-f3affd1d6304"
+                },
+                "email": {
+                  "S": "toluwanimiomotolani@gmail.com"
+                },
+                "fullName": {
+                  "S": "Muili Toluwanimi omotolani-mazidah"
+                },
+                "userType": {
+                  "S": "company"
+                },
+                "createdAt": {
+                  "S": "2026-04-20T15:14:09.375Z"
+                },
+                "organizationId": {
+                  "S": "org-828fe94b-ac4b-4bd2-96c4-f3affd1d6304-1776698048689"
+                },
+                "organizationName": {
+                  "S": "MTOM TEXT"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "user:88a3aab2-6f8a-488b-b83a-6dc448929952"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "88a3aab2-6f8a-488b-b83a-6dc448929952"
+                },
+                "email": {
+                  "S": "biosignaturel@gmail.com"
+                },
+                "fullName": {
+                  "S": "Meenaakshi Saravanan"
+                },
+                "userType": {
+                  "S": "company"
+                },
+                "createdAt": {
+                  "S": "2026-02-11T10:44:18.605Z"
+                },
+                "organizationId": {
+                  "S": "org-88a3aab2-6f8a-488b-b83a-6dc448929952-1770806657389"
+                },
+                "organizationName": {
+                  "S": "Biosignature life sciences "
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "user:8b00e4a3-11f1-42b8-84a0-1bb050fe80a1"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "8b00e4a3-11f1-42b8-84a0-1bb050fe80a1"
+                },
+                "email": {
+                  "S": "ajaobensondan@gmail.com"
+                },
+                "fullName": {
+                  "S": "Daniel Ajao-Benson"
+                },
+                "userType": {
+                  "S": "company"
+                },
+                "createdAt": {
+                  "S": "2026-05-11T22:31:39.733Z"
+                },
+                "organizationId": {
+                  "S": "org-8b00e4a3-11f1-42b8-84a0-1bb050fe80a1-1778538699225"
+                },
+                "organizationName": {
+                  "S": "Federal School of Biomedical Engineering Lagos University Teaching Hospital "
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "user:8d4c1d63-1451-44e0-aeaa-7151a8766f9b"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "8d4c1d63-1451-44e0-aeaa-7151a8766f9b"
+                },
+                "email": {
+                  "S": "thevictoradekunle@gmail.com"
+                },
+                "fullName": {
+                  "S": "Victor"
+                },
+                "userType": {
+                  "S": "company"
+                },
+                "createdAt": {
+                  "S": "2026-01-30T12:55:53.080Z"
+                },
+                "organizationId": {
+                  "S": "org-8d4c1d63-1451-44e0-aeaa-7151a8766f9b-1769777752071"
+                },
+                "organizationName": {
+                  "S": "Victor's Organization"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "user:8e5c31af-cb44-4930-95e3-1139223a164d"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "8e5c31af-cb44-4930-95e3-1139223a164d"
+                },
+                "email": {
+                  "S": "chukwuma.ifeoma@unn.edu.ng"
+                },
+                "fullName": {
+                  "S": "Ifeoma Felicia Felicia Chukwuma"
+                },
+                "userType": {
+                  "S": "company"
+                },
+                "createdAt": {
+                  "S": "2025-12-17T16:41:18.586Z"
+                },
+                "organizationId": {
+                  "S": "org-8e5c31af-cb44-4930-95e3-1139223a164d-1765989678454"
+                },
+                "organizationName": {
+                  "S": "University of Nigeria, Nsukka, Nigeria"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "user:905a062d-4065-4585-b9c4-ad873d3c8da5"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "905a062d-4065-4585-b9c4-ad873d3c8da5"
+                },
+                "email": {
+                  "S": "oladipupouthman3@gmail.com"
+                },
+                "fullName": {
+                  "S": "Oladipupo Uthman"
+                },
+                "userType": {
+                  "S": "company"
+                },
+                "createdAt": {
+                  "S": "2026-05-08T12:12:39.751Z"
+                },
+                "organizationId": {
+                  "S": "org-905a062d-4065-4585-b9c4-ad873d3c8da5-1778242358301"
+                },
+                "organizationName": {
+                  "S": "God Mansfield "
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "user:90bdbfe7-5ac0-423e-94e7-8c44598a054f"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "90bdbfe7-5ac0-423e-94e7-8c44598a054f"
+                },
+                "email": {
+                  "S": "adelakunabdulrahman11@gmail.com"
+                },
+                "fullName": {
+                  "S": "Adelakun Abdulrahman Kehinde "
+                },
+                "userType": {
+                  "S": "company"
+                },
+                "createdAt": {
+                  "S": "2025-12-17T17:27:21.539Z"
+                },
+                "organizationId": {
+                  "S": "org-90bdbfe7-5ac0-423e-94e7-8c44598a054f-1765992441387"
+                },
+                "organizationName": {
+                  "S": "Adelakun Abdulrahman Kehinde 's Organization"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "user:91b9c765-8dea-43f3-94e2-03ef45eb4e88"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "91b9c765-8dea-43f3-94e2-03ef45eb4e88"
+                },
+                "email": {
+                  "S": "aweemmanuel0014@gmail.com"
+                },
+                "fullName": {
+                  "S": "Official Emmy "
+                },
+                "userType": {
+                  "S": "company"
+                },
+                "createdAt": {
+                  "S": "2026-02-17T14:39:23.516Z"
+                },
+                "organizationId": {
+                  "S": "org-91b9c765-8dea-43f3-94e2-03ef45eb4e88-1771339163148"
+                },
+                "organizationName": {
+                  "S": "Official Emmy Multipurpose World 🌎"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "user:981bedce-fc08-4e98-8f79-b6141abfe1ac"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "981bedce-fc08-4e98-8f79-b6141abfe1ac"
+                },
+                "email": {
+                  "S": "abubakaryahayabmb@gmail.com"
+                },
+                "fullName": {
+                  "S": "Yahaya Abubakar"
+                },
+                "userType": {
+                  "S": "company"
+                },
+                "createdAt": {
+                  "S": "2025-12-17T19:33:33.174Z"
+                },
+                "organizationId": {
+                  "S": "org-981bedce-fc08-4e98-8f79-b6141abfe1ac-1766000013033"
+                },
+                "organizationName": {
+                  "S": "Bioinformatics and Data Science Innovative Center (BioDIC)"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "user:9913b5bd-0000-4221-8a55-a1837cf3f7bf"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "9913b5bd-0000-4221-8a55-a1837cf3f7bf"
+                },
+                "email": {
+                  "S": "medxtech.summit01@gmail.com"
+                },
+                "fullName": {
+                  "S": "MedxTech"
+                },
+                "userType": {
+                  "S": "company"
+                },
+                "createdAt": {
+                  "S": "2026-04-24T17:23:11.044Z"
+                },
+                "organizationId": {
+                  "S": "org-9913b5bd-0000-4221-8a55-a1837cf3f7bf-1777051390486"
+                },
+                "organizationName": {
+                  "S": "MedxTech Initiative"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "user:998bce05-66ae-4b2b-855d-7b82026cb987"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "998bce05-66ae-4b2b-855d-7b82026cb987"
+                },
+                "email": {
+                  "S": "rex1.62@web.de"
+                },
+                "fullName": {
+                  "S": "Rainer Eckstein"
+                },
+                "userType": {
+                  "S": "company"
+                },
+                "createdAt": {
+                  "S": "2026-03-01T16:05:04.510Z"
+                },
+                "organizationId": {
+                  "S": "org-998bce05-66ae-4b2b-855d-7b82026cb987-1772381103474"
+                },
+                "organizationName": {
+                  "S": "Rainer Eckstein GmbH"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "user:9a438d80-daa5-44d8-a695-f3b8d5b42bbb"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "9a438d80-daa5-44d8-a695-f3b8d5b42bbb"
+                },
+                "email": {
+                  "S": "admin@genomac.com"
+                },
+                "fullName": {
+                  "S": "Gloria Olawale"
+                },
+                "userType": {
+                  "S": "company"
+                },
+                "createdAt": {
+                  "S": "2026-05-07T09:32:26.733Z"
+                },
+                "organizationId": {
+                  "S": "org-9a438d80-daa5-44d8-a695-f3b8d5b42bbb-1778146346102"
+                },
+                "organizationName": {
+                  "S": "admin@genomac.com"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "user:9c7d2509-0bfc-4de7-8817-9ca02ee4a922"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "9c7d2509-0bfc-4de7-8817-9ca02ee4a922"
+                },
+                "email": {
+                  "S": "adewuyigoodness132@gmail.com"
+                },
+                "fullName": {
+                  "S": "Goodness Adewuyi"
+                },
+                "userType": {
+                  "S": "company"
+                },
+                "createdAt": {
+                  "S": "2026-02-23T13:09:02.609Z"
+                },
+                "organizationId": {
+                  "S": "org-9c7d2509-0bfc-4de7-8817-9ca02ee4a922-1771852142291"
+                },
+                "organizationName": {
+                  "S": "Certifyer"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "user:9cde30fb-b9fb-4714-8a35-2d6b6adcb9a0"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "9cde30fb-b9fb-4714-8a35-2d6b6adcb9a0"
+                },
+                "email": {
+                  "S": "adewuyigoodness2@gmail.com"
+                },
+                "fullName": {
+                  "S": "Goodness Adewuyi"
+                },
+                "userType": {
+                  "S": "company"
+                },
+                "createdAt": {
+                  "S": "2025-12-02T11:08:06.936Z"
+                },
+                "organizationId": {
+                  "S": "org-9cde30fb-b9fb-4714-8a35-2d6b6adcb9a0-1764673686619"
+                },
+                "organizationName": {
+                  "S": "Goodness Adewuyi's Organization"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "user:9fca92cb-8f56-4de7-92f4-f1e1df91f446"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "9fca92cb-8f56-4de7-92f4-f1e1df91f446"
+                },
+                "email": {
+                  "S": "mairajsheikh086@gmail.com"
+                },
+                "fullName": {
+                  "S": "Mairaj"
+                },
+                "userType": {
+                  "S": "company"
+                },
+                "createdAt": {
+                  "S": "2026-02-17T15:17:18.022Z"
+                },
+                "organizationId": {
+                  "S": "org-9fca92cb-8f56-4de7-92f4-f1e1df91f446-1771341437496"
+                },
+                "organizationName": {
+                  "S": "Mairaj's Organization"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "user:a4e426e5-8313-45db-8dcb-285a58721852"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "a4e426e5-8313-45db-8dcb-285a58721852"
+                },
+                "email": {
+                  "S": "obaloluwaajadi@gmail.com"
+                },
+                "fullName": {
+                  "S": "Ajadi Obaloluwa"
+                },
+                "userType": {
+                  "S": "company"
+                },
+                "createdAt": {
+                  "S": "2026-03-16T13:58:24.689Z"
+                },
+                "organizationId": {
+                  "S": "org-a4e426e5-8313-45db-8dcb-285a58721852-1773669503739"
+                },
+                "organizationName": {
+                  "S": "Scientist Victor Enterprise"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "user:a5abb570-a73c-463c-969e-c5f660cb0b23"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "a5abb570-a73c-463c-969e-c5f660cb0b23"
+                },
+                "email": {
+                  "S": "naumanaziz86@gmail.com"
+                },
+                "fullName": {
+                  "S": "Nauman Aziz"
+                },
+                "userType": {
+                  "S": "company"
+                },
+                "createdAt": {
+                  "S": "2026-03-19T20:56:48.868Z"
+                },
+                "organizationId": {
+                  "S": "org-a5abb570-a73c-463c-969e-c5f660cb0b23-1773953807648"
+                },
+                "organizationName": {
+                  "S": "University of veterinary and animal sciences,Lahore, Pakistan"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "user:ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8"
+                },
+                "email": {
+                  "S": "gserviceconsults@gmail.com"
+                },
+                "fullName": {
+                  "S": "Genomac Services and Consult"
+                },
+                "userType": {
+                  "S": "company"
+                },
+                "createdAt": {
+                  "S": "2026-03-09T11:05:54.186Z"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                },
+                "organizationName": {
+                  "S": "Genomac Services and Consult"
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

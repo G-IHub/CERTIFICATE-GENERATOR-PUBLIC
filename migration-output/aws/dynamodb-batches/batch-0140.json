@@ -1,0 +1,1174 @@
+{
+  "RequestItems": {
+    "certifyer-dev-kv": [
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1774720047683-8QJB3CFQW"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774720047683-8QJB3CFQW"
+                },
+                "email": {
+                  "S": "afolayanomotolani30@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "fyujokphgtfhdgjygkuhil"
+                },
+                "programId": {
+                  "S": "functional-genomics-and-pathway-for-health-insights"
+                },
+                "courseName": {
+                  "S": "FUNCTIONAL GENOMICS AND PATHWAY FOR HEALTH INSIGHTS"
+                },
+                "studentName": {
+                  "S": "Omotolani Afolayan"
+                },
+                "submittedAt": {
+                  "S": "2026-03-28T17:47:27.683Z"
+                },
+                "organization": {
+                  "S": "Genomac"
+                },
+                "certificateId": {
+                  "S": "CERT-1774718827586-Q0MG831OZ"
+                },
+                "organizationId": {
+                  "S": "org-c4e7a07b-562d-4068-968c-7d8bee0cec2e-1767182844779"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1774720061213-EZ5Q4CXZI"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774720061213-EZ5Q4CXZI"
+                },
+                "email": {
+                  "S": "afolayanomotolani30@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "fyujokphgtfhdgjygkuhil"
+                },
+                "programId": {
+                  "S": "functional-genomics-and-pathway-for-health-insights"
+                },
+                "courseName": {
+                  "S": "FUNCTIONAL GENOMICS AND PATHWAY FOR HEALTH INSIGHTS"
+                },
+                "studentName": {
+                  "S": "Omotolani Afolayan"
+                },
+                "submittedAt": {
+                  "S": "2026-03-28T17:47:41.213Z"
+                },
+                "organization": {
+                  "S": "Genomac"
+                },
+                "certificateId": {
+                  "S": "CERT-1774718827586-Q0MG831OZ"
+                },
+                "organizationId": {
+                  "S": "org-c4e7a07b-562d-4068-968c-7d8bee0cec2e-1767182844779"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1774720104678-KOBQIIJN1"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774720104678-KOBQIIJN1"
+                },
+                "email": {
+                  "S": "afolayanomotolani30@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "fyujokphgtfhdgjygkuhil"
+                },
+                "programId": {
+                  "S": "functional-genomics-and-pathway-for-health-insights"
+                },
+                "courseName": {
+                  "S": "FUNCTIONAL GENOMICS AND PATHWAY FOR HEALTH INSIGHTS"
+                },
+                "studentName": {
+                  "S": "Omotolani Afolayan"
+                },
+                "submittedAt": {
+                  "S": "2026-03-28T17:48:24.678Z"
+                },
+                "organization": {
+                  "S": "Genomac"
+                },
+                "certificateId": {
+                  "S": "CERT-1774718827586-Q0MG831OZ"
+                },
+                "organizationId": {
+                  "S": "org-c4e7a07b-562d-4068-968c-7d8bee0cec2e-1767182844779"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1774720147269-CIAEXWIXU"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774720147269-CIAEXWIXU"
+                },
+                "email": {
+                  "S": "afolayanomotolani30@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "fyujokphgtfhdgjygkuhil"
+                },
+                "programId": {
+                  "S": "functional-genomics-and-pathway-for-health-insights"
+                },
+                "courseName": {
+                  "S": "FUNCTIONAL GENOMICS AND PATHWAY FOR HEALTH INSIGHTS"
+                },
+                "studentName": {
+                  "S": "Omotolani Afolayan"
+                },
+                "submittedAt": {
+                  "S": "2026-03-28T17:49:07.269Z"
+                },
+                "organization": {
+                  "S": "Genomac"
+                },
+                "certificateId": {
+                  "S": "CERT-1774718827586-Q0MG831OZ"
+                },
+                "organizationId": {
+                  "S": "org-c4e7a07b-562d-4068-968c-7d8bee0cec2e-1767182844779"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1774727562882-NJLYP7794"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774727562882-NJLYP7794"
+                },
+                "email": {
+                  "S": "jimohtolulope29@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "The AMR genomic intelligence program did a great well done and I'll say to my fellow lecturers that it's really helpful"
+                },
+                "programId": {
+                  "S": "amr-genomic-intelligence"
+                },
+                "courseName": {
+                  "S": "AMR Genomic Intelligence"
+                },
+                "studentName": {
+                  "S": "Jimoh Tolulope Abolarinwa"
+                },
+                "submittedAt": {
+                  "S": "2026-03-28T19:52:42.882Z"
+                },
+                "organization": {
+                  "S": "Wesley university"
+                },
+                "certificateId": {
+                  "S": "CERT-1774428235034-RC5V3EIF7"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1774733166796-SR2FLOALH"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774733166796-SR2FLOALH"
+                },
+                "email": {
+                  "S": "ezenwajichidinma@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "I quite enjoyed the experience it's given me  new perspectives"
+                },
+                "programId": {
+                  "S": "amr-genomic-intelligence"
+                },
+                "courseName": {
+                  "S": "AMR Genomic Intelligence"
+                },
+                "studentName": {
+                  "S": "Ezenwaji Chidinma Kenechi"
+                },
+                "submittedAt": {
+                  "S": "2026-03-28T21:26:06.796Z"
+                },
+                "organization": {
+                  "S": "Nnamdi Azikiwe University"
+                },
+                "certificateId": {
+                  "S": "CERT-1774428235034-RC5V3EIF7"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1774867850838-WTBTQZX9G"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774867850838-WTBTQZX9G"
+                },
+                "email": {
+                  "S": "itsayeshazain@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "great lectures, I learned alot from them"
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "Ayesha Zain Alvi"
+                },
+                "submittedAt": {
+                  "S": "2026-03-30T10:50:50.838Z"
+                },
+                "organization": {
+                  "S": "Dow University of Health Sciences"
+                },
+                "certificateId": {
+                  "S": "CERT-1773749898351-VL1FSHIUN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1774881238342-GMY7CE14J"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774881238342-GMY7CE14J"
+                },
+                "email": {
+                  "S": "zaynerb0611@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "I have really learnt alot from it"
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "Zainab Muhammad Sani"
+                },
+                "submittedAt": {
+                  "S": "2026-03-30T14:33:58.342Z"
+                },
+                "organization": {
+                  "S": "Kaduna State University"
+                },
+                "certificateId": {
+                  "S": "CERT-1773749898351-VL1FSHIUN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1774890864225-SMM5J67KL"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774890864225-SMM5J67KL"
+                },
+                "email": {
+                  "S": "beckieosafoadjei@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "I can say that this workshop has given me a clear understanding to bioinformatics tools and data analysis techniques which are important to improve my abilities in this area and would encourage lecturers to participate in such seminars because of its academic and practical value"
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "Osafo-Adjei Beckie Nana Akosua Adjeiwaa"
+                },
+                "submittedAt": {
+                  "S": "2026-03-30T17:14:24.225Z"
+                },
+                "testimonial": {
+                  "S": "I believe more of such seminars will really be helpful in shaping future researchers in metagenomics"
+                },
+                "organization": {
+                  "S": "Kwame Nkrumah University Of Science and Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1773749898351-VL1FSHIUN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1774890905496-EIMM1N5CK"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774890905496-EIMM1N5CK"
+                },
+                "email": {
+                  "S": "siddiqarani932@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "-"
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "siddiqa rani"
+                },
+                "submittedAt": {
+                  "S": "2026-03-30T17:15:05.496Z"
+                },
+                "testimonial": {
+                  "S": "-"
+                },
+                "organization": {
+                  "S": "Pak-Austria Fachhochschule Institute of Applied Sciences and Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1773749898351-VL1FSHIUN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1774898225178-2W6NBLCN3"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774898225178-2W6NBLCN3"
+                },
+                "email": {
+                  "S": "elohorebivwiere@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "I gained more insights about AMR generally and also relating to genomic intelligence."
+                },
+                "programId": {
+                  "S": "amr-genomic-intelligence"
+                },
+                "courseName": {
+                  "S": "AMR Genomic Intelligence"
+                },
+                "studentName": {
+                  "S": "Ebivwiere Elohor"
+                },
+                "submittedAt": {
+                  "S": "2026-03-30T19:17:05.178Z"
+                },
+                "testimonial": {
+                  "S": "I hope to attend a webinar like this again from this organization."
+                },
+                "organization": {
+                  "S": "Obafemi Awolowo university"
+                },
+                "certificateId": {
+                  "S": "CERT-1774428235034-RC5V3EIF7"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1774958937573-D065KAJQB"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774958937573-D065KAJQB"
+                },
+                "email": {
+                  "S": "hadizaliyuu@gmail.com"
+                },
+                "title": {
+                  "S": "Mrs"
+                },
+                "impact": {
+                  "S": "Awesome"
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "Hadiza Aliyu"
+                },
+                "submittedAt": {
+                  "S": "2026-03-31T12:08:57.573Z"
+                },
+                "organization": {
+                  "S": "NBRDA"
+                },
+                "certificateId": {
+                  "S": "CERT-1773749898351-VL1FSHIUN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1774986817553-XJSO5D34L"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774986817553-XJSO5D34L"
+                },
+                "email": {
+                  "S": "anaskhandawar1029@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "This course is better for understanding"
+                },
+                "programId": {
+                  "S": "my-first-program"
+                },
+                "courseName": {
+                  "S": "My First Program"
+                },
+                "studentName": {
+                  "S": "Hazrat anas"
+                },
+                "submittedAt": {
+                  "S": "2026-03-31T19:53:37.553Z"
+                },
+                "organization": {
+                  "S": "Bzu multan"
+                },
+                "certificateId": {
+                  "S": "CERT-1774986710207-IC011XEBZ"
+                },
+                "organizationId": {
+                  "S": "org-55e5d2eb-7bd7-4981-b97e-65e7c11fafbf-1774986655617"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1774987161662-VQFCZ4YT0"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774987161662-VQFCZ4YT0"
+                },
+                "email": {
+                  "S": "anaskhandawar1029@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "This course is essential for understanding certificate learning"
+                },
+                "programId": {
+                  "S": "my-first-program"
+                },
+                "courseName": {
+                  "S": "My First Program"
+                },
+                "studentName": {
+                  "S": "Hazrat anas"
+                },
+                "submittedAt": {
+                  "S": "2026-03-31T19:59:21.662Z"
+                },
+                "organization": {
+                  "S": "Bzu multan"
+                },
+                "certificateId": {
+                  "S": "CERT-1774986710207-IC011XEBZ"
+                },
+                "organizationId": {
+                  "S": "org-55e5d2eb-7bd7-4981-b97e-65e7c11fafbf-1774986655617"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775037038975-XZFL0K851"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775037038975-XZFL0K851"
+                },
+                "email": {
+                  "S": "chijiokeuhegwu@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "dd"
+                },
+                "programId": {
+                  "S": "biocoding-bootcamp"
+                },
+                "courseName": {
+                  "S": "2-month Virtual Biocoding Bootcamp"
+                },
+                "studentName": {
+                  "S": "Genomac Holdings"
+                },
+                "submittedAt": {
+                  "S": "2026-04-01T09:50:38.975Z"
+                },
+                "organization": {
+                  "S": "dd"
+                },
+                "certificateId": {
+                  "S": "CERT-1773759817780-52GNSUHZX"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775037973439-9MJPKPT6M"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775037973439-9MJPKPT6M"
+                },
+                "email": {
+                  "S": "uhegwuchijioke@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "d"
+                },
+                "programId": {
+                  "S": "introduction-to-bioinformatics-bootcamp"
+                },
+                "courseName": {
+                  "S": "Introduction to Bioinformatics Bootcamp"
+                },
+                "studentName": {
+                  "S": "c"
+                },
+                "submittedAt": {
+                  "S": "2026-04-01T10:06:13.439Z"
+                },
+                "organization": {
+                  "S": "d"
+                },
+                "certificateId": {
+                  "S": "CERT-1775037885438-82RGGX585"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775038103778-0ZEOS9MYK"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775038103778-0ZEOS9MYK"
+                },
+                "email": {
+                  "S": "uhegwuchijioke@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "l"
+                },
+                "programId": {
+                  "S": "introduction-to-bioinformatics-bootcamp"
+                },
+                "courseName": {
+                  "S": "Introduction to Bioinformatics Bootcamp"
+                },
+                "studentName": {
+                  "S": "f"
+                },
+                "submittedAt": {
+                  "S": "2026-04-01T10:08:23.778Z"
+                },
+                "organization": {
+                  "S": "ffff"
+                },
+                "certificateId": {
+                  "S": "CERT-1775037885438-82RGGX585"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775038731575-Q5DYO15H3"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775038731575-Q5DYO15H3"
+                },
+                "email": {
+                  "S": "ajangishaya1@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "I'm equip  more  than before"
+                },
+                "programId": {
+                  "S": "introduction-to-bioinformatics-bootcamp"
+                },
+                "courseName": {
+                  "S": "Introduction to Bioinformatics Bootcamp"
+                },
+                "studentName": {
+                  "S": "Afan Ajang Ishaya"
+                },
+                "submittedAt": {
+                  "S": "2026-04-01T10:18:51.575Z"
+                },
+                "testimonial": {
+                  "S": "More of this"
+                },
+                "organization": {
+                  "S": "Global Health and Infectious Diseases Control Institute (GHIDI)"
+                },
+                "certificateId": {
+                  "S": "CERT-1775037885438-82RGGX585"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775039452464-B18HK7QKK"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775039452464-B18HK7QKK"
+                },
+                "email": {
+                  "S": "babadahiru87@gmail.com"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "Fantastic"
+                },
+                "programId": {
+                  "S": "introduction-to-bioinformatics-bootcamp"
+                },
+                "courseName": {
+                  "S": "Introduction to Bioinformatics Bootcamp"
+                },
+                "studentName": {
+                  "S": "Baba Dahiru"
+                },
+                "submittedAt": {
+                  "S": "2026-04-01T10:30:52.464Z"
+                },
+                "testimonial": {
+                  "S": "No comment"
+                },
+                "organization": {
+                  "S": "NAERLS / ABU Zaria"
+                },
+                "certificateId": {
+                  "S": "CERT-1775037885438-82RGGX585"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775039816908-I575WHVXY"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775039816908-I575WHVXY"
+                },
+                "email": {
+                  "S": "soleboaminat@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "The Introduction to Bioinformatics Bootcamp has significantly enhanced my ability to integrate computational tools into biological research and teaching, and I strongly encourage fellow lecturers to participate as it equips you with practical, in-demand skills that elevate both your teaching and research impact."
+                },
+                "programId": {
+                  "S": "introduction-to-bioinformatics-bootcamp"
+                },
+                "courseName": {
+                  "S": "Introduction to Bioinformatics Bootcamp"
+                },
+                "studentName": {
+                  "S": "Solebo Aminat"
+                },
+                "submittedAt": {
+                  "S": "2026-04-01T10:36:56.908Z"
+                },
+                "organization": {
+                  "S": "Genomac Institute Inc"
+                },
+                "certificateId": {
+                  "S": "CERT-1775037885438-82RGGX585"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775040247538-ZY75TRE86"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775040247538-ZY75TRE86"
+                },
+                "email": {
+                  "S": "Fortuneonuoha21@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It was an insightful experience, now I know what I'm to expect about Bioinformatics proper"
+                },
+                "programId": {
+                  "S": "introduction-to-bioinformatics-bootcamp"
+                },
+                "courseName": {
+                  "S": "Introduction to Bioinformatics Bootcamp"
+                },
+                "studentName": {
+                  "S": "Fortune Onuoha"
+                },
+                "submittedAt": {
+                  "S": "2026-04-01T10:44:07.538Z"
+                },
+                "testimonial": {
+                  "S": "The boot camp was interesting please keep it going"
+                },
+                "organization": {
+                  "S": "Abia State University"
+                },
+                "certificateId": {
+                  "S": "CERT-1775037885438-82RGGX585"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775040415900-GEHO60E0U"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775040415900-GEHO60E0U"
+                },
+                "email": {
+                  "S": "flashyfunmi@gmail.com"
+                },
+                "title": {
+                  "S": "Mrs"
+                },
+                "impact": {
+                  "S": "For me,  is an eye opener to bio informatics"
+                },
+                "programId": {
+                  "S": "introduction-to-bioinformatics-bootcamp"
+                },
+                "courseName": {
+                  "S": "Introduction to Bioinformatics Bootcamp"
+                },
+                "studentName": {
+                  "S": "Ayodeji Funmilola Wunmi"
+                },
+                "submittedAt": {
+                  "S": "2026-04-01T10:46:55.900Z"
+                },
+                "organization": {
+                  "S": "Mountain Top University"
+                },
+                "certificateId": {
+                  "S": "CERT-1775037885438-82RGGX585"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775040578730-2QEMIEWWI"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775040578730-2QEMIEWWI"
+                },
+                "email": {
+                  "S": "jefferycrown@gmail.com"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "Very impactful"
+                },
+                "programId": {
+                  "S": "introduction-to-bioinformatics-bootcamp"
+                },
+                "courseName": {
+                  "S": "Introduction to Bioinformatics Bootcamp"
+                },
+                "studentName": {
+                  "S": "JEFFERY ELORM AKORTIA AGBEMEETSI"
+                },
+                "submittedAt": {
+                  "S": "2026-04-01T10:49:38.730Z"
+                },
+                "organization": {
+                  "S": "Central Veterinary Laboratory, Veterinary Services Directorate, Ghana"
+                },
+                "certificateId": {
+                  "S": "CERT-1775037885438-82RGGX585"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775040691425-T8M7EZWE3"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775040691425-T8M7EZWE3"
+                },
+                "email": {
+                  "S": "fashafei@gmail.com"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "Great materials and well instructions capacity."
+                },
+                "programId": {
+                  "S": "introduction-to-bioinformatics-bootcamp"
+                },
+                "courseName": {
+                  "S": "Introduction to Bioinformatics Bootcamp"
+                },
+                "studentName": {
+                  "S": "FAWZI  EL-SHAFEI"
+                },
+                "submittedAt": {
+                  "S": "2026-04-01T10:51:31.425Z"
+                },
+                "organization": {
+                  "S": "University of Michigan"
+                },
+                "certificateId": {
+                  "S": "CERT-1775037885438-82RGGX585"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775042095583-2AF2PLOI7"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775042095583-2AF2PLOI7"
+                },
+                "email": {
+                  "S": "oloruntobasalami280@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "It was a insightful journey I would say. The lectures were taken from the basics and and recordings were made available for references."
+                },
+                "programId": {
+                  "S": "introduction-to-bioinformatics-bootcamp"
+                },
+                "courseName": {
+                  "S": "Introduction to Bioinformatics Bootcamp"
+                },
+                "studentName": {
+                  "S": "SALAMI SAMUEL OLORUNTOBA"
+                },
+                "submittedAt": {
+                  "S": "2026-04-01T11:14:55.583Z"
+                },
+                "organization": {
+                  "S": "Obafemi Awolowo University, Ile Ife, Osun State."
+                },
+                "certificateId": {
+                  "S": "CERT-1775037885438-82RGGX585"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

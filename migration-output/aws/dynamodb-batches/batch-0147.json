@@ -1,0 +1,1105 @@
+{
+  "RequestItems": {
+    "certifyer-dev-kv": [
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1776651027359-F446NL5QZ"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1776651027359-F446NL5QZ"
+                },
+                "email": {
+                  "S": "sundaykaura52@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "programId": {
+                  "S": "amr-genomics-with-r-(beginner-crash-course)"
+                },
+                "courseName": {
+                  "S": "AMR Genomics with R Program (Beginner crash course)"
+                },
+                "studentName": {
+                  "S": "sunday kaura"
+                },
+                "submittedAt": {
+                  "S": "2026-04-20T02:10:27.359Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1775639874946-DXG1KC1IB"
+                },
+                "organizationId": {
+                  "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1776658076785-8L6A5DB4S"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1776658076785-8L6A5DB4S"
+                },
+                "email": {
+                  "S": "raymondeworo@gmail.com"
+                },
+                "programId": {
+                  "S": "amr-genomics-with-r-(beginner-crash-course)"
+                },
+                "courseName": {
+                  "S": "AMR Genomics with R Program (Beginner crash course)"
+                },
+                "studentName": {
+                  "S": "Raymond Ekong Eworo"
+                },
+                "submittedAt": {
+                  "S": "2026-04-20T04:07:56.785Z"
+                },
+                "organization": {
+                  "S": "University of Calabar"
+                },
+                "certificateId": {
+                  "S": "CERT-1775639874946-DXG1KC1IB"
+                },
+                "organizationId": {
+                  "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1776698913158-NWO6L7A2V"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1776698913158-NWO6L7A2V"
+                },
+                "email": {
+                  "S": "toluwanimiomotolani@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "So good"
+                },
+                "programId": {
+                  "S": "advanced-digital-marketing-program"
+                },
+                "courseName": {
+                  "S": "Advanced Digital marketing program"
+                },
+                "studentName": {
+                  "S": "Muili Toluwanimi"
+                },
+                "submittedAt": {
+                  "S": "2026-04-20T15:28:33.158Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1776698861872-YKW5Z5ZCR"
+                },
+                "organizationId": {
+                  "S": "org-828fe94b-ac4b-4bd2-96c4-f3affd1d6304-1776698048689"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1776858305799-X0IMVQ6C7"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1776858305799-X0IMVQ6C7"
+                },
+                "email": {
+                  "S": "mayowaogunsusi@gmail.com"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "I had Hands on experience during the training"
+                },
+                "programId": {
+                  "S": "molecular-docking-and-drug-design-course"
+                },
+                "courseName": {
+                  "S": "MOLECULAR DOCKING AND DRUG DESIGN course"
+                },
+                "studentName": {
+                  "S": "Mayowa Ogunsusi"
+                },
+                "submittedAt": {
+                  "S": "2026-04-22T11:45:05.799Z"
+                },
+                "organization": {
+                  "S": "Hallmark University, Ijebu Itele Ogun State"
+                },
+                "certificateId": {
+                  "S": "CERT-1776244424370-EO2A0CI6T"
+                },
+                "organizationId": {
+                  "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1776858746219-ROJRUEB2X"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1776858746219-ROJRUEB2X"
+                },
+                "email": {
+                  "S": "genomachub@gmail.com"
+                },
+                "programId": {
+                  "S": "sscssscs"
+                },
+                "courseName": {
+                  "S": "SSCSSSCS"
+                },
+                "studentName": {
+                  "S": "Oluwaseyi Abraham Olawale"
+                },
+                "submittedAt": {
+                  "S": "2026-04-22T11:52:26.219Z"
+                },
+                "organization": {
+                  "S": "Genomac Hub"
+                },
+                "certificateId": {
+                  "S": "CERT-1776858730614-G0W46NV3G"
+                },
+                "organizationId": {
+                  "S": "org-53e77cf8-e8b7-488a-9925-d2a03e6d0ea2-1772793192106"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1776894533161-MC47E0MEP"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1776894533161-MC47E0MEP"
+                },
+                "email": {
+                  "S": "rebeka.ndana@uniabuja.edu.ng"
+                },
+                "title": {
+                  "S": "Prof"
+                },
+                "impact": {
+                  "S": "Simplified bioinformatics andOpened me up to terminologies that seemed difficult"
+                },
+                "programId": {
+                  "S": "introduction-to-bioinformatics-bootcamp"
+                },
+                "courseName": {
+                  "S": "Introduction to Bioinformatics Bootcamp"
+                },
+                "studentName": {
+                  "S": "Rebeccah Ndana"
+                },
+                "submittedAt": {
+                  "S": "2026-04-22T21:48:53.161Z"
+                },
+                "testimonial": {
+                  "S": "Think the course should have more time like 2 weeks"
+                },
+                "organization": {
+                  "S": "University of Abuja"
+                },
+                "certificateId": {
+                  "S": "CERT-1775037885438-82RGGX585"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1776938256900-7N1DQDOLG"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1776938256900-7N1DQDOLG"
+                },
+                "email": {
+                  "S": "agbonyemenefua@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "programId": {
+                  "S": "data-driven-health:-bridging-bioinformatics-and-pharmacology-for-effective-interventions."
+                },
+                "courseName": {
+                  "S": "Data-Driven Health: Bridging Bioinformatics and Pharmacology for Effective Interventions."
+                },
+                "studentName": {
+                  "S": "Agbonyemen Efuaosose Edua"
+                },
+                "submittedAt": {
+                  "S": "2026-04-23T09:57:36.900Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1771337529539-AAGJGCXEY"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1776938451340-6IY8PCLZ2"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1776938451340-6IY8PCLZ2"
+                },
+                "email": {
+                  "S": "agbonyemenefua@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "programId": {
+                  "S": "data-driven-health:-bridging-bioinformatics-and-pharmacology-for-effective-interventions."
+                },
+                "courseName": {
+                  "S": "Data-Driven Health: Bridging Bioinformatics and Pharmacology for Effective Interventions."
+                },
+                "studentName": {
+                  "S": "Agbonyemen Efuaosose Edua"
+                },
+                "submittedAt": {
+                  "S": "2026-04-23T10:00:51.340Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1771337529539-AAGJGCXEY"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777027225014-4WCE4JGRA"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777027225014-4WCE4JGRA"
+                },
+                "email": {
+                  "S": "paulkule31@gmail.com"
+                },
+                "impact": {
+                  "S": "Na"
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "MUKISA DICKENS"
+                },
+                "submittedAt": {
+                  "S": "2026-04-24T10:40:25.014Z"
+                },
+                "testimonial": {
+                  "S": "Na"
+                },
+                "organization": {
+                  "S": "Lugoba High School"
+                },
+                "certificateId": {
+                  "S": "CERT-1773749898351-VL1FSHIUN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777040916021-YK01CMZZX"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777040916021-YK01CMZZX"
+                },
+                "email": {
+                  "S": "uhegwuchijioke@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "programId": {
+                  "S": "introduction-to-bioinformatics-bootcamp"
+                },
+                "courseName": {
+                  "S": "Introduction to Bioinformatics Bootcamp"
+                },
+                "studentName": {
+                  "S": "cd"
+                },
+                "submittedAt": {
+                  "S": "2026-04-24T14:28:36.021Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1775037885438-82RGGX585"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777044314904-4AKKKOWNA"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777044314904-4AKKKOWNA"
+                },
+                "email": {
+                  "S": "daniel.adewole@bowen.edu.ng"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "The experience was nice"
+                },
+                "programId": {
+                  "S": "metagenomics-for-public-health-research"
+                },
+                "courseName": {
+                  "S": "Metagenomics for Public Health Research"
+                },
+                "studentName": {
+                  "S": "Pelumi Daniel Adewole"
+                },
+                "submittedAt": {
+                  "S": "2026-04-24T15:25:14.904Z"
+                },
+                "organization": {
+                  "S": "Bowen University, Iwo, Osun State"
+                },
+                "certificateId": {
+                  "S": "CERT-1777041833936-XNTRW1R8F"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777044561110-LXA94HRCF"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777044561110-LXA94HRCF"
+                },
+                "email": {
+                  "S": "abdullahi.st@unilorin.edu.ng"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "This program really pushed me beyond my limits and gave me a solid understanding of Pangenomics. Grateful to God and my tutor, Oluwaseun Agboola for the growth and the experience."
+                },
+                "programId": {
+                  "S": "pangenomics-workshop"
+                },
+                "courseName": {
+                  "S": "Pangenomics Workshop"
+                },
+                "studentName": {
+                  "S": "Sa'ad Toyin Abdullahi"
+                },
+                "submittedAt": {
+                  "S": "2026-04-24T15:29:21.110Z"
+                },
+                "organization": {
+                  "S": "University of Ilorin,"
+                },
+                "certificateId": {
+                  "S": "CERT-1777042625644-8FQKUA7R8"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777044728320-7I6U36JKK"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777044728320-7I6U36JKK"
+                },
+                "email": {
+                  "S": "nwokoroguvivian@gmail.com"
+                },
+                "programId": {
+                  "S": "metagenomics-for-public-health-research"
+                },
+                "courseName": {
+                  "S": "Metagenomics for Public Health Research"
+                },
+                "studentName": {
+                  "S": "Vivian Chiamaka Nwokorogu"
+                },
+                "submittedAt": {
+                  "S": "2026-04-24T15:32:08.320Z"
+                },
+                "organization": {
+                  "S": "Durban University of Technology, Department of Biotechnology, South Africa"
+                },
+                "certificateId": {
+                  "S": "CERT-1777041833936-XNTRW1R8F"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777045762865-C0ARIE3L9"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777045762865-C0ARIE3L9"
+                },
+                "email": {
+                  "S": "abdullahi.st@unilorin.edu.ng"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "The program really pushed me beyond my limits and gave me a solid understanding of what Pangenomics is all about. Grateful to God and my tutor, Oluwaseun Agboola, for the growth and the experience."
+                },
+                "programId": {
+                  "S": "pangenomics-workshop"
+                },
+                "courseName": {
+                  "S": "Pangenomics Workshop"
+                },
+                "studentName": {
+                  "S": "Sa'ad Toyin Abdullahi"
+                },
+                "submittedAt": {
+                  "S": "2026-04-24T15:49:22.865Z"
+                },
+                "organization": {
+                  "S": "Department of Pharmaceutical & Medicinal Chemistry, University of Ilorin, Ilorin, Nigeria"
+                },
+                "certificateId": {
+                  "S": "CERT-1777042625644-8FQKUA7R8"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777054997583-PJP4J9CW9"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777054997583-PJP4J9CW9"
+                },
+                "email": {
+                  "S": "abdullahi.st@unilorin.edu.ng"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "programId": {
+                  "S": "pangenomics-workshop"
+                },
+                "courseName": {
+                  "S": "Pangenomics Workshop"
+                },
+                "studentName": {
+                  "S": "Sa'ad Toyin Abdullahi"
+                },
+                "submittedAt": {
+                  "S": "2026-04-24T18:23:17.583Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1777042625644-8FQKUA7R8"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777117572943-0DPOVD4W1"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777117572943-0DPOVD4W1"
+                },
+                "email": {
+                  "S": "kelvins.tanson@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "It has introduced new concepts I previously didn’t think about regarding metagenomics to me"
+                },
+                "programId": {
+                  "S": "metagenomics-for-public-health-research"
+                },
+                "courseName": {
+                  "S": "Metagenomics for Public Health Research"
+                },
+                "studentName": {
+                  "S": "Tanson Senyo Kelvin"
+                },
+                "submittedAt": {
+                  "S": "2026-04-25T11:46:12.943Z"
+                },
+                "organization": {
+                  "S": "University of Health and Allied Sciences"
+                },
+                "certificateId": {
+                  "S": "CERT-1777041833936-XNTRW1R8F"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777120358487-5ZWS7YQFC"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777120358487-5ZWS7YQFC"
+                },
+                "email": {
+                  "S": "gbemilekeolawumi@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "A big thank you to the organizers."
+                },
+                "programId": {
+                  "S": "this-certificate-is-awarded-in-recognition-of-your-active-participation-at-the-women-techmakers-ogbomoso-iwd-2026-conference."
+                },
+                "courseName": {
+                  "S": "This certificate is awarded in recognition of your active participation at the Women Techmakers Ogbomoso IWD 2026 Conference."
+                },
+                "studentName": {
+                  "S": "Leah Titilayo Olawumi"
+                },
+                "submittedAt": {
+                  "S": "2026-04-25T12:32:38.487Z"
+                },
+                "organization": {
+                  "S": "Cephas ICT Hub"
+                },
+                "certificateId": {
+                  "S": "CERT-1776431935683-3VW5LZ3JW"
+                },
+                "organizationId": {
+                  "S": "org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777120512460-CGBADTZ6O"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777120512460-CGBADTZ6O"
+                },
+                "email": {
+                  "S": "kabeerahtitilope35@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "programId": {
+                  "S": "this-certificate-is-awarded-in-recognition-of-your-active-participation-at-the-women-techmakers-ogbomoso-iwd-2026-conference."
+                },
+                "courseName": {
+                  "S": "This certificate is awarded in recognition of your active participation at the Women Techmakers Ogbomoso IWD 2026 Conference."
+                },
+                "studentName": {
+                  "S": "Olaopa Kabeerah Titilope"
+                },
+                "submittedAt": {
+                  "S": "2026-04-25T12:35:12.460Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1776431935683-3VW5LZ3JW"
+                },
+                "organizationId": {
+                  "S": "org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777120548955-KOEXN71EN"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777120548955-KOEXN71EN"
+                },
+                "email": {
+                  "S": "nafeesaholayemi@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It was a very captivating, insightful and eye-opening program which I would like to recommend to women who's looking out to start their journey in tech."
+                },
+                "programId": {
+                  "S": "this-certificate-is-awarded-in-recognition-of-your-active-participation-at-the-women-techmakers-ogbomoso-iwd-2026-conference."
+                },
+                "courseName": {
+                  "S": "This certificate is awarded in recognition of your active participation at the Women Techmakers Ogbomoso IWD 2026 Conference."
+                },
+                "studentName": {
+                  "S": "Nafeesah Olayemi Olapade"
+                },
+                "submittedAt": {
+                  "S": "2026-04-25T12:35:48.955Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1776431935683-3VW5LZ3JW"
+                },
+                "organizationId": {
+                  "S": "org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777120623919-C1CGR5CN1"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777120623919-C1CGR5CN1"
+                },
+                "email": {
+                  "S": "toluwanimiomotolani@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It's is educative and you will never forget skills you acquire from IWD"
+                },
+                "programId": {
+                  "S": "this-certificate-is-awarded-in-recognition-of-your-active-participation-at-the-women-techmakers-ogbomoso-iwd-2026-conference."
+                },
+                "courseName": {
+                  "S": "This certificate is awarded in recognition of your active participation at the Women Techmakers Ogbomoso IWD 2026 Conference."
+                },
+                "studentName": {
+                  "S": "Muili Toluwanimi omotolani-Mazidah"
+                },
+                "submittedAt": {
+                  "S": "2026-04-25T12:37:03.919Z"
+                },
+                "testimonial": {
+                  "S": "I love it and will surely be there another timee"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1776431935683-3VW5LZ3JW"
+                },
+                "organizationId": {
+                  "S": "org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777121184478-V8APF2JMZ"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777121184478-V8APF2JMZ"
+                },
+                "email": {
+                  "S": "oluwatobilobakilanko@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "I would say it boosted my confidence as a woman really helped and improved my self esteem assured me I could do anything and also improved my tech skills they enlightened me more too"
+                },
+                "programId": {
+                  "S": "this-certificate-is-awarded-in-recognition-of-your-active-participation-at-the-women-techmakers-ogbomoso-iwd-2026-conference."
+                },
+                "courseName": {
+                  "S": "This certificate is awarded in recognition of your active participation at the Women Techmakers Ogbomoso IWD 2026 Conference."
+                },
+                "studentName": {
+                  "S": "Oluwatobiloba Kilanko Deborah"
+                },
+                "submittedAt": {
+                  "S": "2026-04-25T12:46:24.478Z"
+                },
+                "testimonial": {
+                  "S": "Thank you for the enlightenment and all. God bless women tech makers ogbomosho! I would also wish and love to join this community of yours thanks as you consider my request 😊."
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1776431935683-3VW5LZ3JW"
+                },
+                "organizationId": {
+                  "S": "org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777122106009-KXPOR7UGJ"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777122106009-KXPOR7UGJ"
+                },
+                "email": {
+                  "S": "ramzanmicro9@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Very good"
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "muhammad ramzan"
+                },
+                "submittedAt": {
+                  "S": "2026-04-25T13:01:46.009Z"
+                },
+                "testimonial": {
+                  "S": "More deep and basic also"
+                },
+                "organization": {
+                  "S": "University of veterinary and animal sciences Lahore"
+                },
+                "certificateId": {
+                  "S": "CERT-1773749898351-VL1FSHIUN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777132313362-HCDJ24LIW"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777132313362-HCDJ24LIW"
+                },
+                "email": {
+                  "S": "adekunlemariyam539@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "programId": {
+                  "S": "this-certificate-is-awarded-in-recognition-of-your-active-participation-at-the-women-techmakers-ogbomoso-iwd-2026-conference."
+                },
+                "courseName": {
+                  "S": "This certificate is awarded in recognition of your active participation at the Women Techmakers Ogbomoso IWD 2026 Conference."
+                },
+                "studentName": {
+                  "S": "Mariyam Adewumi Adekunle"
+                },
+                "submittedAt": {
+                  "S": "2026-04-25T15:51:53.362Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1776431935683-3VW5LZ3JW"
+                },
+                "organizationId": {
+                  "S": "org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777133207787-TGXBFA80J"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777133207787-TGXBFA80J"
+                },
+                "email": {
+                  "S": "favouradeniran85@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "The program did not only impacted me but also enlightened me and I learned a lot even as a beginner without any knowledge \nTo you pretty ladies still doubting,you need to decide now \nGo for any Tech skill of your choice \nThe tech world is not gender-based"
+                },
+                "programId": {
+                  "S": "this-certificate-is-awarded-in-recognition-of-your-active-participation-at-the-women-techmakers-ogbomoso-iwd-2026-conference."
+                },
+                "courseName": {
+                  "S": "This certificate is awarded in recognition of your active participation at the Women Techmakers Ogbomoso IWD 2026 Conference."
+                },
+                "studentName": {
+                  "S": "Favour Adeniran Adebimpe"
+                },
+                "submittedAt": {
+                  "S": "2026-04-25T16:06:47.787Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola university of technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1776431935683-3VW5LZ3JW"
+                },
+                "organizationId": {
+                  "S": "org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777134567053-U3IFZEG3X"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777134567053-U3IFZEG3X"
+                },
+                "email": {
+                  "S": "heritagebabarinde193@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It was enlightening"
+                },
+                "programId": {
+                  "S": "this-certificate-is-awarded-in-recognition-of-your-active-participation-at-the-women-techmakers-ogbomoso-iwd-2026-conference."
+                },
+                "courseName": {
+                  "S": "This certificate is awarded in recognition of your active participation at the Women Techmakers Ogbomoso IWD 2026 Conference."
+                },
+                "studentName": {
+                  "S": "Babarinde Heritage Adedoyin"
+                },
+                "submittedAt": {
+                  "S": "2026-04-25T16:29:27.053Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology Ogbomoso"
+                },
+                "certificateId": {
+                  "S": "CERT-1776431935683-3VW5LZ3JW"
+                },
+                "organizationId": {
+                  "S": "org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611"
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,3079 @@
+{
+  "RequestItems": {
+    "certifyer-dev-kv": [
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1779741928220-U2IZP94EN"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1779741928220-U2IZP94EN"
+                },
+                "email": {
+                  "S": "loveolatunji21@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Joined the volunteer media team to create content, my main impact has been helping translate our work into content people actually engage with. I’ve contributed by creating visuals, editing short videos. \nIt was a great privilege to work with scientists Victor 🙏"
+                },
+                "courseName": {
+                  "S": "BEYOND THE DEGREE Conference"
+                },
+                "studentName": {
+                  "S": "Olatunji Love"
+                },
+                "submittedAt": {
+                  "S": "2026-05-25T20:45:28.220Z"
+                },
+                "organization": {
+                  "S": "God's Favorite 🥺🥰"
+                },
+                "certificateId": {
+                  "S": "CERT-1779713227349-AIHX12TIL"
+                },
+                "organizationId": {
+                  "S": "org-6ed593e0-0620-4f50-9e62-a94e9cf7bbd3-1772532196103"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1779741943748-IKNWO67A7"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1779741943748-IKNWO67A7"
+                },
+                "email": {
+                  "S": "victoriajolaoye@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "The Beyond the Degree program was a masterclass in community building. Volunteering allowed me to network with like-minded individuals, sharpen my communication skills, and play a direct role in creating a successful, impactful event for the LAUTECH community"
+                },
+                "courseName": {
+                  "S": "BEYOND THE DEGREE Conference"
+                },
+                "studentName": {
+                  "S": "Olaoye Victoria jejelola"
+                },
+                "submittedAt": {
+                  "S": "2026-05-25T20:45:43.748Z"
+                },
+                "organization": {
+                  "S": "LAUTECH"
+                },
+                "certificateId": {
+                  "S": "CERT-1779713227349-AIHX12TIL"
+                },
+                "organizationId": {
+                  "S": "org-6ed593e0-0620-4f50-9e62-a94e9cf7bbd3-1772532196103"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1779742986499-VS194YFJK"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1779742986499-VS194YFJK"
+                },
+                "email": {
+                  "S": "loveolatunji21@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Since joining the volunteer media team, my main impact has been helping translate our work into content people actually engage with. I’ve contributed by creating visuals, editing short videos, \nIt was a great privilege to work with Scientists Victor 🙏"
+                },
+                "courseName": {
+                  "S": "BEYOND THE DEGREE Conference"
+                },
+                "studentName": {
+                  "S": "Olatunji Love"
+                },
+                "submittedAt": {
+                  "S": "2026-05-25T21:03:06.499Z"
+                },
+                "organization": {
+                  "S": "Lautech"
+                },
+                "certificateId": {
+                  "S": "CERT-1779713227349-AIHX12TIL"
+                },
+                "organizationId": {
+                  "S": "org-6ed593e0-0620-4f50-9e62-a94e9cf7bbd3-1772532196103"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1779743312144-3X88C3YX4"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1779743312144-3X88C3YX4"
+                },
+                "email": {
+                  "S": "loveolatunji21@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Since joining the volunteer media team, my main impact has been helping translate our work into content people actually engage with. I’ve contributed by creating visuals, editing short videos. \nIt's was a privilege to work with scientists Victor🙏"
+                },
+                "courseName": {
+                  "S": "BEYOND THE DEGREE Conference"
+                },
+                "studentName": {
+                  "S": "Olatunji Love"
+                },
+                "submittedAt": {
+                  "S": "2026-05-25T21:08:32.144Z"
+                },
+                "organization": {
+                  "S": "Lautech"
+                },
+                "certificateId": {
+                  "S": "CERT-1779713227349-AIHX12TIL"
+                },
+                "organizationId": {
+                  "S": "org-6ed593e0-0620-4f50-9e62-a94e9cf7bbd3-1772532196103"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1779743419123-S8OIBHTO8"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1779743419123-S8OIBHTO8"
+                },
+                "email": {
+                  "S": "loveolatunji21@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Since joining the volunteer media team, my main impact has been helping translate our work into content people actually engage with. I’ve contributed by creating visuals, editing short videos. \nIt's was a great privilege to work with scientists Victor🙏"
+                },
+                "courseName": {
+                  "S": "BEYOND THE DEGREE Conference"
+                },
+                "studentName": {
+                  "S": "Olatunji Love"
+                },
+                "submittedAt": {
+                  "S": "2026-05-25T21:10:19.123Z"
+                },
+                "organization": {
+                  "S": "Lautech"
+                },
+                "certificateId": {
+                  "S": "CERT-1779713227349-AIHX12TIL"
+                },
+                "organizationId": {
+                  "S": "org-6ed593e0-0620-4f50-9e62-a94e9cf7bbd3-1772532196103"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1779823902592-MXZJQUH7V"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1779823902592-MXZJQUH7V"
+                },
+                "email": {
+                  "S": "olayinkatemiloluwa2008@gmail.com"
+                },
+                "impact": {
+                  "S": "The conference was so helpful and impactfull\nIf it were to hold again,I will definitely attend it"
+                },
+                "courseName": {
+                  "S": "BEYOND THE DEGREE Conference"
+                },
+                "studentName": {
+                  "S": "Olayinka Temiloluwa Grace"
+                },
+                "submittedAt": {
+                  "S": "2026-05-26T19:31:42.592Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1779713227349-AIHX12TIL"
+                },
+                "organizationId": {
+                  "S": "org-6ed593e0-0620-4f50-9e62-a94e9cf7bbd3-1772532196103"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "transaction:0tepojjlqi"
+            },
+            "value": {
+              "M": {
+                "amount": {
+                  "N": "50000"
+                },
+                "planId": {
+                  "S": "premium_yearly"
+                },
+                "status": {
+                  "S": "pending"
+                },
+                "userId": {
+                  "S": "c65c9e12-7544-461a-98e4-8392ca197885"
+                },
+                "currency": {
+                  "S": "NGN"
+                },
+                "createdAt": {
+                  "S": "2025-10-24T15:43:58.987Z"
+                },
+                "reference": {
+                  "S": "0tepojjlqi"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "transaction:3icycbq8x0"
+            },
+            "value": {
+              "M": {
+                "amount": {
+                  "N": "5000"
+                },
+                "planId": {
+                  "S": "premium_monthly"
+                },
+                "status": {
+                  "S": "pending"
+                },
+                "userId": {
+                  "S": "c65c9e12-7544-461a-98e4-8392ca197885"
+                },
+                "currency": {
+                  "S": "NGN"
+                },
+                "createdAt": {
+                  "S": "2025-10-24T19:24:15.244Z"
+                },
+                "reference": {
+                  "S": "3icycbq8x0"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "transaction:3ivrg2h8op"
+            },
+            "value": {
+              "M": {
+                "amount": {
+                  "N": "5000"
+                },
+                "planId": {
+                  "S": "premium_monthly"
+                },
+                "status": {
+                  "S": "success"
+                },
+                "userId": {
+                  "S": "c65c9e12-7544-461a-98e4-8392ca197885"
+                },
+                "currency": {
+                  "S": "NGN"
+                },
+                "createdAt": {
+                  "S": "2025-10-24T15:47:29.531Z"
+                },
+                "reference": {
+                  "S": "3ivrg2h8op"
+                },
+                "verifiedAt": {
+                  "S": "2025-10-24T16:27:51.865Z"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                },
+                "paystackResponse": {
+                  "M": {
+                    "id": {
+                      "N": "5461971249"
+                    },
+                    "log": {
+                      "M": {
+                        "input": {
+                          "L": []
+                        },
+                        "errors": {
+                          "N": "1"
+                        },
+                        "mobile": {
+                          "BOOL": false
+                        },
+                        "history": {
+                          "L": [
+                            {
+                              "M": {
+                                "time": {
+                                  "N": "5"
+                                },
+                                "type": {
+                                  "S": "action"
+                                },
+                                "message": {
+                                  "S": "Attempted to pay with card"
+                                }
+                              }
+                            },
+                            {
+                              "M": {
+                                "time": {
+                                  "N": "6"
+                                },
+                                "type": {
+                                  "S": "error"
+                                },
+                                "message": {
+                                  "S": "Error: Declined"
+                                }
+                              }
+                            },
+                            {
+                              "M": {
+                                "time": {
+                                  "N": "14"
+                                },
+                                "type": {
+                                  "S": "action"
+                                },
+                                "message": {
+                                  "S": "Set payment method to: ussd"
+                                }
+                              }
+                            },
+                            {
+                              "M": {
+                                "time": {
+                                  "N": "33"
+                                },
+                                "type": {
+                                  "S": "action"
+                                },
+                                "message": {
+                                  "S": "Set payment method to: bank_transfer"
+                                }
+                              }
+                            },
+                            {
+                              "M": {
+                                "time": {
+                                  "N": "42"
+                                },
+                                "type": {
+                                  "S": "action"
+                                },
+                                "message": {
+                                  "S": "Set payment method to: card"
+                                }
+                              }
+                            },
+                            {
+                              "M": {
+                                "time": {
+                                  "N": "48"
+                                },
+                                "type": {
+                                  "S": "action"
+                                },
+                                "message": {
+                                  "S": "Attempted to pay with card"
+                                }
+                              }
+                            },
+                            {
+                              "M": {
+                                "time": {
+                                  "N": "49"
+                                },
+                                "type": {
+                                  "S": "success"
+                                },
+                                "message": {
+                                  "S": "Successfully paid with card"
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        "success": {
+                          "BOOL": true
+                        },
+                        "attempts": {
+                          "N": "2"
+                        },
+                        "start_time": {
+                          "N": "1761320853"
+                        },
+                        "time_spent": {
+                          "N": "49"
+                        }
+                      }
+                    },
+                    "fees": {
+                      "N": "75"
+                    },
+                    "plan": {
+                      "NULL": true
+                    },
+                    "split": {
+                      "M": {}
+                    },
+                    "amount": {
+                      "N": "5000"
+                    },
+                    "domain": {
+                      "S": "test"
+                    },
+                    "paidAt": {
+                      "S": "2025-10-24T15:48:19.000Z"
+                    },
+                    "source": {
+                      "NULL": true
+                    },
+                    "status": {
+                      "S": "success"
+                    },
+                    "channel": {
+                      "S": "card"
+                    },
+                    "connect": {
+                      "NULL": true
+                    },
+                    "message": {
+                      "NULL": true
+                    },
+                    "paid_at": {
+                      "S": "2025-10-24T15:48:19.000Z"
+                    },
+                    "currency": {
+                      "S": "NGN"
+                    },
+                    "customer": {
+                      "M": {
+                        "id": {
+                          "N": "314514192"
+                        },
+                        "email": {
+                          "S": "adewuyigoodness1@gmail.com"
+                        },
+                        "phone": {
+                          "NULL": true
+                        },
+                        "metadata": {
+                          "NULL": true
+                        },
+                        "last_name": {
+                          "NULL": true
+                        },
+                        "first_name": {
+                          "NULL": true
+                        },
+                        "risk_action": {
+                          "S": "default"
+                        },
+                        "customer_code": {
+                          "S": "CUS_78f0ccsdk3zd8x1"
+                        },
+                        "international_format_phone": {
+                          "NULL": true
+                        }
+                      }
+                    },
+                    "metadata": {
+                      "M": {
+                        "planId": {
+                          "S": "premium_monthly"
+                        },
+                        "userId": {
+                          "S": "c65c9e12-7544-461a-98e4-8392ca197885"
+                        },
+                        "referrer": {
+                          "S": "https://select-icy-97280307.figma.site/"
+                        },
+                        "organizationId": {
+                          "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                        },
+                        "organizationName": {
+                          "S": "Gihub"
+                        }
+                      }
+                    },
+                    "order_id": {
+                      "NULL": true
+                    },
+                    "createdAt": {
+                      "S": "2025-10-24T15:47:29.000Z"
+                    },
+                    "reference": {
+                      "S": "3ivrg2h8op"
+                    },
+                    "created_at": {
+                      "S": "2025-10-24T15:47:29.000Z"
+                    },
+                    "fees_split": {
+                      "NULL": true
+                    },
+                    "ip_address": {
+                      "S": "102.215.57.65"
+                    },
+                    "subaccount": {
+                      "M": {}
+                    },
+                    "plan_object": {
+                      "M": {}
+                    },
+                    "authorization": {
+                      "M": {
+                        "bin": {
+                          "S": "408408"
+                        },
+                        "bank": {
+                          "S": "TEST BANK"
+                        },
+                        "brand": {
+                          "S": "visa"
+                        },
+                        "last4": {
+                          "S": "4081"
+                        },
+                        "channel": {
+                          "S": "card"
+                        },
+                        "exp_year": {
+                          "S": "2030"
+                        },
+                        "reusable": {
+                          "BOOL": true
+                        },
+                        "card_type": {
+                          "S": "visa "
+                        },
+                        "exp_month": {
+                          "S": "12"
+                        },
+                        "signature": {
+                          "S": "SIG_E9QjC50g3TyxLpbHVPac"
+                        },
+                        "account_name": {
+                          "NULL": true
+                        },
+                        "country_code": {
+                          "S": "NG"
+                        },
+                        "receiver_bank": {
+                          "NULL": true
+                        },
+                        "authorization_code": {
+                          "S": "AUTH_06uvgj3p2m"
+                        },
+                        "receiver_bank_account_number": {
+                          "NULL": true
+                        }
+                      }
+                    },
+                    "fees_breakdown": {
+                      "NULL": true
+                    },
+                    "receipt_number": {
+                      "NULL": true
+                    },
+                    "gateway_response": {
+                      "S": "Successful"
+                    },
+                    "requested_amount": {
+                      "N": "5000"
+                    },
+                    "transaction_date": {
+                      "S": "2025-10-24T15:47:29.000Z"
+                    },
+                    "pos_transaction_data": {
+                      "NULL": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "transaction:8jkj2y3iih"
+            },
+            "value": {
+              "M": {
+                "amount": {
+                  "N": "50000"
+                },
+                "planId": {
+                  "S": "premium_yearly"
+                },
+                "status": {
+                  "S": "pending"
+                },
+                "userId": {
+                  "S": "c65c9e12-7544-461a-98e4-8392ca197885"
+                },
+                "currency": {
+                  "S": "NGN"
+                },
+                "createdAt": {
+                  "S": "2025-10-24T18:44:38.856Z"
+                },
+                "reference": {
+                  "S": "8jkj2y3iih"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "transaction:dfl6s3mg2t"
+            },
+            "value": {
+              "M": {
+                "amount": {
+                  "N": "5000"
+                },
+                "planId": {
+                  "S": "premium_monthly"
+                },
+                "status": {
+                  "S": "success"
+                },
+                "userId": {
+                  "S": "c65c9e12-7544-461a-98e4-8392ca197885"
+                },
+                "currency": {
+                  "S": "NGN"
+                },
+                "createdAt": {
+                  "S": "2025-10-24T19:01:22.740Z"
+                },
+                "reference": {
+                  "S": "dfl6s3mg2t"
+                },
+                "verifiedAt": {
+                  "S": "2025-10-24T19:02:51.011Z"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                },
+                "paystackResponse": {
+                  "M": {
+                    "id": {
+                      "N": "5462424100"
+                    },
+                    "log": {
+                      "M": {
+                        "input": {
+                          "L": []
+                        },
+                        "errors": {
+                          "N": "0"
+                        },
+                        "mobile": {
+                          "BOOL": false
+                        },
+                        "history": {
+                          "L": [
+                            {
+                              "M": {
+                                "time": {
+                                  "N": "4"
+                                },
+                                "type": {
+                                  "S": "action"
+                                },
+                                "message": {
+                                  "S": "Attempted to pay with card"
+                                }
+                              }
+                            },
+                            {
+                              "M": {
+                                "time": {
+                                  "N": "5"
+                                },
+                                "type": {
+                                  "S": "success"
+                                },
+                                "message": {
+                                  "S": "Successfully paid with card"
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        "success": {
+                          "BOOL": true
+                        },
+                        "attempts": {
+                          "N": "1"
+                        },
+                        "start_time": {
+                          "N": "1761332486"
+                        },
+                        "time_spent": {
+                          "N": "5"
+                        }
+                      }
+                    },
+                    "fees": {
+                      "N": "75"
+                    },
+                    "plan": {
+                      "NULL": true
+                    },
+                    "split": {
+                      "M": {}
+                    },
+                    "amount": {
+                      "N": "5000"
+                    },
+                    "domain": {
+                      "S": "test"
+                    },
+                    "paidAt": {
+                      "S": "2025-10-24T19:01:30.000Z"
+                    },
+                    "source": {
+                      "NULL": true
+                    },
+                    "status": {
+                      "S": "success"
+                    },
+                    "channel": {
+                      "S": "card"
+                    },
+                    "connect": {
+                      "NULL": true
+                    },
+                    "message": {
+                      "NULL": true
+                    },
+                    "paid_at": {
+                      "S": "2025-10-24T19:01:30.000Z"
+                    },
+                    "currency": {
+                      "S": "NGN"
+                    },
+                    "customer": {
+                      "M": {
+                        "id": {
+                          "N": "314514192"
+                        },
+                        "email": {
+                          "S": "adewuyigoodness1@gmail.com"
+                        },
+                        "phone": {
+                          "NULL": true
+                        },
+                        "metadata": {
+                          "NULL": true
+                        },
+                        "last_name": {
+                          "NULL": true
+                        },
+                        "first_name": {
+                          "NULL": true
+                        },
+                        "risk_action": {
+                          "S": "default"
+                        },
+                        "customer_code": {
+                          "S": "CUS_78f0ccsdk3zd8x1"
+                        },
+                        "international_format_phone": {
+                          "NULL": true
+                        }
+                      }
+                    },
+                    "metadata": {
+                      "M": {
+                        "planId": {
+                          "S": "premium_monthly"
+                        },
+                        "userId": {
+                          "S": "c65c9e12-7544-461a-98e4-8392ca197885"
+                        },
+                        "referrer": {
+                          "S": "https://select-icy-97280307.figma.site/"
+                        },
+                        "organizationId": {
+                          "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                        },
+                        "organizationName": {
+                          "S": "G-iHub"
+                        }
+                      }
+                    },
+                    "order_id": {
+                      "NULL": true
+                    },
+                    "createdAt": {
+                      "S": "2025-10-24T19:01:22.000Z"
+                    },
+                    "reference": {
+                      "S": "dfl6s3mg2t"
+                    },
+                    "created_at": {
+                      "S": "2025-10-24T19:01:22.000Z"
+                    },
+                    "fees_split": {
+                      "NULL": true
+                    },
+                    "ip_address": {
+                      "S": "102.215.57.65"
+                    },
+                    "subaccount": {
+                      "M": {}
+                    },
+                    "plan_object": {
+                      "M": {}
+                    },
+                    "authorization": {
+                      "M": {
+                        "bin": {
+                          "S": "408408"
+                        },
+                        "bank": {
+                          "S": "TEST BANK"
+                        },
+                        "brand": {
+                          "S": "visa"
+                        },
+                        "last4": {
+                          "S": "4081"
+                        },
+                        "channel": {
+                          "S": "card"
+                        },
+                        "exp_year": {
+                          "S": "2030"
+                        },
+                        "reusable": {
+                          "BOOL": true
+                        },
+                        "card_type": {
+                          "S": "visa "
+                        },
+                        "exp_month": {
+                          "S": "12"
+                        },
+                        "signature": {
+                          "S": "SIG_E9QjC50g3TyxLpbHVPac"
+                        },
+                        "account_name": {
+                          "NULL": true
+                        },
+                        "country_code": {
+                          "S": "NG"
+                        },
+                        "receiver_bank": {
+                          "NULL": true
+                        },
+                        "authorization_code": {
+                          "S": "AUTH_8ldf86dc4m"
+                        },
+                        "receiver_bank_account_number": {
+                          "NULL": true
+                        }
+                      }
+                    },
+                    "fees_breakdown": {
+                      "NULL": true
+                    },
+                    "receipt_number": {
+                      "NULL": true
+                    },
+                    "gateway_response": {
+                      "S": "Successful"
+                    },
+                    "requested_amount": {
+                      "N": "5000"
+                    },
+                    "transaction_date": {
+                      "S": "2025-10-24T19:01:22.000Z"
+                    },
+                    "pos_transaction_data": {
+                      "NULL": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "transaction:ghyrk6zbwq"
+            },
+            "value": {
+              "M": {
+                "amount": {
+                  "N": "50000"
+                },
+                "planId": {
+                  "S": "premium_yearly"
+                },
+                "status": {
+                  "S": "pending"
+                },
+                "userId": {
+                  "S": "c65c9e12-7544-461a-98e4-8392ca197885"
+                },
+                "currency": {
+                  "S": "NGN"
+                },
+                "createdAt": {
+                  "S": "2025-10-24T15:45:53.530Z"
+                },
+                "reference": {
+                  "S": "ghyrk6zbwq"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "transaction:gpsq78xn0w"
+            },
+            "value": {
+              "M": {
+                "amount": {
+                  "N": "5000000"
+                },
+                "planId": {
+                  "S": "premium_yearly"
+                },
+                "status": {
+                  "S": "pending"
+                },
+                "userId": {
+                  "S": "64c0888d-bcc2-45d2-8e6d-cf5166fa3817"
+                },
+                "currency": {
+                  "S": "NGN"
+                },
+                "createdAt": {
+                  "S": "2025-11-07T09:18:02.651Z"
+                },
+                "reference": {
+                  "S": "gpsq78xn0w"
+                },
+                "organizationId": {
+                  "S": "org-64c0888d-bcc2-45d2-8e6d-cf5166fa3817-1761747099850"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "transaction:i867gt4rxl"
+            },
+            "value": {
+              "M": {
+                "amount": {
+                  "N": "50000"
+                },
+                "planId": {
+                  "S": "premium_yearly"
+                },
+                "status": {
+                  "S": "pending"
+                },
+                "userId": {
+                  "S": "c65c9e12-7544-461a-98e4-8392ca197885"
+                },
+                "currency": {
+                  "S": "NGN"
+                },
+                "createdAt": {
+                  "S": "2025-10-28T15:56:25.343Z"
+                },
+                "reference": {
+                  "S": "i867gt4rxl"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "transaction:jt46z1ux5b"
+            },
+            "value": {
+              "M": {
+                "amount": {
+                  "N": "50000"
+                },
+                "planId": {
+                  "S": "premium_yearly"
+                },
+                "status": {
+                  "S": "success"
+                },
+                "userId": {
+                  "S": "c65c9e12-7544-461a-98e4-8392ca197885"
+                },
+                "currency": {
+                  "S": "NGN"
+                },
+                "createdAt": {
+                  "S": "2025-10-24T18:31:35.814Z"
+                },
+                "reference": {
+                  "S": "jt46z1ux5b"
+                },
+                "verifiedAt": {
+                  "S": "2025-10-24T19:00:53.111Z"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                },
+                "paystackResponse": {
+                  "M": {
+                    "id": {
+                      "N": "5462355234"
+                    },
+                    "log": {
+                      "M": {
+                        "input": {
+                          "L": []
+                        },
+                        "errors": {
+                          "N": "0"
+                        },
+                        "mobile": {
+                          "BOOL": false
+                        },
+                        "history": {
+                          "L": [
+                            {
+                              "M": {
+                                "time": {
+                                  "N": "5"
+                                },
+                                "type": {
+                                  "S": "action"
+                                },
+                                "message": {
+                                  "S": "Attempted to pay with card"
+                                }
+                              }
+                            },
+                            {
+                              "M": {
+                                "time": {
+                                  "N": "6"
+                                },
+                                "type": {
+                                  "S": "success"
+                                },
+                                "message": {
+                                  "S": "Successfully paid with card"
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        "success": {
+                          "BOOL": true
+                        },
+                        "attempts": {
+                          "N": "1"
+                        },
+                        "start_time": {
+                          "N": "1761330700"
+                        },
+                        "time_spent": {
+                          "N": "6"
+                        }
+                      }
+                    },
+                    "fees": {
+                      "N": "750"
+                    },
+                    "plan": {
+                      "NULL": true
+                    },
+                    "split": {
+                      "M": {}
+                    },
+                    "amount": {
+                      "N": "50000"
+                    },
+                    "domain": {
+                      "S": "test"
+                    },
+                    "paidAt": {
+                      "S": "2025-10-24T18:31:43.000Z"
+                    },
+                    "source": {
+                      "NULL": true
+                    },
+                    "status": {
+                      "S": "success"
+                    },
+                    "channel": {
+                      "S": "card"
+                    },
+                    "connect": {
+                      "NULL": true
+                    },
+                    "message": {
+                      "NULL": true
+                    },
+                    "paid_at": {
+                      "S": "2025-10-24T18:31:43.000Z"
+                    },
+                    "currency": {
+                      "S": "NGN"
+                    },
+                    "customer": {
+                      "M": {
+                        "id": {
+                          "N": "314514192"
+                        },
+                        "email": {
+                          "S": "adewuyigoodness1@gmail.com"
+                        },
+                        "phone": {
+                          "NULL": true
+                        },
+                        "metadata": {
+                          "NULL": true
+                        },
+                        "last_name": {
+                          "NULL": true
+                        },
+                        "first_name": {
+                          "NULL": true
+                        },
+                        "risk_action": {
+                          "S": "default"
+                        },
+                        "customer_code": {
+                          "S": "CUS_78f0ccsdk3zd8x1"
+                        },
+                        "international_format_phone": {
+                          "NULL": true
+                        }
+                      }
+                    },
+                    "metadata": {
+                      "M": {
+                        "planId": {
+                          "S": "premium_yearly"
+                        },
+                        "userId": {
+                          "S": "c65c9e12-7544-461a-98e4-8392ca197885"
+                        },
+                        "referrer": {
+                          "S": "https://select-icy-97280307.figma.site/"
+                        },
+                        "organizationId": {
+                          "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                        },
+                        "organizationName": {
+                          "S": "G-iHub"
+                        }
+                      }
+                    },
+                    "order_id": {
+                      "NULL": true
+                    },
+                    "createdAt": {
+                      "S": "2025-10-24T18:31:35.000Z"
+                    },
+                    "reference": {
+                      "S": "jt46z1ux5b"
+                    },
+                    "created_at": {
+                      "S": "2025-10-24T18:31:35.000Z"
+                    },
+                    "fees_split": {
+                      "NULL": true
+                    },
+                    "ip_address": {
+                      "S": "102.215.57.65"
+                    },
+                    "subaccount": {
+                      "M": {}
+                    },
+                    "plan_object": {
+                      "M": {}
+                    },
+                    "authorization": {
+                      "M": {
+                        "bin": {
+                          "S": "408408"
+                        },
+                        "bank": {
+                          "S": "TEST BANK"
+                        },
+                        "brand": {
+                          "S": "visa"
+                        },
+                        "last4": {
+                          "S": "4081"
+                        },
+                        "channel": {
+                          "S": "card"
+                        },
+                        "exp_year": {
+                          "S": "2030"
+                        },
+                        "reusable": {
+                          "BOOL": true
+                        },
+                        "card_type": {
+                          "S": "visa "
+                        },
+                        "exp_month": {
+                          "S": "12"
+                        },
+                        "signature": {
+                          "S": "SIG_E9QjC50g3TyxLpbHVPac"
+                        },
+                        "account_name": {
+                          "NULL": true
+                        },
+                        "country_code": {
+                          "S": "NG"
+                        },
+                        "receiver_bank": {
+                          "NULL": true
+                        },
+                        "authorization_code": {
+                          "S": "AUTH_phwz295jf4"
+                        },
+                        "receiver_bank_account_number": {
+                          "NULL": true
+                        }
+                      }
+                    },
+                    "fees_breakdown": {
+                      "NULL": true
+                    },
+                    "receipt_number": {
+                      "NULL": true
+                    },
+                    "gateway_response": {
+                      "S": "Successful"
+                    },
+                    "requested_amount": {
+                      "N": "50000"
+                    },
+                    "transaction_date": {
+                      "S": "2025-10-24T18:31:35.000Z"
+                    },
+                    "pos_transaction_data": {
+                      "NULL": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "transaction:m6s3tq58ux"
+            },
+            "value": {
+              "M": {
+                "amount": {
+                  "N": "50000"
+                },
+                "planId": {
+                  "S": "premium_yearly"
+                },
+                "status": {
+                  "S": "pending"
+                },
+                "userId": {
+                  "S": "c65c9e12-7544-461a-98e4-8392ca197885"
+                },
+                "currency": {
+                  "S": "NGN"
+                },
+                "createdAt": {
+                  "S": "2025-10-24T15:39:45.933Z"
+                },
+                "reference": {
+                  "S": "m6s3tq58ux"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "transaction:ngpl2vse2k"
+            },
+            "value": {
+              "M": {
+                "amount": {
+                  "N": "50000"
+                },
+                "planId": {
+                  "S": "premium_yearly"
+                },
+                "status": {
+                  "S": "success"
+                },
+                "userId": {
+                  "S": "c65c9e12-7544-461a-98e4-8392ca197885"
+                },
+                "currency": {
+                  "S": "NGN"
+                },
+                "createdAt": {
+                  "S": "2025-10-24T16:28:27.673Z"
+                },
+                "reference": {
+                  "S": "ngpl2vse2k"
+                },
+                "verifiedAt": {
+                  "S": "2025-10-24T18:27:53.501Z"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                },
+                "paystackResponse": {
+                  "M": {
+                    "id": {
+                      "N": "5462067039"
+                    },
+                    "log": {
+                      "M": {
+                        "input": {
+                          "L": []
+                        },
+                        "errors": {
+                          "N": "0"
+                        },
+                        "mobile": {
+                          "BOOL": false
+                        },
+                        "history": {
+                          "L": [
+                            {
+                              "M": {
+                                "time": {
+                                  "N": "5"
+                                },
+                                "type": {
+                                  "S": "action"
+                                },
+                                "message": {
+                                  "S": "Attempted to pay with card"
+                                }
+                              }
+                            },
+                            {
+                              "M": {
+                                "time": {
+                                  "N": "5"
+                                },
+                                "type": {
+                                  "S": "success"
+                                },
+                                "message": {
+                                  "S": "Successfully paid with card"
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        "success": {
+                          "BOOL": true
+                        },
+                        "attempts": {
+                          "N": "1"
+                        },
+                        "start_time": {
+                          "N": "1761323312"
+                        },
+                        "time_spent": {
+                          "N": "5"
+                        }
+                      }
+                    },
+                    "fees": {
+                      "N": "750"
+                    },
+                    "plan": {
+                      "NULL": true
+                    },
+                    "split": {
+                      "M": {}
+                    },
+                    "amount": {
+                      "N": "50000"
+                    },
+                    "domain": {
+                      "S": "test"
+                    },
+                    "paidAt": {
+                      "S": "2025-10-24T16:28:35.000Z"
+                    },
+                    "source": {
+                      "NULL": true
+                    },
+                    "status": {
+                      "S": "success"
+                    },
+                    "channel": {
+                      "S": "card"
+                    },
+                    "connect": {
+                      "NULL": true
+                    },
+                    "message": {
+                      "NULL": true
+                    },
+                    "paid_at": {
+                      "S": "2025-10-24T16:28:35.000Z"
+                    },
+                    "currency": {
+                      "S": "NGN"
+                    },
+                    "customer": {
+                      "M": {
+                        "id": {
+                          "N": "314514192"
+                        },
+                        "email": {
+                          "S": "adewuyigoodness1@gmail.com"
+                        },
+                        "phone": {
+                          "NULL": true
+                        },
+                        "metadata": {
+                          "NULL": true
+                        },
+                        "last_name": {
+                          "NULL": true
+                        },
+                        "first_name": {
+                          "NULL": true
+                        },
+                        "risk_action": {
+                          "S": "default"
+                        },
+                        "customer_code": {
+                          "S": "CUS_78f0ccsdk3zd8x1"
+                        },
+                        "international_format_phone": {
+                          "NULL": true
+                        }
+                      }
+                    },
+                    "metadata": {
+                      "M": {
+                        "planId": {
+                          "S": "premium_yearly"
+                        },
+                        "userId": {
+                          "S": "c65c9e12-7544-461a-98e4-8392ca197885"
+                        },
+                        "referrer": {
+                          "S": "https://select-icy-97280307.figma.site/"
+                        },
+                        "organizationId": {
+                          "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                        },
+                        "organizationName": {
+                          "S": "Gihub"
+                        }
+                      }
+                    },
+                    "order_id": {
+                      "NULL": true
+                    },
+                    "createdAt": {
+                      "S": "2025-10-24T16:28:27.000Z"
+                    },
+                    "reference": {
+                      "S": "ngpl2vse2k"
+                    },
+                    "created_at": {
+                      "S": "2025-10-24T16:28:27.000Z"
+                    },
+                    "fees_split": {
+                      "NULL": true
+                    },
+                    "ip_address": {
+                      "S": "102.215.57.65"
+                    },
+                    "subaccount": {
+                      "M": {}
+                    },
+                    "plan_object": {
+                      "M": {}
+                    },
+                    "authorization": {
+                      "M": {
+                        "bin": {
+                          "S": "408408"
+                        },
+                        "bank": {
+                          "S": "TEST BANK"
+                        },
+                        "brand": {
+                          "S": "visa"
+                        },
+                        "last4": {
+                          "S": "4081"
+                        },
+                        "channel": {
+                          "S": "card"
+                        },
+                        "exp_year": {
+                          "S": "2030"
+                        },
+                        "reusable": {
+                          "BOOL": true
+                        },
+                        "card_type": {
+                          "S": "visa "
+                        },
+                        "exp_month": {
+                          "S": "12"
+                        },
+                        "signature": {
+                          "S": "SIG_E9QjC50g3TyxLpbHVPac"
+                        },
+                        "account_name": {
+                          "NULL": true
+                        },
+                        "country_code": {
+                          "S": "NG"
+                        },
+                        "receiver_bank": {
+                          "NULL": true
+                        },
+                        "authorization_code": {
+                          "S": "AUTH_goplevlvwo"
+                        },
+                        "receiver_bank_account_number": {
+                          "NULL": true
+                        }
+                      }
+                    },
+                    "fees_breakdown": {
+                      "NULL": true
+                    },
+                    "receipt_number": {
+                      "NULL": true
+                    },
+                    "gateway_response": {
+                      "S": "Successful"
+                    },
+                    "requested_amount": {
+                      "N": "50000"
+                    },
+                    "transaction_date": {
+                      "S": "2025-10-24T16:28:27.000Z"
+                    },
+                    "pos_transaction_data": {
+                      "NULL": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "transaction:pjvoc34hfw"
+            },
+            "value": {
+              "M": {
+                "amount": {
+                  "N": "50000"
+                },
+                "planId": {
+                  "S": "premium_yearly"
+                },
+                "status": {
+                  "S": "success"
+                },
+                "userId": {
+                  "S": "c65c9e12-7544-461a-98e4-8392ca197885"
+                },
+                "currency": {
+                  "S": "NGN"
+                },
+                "createdAt": {
+                  "S": "2025-10-24T18:28:25.159Z"
+                },
+                "reference": {
+                  "S": "pjvoc34hfw"
+                },
+                "verifiedAt": {
+                  "S": "2025-10-24T18:28:42.083Z"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                },
+                "paystackResponse": {
+                  "M": {
+                    "id": {
+                      "N": "5462347555"
+                    },
+                    "log": {
+                      "M": {
+                        "input": {
+                          "L": []
+                        },
+                        "errors": {
+                          "N": "0"
+                        },
+                        "mobile": {
+                          "BOOL": false
+                        },
+                        "history": {
+                          "L": [
+                            {
+                              "M": {
+                                "time": {
+                                  "N": "4"
+                                },
+                                "type": {
+                                  "S": "action"
+                                },
+                                "message": {
+                                  "S": "Attempted to pay with card"
+                                }
+                              }
+                            },
+                            {
+                              "M": {
+                                "time": {
+                                  "N": "5"
+                                },
+                                "type": {
+                                  "S": "success"
+                                },
+                                "message": {
+                                  "S": "Successfully paid with card"
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        "success": {
+                          "BOOL": true
+                        },
+                        "attempts": {
+                          "N": "1"
+                        },
+                        "start_time": {
+                          "N": "1761330510"
+                        },
+                        "time_spent": {
+                          "N": "5"
+                        }
+                      }
+                    },
+                    "fees": {
+                      "N": "750"
+                    },
+                    "plan": {
+                      "NULL": true
+                    },
+                    "split": {
+                      "M": {}
+                    },
+                    "amount": {
+                      "N": "50000"
+                    },
+                    "domain": {
+                      "S": "test"
+                    },
+                    "paidAt": {
+                      "S": "2025-10-24T18:28:32.000Z"
+                    },
+                    "source": {
+                      "NULL": true
+                    },
+                    "status": {
+                      "S": "success"
+                    },
+                    "channel": {
+                      "S": "card"
+                    },
+                    "connect": {
+                      "NULL": true
+                    },
+                    "message": {
+                      "NULL": true
+                    },
+                    "paid_at": {
+                      "S": "2025-10-24T18:28:32.000Z"
+                    },
+                    "currency": {
+                      "S": "NGN"
+                    },
+                    "customer": {
+                      "M": {
+                        "id": {
+                          "N": "314514192"
+                        },
+                        "email": {
+                          "S": "adewuyigoodness1@gmail.com"
+                        },
+                        "phone": {
+                          "NULL": true
+                        },
+                        "metadata": {
+                          "NULL": true
+                        },
+                        "last_name": {
+                          "NULL": true
+                        },
+                        "first_name": {
+                          "NULL": true
+                        },
+                        "risk_action": {
+                          "S": "default"
+                        },
+                        "customer_code": {
+                          "S": "CUS_78f0ccsdk3zd8x1"
+                        },
+                        "international_format_phone": {
+                          "NULL": true
+                        }
+                      }
+                    },
+                    "metadata": {
+                      "M": {
+                        "planId": {
+                          "S": "premium_yearly"
+                        },
+                        "userId": {
+                          "S": "c65c9e12-7544-461a-98e4-8392ca197885"
+                        },
+                        "referrer": {
+                          "S": "https://select-icy-97280307.figma.site/"
+                        },
+                        "organizationId": {
+                          "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                        },
+                        "organizationName": {
+                          "S": "G-iHub"
+                        }
+                      }
+                    },
+                    "order_id": {
+                      "NULL": true
+                    },
+                    "createdAt": {
+                      "S": "2025-10-24T18:28:25.000Z"
+                    },
+                    "reference": {
+                      "S": "pjvoc34hfw"
+                    },
+                    "created_at": {
+                      "S": "2025-10-24T18:28:25.000Z"
+                    },
+                    "fees_split": {
+                      "NULL": true
+                    },
+                    "ip_address": {
+                      "S": "102.215.57.65"
+                    },
+                    "subaccount": {
+                      "M": {}
+                    },
+                    "plan_object": {
+                      "M": {}
+                    },
+                    "authorization": {
+                      "M": {
+                        "bin": {
+                          "S": "408408"
+                        },
+                        "bank": {
+                          "S": "TEST BANK"
+                        },
+                        "brand": {
+                          "S": "visa"
+                        },
+                        "last4": {
+                          "S": "4081"
+                        },
+                        "channel": {
+                          "S": "card"
+                        },
+                        "exp_year": {
+                          "S": "2030"
+                        },
+                        "reusable": {
+                          "BOOL": true
+                        },
+                        "card_type": {
+                          "S": "visa "
+                        },
+                        "exp_month": {
+                          "S": "12"
+                        },
+                        "signature": {
+                          "S": "SIG_E9QjC50g3TyxLpbHVPac"
+                        },
+                        "account_name": {
+                          "NULL": true
+                        },
+                        "country_code": {
+                          "S": "NG"
+                        },
+                        "receiver_bank": {
+                          "NULL": true
+                        },
+                        "authorization_code": {
+                          "S": "AUTH_rs8gxspb6f"
+                        },
+                        "receiver_bank_account_number": {
+                          "NULL": true
+                        }
+                      }
+                    },
+                    "fees_breakdown": {
+                      "NULL": true
+                    },
+                    "receipt_number": {
+                      "NULL": true
+                    },
+                    "gateway_response": {
+                      "S": "Successful"
+                    },
+                    "requested_amount": {
+                      "N": "50000"
+                    },
+                    "transaction_date": {
+                      "S": "2025-10-24T18:28:25.000Z"
+                    },
+                    "pos_transaction_data": {
+                      "NULL": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "transaction:q8lpcak404"
+            },
+            "value": {
+              "M": {
+                "amount": {
+                  "N": "5000"
+                },
+                "planId": {
+                  "S": "premium_monthly"
+                },
+                "status": {
+                  "S": "success"
+                },
+                "userId": {
+                  "S": "c65c9e12-7544-461a-98e4-8392ca197885"
+                },
+                "currency": {
+                  "S": "NGN"
+                },
+                "createdAt": {
+                  "S": "2025-10-24T18:29:52.999Z"
+                },
+                "reference": {
+                  "S": "q8lpcak404"
+                },
+                "verifiedAt": {
+                  "S": "2025-10-24T18:30:09.015Z"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                },
+                "paystackResponse": {
+                  "M": {
+                    "id": {
+                      "N": "5462350983"
+                    },
+                    "log": {
+                      "M": {
+                        "input": {
+                          "L": []
+                        },
+                        "errors": {
+                          "N": "0"
+                        },
+                        "mobile": {
+                          "BOOL": false
+                        },
+                        "history": {
+                          "L": [
+                            {
+                              "M": {
+                                "time": {
+                                  "N": "4"
+                                },
+                                "type": {
+                                  "S": "action"
+                                },
+                                "message": {
+                                  "S": "Attempted to pay with card"
+                                }
+                              }
+                            },
+                            {
+                              "M": {
+                                "time": {
+                                  "N": "4"
+                                },
+                                "type": {
+                                  "S": "success"
+                                },
+                                "message": {
+                                  "S": "Successfully paid with card"
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        "success": {
+                          "BOOL": true
+                        },
+                        "attempts": {
+                          "N": "1"
+                        },
+                        "start_time": {
+                          "N": "1761330597"
+                        },
+                        "time_spent": {
+                          "N": "4"
+                        }
+                      }
+                    },
+                    "fees": {
+                      "N": "75"
+                    },
+                    "plan": {
+                      "NULL": true
+                    },
+                    "split": {
+                      "M": {}
+                    },
+                    "amount": {
+                      "N": "5000"
+                    },
+                    "domain": {
+                      "S": "test"
+                    },
+                    "paidAt": {
+                      "S": "2025-10-24T18:29:59.000Z"
+                    },
+                    "source": {
+                      "NULL": true
+                    },
+                    "status": {
+                      "S": "success"
+                    },
+                    "channel": {
+                      "S": "card"
+                    },
+                    "connect": {
+                      "NULL": true
+                    },
+                    "message": {
+                      "NULL": true
+                    },
+                    "paid_at": {
+                      "S": "2025-10-24T18:29:59.000Z"
+                    },
+                    "currency": {
+                      "S": "NGN"
+                    },
+                    "customer": {
+                      "M": {
+                        "id": {
+                          "N": "314514192"
+                        },
+                        "email": {
+                          "S": "adewuyigoodness1@gmail.com"
+                        },
+                        "phone": {
+                          "NULL": true
+                        },
+                        "metadata": {
+                          "NULL": true
+                        },
+                        "last_name": {
+                          "NULL": true
+                        },
+                        "first_name": {
+                          "NULL": true
+                        },
+                        "risk_action": {
+                          "S": "default"
+                        },
+                        "customer_code": {
+                          "S": "CUS_78f0ccsdk3zd8x1"
+                        },
+                        "international_format_phone": {
+                          "NULL": true
+                        }
+                      }
+                    },
+                    "metadata": {
+                      "M": {
+                        "planId": {
+                          "S": "premium_monthly"
+                        },
+                        "userId": {
+                          "S": "c65c9e12-7544-461a-98e4-8392ca197885"
+                        },
+                        "referrer": {
+                          "S": "https://select-icy-97280307.figma.site/"
+                        },
+                        "organizationId": {
+                          "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                        },
+                        "organizationName": {
+                          "S": "G-iHub"
+                        }
+                      }
+                    },
+                    "order_id": {
+                      "NULL": true
+                    },
+                    "createdAt": {
+                      "S": "2025-10-24T18:29:52.000Z"
+                    },
+                    "reference": {
+                      "S": "q8lpcak404"
+                    },
+                    "created_at": {
+                      "S": "2025-10-24T18:29:52.000Z"
+                    },
+                    "fees_split": {
+                      "NULL": true
+                    },
+                    "ip_address": {
+                      "S": "102.215.57.65"
+                    },
+                    "subaccount": {
+                      "M": {}
+                    },
+                    "plan_object": {
+                      "M": {}
+                    },
+                    "authorization": {
+                      "M": {
+                        "bin": {
+                          "S": "408408"
+                        },
+                        "bank": {
+                          "S": "TEST BANK"
+                        },
+                        "brand": {
+                          "S": "visa"
+                        },
+                        "last4": {
+                          "S": "4081"
+                        },
+                        "channel": {
+                          "S": "card"
+                        },
+                        "exp_year": {
+                          "S": "2030"
+                        },
+                        "reusable": {
+                          "BOOL": true
+                        },
+                        "card_type": {
+                          "S": "visa "
+                        },
+                        "exp_month": {
+                          "S": "12"
+                        },
+                        "signature": {
+                          "S": "SIG_E9QjC50g3TyxLpbHVPac"
+                        },
+                        "account_name": {
+                          "NULL": true
+                        },
+                        "country_code": {
+                          "S": "NG"
+                        },
+                        "receiver_bank": {
+                          "NULL": true
+                        },
+                        "authorization_code": {
+                          "S": "AUTH_xh46hra2k1"
+                        },
+                        "receiver_bank_account_number": {
+                          "NULL": true
+                        }
+                      }
+                    },
+                    "fees_breakdown": {
+                      "NULL": true
+                    },
+                    "receipt_number": {
+                      "NULL": true
+                    },
+                    "gateway_response": {
+                      "S": "Successful"
+                    },
+                    "requested_amount": {
+                      "N": "5000"
+                    },
+                    "transaction_date": {
+                      "S": "2025-10-24T18:29:52.000Z"
+                    },
+                    "pos_transaction_data": {
+                      "NULL": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "transaction:s591csip8v"
+            },
+            "value": {
+              "M": {
+                "amount": {
+                  "N": "50000"
+                },
+                "planId": {
+                  "S": "premium_yearly"
+                },
+                "status": {
+                  "S": "success"
+                },
+                "userId": {
+                  "S": "c65c9e12-7544-461a-98e4-8392ca197885"
+                },
+                "currency": {
+                  "S": "NGN"
+                },
+                "createdAt": {
+                  "S": "2025-10-28T15:58:21.911Z"
+                },
+                "reference": {
+                  "S": "s591csip8v"
+                },
+                "verifiedAt": {
+                  "S": "2025-10-28T15:58:39.227Z"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                },
+                "paystackResponse": {
+                  "M": {
+                    "id": {
+                      "N": "5475665780"
+                    },
+                    "log": {
+                      "M": {
+                        "input": {
+                          "L": []
+                        },
+                        "errors": {
+                          "N": "0"
+                        },
+                        "mobile": {
+                          "BOOL": false
+                        },
+                        "history": {
+                          "L": [
+                            {
+                              "M": {
+                                "time": {
+                                  "N": "3"
+                                },
+                                "type": {
+                                  "S": "action"
+                                },
+                                "message": {
+                                  "S": "Attempted to pay with card"
+                                }
+                              }
+                            },
+                            {
+                              "M": {
+                                "time": {
+                                  "N": "3"
+                                },
+                                "type": {
+                                  "S": "success"
+                                },
+                                "message": {
+                                  "S": "Successfully paid with card"
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        "success": {
+                          "BOOL": true
+                        },
+                        "attempts": {
+                          "N": "1"
+                        },
+                        "start_time": {
+                          "N": "1761667110"
+                        },
+                        "time_spent": {
+                          "N": "3"
+                        }
+                      }
+                    },
+                    "fees": {
+                      "N": "750"
+                    },
+                    "plan": {
+                      "NULL": true
+                    },
+                    "split": {
+                      "M": {}
+                    },
+                    "amount": {
+                      "N": "50000"
+                    },
+                    "domain": {
+                      "S": "test"
+                    },
+                    "paidAt": {
+                      "S": "2025-10-28T15:58:28.000Z"
+                    },
+                    "source": {
+                      "NULL": true
+                    },
+                    "status": {
+                      "S": "success"
+                    },
+                    "channel": {
+                      "S": "card"
+                    },
+                    "connect": {
+                      "NULL": true
+                    },
+                    "message": {
+                      "NULL": true
+                    },
+                    "paid_at": {
+                      "S": "2025-10-28T15:58:28.000Z"
+                    },
+                    "currency": {
+                      "S": "NGN"
+                    },
+                    "customer": {
+                      "M": {
+                        "id": {
+                          "N": "314514192"
+                        },
+                        "email": {
+                          "S": "adewuyigoodness1@gmail.com"
+                        },
+                        "phone": {
+                          "NULL": true
+                        },
+                        "metadata": {
+                          "NULL": true
+                        },
+                        "last_name": {
+                          "NULL": true
+                        },
+                        "first_name": {
+                          "NULL": true
+                        },
+                        "risk_action": {
+                          "S": "default"
+                        },
+                        "customer_code": {
+                          "S": "CUS_78f0ccsdk3zd8x1"
+                        },
+                        "international_format_phone": {
+                          "NULL": true
+                        }
+                      }
+                    },
+                    "metadata": {
+                      "M": {
+                        "planId": {
+                          "S": "premium_yearly"
+                        },
+                        "userId": {
+                          "S": "c65c9e12-7544-461a-98e4-8392ca197885"
+                        },
+                        "referrer": {
+                          "S": "https://select-icy-97280307.figma.site/"
+                        },
+                        "organizationId": {
+                          "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                        },
+                        "organizationName": {
+                          "S": "G-iHub"
+                        }
+                      }
+                    },
+                    "order_id": {
+                      "NULL": true
+                    },
+                    "createdAt": {
+                      "S": "2025-10-28T15:58:21.000Z"
+                    },
+                    "reference": {
+                      "S": "s591csip8v"
+                    },
+                    "created_at": {
+                      "S": "2025-10-28T15:58:21.000Z"
+                    },
+                    "fees_split": {
+                      "NULL": true
+                    },
+                    "ip_address": {
+                      "S": "135.129.124.36"
+                    },
+                    "subaccount": {
+                      "M": {}
+                    },
+                    "plan_object": {
+                      "M": {}
+                    },
+                    "authorization": {
+                      "M": {
+                        "bin": {
+                          "S": "408408"
+                        },
+                        "bank": {
+                          "S": "TEST BANK"
+                        },
+                        "brand": {
+                          "S": "visa"
+                        },
+                        "last4": {
+                          "S": "4081"
+                        },
+                        "channel": {
+                          "S": "card"
+                        },
+                        "exp_year": {
+                          "S": "2030"
+                        },
+                        "reusable": {
+                          "BOOL": true
+                        },
+                        "card_type": {
+                          "S": "visa "
+                        },
+                        "exp_month": {
+                          "S": "12"
+                        },
+                        "signature": {
+                          "S": "SIG_E9QjC50g3TyxLpbHVPac"
+                        },
+                        "account_name": {
+                          "NULL": true
+                        },
+                        "country_code": {
+                          "S": "NG"
+                        },
+                        "receiver_bank": {
+                          "NULL": true
+                        },
+                        "authorization_code": {
+                          "S": "AUTH_lj8lemmfkj"
+                        },
+                        "receiver_bank_account_number": {
+                          "NULL": true
+                        }
+                      }
+                    },
+                    "fees_breakdown": {
+                      "NULL": true
+                    },
+                    "receipt_number": {
+                      "NULL": true
+                    },
+                    "gateway_response": {
+                      "S": "Successful"
+                    },
+                    "requested_amount": {
+                      "N": "50000"
+                    },
+                    "transaction_date": {
+                      "S": "2025-10-28T15:58:21.000Z"
+                    },
+                    "pos_transaction_data": {
+                      "NULL": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "transaction:ycyojxcdwr"
+            },
+            "value": {
+              "M": {
+                "amount": {
+                  "N": "50000"
+                },
+                "planId": {
+                  "S": "premium_yearly"
+                },
+                "status": {
+                  "S": "success"
+                },
+                "userId": {
+                  "S": "c65c9e12-7544-461a-98e4-8392ca197885"
+                },
+                "currency": {
+                  "S": "NGN"
+                },
+                "createdAt": {
+                  "S": "2025-10-24T19:03:20.238Z"
+                },
+                "reference": {
+                  "S": "ycyojxcdwr"
+                },
+                "verifiedAt": {
+                  "S": "2025-10-24T19:05:40.971Z"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                },
+                "paystackResponse": {
+                  "M": {
+                    "id": {
+                      "N": "5462428652"
+                    },
+                    "log": {
+                      "M": {
+                        "input": {
+                          "L": []
+                        },
+                        "errors": {
+                          "N": "0"
+                        },
+                        "mobile": {
+                          "BOOL": false
+                        },
+                        "history": {
+                          "L": [
+                            {
+                              "M": {
+                                "time": {
+                                  "N": "3"
+                                },
+                                "type": {
+                                  "S": "action"
+                                },
+                                "message": {
+                                  "S": "Attempted to pay with card"
+                                }
+                              }
+                            },
+                            {
+                              "M": {
+                                "time": {
+                                  "N": "4"
+                                },
+                                "type": {
+                                  "S": "success"
+                                },
+                                "message": {
+                                  "S": "Successfully paid with card"
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        "success": {
+                          "BOOL": true
+                        },
+                        "attempts": {
+                          "N": "1"
+                        },
+                        "start_time": {
+                          "N": "1761332603"
+                        },
+                        "time_spent": {
+                          "N": "4"
+                        }
+                      }
+                    },
+                    "fees": {
+                      "N": "750"
+                    },
+                    "plan": {
+                      "NULL": true
+                    },
+                    "split": {
+                      "M": {}
+                    },
+                    "amount": {
+                      "N": "50000"
+                    },
+                    "domain": {
+                      "S": "test"
+                    },
+                    "paidAt": {
+                      "S": "2025-10-24T19:03:26.000Z"
+                    },
+                    "source": {
+                      "NULL": true
+                    },
+                    "status": {
+                      "S": "success"
+                    },
+                    "channel": {
+                      "S": "card"
+                    },
+                    "connect": {
+                      "NULL": true
+                    },
+                    "message": {
+                      "NULL": true
+                    },
+                    "paid_at": {
+                      "S": "2025-10-24T19:03:26.000Z"
+                    },
+                    "currency": {
+                      "S": "NGN"
+                    },
+                    "customer": {
+                      "M": {
+                        "id": {
+                          "N": "314514192"
+                        },
+                        "email": {
+                          "S": "adewuyigoodness1@gmail.com"
+                        },
+                        "phone": {
+                          "NULL": true
+                        },
+                        "metadata": {
+                          "NULL": true
+                        },
+                        "last_name": {
+                          "NULL": true
+                        },
+                        "first_name": {
+                          "NULL": true
+                        },
+                        "risk_action": {
+                          "S": "default"
+                        },
+                        "customer_code": {
+                          "S": "CUS_78f0ccsdk3zd8x1"
+                        },
+                        "international_format_phone": {
+                          "NULL": true
+                        }
+                      }
+                    },
+                    "metadata": {
+                      "M": {
+                        "planId": {
+                          "S": "premium_yearly"
+                        },
+                        "userId": {
+                          "S": "c65c9e12-7544-461a-98e4-8392ca197885"
+                        },
+                        "referrer": {
+                          "S": "https://select-icy-97280307.figma.site/"
+                        },
+                        "organizationId": {
+                          "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                        },
+                        "organizationName": {
+                          "S": "G-iHub"
+                        }
+                      }
+                    },
+                    "order_id": {
+                      "NULL": true
+                    },
+                    "createdAt": {
+                      "S": "2025-10-24T19:03:20.000Z"
+                    },
+                    "reference": {
+                      "S": "ycyojxcdwr"
+                    },
+                    "created_at": {
+                      "S": "2025-10-24T19:03:20.000Z"
+                    },
+                    "fees_split": {
+                      "NULL": true
+                    },
+                    "ip_address": {
+                      "S": "102.215.57.65"
+                    },
+                    "subaccount": {
+                      "M": {}
+                    },
+                    "plan_object": {
+                      "M": {}
+                    },
+                    "authorization": {
+                      "M": {
+                        "bin": {
+                          "S": "408408"
+                        },
+                        "bank": {
+                          "S": "TEST BANK"
+                        },
+                        "brand": {
+                          "S": "visa"
+                        },
+                        "last4": {
+                          "S": "4081"
+                        },
+                        "channel": {
+                          "S": "card"
+                        },
+                        "exp_year": {
+                          "S": "2030"
+                        },
+                        "reusable": {
+                          "BOOL": true
+                        },
+                        "card_type": {
+                          "S": "visa "
+                        },
+                        "exp_month": {
+                          "S": "12"
+                        },
+                        "signature": {
+                          "S": "SIG_E9QjC50g3TyxLpbHVPac"
+                        },
+                        "account_name": {
+                          "NULL": true
+                        },
+                        "country_code": {
+                          "S": "NG"
+                        },
+                        "receiver_bank": {
+                          "NULL": true
+                        },
+                        "authorization_code": {
+                          "S": "AUTH_l8rk3lmp5o"
+                        },
+                        "receiver_bank_account_number": {
+                          "NULL": true
+                        }
+                      }
+                    },
+                    "fees_breakdown": {
+                      "NULL": true
+                    },
+                    "receipt_number": {
+                      "NULL": true
+                    },
+                    "gateway_response": {
+                      "S": "Successful"
+                    },
+                    "requested_amount": {
+                      "N": "50000"
+                    },
+                    "transaction_date": {
+                      "S": "2025-10-24T19:03:20.000Z"
+                    },
+                    "pos_transaction_data": {
+                      "NULL": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "txn:CTFY_1776354924103_CFHZXE"
+            },
+            "value": {
+              "M": {
+                "type": {
+                  "S": "certificate"
+                },
+                "status": {
+                  "S": "pending"
+                },
+                "currency": {
+                  "S": "NGN"
+                },
+                "buyerName": {
+                  "S": "Oluwaseyi Olawale"
+                },
+                "createdAt": {
+                  "S": "2026-04-16T15:55:26.997Z"
+                },
+                "reference": {
+                  "S": "CTFY_1776354924103_CFHZXE"
+                },
+                "buyerEmail": {
+                  "S": "seyimba1234@gmail.com"
+                },
+                "amountTotal": {
+                  "N": "100000"
+                },
+                "paystackRef": {
+                  "S": "CTFY_1776354924103_CFHZXE"
+                },
+                "platformFee": {
+                  "N": "7000"
+                },
+                "certificateId": {
+                  "S": "CERT-1776354810024-M1ROMT0R9"
+                },
+                "sellerEarning": {
+                  "N": "93000"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "txn:CTFY_1776355354844_Q0AM7S"
+            },
+            "value": {
+              "M": {
+                "type": {
+                  "S": "certificate"
+                },
+                "status": {
+                  "S": "pending"
+                },
+                "currency": {
+                  "S": "NGN"
+                },
+                "buyerName": {
+                  "S": "Oluwaseyi Abraham Olawale"
+                },
+                "createdAt": {
+                  "S": "2026-04-16T16:02:35.339Z"
+                },
+                "reference": {
+                  "S": "CTFY_1776355354844_Q0AM7S"
+                },
+                "buyerEmail": {
+                  "S": "genomachub@gmail.com"
+                },
+                "amountTotal": {
+                  "N": "100000"
+                },
+                "paystackRef": {
+                  "S": "CTFY_1776355354844_Q0AM7S"
+                },
+                "platformFee": {
+                  "N": "7000"
+                },
+                "certificateId": {
+                  "S": "CERT-1776354810024-M1ROMT0R9"
+                },
+                "sellerEarning": {
+                  "N": "93000"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "txn:CTFY_1776369785364_6AG9FD"
+            },
+            "value": {
+              "M": {
+                "type": {
+                  "S": "certificate"
+                },
+                "status": {
+                  "S": "success"
+                },
+                "currency": {
+                  "S": "NGN"
+                },
+                "released": {
+                  "BOOL": true
+                },
+                "sellerId": {
+                  "S": "53e77cf8-e8b7-488a-9925-d2a03e6d0ea2"
+                },
+                "buyerName": {
+                  "S": "Oluwaseyi Abraham Olawale"
+                },
+                "createdAt": {
+                  "S": "2026-04-16T20:03:05.916Z"
+                },
+                "holdUntil": {
+                  "S": "2026-04-23T20:04:11.454Z"
+                },
+                "invoiceId": {
+                  "S": "inv_1776369851454_yftu"
+                },
+                "reference": {
+                  "S": "CTFY_1776369785364_6AG9FD"
+                },
+                "buyerEmail": {
+                  "S": "genomachub@gmail.com"
+                },
+                "amountTotal": {
+                  "N": "100000"
+                },
+                "completedAt": {
+                  "S": "2026-04-16T20:04:11.454Z"
+                },
+                "paystackRef": {
+                  "S": "CTFY_1776369785364_6AG9FD"
+                },
+                "platformFee": {
+                  "N": "7000"
+                },
+                "sellerOrgId": {
+                  "S": "org-53e77cf8-e8b7-488a-9925-d2a03e6d0ea2-1772793192106"
+                },
+                "productTitle": {
+                  "S": "genomics mentorship"
+                },
+                "certificateId": {
+                  "S": "CERT-1776369755584-HYJG1NEZ3"
+                },
+                "sellerEarning": {
+                  "N": "93000"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "txn:CTFY_1776417724780_VREZ5C"
+            },
+            "value": {
+              "M": {
+                "type": {
+                  "S": "certificate"
+                },
+                "status": {
+                  "S": "success"
+                },
+                "currency": {
+                  "S": "NGN"
+                },
+                "released": {
+                  "BOOL": true
+                },
+                "sellerId": {
+                  "S": "53e77cf8-e8b7-488a-9925-d2a03e6d0ea2"
+                },
+                "buyerName": {
+                  "S": "Goodie"
+                },
+                "createdAt": {
+                  "S": "2026-04-17T09:22:05.385Z"
+                },
+                "holdUntil": {
+                  "S": "2026-04-24T09:22:26.127Z"
+                },
+                "invoiceId": {
+                  "S": "inv_1776417746127_t95o"
+                },
+                "reference": {
+                  "S": "CTFY_1776417724780_VREZ5C"
+                },
+                "buyerEmail": {
+                  "S": "adewuyigoodness1@gmail.com"
+                },
+                "amountTotal": {
+                  "N": "500000"
+                },
+                "completedAt": {
+                  "S": "2026-04-17T09:22:26.127Z"
+                },
+                "paystackRef": {
+                  "S": "CTFY_1776417724780_VREZ5C"
+                },
+                "platformFee": {
+                  "N": "35000"
+                },
+                "sellerOrgId": {
+                  "S": "org-53e77cf8-e8b7-488a-9925-d2a03e6d0ea2-1772793192106"
+                },
+                "productTitle": {
+                  "S": "Advanced Web Dev 12"
+                },
+                "certificateId": {
+                  "S": "CERT-1776417685363-PS6RQRDNQ"
+                },
+                "sellerEarning": {
+                  "N": "465000"
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

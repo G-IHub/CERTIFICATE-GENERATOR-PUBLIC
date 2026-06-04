@@ -1,0 +1,1018 @@
+{
+  "RequestItems": {
+    "certifyer-dev-kv": [
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780413870940-FXFKWAEIY"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780413870940-FXFKWAEIY"
+                },
+                "email": {
+                  "S": "aubeelucknaina@gmail.com"
+                },
+                "title": {
+                  "S": "Prof"
+                },
+                "courseName": {
+                  "S": "Designing a Research Proposal in Biomedical Sciences"
+                },
+                "studentName": {
+                  "S": "Nirmala Aubeeluck"
+                },
+                "submittedAt": {
+                  "S": "2026-06-02T15:24:30.940Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1780410819135-VYWW3E1IN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780414124115-Z3FSNQVHE"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780414124115-Z3FSNQVHE"
+                },
+                "email": {
+                  "S": "abdulazizdahiru59@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "It's very impactful"
+                },
+                "courseName": {
+                  "S": "Designing a Research Proposal in Biomedical Sciences"
+                },
+                "studentName": {
+                  "S": "DAHIRU ABDULAZIZ"
+                },
+                "submittedAt": {
+                  "S": "2026-06-02T15:28:44.115Z"
+                },
+                "organization": {
+                  "S": "Kano State Polytechnic"
+                },
+                "certificateId": {
+                  "S": "CERT-1780410819135-VYWW3E1IN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780414371798-95SJ5WIZ2"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780414371798-95SJ5WIZ2"
+                },
+                "email": {
+                  "S": "sanaabdoulaye76@gmail.com"
+                },
+                "courseName": {
+                  "S": "Designing a Research Proposal in Biomedical Sciences"
+                },
+                "studentName": {
+                  "S": "Sana Abdoulaye"
+                },
+                "submittedAt": {
+                  "S": "2026-06-02T15:32:51.798Z"
+                },
+                "organization": {
+                  "S": "Joseph KI-ZERBO University"
+                },
+                "certificateId": {
+                  "S": "CERT-1780410819135-VYWW3E1IN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780414594861-Y8875KAA3"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780414594861-Y8875KAA3"
+                },
+                "email": {
+                  "S": "abdulazizdahiru59@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "It's very impactful"
+                },
+                "courseName": {
+                  "S": "Designing a Research Proposal in Biomedical Sciences"
+                },
+                "studentName": {
+                  "S": "DAHIRU ABDULAZIZ"
+                },
+                "submittedAt": {
+                  "S": "2026-06-02T15:36:34.861Z"
+                },
+                "organization": {
+                  "S": "Kano State Polytechnic"
+                },
+                "certificateId": {
+                  "S": "CERT-1780410819135-VYWW3E1IN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780415078621-HOTQ2I0Q7"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780415078621-HOTQ2I0Q7"
+                },
+                "email": {
+                  "S": "kamrant1214@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "courseName": {
+                  "S": "Designing a Research Proposal in Biomedical Sciences"
+                },
+                "studentName": {
+                  "S": "Muhammad Kamran Tahir"
+                },
+                "submittedAt": {
+                  "S": "2026-06-02T15:44:38.621Z"
+                },
+                "organization": {
+                  "S": "Government College University Faisalabad"
+                },
+                "certificateId": {
+                  "S": "CERT-1780410819135-VYWW3E1IN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780415889858-ILK7KNWBV"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780415889858-ILK7KNWBV"
+                },
+                "email": {
+                  "S": "tahabinhusnain1@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "courseName": {
+                  "S": "Designing a Research Proposal in Biomedical Sciences"
+                },
+                "studentName": {
+                  "S": "Muhammad Taha Bin Husnain"
+                },
+                "submittedAt": {
+                  "S": "2026-06-02T15:58:09.858Z"
+                },
+                "organization": {
+                  "S": "Muhammad Nawaz Sharif University of Agriculture, Multan"
+                },
+                "certificateId": {
+                  "S": "CERT-1780410819135-VYWW3E1IN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780415995466-XXXJDQAA3"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780415995466-XXXJDQAA3"
+                },
+                "email": {
+                  "S": "aastharawat931@gmail.com"
+                },
+                "title": {
+                  "S": "Mrs"
+                },
+                "impact": {
+                  "S": "The workshop strengthened my ability to formulate research questions and plan scientifically sound research projects."
+                },
+                "courseName": {
+                  "S": "Designing a Research Proposal in Biomedical Sciences"
+                },
+                "studentName": {
+                  "S": "Aastha Rawat"
+                },
+                "submittedAt": {
+                  "S": "2026-06-02T15:59:55.466Z"
+                },
+                "organization": {
+                  "S": "Galgotias university"
+                },
+                "certificateId": {
+                  "S": "CERT-1780410819135-VYWW3E1IN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780416106749-GX32DJWI5"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780416106749-GX32DJWI5"
+                },
+                "email": {
+                  "S": "tahabinhusnain1@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "courseName": {
+                  "S": "Designing a Research Proposal in Biomedical Sciences"
+                },
+                "studentName": {
+                  "S": "Muhammad Taha Bin Husnain"
+                },
+                "submittedAt": {
+                  "S": "2026-06-02T16:01:46.749Z"
+                },
+                "organization": {
+                  "S": "Muhammad Nawaz Shareef University of Agriculture, Multan"
+                },
+                "certificateId": {
+                  "S": "CERT-1780410819135-VYWW3E1IN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780416574732-46CP064RO"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780416574732-46CP064RO"
+                },
+                "email": {
+                  "S": "nwakachimuanya@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It was truly educative"
+                },
+                "courseName": {
+                  "S": "Designing a Research Proposal in Biomedical Sciences"
+                },
+                "studentName": {
+                  "S": "Chimuanya Ann Nwaka"
+                },
+                "submittedAt": {
+                  "S": "2026-06-02T16:09:34.732Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1780410819135-VYWW3E1IN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780416850202-V0NXDDY6O"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780416850202-V0NXDDY6O"
+                },
+                "email": {
+                  "S": "kamrant1214@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "courseName": {
+                  "S": "Designing a Research Proposal in Biomedical Sciences"
+                },
+                "studentName": {
+                  "S": "Muhammad Kamran Tahir"
+                },
+                "submittedAt": {
+                  "S": "2026-06-02T16:14:10.202Z"
+                },
+                "organization": {
+                  "S": "Government College University Faisalabad"
+                },
+                "certificateId": {
+                  "S": "CERT-1780410819135-VYWW3E1IN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780417292939-MMZC759L4"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780417292939-MMZC759L4"
+                },
+                "email": {
+                  "S": "nwakachimuanya@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It was educative"
+                },
+                "courseName": {
+                  "S": "Designing a Research Proposal in Biomedical Sciences"
+                },
+                "studentName": {
+                  "S": "Chimuanya Ann Nwaka"
+                },
+                "submittedAt": {
+                  "S": "2026-06-02T16:21:32.939Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1780410819135-VYWW3E1IN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780417426883-LLKCWMTCG"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780417426883-LLKCWMTCG"
+                },
+                "email": {
+                  "S": "jimohtolulope29@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "courseName": {
+                  "S": "The Future of Environmental Biotechnology: Innovation, Impact, and Global Sustainability"
+                },
+                "studentName": {
+                  "S": "Jimoh Tolulope Abolarinwa"
+                },
+                "submittedAt": {
+                  "S": "2026-06-02T16:23:46.883Z"
+                },
+                "organization": {
+                  "S": "AMIC Health innovation ltd"
+                },
+                "certificateId": {
+                  "S": "CERT-1780317892097-F69OD770X"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780418011238-JL00W7JPB"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780418011238-JL00W7JPB"
+                },
+                "email": {
+                  "S": "nwakachimuanya@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It was educative"
+                },
+                "courseName": {
+                  "S": "Designing a Research Proposal in Biomedical Sciences"
+                },
+                "studentName": {
+                  "S": "Chimuanya Ann Nwaka"
+                },
+                "submittedAt": {
+                  "S": "2026-06-02T16:33:31.238Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1780410819135-VYWW3E1IN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780418416611-AOW2IDA3X"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780418416611-AOW2IDA3X"
+                },
+                "email": {
+                  "S": "nwakachimuanya@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Educative"
+                },
+                "courseName": {
+                  "S": "Designing a Research Proposal in Biomedical Sciences"
+                },
+                "studentName": {
+                  "S": "Chimuanya Ann Nwaka"
+                },
+                "submittedAt": {
+                  "S": "2026-06-02T16:40:16.611Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1780410819135-VYWW3E1IN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780419771327-J446JT2R1"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780419771327-J446JT2R1"
+                },
+                "email": {
+                  "S": "aneesahsan135@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "It's good"
+                },
+                "courseName": {
+                  "S": "Designing a Research Proposal in Biomedical Sciences"
+                },
+                "studentName": {
+                  "S": "Muhammad Anees Ehsan"
+                },
+                "submittedAt": {
+                  "S": "2026-06-02T17:02:51.327Z"
+                },
+                "organization": {
+                  "S": "Ucp"
+                },
+                "certificateId": {
+                  "S": "CERT-1780410819135-VYWW3E1IN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780419895571-U3Z43RS7O"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780419895571-U3Z43RS7O"
+                },
+                "email": {
+                  "S": "aneesahsan135@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "It was good"
+                },
+                "courseName": {
+                  "S": "Designing a Research Proposal in Biomedical Sciences"
+                },
+                "studentName": {
+                  "S": "Muhammad Anees Ehsan"
+                },
+                "submittedAt": {
+                  "S": "2026-06-02T17:04:55.571Z"
+                },
+                "organization": {
+                  "S": "Ucp"
+                },
+                "certificateId": {
+                  "S": "CERT-1780410819135-VYWW3E1IN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780420852907-HHY6Q0AQ6"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780420852907-HHY6Q0AQ6"
+                },
+                "email": {
+                  "S": "cynt1999@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Beautiful 😍"
+                },
+                "courseName": {
+                  "S": "LinkedIn Locals Bamenda"
+                },
+                "studentName": {
+                  "S": "Nde Seydrick"
+                },
+                "submittedAt": {
+                  "S": "2026-06-02T17:20:52.907Z"
+                },
+                "organization": {
+                  "S": "LinkedIn Locals"
+                },
+                "certificateId": {
+                  "S": "CERT-1780297095030-AGWYMEXN1"
+                },
+                "organizationId": {
+                  "S": "org-80f0d6d3-127d-497a-807d-41c1804800fd-1780291956400"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780420999043-HO5XMETG8"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780420999043-HO5XMETG8"
+                },
+                "email": {
+                  "S": "cynt1999@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "courseName": {
+                  "S": "LinkedIn Locals Bamenda"
+                },
+                "studentName": {
+                  "S": "IVOLINE NSAKSE"
+                },
+                "submittedAt": {
+                  "S": "2026-06-02T17:23:19.043Z"
+                },
+                "organization": {
+                  "S": "LinkedIn Locals"
+                },
+                "certificateId": {
+                  "S": "CERT-1780297095030-AGWYMEXN1"
+                },
+                "organizationId": {
+                  "S": "org-80f0d6d3-127d-497a-807d-41c1804800fd-1780291956400"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780421089490-J38VN10X6"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780421089490-J38VN10X6"
+                },
+                "email": {
+                  "S": "cynt1999@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "courseName": {
+                  "S": "LinkedIn Locals Bamenda"
+                },
+                "studentName": {
+                  "S": "NDIFON FAVOUR"
+                },
+                "submittedAt": {
+                  "S": "2026-06-02T17:24:49.490Z"
+                },
+                "organization": {
+                  "S": "LinkedIn Locals"
+                },
+                "certificateId": {
+                  "S": "CERT-1780297095030-AGWYMEXN1"
+                },
+                "organizationId": {
+                  "S": "org-80f0d6d3-127d-497a-807d-41c1804800fd-1780291956400"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780421140260-Q3VMB840X"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780421140260-Q3VMB840X"
+                },
+                "email": {
+                  "S": "cynt1999@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "courseName": {
+                  "S": "LinkedIn Locals Bamenda"
+                },
+                "studentName": {
+                  "S": "Cho Precious Che"
+                },
+                "submittedAt": {
+                  "S": "2026-06-02T17:25:40.260Z"
+                },
+                "organization": {
+                  "S": "LinkedIn Locals"
+                },
+                "certificateId": {
+                  "S": "CERT-1780297095030-AGWYMEXN1"
+                },
+                "organizationId": {
+                  "S": "org-80f0d6d3-127d-497a-807d-41c1804800fd-1780291956400"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780421202346-EBJH4KJNP"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780421202346-EBJH4KJNP"
+                },
+                "email": {
+                  "S": "cynt1999@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "courseName": {
+                  "S": "LinkedIn Locals Bamenda"
+                },
+                "studentName": {
+                  "S": "Tah Benice Mah"
+                },
+                "submittedAt": {
+                  "S": "2026-06-02T17:26:42.346Z"
+                },
+                "organization": {
+                  "S": "LinkedIn Locals"
+                },
+                "certificateId": {
+                  "S": "CERT-1780297095030-AGWYMEXN1"
+                },
+                "organizationId": {
+                  "S": "org-80f0d6d3-127d-497a-807d-41c1804800fd-1780291956400"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780421317307-ZQKE7G6XD"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780421317307-ZQKE7G6XD"
+                },
+                "email": {
+                  "S": "cynt1999@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "courseName": {
+                  "S": "LinkedIn Locals Bamenda"
+                },
+                "studentName": {
+                  "S": "BETANGA TONNY"
+                },
+                "submittedAt": {
+                  "S": "2026-06-02T17:28:37.308Z"
+                },
+                "organization": {
+                  "S": "LinkedIn Locals"
+                },
+                "certificateId": {
+                  "S": "CERT-1780297095030-AGWYMEXN1"
+                },
+                "organizationId": {
+                  "S": "org-80f0d6d3-127d-497a-807d-41c1804800fd-1780291956400"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780421362706-6GB9SPL12"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780421362706-6GB9SPL12"
+                },
+                "email": {
+                  "S": "cynt1999@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "courseName": {
+                  "S": "LinkedIn Locals Bamenda"
+                },
+                "studentName": {
+                  "S": "Kohnguh Melvin"
+                },
+                "submittedAt": {
+                  "S": "2026-06-02T17:29:22.706Z"
+                },
+                "organization": {
+                  "S": "LinkedIn Locals"
+                },
+                "certificateId": {
+                  "S": "CERT-1780297095030-AGWYMEXN1"
+                },
+                "organizationId": {
+                  "S": "org-80f0d6d3-127d-497a-807d-41c1804800fd-1780291956400"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780421406620-Z1KV7MCOF"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780421406620-Z1KV7MCOF"
+                },
+                "email": {
+                  "S": "cynt1999@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "courseName": {
+                  "S": "LinkedIn Locals Bamenda"
+                },
+                "studentName": {
+                  "S": "ASHUNGAFAC GODBLESS"
+                },
+                "submittedAt": {
+                  "S": "2026-06-02T17:30:06.620Z"
+                },
+                "organization": {
+                  "S": "LinkedIn Locals"
+                },
+                "certificateId": {
+                  "S": "CERT-1780297095030-AGWYMEXN1"
+                },
+                "organizationId": {
+                  "S": "org-80f0d6d3-127d-497a-807d-41c1804800fd-1780291956400"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780421452150-SGRRZ30RF"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780421452150-SGRRZ30RF"
+                },
+                "email": {
+                  "S": "cynt1999@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "courseName": {
+                  "S": "LinkedIn Locals Bamenda"
+                },
+                "studentName": {
+                  "S": "Ngew Huldah"
+                },
+                "submittedAt": {
+                  "S": "2026-06-02T17:30:52.150Z"
+                },
+                "organization": {
+                  "S": "LinkedIn Locals"
+                },
+                "certificateId": {
+                  "S": "CERT-1780297095030-AGWYMEXN1"
+                },
+                "organizationId": {
+                  "S": "org-80f0d6d3-127d-497a-807d-41c1804800fd-1780291956400"
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

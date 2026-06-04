@@ -1,0 +1,1691 @@
+{
+  "RequestItems": {
+    "certifyer-dev-kv": [
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "blog:post:1776775994824-437y206wb"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1776775994824-437y206wb"
+                },
+                "slug": {
+                  "S": "10-proven-secrets-to-running-a-successful-training-program-from-0-sales-to-sold-out-classes"
+                },
+                "title": {
+                  "S": "10 Proven Secrets to Running a Successful Training Program (From 0 Sales to Sold-Out Classes)"
+                },
+                "author": {
+                  "S": "Platform Admin"
+                },
+                "status": {
+                  "S": "published"
+                },
+                "content": {
+                  "S": "<p><strong>Why Most Trainings Fail (And What Actually Works)</strong></p><p><br></p><p><em>You can have great content, a solid audience even hundreds of sign-ups</em></p><p><em>…and still make zero sales.</em></p><p><br></p><p>That’s exactly what happened in Ayobami’s early experience—over 250 people attended her training, yet she made just one sale.</p><p>What changed?</p><p>Not her knowledge. Not her effort. Her strategy!</p><p>If you’re trying to figure out how to sell your online course monetize your knowledge or run a profitable training program</p><p><strong>Then these 10 proven secrets will completely change your approach</strong>.</p><p><br></p><p><strong>1. Failure Is Part of the Process (Not the End)</strong></p><p><em>“Failing once doesn’t mean you should stop.”</em></p><p>Most people quit after their first failed training launch. But failure is feedback.</p><p>Instead of stopping, analyze: what didn’t convert, where people dropped off, what messaging didn’t resonate</p><p><br></p><p><strong>2. Sell Transformation, Not Just a Training</strong></p><p><em>“Then I sold the transformation, not just the training.”</em></p><p>People don’t buy courses. They buy outcomes.</p><p>Instead of saying: “Join my training\" Say,</p><p>“Here’s what your life/business will look like after this.”</p><p><br></p><p><strong>3. Desperation Repels Buyers</strong></p><p><em>“Many people act out of desperation.”</em></p><p>When you beg people to buy, over-explain, push too hard, You reduce trust instantly.</p><p>Confidence and clarity convert better than Pressure.</p><p><br></p><p><strong>4. Your Audience Already Told You What to Sell</strong></p><p><em>“Pay attention to what people ask you.”</em></p><p>Your best product idea is not in your head.</p><p>&nbsp;It’s in your DMs, comments and conversations.</p><p>If people keep asking the same question, that’s demand.</p><p><br></p><p><strong>5. Build Authority Before You Sell Anything</strong></p><p><em>“Let people see you as an authority.”</em></p><p>Before someone pays you, they must trust you.</p><p>Authority comes from consistent content, visible results, clear positioning</p><p>If people don’t associate you with something specific, they won’t buy from you.</p><p><br></p><p><strong>6. Free Trainings Are Not Meant to Solve Everything</strong></p><p><em>“Your free class should expose the problem, not solve everything.”</em></p><p>A common mistake is over-delivering in free sessions.</p><p>Instead, highlight the problem, show what’s possible, guide them to the next step...</p><p>Leave the full solution for the paid offer.</p><p><br></p><p><strong>7. More Free Value Doesn’t Mean More Sales</strong></p><p><em>“More free value doesn’t equal more sales—that’s a wrong belief.”</em></p><p>Giving everything away can reduce urgency, reduce perceived value, remove the need to pay</p><p>Smart creators balance Value, curiosity and direction</p><p><br></p><p><strong>8. Trust Is the Real Sales Engine</strong></p><p><em>“People buy based on trust.”</em></p><p>And more importantly, “Trust comes from consistency, vulnerability, and proof.”</p><p>If your audience doesn’t trust you, they won’t buy even if your offer is perfect</p><p>Trust is built before the pitch.</p><p><br></p><p><strong>9. People Pay for Support, Not Information</strong></p><p><em>“People pay for: accountability, implementation, feedback, access.”</em></p><p>Information is everywhere.</p><p>But what people really want is guidance, structure, feedback and access to you</p><p>That’s what makes your training valuable.</p><p><br></p><p><strong>10. Free Attracts Attention, Paid Creates Commitment</strong></p><p><em>“People don’t value what is freely available.”</em></p><p>Free gets people in. Payment gets people serious.</p><p>If you want better attendance better engagement or even better results</p><p>Attach a price—even if small.</p><p><br></p><p><strong>Final Thoughts: The Real Secret to Successful Trainings</strong></p><p><em>Running a successful training isn’t about having the best slides, teaching everything you know, getting the most attendees.</em></p><p><em>It’s about positioning transformation, building trust, guiding people to take action!</em></p><p><em>Because at the end of the day, People don’t pay for knowledge.</em></p><p><em>&nbsp;They pay for results—and the belief that you can help them get there.</em></p>"
+                },
+                "excerpt": {
+                  "S": "\nStruggling to sell your online training?\n\n Discover 10 proven secrets from Ayobami Sanusi on how to run a successful training program, build trust, and increase course sales."
+                },
+                "created_at": {
+                  "S": "2026-04-21T12:53:14.824Z"
+                },
+                "updated_at": {
+                  "S": "2026-04-22T10:20:19.770Z"
+                },
+                "published_at": {
+                  "S": "2026-04-21T12:53:14.824Z"
+                },
+                "featured_image": {
+                  "S": "https://gzawvtlehnujtviahdbv.supabase.co/storage/v1/object/public/blog-images/post-images/1776852947810-download.jpg"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "blog:post:1777037425887-tcqcd70os"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1777037425887-tcqcd70os"
+                },
+                "slug": {
+                  "S": "the-5-step-framework-to-turn-your-idea-into-a-training-people-actually-pay-for"
+                },
+                "title": {
+                  "S": "The 5-Step Framework To Turn Your Idea Into A Training People Actually Pay For."
+                },
+                "author": {
+                  "S": "Platform Admin"
+                },
+                "status": {
+                  "S": "published"
+                },
+                "content": {
+                  "S": "<p>We’ve all been there. You’re in the shower, or stuck in traffic, and it hits you: <strong>The Idea.</strong> It’s a brilliant concept for a workshop, a course, or a training program. You pull over, type it into your Notes app with a burst of adrenaline, and then… it sits there. For months.</p><p>Usually, we tell ourselves we aren't \"ready\" or that the slides aren't \"perfect.\" But the real reason most ideas never make it to the bank? We’re building for our own egos rather than the market’s needs.</p><p>If you want to turn your expertise into a product people actually open their wallets for, you have to stop teaching a <strong>topic</strong> and start delivering a <strong>transformation</strong>. Here is the step-by-step blueprint to monetize your brain.</p><p><br></p><h2><strong>1. Stop Chasing Passion, Start Mining Frustration</strong></h2><p>\"Follow your passion\" is great advice for a hobby, but it's risky advice for a business. Passion is internal; <strong>frustration is market data.</strong> Frustration points directly to a gap in the market that people are desperate to bridge. To find your \"Gold Mine\" idea, look at the five things people <em>always</em> ask you to explain. What is the one thing they keep getting stuck on?</p><ul><li><strong>The Strategy:</strong> A training built to stop a specific pain—like a course on <em>\"How to Stop Starting and Never Finishing\"</em>—will always outsell a general course on \"Productivity.\"</li><li><strong>The Goal:</strong> Don't just be an expert; be the person with the \"aspirin\" for their specific headache.</li></ul><p><br></p><h2><strong>2. Apply Surgical Specificity</strong></h2><p>The biggest mistake new creators make is trying to be \"inclusive\" by talking to everyone. In the world of online training, <strong>if you talk to everyone, you talk to no one.</strong></p><p>Specificity is a powerful marketing filter. It makes the right people feel like you’ve been reading their private diary.</p><p><strong>Instead of:</strong> \"I help working professionals with public speaking.\"</p><p><strong>Try:</strong> \"I help mid-level managers who freeze up during formal presentations.\"</p><p>When a potential student reads your description and thinks, <em>\"Wait, is this person in my head?\"</em>—the sale is already half-won.</p><p><br></p><h2><strong>3. Sell the \"After,\" Not the Syllabus</strong></h2><p>Here is a hard truth: Nobody cares about your 20-module syllabus or your 50-page PDF. They don’t want the \"learning\"—they want the <strong>result</strong>.</p><p>You need a <strong>Transformation Statement</strong> that moves a student from a \"Before\" state (where they are struggling) to an \"After\" state (where they are winning).</p><ul><li><strong>The Shift:</strong> Stop selling \"Social Media Strategy.\"</li><li><strong>The Sale:</strong> Sell \"Moving from posting randomly to having a system that brings in leads every week.\"</li></ul><p>Focus on the promise. If a piece of content doesn’t directly help them reach that \"After\" state, cut it. Your students will thank you for the brevity.</p><p><br></p><h2><strong>4. The 70-20-10 Rule: Action Over Lectures</strong></h2><p>We’ve all sat through \"Death by PowerPoint.\" It’s the fastest way to kill your brand. Expertise isn't about how much you talk; it’s about how clearly your audience understands.</p><p>To keep people engaged and getting results, follow the <strong>70-20-10 rule</strong>:</p><ul><li><strong>70% of the time:</strong> They should be \"doing\" (worksheets, exercises, implementation).</li><li><strong>20% of the time:</strong> They should be talking to each other (Q&amp;A, breakout rooms).</li><li><strong>10% of the time:</strong> You are lecturing.</li></ul><p><strong><em>Pro-Tip:</em></strong><em> Human attention spans are fragile. Never speak for more than </em><strong><em>12 to 15 minutes</em></strong><em> without stopping for a question, a story, or a quick check-in.</em></p><p><br></p><h2><strong>5. Pilot, Then Polish</strong></h2><p>Don't wait for a \"Grand Launch.\" You need a <strong>Pilot</strong>. This is a small-scale test run to find the \"bugs\" in your teaching before the world sees it.</p><p>Don't run this test with your friends—they’ll be too nice to you. Find 5 to 15 people who actually fit your target profile. Offer the training at a discount in exchange for their honest, brutal feedback.</p><ul><li><strong>Find the \"Confusing Parts\":</strong> Where did they tilt their heads?</li><li><strong>Find the \"Boring Parts\":</strong> Where did they check their phones? Fix those spots, and <em>then</em> you’re ready for a high-profit launch.</li></ul><p><br></p><h3><strong>The Bottom Line</strong></h3><p><em>Your job isn't to be the loudest voice in the room; it’s to be the guide that leads people to a better version of themselves. Your \"Notes App\" is full of potential, but potential doesn't pay the bills. Deliver your training, learn from the mistakes, and iterate...</em></p>"
+                },
+                "excerpt": {
+                  "S": "Ever written down a training idea and thought, “this could be big”… but it just sat there?\nThis 5-step framework by Idongesit Lazarus shows you how to turn that idea into a profitable online course people actually pay for.\n"
+                },
+                "created_at": {
+                  "S": "2026-04-24T13:30:25.887Z"
+                },
+                "updated_at": {
+                  "S": "2026-04-24T14:06:50.631Z"
+                },
+                "published_at": {
+                  "S": "2026-04-24T13:30:25.887Z"
+                },
+                "featured_image": {
+                  "S": "https://gzawvtlehnujtviahdbv.supabase.co/storage/v1/object/public/blog-images/post-images/1777037184594-tran_mau_tri_tam_tZnbakTUcTI_unsplash.jpg"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "cert:CERT-1761308912131-HJUGUH0DW"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "CERT-1761308912131-HJUGUH0DW"
+                },
+                "status": {
+                  "S": "active"
+                },
+                "template": {
+                  "S": "template1"
+                },
+                "programId": {
+                  "S": "test-course"
+                },
+                "courseName": {
+                  "S": "Test Course"
+                },
+                "generatedAt": {
+                  "S": "2025-10-24T12:28:32.131Z"
+                },
+                "downloadCount": {
+                  "N": "0"
+                },
+                "certificateUrl": {
+                  "S": "certificate/org-c60340fb-2d60-4591-bb87-b1c71217fda3-1761308822869/test-course/CERT-1761308912131-HJUGUH0DW"
+                },
+                "completionDate": {
+                  "S": "2025-10-24"
+                },
+                "organizationId": {
+                  "S": "org-c60340fb-2d60-4591-bb87-b1c71217fda3-1761308822869"
+                },
+                "certificateHeader": {
+                  "S": "Certificate of Completion"
+                },
+                "courseDescription": {
+                  "S": ""
+                },
+                "customTemplateConfig": {
+                  "NULL": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "cert:CERT-1761900360308-0HXHKZARM"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "CERT-1761900360308-0HXHKZARM"
+                },
+                "status": {
+                  "S": "active"
+                },
+                "template": {
+                  "S": "template1"
+                },
+                "programId": {
+                  "S": "genomics"
+                },
+                "courseName": {
+                  "S": "genomics"
+                },
+                "generatedAt": {
+                  "S": "2025-10-31T08:46:00.308Z"
+                },
+                "downloadCount": {
+                  "N": "0"
+                },
+                "certificateUrl": {
+                  "S": "certificate/org-259ff99e-f307-4455-a8b4-26e74f10f89b-1761900261136/genomics/CERT-1761900360308-0HXHKZARM"
+                },
+                "completionDate": {
+                  "S": "2025-10-31"
+                },
+                "organizationId": {
+                  "S": "org-259ff99e-f307-4455-a8b4-26e74f10f89b-1761900261136"
+                },
+                "certificateHeader": {
+                  "S": "Certificate of Completion"
+                },
+                "courseDescription": {
+                  "S": "GOGENBIO"
+                },
+                "customTemplateConfig": {
+                  "NULL": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "cert:CERT-1761908253813-UAPE6PRNE"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "CERT-1761908253813-UAPE6PRNE"
+                },
+                "status": {
+                  "S": "active"
+                },
+                "template": {
+                  "S": "template1"
+                },
+                "programId": {
+                  "S": "advanced-web-dev-22"
+                },
+                "courseName": {
+                  "S": "Advanced Web Dev 22"
+                },
+                "generatedAt": {
+                  "S": "2025-10-31T10:57:33.813Z"
+                },
+                "downloadCount": {
+                  "N": "0"
+                },
+                "certificateUrl": {
+                  "S": "certificate/org-050ddedc-2051-4fbf-99ae-1ab1cf731926-1761907987058/advanced-web-dev-22/CERT-1761908253813-UAPE6PRNE"
+                },
+                "completionDate": {
+                  "S": "2025-10-31"
+                },
+                "organizationId": {
+                  "S": "org-050ddedc-2051-4fbf-99ae-1ab1cf731926-1761907987058"
+                },
+                "certificateHeader": {
+                  "S": "Certificate of Completion"
+                },
+                "courseDescription": {
+                  "S": "hrtyhtgbfdscdvk,jmnbvcbb eewef rtht"
+                },
+                "customTemplateConfig": {
+                  "NULL": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "cert:CERT-1763719382904-I2TAP4KRY"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "CERT-1763719382904-I2TAP4KRY"
+                },
+                "status": {
+                  "S": "active"
+                },
+                "template": {
+                  "S": "template1"
+                },
+                "programId": {
+                  "S": "test-course-title-and-signature-2"
+                },
+                "courseName": {
+                  "S": "Test course title and signature 2"
+                },
+                "updated_at": {
+                  "S": "2026-02-09T15:30:24.022Z"
+                },
+                "course_name": {
+                  "S": "Test course title and signature 2"
+                },
+                "generatedAt": {
+                  "S": "2025-11-21T10:03:02.904Z"
+                },
+                "signatories": {
+                  "L": [
+                    {
+                      "M": {
+                        "id": {
+                          "S": "sig-1761035653490"
+                        },
+                        "name": {
+                          "S": "Goodness Adewuyi"
+                        },
+                        "title": {
+                          "S": "Chief Executive Officer, Grownish"
+                        },
+                        "signatureUrl": {
+                          "S": "https://gzawvtlehnujtviahdbv.supabase.co/storage/v1/object/sign/make-a611b057-uploads/org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067/signature-1761035714848.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zZWZmYzMyMS1mZjJmLTQ5YzYtYjczNi04NjQ1MDFmN2ZjNjgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtYWtlLWE2MTFiMDU3LXVwbG9hZHMvb3JnLWM2NWM5ZTEyLTc1NDQtNDYxYS05OGU0LTgzOTJjYTE5Nzg4NS0xNzYwNTM1ODMzMDY3L3NpZ25hdHVyZS0xNzYxMDM1NzE0ODQ4LnBuZyIsImlhdCI6MTc2MTAzNTcxNSwiZXhwIjoxNzkyNTcxNzE1fQ.LC7S2yw0uOLgizSkG7JKeuC_w3FdwrBIG4tH_I0xW0w"
+                        }
+                      }
+                    },
+                    {
+                      "M": {
+                        "id": {
+                          "S": "sig-1761035653490"
+                        },
+                        "name": {
+                          "S": "Goodness Adewuyi"
+                        },
+                        "title": {
+                          "S": "Chief Executive Officer, Grownish"
+                        },
+                        "signatureUrl": {
+                          "S": "https://gzawvtlehnujtviahdbv.supabase.co/storage/v1/object/sign/make-a611b057-uploads/org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067/signature-1761035714848.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zZWZmYzMyMS1mZjJmLTQ5YzYtYjczNi04NjQ1MDFmN2ZjNjgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtYWtlLWE2MTFiMDU3LXVwbG9hZHMvb3JnLWM2NWM5ZTEyLTc1NDQtNDYxYS05OGU0LTgzOTJjYTE5Nzg4NS0xNzYwNTM1ODMzMDY3L3NpZ25hdHVyZS0xNzYxMDM1NzE0ODQ4LnBuZyIsImlhdCI6MTc2MTAzNTcxNSwiZXhwIjoxNzkyNTcxNzE1fQ.LC7S2yw0uOLgizSkG7JKeuC_w3FdwrBIG4tH_I0xW0w"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "template_id": {
+                  "S": "template1"
+                },
+                "program_name": {
+                  "S": "Test course title and signature 2"
+                },
+                "downloadCount": {
+                  "N": "0"
+                },
+                "allowed_emails": {
+                  "L": []
+                },
+                "certificateUrl": {
+                  "S": "certificate/org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067/test-course-title-and-signature-2/CERT-1763719382904-I2TAP4KRY"
+                },
+                "completionDate": {
+                  "S": "2025-11-21"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                },
+                "completion_date": {
+                  "S": "2025-11-21"
+                },
+                "certificateHeader": {
+                  "S": "Certificate of Completion"
+                },
+                "courseDescription": {
+                  "S": ""
+                },
+                "restrict_download": {
+                  "BOOL": false
+                },
+                "certificate_header": {
+                  "S": "Certificate of Completion"
+                },
+                "program_description": {
+                  "S": "edit test"
+                },
+                "customTemplateConfig": {
+                  "NULL": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "cert:CERT-1763720469590-76G9FNAWE"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "CERT-1763720469590-76G9FNAWE"
+                },
+                "status": {
+                  "S": "active"
+                },
+                "template": {
+                  "S": "template16"
+                },
+                "programId": {
+                  "S": "software-development"
+                },
+                "courseName": {
+                  "S": "Software Development"
+                },
+                "generatedAt": {
+                  "S": "2025-11-21T10:21:09.591Z"
+                },
+                "signatories": {
+                  "L": [
+                    {
+                      "M": {
+                        "id": {
+                          "S": "sig-1761035653490"
+                        },
+                        "name": {
+                          "S": "Goodness Adewuyi"
+                        },
+                        "title": {
+                          "S": "Chief Executive Officer, Grownish"
+                        },
+                        "signatureUrl": {
+                          "S": "https://gzawvtlehnujtviahdbv.supabase.co/storage/v1/object/sign/make-a611b057-uploads/org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067/signature-1761035714848.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zZWZmYzMyMS1mZjJmLTQ5YzYtYjczNi04NjQ1MDFmN2ZjNjgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtYWtlLWE2MTFiMDU3LXVwbG9hZHMvb3JnLWM2NWM5ZTEyLTc1NDQtNDYxYS05OGU0LTgzOTJjYTE5Nzg4NS0xNzYwNTM1ODMzMDY3L3NpZ25hdHVyZS0xNzYxMDM1NzE0ODQ4LnBuZyIsImlhdCI6MTc2MTAzNTcxNSwiZXhwIjoxNzkyNTcxNzE1fQ.LC7S2yw0uOLgizSkG7JKeuC_w3FdwrBIG4tH_I0xW0w"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "downloadCount": {
+                  "N": "0"
+                },
+                "certificateUrl": {
+                  "S": "certificate/org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067/software-development/CERT-1763720469590-76G9FNAWE"
+                },
+                "completionDate": {
+                  "S": "2025-10-18"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                },
+                "certificateHeader": {
+                  "S": "Certificate of Participation"
+                },
+                "courseDescription": {
+                  "S": "Successfully participated in the Software Development Course organized by G-iHub"
+                },
+                "customTemplateConfig": {
+                  "NULL": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "cert:CERT-1763987588073-ZZ0F1U2U7"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "CERT-1763987588073-ZZ0F1U2U7"
+                },
+                "status": {
+                  "S": "active"
+                },
+                "template": {
+                  "S": "template4"
+                },
+                "programId": {
+                  "S": "ww"
+                },
+                "courseName": {
+                  "S": "ww"
+                },
+                "generatedAt": {
+                  "S": "2025-11-24T12:33:08.073Z"
+                },
+                "signatories": {
+                  "L": [
+                    {
+                      "M": {
+                        "id": {
+                          "S": "sig-1763732181290"
+                        },
+                        "name": {
+                          "S": "Oluwatosin Afolayan"
+                        },
+                        "title": {
+                          "S": "CEO"
+                        },
+                        "signatureUrl": {
+                          "S": "https://gzawvtlehnujtviahdbv.supabase.co/storage/v1/object/sign/make-a611b057-uploads/org-5cebaa59-3ba8-4115-b676-ded67192d198-1762895905271/signature-1763732292570.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zZWZmYzMyMS1mZjJmLTQ5YzYtYjczNi04NjQ1MDFmN2ZjNjgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtYWtlLWE2MTFiMDU3LXVwbG9hZHMvb3JnLTVjZWJhYTU5LTNiYTgtNDExNS1iNjc2LWRlZDY3MTkyZDE5OC0xNzYyODk1OTA1MjcxL3NpZ25hdHVyZS0xNzYzNzMyMjkyNTcwLnBuZyIsImlhdCI6MTc2MzczMjI5MiwiZXhwIjoxNzk1MjY4MjkyfQ.kA3VYHtKDktqyhEX_YPoRQ8GVGE-yTHmWaKpvfa1qag"
+                        }
+                      }
+                    },
+                    {
+                      "M": {
+                        "id": {
+                          "S": "sig-1763732307401"
+                        },
+                        "name": {
+                          "S": "Omotolani Afolayan"
+                        },
+                        "title": {
+                          "S": "Head of Operations"
+                        },
+                        "signatureUrl": {
+                          "S": "https://gzawvtlehnujtviahdbv.supabase.co/storage/v1/object/sign/make-a611b057-uploads/org-5cebaa59-3ba8-4115-b676-ded67192d198-1762895905271/signature-1763732333587.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zZWZmYzMyMS1mZjJmLTQ5YzYtYjczNi04NjQ1MDFmN2ZjNjgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtYWtlLWE2MTFiMDU3LXVwbG9hZHMvb3JnLTVjZWJhYTU5LTNiYTgtNDExNS1iNjc2LWRlZDY3MTkyZDE5OC0xNzYyODk1OTA1MjcxL3NpZ25hdHVyZS0xNzYzNzMyMzMzNTg3LnBuZyIsImlhdCI6MTc2MzczMjMzMywiZXhwIjoxNzk1MjY4MzMzfQ.5QCZ3c8clbHOBvAge9T8aEYFhEKccyP5vgDuL-739is"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "downloadCount": {
+                  "N": "0"
+                },
+                "certificateUrl": {
+                  "S": "certificate/org-5cebaa59-3ba8-4115-b676-ded67192d198-1762895905271/ww/CERT-1763987588073-ZZ0F1U2U7"
+                },
+                "completionDate": {
+                  "S": "2025-11-24"
+                },
+                "organizationId": {
+                  "S": "org-5cebaa59-3ba8-4115-b676-ded67192d198-1762895905271"
+                },
+                "certificateHeader": {
+                  "S": "Certificate of Completion"
+                },
+                "courseDescription": {
+                  "S": "buyhjbjkn"
+                },
+                "customTemplateConfig": {
+                  "NULL": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "cert:CERT-1764080481456-3J3PX3F0L"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "CERT-1764080481456-3J3PX3F0L"
+                },
+                "status": {
+                  "S": "active"
+                },
+                "template": {
+                  "S": "template8"
+                },
+                "programId": {
+                  "S": "test-course-title-and-signature-2"
+                },
+                "courseName": {
+                  "S": "Test course title and signature 2"
+                },
+                "generatedAt": {
+                  "S": "2025-11-25T14:21:21.456Z"
+                },
+                "signatories": {
+                  "L": [
+                    {
+                      "M": {
+                        "id": {
+                          "S": "sig-1761035653490"
+                        },
+                        "name": {
+                          "S": "Goodness Adewuyi"
+                        },
+                        "title": {
+                          "S": "Chief Executive Officer, Grownish"
+                        },
+                        "signatureUrl": {
+                          "S": "https://gzawvtlehnujtviahdbv.supabase.co/storage/v1/object/sign/make-a611b057-uploads/org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067/signature-1761035714848.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zZWZmYzMyMS1mZjJmLTQ5YzYtYjczNi04NjQ1MDFmN2ZjNjgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtYWtlLWE2MTFiMDU3LXVwbG9hZHMvb3JnLWM2NWM5ZTEyLTc1NDQtNDYxYS05OGU0LTgzOTJjYTE5Nzg4NS0xNzYwNTM1ODMzMDY3L3NpZ25hdHVyZS0xNzYxMDM1NzE0ODQ4LnBuZyIsImlhdCI6MTc2MTAzNTcxNSwiZXhwIjoxNzkyNTcxNzE1fQ.LC7S2yw0uOLgizSkG7JKeuC_w3FdwrBIG4tH_I0xW0w"
+                        }
+                      }
+                    },
+                    {
+                      "M": {
+                        "id": {
+                          "S": "sig-1761035653490"
+                        },
+                        "name": {
+                          "S": "Goodness Adewuyi"
+                        },
+                        "title": {
+                          "S": "Chief Executive Officer, Grownish"
+                        },
+                        "signatureUrl": {
+                          "S": "https://gzawvtlehnujtviahdbv.supabase.co/storage/v1/object/sign/make-a611b057-uploads/org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067/signature-1761035714848.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zZWZmYzMyMS1mZjJmLTQ5YzYtYjczNi04NjQ1MDFmN2ZjNjgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtYWtlLWE2MTFiMDU3LXVwbG9hZHMvb3JnLWM2NWM5ZTEyLTc1NDQtNDYxYS05OGU0LTgzOTJjYTE5Nzg4NS0xNzYwNTM1ODMzMDY3L3NpZ25hdHVyZS0xNzYxMDM1NzE0ODQ4LnBuZyIsImlhdCI6MTc2MTAzNTcxNSwiZXhwIjoxNzkyNTcxNzE1fQ.LC7S2yw0uOLgizSkG7JKeuC_w3FdwrBIG4tH_I0xW0w"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "downloadCount": {
+                  "N": "0"
+                },
+                "certificateUrl": {
+                  "S": "certificate/org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067/test-course-title-and-signature-2/CERT-1764080481456-3J3PX3F0L"
+                },
+                "completionDate": {
+                  "S": "2025-11-25"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                },
+                "certificateHeader": {
+                  "S": "Certificate of Completion"
+                },
+                "courseDescription": {
+                  "S": ""
+                },
+                "customTemplateConfig": {
+                  "NULL": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "cert:CERT-1764674211804-QSX8KKWF5"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "CERT-1764674211804-QSX8KKWF5"
+                },
+                "status": {
+                  "S": "active"
+                },
+                "template": {
+                  "S": "template15"
+                },
+                "programId": {
+                  "S": "software-development"
+                },
+                "courseName": {
+                  "S": "Software Development"
+                },
+                "generatedAt": {
+                  "S": "2025-12-02T11:16:51.804Z"
+                },
+                "signatories": {
+                  "L": [
+                    {
+                      "M": {
+                        "id": {
+                          "S": "sig-1764673887063"
+                        },
+                        "name": {
+                          "S": "Goodness Adewuyi"
+                        },
+                        "title": {
+                          "S": "CEO, Certifyer"
+                        },
+                        "signatureUrl": {
+                          "S": "https://gzawvtlehnujtviahdbv.supabase.co/storage/v1/object/sign/make-a611b057-uploads/org-9cde30fb-b9fb-4714-8a35-2d6b6adcb9a0-1764673686619/signature-1764673967647.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zZWZmYzMyMS1mZjJmLTQ5YzYtYjczNi04NjQ1MDFmN2ZjNjgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtYWtlLWE2MTFiMDU3LXVwbG9hZHMvb3JnLTljZGUzMGZiLWI5ZmItNDcxNC04YTM1LTJkNmI2YWRjYjlhMC0xNzY0NjczNjg2NjE5L3NpZ25hdHVyZS0xNzY0NjczOTY3NjQ3LnBuZyIsImlhdCI6MTc2NDY3Mzk2NywiZXhwIjoxNzk2MjA5OTY3fQ.wu6fAdsgjaHSLvAe9L0iXgg3PP5udCUFzkdK42ygCSs"
+                        }
+                      }
+                    },
+                    {
+                      "M": {
+                        "id": {
+                          "S": "sig-1764673887063"
+                        },
+                        "name": {
+                          "S": "Goodness Adewuyi"
+                        },
+                        "title": {
+                          "S": "CEO, Certifyer"
+                        },
+                        "signatureUrl": {
+                          "S": "https://gzawvtlehnujtviahdbv.supabase.co/storage/v1/object/sign/make-a611b057-uploads/org-9cde30fb-b9fb-4714-8a35-2d6b6adcb9a0-1764673686619/signature-1764673967647.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zZWZmYzMyMS1mZjJmLTQ5YzYtYjczNi04NjQ1MDFmN2ZjNjgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtYWtlLWE2MTFiMDU3LXVwbG9hZHMvb3JnLTljZGUzMGZiLWI5ZmItNDcxNC04YTM1LTJkNmI2YWRjYjlhMC0xNzY0NjczNjg2NjE5L3NpZ25hdHVyZS0xNzY0NjczOTY3NjQ3LnBuZyIsImlhdCI6MTc2NDY3Mzk2NywiZXhwIjoxNzk2MjA5OTY3fQ.wu6fAdsgjaHSLvAe9L0iXgg3PP5udCUFzkdK42ygCSs"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "downloadCount": {
+                  "N": "0"
+                },
+                "certificateUrl": {
+                  "S": "certificate/org-9cde30fb-b9fb-4714-8a35-2d6b6adcb9a0-1764673686619/software-development/CERT-1764674211804-QSX8KKWF5"
+                },
+                "completionDate": {
+                  "S": "2025-12-02"
+                },
+                "organizationId": {
+                  "S": "org-9cde30fb-b9fb-4714-8a35-2d6b6adcb9a0-1764673686619"
+                },
+                "certificateHeader": {
+                  "S": "Certificate of Completion"
+                },
+                "courseDescription": {
+                  "S": "For wfyefbweuj wejfbwefb wejb"
+                },
+                "customTemplateConfig": {
+                  "NULL": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "cert:CERT-1765186351988-8ADC8WYG9"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "CERT-1765186351988-8ADC8WYG9"
+                },
+                "status": {
+                  "S": "active"
+                },
+                "template": {
+                  "S": "template2"
+                },
+                "programId": {
+                  "S": "advanced-web-dev-12"
+                },
+                "courseName": {
+                  "S": "Advanced Web Dev 12"
+                },
+                "updated_at": {
+                  "S": "2026-02-09T14:33:24.757Z"
+                },
+                "course_name": {
+                  "S": "Advanced Web Dev 12"
+                },
+                "generatedAt": {
+                  "S": "2025-12-08T09:32:31.988Z"
+                },
+                "signatories": {
+                  "L": [
+                    {
+                      "M": {
+                        "id": {
+                          "S": "sig-1761035653490"
+                        },
+                        "name": {
+                          "S": "Goodness Adewuyi"
+                        },
+                        "title": {
+                          "S": "Chief Executive Officer, Grownish"
+                        },
+                        "signatureUrl": {
+                          "S": "https://gzawvtlehnujtviahdbv.supabase.co/storage/v1/object/sign/make-a611b057-uploads/org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067/signature-1761035714848.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zZWZmYzMyMS1mZjJmLTQ5YzYtYjczNi04NjQ1MDFmN2ZjNjgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtYWtlLWE2MTFiMDU3LXVwbG9hZHMvb3JnLWM2NWM5ZTEyLTc1NDQtNDYxYS05OGU0LTgzOTJjYTE5Nzg4NS0xNzYwNTM1ODMzMDY3L3NpZ25hdHVyZS0xNzYxMDM1NzE0ODQ4LnBuZyIsImlhdCI6MTc2MTAzNTcxNSwiZXhwIjoxNzkyNTcxNzE1fQ.LC7S2yw0uOLgizSkG7JKeuC_w3FdwrBIG4tH_I0xW0w"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "template_id": {
+                  "S": "template2"
+                },
+                "program_name": {
+                  "S": "Advanced Web Dev 12"
+                },
+                "downloadCount": {
+                  "N": "0"
+                },
+                "allowed_emails": {
+                  "L": []
+                },
+                "certificateUrl": {
+                  "S": "certificate/org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067/advanced-web-dev-12/CERT-1765186351988-8ADC8WYG9"
+                },
+                "completionDate": {
+                  "S": "2025-12-08"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                },
+                "completion_date": {
+                  "S": "2025-12-08"
+                },
+                "certificateHeader": {
+                  "S": "Certificate of Completion"
+                },
+                "courseDescription": {
+                  "S": "Work right..."
+                },
+                "restrict_download": {
+                  "BOOL": false
+                },
+                "certificate_header": {
+                  "S": "Certificate of Completion"
+                },
+                "program_description": {
+                  "S": "Work right...edit"
+                },
+                "customTemplateConfig": {
+                  "NULL": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "cert:CERT-1765187224429-ST3BYA5JG"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "CERT-1765187224429-ST3BYA5JG"
+                },
+                "status": {
+                  "S": "active"
+                },
+                "template": {
+                  "S": "template2"
+                },
+                "programId": {
+                  "S": "advanced-web-dev-22"
+                },
+                "courseName": {
+                  "S": "Advanced Web Dev 22"
+                },
+                "generatedAt": {
+                  "S": "2025-12-08T09:47:04.429Z"
+                },
+                "signatories": {
+                  "L": []
+                },
+                "downloadCount": {
+                  "N": "0"
+                },
+                "certificateUrl": {
+                  "S": "certificate/org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067/advanced-web-dev-22/CERT-1765187224429-ST3BYA5JG"
+                },
+                "completionDate": {
+                  "S": "2025-12-08"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                },
+                "certificateHeader": {
+                  "S": "Certificate of Participation"
+                },
+                "courseDescription": {
+                  "S": ""
+                },
+                "customTemplateConfig": {
+                  "NULL": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "cert:CERT-1765197274443-0WIDYYNDF"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "CERT-1765197274443-0WIDYYNDF"
+                },
+                "status": {
+                  "S": "active"
+                },
+                "template": {
+                  "S": "template14"
+                },
+                "programId": {
+                  "S": "webinar"
+                },
+                "courseName": {
+                  "S": "Webinar"
+                },
+                "generatedAt": {
+                  "S": "2025-12-08T12:34:34.443Z"
+                },
+                "signatories": {
+                  "L": [
+                    {
+                      "M": {
+                        "id": {
+                          "S": "sig-1761035653490"
+                        },
+                        "name": {
+                          "S": "Goodness Adewuyi"
+                        },
+                        "title": {
+                          "S": "Chief Executive Officer, Grownish"
+                        },
+                        "signatureUrl": {
+                          "S": "https://gzawvtlehnujtviahdbv.supabase.co/storage/v1/object/sign/make-a611b057-uploads/org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067/signature-1761035714848.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zZWZmYzMyMS1mZjJmLTQ5YzYtYjczNi04NjQ1MDFmN2ZjNjgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtYWtlLWE2MTFiMDU3LXVwbG9hZHMvb3JnLWM2NWM5ZTEyLTc1NDQtNDYxYS05OGU0LTgzOTJjYTE5Nzg4NS0xNzYwNTM1ODMzMDY3L3NpZ25hdHVyZS0xNzYxMDM1NzE0ODQ4LnBuZyIsImlhdCI6MTc2MTAzNTcxNSwiZXhwIjoxNzkyNTcxNzE1fQ.LC7S2yw0uOLgizSkG7JKeuC_w3FdwrBIG4tH_I0xW0w"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "downloadCount": {
+                  "N": "0"
+                },
+                "certificateUrl": {
+                  "S": "certificate/org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067/webinar/CERT-1765197274443-0WIDYYNDF"
+                },
+                "completionDate": {
+                  "S": "2025-12-02"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                },
+                "certificateHeader": {
+                  "S": "Certificate of Participation"
+                },
+                "courseDescription": {
+                  "S": "For succesfully particiapating in the class"
+                },
+                "customTemplateConfig": {
+                  "NULL": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "cert:CERT-1765987816799-VHNRVOZQG"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "CERT-1765987816799-VHNRVOZQG"
+                },
+                "status": {
+                  "S": "active"
+                },
+                "template": {
+                  "S": "template1"
+                },
+                "programId": {
+                  "S": "software-development"
+                },
+                "courseName": {
+                  "S": "Software Development"
+                },
+                "generatedAt": {
+                  "S": "2025-12-17T16:10:16.800Z"
+                },
+                "signatories": {
+                  "L": [
+                    {
+                      "M": {
+                        "id": {
+                          "S": "sig-1761035653490"
+                        },
+                        "name": {
+                          "S": "Goodness Adewuyi"
+                        },
+                        "title": {
+                          "S": "Chief Executive Officer, Grownish"
+                        },
+                        "signatureUrl": {
+                          "S": "https://gzawvtlehnujtviahdbv.supabase.co/storage/v1/object/sign/make-a611b057-uploads/org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067/signature-1761035714848.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zZWZmYzMyMS1mZjJmLTQ5YzYtYjczNi04NjQ1MDFmN2ZjNjgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtYWtlLWE2MTFiMDU3LXVwbG9hZHMvb3JnLWM2NWM5ZTEyLTc1NDQtNDYxYS05OGU0LTgzOTJjYTE5Nzg4NS0xNzYwNTM1ODMzMDY3L3NpZ25hdHVyZS0xNzYxMDM1NzE0ODQ4LnBuZyIsImlhdCI6MTc2MTAzNTcxNSwiZXhwIjoxNzkyNTcxNzE1fQ.LC7S2yw0uOLgizSkG7JKeuC_w3FdwrBIG4tH_I0xW0w"
+                        }
+                      }
+                    },
+                    {
+                      "M": {
+                        "id": {
+                          "S": "sig-1762879806049"
+                        },
+                        "name": {
+                          "S": "Jane Smith"
+                        },
+                        "title": {
+                          "S": "Program Coordinator"
+                        },
+                        "signatureUrl": {
+                          "S": "https://gzawvtlehnujtviahdbv.supabase.co/storage/v1/object/sign/make-a611b057-uploads/org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067/signature-1765984288864.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zZWZmYzMyMS1mZjJmLTQ5YzYtYjczNi04NjQ1MDFmN2ZjNjgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtYWtlLWE2MTFiMDU3LXVwbG9hZHMvb3JnLWM2NWM5ZTEyLTc1NDQtNDYxYS05OGU0LTgzOTJjYTE5Nzg4NS0xNzYwNTM1ODMzMDY3L3NpZ25hdHVyZS0xNzY1OTg0Mjg4ODY0LnBuZyIsImlhdCI6MTc2NTk4NDI4OSwiZXhwIjoxNzk3NTIwMjg5fQ.OZrrAznMv3ztvzHwUZcsER0MW8dcwOi-4WnVyb1Jf1M"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "downloadCount": {
+                  "N": "0"
+                },
+                "certificateUrl": {
+                  "S": "certificate/org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067/software-development/CERT-1765987816799-VHNRVOZQG"
+                },
+                "completionDate": {
+                  "S": "2025-12-17"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                },
+                "certificateHeader": {
+                  "S": "Certificate of Excellence"
+                },
+                "courseDescription": {
+                  "S": "Fierbyebfrev gbfiuvbr"
+                },
+                "customTemplateConfig": {
+                  "NULL": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "cert:CERT-1765990012602-2ZO6I9DKI"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "CERT-1765990012602-2ZO6I9DKI"
+                },
+                "status": {
+                  "S": "active"
+                },
+                "template": {
+                  "S": "template13"
+                },
+                "programId": {
+                  "S": "the-future-of-digital-learning-&-monetization"
+                },
+                "courseName": {
+                  "S": "The Future of Digital Learning & Monetization"
+                },
+                "generatedAt": {
+                  "S": "2025-12-17T16:46:52.602Z"
+                },
+                "signatories": {
+                  "L": []
+                },
+                "downloadCount": {
+                  "N": "0"
+                },
+                "certificateUrl": {
+                  "S": "certificate/org-cb757858-424e-44fe-ace7-3c11131de213-1765989677277/the-future-of-digital-learning-&-monetization/CERT-1765990012602-2ZO6I9DKI"
+                },
+                "completionDate": {
+                  "S": "2025-12-17"
+                },
+                "organizationId": {
+                  "S": "org-cb757858-424e-44fe-ace7-3c11131de213-1765989677277"
+                },
+                "certificateHeader": {
+                  "S": "Certificate of Participation"
+                },
+                "courseDescription": {
+                  "S": "For successfully participating in the webinar titled The Future of Digital Learning & Monetization organized by Certifyer."
+                },
+                "customTemplateConfig": {
+                  "NULL": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "cert:CERT-1765990504887-P1A1E6NRW"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "CERT-1765990504887-P1A1E6NRW"
+                },
+                "status": {
+                  "S": "active"
+                },
+                "template": {
+                  "S": "template1"
+                },
+                "programId": {
+                  "S": "advanced-web-dev-22"
+                },
+                "courseName": {
+                  "S": "Advanced Web Dev 22"
+                },
+                "generatedAt": {
+                  "S": "2025-12-17T16:55:04.887Z"
+                },
+                "signatories": {
+                  "L": [
+                    {
+                      "M": {
+                        "id": {
+                          "S": "sig-1765989759017"
+                        },
+                        "name": {
+                          "S": "Goodness Adewuyi"
+                        },
+                        "title": {
+                          "S": "Developer"
+                        },
+                        "signatureUrl": {
+                          "S": "https://gzawvtlehnujtviahdbv.supabase.co/storage/v1/object/sign/make-a611b057-uploads/org-cb757858-424e-44fe-ace7-3c11131de213-1765989677277/signature-1765989783858.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zZWZmYzMyMS1mZjJmLTQ5YzYtYjczNi04NjQ1MDFmN2ZjNjgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtYWtlLWE2MTFiMDU3LXVwbG9hZHMvb3JnLWNiNzU3ODU4LTQyNGUtNDRmZS1hY2U3LTNjMTExMzFkZTIxMy0xNzY1OTg5Njc3Mjc3L3NpZ25hdHVyZS0xNzY1OTg5NzgzODU4LnBuZyIsImlhdCI6MTc2NTk4OTc4NCwiZXhwIjoxNzk3NTI1Nzg0fQ.T5SwL2G3_R_zuoL3YQ4A1hrwx1KYBbu-_WvGzISNBVU"
+                        }
+                      }
+                    },
+                    {
+                      "M": {
+                        "id": {
+                          "S": "sig-1765990406442"
+                        },
+                        "name": {
+                          "S": "Tolani Afolayan"
+                        },
+                        "title": {
+                          "S": "Designer"
+                        },
+                        "signatureUrl": {
+                          "S": "https://gzawvtlehnujtviahdbv.supabase.co/storage/v1/object/sign/make-a611b057-uploads/org-cb757858-424e-44fe-ace7-3c11131de213-1765989677277/signature-1765990430766.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zZWZmYzMyMS1mZjJmLTQ5YzYtYjczNi04NjQ1MDFmN2ZjNjgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtYWtlLWE2MTFiMDU3LXVwbG9hZHMvb3JnLWNiNzU3ODU4LTQyNGUtNDRmZS1hY2U3LTNjMTExMzFkZTIxMy0xNzY1OTg5Njc3Mjc3L3NpZ25hdHVyZS0xNzY1OTkwNDMwNzY2LnBuZyIsImlhdCI6MTc2NTk5MDQzMSwiZXhwIjoxNzk3NTI2NDMxfQ.p7H7-pyEn3zL6n_yb_MPVPj-iOzQwAFSw3ZfcS_PqTw"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "downloadCount": {
+                  "N": "0"
+                },
+                "certificateUrl": {
+                  "S": "certificate/org-cb757858-424e-44fe-ace7-3c11131de213-1765989677277/advanced-web-dev-22/CERT-1765990504887-P1A1E6NRW"
+                },
+                "completionDate": {
+                  "S": "2025-12-17"
+                },
+                "organizationId": {
+                  "S": "org-cb757858-424e-44fe-ace7-3c11131de213-1765989677277"
+                },
+                "certificateHeader": {
+                  "S": "Certificate of Completion"
+                },
+                "courseDescription": {
+                  "S": "rehtjuhgwffsdvfbg"
+                },
+                "customTemplateConfig": {
+                  "NULL": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "cert:CERT-1765990732546-GVGWIWY6T"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "CERT-1765990732546-GVGWIWY6T"
+                },
+                "status": {
+                  "S": "active"
+                },
+                "template": {
+                  "S": "template16"
+                },
+                "programId": {
+                  "S": "bioinformatics"
+                },
+                "courseName": {
+                  "S": "bioinformatics"
+                },
+                "generatedAt": {
+                  "S": "2025-12-17T16:58:52.546Z"
+                },
+                "signatories": {
+                  "L": []
+                },
+                "downloadCount": {
+                  "N": "0"
+                },
+                "certificateUrl": {
+                  "S": "certificate/org-8e5c31af-cb44-4930-95e3-1139223a164d-1765989678454/bioinformatics/CERT-1765990732546-GVGWIWY6T"
+                },
+                "completionDate": {
+                  "S": "2025-12-17"
+                },
+                "organizationId": {
+                  "S": "org-8e5c31af-cb44-4930-95e3-1139223a164d-1765989678454"
+                },
+                "certificateHeader": {
+                  "S": "Certificate of Completion of webinar"
+                },
+                "courseDescription": {
+                  "S": ""
+                },
+                "customTemplateConfig": {
+                  "NULL": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "cert:CERT-1765998218798-PFVDMZLRT"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "CERT-1765998218798-PFVDMZLRT"
+                },
+                "status": {
+                  "S": "active"
+                },
+                "template": {
+                  "S": "template1"
+                },
+                "programId": {
+                  "S": "tissue-culture-program"
+                },
+                "courseName": {
+                  "S": "Tissue Culture Program"
+                },
+                "generatedAt": {
+                  "S": "2025-12-17T19:03:38.798Z"
+                },
+                "signatories": {
+                  "L": []
+                },
+                "downloadCount": {
+                  "N": "0"
+                },
+                "certificateUrl": {
+                  "S": "certificate/org-df30b960-09ce-42ee-8b45-64fcec5648bd-1765997357473/tissue-culture-program/CERT-1765998218798-PFVDMZLRT"
+                },
+                "completionDate": {
+                  "S": "2025-12-17"
+                },
+                "organizationId": {
+                  "S": "org-df30b960-09ce-42ee-8b45-64fcec5648bd-1765997357473"
+                },
+                "certificateHeader": {
+                  "S": "Certificate of Completion"
+                },
+                "courseDescription": {
+                  "S": ""
+                },
+                "customTemplateConfig": {
+                  "NULL": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "cert:CERT-1765998480989-2FFIRU1EY"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "CERT-1765998480989-2FFIRU1EY"
+                },
+                "status": {
+                  "S": "active"
+                },
+                "template": {
+                  "S": "template1"
+                },
+                "programId": {
+                  "S": "ibrahim-idris"
+                },
+                "courseName": {
+                  "S": "Ibrahim Idris"
+                },
+                "generatedAt": {
+                  "S": "2025-12-17T19:08:00.990Z"
+                },
+                "signatories": {
+                  "L": []
+                },
+                "downloadCount": {
+                  "N": "0"
+                },
+                "certificateUrl": {
+                  "S": "certificate/org-df30b960-09ce-42ee-8b45-64fcec5648bd-1765997357473/ibrahim-idris/CERT-1765998480989-2FFIRU1EY"
+                },
+                "completionDate": {
+                  "S": "2025-12-17"
+                },
+                "organizationId": {
+                  "S": "org-df30b960-09ce-42ee-8b45-64fcec5648bd-1765997357473"
+                },
+                "certificateHeader": {
+                  "S": "Certificate of Completion"
+                },
+                "courseDescription": {
+                  "S": ""
+                },
+                "customTemplateConfig": {
+                  "NULL": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "cert:CERT-1766043551432-5YYOES2YU"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "CERT-1766043551432-5YYOES2YU"
+                },
+                "status": {
+                  "S": "active"
+                },
+                "template": {
+                  "S": "template5"
+                },
+                "programId": {
+                  "S": "scentiology"
+                },
+                "courseName": {
+                  "S": "Scentiology"
+                },
+                "generatedAt": {
+                  "S": "2025-12-18T07:39:11.432Z"
+                },
+                "signatories": {
+                  "L": []
+                },
+                "downloadCount": {
+                  "N": "0"
+                },
+                "certificateUrl": {
+                  "S": "certificate/org-b63d33fd-0f28-4173-91b6-c2d5b340d61b-1766043405998/scentiology/CERT-1766043551432-5YYOES2YU"
+                },
+                "completionDate": {
+                  "S": "2025-12-18"
+                },
+                "organizationId": {
+                  "S": "org-b63d33fd-0f28-4173-91b6-c2d5b340d61b-1766043405998"
+                },
+                "certificateHeader": {
+                  "S": "Most valuable customer of the year."
+                },
+                "courseDescription": {
+                  "S": "You brought so many credits to our business accounts this year by being intentional about your scent game and we love you for it."
+                },
+                "customTemplateConfig": {
+                  "NULL": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "cert:CERT-1766077084953-TI3325KDZ"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "CERT-1766077084953-TI3325KDZ"
+                },
+                "status": {
+                  "S": "active"
+                },
+                "template": {
+                  "S": "template16"
+                },
+                "programId": {
+                  "S": "training-of-trainers-in-sample-management-and-transportation"
+                },
+                "courseName": {
+                  "S": "Training of Trainers in Sample Management and Transportation"
+                },
+                "generatedAt": {
+                  "S": "2025-12-18T16:58:04.954Z"
+                },
+                "signatories": {
+                  "L": []
+                },
+                "downloadCount": {
+                  "N": "0"
+                },
+                "certificateUrl": {
+                  "S": "certificate/org-f1b8cd06-6153-4fab-97f9-b8ef7dc2d7d6-1766076388357/training-of-trainers-in-sample-management-and-transportation/CERT-1766077084953-TI3325KDZ"
+                },
+                "completionDate": {
+                  "S": "2025-12-18"
+                },
+                "organizationId": {
+                  "S": "org-f1b8cd06-6153-4fab-97f9-b8ef7dc2d7d6-1766076388357"
+                },
+                "certificateHeader": {
+                  "S": "Certificate of Attendance"
+                },
+                "courseDescription": {
+                  "S": "This training was to equip laboratory staff with knowledge of sample transportation and management, and also included biosecurity and biosafety"
+                },
+                "customTemplateConfig": {
+                  "NULL": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "cert:CERT-1766139656066-O7CTI743D"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "CERT-1766139656066-O7CTI743D"
+                },
+                "status": {
+                  "S": "active"
+                },
+                "template": {
+                  "S": "template13"
+                },
+                "programId": {
+                  "S": "live-full,-die-empty"
+                },
+                "courseName": {
+                  "S": "Live Full, Die Empty"
+                },
+                "generatedAt": {
+                  "S": "2025-12-19T10:20:56.066Z"
+                },
+                "signatories": {
+                  "L": [
+                    {
+                      "M": {
+                        "id": {
+                          "S": "sig-1766138094446"
+                        },
+                        "name": {
+                          "S": "Elijah J. Ogunyale"
+                        },
+                        "title": {
+                          "S": "Founder & CEO, EmQuip Limited"
+                        },
+                        "signatureUrl": {
+                          "S": "https://gzawvtlehnujtviahdbv.supabase.co/storage/v1/object/sign/make-a611b057-uploads/org-e4b9e220-89d5-472e-9e75-982907b67772-1766136325377/signature-1766138677118.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zZWZmYzMyMS1mZjJmLTQ5YzYtYjczNi04NjQ1MDFmN2ZjNjgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtYWtlLWE2MTFiMDU3LXVwbG9hZHMvb3JnLWU0YjllMjIwLTg5ZDUtNDcyZS05ZTc1LTk4MjkwN2I2Nzc3Mi0xNzY2MTM2MzI1Mzc3L3NpZ25hdHVyZS0xNzY2MTM4Njc3MTE4LnBuZyIsImlhdCI6MTc2NjEzODY3NywiZXhwIjoxNzk3Njc0Njc3fQ.gtZJv0NhLxGc45CXTfBPs9kyLvR_Ua6P56-6Ffch82c"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "downloadCount": {
+                  "N": "0"
+                },
+                "certificateUrl": {
+                  "S": "certificate/org-e4b9e220-89d5-472e-9e75-982907b67772-1766136325377/live-full,-die-empty/CERT-1766139656066-O7CTI743D"
+                },
+                "completionDate": {
+                  "S": "2025-12-13"
+                },
+                "organizationId": {
+                  "S": "org-e4b9e220-89d5-472e-9e75-982907b67772-1766136325377"
+                },
+                "certificateHeader": {
+                  "S": "Certificate of  Participation"
+                },
+                "courseDescription": {
+                  "S": "This certificate is presented to you for participation in the Live Full, Die Empty seminar organized by EmQuip Limited in partnership with iSpora Limited."
+                },
+                "customTemplateConfig": {
+                  "NULL": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "cert:CERT-1767183369969-HZHGLGN7X"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "CERT-1767183369969-HZHGLGN7X"
+                },
+                "status": {
+                  "S": "active"
+                },
+                "template": {
+                  "S": "template8"
+                },
+                "programId": {
+                  "S": "gogenebio"
+                },
+                "courseName": {
+                  "S": "GOGENEBIO"
+                },
+                "generatedAt": {
+                  "S": "2025-12-31T12:16:09.969Z"
+                },
+                "signatories": {
+                  "L": []
+                },
+                "downloadCount": {
+                  "N": "0"
+                },
+                "certificateUrl": {
+                  "S": "certificate/org-c4e7a07b-562d-4068-968c-7d8bee0cec2e-1767182844779/gogenebio/CERT-1767183369969-HZHGLGN7X"
+                },
+                "completionDate": {
+                  "S": "2025-10-31"
+                },
+                "organizationId": {
+                  "S": "org-c4e7a07b-562d-4068-968c-7d8bee0cec2e-1767182844779"
+                },
+                "certificateHeader": {
+                  "S": "Certificate of Participation"
+                },
+                "courseDescription": {
+                  "S": "For participating in A THREE DAY GENOMICS AND BIOINFORMATICS WORKSHOP"
+                },
+                "customTemplateConfig": {
+                  "NULL": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "cert:CERT-1768215969832-VC0U3DII2"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "CERT-1768215969832-VC0U3DII2"
+                },
+                "status": {
+                  "S": "active"
+                },
+                "template": {
+                  "S": "template1"
+                },
+                "programId": {
+                  "S": "test-allowedlist-1"
+                },
+                "courseName": {
+                  "S": "Test AllowedList 1"
+                },
+                "generatedAt": {
+                  "S": "2026-01-12T11:06:09.832Z"
+                },
+                "signatories": {
+                  "L": [
+                    {
+                      "M": {
+                        "id": {
+                          "S": "sig-1761035653490"
+                        },
+                        "name": {
+                          "S": "Goodness Adewuyi"
+                        },
+                        "title": {
+                          "S": "Chief Executive Officer, Grownish"
+                        },
+                        "signatureUrl": {
+                          "S": "https://gzawvtlehnujtviahdbv.supabase.co/storage/v1/object/sign/make-a611b057-uploads/org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067/signature-1761035714848.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8zZWZmYzMyMS1mZjJmLTQ5YzYtYjczNi04NjQ1MDFmN2ZjNjgiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJtYWtlLWE2MTFiMDU3LXVwbG9hZHMvb3JnLWM2NWM5ZTEyLTc1NDQtNDYxYS05OGU0LTgzOTJjYTE5Nzg4NS0xNzYwNTM1ODMzMDY3L3NpZ25hdHVyZS0xNzYxMDM1NzE0ODQ4LnBuZyIsImlhdCI6MTc2MTAzNTcxNSwiZXhwIjoxNzkyNTcxNzE1fQ.LC7S2yw0uOLgizSkG7JKeuC_w3FdwrBIG4tH_I0xW0w"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "downloadCount": {
+                  "N": "0"
+                },
+                "certificateUrl": {
+                  "S": "certificate/org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067/test-allowedlist-1/CERT-1768215969832-VC0U3DII2"
+                },
+                "completionDate": {
+                  "S": "2026-01-12"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                },
+                "certificateHeader": {
+                  "S": "Certificate of Completion"
+                },
+                "courseDescription": {
+                  "S": "http://localhost:3000/#/certificate/U2FsdGVkX1%2Bz7KtqZoWi4asKktPehTv9ZP1ROYEVgFkmtuob6gmCJpWi981R%2BSJIPKjmncjvE51zsOLdEHo87sKoucm0fXgiArlNfVmhHxee8w5uF4oZtvT5mEryLqGktw8wFKHff8wmvp5aFpF5JB10houygqiMY28meP18jISOFbQa2aReq0IiPw4xKgDHfKfUaOtZHxwViq9qcJepZnXWUoGIjI2nrRQUq3%2BHpt8LPsUiJlXnbI8Y0oqiml8y%2B8XIjb7a3BJVv0YoXNJqUUbctOa1FByc4zkevlxzh0GlZAUE4bI6x5%2BjZCIGHtGy"
+                },
+                "customTemplateConfig": {
+                  "NULL": true
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "cert:CERT-1768216150055-XZUUPJ1U7"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "CERT-1768216150055-XZUUPJ1U7"
+                },
+                "status": {
+                  "S": "active"
+                },
+                "template": {
+                  "S": "template1"
+                },
+                "programId": {
+                  "S": "test-allowedlist-2"
+                },
+                "courseName": {
+                  "S": "Test AllowedList 2"
+                },
+                "generatedAt": {
+                  "S": "2026-01-12T11:09:10.055Z"
+                },
+                "signatories": {
+                  "L": []
+                },
+                "downloadCount": {
+                  "N": "0"
+                },
+                "certificateUrl": {
+                  "S": "certificate/org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067/test-allowedlist-2/CERT-1768216150055-XZUUPJ1U7"
+                },
+                "completionDate": {
+                  "S": "2026-01-12"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                },
+                "certificateHeader": {
+                  "S": "Certificate of Completion"
+                },
+                "courseDescription": {
+                  "S": "http://localhost:3000/#/certificate/U2FsdGVkX19%2B%2Fyol11KYEDhdX0sN4pXj2Im%2FK5sfMv0lCppFXcye73gdp5M8k%2FXhX2DcmGB68Zv4HOVdYUf8veqNWD6cm%2F51lI0qBGgfiudzFtaBDYIsU96Q8iMS6RbNCEQ15bE41n4FtasXtru%2F7pfqxedpZ7iCQmBOomcSiDKY9Q%2F6I%2FLo6c1e6CWRoAoyM1d7eCwrjxzHOnoD3uCseLfyEeRapQnpvMWfWDFaWy4zGDZNn3PPCSHl2tL81fz1JRjW6lJ7wMNbr0mEIYK%2BL2Do2W2nvSccx2qYqtX8Byo%3D"
+                },
+                "customTemplateConfig": {
+                  "NULL": true
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

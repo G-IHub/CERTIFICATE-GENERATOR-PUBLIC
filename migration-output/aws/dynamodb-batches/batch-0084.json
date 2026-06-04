@@ -1,0 +1,1156 @@
+{
+  "RequestItems": {
+    "certifyer-dev-kv": [
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1774637921235-VPCSA7FGY"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774637921235-VPCSA7FGY"
+                },
+                "email": {
+                  "S": "ishmaeldeladem@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "It was inspiring and insightful"
+                },
+                "programId": {
+                  "S": "amr-genomic-intelligence"
+                },
+                "courseName": {
+                  "S": "AMR Genomic Intelligence"
+                },
+                "studentName": {
+                  "S": "ISHMAEL EDEM SEWORNU"
+                },
+                "submittedAt": {
+                  "S": "2026-03-27T18:58:41.235Z"
+                },
+                "organization": {
+                  "S": "UNIVERSITY OF CAPE COAST"
+                },
+                "certificateId": {
+                  "S": "CERT-1774428235034-RC5V3EIF7"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1774727562882-NJLYP7794"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774727562882-NJLYP7794"
+                },
+                "email": {
+                  "S": "jimohtolulope29@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "The AMR genomic intelligence program did a great well done and I'll say to my fellow lecturers that it's really helpful"
+                },
+                "programId": {
+                  "S": "amr-genomic-intelligence"
+                },
+                "courseName": {
+                  "S": "AMR Genomic Intelligence"
+                },
+                "studentName": {
+                  "S": "Jimoh Tolulope Abolarinwa"
+                },
+                "submittedAt": {
+                  "S": "2026-03-28T19:52:42.882Z"
+                },
+                "organization": {
+                  "S": "Wesley university"
+                },
+                "certificateId": {
+                  "S": "CERT-1774428235034-RC5V3EIF7"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1774733166796-SR2FLOALH"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774733166796-SR2FLOALH"
+                },
+                "email": {
+                  "S": "ezenwajichidinma@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "I quite enjoyed the experience it's given me  new perspectives"
+                },
+                "programId": {
+                  "S": "amr-genomic-intelligence"
+                },
+                "courseName": {
+                  "S": "AMR Genomic Intelligence"
+                },
+                "studentName": {
+                  "S": "Ezenwaji Chidinma Kenechi"
+                },
+                "submittedAt": {
+                  "S": "2026-03-28T21:26:06.796Z"
+                },
+                "organization": {
+                  "S": "Nnamdi Azikiwe University"
+                },
+                "certificateId": {
+                  "S": "CERT-1774428235034-RC5V3EIF7"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1774898225178-2W6NBLCN3"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774898225178-2W6NBLCN3"
+                },
+                "email": {
+                  "S": "elohorebivwiere@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "I gained more insights about AMR generally and also relating to genomic intelligence."
+                },
+                "programId": {
+                  "S": "amr-genomic-intelligence"
+                },
+                "courseName": {
+                  "S": "AMR Genomic Intelligence"
+                },
+                "studentName": {
+                  "S": "Ebivwiere Elohor"
+                },
+                "submittedAt": {
+                  "S": "2026-03-30T19:17:05.178Z"
+                },
+                "testimonial": {
+                  "S": "I hope to attend a webinar like this again from this organization."
+                },
+                "organization": {
+                  "S": "Obafemi Awolowo university"
+                },
+                "certificateId": {
+                  "S": "CERT-1774428235034-RC5V3EIF7"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1775641112425-E9V83FG1K"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775641112425-E9V83FG1K"
+                },
+                "email": {
+                  "S": "afolabipelumi44@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Insightful"
+                },
+                "programId": {
+                  "S": "train-the-trainers-initiative-in-genomics-&-bioinformatics"
+                },
+                "courseName": {
+                  "S": "Train-the-Trainers Initiative in Genomics & Bioinformatics"
+                },
+                "studentName": {
+                  "S": "Afolabi Oluwapelumi Ope"
+                },
+                "submittedAt": {
+                  "S": "2026-04-08T09:38:32.425Z"
+                },
+                "organization": {
+                  "S": "Babcock University"
+                },
+                "certificateId": {
+                  "S": "CERT-1773157668544-F5P2KMI6M"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1775766265128-0N44UWI4X"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775766265128-0N44UWI4X"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Very very helpful"
+                },
+                "programId": {
+                  "S": "train-the-trainers-initiative-in-genomics-&-bioinformatics"
+                },
+                "courseName": {
+                  "S": "Train-the-Trainers Initiative in Genomics & Bioinformatics"
+                },
+                "studentName": {
+                  "S": "Adefemi Oluwasegun ADEFUYE"
+                },
+                "submittedAt": {
+                  "S": "2026-04-09T20:24:25.128Z"
+                },
+                "organization": {
+                  "S": "Olabisi Onabanjo University, Ago Iwoye, Ogun State, Nigeria"
+                },
+                "certificateId": {
+                  "S": "CERT-1773157668544-F5P2KMI6M"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1775827422341-FOQ7YA5HE"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775827422341-FOQ7YA5HE"
+                },
+                "email": {
+                  "S": "akinwumijohnakanmu@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "It was great and impactful"
+                },
+                "programId": {
+                  "S": "amr-genomic-intelligence"
+                },
+                "courseName": {
+                  "S": "AMR Genomic Intelligence"
+                },
+                "studentName": {
+                  "S": "AKINWUMI JOHN AKANMU"
+                },
+                "submittedAt": {
+                  "S": "2026-04-10T13:23:42.342Z"
+                },
+                "testimonial": {
+                  "S": "More interactive sections"
+                },
+                "organization": {
+                  "S": "Genomac Service and Consult"
+                },
+                "certificateId": {
+                  "S": "CERT-1774428235034-RC5V3EIF7"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1775827668411-EIA55NHIS"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775827668411-EIA55NHIS"
+                },
+                "email": {
+                  "S": "akinwumijohnakanmu@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "It was impactful"
+                },
+                "programId": {
+                  "S": "amr-genomic-intelligence"
+                },
+                "courseName": {
+                  "S": "AMR Genomic Intelligence"
+                },
+                "studentName": {
+                  "S": "AKANMU AKINWUMI JOHN"
+                },
+                "submittedAt": {
+                  "S": "2026-04-10T13:27:48.411Z"
+                },
+                "testimonial": {
+                  "S": "Just has to be more interactive during sections"
+                },
+                "organization": {
+                  "S": "Genomac Service and Consult"
+                },
+                "certificateId": {
+                  "S": "CERT-1774428235034-RC5V3EIF7"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1776074299817-4R2OR7NLM"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1776074299817-4R2OR7NLM"
+                },
+                "email": {
+                  "S": "globalsani@yahoo.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "It's awesome"
+                },
+                "programId": {
+                  "S": "train-the-trainers-initiative-in-genomics-&-bioinformatics"
+                },
+                "courseName": {
+                  "S": "Train-the-Trainers Initiative in Genomics & Bioinformatics"
+                },
+                "studentName": {
+                  "S": "Sani Ibrahim"
+                },
+                "submittedAt": {
+                  "S": "2026-04-13T09:58:19.817Z"
+                },
+                "organization": {
+                  "S": "Federal University Dutsin-Ma"
+                },
+                "certificateId": {
+                  "S": "CERT-1773157668544-F5P2KMI6M"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1777181201681-1OYYU9TTY"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777181201681-1OYYU9TTY"
+                },
+                "email": {
+                  "S": "msaadnauman64@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "good"
+                },
+                "programId": {
+                  "S": "train-the-trainers-initiative-in-genomics-&-bioinformatics"
+                },
+                "courseName": {
+                  "S": "Train-the-Trainers Initiative in Genomics & Bioinformatics"
+                },
+                "studentName": {
+                  "S": "Muhammad Saad Nauman"
+                },
+                "submittedAt": {
+                  "S": "2026-04-26T05:26:41.681Z"
+                },
+                "organization": {
+                  "S": "University of Agriculture Faisalabad"
+                },
+                "certificateId": {
+                  "S": "CERT-1773157668544-F5P2KMI6M"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1777454043861-N6AGHOB8L"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777454043861-N6AGHOB8L"
+                },
+                "email": {
+                  "S": "gladysegunjobi6@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "programId": {
+                  "S": "amr-genomic-intelligence"
+                },
+                "courseName": {
+                  "S": "AMR Genomic Intelligence"
+                },
+                "studentName": {
+                  "S": "gg"
+                },
+                "submittedAt": {
+                  "S": "2026-04-29T09:14:03.861Z"
+                },
+                "organization": {
+                  "S": "v"
+                },
+                "certificateId": {
+                  "S": "CERT-1774428235034-RC5V3EIF7"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1777454512010-O7RHHU0DZ"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777454512010-O7RHHU0DZ"
+                },
+                "email": {
+                  "S": "gladysegunjobi6@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "programId": {
+                  "S": "bioinformatics-approaches-to-understanding-microbial-roles-in-bioremediation"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Approaches to Understanding Microbial Roles in Bioremediation"
+                },
+                "studentName": {
+                  "S": "f"
+                },
+                "submittedAt": {
+                  "S": "2026-04-29T09:21:52.010Z"
+                },
+                "organization": {
+                  "S": "fd"
+                },
+                "certificateId": {
+                  "S": "CERT-1777454464212-2Q03HU1LV"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1777454836418-49AZKC1Z2"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777454836418-49AZKC1Z2"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "programId": {
+                  "S": "amr-genomic-intelligence"
+                },
+                "courseName": {
+                  "S": "AMR Genomic Intelligence"
+                },
+                "studentName": {
+                  "S": "jj"
+                },
+                "submittedAt": {
+                  "S": "2026-04-29T09:27:16.418Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1774430725862-0G643UCHU"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1777454842411-FWGDJDAHV"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777454842411-FWGDJDAHV"
+                },
+                "email": {
+                  "S": "jayaswaroopatillapudi@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "A new way of idea through bioinformatics for bioremediation, which is used impact the environment"
+                },
+                "programId": {
+                  "S": "bioinformatics-approaches-to-understanding-microbial-roles-in-bioremediation"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Approaches to Understanding Microbial Roles in Bioremediation"
+                },
+                "studentName": {
+                  "S": "JAYA SWAROOOPA TILLAPUDI"
+                },
+                "submittedAt": {
+                  "S": "2026-04-29T09:27:22.411Z"
+                },
+                "organization": {
+                  "S": "Andhra University college of engineering"
+                },
+                "certificateId": {
+                  "S": "CERT-1777454464212-2Q03HU1LV"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1777454843732-ITS6QR5RC"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777454843732-ITS6QR5RC"
+                },
+                "email": {
+                  "S": "amos.ofori@stu.ucc.edu.gh"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Perfect"
+                },
+                "programId": {
+                  "S": "bioinformatics-approaches-to-understanding-microbial-roles-in-bioremediation"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Approaches to Understanding Microbial Roles in Bioremediation"
+                },
+                "studentName": {
+                  "S": "AMOS OFORI"
+                },
+                "submittedAt": {
+                  "S": "2026-04-29T09:27:23.732Z"
+                },
+                "testimonial": {
+                  "S": "Very impactful"
+                },
+                "organization": {
+                  "S": "UNIVERSITY OF CAPE COAST"
+                },
+                "certificateId": {
+                  "S": "CERT-1777454464212-2Q03HU1LV"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1777455006288-E2CCFS5NO"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777455006288-E2CCFS5NO"
+                },
+                "title": {
+                  "S": "Prof"
+                },
+                "programId": {
+                  "S": "amr-genomic-intelligence"
+                },
+                "courseName": {
+                  "S": "AMR Genomic Intelligence"
+                },
+                "studentName": {
+                  "S": "Joshua Mbanga"
+                },
+                "submittedAt": {
+                  "S": "2026-04-29T09:30:06.288Z"
+                },
+                "organization": {
+                  "S": "National University of Science and Technology, Zimbabwe"
+                },
+                "certificateId": {
+                  "S": "CERT-1774430725862-0G643UCHU"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1777455057087-ETS15A3SI"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777455057087-ETS15A3SI"
+                },
+                "email": {
+                  "S": "da123mayini@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Ça ma permis de comprendre le rôle microbien dans la bioremediation"
+                },
+                "programId": {
+                  "S": "bioinformatics-approaches-to-understanding-microbial-roles-in-bioremediation"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Approaches to Understanding Microbial Roles in Bioremediation"
+                },
+                "studentName": {
+                  "S": "Mayini Da"
+                },
+                "submittedAt": {
+                  "S": "2026-04-29T09:30:57.087Z"
+                },
+                "organization": {
+                  "S": "Université Joseph KI ZERBO"
+                },
+                "certificateId": {
+                  "S": "CERT-1777454464212-2Q03HU1LV"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1777455318944-AYBMGVSQS"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777455318944-AYBMGVSQS"
+                },
+                "email": {
+                  "S": "da123mayini@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Ça ma permis de comprendre le rôle microbien dans la bioremediation"
+                },
+                "programId": {
+                  "S": "bioinformatics-approaches-to-understanding-microbial-roles-in-bioremediation"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Approaches to Understanding Microbial Roles in Bioremediation"
+                },
+                "studentName": {
+                  "S": "Mayini Da"
+                },
+                "submittedAt": {
+                  "S": "2026-04-29T09:35:18.944Z"
+                },
+                "organization": {
+                  "S": "Université Joseph KI ZERBO"
+                },
+                "certificateId": {
+                  "S": "CERT-1777454464212-2Q03HU1LV"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1777455526734-I0MSFYEJD"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777455526734-I0MSFYEJD"
+                },
+                "email": {
+                  "S": "amos.ofori@stu.ucc.edu.gh"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Perfect"
+                },
+                "programId": {
+                  "S": "bioinformatics-approaches-to-understanding-microbial-roles-in-bioremediation"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Approaches to Understanding Microbial Roles in Bioremediation"
+                },
+                "studentName": {
+                  "S": "AMOS OFORI"
+                },
+                "submittedAt": {
+                  "S": "2026-04-29T09:38:46.734Z"
+                },
+                "testimonial": {
+                  "S": "impactful"
+                },
+                "organization": {
+                  "S": "UNIVERSITY OF CAPE COAST,GHANA"
+                },
+                "certificateId": {
+                  "S": "CERT-1777454464212-2Q03HU1LV"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1777455649477-LKVAGOBPX"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777455649477-LKVAGOBPX"
+                },
+                "email": {
+                  "S": "amos.ofori@stu.ucc.edu.gh"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Perfect"
+                },
+                "programId": {
+                  "S": "bioinformatics-approaches-to-understanding-microbial-roles-in-bioremediation"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Approaches to Understanding Microbial Roles in Bioremediation"
+                },
+                "studentName": {
+                  "S": "OFORI  AMOS"
+                },
+                "submittedAt": {
+                  "S": "2026-04-29T09:40:49.477Z"
+                },
+                "testimonial": {
+                  "S": "impactful"
+                },
+                "organization": {
+                  "S": "UNIVERSITY OF CAPE COAST,GHANA"
+                },
+                "certificateId": {
+                  "S": "CERT-1777454464212-2Q03HU1LV"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1777455852021-0RGIBGNUP"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777455852021-0RGIBGNUP"
+                },
+                "email": {
+                  "S": "evelynadarsco@gmail.com"
+                },
+                "impact": {
+                  "S": "The Bioinformatics approahes programme has helped me  to know that  genes in microbes can be studied and know which one is effective for bioremediation. The people are doing so well and I would like to enjoy more of their impactful webinar . I appreciate you"
+                },
+                "programId": {
+                  "S": "bioinformatics-approaches-to-understanding-microbial-roles-in-bioremediation"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Approaches to Understanding Microbial Roles in Bioremediation"
+                },
+                "studentName": {
+                  "S": "Adarkwah Evelyn"
+                },
+                "submittedAt": {
+                  "S": "2026-04-29T09:44:12.021Z"
+                },
+                "organization": {
+                  "S": "University for Development studies"
+                },
+                "certificateId": {
+                  "S": "CERT-1777454464212-2Q03HU1LV"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1777456048850-5R1KB45N1"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777456048850-5R1KB45N1"
+                },
+                "email": {
+                  "S": "amos.ofori@stu.ucc.edu.gh"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Perfect"
+                },
+                "programId": {
+                  "S": "bioinformatics-approaches-to-understanding-microbial-roles-in-bioremediation"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Approaches to Understanding Microbial Roles in Bioremediation"
+                },
+                "studentName": {
+                  "S": "OFORI  AMOS"
+                },
+                "submittedAt": {
+                  "S": "2026-04-29T09:47:28.850Z"
+                },
+                "testimonial": {
+                  "S": "Impactful"
+                },
+                "organization": {
+                  "S": "UNIVERSITY OF CAPE COAST,GHANA"
+                },
+                "certificateId": {
+                  "S": "CERT-1777454464212-2Q03HU1LV"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1777456102278-QX4756FQA"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777456102278-QX4756FQA"
+                },
+                "email": {
+                  "S": "rhodasennie@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "The Bioinformatics Approaches to Understanding Microbial Roles in Bioremediation program strengthened my ability to apply computational tools to real-world environmental microbiology problems, and I would strongly encourage others to participate for its practical, research-oriented learning experience and relevance to emerging scientific challenges."
+                },
+                "programId": {
+                  "S": "bioinformatics-approaches-to-understanding-microbial-roles-in-bioremediation"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Approaches to Understanding Microbial Roles in Bioremediation"
+                },
+                "studentName": {
+                  "S": "Rhoda Dorcas Sennie"
+                },
+                "submittedAt": {
+                  "S": "2026-04-29T09:48:22.278Z"
+                },
+                "organization": {
+                  "S": "University of Cape Coast"
+                },
+                "certificateId": {
+                  "S": "CERT-1777454464212-2Q03HU1LV"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1777456189290-7OB16B0FB"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777456189290-7OB16B0FB"
+                },
+                "email": {
+                  "S": "afiaamponsah646@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It has broadened my understanding on microbial roles in bioremediation. It has boasted my interest in bioinformatics."
+                },
+                "programId": {
+                  "S": "bioinformatics-approaches-to-understanding-microbial-roles-in-bioremediation"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Approaches to Understanding Microbial Roles in Bioremediation"
+                },
+                "studentName": {
+                  "S": "Afia Amponsah Boateng"
+                },
+                "submittedAt": {
+                  "S": "2026-04-29T09:49:49.290Z"
+                },
+                "testimonial": {
+                  "S": "It was an exceptional training"
+                },
+                "organization": {
+                  "S": "University For Development Studies, Tam"
+                },
+                "certificateId": {
+                  "S": "CERT-1777454464212-2Q03HU1LV"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118:TEST-1777456300969-4I9AO87KV"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777456300969-4I9AO87KV"
+                },
+                "email": {
+                  "S": "nwekebenedicta786@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "I learnt microorganisms around us ,can use detoxify contaminated environment"
+                },
+                "programId": {
+                  "S": "bioinformatics-approaches-to-understanding-microbial-roles-in-bioremediation"
+                },
+                "courseName": {
+                  "S": "Bioinformatics Approaches to Understanding Microbial Roles in Bioremediation"
+                },
+                "studentName": {
+                  "S": "Nweke Nkiruka Benedicta"
+                },
+                "submittedAt": {
+                  "S": "2026-04-29T09:51:40.969Z"
+                },
+                "testimonial": {
+                  "S": "Knowledge is power"
+                },
+                "organization": {
+                  "S": "LAUTECH"
+                },
+                "certificateId": {
+                  "S": "CERT-1777454464212-2Q03HU1LV"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,1078 @@
+{
+  "RequestItems": {
+    "certifyer-dev-kv": [
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824:TEST-1778075199780-5OHT79NFW"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778075199780-5OHT79NFW"
+                },
+                "email": {
+                  "S": "ajybkb@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Developing the diagnostic system of the institution's medical center"
+                },
+                "courseName": {
+                  "S": "Genomac Malaria Innovation Competition"
+                },
+                "studentName": {
+                  "S": "Bamikole Christiano Ajayi"
+                },
+                "submittedAt": {
+                  "S": "2026-05-06T13:46:39.780Z"
+                },
+                "organization": {
+                  "S": "Federal University of Oye Ekiti"
+                },
+                "certificateId": {
+                  "S": "CERT-1777459600139-LZNZHMVFD"
+                },
+                "organizationId": {
+                  "S": "org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824:TEST-1778148132840-U9G2SH17U"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778148132840-U9G2SH17U"
+                },
+                "email": {
+                  "S": "idokomathewidoko@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "courseName": {
+                  "S": "Genomac Malaria Innovation Competition"
+                },
+                "studentName": {
+                  "S": "Idoko Mathew Idoko"
+                },
+                "submittedAt": {
+                  "S": "2026-05-07T10:02:12.840Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1777459600139-LZNZHMVFD"
+                },
+                "organizationId": {
+                  "S": "org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824:TEST-1778150379293-7SI48C2L5"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778150379293-7SI48C2L5"
+                },
+                "email": {
+                  "S": "lucy.afahanam97@yahoo.com"
+                },
+                "impact": {
+                  "S": "It was a wonderful experience"
+                },
+                "courseName": {
+                  "S": "Genomac Malaria Innovation Competition"
+                },
+                "studentName": {
+                  "S": "Lucy Emmanuel Afahanam"
+                },
+                "submittedAt": {
+                  "S": "2026-05-07T10:39:39.293Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1777459600139-LZNZHMVFD"
+                },
+                "organizationId": {
+                  "S": "org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824:TEST-1778157849096-XQCI0BYI2"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778157849096-XQCI0BYI2"
+                },
+                "email": {
+                  "S": "amamchukwuvalentine@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Was very enlightening and interesting"
+                },
+                "courseName": {
+                  "S": "Genomac Malaria Innovation Competition"
+                },
+                "studentName": {
+                  "S": "Amamchukwu Valentine Chisom"
+                },
+                "submittedAt": {
+                  "S": "2026-05-07T12:44:09.097Z"
+                },
+                "organization": {
+                  "S": "Chukwuemeka Odumegwu Ojukwu University, Anambra State"
+                },
+                "certificateId": {
+                  "S": "CERT-1777459600139-LZNZHMVFD"
+                },
+                "organizationId": {
+                  "S": "org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824:TEST-1778158155584-M770XXQEA"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778158155584-M770XXQEA"
+                },
+                "email": {
+                  "S": "amamchukwuvalentine@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Was good"
+                },
+                "courseName": {
+                  "S": "Genomac Malaria Innovation Competition"
+                },
+                "studentName": {
+                  "S": "Amamchukwu Valentine Chisom"
+                },
+                "submittedAt": {
+                  "S": "2026-05-07T12:49:15.584Z"
+                },
+                "organization": {
+                  "S": "SeQuenceFx"
+                },
+                "certificateId": {
+                  "S": "CERT-1777459600139-LZNZHMVFD"
+                },
+                "organizationId": {
+                  "S": "org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824:TEST-1778245552637-S7DZWPXWM"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778245552637-S7DZWPXWM"
+                },
+                "email": {
+                  "S": "ephraimnwu@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Happy to be part of the competition"
+                },
+                "courseName": {
+                  "S": "Genomac Malaria Innovation Competition"
+                },
+                "studentName": {
+                  "S": "EPHRAIM NWUNUJI"
+                },
+                "submittedAt": {
+                  "S": "2026-05-08T13:05:52.637Z"
+                },
+                "organization": {
+                  "S": "Federal University teaching hospital Wukari Taraba state"
+                },
+                "certificateId": {
+                  "S": "CERT-1777459600139-LZNZHMVFD"
+                },
+                "organizationId": {
+                  "S": "org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824:TEST-1778248472711-FAMQQQQUC"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778248472711-FAMQQQQUC"
+                },
+                "email": {
+                  "S": "muhdsameenugumel@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Gain experience"
+                },
+                "courseName": {
+                  "S": "Genomac Malaria Innovation Competition"
+                },
+                "studentName": {
+                  "S": "Muhd Sameenu Gumel"
+                },
+                "submittedAt": {
+                  "S": "2026-05-08T13:54:32.711Z"
+                },
+                "organization": {
+                  "S": "Federal University Dutse Jigawa State"
+                },
+                "certificateId": {
+                  "S": "CERT-1777459600139-LZNZHMVFD"
+                },
+                "organizationId": {
+                  "S": "org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824:TEST-1778250478633-IKJMP33L3"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778250478633-IKJMP33L3"
+                },
+                "email": {
+                  "S": "ayindefaith194@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "This project open my eyes to a lot of things concerning bio-informatics, driving me to do more research."
+                },
+                "courseName": {
+                  "S": "Genomac Malaria Innovation Competition"
+                },
+                "studentName": {
+                  "S": "AYINDE FAITH OYEYEMI"
+                },
+                "submittedAt": {
+                  "S": "2026-05-08T14:27:58.633Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1777459600139-LZNZHMVFD"
+                },
+                "organizationId": {
+                  "S": "org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824:TEST-1778250742119-D5XLU6NZR"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778250742119-D5XLU6NZR"
+                },
+                "email": {
+                  "S": "ayindefaith194@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Thie project was really impactful, driving me to study and impacting insightful and equipping knowledge in the area of bio-informatics"
+                },
+                "courseName": {
+                  "S": "Genomac Malaria Innovation Competition"
+                },
+                "studentName": {
+                  "S": "AYINDE FAITH OYEYEMI"
+                },
+                "submittedAt": {
+                  "S": "2026-05-08T14:32:22.119Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1777459600139-LZNZHMVFD"
+                },
+                "organizationId": {
+                  "S": "org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824:TEST-1778250998419-VA4PYQVC6"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778250998419-VA4PYQVC6"
+                },
+                "email": {
+                  "S": "ayindefaith194@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "The project was really impactful driving me into studying and knowing more about bio-informatics. It equipped my mindset into contributing my own quota into finding solution to the world problem."
+                },
+                "courseName": {
+                  "S": "Genomac Malaria Innovation Competition"
+                },
+                "studentName": {
+                  "S": "AYINDE FAITH OYEYEMI"
+                },
+                "submittedAt": {
+                  "S": "2026-05-08T14:36:38.419Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1777459600139-LZNZHMVFD"
+                },
+                "organizationId": {
+                  "S": "org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824:TEST-1778255175895-IEYIU99AT"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778255175895-IEYIU99AT"
+                },
+                "email": {
+                  "S": "abunabeelandnabeela20@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "This programme really inspired me to delve into molecular diagnosis using latest computational application of Bioinformatics"
+                },
+                "courseName": {
+                  "S": "Genomac Malaria Innovation Competition"
+                },
+                "studentName": {
+                  "S": "Yahaya Babangida Musa"
+                },
+                "submittedAt": {
+                  "S": "2026-05-08T15:46:15.895Z"
+                },
+                "organization": {
+                  "S": "Premier Medicare and specialist Clinic Bauchi"
+                },
+                "certificateId": {
+                  "S": "CERT-1777459600139-LZNZHMVFD"
+                },
+                "organizationId": {
+                  "S": "org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824:TEST-1778265984868-O2FL4VMXJ"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778265984868-O2FL4VMXJ"
+                },
+                "email": {
+                  "S": "wahlex4real@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "The writing challenge was really an amazing experience. Thank you, Genomac for the opportunity"
+                },
+                "courseName": {
+                  "S": "Genomac Malaria Innovation Competition"
+                },
+                "studentName": {
+                  "S": "Abdulbaki Alfa-Ibrahim Adio"
+                },
+                "submittedAt": {
+                  "S": "2026-05-08T18:46:24.868Z"
+                },
+                "organization": {
+                  "S": "Usmanu Danfodiyo University, Sokoto"
+                },
+                "certificateId": {
+                  "S": "CERT-1777459600139-LZNZHMVFD"
+                },
+                "organizationId": {
+                  "S": "org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824:TEST-1778266404191-KK5F88BLT"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778266404191-KK5F88BLT"
+                },
+                "email": {
+                  "S": "wahlex4real@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "The writing challenge was really an amazing experience. Thank you, Genomac for the opportunity"
+                },
+                "courseName": {
+                  "S": "Genomac Malaria Innovation Competition"
+                },
+                "studentName": {
+                  "S": "Ibrahim Abdulbaki"
+                },
+                "submittedAt": {
+                  "S": "2026-05-08T18:53:24.191Z"
+                },
+                "organization": {
+                  "S": "Usmanu Danfodiyo University, Sokoto"
+                },
+                "certificateId": {
+                  "S": "CERT-1777459600139-LZNZHMVFD"
+                },
+                "organizationId": {
+                  "S": "org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824:TEST-1778266572663-AYNQH92S0"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778266572663-AYNQH92S0"
+                },
+                "email": {
+                  "S": "wahlex4real@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "The writing challenge was really an amazing experience. Thank you, Genomac for the opportunity"
+                },
+                "courseName": {
+                  "S": "Genomac Malaria Innovation Competition"
+                },
+                "studentName": {
+                  "S": "Abdulbaki Alfa-Ibrahim Adio"
+                },
+                "submittedAt": {
+                  "S": "2026-05-08T18:56:12.663Z"
+                },
+                "organization": {
+                  "S": "Usmanu Danfodiyo University, Sokoto"
+                },
+                "certificateId": {
+                  "S": "CERT-1777459600139-LZNZHMVFD"
+                },
+                "organizationId": {
+                  "S": "org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824:TEST-1778281501473-MYAHT392M"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778281501473-MYAHT392M"
+                },
+                "email": {
+                  "S": "salihusulaiman100@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "I learnt how to access plasmoDB"
+                },
+                "courseName": {
+                  "S": "Genomac Malaria Innovation Competition"
+                },
+                "studentName": {
+                  "S": "Salihu Sulaiman"
+                },
+                "submittedAt": {
+                  "S": "2026-05-08T23:05:01.473Z"
+                },
+                "organization": {
+                  "S": "Toro"
+                },
+                "certificateId": {
+                  "S": "CERT-1777459600139-LZNZHMVFD"
+                },
+                "organizationId": {
+                  "S": "org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824:TEST-1778844672702-2Z9C5G71Y"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1778844672702-2Z9C5G71Y"
+                },
+                "email": {
+                  "S": "vivy2428@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "I learn the basis of research and article writing."
+                },
+                "courseName": {
+                  "S": "Genomac Malaria Innovation Competition"
+                },
+                "studentName": {
+                  "S": "Eneh Anita Onyinye"
+                },
+                "submittedAt": {
+                  "S": "2026-05-15T11:31:12.702Z"
+                },
+                "organization": {
+                  "S": "University of Nigeria Enugu Campus"
+                },
+                "certificateId": {
+                  "S": "CERT-1777459600139-LZNZHMVFD"
+                },
+                "organizationId": {
+                  "S": "org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-b4830126-59fc-42fb-9a2a-2ef56411d77b-1771346388967:TEST-1777283782708-CVZC1WQWK"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777283782708-CVZC1WQWK"
+                },
+                "email": {
+                  "S": "abdullahakhtar556@gmail.com"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "programId": {
+                  "S": "advance-techniques-in-veterinary-surgery"
+                },
+                "courseName": {
+                  "S": "Advance Techniques in Veterinary Surgery"
+                },
+                "studentName": {
+                  "S": "Dr. Abdullah"
+                },
+                "submittedAt": {
+                  "S": "2026-04-27T09:56:22.708Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1771347070454-TQF3CHGW0"
+                },
+                "organizationId": {
+                  "S": "org-b4830126-59fc-42fb-9a2a-2ef56411d77b-1771346388967"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-b4830126-59fc-42fb-9a2a-2ef56411d77b-1771346388967:TEST-1777283972857-5ZYDX4DIN"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777283972857-5ZYDX4DIN"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "programId": {
+                  "S": "advance-techniques-in-veterinary-surgery"
+                },
+                "courseName": {
+                  "S": "Advance Techniques in Veterinary Surgery"
+                },
+                "studentName": {
+                  "S": "Dr. Abdullah"
+                },
+                "submittedAt": {
+                  "S": "2026-04-27T09:59:32.858Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1771347070454-TQF3CHGW0"
+                },
+                "organizationId": {
+                  "S": "org-b4830126-59fc-42fb-9a2a-2ef56411d77b-1771346388967"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-c4e7a07b-562d-4068-968c-7d8bee0cec2e-1767182844779:TEST-1774356374778-115CIAMJB"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774356374778-115CIAMJB"
+                },
+                "email": {
+                  "S": "afolayanomotolani30@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "ytjklkjhcgvhb"
+                },
+                "programId": {
+                  "S": "gjjkhnioj0olkopl;jmjkv"
+                },
+                "courseName": {
+                  "S": "gjjkhnioj0olkopl;jmjkv"
+                },
+                "studentName": {
+                  "S": "Omotolani Afolayan"
+                },
+                "submittedAt": {
+                  "S": "2026-03-24T12:46:14.778Z"
+                },
+                "organization": {
+                  "S": "Genomac"
+                },
+                "certificateId": {
+                  "S": "CERT-1774356320342-FHKK4CEHG"
+                },
+                "organizationId": {
+                  "S": "org-c4e7a07b-562d-4068-968c-7d8bee0cec2e-1767182844779"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-c4e7a07b-562d-4068-968c-7d8bee0cec2e-1767182844779:TEST-1774364369354-7JC7O6D8A"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774364369354-7JC7O6D8A"
+                },
+                "email": {
+                  "S": "afolayanomotolani30@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "dkvwmca;lmcwakckkkkkkkkkkk"
+                },
+                "programId": {
+                  "S": "personalized-research-training-in-transcriptomics"
+                },
+                "courseName": {
+                  "S": "PERSONALIZED RESEARCH TRAINING IN TRANSCRIPTOMICS"
+                },
+                "studentName": {
+                  "S": "Omotolani Lydia Afolayan"
+                },
+                "submittedAt": {
+                  "S": "2026-03-24T14:59:29.354Z"
+                },
+                "organization": {
+                  "S": "G-I Hub"
+                },
+                "certificateId": {
+                  "S": "CERT-1774363341889-7B27OHXZS"
+                },
+                "organizationId": {
+                  "S": "org-c4e7a07b-562d-4068-968c-7d8bee0cec2e-1767182844779"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-c4e7a07b-562d-4068-968c-7d8bee0cec2e-1767182844779:TEST-1774366724065-VCY9OZTIM"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774366724065-VCY9OZTIM"
+                },
+                "email": {
+                  "S": "afolayanomotolani30@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj"
+                },
+                "programId": {
+                  "S": "personalized-research-training-in-transcriptomics"
+                },
+                "courseName": {
+                  "S": "PERSONALIZED RESEARCH TRAINING IN TRANSCRIPTOMICS"
+                },
+                "studentName": {
+                  "S": "Omotolani Lydia Afolayan"
+                },
+                "submittedAt": {
+                  "S": "2026-03-24T15:38:44.065Z"
+                },
+                "organization": {
+                  "S": "Hanguk"
+                },
+                "certificateId": {
+                  "S": "CERT-1774366697157-AGAHRUU5V"
+                },
+                "organizationId": {
+                  "S": "org-c4e7a07b-562d-4068-968c-7d8bee0cec2e-1767182844779"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-c4e7a07b-562d-4068-968c-7d8bee0cec2e-1767182844779:TEST-1774368479597-BBZYRN7B1"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774368479597-BBZYRN7B1"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "kjnalkcmalk"
+                },
+                "programId": {
+                  "S": "gogenebio"
+                },
+                "courseName": {
+                  "S": "GOGENEBIO"
+                },
+                "studentName": {
+                  "S": "Omotolani Lydia Afolayan"
+                },
+                "submittedAt": {
+                  "S": "2026-03-24T16:07:59.597Z"
+                },
+                "organization": {
+                  "S": "G-I Hub"
+                },
+                "certificateId": {
+                  "S": "CERT-1767183369969-HZHGLGN7X"
+                },
+                "organizationId": {
+                  "S": "org-c4e7a07b-562d-4068-968c-7d8bee0cec2e-1767182844779"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-c4e7a07b-562d-4068-968c-7d8bee0cec2e-1767182844779:TEST-1774718215529-ALVTE66L1"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774718215529-ALVTE66L1"
+                },
+                "email": {
+                  "S": "afolayanomotolani30@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "ijoil;k[p'olkjhgrhtyghlji;k"
+                },
+                "programId": {
+                  "S": "cancer-genomics"
+                },
+                "courseName": {
+                  "S": "CANCER GENOMICS"
+                },
+                "studentName": {
+                  "S": "Omotolani Lydia Afolayan"
+                },
+                "submittedAt": {
+                  "S": "2026-03-28T17:16:55.529Z"
+                },
+                "organization": {
+                  "S": "Genomac"
+                },
+                "certificateId": {
+                  "S": "CERT-1774718191297-042IZPRLO"
+                },
+                "organizationId": {
+                  "S": "org-c4e7a07b-562d-4068-968c-7d8bee0cec2e-1767182844779"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-c4e7a07b-562d-4068-968c-7d8bee0cec2e-1767182844779:TEST-1774718850158-H2YX72CA2"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774718850158-H2YX72CA2"
+                },
+                "email": {
+                  "S": "afolayanomotolani30@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "ugvjhkl;kjhktfdrgthyjgukl"
+                },
+                "programId": {
+                  "S": "functional-genomics-and-pathway-for-health-insights"
+                },
+                "courseName": {
+                  "S": "FUNCTIONAL GENOMICS AND PATHWAY FOR HEALTH INSIGHTS"
+                },
+                "studentName": {
+                  "S": "Omotolani Afolayan"
+                },
+                "submittedAt": {
+                  "S": "2026-03-28T17:27:30.158Z"
+                },
+                "organization": {
+                  "S": "G-I Hub"
+                },
+                "certificateId": {
+                  "S": "CERT-1774718827586-Q0MG831OZ"
+                },
+                "organizationId": {
+                  "S": "org-c4e7a07b-562d-4068-968c-7d8bee0cec2e-1767182844779"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-c4e7a07b-562d-4068-968c-7d8bee0cec2e-1767182844779:TEST-1774719241601-7X36Y3DPZ"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1774719241601-7X36Y3DPZ"
+                },
+                "email": {
+                  "S": "afolayanomotolani30@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "fyujokphgtfhdgjygkuhil"
+                },
+                "programId": {
+                  "S": "functional-genomics-and-pathway-for-health-insights"
+                },
+                "courseName": {
+                  "S": "FUNCTIONAL GENOMICS AND PATHWAY FOR HEALTH INSIGHTS"
+                },
+                "studentName": {
+                  "S": "Omotolani Afolayan"
+                },
+                "submittedAt": {
+                  "S": "2026-03-28T17:34:01.601Z"
+                },
+                "organization": {
+                  "S": "Genomac"
+                },
+                "certificateId": {
+                  "S": "CERT-1774718827586-Q0MG831OZ"
+                },
+                "organizationId": {
+                  "S": "org-c4e7a07b-562d-4068-968c-7d8bee0cec2e-1767182844779"
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

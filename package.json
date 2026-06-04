@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.1061.0",
+    "@aws-sdk/client-s3": "^3.1061.0",
+    "@aws-sdk/lib-dynamodb": "^3.1061.0",
+    "@aws-sdk/s3-request-presigner": "^3.1061.0",
     "@headlessui/react": "*",
     "@heroicons/react": "^2.2.0",
     "@jsr/supabase__supabase-js": "^2.49.8",
@@ -52,6 +56,7 @@
     "motion": "^12.34.3",
     "nanoid": "*",
     "next-themes": "^0.4.6",
+    "pg": "^8.21.0",
     "react": "^18.3.1",
     "react-day-picker": "^8.10.1",
     "react-dom": "18.3.1",
@@ -87,6 +92,13 @@
     "sb:reset": "supabase db reset",
     "sb:status": "supabase status",
     "sb:gen": "supabase gen types typescript --local > src/types/database.ts",
-    "dev:full": "concurrently \"npm run sb:start\" \"npm run dev\""
+    "dev:full": "concurrently \"npm run sb:start\" \"npm run dev\"",
+    "migrate:check:supabase": "node scripts/migration/check-supabase-config.js",
+    "migrate:export:supabase": "node scripts/migration/export-supabase-data.js",
+    "migrate:build:dynamodb-batches": "node scripts/migration/build-dynamodb-batches.js",
+    "migrate:apply:dynamodb-batches": "node scripts/migration/apply-dynamodb-batches.js",
+    "migrate:apply:dynamodb-batches-sdk": "node scripts/migration/apply-dynamodb-batches-sdk.js",
+    "migrate:import:blog": "node scripts/migration/import-blog-to-rds.js",
+    "migrate:import:storage": "node scripts/migration/import-storage-to-s3.js"
   }
 }

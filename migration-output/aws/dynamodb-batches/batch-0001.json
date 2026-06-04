@@ -1,0 +1,1163 @@
+{
+  "RequestItems": {
+    "certifyer-dev-kv": [
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "activity:org:org-64c0888d-bcc2-45d2-8e6d-cf5166fa3817-1761747099850:1761748120212-9wyqtb"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1761748120212-9wyqtb"
+                },
+                "type": {
+                  "S": "subscription_cancelled"
+                },
+                "metadata": {
+                  "M": {
+                    "planId": {
+                      "S": "admin-premium"
+                    },
+                    "planName": {
+                      "S": "Premium Plan (Admin Granted)"
+                    },
+                    "expiryDate": {
+                      "S": "2026-10-29T14:15:07.665Z"
+                    },
+                    "cancelledAt": {
+                      "S": "2025-10-29T14:28:40.084Z"
+                    }
+                  }
+                },
+                "timestamp": {
+                  "S": "2025-10-29T14:28:40.212Z"
+                },
+                "description": {
+                  "S": "Premium Plan (Admin Granted) subscription cancelled"
+                },
+                "organizationId": {
+                  "S": "org-64c0888d-bcc2-45d2-8e6d-cf5166fa3817-1761747099850"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "activity:org:org-64c0888d-bcc2-45d2-8e6d-cf5166fa3817-1761747099850:1762507082779-vms4ua"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1762507082779-vms4ua"
+                },
+                "type": {
+                  "S": "payment_initiated"
+                },
+                "metadata": {
+                  "M": {
+                    "amount": {
+                      "N": "5000000"
+                    },
+                    "planId": {
+                      "S": "premium_yearly"
+                    },
+                    "currency": {
+                      "S": "NGN"
+                    },
+                    "planName": {
+                      "S": "Premium Yearly"
+                    },
+                    "reference": {
+                      "S": "gpsq78xn0w"
+                    }
+                  }
+                },
+                "timestamp": {
+                  "S": "2025-11-07T09:18:02.779Z"
+                },
+                "description": {
+                  "S": "Payment initiated for Premium Yearly"
+                },
+                "organizationId": {
+                  "S": "org-64c0888d-bcc2-45d2-8e6d-cf5166fa3817-1761747099850"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "activity:org:org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067:1761331464902-60cz4"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1761331464902-60cz4"
+                },
+                "type": {
+                  "S": "subscription_cancelled"
+                },
+                "metadata": {
+                  "M": {
+                    "planId": {
+                      "S": "premium_yearly"
+                    },
+                    "planName": {
+                      "S": "Premium Yearly"
+                    },
+                    "expiryDate": {
+                      "S": "2026-10-24T18:32:02.864Z"
+                    },
+                    "cancelledAt": {
+                      "S": "2025-10-24T18:44:24.763Z"
+                    }
+                  }
+                },
+                "timestamp": {
+                  "S": "2025-10-24T18:44:24.902Z"
+                },
+                "description": {
+                  "S": "Premium Yearly subscription cancelled"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "activity:org:org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067:1761331478975-jop5p"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1761331478975-jop5p"
+                },
+                "type": {
+                  "S": "payment_initiated"
+                },
+                "metadata": {
+                  "M": {
+                    "amount": {
+                      "N": "50000"
+                    },
+                    "planId": {
+                      "S": "premium_yearly"
+                    },
+                    "currency": {
+                      "S": "NGN"
+                    },
+                    "planName": {
+                      "S": "Premium Yearly"
+                    },
+                    "reference": {
+                      "S": "8jkj2y3iih"
+                    }
+                  }
+                },
+                "timestamp": {
+                  "S": "2025-10-24T18:44:38.975Z"
+                },
+                "description": {
+                  "S": "Payment initiated for Premium Yearly"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "activity:org:org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067:1761331534507-q6nj0no"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1761331534507-q6nj0no"
+                },
+                "type": {
+                  "S": "payment_success"
+                },
+                "metadata": {
+                  "M": {
+                    "amount": {
+                      "N": "50000"
+                    },
+                    "planId": {
+                      "S": "premium_yearly"
+                    },
+                    "currency": {
+                      "S": "NGN"
+                    },
+                    "planName": {
+                      "S": "Premium Yearly"
+                    },
+                    "reference": {
+                      "S": "jt46z1ux5b"
+                    }
+                  }
+                },
+                "timestamp": {
+                  "S": "2025-10-24T18:45:34.507Z"
+                },
+                "description": {
+                  "S": "Payment successful for Premium Yearly"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "activity:org:org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067:1761331534625-ved9mp"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1761331534625-ved9mp"
+                },
+                "type": {
+                  "S": "subscription_activated"
+                },
+                "metadata": {
+                  "M": {
+                    "planId": {
+                      "S": "premium_yearly"
+                    },
+                    "duration": {
+                      "N": "365"
+                    },
+                    "planName": {
+                      "S": "Premium Yearly"
+                    },
+                    "startDate": {
+                      "S": "2025-10-24T18:45:34.256Z"
+                    },
+                    "expiryDate": {
+                      "S": "2026-10-24T18:45:34.256Z"
+                    }
+                  }
+                },
+                "timestamp": {
+                  "S": "2025-10-24T18:45:34.625Z"
+                },
+                "description": {
+                  "S": "Premium Yearly subscription activated"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "activity:org:org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067:1761331732185-2ir9z"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1761331732185-2ir9z"
+                },
+                "type": {
+                  "S": "subscription_cancelled"
+                },
+                "metadata": {
+                  "M": {
+                    "planId": {
+                      "S": "premium_yearly"
+                    },
+                    "planName": {
+                      "S": "Premium Yearly"
+                    },
+                    "expiryDate": {
+                      "S": "2026-10-24T18:45:34.256Z"
+                    },
+                    "cancelledAt": {
+                      "S": "2025-10-24T18:48:52.073Z"
+                    }
+                  }
+                },
+                "timestamp": {
+                  "S": "2025-10-24T18:48:52.185Z"
+                },
+                "description": {
+                  "S": "Premium Yearly subscription cancelled"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "activity:org:org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067:1761332453224-250x0l"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1761332453224-250x0l"
+                },
+                "type": {
+                  "S": "payment_success"
+                },
+                "metadata": {
+                  "M": {
+                    "amount": {
+                      "N": "50000"
+                    },
+                    "planId": {
+                      "S": "premium_yearly"
+                    },
+                    "currency": {
+                      "S": "NGN"
+                    },
+                    "planName": {
+                      "S": "Premium Yearly"
+                    },
+                    "reference": {
+                      "S": "jt46z1ux5b"
+                    }
+                  }
+                },
+                "timestamp": {
+                  "S": "2025-10-24T19:00:53.224Z"
+                },
+                "description": {
+                  "S": "Payment successful for Premium Yearly"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "activity:org:org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067:1761332453346-rt6oi"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1761332453346-rt6oi"
+                },
+                "type": {
+                  "S": "subscription_activated"
+                },
+                "metadata": {
+                  "M": {
+                    "planId": {
+                      "S": "premium_yearly"
+                    },
+                    "duration": {
+                      "N": "365"
+                    },
+                    "planName": {
+                      "S": "Premium Yearly"
+                    },
+                    "startDate": {
+                      "S": "2025-10-24T19:00:53.003Z"
+                    },
+                    "expiryDate": {
+                      "S": "2026-10-24T19:00:53.003Z"
+                    }
+                  }
+                },
+                "timestamp": {
+                  "S": "2025-10-24T19:00:53.346Z"
+                },
+                "description": {
+                  "S": "Premium Yearly subscription activated"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "activity:org:org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067:1761332467207-3xhieg"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1761332467207-3xhieg"
+                },
+                "type": {
+                  "S": "subscription_cancelled"
+                },
+                "metadata": {
+                  "M": {
+                    "planId": {
+                      "S": "premium_yearly"
+                    },
+                    "planName": {
+                      "S": "Premium Yearly"
+                    },
+                    "expiryDate": {
+                      "S": "2026-10-24T19:00:53.003Z"
+                    },
+                    "cancelledAt": {
+                      "S": "2025-10-24T19:01:07.100Z"
+                    }
+                  }
+                },
+                "timestamp": {
+                  "S": "2025-10-24T19:01:07.207Z"
+                },
+                "description": {
+                  "S": "Premium Yearly subscription cancelled"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "activity:org:org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067:1761332482849-63lwjk"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1761332482849-63lwjk"
+                },
+                "type": {
+                  "S": "payment_initiated"
+                },
+                "metadata": {
+                  "M": {
+                    "amount": {
+                      "N": "5000"
+                    },
+                    "planId": {
+                      "S": "premium_monthly"
+                    },
+                    "currency": {
+                      "S": "NGN"
+                    },
+                    "planName": {
+                      "S": "Premium Monthly"
+                    },
+                    "reference": {
+                      "S": "dfl6s3mg2t"
+                    }
+                  }
+                },
+                "timestamp": {
+                  "S": "2025-10-24T19:01:22.849Z"
+                },
+                "description": {
+                  "S": "Payment initiated for Premium Monthly"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "activity:org:org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067:1761332500478-ofes77"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1761332500478-ofes77"
+                },
+                "type": {
+                  "S": "payment_success"
+                },
+                "metadata": {
+                  "M": {
+                    "amount": {
+                      "N": "5000"
+                    },
+                    "planId": {
+                      "S": "premium_monthly"
+                    },
+                    "currency": {
+                      "S": "NGN"
+                    },
+                    "planName": {
+                      "S": "Premium Monthly"
+                    },
+                    "reference": {
+                      "S": "dfl6s3mg2t"
+                    }
+                  }
+                },
+                "timestamp": {
+                  "S": "2025-10-24T19:01:40.478Z"
+                },
+                "description": {
+                  "S": "Payment successful for Premium Monthly"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "activity:org:org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067:1761332500585-3lex98"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1761332500585-3lex98"
+                },
+                "type": {
+                  "S": "subscription_activated"
+                },
+                "metadata": {
+                  "M": {
+                    "planId": {
+                      "S": "premium_monthly"
+                    },
+                    "duration": {
+                      "N": "30"
+                    },
+                    "planName": {
+                      "S": "Premium Monthly"
+                    },
+                    "startDate": {
+                      "S": "2025-10-24T19:01:40.245Z"
+                    },
+                    "expiryDate": {
+                      "S": "2025-11-23T19:01:40.245Z"
+                    }
+                  }
+                },
+                "timestamp": {
+                  "S": "2025-10-24T19:01:40.585Z"
+                },
+                "description": {
+                  "S": "Premium Monthly subscription activated"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "activity:org:org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067:1761332571121-fbduqi"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1761332571121-fbduqi"
+                },
+                "type": {
+                  "S": "payment_success"
+                },
+                "metadata": {
+                  "M": {
+                    "amount": {
+                      "N": "5000"
+                    },
+                    "planId": {
+                      "S": "premium_monthly"
+                    },
+                    "currency": {
+                      "S": "NGN"
+                    },
+                    "planName": {
+                      "S": "Premium Monthly"
+                    },
+                    "reference": {
+                      "S": "dfl6s3mg2t"
+                    }
+                  }
+                },
+                "timestamp": {
+                  "S": "2025-10-24T19:02:51.121Z"
+                },
+                "description": {
+                  "S": "Payment successful for Premium Monthly"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "activity:org:org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067:1761332571233-aln3kp"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1761332571233-aln3kp"
+                },
+                "type": {
+                  "S": "subscription_activated"
+                },
+                "metadata": {
+                  "M": {
+                    "planId": {
+                      "S": "premium_monthly"
+                    },
+                    "duration": {
+                      "N": "30"
+                    },
+                    "planName": {
+                      "S": "Premium Monthly"
+                    },
+                    "startDate": {
+                      "S": "2025-10-24T19:02:50.902Z"
+                    },
+                    "expiryDate": {
+                      "S": "2025-11-23T19:02:50.902Z"
+                    }
+                  }
+                },
+                "timestamp": {
+                  "S": "2025-10-24T19:02:51.233Z"
+                },
+                "description": {
+                  "S": "Premium Monthly subscription activated"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "activity:org:org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067:1761332583058-cpxytm"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1761332583058-cpxytm"
+                },
+                "type": {
+                  "S": "subscription_cancelled"
+                },
+                "metadata": {
+                  "M": {
+                    "planId": {
+                      "S": "premium_monthly"
+                    },
+                    "planName": {
+                      "S": "Premium Monthly"
+                    },
+                    "expiryDate": {
+                      "S": "2025-11-23T19:02:50.902Z"
+                    },
+                    "cancelledAt": {
+                      "S": "2025-10-24T19:03:02.950Z"
+                    }
+                  }
+                },
+                "timestamp": {
+                  "S": "2025-10-24T19:03:03.058Z"
+                },
+                "description": {
+                  "S": "Premium Monthly subscription cancelled"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "activity:org:org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067:1761332600358-kwd50g"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1761332600358-kwd50g"
+                },
+                "type": {
+                  "S": "payment_initiated"
+                },
+                "metadata": {
+                  "M": {
+                    "amount": {
+                      "N": "50000"
+                    },
+                    "planId": {
+                      "S": "premium_yearly"
+                    },
+                    "currency": {
+                      "S": "NGN"
+                    },
+                    "planName": {
+                      "S": "Premium Yearly"
+                    },
+                    "reference": {
+                      "S": "ycyojxcdwr"
+                    }
+                  }
+                },
+                "timestamp": {
+                  "S": "2025-10-24T19:03:20.358Z"
+                },
+                "description": {
+                  "S": "Payment initiated for Premium Yearly"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "activity:org:org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067:1761332614681-7up6ib"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1761332614681-7up6ib"
+                },
+                "type": {
+                  "S": "payment_success"
+                },
+                "metadata": {
+                  "M": {
+                    "amount": {
+                      "N": "50000"
+                    },
+                    "planId": {
+                      "S": "premium_yearly"
+                    },
+                    "currency": {
+                      "S": "NGN"
+                    },
+                    "planName": {
+                      "S": "Premium Yearly"
+                    },
+                    "reference": {
+                      "S": "ycyojxcdwr"
+                    }
+                  }
+                },
+                "timestamp": {
+                  "S": "2025-10-24T19:03:34.681Z"
+                },
+                "description": {
+                  "S": "Payment successful for Premium Yearly"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "activity:org:org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067:1761332614813-dxvr8d"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1761332614813-dxvr8d"
+                },
+                "type": {
+                  "S": "subscription_activated"
+                },
+                "metadata": {
+                  "M": {
+                    "planId": {
+                      "S": "premium_yearly"
+                    },
+                    "duration": {
+                      "N": "365"
+                    },
+                    "planName": {
+                      "S": "Premium Yearly"
+                    },
+                    "startDate": {
+                      "S": "2025-10-24T19:03:34.478Z"
+                    },
+                    "expiryDate": {
+                      "S": "2026-10-24T19:03:34.478Z"
+                    }
+                  }
+                },
+                "timestamp": {
+                  "S": "2025-10-24T19:03:34.813Z"
+                },
+                "description": {
+                  "S": "Premium Yearly subscription activated"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "activity:org:org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067:1761332741080-oub0bj"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1761332741080-oub0bj"
+                },
+                "type": {
+                  "S": "payment_success"
+                },
+                "metadata": {
+                  "M": {
+                    "amount": {
+                      "N": "50000"
+                    },
+                    "planId": {
+                      "S": "premium_yearly"
+                    },
+                    "currency": {
+                      "S": "NGN"
+                    },
+                    "planName": {
+                      "S": "Premium Yearly"
+                    },
+                    "reference": {
+                      "S": "ycyojxcdwr"
+                    }
+                  }
+                },
+                "timestamp": {
+                  "S": "2025-10-24T19:05:41.080Z"
+                },
+                "description": {
+                  "S": "Payment successful for Premium Yearly"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "activity:org:org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067:1761332741194-qr1gio"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1761332741194-qr1gio"
+                },
+                "type": {
+                  "S": "subscription_activated"
+                },
+                "metadata": {
+                  "M": {
+                    "planId": {
+                      "S": "premium_yearly"
+                    },
+                    "duration": {
+                      "N": "365"
+                    },
+                    "planName": {
+                      "S": "Premium Yearly"
+                    },
+                    "startDate": {
+                      "S": "2025-10-24T19:05:40.781Z"
+                    },
+                    "expiryDate": {
+                      "S": "2026-10-24T19:05:40.781Z"
+                    }
+                  }
+                },
+                "timestamp": {
+                  "S": "2025-10-24T19:05:41.194Z"
+                },
+                "description": {
+                  "S": "Premium Yearly subscription activated"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "activity:org:org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067:1761333834928-ozr395"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1761333834928-ozr395"
+                },
+                "type": {
+                  "S": "subscription_cancelled"
+                },
+                "metadata": {
+                  "M": {
+                    "planId": {
+                      "S": "premium_yearly"
+                    },
+                    "planName": {
+                      "S": "Premium Yearly"
+                    },
+                    "expiryDate": {
+                      "S": "2026-10-24T19:05:40.781Z"
+                    },
+                    "cancelledAt": {
+                      "S": "2025-10-24T19:23:54.810Z"
+                    }
+                  }
+                },
+                "timestamp": {
+                  "S": "2025-10-24T19:23:54.928Z"
+                },
+                "description": {
+                  "S": "Premium Yearly subscription cancelled"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "activity:org:org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067:1761333855540-dxaxxm"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1761333855540-dxaxxm"
+                },
+                "type": {
+                  "S": "payment_initiated"
+                },
+                "metadata": {
+                  "M": {
+                    "amount": {
+                      "N": "5000"
+                    },
+                    "planId": {
+                      "S": "premium_monthly"
+                    },
+                    "currency": {
+                      "S": "NGN"
+                    },
+                    "planName": {
+                      "S": "Premium Monthly"
+                    },
+                    "reference": {
+                      "S": "3icycbq8x0"
+                    }
+                  }
+                },
+                "timestamp": {
+                  "S": "2025-10-24T19:24:15.540Z"
+                },
+                "description": {
+                  "S": "Payment initiated for Premium Monthly"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "activity:org:org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067:1761666985459-b1xr1l"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1761666985459-b1xr1l"
+                },
+                "type": {
+                  "S": "payment_initiated"
+                },
+                "metadata": {
+                  "M": {
+                    "amount": {
+                      "N": "50000"
+                    },
+                    "planId": {
+                      "S": "premium_yearly"
+                    },
+                    "currency": {
+                      "S": "NGN"
+                    },
+                    "planName": {
+                      "S": "Premium Yearly"
+                    },
+                    "reference": {
+                      "S": "i867gt4rxl"
+                    }
+                  }
+                },
+                "timestamp": {
+                  "S": "2025-10-28T15:56:25.459Z"
+                },
+                "description": {
+                  "S": "Payment initiated for Premium Yearly"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "activity:org:org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067:1761667102032-pgoc5"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1761667102032-pgoc5"
+                },
+                "type": {
+                  "S": "payment_initiated"
+                },
+                "metadata": {
+                  "M": {
+                    "amount": {
+                      "N": "50000"
+                    },
+                    "planId": {
+                      "S": "premium_yearly"
+                    },
+                    "currency": {
+                      "S": "NGN"
+                    },
+                    "planName": {
+                      "S": "Premium Yearly"
+                    },
+                    "reference": {
+                      "S": "s591csip8v"
+                    }
+                  }
+                },
+                "timestamp": {
+                  "S": "2025-10-28T15:58:22.032Z"
+                },
+                "description": {
+                  "S": "Payment initiated for Premium Yearly"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

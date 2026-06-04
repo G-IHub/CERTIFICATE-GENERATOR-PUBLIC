@@ -1,0 +1,1096 @@
+{
+  "RequestItems": {
+    "certifyer-dev-kv": [
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:session:1778119963130-zx4tzwsrg:1776775994824-437y206wb:2026-05-07"
+            },
+            "value": {
+              "M": {
+                "blog_id": {
+                  "S": "1776775994824-437y206wb"
+                },
+                "timestamp": {
+                  "S": "2026-05-07T02:13:49.580Z"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:session:1778152171158-bq8hvu1r4:1776775994824-437y206wb:2026-05-07"
+            },
+            "value": {
+              "M": {
+                "blog_id": {
+                  "S": "1776775994824-437y206wb"
+                },
+                "timestamp": {
+                  "S": "2026-05-07T11:09:32.274Z"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:session:1778807823438-fzbtq914y:1776775994824-437y206wb:2026-05-15"
+            },
+            "value": {
+              "M": {
+                "blog_id": {
+                  "S": "1776775994824-437y206wb"
+                },
+                "timestamp": {
+                  "S": "2026-05-15T01:17:06.440Z"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "billing_activity_log:1761666567756:sadpbe"
+            },
+            "value": {
+              "M": {
+                "type": {
+                  "S": "subscription_activated"
+                },
+                "metadata": {
+                  "M": {
+                    "plan": {
+                      "S": "premium"
+                    },
+                    "planId": {
+                      "S": "admin-premium"
+                    },
+                    "planName": {
+                      "S": "Premium Plan (Admin Granted)"
+                    },
+                    "expiryDate": {
+                      "S": "2026-10-28T15:49:27.516Z"
+                    },
+                    "durationMonths": {
+                      "N": "12"
+                    },
+                    "grantedByAdmin": {
+                      "BOOL": true
+                    }
+                  }
+                },
+                "timestamp": {
+                  "S": "2025-10-28T15:49:27.516Z"
+                },
+                "organizationId": {
+                  "S": "org-c60340fb-2d60-4591-bb87-b1c71217fda3-1761308822869"
+                },
+                "organizationName": {
+                  "S": "Genomac Institute"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "billing_activity_log:1761666568696:46z83"
+            },
+            "value": {
+              "M": {
+                "type": {
+                  "S": "subscription_activated"
+                },
+                "metadata": {
+                  "M": {
+                    "plan": {
+                      "S": "premium"
+                    },
+                    "planId": {
+                      "S": "admin-premium"
+                    },
+                    "planName": {
+                      "S": "Premium Plan (Admin Granted)"
+                    },
+                    "expiryDate": {
+                      "S": "2026-10-28T15:49:28.466Z"
+                    },
+                    "durationMonths": {
+                      "N": "12"
+                    },
+                    "grantedByAdmin": {
+                      "BOOL": true
+                    }
+                  }
+                },
+                "timestamp": {
+                  "S": "2025-10-28T15:49:28.466Z"
+                },
+                "organizationId": {
+                  "S": "org-c60340fb-2d60-4591-bb87-b1c71217fda3-1761308822869"
+                },
+                "organizationName": {
+                  "S": "Genomac Institute"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "billing_activity_log:1761666569207:f9k91l"
+            },
+            "value": {
+              "M": {
+                "type": {
+                  "S": "subscription_activated"
+                },
+                "metadata": {
+                  "M": {
+                    "plan": {
+                      "S": "premium"
+                    },
+                    "planId": {
+                      "S": "admin-premium"
+                    },
+                    "planName": {
+                      "S": "Premium Plan (Admin Granted)"
+                    },
+                    "expiryDate": {
+                      "S": "2026-10-28T15:49:28.951Z"
+                    },
+                    "durationMonths": {
+                      "N": "12"
+                    },
+                    "grantedByAdmin": {
+                      "BOOL": true
+                    }
+                  }
+                },
+                "timestamp": {
+                  "S": "2025-10-28T15:49:28.951Z"
+                },
+                "organizationId": {
+                  "S": "org-c60340fb-2d60-4591-bb87-b1c71217fda3-1761308822869"
+                },
+                "organizationName": {
+                  "S": "Genomac Institute"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "billing_activity_log:1761666574564:htvnb"
+            },
+            "value": {
+              "M": {
+                "type": {
+                  "S": "subscription_activated"
+                },
+                "metadata": {
+                  "M": {
+                    "plan": {
+                      "S": "premium"
+                    },
+                    "planId": {
+                      "S": "admin-premium"
+                    },
+                    "planName": {
+                      "S": "Premium Plan (Admin Granted)"
+                    },
+                    "expiryDate": {
+                      "S": "2026-10-28T15:49:34.298Z"
+                    },
+                    "durationMonths": {
+                      "N": "12"
+                    },
+                    "grantedByAdmin": {
+                      "BOOL": true
+                    }
+                  }
+                },
+                "timestamp": {
+                  "S": "2025-10-28T15:49:34.298Z"
+                },
+                "organizationId": {
+                  "S": "org-c60340fb-2d60-4591-bb87-b1c71217fda3-1761308822869"
+                },
+                "organizationName": {
+                  "S": "Genomac Institute"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "billing_activity_log:1761666575286:z1meub"
+            },
+            "value": {
+              "M": {
+                "type": {
+                  "S": "subscription_activated"
+                },
+                "metadata": {
+                  "M": {
+                    "plan": {
+                      "S": "premium"
+                    },
+                    "planId": {
+                      "S": "admin-premium"
+                    },
+                    "planName": {
+                      "S": "Premium Plan (Admin Granted)"
+                    },
+                    "expiryDate": {
+                      "S": "2026-10-28T15:49:35.057Z"
+                    },
+                    "durationMonths": {
+                      "N": "12"
+                    },
+                    "grantedByAdmin": {
+                      "BOOL": true
+                    }
+                  }
+                },
+                "timestamp": {
+                  "S": "2025-10-28T15:49:35.057Z"
+                },
+                "organizationId": {
+                  "S": "org-c60340fb-2d60-4591-bb87-b1c71217fda3-1761308822869"
+                },
+                "organizationName": {
+                  "S": "Genomac Institute"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "billing_activity_log:1761666575326:n1e2iw"
+            },
+            "value": {
+              "M": {
+                "type": {
+                  "S": "subscription_activated"
+                },
+                "metadata": {
+                  "M": {
+                    "plan": {
+                      "S": "premium"
+                    },
+                    "planId": {
+                      "S": "admin-premium"
+                    },
+                    "planName": {
+                      "S": "Premium Plan (Admin Granted)"
+                    },
+                    "expiryDate": {
+                      "S": "2026-10-28T15:49:35.098Z"
+                    },
+                    "durationMonths": {
+                      "N": "12"
+                    },
+                    "grantedByAdmin": {
+                      "BOOL": true
+                    }
+                  }
+                },
+                "timestamp": {
+                  "S": "2025-10-28T15:49:35.098Z"
+                },
+                "organizationId": {
+                  "S": "org-c60340fb-2d60-4591-bb87-b1c71217fda3-1761308822869"
+                },
+                "organizationName": {
+                  "S": "Genomac Institute"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "billing_activity_log:1761666575630:m6hfc5"
+            },
+            "value": {
+              "M": {
+                "type": {
+                  "S": "subscription_activated"
+                },
+                "metadata": {
+                  "M": {
+                    "plan": {
+                      "S": "premium"
+                    },
+                    "planId": {
+                      "S": "admin-premium"
+                    },
+                    "planName": {
+                      "S": "Premium Plan (Admin Granted)"
+                    },
+                    "expiryDate": {
+                      "S": "2026-10-28T15:49:35.353Z"
+                    },
+                    "durationMonths": {
+                      "N": "12"
+                    },
+                    "grantedByAdmin": {
+                      "BOOL": true
+                    }
+                  }
+                },
+                "timestamp": {
+                  "S": "2025-10-28T15:49:35.353Z"
+                },
+                "organizationId": {
+                  "S": "org-c60340fb-2d60-4591-bb87-b1c71217fda3-1761308822869"
+                },
+                "organizationName": {
+                  "S": "Genomac Institute"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "billing_activity_log:1761666576449:lz1e1qv"
+            },
+            "value": {
+              "M": {
+                "type": {
+                  "S": "subscription_activated"
+                },
+                "metadata": {
+                  "M": {
+                    "plan": {
+                      "S": "premium"
+                    },
+                    "planId": {
+                      "S": "admin-premium"
+                    },
+                    "planName": {
+                      "S": "Premium Plan (Admin Granted)"
+                    },
+                    "expiryDate": {
+                      "S": "2026-10-28T15:49:36.100Z"
+                    },
+                    "durationMonths": {
+                      "N": "12"
+                    },
+                    "grantedByAdmin": {
+                      "BOOL": true
+                    }
+                  }
+                },
+                "timestamp": {
+                  "S": "2025-10-28T15:49:36.100Z"
+                },
+                "organizationId": {
+                  "S": "org-c60340fb-2d60-4591-bb87-b1c71217fda3-1761308822869"
+                },
+                "organizationName": {
+                  "S": "Genomac Institute"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "billing_activity_log:1761666576802:3remxwk"
+            },
+            "value": {
+              "M": {
+                "type": {
+                  "S": "subscription_activated"
+                },
+                "metadata": {
+                  "M": {
+                    "plan": {
+                      "S": "premium"
+                    },
+                    "planId": {
+                      "S": "admin-premium"
+                    },
+                    "planName": {
+                      "S": "Premium Plan (Admin Granted)"
+                    },
+                    "expiryDate": {
+                      "S": "2026-10-28T15:49:36.539Z"
+                    },
+                    "durationMonths": {
+                      "N": "12"
+                    },
+                    "grantedByAdmin": {
+                      "BOOL": true
+                    }
+                  }
+                },
+                "timestamp": {
+                  "S": "2025-10-28T15:49:36.539Z"
+                },
+                "organizationId": {
+                  "S": "org-c60340fb-2d60-4591-bb87-b1c71217fda3-1761308822869"
+                },
+                "organizationName": {
+                  "S": "Genomac Institute"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "billing_activity_log:1761668438279:8dsog"
+            },
+            "value": {
+              "M": {
+                "type": {
+                  "S": "subscription_activated"
+                },
+                "metadata": {
+                  "M": {
+                    "plan": {
+                      "S": "premium"
+                    },
+                    "planId": {
+                      "S": "admin-premium"
+                    },
+                    "planName": {
+                      "S": "Premium Plan (Admin Granted)"
+                    },
+                    "expiryDate": {
+                      "S": "2026-10-28T16:20:38.031Z"
+                    },
+                    "durationMonths": {
+                      "N": "12"
+                    },
+                    "grantedByAdmin": {
+                      "BOOL": true
+                    }
+                  }
+                },
+                "timestamp": {
+                  "S": "2025-10-28T16:20:38.031Z"
+                },
+                "organizationId": {
+                  "S": "org-c65c9e12-7544-461a-98e4-8392ca197885-1760535833067"
+                },
+                "organizationName": {
+                  "S": "G-iHub"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "billing_activity_log:1761742238170:nn3vdp"
+            },
+            "value": {
+              "M": {
+                "type": {
+                  "S": "subscription_cancelled"
+                },
+                "metadata": {
+                  "M": {
+                    "reason": {
+                      "S": "Admin revoked access"
+                    },
+                    "previousPlan": {
+                      "S": "premium"
+                    },
+                    "cancelledByAdmin": {
+                      "BOOL": true
+                    }
+                  }
+                },
+                "timestamp": {
+                  "S": "2025-10-29T12:50:38.170Z"
+                },
+                "organizationId": {
+                  "S": "org-c60340fb-2d60-4591-bb87-b1c71217fda3-1761308822869"
+                },
+                "organizationName": {
+                  "S": "Genomac Institute"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "billing_activity_log:1761743297975:cqpmo"
+            },
+            "value": {
+              "M": {
+                "type": {
+                  "S": "subscription_activated"
+                },
+                "metadata": {
+                  "M": {
+                    "plan": {
+                      "S": "premium"
+                    },
+                    "planId": {
+                      "S": "admin-premium"
+                    },
+                    "planName": {
+                      "S": "Premium Plan (Admin Granted)"
+                    },
+                    "expiryDate": {
+                      "S": "2026-10-29T13:08:17.753Z"
+                    },
+                    "durationMonths": {
+                      "N": "12"
+                    },
+                    "grantedByAdmin": {
+                      "BOOL": true
+                    }
+                  }
+                },
+                "timestamp": {
+                  "S": "2025-10-29T13:08:17.753Z"
+                },
+                "organizationId": {
+                  "S": "org-02b99ed7-e4f4-4f8a-a2bd-357953c5ebe3-1761743200334"
+                },
+                "organizationName": {
+                  "S": "Tester2's Organization"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "billing_activity_log:1761743297992:u2o9hc"
+            },
+            "value": {
+              "M": {
+                "type": {
+                  "S": "subscription_activated"
+                },
+                "metadata": {
+                  "M": {
+                    "plan": {
+                      "S": "premium"
+                    },
+                    "planId": {
+                      "S": "admin-premium"
+                    },
+                    "planName": {
+                      "S": "Premium Plan (Admin Granted)"
+                    },
+                    "expiryDate": {
+                      "S": "2026-10-29T13:08:17.754Z"
+                    },
+                    "durationMonths": {
+                      "N": "12"
+                    },
+                    "grantedByAdmin": {
+                      "BOOL": true
+                    }
+                  }
+                },
+                "timestamp": {
+                  "S": "2025-10-29T13:08:17.754Z"
+                },
+                "organizationId": {
+                  "S": "org-02b99ed7-e4f4-4f8a-a2bd-357953c5ebe3-1761743200334"
+                },
+                "organizationName": {
+                  "S": "Tester2's Organization"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "billing_activity_log:1761743298044:ux6tx"
+            },
+            "value": {
+              "M": {
+                "type": {
+                  "S": "subscription_activated"
+                },
+                "metadata": {
+                  "M": {
+                    "plan": {
+                      "S": "premium"
+                    },
+                    "planId": {
+                      "S": "admin-premium"
+                    },
+                    "planName": {
+                      "S": "Premium Plan (Admin Granted)"
+                    },
+                    "expiryDate": {
+                      "S": "2026-10-29T13:08:17.821Z"
+                    },
+                    "durationMonths": {
+                      "N": "12"
+                    },
+                    "grantedByAdmin": {
+                      "BOOL": true
+                    }
+                  }
+                },
+                "timestamp": {
+                  "S": "2025-10-29T13:08:17.821Z"
+                },
+                "organizationId": {
+                  "S": "org-02b99ed7-e4f4-4f8a-a2bd-357953c5ebe3-1761743200334"
+                },
+                "organizationName": {
+                  "S": "Tester2's Organization"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "billing_activity_log:1761747307898:8mwt1"
+            },
+            "value": {
+              "M": {
+                "type": {
+                  "S": "subscription_activated"
+                },
+                "metadata": {
+                  "M": {
+                    "plan": {
+                      "S": "premium"
+                    },
+                    "planId": {
+                      "S": "admin-premium"
+                    },
+                    "planName": {
+                      "S": "Premium Plan (Admin Granted)"
+                    },
+                    "expiryDate": {
+                      "S": "2026-10-29T14:15:07.665Z"
+                    },
+                    "durationMonths": {
+                      "N": "12"
+                    },
+                    "grantedByAdmin": {
+                      "BOOL": true
+                    }
+                  }
+                },
+                "timestamp": {
+                  "S": "2025-10-29T14:15:07.665Z"
+                },
+                "organizationId": {
+                  "S": "org-64c0888d-bcc2-45d2-8e6d-cf5166fa3817-1761747099850"
+                },
+                "organizationName": {
+                  "S": "Tester 3's Organization"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "billing_activity_log:1761908538245:s2di2t"
+            },
+            "value": {
+              "M": {
+                "type": {
+                  "S": "subscription_activated"
+                },
+                "metadata": {
+                  "M": {
+                    "plan": {
+                      "S": "premium"
+                    },
+                    "planId": {
+                      "S": "admin-premium"
+                    },
+                    "planName": {
+                      "S": "Premium Plan (Admin Granted)"
+                    },
+                    "expiryDate": {
+                      "S": "2026-10-31T11:02:18.012Z"
+                    },
+                    "durationMonths": {
+                      "N": "12"
+                    },
+                    "grantedByAdmin": {
+                      "BOOL": true
+                    }
+                  }
+                },
+                "timestamp": {
+                  "S": "2025-10-31T11:02:18.012Z"
+                },
+                "organizationId": {
+                  "S": "org-050ddedc-2051-4fbf-99ae-1ab1cf731926-1761907987058"
+                },
+                "organizationName": {
+                  "S": "Certifyer"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "billing_activity_log:1761908545235:9abqh"
+            },
+            "value": {
+              "M": {
+                "type": {
+                  "S": "subscription_cancelled"
+                },
+                "metadata": {
+                  "M": {
+                    "reason": {
+                      "S": "Admin revoked access"
+                    },
+                    "previousPlan": {
+                      "S": "premium"
+                    },
+                    "cancelledByAdmin": {
+                      "BOOL": true
+                    }
+                  }
+                },
+                "timestamp": {
+                  "S": "2025-10-31T11:02:25.235Z"
+                },
+                "organizationId": {
+                  "S": "org-050ddedc-2051-4fbf-99ae-1ab1cf731926-1761907987058"
+                },
+                "organizationName": {
+                  "S": "Certifyer"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "billing_activity_log:1761908560530:zppx9l"
+            },
+            "value": {
+              "M": {
+                "type": {
+                  "S": "subscription_activated"
+                },
+                "metadata": {
+                  "M": {
+                    "plan": {
+                      "S": "premium"
+                    },
+                    "planId": {
+                      "S": "admin-premium"
+                    },
+                    "planName": {
+                      "S": "Premium Plan (Admin Granted)"
+                    },
+                    "expiryDate": {
+                      "S": "2026-01-31T11:02:40.318Z"
+                    },
+                    "durationMonths": {
+                      "N": "3"
+                    },
+                    "grantedByAdmin": {
+                      "BOOL": true
+                    }
+                  }
+                },
+                "timestamp": {
+                  "S": "2025-10-31T11:02:40.318Z"
+                },
+                "organizationId": {
+                  "S": "org-050ddedc-2051-4fbf-99ae-1ab1cf731926-1761907987058"
+                },
+                "organizationName": {
+                  "S": "Certifyer"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "billing_activity_log:1762947263805:ztmlio"
+            },
+            "value": {
+              "M": {
+                "type": {
+                  "S": "subscription_activated"
+                },
+                "metadata": {
+                  "M": {
+                    "plan": {
+                      "S": "premium"
+                    },
+                    "planId": {
+                      "S": "admin-premium"
+                    },
+                    "planName": {
+                      "S": "Premium Plan (Admin Granted)"
+                    },
+                    "expiryDate": {
+                      "S": "2026-11-12T11:34:23.524Z"
+                    },
+                    "durationMonths": {
+                      "N": "12"
+                    },
+                    "grantedByAdmin": {
+                      "BOOL": true
+                    }
+                  }
+                },
+                "timestamp": {
+                  "S": "2025-11-12T11:34:23.524Z"
+                },
+                "organizationId": {
+                  "S": "org-5cebaa59-3ba8-4115-b676-ded67192d198-1762895905271"
+                },
+                "organizationName": {
+                  "S": "gihub's Organization"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "billing:settings"
+            },
+            "value": {
+              "M": {
+                "plans": {
+                  "M": {
+                    "premium_yearly": {
+                      "M": {
+                        "name": {
+                          "S": "Premium Yearly"
+                        },
+                        "price": {
+                          "N": "5000000"
+                        },
+                        "currency": {
+                          "S": "NGN"
+                        },
+                        "duration": {
+                          "N": "365"
+                        },
+                        "features": {
+                          "L": [
+                            {
+                              "S": "Custom Templates"
+                            },
+                            {
+                              "S": "Template Builder"
+                            },
+                            {
+                              "S": "Unlimited Certificates"
+                            },
+                            {
+                              "S": "Priority Support"
+                            },
+                            {
+                              "S": "2 Months Free"
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    "premium_monthly": {
+                      "M": {
+                        "name": {
+                          "S": "Premium Monthly"
+                        },
+                        "price": {
+                          "N": "500000"
+                        },
+                        "currency": {
+                          "S": "NGN"
+                        },
+                        "duration": {
+                          "N": "30"
+                        },
+                        "features": {
+                          "L": [
+                            {
+                              "S": "Custom Templates"
+                            },
+                            {
+                              "S": "Template Builder"
+                            },
+                            {
+                              "S": "Unlimited Certificates"
+                            },
+                            {
+                              "S": "Priority Support"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                },
+                "updatedAt": {
+                  "S": "2025-11-07T09:17:25.415Z"
+                },
+                "paystackPublicKey": {
+                  "S": "pk_test_1d6304ea28dfea2e5e590fdb8a906c4adb967ef6"
+                },
+                "paystackSecretKey": {
+                  "S": "sk_test_f59d5926f99070fa159fb905de8c98f61fc7413d"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "blog:blog_1771336821398_bduv0f"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "blog_1771336821398_bduv0f"
+                },
+                "date": {
+                  "S": "2026-02-17T14:00:21.398Z"
+                },
+                "image": {
+                  "S": "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800"
+                },
+                "title": {
+                  "S": "Getting Started with Certifyer"
+                },
+                "author": {
+                  "S": "Goodness Adewuyi"
+                },
+                "status": {
+                  "S": "published"
+                },
+                "content": {
+                  "S": "Welcome to Certifyer! This post walks you through setting up your organization, creating a program, and issuing your first certificates. Start by creating an organization in the dashboard, then add a program and choose a template. You can customize signatories, completion dates, and restrict downloads. Once ready, generate certificates and share them with students.\n\nThis guide includes screenshots, tips, and links to support resources."
+                },
+                "excerpt": {
+                  "S": "Welcome to Certifyer! This post walks you through setting up your organization, creating a program, and issuing your first certificates. Start by creating an organization in the dashboard, then add a ..."
+                },
+                "createdAt": {
+                  "S": "2026-02-17T14:00:21.398Z"
+                },
+                "createdBy": {
+                  "S": "admin@genomac.com"
+                },
+                "updatedAt": {
+                  "S": "2026-02-17T14:00:21.398Z"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "blog:index"
+            },
+            "value": {
+              "L": [
+                {
+                  "S": "1774530178213-79kovlqlq"
+                },
+                {
+                  "S": "1774876850525-tu2760wpy"
+                }
+              ]
+            }
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,1885 @@
+{
+  "RequestItems": {
+    "certifyer-dev-kv": [
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "globaltemplate:template26"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "template26"
+                },
+                "name": {
+                  "S": "Dark Sophisticated"
+                },
+                "type": {
+                  "S": "default"
+                },
+                "config": {
+                  "M": {
+                    "fonts": {
+                      "M": {
+                        "body": {
+                          "S": "Crimson Text"
+                        },
+                        "header": {
+                          "S": "Crimson Text"
+                        }
+                      }
+                    },
+                    "colors": {
+                      "M": {
+                        "accent": {
+                          "S": "#ffffff"
+                        },
+                        "primary": {
+                          "S": "#d4af37"
+                        },
+                        "secondary": {
+                          "S": "#c9a961"
+                        },
+                        "background": {
+                          "S": "#1a1a2e"
+                        }
+                      }
+                    },
+                    "layout": {
+                      "S": "dark-sophisticated"
+                    }
+                  }
+                },
+                "createdAt": {
+                  "S": "2026-03-25T11:42:39.350Z"
+                },
+                "isDefault": {
+                  "BOOL": true
+                },
+                "description": {
+                  "S": "Dark elegant design with sophisticated gradients and refined typography - ideal for executive and premium programs"
+                },
+                "organization_id": {
+                  "NULL": true
+                },
+                "visibility_type": {
+                  "S": "public"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "globaltemplate:template27"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "template27"
+                },
+                "name": {
+                  "S": "Corporate Minimal"
+                },
+                "type": {
+                  "S": "default"
+                },
+                "config": {
+                  "M": {
+                    "fonts": {
+                      "M": {
+                        "body": {
+                          "S": "Archivo"
+                        },
+                        "header": {
+                          "S": "Archivo"
+                        }
+                      }
+                    },
+                    "colors": {
+                      "M": {
+                        "accent": {
+                          "S": "#10b981"
+                        },
+                        "primary": {
+                          "S": "#1e293b"
+                        },
+                        "secondary": {
+                          "S": "#3b82f6"
+                        },
+                        "background": {
+                          "S": "#ffffff"
+                        }
+                      }
+                    },
+                    "layout": {
+                      "S": "corporate-minimal"
+                    }
+                  }
+                },
+                "createdAt": {
+                  "S": "2026-03-25T11:42:39.350Z"
+                },
+                "isDefault": {
+                  "BOOL": true
+                },
+                "description": {
+                  "S": "Clean white design with colorful vertical accent strip - perfect for corporate training and professional development"
+                },
+                "organization_id": {
+                  "NULL": true
+                },
+                "visibility_type": {
+                  "S": "public"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "globaltemplate:template28"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "template28"
+                },
+                "name": {
+                  "S": "Soft Gray Gradient"
+                },
+                "type": {
+                  "S": "default"
+                },
+                "config": {
+                  "M": {
+                    "fonts": {
+                      "M": {
+                        "body": {
+                          "S": "Roboto"
+                        },
+                        "header": {
+                          "S": "Roboto"
+                        }
+                      }
+                    },
+                    "colors": {
+                      "M": {
+                        "accent": {
+                          "S": "#c3cfe2"
+                        },
+                        "primary": {
+                          "S": "#1e293b"
+                        },
+                        "secondary": {
+                          "S": "#3b82f6"
+                        },
+                        "background": {
+                          "S": "#f5f7fa"
+                        }
+                      }
+                    },
+                    "layout": {
+                      "S": "soft-professional"
+                    }
+                  }
+                },
+                "createdAt": {
+                  "S": "2026-03-25T11:42:39.350Z"
+                },
+                "isDefault": {
+                  "BOOL": true
+                },
+                "description": {
+                  "S": "Professional gray gradient design with diagonal patterns - ideal for business and professional certifications"
+                },
+                "organization_id": {
+                  "NULL": true
+                },
+                "visibility_type": {
+                  "S": "public"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "globaltemplate:template29"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "template29"
+                },
+                "name": {
+                  "S": "Dark Gradient Tech"
+                },
+                "type": {
+                  "S": "default"
+                },
+                "config": {
+                  "M": {
+                    "fonts": {
+                      "M": {
+                        "body": {
+                          "S": "Inter"
+                        },
+                        "header": {
+                          "S": "Inter"
+                        }
+                      }
+                    },
+                    "colors": {
+                      "M": {
+                        "accent": {
+                          "S": "#06b6d4"
+                        },
+                        "primary": {
+                          "S": "#3b82f6"
+                        },
+                        "secondary": {
+                          "S": "#8b5cf6"
+                        },
+                        "background": {
+                          "S": "#0a0e27"
+                        }
+                      }
+                    },
+                    "layout": {
+                      "S": "dark-gradient"
+                    }
+                  }
+                },
+                "createdAt": {
+                  "S": "2026-03-25T11:42:39.350Z"
+                },
+                "isDefault": {
+                  "BOOL": true
+                },
+                "description": {
+                  "S": "Dark tech design with animated gradients and modern styling - perfect for technology and innovation programs"
+                },
+                "organization_id": {
+                  "NULL": true
+                },
+                "visibility_type": {
+                  "S": "public"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "globaltemplate:template3"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "template3"
+                },
+                "name": {
+                  "S": "Certificate of Recognition"
+                },
+                "type": {
+                  "S": "default"
+                },
+                "config": {
+                  "M": {
+                    "colors": {
+                      "M": {
+                        "text": {
+                          "S": "#1e293b"
+                        },
+                        "accent": {
+                          "S": "#ca8a04"
+                        },
+                        "border": {
+                          "S": "#1e3a8a"
+                        },
+                        "background": {
+                          "S": "#ffffff"
+                        },
+                        "textSecondary": {
+                          "S": "#64748b"
+                        }
+                      }
+                    },
+                    "layout": {
+                      "M": {
+                        "padding": {
+                          "S": "48px"
+                        },
+                        "alignment": {
+                          "S": "center"
+                        },
+                        "borderStyle": {
+                          "S": "none"
+                        },
+                        "borderWidth": {
+                          "S": "0px"
+                        }
+                      }
+                    },
+                    "elements": {
+                      "M": {
+                        "sealType": {
+                          "S": "modern-badge"
+                        },
+                        "showSeal": {
+                          "BOOL": true
+                        },
+                        "showBorder": {
+                          "BOOL": false
+                        },
+                        "showSignatures": {
+                          "BOOL": true
+                        },
+                        "signatureCount": {
+                          "N": "1"
+                        },
+                        "showDecorativeCorners": {
+                          "BOOL": true
+                        }
+                      }
+                    },
+                    "typography": {
+                      "M": {
+                        "bodyFont": {
+                          "S": "system-ui"
+                        },
+                        "bodySize": {
+                          "S": "14px"
+                        },
+                        "nameSize": {
+                          "S": "56px"
+                        },
+                        "headerFont": {
+                          "S": "Georgia"
+                        },
+                        "headerSize": {
+                          "S": "68px"
+                        },
+                        "scriptFont": {
+                          "S": "Georgia"
+                        }
+                      }
+                    }
+                  }
+                },
+                "createdAt": {
+                  "S": "2026-03-25T11:42:39.350Z"
+                },
+                "isDefault": {
+                  "BOOL": true
+                },
+                "updatedAt": {
+                  "S": "2026-05-14T16:00:19.741Z"
+                },
+                "updatedBy": {
+                  "S": "admin-YWRtaW5AZ2"
+                },
+                "description": {
+                  "S": "Modern professional design with navy blue waves, gold accents, and decorative badge"
+                },
+                "organization_id": {
+                  "S": "org-05fa8eb3-3b85-4d75-b7a3-59baf7750797-1770890718661"
+                },
+                "visibility_type": {
+                  "S": "organization"
+                },
+                "organization_ids": {
+                  "L": [
+                    {
+                      "S": "org-05fa8eb3-3b85-4d75-b7a3-59baf7750797-1770890718661"
+                    },
+                    {
+                      "S": "org-5b6ef551-f3b2-489c-9c9c-513546666a6c-1770375314735"
+                    },
+                    {
+                      "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                    },
+                    {
+                      "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                    },
+                    {
+                      "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                    },
+                    {
+                      "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                    },
+                    {
+                      "S": "org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824"
+                    },
+                    {
+                      "S": "org-47c077c6-caac-407c-aeb4-31d2f1ce8004-1778146566844"
+                    },
+                    {
+                      "S": "org-1cab9388-5728-4646-9178-26dc1fa778fa-1769444130796"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "globaltemplate:template30"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "template30"
+                },
+                "name": {
+                  "S": "Medical Cross Pattern"
+                },
+                "type": {
+                  "S": "default"
+                },
+                "config": {
+                  "M": {
+                    "fonts": {
+                      "M": {
+                        "body": {
+                          "S": "Lato"
+                        },
+                        "header": {
+                          "S": "Lato"
+                        }
+                      }
+                    },
+                    "colors": {
+                      "M": {
+                        "accent": {
+                          "S": "#06b6d4"
+                        },
+                        "primary": {
+                          "S": "#0d9488"
+                        },
+                        "secondary": {
+                          "S": "#14b8a6"
+                        },
+                        "background": {
+                          "S": "#ffffff"
+                        }
+                      }
+                    },
+                    "layout": {
+                      "S": "medical-cross"
+                    }
+                  }
+                },
+                "createdAt": {
+                  "S": "2026-03-25T11:42:39.350Z"
+                },
+                "isDefault": {
+                  "BOOL": true
+                },
+                "description": {
+                  "S": "Clean white medical certificate with cross patterns and teal accents - specialized for healthcare certifications"
+                },
+                "organization_id": {
+                  "NULL": true
+                },
+                "visibility_type": {
+                  "S": "public"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "globaltemplate:template31"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "template31"
+                },
+                "name": {
+                  "S": "Golden Sunshine"
+                },
+                "type": {
+                  "S": "default"
+                },
+                "config": {
+                  "M": {
+                    "fonts": {
+                      "M": {
+                        "body": {
+                          "S": "Montserrat"
+                        },
+                        "header": {
+                          "S": "Montserrat"
+                        }
+                      }
+                    },
+                    "colors": {
+                      "M": {
+                        "accent": {
+                          "S": "#fde68a"
+                        },
+                        "primary": {
+                          "S": "#fbbf24"
+                        },
+                        "secondary": {
+                          "S": "#f59e0b"
+                        },
+                        "background": {
+                          "S": "#fef3c7"
+                        }
+                      }
+                    },
+                    "layout": {
+                      "S": "golden-watercolor"
+                    }
+                  }
+                },
+                "createdAt": {
+                  "S": "2026-03-25T11:42:39.350Z"
+                },
+                "isDefault": {
+                  "BOOL": true
+                },
+                "description": {
+                  "S": "Warm golden gradient design with watercolor effects - perfect for achievement awards and celebratory certificates"
+                },
+                "organization_id": {
+                  "NULL": true
+                },
+                "visibility_type": {
+                  "S": "public"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "globaltemplate:template32"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "template32"
+                },
+                "name": {
+                  "S": "Eco Green Nature"
+                },
+                "type": {
+                  "S": "default"
+                },
+                "config": {
+                  "M": {
+                    "fonts": {
+                      "M": {
+                        "body": {
+                          "S": "Raleway"
+                        },
+                        "header": {
+                          "S": "Raleway"
+                        }
+                      }
+                    },
+                    "colors": {
+                      "M": {
+                        "accent": {
+                          "S": "#d1fae5"
+                        },
+                        "primary": {
+                          "S": "#10b981"
+                        },
+                        "secondary": {
+                          "S": "#059669"
+                        },
+                        "background": {
+                          "S": "#ecfdf5"
+                        }
+                      }
+                    },
+                    "layout": {
+                      "S": "eco-nature"
+                    }
+                  }
+                },
+                "createdAt": {
+                  "S": "2026-03-25T11:42:39.350Z"
+                },
+                "isDefault": {
+                  "BOOL": true
+                },
+                "description": {
+                  "S": "Fresh green gradient with organic leaf patterns - ideal for environmental, sustainability, and nature-focused programs"
+                },
+                "organization_id": {
+                  "NULL": true
+                },
+                "visibility_type": {
+                  "S": "public"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "globaltemplate:template33"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "template33"
+                },
+                "name": {
+                  "S": "Bold Dark Stripes"
+                },
+                "type": {
+                  "S": "default"
+                },
+                "config": {
+                  "M": {
+                    "fonts": {
+                      "M": {
+                        "body": {
+                          "S": "Barlow"
+                        },
+                        "header": {
+                          "S": "Barlow"
+                        }
+                      }
+                    },
+                    "colors": {
+                      "M": {
+                        "accent": {
+                          "S": "#3b82f6"
+                        },
+                        "primary": {
+                          "S": "#f59e0b"
+                        },
+                        "secondary": {
+                          "S": "#ef4444"
+                        },
+                        "background": {
+                          "S": "#1e1e1e"
+                        }
+                      }
+                    },
+                    "layout": {
+                      "S": "bold-stripes"
+                    }
+                  }
+                },
+                "createdAt": {
+                  "S": "2026-03-25T11:42:39.350Z"
+                },
+                "isDefault": {
+                  "BOOL": true
+                },
+                "description": {
+                  "S": "Dynamic dark design with bold diagonal stripes and modern typography - perfect for sports and achievement awards"
+                },
+                "organization_id": {
+                  "NULL": true
+                },
+                "visibility_type": {
+                  "S": "public"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "globaltemplate:template34"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "template34"
+                },
+                "name": {
+                  "S": "Luxury Black Gold"
+                },
+                "type": {
+                  "S": "default"
+                },
+                "config": {
+                  "M": {
+                    "fonts": {
+                      "M": {
+                        "body": {
+                          "S": "Cormorant Garamond"
+                        },
+                        "header": {
+                          "S": "Cormorant Garamond"
+                        }
+                      }
+                    },
+                    "colors": {
+                      "M": {
+                        "accent": {
+                          "S": "#ffffff"
+                        },
+                        "primary": {
+                          "S": "#d4af37"
+                        },
+                        "secondary": {
+                          "S": "#c9a961"
+                        },
+                        "background": {
+                          "S": "#0a0a0a"
+                        }
+                      }
+                    },
+                    "layout": {
+                      "S": "luxury-premium"
+                    }
+                  }
+                },
+                "createdAt": {
+                  "S": "2026-03-25T11:42:39.350Z"
+                },
+                "isDefault": {
+                  "BOOL": true
+                },
+                "description": {
+                  "S": "Ultra-premium black background with gold accents and elegant serif typography - ideal for VIP and exclusive programs"
+                },
+                "organization_id": {
+                  "NULL": true
+                },
+                "visibility_type": {
+                  "S": "public"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "globaltemplate:template35"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "template35"
+                },
+                "name": {
+                  "S": "Musical Pink"
+                },
+                "type": {
+                  "S": "default"
+                },
+                "config": {
+                  "M": {
+                    "fonts": {
+                      "M": {
+                        "body": {
+                          "S": "Quicksand"
+                        },
+                        "header": {
+                          "S": "Quicksand"
+                        }
+                      }
+                    },
+                    "colors": {
+                      "M": {
+                        "accent": {
+                          "S": "#fbcfe8"
+                        },
+                        "primary": {
+                          "S": "#ec4899"
+                        },
+                        "secondary": {
+                          "S": "#f472b6"
+                        },
+                        "background": {
+                          "S": "#fdf2f8"
+                        }
+                      }
+                    },
+                    "layout": {
+                      "S": "musical-creative"
+                    }
+                  }
+                },
+                "createdAt": {
+                  "S": "2026-03-25T11:42:39.350Z"
+                },
+                "isDefault": {
+                  "BOOL": true
+                },
+                "description": {
+                  "S": "Soft pink gradient with musical note decorations - perfect for music, arts, and creative achievement programs"
+                },
+                "organization_id": {
+                  "NULL": true
+                },
+                "visibility_type": {
+                  "S": "public"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "globaltemplate:template36"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "template36"
+                },
+                "name": {
+                  "S": "Matrix Code Style"
+                },
+                "type": {
+                  "S": "default"
+                },
+                "config": {
+                  "M": {
+                    "fonts": {
+                      "M": {
+                        "body": {
+                          "S": "Roboto Mono"
+                        },
+                        "header": {
+                          "S": "Roboto Mono"
+                        }
+                      }
+                    },
+                    "colors": {
+                      "M": {
+                        "accent": {
+                          "S": "#0f0"
+                        },
+                        "primary": {
+                          "S": "#00ff00"
+                        },
+                        "secondary": {
+                          "S": "#39ff14"
+                        },
+                        "background": {
+                          "S": "#000000"
+                        }
+                      }
+                    },
+                    "layout": {
+                      "S": "matrix-code"
+                    }
+                  }
+                },
+                "createdAt": {
+                  "S": "2026-03-25T11:42:39.350Z"
+                },
+                "isDefault": {
+                  "BOOL": true
+                },
+                "description": {
+                  "S": "Black background with Matrix-style code effects and neon green accents - perfect for coding bootcamps and programming courses"
+                },
+                "organization_id": {
+                  "NULL": true
+                },
+                "visibility_type": {
+                  "S": "public"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "globaltemplate:template37"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "template37"
+                },
+                "name": {
+                  "S": "Colorful Geometric"
+                },
+                "type": {
+                  "S": "default"
+                },
+                "config": {
+                  "M": {
+                    "fonts": {
+                      "M": {
+                        "body": {
+                          "S": "Poppins"
+                        },
+                        "header": {
+                          "S": "Poppins"
+                        }
+                      }
+                    },
+                    "colors": {
+                      "M": {
+                        "accent": {
+                          "S": "#10b981"
+                        },
+                        "primary": {
+                          "S": "#3b82f6"
+                        },
+                        "secondary": {
+                          "S": "#ec4899"
+                        },
+                        "background": {
+                          "S": "#ffffff"
+                        }
+                      }
+                    },
+                    "layout": {
+                      "S": "geometric-colorful"
+                    }
+                  }
+                },
+                "createdAt": {
+                  "S": "2026-03-25T11:42:39.350Z"
+                },
+                "isDefault": {
+                  "BOOL": true
+                },
+                "description": {
+                  "S": "Vibrant white design with colorful geometric shapes and modern styling - ideal for creative and design programs"
+                },
+                "organization_id": {
+                  "NULL": true
+                },
+                "visibility_type": {
+                  "S": "public"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "globaltemplate:template38"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "template38"
+                },
+                "name": {
+                  "S": "Professional Dark Blue"
+                },
+                "type": {
+                  "S": "default"
+                },
+                "config": {
+                  "M": {
+                    "fonts": {
+                      "M": {
+                        "body": {
+                          "S": "Open Sans"
+                        },
+                        "header": {
+                          "S": "Open Sans"
+                        }
+                      }
+                    },
+                    "colors": {
+                      "M": {
+                        "accent": {
+                          "S": "#0f172a"
+                        },
+                        "primary": {
+                          "S": "#3b82f6"
+                        },
+                        "secondary": {
+                          "S": "#60a5fa"
+                        },
+                        "background": {
+                          "S": "#1e293b"
+                        }
+                      }
+                    },
+                    "layout": {
+                      "S": "professional-corporate"
+                    }
+                  }
+                },
+                "createdAt": {
+                  "S": "2026-03-25T11:42:39.350Z"
+                },
+                "isDefault": {
+                  "BOOL": true
+                },
+                "description": {
+                  "S": "Sophisticated dark blue gradient with professional grid patterns - perfect for corporate and executive programs"
+                },
+                "organization_id": {
+                  "NULL": true
+                },
+                "visibility_type": {
+                  "S": "public"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "globaltemplate:template39"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "template39"
+                },
+                "name": {
+                  "S": "Dark Geometric"
+                },
+                "type": {
+                  "S": "default"
+                },
+                "config": {
+                  "M": {
+                    "colors": {
+                      "M": {
+                        "primary": {
+                          "S": "#673A8D"
+                        },
+                        "secondary": {
+                          "S": "#80183D"
+                        },
+                        "background": {
+                          "S": "#1a1a1a"
+                        }
+                      }
+                    },
+                    "layout": {
+                      "S": "dark-geometric"
+                    }
+                  }
+                },
+                "createdAt": {
+                  "S": "2026-04-21T16:06:56.511Z"
+                },
+                "isDefault": {
+                  "BOOL": true
+                },
+                "description": {
+                  "S": "Bold dark background with vibrant triangle patterns — striking and modern for tech or creative organisations"
+                },
+                "organization_id": {
+                  "NULL": true
+                },
+                "visibility_type": {
+                  "S": "public"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "globaltemplate:template4"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "template4"
+                },
+                "name": {
+                  "S": "Certificate of Honor"
+                },
+                "type": {
+                  "S": "default"
+                },
+                "config": {
+                  "M": {
+                    "colors": {
+                      "M": {
+                        "text": {
+                          "S": "#000000"
+                        },
+                        "accent": {
+                          "S": "#ca8a04"
+                        },
+                        "border": {
+                          "S": "#dc2626"
+                        },
+                        "background": {
+                          "S": "#ffffff"
+                        },
+                        "textSecondary": {
+                          "S": "#1f2937"
+                        }
+                      }
+                    },
+                    "layout": {
+                      "M": {
+                        "padding": {
+                          "S": "20px"
+                        },
+                        "alignment": {
+                          "S": "center"
+                        },
+                        "borderStyle": {
+                          "S": "double"
+                        },
+                        "borderWidth": {
+                          "S": "3px"
+                        }
+                      }
+                    },
+                    "elements": {
+                      "M": {
+                        "sealType": {
+                          "S": "ribbon-badge"
+                        },
+                        "showSeal": {
+                          "BOOL": true
+                        },
+                        "showBorder": {
+                          "BOOL": true
+                        },
+                        "showSignatures": {
+                          "BOOL": true
+                        },
+                        "signatureCount": {
+                          "N": "1"
+                        },
+                        "showDecorativeCorners": {
+                          "BOOL": false
+                        }
+                      }
+                    },
+                    "typography": {
+                      "M": {
+                        "bodyFont": {
+                          "S": "system-ui"
+                        },
+                        "bodySize": {
+                          "S": "13px"
+                        },
+                        "nameSize": {
+                          "S": "68px"
+                        },
+                        "headerFont": {
+                          "S": "Georgia"
+                        },
+                        "headerSize": {
+                          "S": "72px"
+                        },
+                        "scriptFont": {
+                          "S": "Brush Script MT"
+                        }
+                      }
+                    }
+                  }
+                },
+                "createdAt": {
+                  "S": "2026-03-25T11:42:39.350Z"
+                },
+                "isDefault": {
+                  "BOOL": true
+                },
+                "description": {
+                  "S": "Bold modern design with red diagonal chevrons, ribbon badge, and dynamic styling"
+                },
+                "organization_id": {
+                  "NULL": true
+                },
+                "visibility_type": {
+                  "S": "public"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "globaltemplate:template40"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "template40"
+                },
+                "name": {
+                  "S": "Luxe Gold on Black"
+                },
+                "type": {
+                  "S": "default"
+                },
+                "config": {
+                  "M": {
+                    "colors": {
+                      "M": {
+                        "primary": {
+                          "S": "#D4AF37"
+                        },
+                        "secondary": {
+                          "S": "#A07C10"
+                        },
+                        "background": {
+                          "S": "#0B0B0B"
+                        }
+                      }
+                    },
+                    "layout": {
+                      "S": "luxe-gold"
+                    }
+                  }
+                },
+                "createdAt": {
+                  "S": "2026-04-21T16:06:56.511Z"
+                },
+                "isDefault": {
+                  "BOOL": true
+                },
+                "description": {
+                  "S": "Premium black certificate with rich gold borders, corner ornaments, and an elegant double-rule frame — perfect for prestigious awards"
+                },
+                "organization_id": {
+                  "NULL": true
+                },
+                "visibility_type": {
+                  "S": "public"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "globaltemplate:template41"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "template41"
+                },
+                "name": {
+                  "S": "Ocean Diagonal Split"
+                },
+                "type": {
+                  "S": "default"
+                },
+                "config": {
+                  "M": {
+                    "colors": {
+                      "M": {
+                        "primary": {
+                          "S": "#0F4C81"
+                        },
+                        "secondary": {
+                          "S": "#1A8FD1"
+                        },
+                        "background": {
+                          "S": "#FFFFFF"
+                        }
+                      }
+                    },
+                    "layout": {
+                      "S": "ocean-split"
+                    }
+                  }
+                },
+                "createdAt": {
+                  "S": "2026-04-21T16:06:56.511Z"
+                },
+                "isDefault": {
+                  "BOOL": true
+                },
+                "description": {
+                  "S": "Contemporary two-panel design with a bold navy-to-teal diagonal left column and clean white content area — sharp and professional"
+                },
+                "organization_id": {
+                  "NULL": true
+                },
+                "visibility_type": {
+                  "S": "public"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "globaltemplate:template42"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "template42"
+                },
+                "name": {
+                  "S": "Warm Parchment"
+                },
+                "type": {
+                  "S": "default"
+                },
+                "config": {
+                  "M": {
+                    "colors": {
+                      "M": {
+                        "primary": {
+                          "S": "#6B1C25"
+                        },
+                        "secondary": {
+                          "S": "#C9A93F"
+                        },
+                        "background": {
+                          "S": "#F5F0E4"
+                        }
+                      }
+                    },
+                    "layout": {
+                      "S": "warm-parchment"
+                    }
+                  }
+                },
+                "createdAt": {
+                  "S": "2026-04-21T16:06:56.511Z"
+                },
+                "isDefault": {
+                  "BOOL": true
+                },
+                "description": {
+                  "S": "Classic academic style with a warm cream background, double burgundy border, gold diamond ornaments, and Cinzel serif typography"
+                },
+                "organization_id": {
+                  "NULL": true
+                },
+                "visibility_type": {
+                  "S": "public"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "globaltemplate:template43"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "template43"
+                },
+                "name": {
+                  "S": "Soft Gradient Glow"
+                },
+                "type": {
+                  "S": "default"
+                },
+                "config": {
+                  "M": {
+                    "colors": {
+                      "M": {
+                        "primary": {
+                          "S": "#7C3AED"
+                        },
+                        "secondary": {
+                          "S": "#EC4899"
+                        },
+                        "background": {
+                          "S": "#FDFBFF"
+                        }
+                      }
+                    },
+                    "layout": {
+                      "S": "soft-gradient"
+                    }
+                  }
+                },
+                "createdAt": {
+                  "S": "2026-04-21T16:06:56.511Z"
+                },
+                "isDefault": {
+                  "BOOL": true
+                },
+                "description": {
+                  "S": "Modern pastel-gradient design with a purple-to-pink gradient recipient name, radial glow accents, and clean Inter typography"
+                },
+                "organization_id": {
+                  "NULL": true
+                },
+                "visibility_type": {
+                  "S": "public"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "globaltemplate:template44"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "template44"
+                },
+                "name": {
+                  "S": "Executive Teal"
+                },
+                "type": {
+                  "S": "default"
+                },
+                "config": {
+                  "M": {
+                    "colors": {
+                      "M": {
+                        "primary": {
+                          "S": "#0D9488"
+                        },
+                        "secondary": {
+                          "S": "#0F172A"
+                        },
+                        "background": {
+                          "S": "#F8FAFC"
+                        }
+                      }
+                    },
+                    "layout": {
+                      "S": "executive-teal"
+                    }
+                  }
+                },
+                "createdAt": {
+                  "S": "2026-04-21T16:06:56.511Z"
+                },
+                "isDefault": {
+                  "BOOL": true
+                },
+                "description": {
+                  "S": "Sleek executive design with a dark navy header bar, teal accent strip and hexagonal decorations — polished and corporate"
+                },
+                "organization_id": {
+                  "NULL": true
+                },
+                "visibility_type": {
+                  "S": "public"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "globaltemplate:template5"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "template5"
+                },
+                "name": {
+                  "S": "Certificate of Excellence"
+                },
+                "type": {
+                  "S": "default"
+                },
+                "config": {
+                  "M": {
+                    "colors": {
+                      "M": {
+                        "text": {
+                          "S": "#2d2d2d"
+                        },
+                        "accent": {
+                          "S": "#9acd32"
+                        },
+                        "border": {
+                          "S": "#1b5e20"
+                        },
+                        "background": {
+                          "S": "#f5f5dc"
+                        },
+                        "textSecondary": {
+                          "S": "#4a4a4a"
+                        }
+                      }
+                    },
+                    "layout": {
+                      "M": {
+                        "padding": {
+                          "S": "24px"
+                        },
+                        "alignment": {
+                          "S": "center"
+                        },
+                        "borderStyle": {
+                          "S": "double"
+                        },
+                        "borderWidth": {
+                          "S": "6px"
+                        }
+                      }
+                    },
+                    "elements": {
+                      "M": {
+                        "sealType": {
+                          "S": "scalloped-badge"
+                        },
+                        "showSeal": {
+                          "BOOL": true
+                        },
+                        "showBorder": {
+                          "BOOL": true
+                        },
+                        "showSignatures": {
+                          "BOOL": true
+                        },
+                        "signatureCount": {
+                          "N": "1"
+                        },
+                        "showDecorativeCorners": {
+                          "BOOL": true
+                        }
+                      }
+                    },
+                    "typography": {
+                      "M": {
+                        "bodyFont": {
+                          "S": "system-ui"
+                        },
+                        "bodySize": {
+                          "S": "13px"
+                        },
+                        "nameSize": {
+                          "S": "60px"
+                        },
+                        "headerFont": {
+                          "S": "Georgia"
+                        },
+                        "headerSize": {
+                          "S": "84px"
+                        },
+                        "scriptFont": {
+                          "S": "Georgia"
+                        }
+                      }
+                    }
+                  }
+                },
+                "createdAt": {
+                  "S": "2026-03-25T11:42:39.350Z"
+                },
+                "isDefault": {
+                  "BOOL": true
+                },
+                "updatedAt": {
+                  "S": "2026-05-14T16:00:57.428Z"
+                },
+                "updatedBy": {
+                  "S": "admin-YWRtaW5AZ2"
+                },
+                "description": {
+                  "S": "Elegant design with green diagonal stripes, decorative scalloped badge, and cream background"
+                },
+                "organization_id": {
+                  "S": "org-1a39152c-0816-43b9-9cef-e141ccb19350-1771597719189"
+                },
+                "visibility_type": {
+                  "S": "organization"
+                },
+                "organization_ids": {
+                  "L": [
+                    {
+                      "S": "org-1a39152c-0816-43b9-9cef-e141ccb19350-1771597719189"
+                    },
+                    {
+                      "S": "org-05fa8eb3-3b85-4d75-b7a3-59baf7750797-1770890718661"
+                    },
+                    {
+                      "S": "org-5b6ef551-f3b2-489c-9c9c-513546666a6c-1770375314735"
+                    },
+                    {
+                      "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                    },
+                    {
+                      "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                    },
+                    {
+                      "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                    },
+                    {
+                      "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                    },
+                    {
+                      "S": "org-b0a3e96e-fc3d-41b6-a2a4-cc1bfeb887bc-1777457673824"
+                    },
+                    {
+                      "S": "org-47c077c6-caac-407c-aeb4-31d2f1ce8004-1778146566844"
+                    },
+                    {
+                      "S": "org-1cab9388-5728-4646-9178-26dc1fa778fa-1769444130796"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "globaltemplate:template6"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "template6"
+                },
+                "name": {
+                  "S": "Creative Studio"
+                },
+                "type": {
+                  "S": "default"
+                },
+                "config": {
+                  "M": {
+                    "colors": {
+                      "M": {
+                        "accent": {
+                          "S": "#ea580c"
+                        },
+                        "primary": {
+                          "S": "#7c3aed"
+                        },
+                        "secondary": {
+                          "S": "#a78bfa"
+                        }
+                      }
+                    },
+                    "layout": {
+                      "S": "creative"
+                    }
+                  }
+                },
+                "createdAt": {
+                  "S": "2026-03-25T11:42:39.350Z"
+                },
+                "isDefault": {
+                  "BOOL": true
+                },
+                "description": {
+                  "S": "Artistic and creative certificate design"
+                },
+                "organization_id": {
+                  "NULL": true
+                },
+                "visibility_type": {
+                  "S": "public"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "globaltemplate:template7"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "template7"
+                },
+                "name": {
+                  "S": "Academic Excellence"
+                },
+                "type": {
+                  "S": "default"
+                },
+                "config": {
+                  "M": {
+                    "colors": {
+                      "M": {
+                        "accent": {
+                          "S": "#ea580c"
+                        },
+                        "primary": {
+                          "S": "#dc2626"
+                        },
+                        "secondary": {
+                          "S": "#991b1b"
+                        }
+                      }
+                    },
+                    "layout": {
+                      "S": "academic"
+                    }
+                  }
+                },
+                "createdAt": {
+                  "S": "2026-03-25T11:42:39.350Z"
+                },
+                "isDefault": {
+                  "BOOL": true
+                },
+                "updatedAt": {
+                  "S": "2026-05-15T11:09:05.547Z"
+                },
+                "updatedBy": {
+                  "S": "admin-YWRtaW5AZ2"
+                },
+                "description": {
+                  "S": "Perfect for educational institutions"
+                },
+                "organization_id": {
+                  "S": "org-05fa8eb3-3b85-4d75-b7a3-59baf7750797-1770890718661"
+                },
+                "visibility_type": {
+                  "S": "organization"
+                },
+                "organization_ids": {
+                  "L": [
+                    {
+                      "S": "org-05fa8eb3-3b85-4d75-b7a3-59baf7750797-1770890718661"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "globaltemplate:template8"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "template8"
+                },
+                "name": {
+                  "S": "Academic Participation"
+                },
+                "type": {
+                  "S": "default"
+                },
+                "config": {
+                  "M": {
+                    "colors": {
+                      "M": {
+                        "accent": {
+                          "S": "#ea580c"
+                        },
+                        "primary": {
+                          "S": "#dc2626"
+                        },
+                        "secondary": {
+                          "S": "#991b1b"
+                        }
+                      }
+                    },
+                    "layout": {
+                      "S": "academic"
+                    }
+                  }
+                },
+                "createdAt": {
+                  "S": "2026-03-25T11:42:39.350Z"
+                },
+                "isDefault": {
+                  "BOOL": true
+                },
+                "updatedAt": {
+                  "S": "2026-05-11T12:00:19.103Z"
+                },
+                "updatedBy": {
+                  "S": "admin-YWRtaW5AZ2"
+                },
+                "description": {
+                  "S": "Perfect for educational institutions"
+                },
+                "organization_id": {
+                  "S": "org-c4e7a07b-562d-4068-968c-7d8bee0cec2e-1767182844779"
+                },
+                "visibility_type": {
+                  "S": "organization"
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

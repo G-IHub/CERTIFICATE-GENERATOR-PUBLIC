@@ -1,0 +1,553 @@
+{
+  "RequestItems": {
+    "certifyer-dev-kv": [
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1778152172274-hepludfxq"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1778152172274-hepludfxq"
+                },
+                "date": {
+                  "S": "2026-05-07"
+                },
+                "blog_id": {
+                  "S": "1776775994824-437y206wb"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "https://www.certifyer.online/#/blog/1776775994824-437y206wb"
+                },
+                "referrer": {
+                  "S": "https://www.certifyer.online/"
+                },
+                "timestamp": {
+                  "S": "2026-05-07T11:09:32.274Z"
+                },
+                "blog_title": {
+                  "S": "10 Proven Secrets to Running a Successful Training Program (From 0 Sales to Sold-Out Classes)"
+                },
+                "session_id": {
+                  "S": "1778152171158-bq8hvu1r4"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "N": "4"
+                },
+                "scroll_depth": {
+                  "N": "100"
+                },
+                "referrer_type": {
+                  "S": "internal"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:pageview:1778807826440-649trdbxg"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1778807826440-649trdbxg"
+                },
+                "date": {
+                  "S": "2026-05-15"
+                },
+                "blog_id": {
+                  "S": "1776775994824-437y206wb"
+                },
+                "browser": {
+                  "S": "Chrome"
+                },
+                "page_url": {
+                  "S": "https://www.certifyer.online/#/blog/1776775994824-437y206wb"
+                },
+                "referrer": {
+                  "S": "https://www.certifyer.online/"
+                },
+                "timestamp": {
+                  "S": "2026-05-15T01:17:06.440Z"
+                },
+                "blog_title": {
+                  "S": "10 Proven Secrets to Running a Successful Training Program (From 0 Sales to Sold-Out Classes)"
+                },
+                "session_id": {
+                  "S": "1778807823438-fzbtq914y"
+                },
+                "user_agent": {
+                  "S": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+                },
+                "device_type": {
+                  "S": "desktop"
+                },
+                "reading_time": {
+                  "N": "75"
+                },
+                "scroll_depth": {
+                  "N": "100"
+                },
+                "referrer_type": {
+                  "S": "internal"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:session:1775123243351-7q1n708r4:1774876850525-tu2760wpy:2026-04-02"
+            },
+            "value": {
+              "M": {
+                "blog_id": {
+                  "S": "1774876850525-tu2760wpy"
+                },
+                "timestamp": {
+                  "S": "2026-04-02T09:47:24.661Z"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:session:1775140191231-zap3zywrs:1774876850525-tu2760wpy:2026-04-02"
+            },
+            "value": {
+              "M": {
+                "blog_id": {
+                  "S": "1774876850525-tu2760wpy"
+                },
+                "timestamp": {
+                  "S": "2026-04-02T15:39:13.099Z"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:session:1775142177333-4q8rxh7fb:1774876850525-tu2760wpy:2026-04-02"
+            },
+            "value": {
+              "M": {
+                "blog_id": {
+                  "S": "1774876850525-tu2760wpy"
+                },
+                "timestamp": {
+                  "S": "2026-04-02T15:02:57.728Z"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:session:1775142188364-5228ajatv:1774876850525-tu2760wpy:2026-04-02"
+            },
+            "value": {
+              "M": {
+                "blog_id": {
+                  "S": "1774876850525-tu2760wpy"
+                },
+                "timestamp": {
+                  "S": "2026-04-02T15:03:09.854Z"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:session:1775142298720-o6pbmyp04:1774876850525-tu2760wpy:2026-04-02"
+            },
+            "value": {
+              "M": {
+                "blog_id": {
+                  "S": "1774876850525-tu2760wpy"
+                },
+                "timestamp": {
+                  "S": "2026-04-02T15:05:00.164Z"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:session:1775637652181-wp1ffm035:1774876850525-tu2760wpy:2026-04-08"
+            },
+            "value": {
+              "M": {
+                "blog_id": {
+                  "S": "1774876850525-tu2760wpy"
+                },
+                "timestamp": {
+                  "S": "2026-04-08T08:40:56.823Z"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:session:1776852009805-elzlolegp:1774876554528-jebgrj696:2026-04-22"
+            },
+            "value": {
+              "M": {
+                "blog_id": {
+                  "S": "1774876554528-jebgrj696"
+                },
+                "timestamp": {
+                  "S": "2026-04-22T10:00:05.771Z"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:session:1776873458294-gw4m095y0:1776775994824-437y206wb:2026-04-22"
+            },
+            "value": {
+              "M": {
+                "blog_id": {
+                  "S": "1776775994824-437y206wb"
+                },
+                "timestamp": {
+                  "S": "2026-04-22T15:57:39.257Z"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:session:1777037774604-nj3goeeql:1777037425887-tcqcd70os:2026-04-24"
+            },
+            "value": {
+              "M": {
+                "blog_id": {
+                  "S": "1777037425887-tcqcd70os"
+                },
+                "timestamp": {
+                  "S": "2026-04-24T13:41:26.492Z"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:session:1777038127903-bcysf3vd6:1777037425887-tcqcd70os:2026-04-24"
+            },
+            "value": {
+              "M": {
+                "blog_id": {
+                  "S": "1777037425887-tcqcd70os"
+                },
+                "timestamp": {
+                  "S": "2026-04-24T13:42:11.716Z"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:session:1777038129111-uee9u5byr:1777037425887-tcqcd70os:2026-04-24"
+            },
+            "value": {
+              "M": {
+                "blog_id": {
+                  "S": "1777037425887-tcqcd70os"
+                },
+                "timestamp": {
+                  "S": "2026-04-24T13:42:12.789Z"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:session:1777038589314-ycwty090p:1777037425887-tcqcd70os:2026-04-24"
+            },
+            "value": {
+              "M": {
+                "blog_id": {
+                  "S": "1777037425887-tcqcd70os"
+                },
+                "timestamp": {
+                  "S": "2026-04-24T13:49:49.716Z"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:session:1777038600914-7gyedhg1e:1777037425887-tcqcd70os:2026-04-24"
+            },
+            "value": {
+              "M": {
+                "blog_id": {
+                  "S": "1777037425887-tcqcd70os"
+                },
+                "timestamp": {
+                  "S": "2026-04-24T13:50:04.437Z"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:session:1777039068945-uz723jccx:1777037425887-tcqcd70os:2026-04-24"
+            },
+            "value": {
+              "M": {
+                "blog_id": {
+                  "S": "1777037425887-tcqcd70os"
+                },
+                "timestamp": {
+                  "S": "2026-04-24T13:57:52.540Z"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:session:1777039645188-qnapxdrkr:1777037425887-tcqcd70os:2026-04-24"
+            },
+            "value": {
+              "M": {
+                "blog_id": {
+                  "S": "1777037425887-tcqcd70os"
+                },
+                "timestamp": {
+                  "S": "2026-04-24T14:07:28.754Z"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:session:1777045770098-kfbdmq3ea:1777037425887-tcqcd70os:2026-04-24"
+            },
+            "value": {
+              "M": {
+                "blog_id": {
+                  "S": "1777037425887-tcqcd70os"
+                },
+                "timestamp": {
+                  "S": "2026-04-24T15:49:32.123Z"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:session:1777045983372-r4tdd5bg0:1777037425887-tcqcd70os:2026-04-24"
+            },
+            "value": {
+              "M": {
+                "blog_id": {
+                  "S": "1777037425887-tcqcd70os"
+                },
+                "timestamp": {
+                  "S": "2026-04-24T15:53:06.741Z"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:session:1777117621464-it8lo2wsg:1777037425887-tcqcd70os:2026-04-25"
+            },
+            "value": {
+              "M": {
+                "blog_id": {
+                  "S": "1777037425887-tcqcd70os"
+                },
+                "timestamp": {
+                  "S": "2026-04-25T11:47:01.655Z"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:session:1777291950953-9mstkt1ak:1777037425887-tcqcd70os:2026-04-27"
+            },
+            "value": {
+              "M": {
+                "blog_id": {
+                  "S": "1777037425887-tcqcd70os"
+                },
+                "timestamp": {
+                  "S": "2026-04-27T14:32:48.934Z"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:session:1777993277284-7odsiis1n:1777037425887-tcqcd70os:2026-05-05"
+            },
+            "value": {
+              "M": {
+                "blog_id": {
+                  "S": "1777037425887-tcqcd70os"
+                },
+                "timestamp": {
+                  "S": "2026-05-05T15:01:17.530Z"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:session:1778076422622-7uxepir7z:1777037425887-tcqcd70os:2026-05-06"
+            },
+            "value": {
+              "M": {
+                "blog_id": {
+                  "S": "1777037425887-tcqcd70os"
+                },
+                "timestamp": {
+                  "S": "2026-05-06T14:07:04.528Z"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:session:1778078265414-bsnca7w8u:1776775994824-437y206wb:2026-05-06"
+            },
+            "value": {
+              "M": {
+                "blog_id": {
+                  "S": "1776775994824-437y206wb"
+                },
+                "timestamp": {
+                  "S": "2026-05-06T15:29:16.359Z"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "analytics:session:1778078265414-bsnca7w8u:1777037425887-tcqcd70os:2026-05-06"
+            },
+            "value": {
+              "M": {
+                "blog_id": {
+                  "S": "1777037425887-tcqcd70os"
+                },
+                "timestamp": {
+                  "S": "2026-05-06T15:26:30.403Z"
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

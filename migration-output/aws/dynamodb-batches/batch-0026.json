@@ -1,0 +1,1099 @@
+{
+  "RequestItems": {
+    "certifyer-dev-kv": [
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_sessions:org-f5c6a7e6-e717-4976-906a-de6ca3b78279-1779307669863"
+            },
+            "value": {
+              "M": {
+                "lastUpdated": {
+                  "S": "2026-05-20T20:40:24.905Z"
+                },
+                "sessionsByUser": {
+                  "M": {
+                    "f5c6a7e6-e717-4976-906a-de6ca3b78279": {
+                      "N": "470"
+                    }
+                  }
+                },
+                "totalTimeSpent": {
+                  "N": "470"
+                },
+                "sessionsByMonth": {
+                  "M": {
+                    "2026-05": {
+                      "N": "470"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_sessions:org-f843a638-4362-4720-82f0-c9229ac88e70-1771263624164"
+            },
+            "value": {
+              "M": {
+                "lastUpdated": {
+                  "S": "2026-02-16T17:42:22.697Z"
+                },
+                "sessionsByUser": {
+                  "M": {
+                    "f843a638-4362-4720-82f0-c9229ac88e70": {
+                      "N": "112"
+                    }
+                  }
+                },
+                "totalTimeSpent": {
+                  "N": "112"
+                },
+                "sessionsByMonth": {
+                  "M": {
+                    "2026-02": {
+                      "N": "112"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_sessions:org-fff317e8-c0b4-4b3d-a9ef-00c671d7fd35-1777461155322"
+            },
+            "value": {
+              "M": {
+                "lastUpdated": {
+                  "S": "2026-04-29T11:23:18.613Z"
+                },
+                "sessionsByUser": {
+                  "M": {
+                    "fff317e8-c0b4-4b3d-a9ef-00c671d7fd35": {
+                      "N": "129"
+                    }
+                  }
+                },
+                "totalTimeSpent": {
+                  "N": "129"
+                },
+                "sessionsByMonth": {
+                  "M": {
+                    "2026-04": {
+                      "N": "129"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-050ddedc-2051-4fbf-99ae-1ab1cf731926-1761907987058:TEST-1761908313998-XL12I4KA4"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1761908313998-XL12I4KA4"
+                },
+                "programId": {
+                  "S": "advanced-web-dev-22"
+                },
+                "courseName": {
+                  "S": "Advanced Web Dev 22"
+                },
+                "studentName": {
+                  "S": "Goodness Adewuyi"
+                },
+                "submittedAt": {
+                  "S": "2025-10-31T10:58:33.998Z"
+                },
+                "testimonial": {
+                  "S": "Thank you for the course!"
+                },
+                "certificateId": {
+                  "S": "CERT-1761908253813-UAPE6PRNE"
+                },
+                "organizationId": {
+                  "S": "org-050ddedc-2051-4fbf-99ae-1ab1cf731926-1761907987058"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401:TEST-1773759321732-OPHMCK85B"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773759321732-OPHMCK85B"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "ffmfm"
+                },
+                "programId": {
+                  "S": "biocoding-bootcamp"
+                },
+                "courseName": {
+                  "S": "Biocoding Bootcamp"
+                },
+                "studentName": {
+                  "S": "hchdk"
+                },
+                "submittedAt": {
+                  "S": "2026-03-17T14:55:21.732Z"
+                },
+                "organization": {
+                  "S": "mff"
+                },
+                "certificateId": {
+                  "S": "CERT-1773759227057-D96ZBUJF7"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401:TEST-1773759588060-OKZE47BES"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773759588060-OKZE47BES"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "ff"
+                },
+                "programId": {
+                  "S": "biocoding-bootcamp"
+                },
+                "courseName": {
+                  "S": "Biocoding Bootcamp"
+                },
+                "studentName": {
+                  "S": "jfjfj"
+                },
+                "submittedAt": {
+                  "S": "2026-03-17T14:59:48.060Z"
+                },
+                "organization": {
+                  "S": "ffff"
+                },
+                "certificateId": {
+                  "S": "CERT-1773759227057-D96ZBUJF7"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401:TEST-1773834009767-W3XDN5DNE"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773834009767-W3XDN5DNE"
+                },
+                "title": {
+                  "S": "Prof"
+                },
+                "impact": {
+                  "S": "ddd"
+                },
+                "programId": {
+                  "S": "biocoding-bootcamp"
+                },
+                "courseName": {
+                  "S": "Biocoding Bootcamp"
+                },
+                "studentName": {
+                  "S": "ddd"
+                },
+                "submittedAt": {
+                  "S": "2026-03-18T11:40:09.767Z"
+                },
+                "organization": {
+                  "S": "dd"
+                },
+                "certificateId": {
+                  "S": "CERT-1773759227057-D96ZBUJF7"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401:TEST-1773834070409-GTU0WI4D7"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773834070409-GTU0WI4D7"
+                },
+                "title": {
+                  "S": "Prof"
+                },
+                "impact": {
+                  "S": "ddd"
+                },
+                "programId": {
+                  "S": "biocoding-bootcamp"
+                },
+                "courseName": {
+                  "S": "Biocoding Bootcamp"
+                },
+                "studentName": {
+                  "S": "ffg"
+                },
+                "submittedAt": {
+                  "S": "2026-03-18T11:41:10.409Z"
+                },
+                "organization": {
+                  "S": "ddd"
+                },
+                "certificateId": {
+                  "S": "CERT-1773759817780-52GNSUHZX"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401:TEST-1773836235367-ZVOS151P2"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773836235367-ZVOS151P2"
+                },
+                "email": {
+                  "S": "chijiokeuhegwu@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "fff"
+                },
+                "programId": {
+                  "S": "biocoding-bootcamp"
+                },
+                "courseName": {
+                  "S": "2-month Virtual Biocoding Bootcamp"
+                },
+                "studentName": {
+                  "S": "hjh"
+                },
+                "submittedAt": {
+                  "S": "2026-03-18T12:17:15.367Z"
+                },
+                "organization": {
+                  "S": "vvvv"
+                },
+                "certificateId": {
+                  "S": "CERT-1773759817780-52GNSUHZX"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401:TEST-1773839379023-3BB37TWA2"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773839379023-3BB37TWA2"
+                },
+                "email": {
+                  "S": "chijiokeuhegwu@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "r"
+                },
+                "programId": {
+                  "S": "biocoding-bootcamp"
+                },
+                "courseName": {
+                  "S": "2-month Virtual Biocoding Bootcamp"
+                },
+                "studentName": {
+                  "S": "Genomac Holdings"
+                },
+                "submittedAt": {
+                  "S": "2026-03-18T13:09:39.023Z"
+                },
+                "organization": {
+                  "S": "Genomachub"
+                },
+                "certificateId": {
+                  "S": "CERT-1773759817780-52GNSUHZX"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401:TEST-1773840458390-LYDCXH8IT"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773840458390-LYDCXH8IT"
+                },
+                "email": {
+                  "S": "koleoshoemmanueltolu06@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "It really exposed me to some computer codes"
+                },
+                "programId": {
+                  "S": "biocoding-bootcamp"
+                },
+                "courseName": {
+                  "S": "2-month Virtual Biocoding Bootcamp"
+                },
+                "studentName": {
+                  "S": "EMMANUEL TOLULOPE KOLEOSHO"
+                },
+                "submittedAt": {
+                  "S": "2026-03-18T13:27:38.390Z"
+                },
+                "organization": {
+                  "S": "Personal"
+                },
+                "certificateId": {
+                  "S": "CERT-1773759817780-52GNSUHZX"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401:TEST-1773840543711-ACE8QRRKJ"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773840543711-ACE8QRRKJ"
+                },
+                "email": {
+                  "S": "olatundebch@gmail.com"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "Educative and interesting"
+                },
+                "programId": {
+                  "S": "biocoding-bootcamp"
+                },
+                "courseName": {
+                  "S": "2-month Virtual Biocoding Bootcamp"
+                },
+                "studentName": {
+                  "S": "Ahmed Olatunde"
+                },
+                "submittedAt": {
+                  "S": "2026-03-18T13:29:03.711Z"
+                },
+                "organization": {
+                  "S": "Abubakar Tafawa Balewa University"
+                },
+                "certificateId": {
+                  "S": "CERT-1773759817780-52GNSUHZX"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401:TEST-1773840633712-39MKTD4N3"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773840633712-39MKTD4N3"
+                },
+                "email": {
+                  "S": "shepherdineri@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "The experience is fascinating"
+                },
+                "programId": {
+                  "S": "biocoding-bootcamp"
+                },
+                "courseName": {
+                  "S": "2-month Virtual Biocoding Bootcamp"
+                },
+                "studentName": {
+                  "S": "Ineri Shepherd"
+                },
+                "submittedAt": {
+                  "S": "2026-03-18T13:30:33.713Z"
+                },
+                "organization": {
+                  "S": "Federal University of Technology Owerri"
+                },
+                "certificateId": {
+                  "S": "CERT-1773759817780-52GNSUHZX"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401:TEST-1773840988717-FWS4B0ZLA"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773840988717-FWS4B0ZLA"
+                },
+                "email": {
+                  "S": "ochayisunday@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "This program is truely inspiring. It has helped to drive away the fear of coding and spur my interest to dive deeper into bioinformatics"
+                },
+                "programId": {
+                  "S": "biocoding-bootcamp"
+                },
+                "courseName": {
+                  "S": "2-month Virtual Biocoding Bootcamp"
+                },
+                "studentName": {
+                  "S": "Ochayi, Sunday Akpah"
+                },
+                "submittedAt": {
+                  "S": "2026-03-18T13:36:28.717Z"
+                },
+                "organization": {
+                  "S": "Federal Medical Centre"
+                },
+                "certificateId": {
+                  "S": "CERT-1773759817780-52GNSUHZX"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401:TEST-1773841046580-6OL8BY81I"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773841046580-6OL8BY81I"
+                },
+                "email": {
+                  "S": "ashwinismj@gmail.com"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "Good, lot more to learn"
+                },
+                "programId": {
+                  "S": "biocoding-bootcamp"
+                },
+                "courseName": {
+                  "S": "2-month Virtual Biocoding Bootcamp"
+                },
+                "studentName": {
+                  "S": "Ashwini Somayaji"
+                },
+                "submittedAt": {
+                  "S": "2026-03-18T13:37:26.580Z"
+                },
+                "organization": {
+                  "S": "M S Ramaiah University of Applied Sciences"
+                },
+                "certificateId": {
+                  "S": "CERT-1773759817780-52GNSUHZX"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401:TEST-1773841754201-2UV9BEGK7"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773841754201-2UV9BEGK7"
+                },
+                "email": {
+                  "S": "samina.chalkoo4@gmail.com"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "Great experience"
+                },
+                "programId": {
+                  "S": "biocoding-bootcamp"
+                },
+                "courseName": {
+                  "S": "2-month Virtual Biocoding Bootcamp"
+                },
+                "studentName": {
+                  "S": "Dr.Sameena Chalkoo"
+                },
+                "submittedAt": {
+                  "S": "2026-03-18T13:49:14.201Z"
+                },
+                "organization": {
+                  "S": "Amity University, Dubai"
+                },
+                "certificateId": {
+                  "S": "CERT-1773759817780-52GNSUHZX"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401:TEST-1773841972326-5R9ZWS69V"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773841972326-5R9ZWS69V"
+                },
+                "email": {
+                  "S": "abdullahi.st@unilorin.edu.ng"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "No one understands how much the training has impacted me. The lecturers deserve all the praise."
+                },
+                "programId": {
+                  "S": "biocoding-bootcamp"
+                },
+                "courseName": {
+                  "S": "2-month Virtual Biocoding Bootcamp"
+                },
+                "studentName": {
+                  "S": "Sa'ad Abdullahi"
+                },
+                "submittedAt": {
+                  "S": "2026-03-18T13:52:52.326Z"
+                },
+                "organization": {
+                  "S": "University of Ilorin,"
+                },
+                "certificateId": {
+                  "S": "CERT-1773759817780-52GNSUHZX"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401:TEST-1773842221826-JV10EBJFJ"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773842221826-JV10EBJFJ"
+                },
+                "email": {
+                  "S": "abdullahi.st@unilorin.edu.ng"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "No one understands how much the training has impacted me. The lecturers deserve all the praise."
+                },
+                "programId": {
+                  "S": "biocoding-bootcamp"
+                },
+                "courseName": {
+                  "S": "2-month Virtual Biocoding Bootcamp"
+                },
+                "studentName": {
+                  "S": "Sa'ad Toyin Abdullahi"
+                },
+                "submittedAt": {
+                  "S": "2026-03-18T13:57:01.826Z"
+                },
+                "organization": {
+                  "S": "University of Ilorin,"
+                },
+                "certificateId": {
+                  "S": "CERT-1773759817780-52GNSUHZX"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401:TEST-1773843867463-I1LWT1BC4"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773843867463-I1LWT1BC4"
+                },
+                "email": {
+                  "S": "anoshiya@scholars.usindh.edu.pk"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "it was a worthy experience"
+                },
+                "programId": {
+                  "S": "biocoding-bootcamp"
+                },
+                "courseName": {
+                  "S": "2-month Virtual Biocoding Bootcamp"
+                },
+                "studentName": {
+                  "S": "Anoshiya Ali Khan"
+                },
+                "submittedAt": {
+                  "S": "2026-03-18T14:24:27.463Z"
+                },
+                "organization": {
+                  "S": "university of Sindh"
+                },
+                "certificateId": {
+                  "S": "CERT-1773759817780-52GNSUHZX"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401:TEST-1773844509681-K8ZG5TUV8"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773844509681-K8ZG5TUV8"
+                },
+                "email": {
+                  "S": "direct2ismail@gmail.com"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "Good"
+                },
+                "programId": {
+                  "S": "biocoding-bootcamp"
+                },
+                "courseName": {
+                  "S": "2-month Virtual Biocoding Bootcamp"
+                },
+                "studentName": {
+                  "S": "Samaila Usman"
+                },
+                "submittedAt": {
+                  "S": "2026-03-18T14:35:09.681Z"
+                },
+                "organization": {
+                  "S": "Lanzhou University"
+                },
+                "certificateId": {
+                  "S": "CERT-1773759817780-52GNSUHZX"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401:TEST-1773844860388-C9GBY33AY"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773844860388-C9GBY33AY"
+                },
+                "email": {
+                  "S": "katty.mary54@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "I gained more knowledge on bioinformatics and Biocoding. It was a bit difficult because of my teammates but overall it was okay"
+                },
+                "programId": {
+                  "S": "biocoding-bootcamp"
+                },
+                "courseName": {
+                  "S": "2-month Virtual Biocoding Bootcamp"
+                },
+                "studentName": {
+                  "S": "Oluwakemi Adeniran Mary"
+                },
+                "submittedAt": {
+                  "S": "2026-03-18T14:41:00.388Z"
+                },
+                "organization": {
+                  "S": "Redeemer's University"
+                },
+                "certificateId": {
+                  "S": "CERT-1773759817780-52GNSUHZX"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401:TEST-1773845620792-TG0VH1L8C"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773845620792-TG0VH1L8C"
+                },
+                "email": {
+                  "S": "mayyahright@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "The bootcamp was intense and a bit challenging as a beginner in Biocoding but with the help of the lecturers, I was able to understand and work independently. I would say A big thank you to the lecturers for their time, patience an understanding in assisting all students with difficulties grasping the course"
+                },
+                "programId": {
+                  "S": "biocoding-bootcamp"
+                },
+                "courseName": {
+                  "S": "2-month Virtual Biocoding Bootcamp"
+                },
+                "studentName": {
+                  "S": "Sumayyah Otun"
+                },
+                "submittedAt": {
+                  "S": "2026-03-18T14:53:40.792Z"
+                },
+                "testimonial": {
+                  "S": "I would want the organizers to extend the weeks for the course so that beginners would be able to catch up a steady rate. It was really bulky and challenging for me"
+                },
+                "organization": {
+                  "S": "Atlantic Technological University"
+                },
+                "certificateId": {
+                  "S": "CERT-1773759817780-52GNSUHZX"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401:TEST-1773845998045-FGUEZ038P"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773845998045-FGUEZ038P"
+                },
+                "email": {
+                  "S": "mayyahright@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Shared"
+                },
+                "programId": {
+                  "S": "biocoding-bootcamp"
+                },
+                "courseName": {
+                  "S": "2-month Virtual Biocoding Bootcamp"
+                },
+                "studentName": {
+                  "S": "Sumayyah Otun"
+                },
+                "submittedAt": {
+                  "S": "2026-03-18T14:59:58.045Z"
+                },
+                "organization": {
+                  "S": "Atlantic Technological University"
+                },
+                "certificateId": {
+                  "S": "CERT-1773759817780-52GNSUHZX"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401:TEST-1773847770025-P7K6I6VBH"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773847770025-P7K6I6VBH"
+                },
+                "email": {
+                  "S": "Joyjohnson2713@gmail.com"
+                },
+                "title": {
+                  "S": "Mrs"
+                },
+                "impact": {
+                  "S": "It's was a wonderful boot camp. Thank you so much"
+                },
+                "programId": {
+                  "S": "biocoding-bootcamp"
+                },
+                "courseName": {
+                  "S": "2-month Virtual Biocoding Bootcamp"
+                },
+                "studentName": {
+                  "S": "Joy Johnson"
+                },
+                "submittedAt": {
+                  "S": "2026-03-18T15:29:30.025Z"
+                },
+                "organization": {
+                  "S": "Genomac"
+                },
+                "certificateId": {
+                  "S": "CERT-1773759817780-52GNSUHZX"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401:TEST-1773848265570-USV83YOIY"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773848265570-USV83YOIY"
+                },
+                "email": {
+                  "S": "Joyjohnson2713@gmail.com"
+                },
+                "title": {
+                  "S": "Mrs"
+                },
+                "impact": {
+                  "S": "Thank you"
+                },
+                "programId": {
+                  "S": "biocoding-bootcamp"
+                },
+                "courseName": {
+                  "S": "2-month Virtual Biocoding Bootcamp"
+                },
+                "studentName": {
+                  "S": "Joy Johnson"
+                },
+                "submittedAt": {
+                  "S": "2026-03-18T15:37:45.570Z"
+                },
+                "organization": {
+                  "S": "Genomac"
+                },
+                "certificateId": {
+                  "S": "CERT-1773759817780-52GNSUHZX"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

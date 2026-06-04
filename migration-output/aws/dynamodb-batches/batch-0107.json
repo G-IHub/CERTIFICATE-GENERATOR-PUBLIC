@@ -1,0 +1,1018 @@
+{
+  "RequestItems": {
+    "certifyer-dev-kv": [
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1765997931202-SRNPUKSK9"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1765997931202-SRNPUKSK9"
+                },
+                "email": {
+                  "S": "musabashibawa@gmail.com"
+                },
+                "programId": {
+                  "S": "the-future-of-digital-learning-&-monetization"
+                },
+                "courseName": {
+                  "S": "The Future of Digital Learning & Monetization"
+                },
+                "studentName": {
+                  "S": "Musa Bashidoshi Bawa"
+                },
+                "submittedAt": {
+                  "S": "2025-12-17T18:58:51.202Z"
+                },
+                "testimonial": {
+                  "S": "It was a great experience that I got to learn from experienced Personnels who have both learned and earned over the years. I hope to put all I have learnt to action."
+                },
+                "certificateId": {
+                  "S": "CERT-1765990012602-2ZO6I9DKI"
+                },
+                "organizationId": {
+                  "S": "org-cb757858-424e-44fe-ace7-3c11131de213-1765989677277"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1765998851787-MWZ2VNVT9"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1765998851787-MWZ2VNVT9"
+                },
+                "email": {
+                  "S": "oluwajuwonsamuel4@gmail.com"
+                },
+                "programId": {
+                  "S": "the-future-of-digital-learning-&-monetization"
+                },
+                "courseName": {
+                  "S": "The Future of Digital Learning & Monetization"
+                },
+                "studentName": {
+                  "S": "Ikujuni Boluwatife Samuel"
+                },
+                "submittedAt": {
+                  "S": "2025-12-17T19:14:11.787Z"
+                },
+                "testimonial": {
+                  "S": "I was inspired and learnt a new insight"
+                },
+                "certificateId": {
+                  "S": "CERT-1765990012602-2ZO6I9DKI"
+                },
+                "organizationId": {
+                  "S": "org-cb757858-424e-44fe-ace7-3c11131de213-1765989677277"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1765999070246-LONI6PTL3"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1765999070246-LONI6PTL3"
+                },
+                "email": {
+                  "S": "oa.adeyemi@acu.edu.ng"
+                },
+                "programId": {
+                  "S": "the-future-of-digital-learning-&-monetization"
+                },
+                "courseName": {
+                  "S": "The Future of Digital Learning & Monetization"
+                },
+                "studentName": {
+                  "S": "Oluwasanmi Anuoluwapo ADEYEMI"
+                },
+                "submittedAt": {
+                  "S": "2025-12-17T19:17:50.246Z"
+                },
+                "testimonial": {
+                  "S": "Absolutely Gorgeous"
+                },
+                "certificateId": {
+                  "S": "CERT-1765990012602-2ZO6I9DKI"
+                },
+                "organizationId": {
+                  "S": "org-cb757858-424e-44fe-ace7-3c11131de213-1765989677277"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1766000670696-GUEWQ96A9"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1766000670696-GUEWQ96A9"
+                },
+                "email": {
+                  "S": "areobukola636@gmail.com"
+                },
+                "programId": {
+                  "S": "the-future-of-digital-learning-&-monetization"
+                },
+                "courseName": {
+                  "S": "The Future of Digital Learning & Monetization"
+                },
+                "studentName": {
+                  "S": "Areo Adebukola Jeremiah"
+                },
+                "submittedAt": {
+                  "S": "2025-12-17T19:44:30.696Z"
+                },
+                "testimonial": {
+                  "S": "Awesome learning. Thank you for the opportunity to learn hands on. God bless all organizers."
+                },
+                "certificateId": {
+                  "S": "CERT-1765990012602-2ZO6I9DKI"
+                },
+                "organizationId": {
+                  "S": "org-cb757858-424e-44fe-ace7-3c11131de213-1765989677277"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1766073686293-8K5HCSN4Q"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1766073686293-8K5HCSN4Q"
+                },
+                "email": {
+                  "S": "ula.raheem@gmail.com"
+                },
+                "programId": {
+                  "S": "the-future-of-digital-learning-&-monetization"
+                },
+                "courseName": {
+                  "S": "The Future of Digital Learning & Monetization"
+                },
+                "studentName": {
+                  "S": "ABDUL RAHEEM UL"
+                },
+                "submittedAt": {
+                  "S": "2025-12-18T16:01:26.293Z"
+                },
+                "testimonial": {
+                  "S": "Very useful."
+                },
+                "certificateId": {
+                  "S": "CERT-1765990012602-2ZO6I9DKI"
+                },
+                "organizationId": {
+                  "S": "org-cb757858-424e-44fe-ace7-3c11131de213-1765989677277"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1766080677425-WGWMH27X2"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1766080677425-WGWMH27X2"
+                },
+                "email": {
+                  "S": "chinnilo@yahoo.fr"
+                },
+                "programId": {
+                  "S": "the-future-of-digital-learning-&-monetization"
+                },
+                "courseName": {
+                  "S": "The Future of Digital Learning & Monetization"
+                },
+                "studentName": {
+                  "S": "HINNILO Curiace Théodule Coffi"
+                },
+                "submittedAt": {
+                  "S": "2025-12-18T17:57:57.425Z"
+                },
+                "testimonial": {
+                  "S": "It’s so great"
+                },
+                "certificateId": {
+                  "S": "CERT-1765990012602-2ZO6I9DKI"
+                },
+                "organizationId": {
+                  "S": "org-cb757858-424e-44fe-ace7-3c11131de213-1765989677277"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1766080773703-R5E7CUSPN"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1766080773703-R5E7CUSPN"
+                },
+                "email": {
+                  "S": "chinnilo@yahoo.fr"
+                },
+                "programId": {
+                  "S": "the-future-of-digital-learning-&-monetization"
+                },
+                "courseName": {
+                  "S": "The Future of Digital Learning & Monetization"
+                },
+                "studentName": {
+                  "S": "HINNILO Curiace Théodule Coffi"
+                },
+                "submittedAt": {
+                  "S": "2025-12-18T17:59:33.703Z"
+                },
+                "testimonial": {
+                  "S": "It's sogreat"
+                },
+                "certificateId": {
+                  "S": "CERT-1765990012602-2ZO6I9DKI"
+                },
+                "organizationId": {
+                  "S": "org-cb757858-424e-44fe-ace7-3c11131de213-1765989677277"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1766080827010-PYRZ797RI"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1766080827010-PYRZ797RI"
+                },
+                "email": {
+                  "S": "scotchkaunda1@gmail.com"
+                },
+                "programId": {
+                  "S": "training-of-trainers-in-sample-management-and-transportation"
+                },
+                "courseName": {
+                  "S": "Training of Trainers in Sample Management and Transportation"
+                },
+                "studentName": {
+                  "S": "Scotch Kaunda"
+                },
+                "submittedAt": {
+                  "S": "2025-12-18T18:00:27.010Z"
+                },
+                "testimonial": {
+                  "S": "It has been a nice course. I have gained alot of knowledge from it."
+                },
+                "certificateId": {
+                  "S": "CERT-1766077084953-TI3325KDZ"
+                },
+                "organizationId": {
+                  "S": "org-f1b8cd06-6153-4fab-97f9-b8ef7dc2d7d6-1766076388357"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1766142451578-QO86I7201"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1766142451578-QO86I7201"
+                },
+                "email": {
+                  "S": "abdulroheemabdulwarith608@gmail.com"
+                },
+                "programId": {
+                  "S": "live-full,-die-empty"
+                },
+                "courseName": {
+                  "S": "Live Full, Die Empty"
+                },
+                "studentName": {
+                  "S": "Abdulroheem Abdulwarith Opeyemi"
+                },
+                "submittedAt": {
+                  "S": "2025-12-19T11:07:31.578Z"
+                },
+                "testimonial": {
+                  "S": "It is very educative, and informative."
+                },
+                "certificateId": {
+                  "S": "CERT-1766139656066-O7CTI743D"
+                },
+                "organizationId": {
+                  "S": "org-e4b9e220-89d5-472e-9e75-982907b67772-1766136325377"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1766387290666-AA0EQ3B6Z"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1766387290666-AA0EQ3B6Z"
+                },
+                "email": {
+                  "S": "mohsinzam@gmail.com"
+                },
+                "programId": {
+                  "S": "the-future-of-digital-learning-&-monetization"
+                },
+                "courseName": {
+                  "S": "The Future of Digital Learning & Monetization"
+                },
+                "studentName": {
+                  "S": "ABDUL MOHSIN ASHRAF MOHAMMAD"
+                },
+                "submittedAt": {
+                  "S": "2025-12-22T07:08:10.666Z"
+                },
+                "testimonial": {
+                  "S": "Quite an insightful learning experience"
+                },
+                "certificateId": {
+                  "S": "CERT-1765990012602-2ZO6I9DKI"
+                },
+                "organizationId": {
+                  "S": "org-cb757858-424e-44fe-ace7-3c11131de213-1765989677277"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1766387386919-1KSUENFZB"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1766387386919-1KSUENFZB"
+                },
+                "email": {
+                  "S": "mohsinzam@gmail.com"
+                },
+                "programId": {
+                  "S": "the-future-of-digital-learning-&-monetization"
+                },
+                "courseName": {
+                  "S": "The Future of Digital Learning & Monetization"
+                },
+                "studentName": {
+                  "S": "ABDUL MOHSIN ASHRAF MOHAMMAD"
+                },
+                "submittedAt": {
+                  "S": "2025-12-22T07:09:46.919Z"
+                },
+                "testimonial": {
+                  "S": "."
+                },
+                "certificateId": {
+                  "S": "CERT-1765990012602-2ZO6I9DKI"
+                },
+                "organizationId": {
+                  "S": "org-cb757858-424e-44fe-ace7-3c11131de213-1765989677277"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1766387665865-NZJ24RD6V"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1766387665865-NZJ24RD6V"
+                },
+                "email": {
+                  "S": "mohsinzam@gmail.com"
+                },
+                "programId": {
+                  "S": "the-future-of-digital-learning-&-monetization"
+                },
+                "courseName": {
+                  "S": "The Future of Digital Learning & Monetization"
+                },
+                "studentName": {
+                  "S": "ABDUL M A MOHAMMAD"
+                },
+                "submittedAt": {
+                  "S": "2025-12-22T07:14:25.865Z"
+                },
+                "testimonial": {
+                  "S": "."
+                },
+                "certificateId": {
+                  "S": "CERT-1765990012602-2ZO6I9DKI"
+                },
+                "organizationId": {
+                  "S": "org-cb757858-424e-44fe-ace7-3c11131de213-1765989677277"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1766387735058-NRXUR7PCX"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1766387735058-NRXUR7PCX"
+                },
+                "email": {
+                  "S": "mohsinzam@gmail.com"
+                },
+                "programId": {
+                  "S": "the-future-of-digital-learning-&-monetization"
+                },
+                "courseName": {
+                  "S": "The Future of Digital Learning & Monetization"
+                },
+                "studentName": {
+                  "S": "ABDUL M MOHAMMAD"
+                },
+                "submittedAt": {
+                  "S": "2025-12-22T07:15:35.058Z"
+                },
+                "testimonial": {
+                  "S": "."
+                },
+                "certificateId": {
+                  "S": "CERT-1765990012602-2ZO6I9DKI"
+                },
+                "organizationId": {
+                  "S": "org-cb757858-424e-44fe-ace7-3c11131de213-1765989677277"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1766387789673-U1K1OT0EJ"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1766387789673-U1K1OT0EJ"
+                },
+                "email": {
+                  "S": "mohsinzam@gmail.com"
+                },
+                "programId": {
+                  "S": "the-future-of-digital-learning-&-monetization"
+                },
+                "courseName": {
+                  "S": "The Future of Digital Learning & Monetization"
+                },
+                "studentName": {
+                  "S": "ABDUL MOHAMMAD"
+                },
+                "submittedAt": {
+                  "S": "2025-12-22T07:16:29.673Z"
+                },
+                "testimonial": {
+                  "S": "."
+                },
+                "certificateId": {
+                  "S": "CERT-1765990012602-2ZO6I9DKI"
+                },
+                "organizationId": {
+                  "S": "org-cb757858-424e-44fe-ace7-3c11131de213-1765989677277"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1766459369031-JHAKMOQ9Q"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1766459369031-JHAKMOQ9Q"
+                },
+                "email": {
+                  "S": "bakfemsonline@gmail.com"
+                },
+                "programId": {
+                  "S": "the-future-of-digital-learning-&-monetization"
+                },
+                "courseName": {
+                  "S": "The Future of Digital Learning & Monetization"
+                },
+                "studentName": {
+                  "S": "Oluwafemi Shittu Bakare"
+                },
+                "submittedAt": {
+                  "S": "2025-12-23T03:09:29.031Z"
+                },
+                "testimonial": {
+                  "S": "The training was so fantastic and gave me a clearer view of modern technology in solving a old problem."
+                },
+                "certificateId": {
+                  "S": "CERT-1765990012602-2ZO6I9DKI"
+                },
+                "organizationId": {
+                  "S": "org-cb757858-424e-44fe-ace7-3c11131de213-1765989677277"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1766603618430-O6ZKK1R11"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1766603618430-O6ZKK1R11"
+                },
+                "email": {
+                  "S": "mohsinzam@gmail.com"
+                },
+                "programId": {
+                  "S": "the-future-of-digital-learning-&-monetization"
+                },
+                "courseName": {
+                  "S": "The Future of Digital Learning & Monetization"
+                },
+                "studentName": {
+                  "S": "ABDUL MOHAMMAD"
+                },
+                "submittedAt": {
+                  "S": "2025-12-24T19:13:38.430Z"
+                },
+                "testimonial": {
+                  "S": "."
+                },
+                "certificateId": {
+                  "S": "CERT-1765990012602-2ZO6I9DKI"
+                },
+                "organizationId": {
+                  "S": "org-cb757858-424e-44fe-ace7-3c11131de213-1765989677277"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1766604687591-FY8QZ3WQ1"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1766604687591-FY8QZ3WQ1"
+                },
+                "email": {
+                  "S": "mohsinzam@gmail.com"
+                },
+                "programId": {
+                  "S": "the-future-of-digital-learning-&-monetization"
+                },
+                "courseName": {
+                  "S": "The Future of Digital Learning & Monetization"
+                },
+                "studentName": {
+                  "S": "ABDUL M MOHAMMAD"
+                },
+                "submittedAt": {
+                  "S": "2025-12-24T19:31:27.591Z"
+                },
+                "testimonial": {
+                  "S": "."
+                },
+                "certificateId": {
+                  "S": "CERT-1765990012602-2ZO6I9DKI"
+                },
+                "organizationId": {
+                  "S": "org-cb757858-424e-44fe-ace7-3c11131de213-1765989677277"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1766604979704-LPBM0F2EJ"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1766604979704-LPBM0F2EJ"
+                },
+                "email": {
+                  "S": "mohsinzam@gmail.com"
+                },
+                "programId": {
+                  "S": "the-future-of-digital-learning-&-monetization"
+                },
+                "courseName": {
+                  "S": "The Future of Digital Learning & Monetization"
+                },
+                "studentName": {
+                  "S": "ABDUL M MOHAMMAD"
+                },
+                "submittedAt": {
+                  "S": "2025-12-24T19:36:19.704Z"
+                },
+                "testimonial": {
+                  "S": "."
+                },
+                "certificateId": {
+                  "S": "CERT-1765990012602-2ZO6I9DKI"
+                },
+                "organizationId": {
+                  "S": "org-cb757858-424e-44fe-ace7-3c11131de213-1765989677277"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1766605423510-TLHI3H2XL"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1766605423510-TLHI3H2XL"
+                },
+                "email": {
+                  "S": "mohsinzam@gmail.com"
+                },
+                "programId": {
+                  "S": "the-future-of-digital-learning-&-monetization"
+                },
+                "courseName": {
+                  "S": "The Future of Digital Learning & Monetization"
+                },
+                "studentName": {
+                  "S": "Abdul Mohsin Mohammad"
+                },
+                "submittedAt": {
+                  "S": "2025-12-24T19:43:43.510Z"
+                },
+                "testimonial": {
+                  "S": "."
+                },
+                "certificateId": {
+                  "S": "CERT-1765990012602-2ZO6I9DKI"
+                },
+                "organizationId": {
+                  "S": "org-cb757858-424e-44fe-ace7-3c11131de213-1765989677277"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1766605613595-HYDKZFLKT"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1766605613595-HYDKZFLKT"
+                },
+                "email": {
+                  "S": "mohsinzam@gmail.com"
+                },
+                "programId": {
+                  "S": "the-future-of-digital-learning-&-monetization"
+                },
+                "courseName": {
+                  "S": "The Future of Digital Learning & Monetization"
+                },
+                "studentName": {
+                  "S": "Abdul Mohsin Ashraf Mohammad"
+                },
+                "submittedAt": {
+                  "S": "2025-12-24T19:46:53.595Z"
+                },
+                "testimonial": {
+                  "S": ","
+                },
+                "certificateId": {
+                  "S": "CERT-1765990012602-2ZO6I9DKI"
+                },
+                "organizationId": {
+                  "S": "org-cb757858-424e-44fe-ace7-3c11131de213-1765989677277"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1766994444728-R9Y1IH1GC"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1766994444728-R9Y1IH1GC"
+                },
+                "email": {
+                  "S": "mohsinzam@gmail.com"
+                },
+                "programId": {
+                  "S": "the-future-of-digital-learning-&-monetization"
+                },
+                "courseName": {
+                  "S": "The Future of Digital Learning & Monetization"
+                },
+                "studentName": {
+                  "S": "ABDUL MOHSIN ASHRAF MOHAMMAD"
+                },
+                "submittedAt": {
+                  "S": "2025-12-29T07:47:24.728Z"
+                },
+                "testimonial": {
+                  "S": "."
+                },
+                "certificateId": {
+                  "S": "CERT-1765990012602-2ZO6I9DKI"
+                },
+                "organizationId": {
+                  "S": "org-cb757858-424e-44fe-ace7-3c11131de213-1765989677277"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1766994559809-T8T5K7CPR"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1766994559809-T8T5K7CPR"
+                },
+                "email": {
+                  "S": "mohsinzam@gmail.com"
+                },
+                "programId": {
+                  "S": "the-future-of-digital-learning-&-monetization"
+                },
+                "courseName": {
+                  "S": "The Future of Digital Learning & Monetization"
+                },
+                "studentName": {
+                  "S": "Abdul Mohsin Ashraf Mohammad"
+                },
+                "submittedAt": {
+                  "S": "2025-12-29T07:49:19.809Z"
+                },
+                "testimonial": {
+                  "S": "."
+                },
+                "certificateId": {
+                  "S": "CERT-1765990012602-2ZO6I9DKI"
+                },
+                "organizationId": {
+                  "S": "org-cb757858-424e-44fe-ace7-3c11131de213-1765989677277"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1773061566878-CESNAQZ1Q"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773061566878-CESNAQZ1Q"
+                },
+                "email": {
+                  "S": "adewuyigoodness1@gmail.com"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "Thank you"
+                },
+                "programId": {
+                  "S": "the-genesis-summit"
+                },
+                "courseName": {
+                  "S": "THE GENESIS SUMMIT"
+                },
+                "studentName": {
+                  "S": "Goodness Adewuyi"
+                },
+                "submittedAt": {
+                  "S": "2026-03-09T13:06:06.878Z"
+                },
+                "testimonial": {
+                  "S": "Yes."
+                },
+                "organization": {
+                  "S": "Certifyer"
+                },
+                "certificateId": {
+                  "S": "CERT-1772956756456-AJ6JC9E9B"
+                },
+                "organizationId": {
+                  "S": "org-53e77cf8-e8b7-488a-9925-d2a03e6d0ea2-1772793192106"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1773136924128-JD5XCE3AY"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773136924128-JD5XCE3AY"
+                },
+                "email": {
+                  "S": "adewuyigoodness1@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "programId": {
+                  "S": "train-the-trainers-initiative-in-genomics-&-bioinformatics"
+                },
+                "courseName": {
+                  "S": "Train-the-Trainers Initiative in Genomics & Bioinformatics"
+                },
+                "studentName": {
+                  "S": "Goodness Adewuyi"
+                },
+                "submittedAt": {
+                  "S": "2026-03-10T10:02:04.128Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1773136721995-VX3LAFZ8S"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1773137735917-2L7YUE7G6"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773137735917-2L7YUE7G6"
+                },
+                "email": {
+                  "S": "sefiijeboi21@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "programId": {
+                  "S": "train-the-trainers-initiative-in-genomics-&-bioinformatics"
+                },
+                "courseName": {
+                  "S": "Train-the-Trainers Initiative in Genomics & Bioinformatics"
+                },
+                "studentName": {
+                  "S": "IJEBOI SEFI OMOLE"
+                },
+                "submittedAt": {
+                  "S": "2026-03-10T10:15:35.917Z"
+                },
+                "organization": {
+                  "S": "GENOMAC"
+                },
+                "certificateId": {
+                  "S": "CERT-1773136721995-VX3LAFZ8S"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

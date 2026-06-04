@@ -1,0 +1,1135 @@
+{
+  "RequestItems": {
+    "certifyer-dev-kv": [
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777339346203-EBO8TED1Q"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777339346203-EBO8TED1Q"
+                },
+                "email": {
+                  "S": "raufaleena154@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "it's very informative and insightful program. and looking forward to new initiatives that will help the people across the world to gain knowledge about computational drug"
+                },
+                "programId": {
+                  "S": "exploring-free-tools-for-computational-drug-discovery"
+                },
+                "courseName": {
+                  "S": "Exploring Free Tools for Computational Drug Discovery"
+                },
+                "studentName": {
+                  "S": "Aleena Rauf"
+                },
+                "submittedAt": {
+                  "S": "2026-04-28T01:22:26.203Z"
+                },
+                "organization": {
+                  "S": "pmas Arid Agriculture University Rawalpindi, Pakistan"
+                },
+                "certificateId": {
+                  "S": "CERT-1777292132240-K3IVERPYR"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777342081289-SEOJDJVC5"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777342081289-SEOJDJVC5"
+                },
+                "email": {
+                  "S": "khaalidbadru@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "programId": {
+                  "S": "exploring-free-tools-for-computational-drug-discovery"
+                },
+                "courseName": {
+                  "S": "Exploring Free Tools for Computational Drug Discovery"
+                },
+                "studentName": {
+                  "S": "Badru Khalid Rammadan"
+                },
+                "submittedAt": {
+                  "S": "2026-04-28T02:08:01.289Z"
+                },
+                "organization": {
+                  "S": "Genomac corporation"
+                },
+                "certificateId": {
+                  "S": "CERT-1777292132240-K3IVERPYR"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777342617773-4CKMS15SJ"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777342617773-4CKMS15SJ"
+                },
+                "email": {
+                  "S": "lawrencelekku32@gmail.com"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "Awesome"
+                },
+                "programId": {
+                  "S": "exploring-free-tools-for-computational-drug-discovery"
+                },
+                "courseName": {
+                  "S": "Exploring Free Tools for Computational Drug Discovery"
+                },
+                "studentName": {
+                  "S": "Lekku Lawrence"
+                },
+                "submittedAt": {
+                  "S": "2026-04-28T02:16:57.773Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1777292132240-K3IVERPYR"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777360687199-EM6EGEOX5"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777360687199-EM6EGEOX5"
+                },
+                "email": {
+                  "S": "swantahj@gmail.com"
+                },
+                "title": {
+                  "S": "Mrs"
+                },
+                "programId": {
+                  "S": "exploring-free-tools-for-computational-drug-discovery"
+                },
+                "courseName": {
+                  "S": "Exploring Free Tools for Computational Drug Discovery"
+                },
+                "studentName": {
+                  "S": "Helen Zichat Sabastine"
+                },
+                "submittedAt": {
+                  "S": "2026-04-28T07:18:07.199Z"
+                },
+                "organization": {
+                  "S": "Kaduna Polytechnic"
+                },
+                "certificateId": {
+                  "S": "CERT-1777292132240-K3IVERPYR"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777362193588-FPT05RTRD"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777362193588-FPT05RTRD"
+                },
+                "email": {
+                  "S": "chat4maryamissa2022@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "programId": {
+                  "S": "exploring-free-tools-for-computational-drug-discovery"
+                },
+                "courseName": {
+                  "S": "Exploring Free Tools for Computational Drug Discovery"
+                },
+                "studentName": {
+                  "S": "Issa Maryam"
+                },
+                "submittedAt": {
+                  "S": "2026-04-28T07:43:13.588Z"
+                },
+                "organization": {
+                  "S": "Kwara state university"
+                },
+                "certificateId": {
+                  "S": "CERT-1777292132240-K3IVERPYR"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777362326568-J9305BN4Y"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777362326568-J9305BN4Y"
+                },
+                "email": {
+                  "S": "chat4maryamissa2022@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "programId": {
+                  "S": "exploring-free-tools-for-computational-drug-discovery"
+                },
+                "courseName": {
+                  "S": "Exploring Free Tools for Computational Drug Discovery"
+                },
+                "studentName": {
+                  "S": "Maryam Issa"
+                },
+                "submittedAt": {
+                  "S": "2026-04-28T07:45:26.568Z"
+                },
+                "organization": {
+                  "S": "Kwara state university"
+                },
+                "certificateId": {
+                  "S": "CERT-1777292132240-K3IVERPYR"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777364246421-J0E1ZASPG"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777364246421-J0E1ZASPG"
+                },
+                "email": {
+                  "S": "umorenfavour273@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It was fun and beyond my control expectations \n\nI'll like to recommend it to people that need it"
+                },
+                "programId": {
+                  "S": "this-certificate-is-awarded-in-recognition-of-your-active-participation-at-the-women-techmakers-ogbomoso-iwd-2026-conference."
+                },
+                "courseName": {
+                  "S": "This certificate is awarded in recognition of your active participation at the Women Techmakers Ogbomoso IWD 2026 Conference."
+                },
+                "studentName": {
+                  "S": "Favour Umoren"
+                },
+                "submittedAt": {
+                  "S": "2026-04-28T08:17:26.421Z"
+                },
+                "testimonial": {
+                  "S": "I'll like to attend more of the programme"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1776431935683-3VW5LZ3JW"
+                },
+                "organizationId": {
+                  "S": "org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777364382549-7WTPJLD1G"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777364382549-7WTPJLD1G"
+                },
+                "email": {
+                  "S": "oreoluwagloryjoshua@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Awesome"
+                },
+                "programId": {
+                  "S": "exploring-free-tools-for-computational-drug-discovery"
+                },
+                "courseName": {
+                  "S": "Exploring Free Tools for Computational Drug Discovery"
+                },
+                "studentName": {
+                  "S": "Joshua Oreoluwa Odeyon"
+                },
+                "submittedAt": {
+                  "S": "2026-04-28T08:19:42.549Z"
+                },
+                "testimonial": {
+                  "S": "Thank you for the knowledge"
+                },
+                "organization": {
+                  "S": "Helix Biogen Institute"
+                },
+                "certificateId": {
+                  "S": "CERT-1777292132240-K3IVERPYR"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777367267336-S1YKYBSFQ"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777367267336-S1YKYBSFQ"
+                },
+                "email": {
+                  "S": "yganiu@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Very impactful and an eye opener"
+                },
+                "programId": {
+                  "S": "exploring-free-tools-for-computational-drug-discovery"
+                },
+                "courseName": {
+                  "S": "Exploring Free Tools for Computational Drug Discovery"
+                },
+                "studentName": {
+                  "S": "YUSUF GANIU OLASHILE"
+                },
+                "submittedAt": {
+                  "S": "2026-04-28T09:07:47.336Z"
+                },
+                "organization": {
+                  "S": "Federal Ministry Of Livestock Development"
+                },
+                "certificateId": {
+                  "S": "CERT-1777292132240-K3IVERPYR"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777368302513-6I8R645RE"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777368302513-6I8R645RE"
+                },
+                "email": {
+                  "S": "abionaolumide23@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "The seminar was impactful"
+                },
+                "programId": {
+                  "S": "exploring-free-tools-for-computational-drug-discovery"
+                },
+                "courseName": {
+                  "S": "Exploring Free Tools for Computational Drug Discovery"
+                },
+                "studentName": {
+                  "S": "Olumide Emmanuel Abiona"
+                },
+                "submittedAt": {
+                  "S": "2026-04-28T09:25:02.513Z"
+                },
+                "organization": {
+                  "S": "Crescent University, Abeokuta"
+                },
+                "certificateId": {
+                  "S": "CERT-1777292132240-K3IVERPYR"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777369567888-T9N3EGW1M"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777369567888-T9N3EGW1M"
+                },
+                "email": {
+                  "S": "kennyblez491@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "Adeniran Kehinde Blessing"
+                },
+                "submittedAt": {
+                  "S": "2026-04-28T09:46:07.888Z"
+                },
+                "organization": {
+                  "S": "University of medical science teaching hospital"
+                },
+                "certificateId": {
+                  "S": "CERT-1773749898351-VL1FSHIUN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777370669755-II6PPPTNN"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777370669755-II6PPPTNN"
+                },
+                "email": {
+                  "S": "amolagoodness20@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "The experience was awesome and eye opening."
+                },
+                "programId": {
+                  "S": "exploring-free-tools-for-computational-drug-discovery"
+                },
+                "courseName": {
+                  "S": "Exploring Free Tools for Computational Drug Discovery"
+                },
+                "studentName": {
+                  "S": "Amola Goodness Adeolu"
+                },
+                "submittedAt": {
+                  "S": "2026-04-28T10:04:29.755Z"
+                },
+                "organization": {
+                  "S": "FUTA"
+                },
+                "certificateId": {
+                  "S": "CERT-1777292132240-K3IVERPYR"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777374004983-FDMORERWY"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777374004983-FDMORERWY"
+                },
+                "email": {
+                  "S": "kujabim@uni-greifswald.de"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It really leverage my understanding of metagenomics analysis and I am happy to utilize this knowledge to my current data analysis of my metagenomics project currently on ongoing.  Thank you all for this wonderful course"
+                },
+                "programId": {
+                  "S": "metagenomics-for-public-health-research"
+                },
+                "courseName": {
+                  "S": "Metagenomics for Public Health Research"
+                },
+                "studentName": {
+                  "S": "Mariama A Kujabi"
+                },
+                "submittedAt": {
+                  "S": "2026-04-28T11:00:04.983Z"
+                },
+                "organization": {
+                  "S": "University of Greifswald"
+                },
+                "certificateId": {
+                  "S": "CERT-1777041833936-XNTRW1R8F"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777380944215-KION9RP96"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777380944215-KION9RP96"
+                },
+                "email": {
+                  "S": "2rayacoa@gmail.com"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "The webinar was highly impacting and timely."
+                },
+                "programId": {
+                  "S": "exploring-free-tools-for-computational-drug-discovery"
+                },
+                "courseName": {
+                  "S": "Exploring Free Tools for Computational Drug Discovery"
+                },
+                "studentName": {
+                  "S": "Dr Oluwagbenga John Ogunbiyi"
+                },
+                "submittedAt": {
+                  "S": "2026-04-28T12:55:44.215Z"
+                },
+                "organization": {
+                  "S": "Air Force Institute of Technology Kaduna"
+                },
+                "certificateId": {
+                  "S": "CERT-1777292132240-K3IVERPYR"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777381294206-L3MJ7DH17"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777381294206-L3MJ7DH17"
+                },
+                "email": {
+                  "S": "itabdul.ana@buk.edu.ng"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "It simply drug development research by cutting cost and time"
+                },
+                "programId": {
+                  "S": "exploring-free-tools-for-computational-drug-discovery"
+                },
+                "courseName": {
+                  "S": "Exploring Free Tools for Computational Drug Discovery"
+                },
+                "studentName": {
+                  "S": "Idris Abdu Tela"
+                },
+                "submittedAt": {
+                  "S": "2026-04-28T13:01:34.206Z"
+                },
+                "testimonial": {
+                  "S": "It was a nice experience"
+                },
+                "organization": {
+                  "S": "Bayero University, Kano"
+                },
+                "certificateId": {
+                  "S": "CERT-1777292132240-K3IVERPYR"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777383975429-BM3P46ZUX"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777383975429-BM3P46ZUX"
+                },
+                "email": {
+                  "S": "itabdul.ana@buk.edu.ng"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "It simplify researches on drugs development"
+                },
+                "programId": {
+                  "S": "exploring-free-tools-for-computational-drug-discovery"
+                },
+                "courseName": {
+                  "S": "Exploring Free Tools for Computational Drug Discovery"
+                },
+                "studentName": {
+                  "S": "Idris Abdu Tela"
+                },
+                "submittedAt": {
+                  "S": "2026-04-28T13:46:15.429Z"
+                },
+                "testimonial": {
+                  "S": "It was a nice experience"
+                },
+                "organization": {
+                  "S": "Bayero University, Kano"
+                },
+                "certificateId": {
+                  "S": "CERT-1777292132240-K3IVERPYR"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777385423566-B1V2ZKZ0A"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777385423566-B1V2ZKZ0A"
+                },
+                "email": {
+                  "S": "okwudilichukwuemmanuella@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "The experience was both inspirational and educational. I would advice everyone interested in tech or even having an interest in following a career path to participate in it"
+                },
+                "programId": {
+                  "S": "this-certificate-is-awarded-in-recognition-of-your-active-participation-at-the-women-techmakers-ogbomoso-iwd-2026-conference."
+                },
+                "courseName": {
+                  "S": "This certificate is awarded in recognition of your active participation at the Women Techmakers Ogbomoso IWD 2026 Conference."
+                },
+                "studentName": {
+                  "S": "Emmanuella Okwudilichukwuu"
+                },
+                "submittedAt": {
+                  "S": "2026-04-28T14:10:23.567Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1776431935683-3VW5LZ3JW"
+                },
+                "organizationId": {
+                  "S": "org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777385520186-MRHVQGJ91"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777385520186-MRHVQGJ91"
+                },
+                "email": {
+                  "S": "darasimichristianah635@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It was productive and amazing"
+                },
+                "programId": {
+                  "S": "this-certificate-is-awarded-in-recognition-of-your-active-participation-at-the-women-techmakers-ogbomoso-iwd-2026-conference."
+                },
+                "courseName": {
+                  "S": "This certificate is awarded in recognition of your active participation at the Women Techmakers Ogbomoso IWD 2026 Conference."
+                },
+                "studentName": {
+                  "S": "Adeniran darasimi christianah"
+                },
+                "submittedAt": {
+                  "S": "2026-04-28T14:12:00.186Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University"
+                },
+                "certificateId": {
+                  "S": "CERT-1776431935683-3VW5LZ3JW"
+                },
+                "organizationId": {
+                  "S": "org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777385627942-V121R0WOV"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777385627942-V121R0WOV"
+                },
+                "email": {
+                  "S": "okwudilichukwuemmanuella@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "The experience was both inspirational and educational. I would advice everyone interested in tech or even having a strong career to participate"
+                },
+                "programId": {
+                  "S": "this-certificate-is-awarded-in-recognition-of-your-active-participation-at-the-women-techmakers-ogbomoso-iwd-2026-conference."
+                },
+                "courseName": {
+                  "S": "This certificate is awarded in recognition of your active participation at the Women Techmakers Ogbomoso IWD 2026 Conference."
+                },
+                "studentName": {
+                  "S": "Emmanuella Okwudilichukwu"
+                },
+                "submittedAt": {
+                  "S": "2026-04-28T14:13:47.942Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1776431935683-3VW5LZ3JW"
+                },
+                "organizationId": {
+                  "S": "org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777387751809-SLD5DW5DJ"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777387751809-SLD5DW5DJ"
+                },
+                "email": {
+                  "S": "razabaltee05@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "programId": {
+                  "S": "exploring-free-tools-for-computational-drug-discovery"
+                },
+                "courseName": {
+                  "S": "Exploring Free Tools for Computational Drug Discovery"
+                },
+                "studentName": {
+                  "S": "GHULAM RAZA"
+                },
+                "submittedAt": {
+                  "S": "2026-04-28T14:49:11.809Z"
+                },
+                "organization": {
+                  "S": "PMAS ARID AGRICULTURAL UNIVERSITY"
+                },
+                "certificateId": {
+                  "S": "CERT-1777292132240-K3IVERPYR"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777387916501-QC4YR7AAC"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777387916501-QC4YR7AAC"
+                },
+                "email": {
+                  "S": "razabaltee05@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "programId": {
+                  "S": "exploring-free-tools-for-computational-drug-discovery"
+                },
+                "courseName": {
+                  "S": "Exploring Free Tools for Computational Drug Discovery"
+                },
+                "studentName": {
+                  "S": "Ghulam Raza"
+                },
+                "submittedAt": {
+                  "S": "2026-04-28T14:51:56.501Z"
+                },
+                "organization": {
+                  "S": "PMAS ARID AGRICULTURAL UNIVERSITY"
+                },
+                "certificateId": {
+                  "S": "CERT-1777292132240-K3IVERPYR"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777391193190-X8Z6AIA7G"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777391193190-X8Z6AIA7G"
+                },
+                "email": {
+                  "S": "isiaqrodiat@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "I would recommend putting all we learnt in the Break the Pattern event into action and you are accountable for everything happening in your life, Keep pushing"
+                },
+                "programId": {
+                  "S": "this-certificate-is-awarded-in-recognition-of-your-active-participation-at-the-women-techmakers-ogbomoso-iwd-2026-conference."
+                },
+                "courseName": {
+                  "S": "This certificate is awarded in recognition of your active participation at the Women Techmakers Ogbomoso IWD 2026 Conference."
+                },
+                "studentName": {
+                  "S": "Isiaq Rodiat Oluwakemi"
+                },
+                "submittedAt": {
+                  "S": "2026-04-28T15:46:33.190Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1776431935683-3VW5LZ3JW"
+                },
+                "organizationId": {
+                  "S": "org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777401597237-DR28TAIYD"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777401597237-DR28TAIYD"
+                },
+                "email": {
+                  "S": "praisetemiloluwa153@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "programId": {
+                  "S": "exploring-free-tools-for-computational-drug-discovery"
+                },
+                "courseName": {
+                  "S": "Exploring Free Tools for Computational Drug Discovery"
+                },
+                "studentName": {
+                  "S": "Awe Temiloluwa Praise"
+                },
+                "submittedAt": {
+                  "S": "2026-04-28T18:39:57.237Z"
+                },
+                "organization": {
+                  "S": "Ekiti state university"
+                },
+                "certificateId": {
+                  "S": "CERT-1777292132240-K3IVERPYR"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777409200162-C69XQVKK2"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777409200162-C69XQVKK2"
+                },
+                "email": {
+                  "S": "barakatajokeibrahim@gmail.com"
+                },
+                "impact": {
+                  "S": "A very impactful program. I was different from others, different in a good way as the way our speakers spoke to us it felt like our big sis were advising us and giving us good tips . The speakers ensured to be clear and practical.\nThank IWD"
+                },
+                "programId": {
+                  "S": "this-certificate-is-awarded-in-recognition-of-your-active-participation-at-the-women-techmakers-ogbomoso-iwd-2026-conference."
+                },
+                "courseName": {
+                  "S": "This certificate is awarded in recognition of your active participation at the Women Techmakers Ogbomoso IWD 2026 Conference."
+                },
+                "studentName": {
+                  "S": "Ibrahim Barakat Ajoke"
+                },
+                "submittedAt": {
+                  "S": "2026-04-28T20:46:40.162Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1776431935683-3VW5LZ3JW"
+                },
+                "organizationId": {
+                  "S": "org-2bd9344d-f123-44ae-a6c7-36a9c5e68971-1775650123611"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1777454043861-N6AGHOB8L"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1777454043861-N6AGHOB8L"
+                },
+                "email": {
+                  "S": "gladysegunjobi6@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "programId": {
+                  "S": "amr-genomic-intelligence"
+                },
+                "courseName": {
+                  "S": "AMR Genomic Intelligence"
+                },
+                "studentName": {
+                  "S": "gg"
+                },
+                "submittedAt": {
+                  "S": "2026-04-29T09:14:03.861Z"
+                },
+                "organization": {
+                  "S": "v"
+                },
+                "certificateId": {
+                  "S": "CERT-1774428235034-RC5V3EIF7"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

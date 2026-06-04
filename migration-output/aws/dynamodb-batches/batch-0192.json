@@ -1,0 +1,1027 @@
+{
+  "RequestItems": {
+    "certifyer-dev-kv": [
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780399637622-ILN52GFGU"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780399637622-ILN52GFGU"
+                },
+                "email": {
+                  "S": "sanaabdoulaye76@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "courseName": {
+                  "S": "The Future of Environmental Biotechnology: Innovation, Impact, and Global Sustainability"
+                },
+                "studentName": {
+                  "S": "Sana Abdoulaye"
+                },
+                "submittedAt": {
+                  "S": "2026-06-02T11:27:17.622Z"
+                },
+                "organization": {
+                  "S": "Joseph KI-ZERBO University"
+                },
+                "certificateId": {
+                  "S": "CERT-1780317892097-F69OD770X"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780400295852-AC3QKM2DY"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780400295852-AC3QKM2DY"
+                },
+                "email": {
+                  "S": "adebayo305@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Wonderful experience"
+                },
+                "courseName": {
+                  "S": "The Future of Environmental Biotechnology: Innovation, Impact, and Global Sustainability"
+                },
+                "studentName": {
+                  "S": "Adebayo Oladimeji Quwam"
+                },
+                "submittedAt": {
+                  "S": "2026-06-02T11:38:15.852Z"
+                },
+                "organization": {
+                  "S": "Lagos State Ministry of Health"
+                },
+                "certificateId": {
+                  "S": "CERT-1780317892097-F69OD770X"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780401222694-1ADSHOQZD"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780401222694-1ADSHOQZD"
+                },
+                "email": {
+                  "S": "tunduntd@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "The webinar enhanced my understanding of how environmental biotechnology contributes to solving global environmental challenges. It exposed me to innovative technologies for pollution control, waste management, and sustainable development, broadening my perspective on the field’s role in achieving global sustainability."
+                },
+                "courseName": {
+                  "S": "The Future of Environmental Biotechnology: Innovation, Impact, and Global Sustainability"
+                },
+                "studentName": {
+                  "S": "Olatundun Toluwanimi Deborah"
+                },
+                "submittedAt": {
+                  "S": "2026-06-02T11:53:42.694Z"
+                },
+                "organization": {
+                  "S": "Federal university of health sciences Ila Orangun, Osun state"
+                },
+                "certificateId": {
+                  "S": "CERT-1780317892097-F69OD770X"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780411568244-CLJ3PE4B8"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780411568244-CLJ3PE4B8"
+                },
+                "email": {
+                  "S": "akanomary34@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "courseName": {
+                  "S": "Designing a Research Proposal in Biomedical Sciences"
+                },
+                "studentName": {
+                  "S": "Akano Mary Iyanuoluwa"
+                },
+                "submittedAt": {
+                  "S": "2026-06-02T14:46:08.244Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1780410819135-VYWW3E1IN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780412107408-CA5C5G0AX"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780412107408-CA5C5G0AX"
+                },
+                "email": {
+                  "S": "sundayoguntade83@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "It has open my eye on how to write a good research papers."
+                },
+                "courseName": {
+                  "S": "Designing a Research Proposal in Biomedical Sciences"
+                },
+                "studentName": {
+                  "S": "sunday oguntade"
+                },
+                "submittedAt": {
+                  "S": "2026-06-02T14:55:07.408Z"
+                },
+                "certificateId": {
+                  "S": "CERT-1780410819135-VYWW3E1IN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780412133185-JUZI5W01I"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780412133185-JUZI5W01I"
+                },
+                "email": {
+                  "S": "ayushi.business64@gmail.com"
+                },
+                "courseName": {
+                  "S": "Designing a Research Proposal in Biomedical Sciences"
+                },
+                "studentName": {
+                  "S": "Ayushi"
+                },
+                "submittedAt": {
+                  "S": "2026-06-02T14:55:33.185Z"
+                },
+                "organization": {
+                  "S": "St Josephs University"
+                },
+                "certificateId": {
+                  "S": "CERT-1780410819135-VYWW3E1IN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780412176710-HD1T07BPD"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780412176710-HD1T07BPD"
+                },
+                "email": {
+                  "S": "kamalusman434@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Amazing"
+                },
+                "courseName": {
+                  "S": "Designing a Research Proposal in Biomedical Sciences"
+                },
+                "studentName": {
+                  "S": "Mohammad Usman Jan"
+                },
+                "submittedAt": {
+                  "S": "2026-06-02T14:56:16.711Z"
+                },
+                "organization": {
+                  "S": "Abdul Wali Khan University Mardan"
+                },
+                "certificateId": {
+                  "S": "CERT-1780410819135-VYWW3E1IN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780412201832-58ZK58VP3"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780412201832-58ZK58VP3"
+                },
+                "email": {
+                  "S": "jayaswaroopatillapudi@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "courseName": {
+                  "S": "Designing a Research Proposal in Biomedical Sciences"
+                },
+                "studentName": {
+                  "S": "Jaya swaroopa Tillapudi"
+                },
+                "submittedAt": {
+                  "S": "2026-06-02T14:56:41.832Z"
+                },
+                "organization": {
+                  "S": "Andhra University college of engineering"
+                },
+                "certificateId": {
+                  "S": "CERT-1780410819135-VYWW3E1IN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780412260264-FEOJ5QYIF"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780412260264-FEOJ5QYIF"
+                },
+                "email": {
+                  "S": "sanaabdoulaye76@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "courseName": {
+                  "S": "Designing a Research Proposal in Biomedical Sciences"
+                },
+                "studentName": {
+                  "S": "Sana Abdoulaye"
+                },
+                "submittedAt": {
+                  "S": "2026-06-02T14:57:40.264Z"
+                },
+                "organization": {
+                  "S": "Joseph KI-ZERBO University"
+                },
+                "certificateId": {
+                  "S": "CERT-1780410819135-VYWW3E1IN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780412263513-PCGYLVPRT"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780412263513-PCGYLVPRT"
+                },
+                "email": {
+                  "S": "jayaswaroopatillapudi@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "courseName": {
+                  "S": "Designing a Research Proposal in Biomedical Sciences"
+                },
+                "studentName": {
+                  "S": "Jaya swaroopa Tillapudi"
+                },
+                "submittedAt": {
+                  "S": "2026-06-02T14:57:43.513Z"
+                },
+                "organization": {
+                  "S": "Andhra University college of engineering"
+                },
+                "certificateId": {
+                  "S": "CERT-1780410819135-VYWW3E1IN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780412264866-I1NODJ7XA"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780412264866-I1NODJ7XA"
+                },
+                "email": {
+                  "S": "julietobih@gmail.com"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "Thank you so much for the great sessions. I was able to learn how to write research proposal with ease."
+                },
+                "courseName": {
+                  "S": "Designing a Research Proposal in Biomedical Sciences"
+                },
+                "studentName": {
+                  "S": "Obi Onyinye Julliet"
+                },
+                "submittedAt": {
+                  "S": "2026-06-02T14:57:44.866Z"
+                },
+                "organization": {
+                  "S": "Tansian University Umunya, Anambra State."
+                },
+                "certificateId": {
+                  "S": "CERT-1780410819135-VYWW3E1IN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780412267392-9XI3C1AEW"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780412267392-9XI3C1AEW"
+                },
+                "email": {
+                  "S": "nawazbisma123@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "I gained hand on experience in bioinformatics tools for genomic data analysis , sequence assembly, alignment , refrence mapping and a lot more"
+                },
+                "courseName": {
+                  "S": "Designing a Research Proposal in Biomedical Sciences"
+                },
+                "studentName": {
+                  "S": "Bisma Nawaz"
+                },
+                "submittedAt": {
+                  "S": "2026-06-02T14:57:47.392Z"
+                },
+                "organization": {
+                  "S": "Shifa Tameer-e-Millat University"
+                },
+                "certificateId": {
+                  "S": "CERT-1780410819135-VYWW3E1IN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780412380740-RNMUZA5ZD"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780412380740-RNMUZA5ZD"
+                },
+                "email": {
+                  "S": "eleojoudile@gmail.com"
+                },
+                "impact": {
+                  "S": "It was an awesome moment"
+                },
+                "courseName": {
+                  "S": "Designing a Research Proposal in Biomedical Sciences"
+                },
+                "studentName": {
+                  "S": "Udile Gideon Ele-ojo"
+                },
+                "submittedAt": {
+                  "S": "2026-06-02T14:59:40.740Z"
+                },
+                "organization": {
+                  "S": "Confluence University of Science and Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1780410819135-VYWW3E1IN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780412472958-ZD0S9A5L7"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780412472958-ZD0S9A5L7"
+                },
+                "email": {
+                  "S": "nawazbisma123@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Gained hands-on experience in bioinformatics tools including Galaxy and Geneious for genomic data analysis, sequence assembly, and reference mapping and a lot more"
+                },
+                "courseName": {
+                  "S": "Designing a Research Proposal in Biomedical Sciences"
+                },
+                "studentName": {
+                  "S": "Bisma Nawaz"
+                },
+                "submittedAt": {
+                  "S": "2026-06-02T15:01:12.958Z"
+                },
+                "organization": {
+                  "S": "SHIFA TAMEER-E-MILLAT UNIVERSITY"
+                },
+                "certificateId": {
+                  "S": "CERT-1780410819135-VYWW3E1IN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780412545512-N2XIJAWEA"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780412545512-N2XIJAWEA"
+                },
+                "email": {
+                  "S": "samuelsanusiolalekan1620@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "The program program gave me a deep insight to the world of research and how i can circumvent it"
+                },
+                "courseName": {
+                  "S": "Designing a Research Proposal in Biomedical Sciences"
+                },
+                "studentName": {
+                  "S": "Samuel Olalekan Sanusi"
+                },
+                "submittedAt": {
+                  "S": "2026-06-02T15:02:25.512Z"
+                },
+                "organization": {
+                  "S": "Obafemi Awolowo University"
+                },
+                "certificateId": {
+                  "S": "CERT-1780410819135-VYWW3E1IN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780412629169-K9HWXK8S4"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780412629169-K9HWXK8S4"
+                },
+                "email": {
+                  "S": "sanaabdoulaye76@gmail.com"
+                },
+                "courseName": {
+                  "S": "Designing a Research Proposal in Biomedical Sciences"
+                },
+                "studentName": {
+                  "S": "Sana Abdoulaye"
+                },
+                "submittedAt": {
+                  "S": "2026-06-02T15:03:49.169Z"
+                },
+                "organization": {
+                  "S": "Joseph KI-ZERBO University"
+                },
+                "certificateId": {
+                  "S": "CERT-1780410819135-VYWW3E1IN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780412731507-X5NOHBGQO"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780412731507-X5NOHBGQO"
+                },
+                "email": {
+                  "S": "ayushi.business64@gmail.com"
+                },
+                "courseName": {
+                  "S": "Designing a Research Proposal in Biomedical Sciences"
+                },
+                "studentName": {
+                  "S": "Ayushi"
+                },
+                "submittedAt": {
+                  "S": "2026-06-02T15:05:31.507Z"
+                },
+                "organization": {
+                  "S": "St Josephs University"
+                },
+                "certificateId": {
+                  "S": "CERT-1780410819135-VYWW3E1IN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780412799045-ZBXQGFXV7"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780412799045-ZBXQGFXV7"
+                },
+                "email": {
+                  "S": "eleojoudile@gmail.com"
+                },
+                "impact": {
+                  "S": "It was an awesome moment"
+                },
+                "courseName": {
+                  "S": "Designing a Research Proposal in Biomedical Sciences"
+                },
+                "studentName": {
+                  "S": "Udile Gideon Ele-ojo"
+                },
+                "submittedAt": {
+                  "S": "2026-06-02T15:06:39.045Z"
+                },
+                "organization": {
+                  "S": "Confluence University of Science and Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1780410819135-VYWW3E1IN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780412989350-H4ZVMSHIN"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780412989350-H4ZVMSHIN"
+                },
+                "email": {
+                  "S": "garbaamali4194@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "It was a great and impactful session, many researchers were expose into technical and advance insight on the ethnical consideration and how a world class proposal components should carried.\nThanks for the presenter Dr. And the Organizing team for your seemless effort to bring this into play \nGod bless you all.\nHope to have more In the future."
+                },
+                "courseName": {
+                  "S": "Designing a Research Proposal in Biomedical Sciences"
+                },
+                "studentName": {
+                  "S": "Garba Amali Madugu"
+                },
+                "submittedAt": {
+                  "S": "2026-06-02T15:09:49.350Z"
+                },
+                "organization": {
+                  "S": "Federal university Oye -Ekiti, Ekiti state, Nigeria."
+                },
+                "certificateId": {
+                  "S": "CERT-1780410819135-VYWW3E1IN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780413018351-C9NEX6SGG"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780413018351-C9NEX6SGG"
+                },
+                "email": {
+                  "S": "titusntulay@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "This research course have impacted me immensely by improving my level of understanding about research proposals, and as such, I am also going to pass the knowledge to those who have little or no knowledge about research proposal writing."
+                },
+                "courseName": {
+                  "S": "Designing a Research Proposal in Biomedical Sciences"
+                },
+                "studentName": {
+                  "S": "Titus N. Tulay"
+                },
+                "submittedAt": {
+                  "S": "2026-06-02T15:10:18.351Z"
+                },
+                "organization": {
+                  "S": "University of Liberia"
+                },
+                "certificateId": {
+                  "S": "CERT-1780410819135-VYWW3E1IN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780413433473-AW8AYI47I"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780413433473-AW8AYI47I"
+                },
+                "email": {
+                  "S": "abdulazizdahiru59@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "It's very impactful session"
+                },
+                "courseName": {
+                  "S": "Designing a Research Proposal in Biomedical Sciences"
+                },
+                "studentName": {
+                  "S": "DAHIRU ABDULAZIZ"
+                },
+                "submittedAt": {
+                  "S": "2026-06-02T15:17:13.473Z"
+                },
+                "organization": {
+                  "S": "Kano State Polytechnic"
+                },
+                "certificateId": {
+                  "S": "CERT-1780410819135-VYWW3E1IN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780413471968-Q7Q4OBZN5"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780413471968-Q7Q4OBZN5"
+                },
+                "email": {
+                  "S": "eleojoudile@gmail.com"
+                },
+                "impact": {
+                  "S": "It was an awesome moment"
+                },
+                "courseName": {
+                  "S": "Designing a Research Proposal in Biomedical Sciences"
+                },
+                "studentName": {
+                  "S": "Udile Gideon Ele-ojo"
+                },
+                "submittedAt": {
+                  "S": "2026-06-02T15:17:51.968Z"
+                },
+                "organization": {
+                  "S": "Confluence University of Science and Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1780410819135-VYWW3E1IN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780413661452-UPSOIU3YH"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780413661452-UPSOIU3YH"
+                },
+                "email": {
+                  "S": "abdulazizdahiru59@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "It's very impactful training"
+                },
+                "courseName": {
+                  "S": "Designing a Research Proposal in Biomedical Sciences"
+                },
+                "studentName": {
+                  "S": "DAHIRU ABDULAZIZ"
+                },
+                "submittedAt": {
+                  "S": "2026-06-02T15:21:01.452Z"
+                },
+                "organization": {
+                  "S": "Kano State Polytechnic"
+                },
+                "certificateId": {
+                  "S": "CERT-1780410819135-VYWW3E1IN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780413694411-CZM8TD3A6"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780413694411-CZM8TD3A6"
+                },
+                "email": {
+                  "S": "sanaabdoulaye76@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "courseName": {
+                  "S": "Designing a Research Proposal in Biomedical Sciences"
+                },
+                "studentName": {
+                  "S": "Abdoulaye SANA"
+                },
+                "submittedAt": {
+                  "S": "2026-06-02T15:21:34.411Z"
+                },
+                "organization": {
+                  "S": "Joseph KI-ZERBO University"
+                },
+                "certificateId": {
+                  "S": "CERT-1780410819135-VYWW3E1IN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780413718189-V7088PYF9"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780413718189-V7088PYF9"
+                },
+                "email": {
+                  "S": "aubeelucknaina@gmail.com"
+                },
+                "title": {
+                  "S": "Prof"
+                },
+                "courseName": {
+                  "S": "Designing a Research Proposal in Biomedical Sciences"
+                },
+                "studentName": {
+                  "S": "Nirmala Aubeeluck"
+                },
+                "submittedAt": {
+                  "S": "2026-06-02T15:21:58.189Z"
+                },
+                "organization": {
+                  "S": "University of America"
+                },
+                "certificateId": {
+                  "S": "CERT-1780410819135-VYWW3E1IN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

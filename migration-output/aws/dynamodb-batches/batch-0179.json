@@ -1,0 +1,1132 @@
+{
+  "RequestItems": {
+    "certifyer-dev-kv": [
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "txn:CTFY_1776424786488_Y3Z4EJ"
+            },
+            "value": {
+              "M": {
+                "type": {
+                  "S": "certificate"
+                },
+                "status": {
+                  "S": "success"
+                },
+                "currency": {
+                  "S": "NGN"
+                },
+                "released": {
+                  "BOOL": true
+                },
+                "sellerId": {
+                  "S": "53e77cf8-e8b7-488a-9925-d2a03e6d0ea2"
+                },
+                "buyerName": {
+                  "S": "Chrestotes"
+                },
+                "createdAt": {
+                  "S": "2026-04-17T11:19:46.916Z"
+                },
+                "holdUntil": {
+                  "S": "2026-04-24T11:20:09.454Z"
+                },
+                "invoiceId": {
+                  "S": "inv_1776424809454_jgl6"
+                },
+                "reference": {
+                  "S": "CTFY_1776424786488_Y3Z4EJ"
+                },
+                "buyerEmail": {
+                  "S": "adewuyigoodness1@gmail.com"
+                },
+                "amountTotal": {
+                  "N": "500000"
+                },
+                "completedAt": {
+                  "S": "2026-04-17T11:20:09.454Z"
+                },
+                "paystackRef": {
+                  "S": "CTFY_1776424786488_Y3Z4EJ"
+                },
+                "platformFee": {
+                  "N": "35000"
+                },
+                "sellerOrgId": {
+                  "S": "org-53e77cf8-e8b7-488a-9925-d2a03e6d0ea2-1772793192106"
+                },
+                "productTitle": {
+                  "S": "Test Course Pay"
+                },
+                "certificateId": {
+                  "S": "CERT-1776424735943-GUINZZJ37"
+                },
+                "sellerEarning": {
+                  "N": "465000"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "txn:CTFY_1776442419188_DZ3JGG"
+            },
+            "value": {
+              "M": {
+                "type": {
+                  "S": "certificate"
+                },
+                "status": {
+                  "S": "pending"
+                },
+                "currency": {
+                  "S": "NGN"
+                },
+                "sellerId": {
+                  "S": "53e77cf8-e8b7-488a-9925-d2a03e6d0ea2"
+                },
+                "buyerName": {
+                  "S": "Oluwaseyi Abraham Olawale"
+                },
+                "createdAt": {
+                  "S": "2026-04-17T16:13:39.684Z"
+                },
+                "reference": {
+                  "S": "CTFY_1776442419188_DZ3JGG"
+                },
+                "buyerEmail": {
+                  "S": "genomachub@gmail.com"
+                },
+                "amountTotal": {
+                  "N": "100000"
+                },
+                "paystackRef": {
+                  "S": "CTFY_1776442419188_DZ3JGG"
+                },
+                "platformFee": {
+                  "N": "7000"
+                },
+                "sellerOrgId": {
+                  "S": "org-53e77cf8-e8b7-488a-9925-d2a03e6d0ea2-1772793192106"
+                },
+                "productTitle": {
+                  "S": "THE GENESIS SUMMIT"
+                },
+                "certificateId": {
+                  "S": "CERT-1772956756456-AJ6JC9E9B"
+                },
+                "sellerEarning": {
+                  "N": "93000"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "txn:CTFY_1776703097318_00ODD8"
+            },
+            "value": {
+              "M": {
+                "type": {
+                  "S": "certificate"
+                },
+                "status": {
+                  "S": "pending"
+                },
+                "currency": {
+                  "S": "NGN"
+                },
+                "sellerId": {
+                  "S": "53e77cf8-e8b7-488a-9925-d2a03e6d0ea2"
+                },
+                "buyerName": {
+                  "S": "Oluwaseyi Abraham Olawale"
+                },
+                "createdAt": {
+                  "S": "2026-04-20T16:38:17.754Z"
+                },
+                "reference": {
+                  "S": "CTFY_1776703097318_00ODD8"
+                },
+                "buyerEmail": {
+                  "S": "genomachub@gmail.com"
+                },
+                "amountTotal": {
+                  "N": "500000"
+                },
+                "paystackRef": {
+                  "S": "CTFY_1776703097318_00ODD8"
+                },
+                "platformFee": {
+                  "N": "35000"
+                },
+                "sellerOrgId": {
+                  "S": "org-53e77cf8-e8b7-488a-9925-d2a03e6d0ea2-1772793192106"
+                },
+                "productTitle": {
+                  "S": "Advanced Genomics"
+                },
+                "certificateId": {
+                  "S": "CERT-1776702312905-JM6GVPMAX"
+                },
+                "sellerEarning": {
+                  "N": "465000"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "txn:CTFY_1776772696002_YEIV6P"
+            },
+            "value": {
+              "M": {
+                "type": {
+                  "S": "certificate"
+                },
+                "status": {
+                  "S": "pending"
+                },
+                "currency": {
+                  "S": "NGN"
+                },
+                "sellerId": {
+                  "S": "53e77cf8-e8b7-488a-9925-d2a03e6d0ea2"
+                },
+                "buyerName": {
+                  "S": "Goodie"
+                },
+                "createdAt": {
+                  "S": "2026-04-21T11:58:16.502Z"
+                },
+                "reference": {
+                  "S": "CTFY_1776772696002_YEIV6P"
+                },
+                "buyerEmail": {
+                  "S": "adewuyigoodness1@gmail.com"
+                },
+                "amountTotal": {
+                  "N": "500000"
+                },
+                "paystackRef": {
+                  "S": "CTFY_1776772696002_YEIV6P"
+                },
+                "platformFee": {
+                  "N": "35000"
+                },
+                "sellerOrgId": {
+                  "S": "org-53e77cf8-e8b7-488a-9925-d2a03e6d0ea2-1772793192106"
+                },
+                "productTitle": {
+                  "S": "ebr"
+                },
+                "certificateId": {
+                  "S": "CERT-1776772617777-MNRJJ4PSO"
+                },
+                "sellerEarning": {
+                  "N": "465000"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "txn:CTFY_1776772816304_K0U1YN"
+            },
+            "value": {
+              "M": {
+                "type": {
+                  "S": "certificate"
+                },
+                "status": {
+                  "S": "pending"
+                },
+                "currency": {
+                  "S": "USD"
+                },
+                "sellerId": {
+                  "S": "53e77cf8-e8b7-488a-9925-d2a03e6d0ea2"
+                },
+                "buyerName": {
+                  "S": "Goodness Adewuyi"
+                },
+                "createdAt": {
+                  "S": "2026-04-21T12:00:18.837Z"
+                },
+                "reference": {
+                  "S": "CTFY_1776772816304_K0U1YN"
+                },
+                "buyerEmail": {
+                  "S": "adewuyigoodness1@gmail.com"
+                },
+                "amountTotal": {
+                  "N": "500000"
+                },
+                "paystackRef": {
+                  "S": "CTFY_1776772816304_K0U1YN"
+                },
+                "platformFee": {
+                  "N": "35000"
+                },
+                "sellerOrgId": {
+                  "S": "org-53e77cf8-e8b7-488a-9925-d2a03e6d0ea2-1772793192106"
+                },
+                "productTitle": {
+                  "S": "Advanced Web Dev Pay02"
+                },
+                "certificateId": {
+                  "S": "CERT-1776772779569-P0A39OKW3"
+                },
+                "sellerEarning": {
+                  "N": "465000"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "txn:CTFY_1776772933948_CE9OKF"
+            },
+            "value": {
+              "M": {
+                "type": {
+                  "S": "certificate"
+                },
+                "status": {
+                  "S": "pending"
+                },
+                "currency": {
+                  "S": "USD"
+                },
+                "sellerId": {
+                  "S": "53e77cf8-e8b7-488a-9925-d2a03e6d0ea2"
+                },
+                "buyerName": {
+                  "S": "Goodness Adewuyi"
+                },
+                "createdAt": {
+                  "S": "2026-04-21T12:02:14.298Z"
+                },
+                "reference": {
+                  "S": "CTFY_1776772933948_CE9OKF"
+                },
+                "buyerEmail": {
+                  "S": "adewuyigoodness1@gmail.com"
+                },
+                "amountTotal": {
+                  "N": "500000"
+                },
+                "paystackRef": {
+                  "S": "CTFY_1776772933948_CE9OKF"
+                },
+                "platformFee": {
+                  "N": "35000"
+                },
+                "sellerOrgId": {
+                  "S": "org-53e77cf8-e8b7-488a-9925-d2a03e6d0ea2-1772793192106"
+                },
+                "productTitle": {
+                  "S": "Advanced Web Dev Pay02"
+                },
+                "certificateId": {
+                  "S": "CERT-1776772779569-P0A39OKW3"
+                },
+                "sellerEarning": {
+                  "N": "465000"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "txn:CTFY_1776784097987_ESTM0J"
+            },
+            "value": {
+              "M": {
+                "type": {
+                  "S": "certificate"
+                },
+                "status": {
+                  "S": "pending"
+                },
+                "currency": {
+                  "S": "NGN"
+                },
+                "sellerId": {
+                  "S": "53e77cf8-e8b7-488a-9925-d2a03e6d0ea2"
+                },
+                "buyerName": {
+                  "S": "Oluwaseyi Abraham Olawale"
+                },
+                "createdAt": {
+                  "S": "2026-04-21T15:08:18.465Z"
+                },
+                "reference": {
+                  "S": "CTFY_1776784097987_ESTM0J"
+                },
+                "buyerEmail": {
+                  "S": "genomachub@gmail.com"
+                },
+                "amountTotal": {
+                  "N": "149998"
+                },
+                "paystackRef": {
+                  "S": "CTFY_1776784097987_ESTM0J"
+                },
+                "platformFee": {
+                  "N": "10500"
+                },
+                "sellerOrgId": {
+                  "S": "org-53e77cf8-e8b7-488a-9925-d2a03e6d0ea2-1772793192106"
+                },
+                "productTitle": {
+                  "S": "Advance bio"
+                },
+                "certificateId": {
+                  "S": "CERT-1776783944277-5AIZLRC28"
+                },
+                "sellerEarning": {
+                  "N": "139498"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "txn:CTFY_1776786011233_75D0CN"
+            },
+            "value": {
+              "M": {
+                "type": {
+                  "S": "certificate"
+                },
+                "status": {
+                  "S": "pending"
+                },
+                "currency": {
+                  "S": "NGN"
+                },
+                "sellerId": {
+                  "S": "53e77cf8-e8b7-488a-9925-d2a03e6d0ea2"
+                },
+                "buyerName": {
+                  "S": "Oluwaseyi Abraham Olawale"
+                },
+                "createdAt": {
+                  "S": "2026-04-21T15:40:11.726Z"
+                },
+                "reference": {
+                  "S": "CTFY_1776786011233_75D0CN"
+                },
+                "buyerEmail": {
+                  "S": "genomachub@gmail.com"
+                },
+                "amountTotal": {
+                  "N": "500000"
+                },
+                "paystackRef": {
+                  "S": "CTFY_1776786011233_75D0CN"
+                },
+                "platformFee": {
+                  "N": "35000"
+                },
+                "sellerOrgId": {
+                  "S": "org-53e77cf8-e8b7-488a-9925-d2a03e6d0ea2-1772793192106"
+                },
+                "productTitle": {
+                  "S": "genomics"
+                },
+                "certificateId": {
+                  "S": "CERT-1776785967777-HK58870V3"
+                },
+                "sellerEarning": {
+                  "N": "465000"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "txn:CTFY_1776786044648_3EA5AB"
+            },
+            "value": {
+              "M": {
+                "type": {
+                  "S": "certificate"
+                },
+                "status": {
+                  "S": "pending"
+                },
+                "currency": {
+                  "S": "USD"
+                },
+                "sellerId": {
+                  "S": "53e77cf8-e8b7-488a-9925-d2a03e6d0ea2"
+                },
+                "buyerName": {
+                  "S": "Oluwaseyi Abraham Olawale"
+                },
+                "createdAt": {
+                  "S": "2026-04-21T15:40:45.043Z"
+                },
+                "reference": {
+                  "S": "CTFY_1776786044648_3EA5AB"
+                },
+                "buyerEmail": {
+                  "S": "genomachub@gmail.com"
+                },
+                "amountTotal": {
+                  "N": "500"
+                },
+                "paystackRef": {
+                  "S": "CTFY_1776786044648_3EA5AB"
+                },
+                "platformFee": {
+                  "N": "35"
+                },
+                "sellerOrgId": {
+                  "S": "org-53e77cf8-e8b7-488a-9925-d2a03e6d0ea2-1772793192106"
+                },
+                "productTitle": {
+                  "S": "genomics"
+                },
+                "certificateId": {
+                  "S": "CERT-1776785967777-HK58870V3"
+                },
+                "sellerEarning": {
+                  "N": "465"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "txn:CTFY_1776858176531_6G0XQB"
+            },
+            "value": {
+              "M": {
+                "type": {
+                  "S": "certificate"
+                },
+                "status": {
+                  "S": "pending"
+                },
+                "currency": {
+                  "S": "NGN"
+                },
+                "sellerId": {
+                  "S": "53e77cf8-e8b7-488a-9925-d2a03e6d0ea2"
+                },
+                "buyerName": {
+                  "S": "Oluwaseyi Abraham Olawale"
+                },
+                "createdAt": {
+                  "S": "2026-04-22T11:42:57.058Z"
+                },
+                "reference": {
+                  "S": "CTFY_1776858176531_6G0XQB"
+                },
+                "buyerEmail": {
+                  "S": "genomachub@gmail.com"
+                },
+                "amountTotal": {
+                  "N": "500000"
+                },
+                "paystackRef": {
+                  "S": "CTFY_1776858176531_6G0XQB"
+                },
+                "platformFee": {
+                  "N": "35000"
+                },
+                "sellerOrgId": {
+                  "S": "org-53e77cf8-e8b7-488a-9925-d2a03e6d0ea2-1772793192106"
+                },
+                "productTitle": {
+                  "S": "ebr"
+                },
+                "certificateId": {
+                  "S": "CERT-1776772617777-MNRJJ4PSO"
+                },
+                "sellerEarning": {
+                  "N": "465000"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "txn:CTFY_1776858302448_VKDVP8"
+            },
+            "value": {
+              "M": {
+                "type": {
+                  "S": "certificate"
+                },
+                "status": {
+                  "S": "pending"
+                },
+                "currency": {
+                  "S": "USD"
+                },
+                "sellerId": {
+                  "S": "53e77cf8-e8b7-488a-9925-d2a03e6d0ea2"
+                },
+                "buyerName": {
+                  "S": "Oluwaseyi Abraham Olawale"
+                },
+                "createdAt": {
+                  "S": "2026-04-22T11:45:03.163Z"
+                },
+                "reference": {
+                  "S": "CTFY_1776858302448_VKDVP8"
+                },
+                "buyerEmail": {
+                  "S": "genomachub@gmail.com"
+                },
+                "amountTotal": {
+                  "N": "500"
+                },
+                "paystackRef": {
+                  "S": "CTFY_1776858302448_VKDVP8"
+                },
+                "platformFee": {
+                  "N": "35"
+                },
+                "sellerOrgId": {
+                  "S": "org-53e77cf8-e8b7-488a-9925-d2a03e6d0ea2-1772793192106"
+                },
+                "productTitle": {
+                  "S": "FFTFTB"
+                },
+                "certificateId": {
+                  "S": "CERT-1776858266003-A2RH9H5B1"
+                },
+                "sellerEarning": {
+                  "N": "465"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "user:0247c311-46ac-49da-82e1-c5a06948c56f"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "0247c311-46ac-49da-82e1-c5a06948c56f"
+                },
+                "email": {
+                  "S": "akinwumigoodness07@gmail.com"
+                },
+                "fullName": {
+                  "S": "Akinwumi Goodness Ayodeji "
+                },
+                "userType": {
+                  "S": "company"
+                },
+                "createdAt": {
+                  "S": "2026-02-19T16:45:28.943Z"
+                },
+                "organizationId": {
+                  "S": "org-0247c311-46ac-49da-82e1-c5a06948c56f-1771519528742"
+                },
+                "organizationName": {
+                  "S": "Akinwumi Goodness Ayodeji 's Organization"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "user:02b99ed7-e4f4-4f8a-a2bd-357953c5ebe3"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "02b99ed7-e4f4-4f8a-a2bd-357953c5ebe3"
+                },
+                "email": {
+                  "S": "tester2@gmail.com"
+                },
+                "fullName": {
+                  "S": "Tester2"
+                },
+                "userType": {
+                  "S": "company"
+                },
+                "createdAt": {
+                  "S": "2025-10-29T13:06:40.465Z"
+                },
+                "organizationId": {
+                  "S": "org-02b99ed7-e4f4-4f8a-a2bd-357953c5ebe3-1761743200334"
+                },
+                "organizationName": {
+                  "S": "Tester2's Organization"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "user:050ddedc-2051-4fbf-99ae-1ab1cf731926"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "050ddedc-2051-4fbf-99ae-1ab1cf731926"
+                },
+                "email": {
+                  "S": "adewuyigoodness8@gmail.com"
+                },
+                "fullName": {
+                  "S": "Goodness Adewuyi"
+                },
+                "userType": {
+                  "S": "company"
+                },
+                "createdAt": {
+                  "S": "2025-10-31T10:53:07.191Z"
+                },
+                "organizationId": {
+                  "S": "org-050ddedc-2051-4fbf-99ae-1ab1cf731926-1761907987058"
+                },
+                "organizationName": {
+                  "S": "Goodness Adewuyi's Organization"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "user:05fa8eb3-3b85-4d75-b7a3-59baf7750797"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "05fa8eb3-3b85-4d75-b7a3-59baf7750797"
+                },
+                "email": {
+                  "S": "olawalegloria2003@gmail.com"
+                },
+                "fullName": {
+                  "S": "Olawale Gloria Ebunoluwa"
+                },
+                "userType": {
+                  "S": "company"
+                },
+                "createdAt": {
+                  "S": "2026-02-12T10:05:19.664Z"
+                },
+                "organizationId": {
+                  "S": "org-05fa8eb3-3b85-4d75-b7a3-59baf7750797-1770890718661"
+                },
+                "organizationName": {
+                  "S": "Genomac Holdings"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "user:09b6c345-0ec4-4cd9-a23d-bd3b67c15110"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "09b6c345-0ec4-4cd9-a23d-bd3b67c15110"
+                },
+                "email": {
+                  "S": "uhegwuchijioke@gmail.com"
+                },
+                "fullName": {
+                  "S": "Chijioke"
+                },
+                "userType": {
+                  "S": "company"
+                },
+                "createdAt": {
+                  "S": "2026-03-17T14:04:12.190Z"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                },
+                "organizationName": {
+                  "S": "Chijioke's Organization"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "user:0a6af063-e6ce-415f-9f19-e03b2a214cef"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "0a6af063-e6ce-415f-9f19-e03b2a214cef"
+                },
+                "email": {
+                  "S": "abdulazeezzainab205@gmail.com"
+                },
+                "fullName": {
+                  "S": "AbdulAzeez Zainab "
+                },
+                "userType": {
+                  "S": "company"
+                },
+                "createdAt": {
+                  "S": "2026-04-18T14:30:46.141Z"
+                },
+                "organizationId": {
+                  "S": "org-0a6af063-e6ce-415f-9f19-e03b2a214cef-1776522645053"
+                },
+                "organizationName": {
+                  "S": "None"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "user:0ae927c8-7404-43ce-9478-66a4eb7be005"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "0ae927c8-7404-43ce-9478-66a4eb7be005"
+                },
+                "email": {
+                  "S": "adekunlevictor2003@gmail.com"
+                },
+                "fullName": {
+                  "S": "Victor"
+                },
+                "userType": {
+                  "S": "company"
+                },
+                "createdAt": {
+                  "S": "2026-02-19T11:01:55.679Z"
+                },
+                "organizationId": {
+                  "S": "org-0ae927c8-7404-43ce-9478-66a4eb7be005-1771498915247"
+                },
+                "organizationName": {
+                  "S": "Victor's Organization"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "user:0b08e50e-64bf-4194-ac9b-39b62eb6ea87"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "0b08e50e-64bf-4194-ac9b-39b62eb6ea87"
+                },
+                "email": {
+                  "S": "isachadoisa1@gmail.com"
+                },
+                "fullName": {
+                  "S": "ISA ISA CHADO "
+                },
+                "userType": {
+                  "S": "company"
+                },
+                "createdAt": {
+                  "S": "2026-02-06T12:25:32.347Z"
+                },
+                "organizationId": {
+                  "S": "org-0b08e50e-64bf-4194-ac9b-39b62eb6ea87-1770380732005"
+                },
+                "organizationName": {
+                  "S": "ISA ISA CHADO 's Organization"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "user:0bcbebd7-ecc6-4671-99a8-550a67bb8769"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "0bcbebd7-ecc6-4671-99a8-550a67bb8769"
+                },
+                "email": {
+                  "S": "estherdoyewole@gmail.com"
+                },
+                "fullName": {
+                  "S": "Oyewole Esther Funmilayo "
+                },
+                "userType": {
+                  "S": "company"
+                },
+                "createdAt": {
+                  "S": "2026-02-19T16:26:58.068Z"
+                },
+                "organizationId": {
+                  "S": "org-0bcbebd7-ecc6-4671-99a8-550a67bb8769-1771518417635"
+                },
+                "organizationName": {
+                  "S": "Oyewole Esther Funmilayo 's Organization"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "user:132cf813-7605-4664-9949-5ede977b91da"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "132cf813-7605-4664-9949-5ede977b91da"
+                },
+                "email": {
+                  "S": "adewuyigoodness33@gmail.com"
+                },
+                "fullName": {
+                  "S": "Goodness Adewuyi"
+                },
+                "userType": {
+                  "S": "company"
+                },
+                "createdAt": {
+                  "S": "2026-03-04T15:28:34.222Z"
+                },
+                "organizationId": {
+                  "S": "org-132cf813-7605-4664-9949-5ede977b91da-1772638113825"
+                },
+                "organizationName": {
+                  "S": "TestComp4"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "user:1a39152c-0816-43b9-9cef-e141ccb19350"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1a39152c-0816-43b9-9cef-e141ccb19350"
+                },
+                "email": {
+                  "S": "genomacnatures@gmail.com"
+                },
+                "fullName": {
+                  "S": "G-Natures"
+                },
+                "userType": {
+                  "S": "company"
+                },
+                "createdAt": {
+                  "S": "2026-02-20T14:28:39.608Z"
+                },
+                "organizationId": {
+                  "S": "org-1a39152c-0816-43b9-9cef-e141ccb19350-1771597719189"
+                },
+                "organizationName": {
+                  "S": "G-Natures"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "user:1ba8121c-9d21-4cc1-83ff-953e85faf010"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1ba8121c-9d21-4cc1-83ff-953e85faf010"
+                },
+                "email": {
+                  "S": "stuartngereza5@gmail.com"
+                },
+                "fullName": {
+                  "S": "Stuart Andrew Ngereza"
+                },
+                "userType": {
+                  "S": "company"
+                },
+                "createdAt": {
+                  "S": "2026-02-02T19:22:06.101Z"
+                },
+                "organizationId": {
+                  "S": "org-1ba8121c-9d21-4cc1-83ff-953e85faf010-1770060125183"
+                },
+                "organizationName": {
+                  "S": "Stuart Andrew Ngereza's Organization"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "user:1c9708ef-0479-4df9-94ba-ace08da2750c"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1c9708ef-0479-4df9-94ba-ace08da2750c"
+                },
+                "email": {
+                  "S": "adewuyigoodness112@gmail.com"
+                },
+                "fullName": {
+                  "S": "Goodness Adewuyi"
+                },
+                "userType": {
+                  "S": "company"
+                },
+                "createdAt": {
+                  "S": "2026-02-23T12:56:31.333Z"
+                },
+                "organizationId": {
+                  "S": "org-1c9708ef-0479-4df9-94ba-ace08da2750c-1771851391039"
+                },
+                "organizationName": {
+                  "S": "Certifyer"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "user:1cab9388-5728-4646-9178-26dc1fa778fa"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "1cab9388-5728-4646-9178-26dc1fa778fa"
+                },
+                "email": {
+                  "S": "genomachub@gmail.com"
+                },
+                "fullName": {
+                  "S": "Virtual Internship"
+                },
+                "userType": {
+                  "S": "company"
+                },
+                "createdAt": {
+                  "S": "2026-01-26T16:15:31.351Z"
+                },
+                "organizationId": {
+                  "S": "org-1cab9388-5728-4646-9178-26dc1fa778fa-1769444130796"
+                },
+                "organizationName": {
+                  "S": "Genomac Institute"
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,1099 @@
+{
+  "RequestItems": {
+    "certifyer-dev-kv": [
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6ed593e0-0620-4f50-9e62-a94e9cf7bbd3-1772532196103:TEST-1779714734619-2M66FGITV"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1779714734619-2M66FGITV"
+                },
+                "email": {
+                  "S": "victorboluwatife77@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "It was inspiring Conference. Even as the convener I learnt more than I expected."
+                },
+                "courseName": {
+                  "S": "BEYOND THE DEGREE Conference"
+                },
+                "studentName": {
+                  "S": "Victor Ogunrinde"
+                },
+                "submittedAt": {
+                  "S": "2026-05-25T13:12:14.619Z"
+                },
+                "organization": {
+                  "S": "SCIENTIST VICTOR ENTERPRISE"
+                },
+                "certificateId": {
+                  "S": "CERT-1779713227349-AIHX12TIL"
+                },
+                "organizationId": {
+                  "S": "org-6ed593e0-0620-4f50-9e62-a94e9cf7bbd3-1772532196103"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6ed593e0-0620-4f50-9e62-a94e9cf7bbd3-1772532196103:TEST-1779715707706-2E45IVCAA"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1779715707706-2E45IVCAA"
+                },
+                "email": {
+                  "S": "victorboluwatife77@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Even as the Convener, I can say I learn more than I expected. The conference was an impactful one."
+                },
+                "courseName": {
+                  "S": "BEYOND THE DEGREE Conference"
+                },
+                "studentName": {
+                  "S": "Victor Ogunrinde"
+                },
+                "submittedAt": {
+                  "S": "2026-05-25T13:28:27.706Z"
+                },
+                "organization": {
+                  "S": "SCIENTIST VICTOR ENTERPRISE"
+                },
+                "certificateId": {
+                  "S": "CERT-1779713227349-AIHX12TIL"
+                },
+                "organizationId": {
+                  "S": "org-6ed593e0-0620-4f50-9e62-a94e9cf7bbd3-1772532196103"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6ed593e0-0620-4f50-9e62-a94e9cf7bbd3-1772532196103:TEST-1779720361441-58Q9QPK9I"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1779720361441-58Q9QPK9I"
+                },
+                "email": {
+                  "S": "kanyinsolafunmilayo832@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It was an impactful event. I gained insight on how I can use my phone to earn."
+                },
+                "courseName": {
+                  "S": "BEYOND THE DEGREE Conference"
+                },
+                "studentName": {
+                  "S": "Adewole Kanyinsola"
+                },
+                "submittedAt": {
+                  "S": "2026-05-25T14:46:01.441Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University"
+                },
+                "certificateId": {
+                  "S": "CERT-1779713227349-AIHX12TIL"
+                },
+                "organizationId": {
+                  "S": "org-6ed593e0-0620-4f50-9e62-a94e9cf7bbd3-1772532196103"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6ed593e0-0620-4f50-9e62-a94e9cf7bbd3-1772532196103:TEST-1779741226019-AU61BJYTO"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1779741226019-AU61BJYTO"
+                },
+                "email": {
+                  "S": "oladipupohameedat93@gmail"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "I’m really happy and grateful that I attended the conference. It was a great experience for me because I was able to learn a lot of new things that will help me in my skill and career journey. The conference opened my mind to think more deeply about my future and how I can improve myself. I also gained valuable knowledge, inspiration, and motivation from the speakers and activities. Overall, it was impactful and I’m glad I had the opportunity to be part of it."
+                },
+                "courseName": {
+                  "S": "BEYOND THE DEGREE Conference"
+                },
+                "studentName": {
+                  "S": "Oladipupo Hameedah olayinka"
+                },
+                "submittedAt": {
+                  "S": "2026-05-25T20:33:46.019Z"
+                },
+                "organization": {
+                  "S": "LAUTECH"
+                },
+                "certificateId": {
+                  "S": "CERT-1779713227349-AIHX12TIL"
+                },
+                "organizationId": {
+                  "S": "org-6ed593e0-0620-4f50-9e62-a94e9cf7bbd3-1772532196103"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6ed593e0-0620-4f50-9e62-a94e9cf7bbd3-1772532196103:TEST-1779741565057-JTD56LX25"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1779741565057-JTD56LX25"
+                },
+                "email": {
+                  "S": "dolafimihan8@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "The Beyond the Degree program was a rewarding experience. Volunteering gave me hands-on event management practice and a great sense of fulfillment from helping my peers gain valuable career insights"
+                },
+                "courseName": {
+                  "S": "BEYOND THE DEGREE Conference"
+                },
+                "studentName": {
+                  "S": "Damilola Olafimihan Al-Ameen"
+                },
+                "submittedAt": {
+                  "S": "2026-05-25T20:39:25.057Z"
+                },
+                "organization": {
+                  "S": "Lautech"
+                },
+                "certificateId": {
+                  "S": "CERT-1779713227349-AIHX12TIL"
+                },
+                "organizationId": {
+                  "S": "org-6ed593e0-0620-4f50-9e62-a94e9cf7bbd3-1772532196103"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6ed593e0-0620-4f50-9e62-a94e9cf7bbd3-1772532196103:TEST-1779741928220-U2IZP94EN"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1779741928220-U2IZP94EN"
+                },
+                "email": {
+                  "S": "loveolatunji21@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Joined the volunteer media team to create content, my main impact has been helping translate our work into content people actually engage with. I’ve contributed by creating visuals, editing short videos. \nIt was a great privilege to work with scientists Victor 🙏"
+                },
+                "courseName": {
+                  "S": "BEYOND THE DEGREE Conference"
+                },
+                "studentName": {
+                  "S": "Olatunji Love"
+                },
+                "submittedAt": {
+                  "S": "2026-05-25T20:45:28.220Z"
+                },
+                "organization": {
+                  "S": "God's Favorite 🥺🥰"
+                },
+                "certificateId": {
+                  "S": "CERT-1779713227349-AIHX12TIL"
+                },
+                "organizationId": {
+                  "S": "org-6ed593e0-0620-4f50-9e62-a94e9cf7bbd3-1772532196103"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6ed593e0-0620-4f50-9e62-a94e9cf7bbd3-1772532196103:TEST-1779741943748-IKNWO67A7"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1779741943748-IKNWO67A7"
+                },
+                "email": {
+                  "S": "victoriajolaoye@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "The Beyond the Degree program was a masterclass in community building. Volunteering allowed me to network with like-minded individuals, sharpen my communication skills, and play a direct role in creating a successful, impactful event for the LAUTECH community"
+                },
+                "courseName": {
+                  "S": "BEYOND THE DEGREE Conference"
+                },
+                "studentName": {
+                  "S": "Olaoye Victoria jejelola"
+                },
+                "submittedAt": {
+                  "S": "2026-05-25T20:45:43.748Z"
+                },
+                "organization": {
+                  "S": "LAUTECH"
+                },
+                "certificateId": {
+                  "S": "CERT-1779713227349-AIHX12TIL"
+                },
+                "organizationId": {
+                  "S": "org-6ed593e0-0620-4f50-9e62-a94e9cf7bbd3-1772532196103"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6ed593e0-0620-4f50-9e62-a94e9cf7bbd3-1772532196103:TEST-1779742986499-VS194YFJK"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1779742986499-VS194YFJK"
+                },
+                "email": {
+                  "S": "loveolatunji21@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Since joining the volunteer media team, my main impact has been helping translate our work into content people actually engage with. I’ve contributed by creating visuals, editing short videos, \nIt was a great privilege to work with Scientists Victor 🙏"
+                },
+                "courseName": {
+                  "S": "BEYOND THE DEGREE Conference"
+                },
+                "studentName": {
+                  "S": "Olatunji Love"
+                },
+                "submittedAt": {
+                  "S": "2026-05-25T21:03:06.499Z"
+                },
+                "organization": {
+                  "S": "Lautech"
+                },
+                "certificateId": {
+                  "S": "CERT-1779713227349-AIHX12TIL"
+                },
+                "organizationId": {
+                  "S": "org-6ed593e0-0620-4f50-9e62-a94e9cf7bbd3-1772532196103"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6ed593e0-0620-4f50-9e62-a94e9cf7bbd3-1772532196103:TEST-1779743312144-3X88C3YX4"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1779743312144-3X88C3YX4"
+                },
+                "email": {
+                  "S": "loveolatunji21@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Since joining the volunteer media team, my main impact has been helping translate our work into content people actually engage with. I’ve contributed by creating visuals, editing short videos. \nIt's was a privilege to work with scientists Victor🙏"
+                },
+                "courseName": {
+                  "S": "BEYOND THE DEGREE Conference"
+                },
+                "studentName": {
+                  "S": "Olatunji Love"
+                },
+                "submittedAt": {
+                  "S": "2026-05-25T21:08:32.144Z"
+                },
+                "organization": {
+                  "S": "Lautech"
+                },
+                "certificateId": {
+                  "S": "CERT-1779713227349-AIHX12TIL"
+                },
+                "organizationId": {
+                  "S": "org-6ed593e0-0620-4f50-9e62-a94e9cf7bbd3-1772532196103"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6ed593e0-0620-4f50-9e62-a94e9cf7bbd3-1772532196103:TEST-1779743419123-S8OIBHTO8"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1779743419123-S8OIBHTO8"
+                },
+                "email": {
+                  "S": "loveolatunji21@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Since joining the volunteer media team, my main impact has been helping translate our work into content people actually engage with. I’ve contributed by creating visuals, editing short videos. \nIt's was a great privilege to work with scientists Victor🙏"
+                },
+                "courseName": {
+                  "S": "BEYOND THE DEGREE Conference"
+                },
+                "studentName": {
+                  "S": "Olatunji Love"
+                },
+                "submittedAt": {
+                  "S": "2026-05-25T21:10:19.123Z"
+                },
+                "organization": {
+                  "S": "Lautech"
+                },
+                "certificateId": {
+                  "S": "CERT-1779713227349-AIHX12TIL"
+                },
+                "organizationId": {
+                  "S": "org-6ed593e0-0620-4f50-9e62-a94e9cf7bbd3-1772532196103"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6ed593e0-0620-4f50-9e62-a94e9cf7bbd3-1772532196103:TEST-1779823902592-MXZJQUH7V"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1779823902592-MXZJQUH7V"
+                },
+                "email": {
+                  "S": "olayinkatemiloluwa2008@gmail.com"
+                },
+                "impact": {
+                  "S": "The conference was so helpful and impactfull\nIf it were to hold again,I will definitely attend it"
+                },
+                "courseName": {
+                  "S": "BEYOND THE DEGREE Conference"
+                },
+                "studentName": {
+                  "S": "Olayinka Temiloluwa Grace"
+                },
+                "submittedAt": {
+                  "S": "2026-05-26T19:31:42.592Z"
+                },
+                "organization": {
+                  "S": "Ladoke Akintola University of Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1779713227349-AIHX12TIL"
+                },
+                "organizationId": {
+                  "S": "org-6ed593e0-0620-4f50-9e62-a94e9cf7bbd3-1772532196103"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447:TEST-1773332643520-Z7LYXC0CY"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773332643520-Z7LYXC0CY"
+                },
+                "email": {
+                  "S": "folamiabarnabas@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "It has helped to bridge the gap between bioinformatics and antimicrobial resistance which has been my area of research interest"
+                },
+                "programId": {
+                  "S": "data-driven-health:-bridging-bioinformatics-and-pharmacology-for-effective-interventions."
+                },
+                "courseName": {
+                  "S": "Data-Driven Health: Bridging Bioinformatics and Pharmacology for Effective Interventions."
+                },
+                "studentName": {
+                  "S": "Folami-A Barnabas"
+                },
+                "submittedAt": {
+                  "S": "2026-03-12T16:24:03.520Z"
+                },
+                "organization": {
+                  "S": "Bingham University Nigeria"
+                },
+                "certificateId": {
+                  "S": "CERT-1771337529539-AAGJGCXEY"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447:TEST-1773665006096-8C32M1DNG"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773665006096-8C32M1DNG"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "jk"
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "mercy"
+                },
+                "submittedAt": {
+                  "S": "2026-03-16T12:43:26.096Z"
+                },
+                "organization": {
+                  "S": "vuih"
+                },
+                "certificateId": {
+                  "S": "CERT-1773664960563-BW2MEFUTY"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447:TEST-1773665385867-OLIO76EU6"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773665385867-OLIO76EU6"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "vuy"
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "mercy"
+                },
+                "submittedAt": {
+                  "S": "2026-03-16T12:49:45.867Z"
+                },
+                "organization": {
+                  "S": "kn"
+                },
+                "certificateId": {
+                  "S": "CERT-1773664960563-BW2MEFUTY"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447:TEST-1773665755082-HLUIQ3PHS"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773665755082-HLUIQ3PHS"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "f"
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "mercy"
+                },
+                "submittedAt": {
+                  "S": "2026-03-16T12:55:55.082Z"
+                },
+                "organization": {
+                  "S": "a"
+                },
+                "certificateId": {
+                  "S": "CERT-1773664960563-BW2MEFUTY"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447:TEST-1773671807488-5TSX1FXUE"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773671807488-5TSX1FXUE"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "n"
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "Mercy"
+                },
+                "submittedAt": {
+                  "S": "2026-03-16T14:36:47.488Z"
+                },
+                "organization": {
+                  "S": "n"
+                },
+                "certificateId": {
+                  "S": "CERT-1773671771044-XWK1QA61Y"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447:TEST-1773749105779-N94Y4E3NY"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773749105779-N94Y4E3NY"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "c"
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "Mercy"
+                },
+                "submittedAt": {
+                  "S": "2026-03-17T12:05:05.779Z"
+                },
+                "organization": {
+                  "S": "n"
+                },
+                "certificateId": {
+                  "S": "CERT-1773671771044-XWK1QA61Y"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447:TEST-1773749432375-7UIFQHBYH"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773749432375-7UIFQHBYH"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "s"
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "Mercy"
+                },
+                "submittedAt": {
+                  "S": "2026-03-17T12:10:32.375Z"
+                },
+                "organization": {
+                  "S": "n"
+                },
+                "certificateId": {
+                  "S": "CERT-1773671771044-XWK1QA61Y"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447:TEST-1773749535733-75G1N0IEK"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773749535733-75G1N0IEK"
+                },
+                "email": {
+                  "S": "odeyemimarvellous8@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "This Hands-on Metagenomics Workflow program has equipped me with cutting-edge skills in microbial profiling, and I'd tell fellow lecturers it's a game-changer for enhancing research and teaching capabilities."
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "ODEYEMI MARVELLOUS OLUWALONI."
+                },
+                "submittedAt": {
+                  "S": "2026-03-17T12:12:15.733Z"
+                },
+                "organization": {
+                  "S": "Federal University of Technology, Akure"
+                },
+                "certificateId": {
+                  "S": "CERT-1773671771044-XWK1QA61Y"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447:TEST-1773749710122-AZ2K9Z3BK"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773749710122-AZ2K9Z3BK"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "n"
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "Mercy"
+                },
+                "submittedAt": {
+                  "S": "2026-03-17T12:15:10.122Z"
+                },
+                "organization": {
+                  "S": "n"
+                },
+                "certificateId": {
+                  "S": "CERT-1773671771044-XWK1QA61Y"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447:TEST-1773749926216-8LCSAL680"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773749926216-8LCSAL680"
+                },
+                "email": {
+                  "S": "genomacinc@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "n"
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "mercy"
+                },
+                "submittedAt": {
+                  "S": "2026-03-17T12:18:46.216Z"
+                },
+                "organization": {
+                  "S": "j"
+                },
+                "certificateId": {
+                  "S": "CERT-1773749898351-VL1FSHIUN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447:TEST-1773750209959-W74TKFADL"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773750209959-W74TKFADL"
+                },
+                "email": {
+                  "S": "genomacinc@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "n"
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "Mercy"
+                },
+                "submittedAt": {
+                  "S": "2026-03-17T12:23:29.959Z"
+                },
+                "organization": {
+                  "S": "j"
+                },
+                "certificateId": {
+                  "S": "CERT-1773749898351-VL1FSHIUN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447:TEST-1773750823366-WEU5T9XW9"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773750823366-WEU5T9XW9"
+                },
+                "email": {
+                  "S": "AVATAR896391@GMAIL.COM"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Outstanding"
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "Avtar kurmi"
+                },
+                "submittedAt": {
+                  "S": "2026-03-17T12:33:43.366Z"
+                },
+                "organization": {
+                  "S": "Govt. Holkar Science College Indore"
+                },
+                "certificateId": {
+                  "S": "CERT-1773749898351-VL1FSHIUN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447:TEST-1773750832437-WR759CKK6"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773750832437-WR759CKK6"
+                },
+                "email": {
+                  "S": "mbuyujohn30@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "It's was worth it"
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "John Mbuyu"
+                },
+                "submittedAt": {
+                  "S": "2026-03-17T12:33:52.437Z"
+                },
+                "organization": {
+                  "S": "Mulungushi university"
+                },
+                "certificateId": {
+                  "S": "CERT-1773749898351-VL1FSHIUN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "org_testimonial:org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447:TEST-1773750850282-B43GC3951"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773750850282-B43GC3951"
+                },
+                "email": {
+                  "S": "howardgabrielmercado@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "fun and informational"
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "Howard Gabriel G. Mercado"
+                },
+                "submittedAt": {
+                  "S": "2026-03-17T12:34:10.282Z"
+                },
+                "organization": {
+                  "S": "UP"
+                },
+                "certificateId": {
+                  "S": "CERT-1773749898351-VL1FSHIUN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

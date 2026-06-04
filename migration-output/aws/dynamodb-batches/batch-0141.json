@@ -1,0 +1,1159 @@
+{
+  "RequestItems": {
+    "certifyer-dev-kv": [
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775043206355-GA4IUY77O"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775043206355-GA4IUY77O"
+                },
+                "email": {
+                  "S": "zakouahmadu2013@gmail.com"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "I am very enlightened , I must confess that the program increase my knowledge in this field"
+                },
+                "programId": {
+                  "S": "introduction-to-bioinformatics-bootcamp"
+                },
+                "courseName": {
+                  "S": "Introduction to Bioinformatics Bootcamp"
+                },
+                "studentName": {
+                  "S": "Zakou Amadou"
+                },
+                "submittedAt": {
+                  "S": "2026-04-01T11:33:26.355Z"
+                },
+                "testimonial": {
+                  "S": "I am looking forward to be part of the next program"
+                },
+                "organization": {
+                  "S": "Federal University Teaching Hospital Lafia"
+                },
+                "certificateId": {
+                  "S": "CERT-1775037885438-82RGGX585"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775043671506-XDWFNKYWB"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775043671506-XDWFNKYWB"
+                },
+                "email": {
+                  "S": "emmaconsults22@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "As a beginner, this knowledge and skill is worth cherishing.  My expectations were met at the end of the training."
+                },
+                "programId": {
+                  "S": "introduction-to-bioinformatics-bootcamp"
+                },
+                "courseName": {
+                  "S": "Introduction to Bioinformatics Bootcamp"
+                },
+                "studentName": {
+                  "S": "EMMANUEL M. OBENG BEKOE"
+                },
+                "submittedAt": {
+                  "S": "2026-04-01T11:41:11.506Z"
+                },
+                "organization": {
+                  "S": "CSIR-WATER RESEARCH INSTITUTE"
+                },
+                "certificateId": {
+                  "S": "CERT-1775037885438-82RGGX585"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775043934608-9Q4R4O4HL"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775043934608-9Q4R4O4HL"
+                },
+                "email": {
+                  "S": "wankwas@gmail.com"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "The Classes was well structured and the facilitators are very good\nJust that you guys were not too organized"
+                },
+                "programId": {
+                  "S": "introduction-to-bioinformatics-bootcamp"
+                },
+                "courseName": {
+                  "S": "Introduction to Bioinformatics Bootcamp"
+                },
+                "studentName": {
+                  "S": "Samuel cosmas"
+                },
+                "submittedAt": {
+                  "S": "2026-04-01T11:45:34.608Z"
+                },
+                "organization": {
+                  "S": "University of Nigeria Nsukka"
+                },
+                "certificateId": {
+                  "S": "CERT-1775037885438-82RGGX585"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775046159951-JG3WEXVR5"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775046159951-JG3WEXVR5"
+                },
+                "email": {
+                  "S": "cosmasnwaeze19@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "I learnt how to use biological data to analyse and predict insights for solving bilogical problems, in silicone"
+                },
+                "programId": {
+                  "S": "introduction-to-bioinformatics-bootcamp"
+                },
+                "courseName": {
+                  "S": "Introduction to Bioinformatics Bootcamp"
+                },
+                "studentName": {
+                  "S": "NWAEZE Cosmas Kelechi"
+                },
+                "submittedAt": {
+                  "S": "2026-04-01T12:22:39.951Z"
+                },
+                "organization": {
+                  "S": "ISIFC, Université Marie et Louis Pasteur"
+                },
+                "certificateId": {
+                  "S": "CERT-1775037885438-82RGGX585"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775047860226-JEEVYK1NN"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775047860226-JEEVYK1NN"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "."
+                },
+                "programId": {
+                  "S": "test-course-title-and-signature-2"
+                },
+                "courseName": {
+                  "S": "Test course title and signature 2"
+                },
+                "studentName": {
+                  "S": "Goodie"
+                },
+                "submittedAt": {
+                  "S": "2026-04-01T12:51:00.226Z"
+                },
+                "organization": {
+                  "S": "Certifyer"
+                },
+                "certificateId": {
+                  "S": "CERT-1775047826575-S143INERM"
+                },
+                "organizationId": {
+                  "S": "org-53e77cf8-e8b7-488a-9925-d2a03e6d0ea2-1772793192106"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775048019152-QQIIC0IOS"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775048019152-QQIIC0IOS"
+                },
+                "email": {
+                  "S": "stellaolali4@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "This programme really helped me to understand the intricate parts of  bioinformatics. I loved how well detailed the lectures were and how the lecturers taught the modules. I highly recommend to anyone just starting out their journey on bioinformatics."
+                },
+                "programId": {
+                  "S": "introduction-to-bioinformatics-bootcamp"
+                },
+                "courseName": {
+                  "S": "Introduction to Bioinformatics Bootcamp"
+                },
+                "studentName": {
+                  "S": "Olali Etotaziba Stella"
+                },
+                "submittedAt": {
+                  "S": "2026-04-01T12:53:39.152Z"
+                },
+                "organization": {
+                  "S": "Reliance Family Clinics"
+                },
+                "certificateId": {
+                  "S": "CERT-1775037885438-82RGGX585"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775049823542-OJJZPWP15"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775049823542-OJJZPWP15"
+                },
+                "email": {
+                  "S": "fortuneonuoha21@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "This bootcamp is an insightful one, at least now i know what to expect in Bioinformatics in my future programs."
+                },
+                "programId": {
+                  "S": "introduction-to-bioinformatics-bootcamp"
+                },
+                "courseName": {
+                  "S": "Introduction to Bioinformatics Bootcamp"
+                },
+                "studentName": {
+                  "S": "Fortune Onuoha"
+                },
+                "submittedAt": {
+                  "S": "2026-04-01T13:23:43.543Z"
+                },
+                "testimonial": {
+                  "S": "This is a great experience and i hope you all will keep up the good work.\nThank you."
+                },
+                "organization": {
+                  "S": "Abia State University"
+                },
+                "certificateId": {
+                  "S": "CERT-1775037885438-82RGGX585"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775124554040-46AC8V22B"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775124554040-46AC8V22B"
+                },
+                "email": {
+                  "S": "uhegwuchijioke@gmail.com"
+                },
+                "title": {
+                  "S": "Prof"
+                },
+                "impact": {
+                  "S": "df"
+                },
+                "programId": {
+                  "S": "introduction-to-bioinformatics-bootcamp"
+                },
+                "courseName": {
+                  "S": "Introduction to Bioinformatics Bootcamp"
+                },
+                "studentName": {
+                  "S": "ck"
+                },
+                "submittedAt": {
+                  "S": "2026-04-02T10:09:14.040Z"
+                },
+                "organization": {
+                  "S": "df"
+                },
+                "certificateId": {
+                  "S": "CERT-1775037885438-82RGGX585"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775124662662-C1EY7GSDQ"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775124662662-C1EY7GSDQ"
+                },
+                "email": {
+                  "S": "afolayanomotolani30@gmail.com"
+                },
+                "title": {
+                  "S": "Mrs"
+                },
+                "impact": {
+                  "S": "jbhkjlsdknc msdkc"
+                },
+                "programId": {
+                  "S": "cancer-genomics"
+                },
+                "courseName": {
+                  "S": "CANCER GENOMICS"
+                },
+                "studentName": {
+                  "S": "Oyewole Daniel Oni"
+                },
+                "submittedAt": {
+                  "S": "2026-04-02T10:11:02.662Z"
+                },
+                "organization": {
+                  "S": "Hanguk"
+                },
+                "certificateId": {
+                  "S": "CERT-1775124633664-4AGKHZE5J"
+                },
+                "organizationId": {
+                  "S": "org-c4e7a07b-562d-4068-968c-7d8bee0cec2e-1767182844779"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775125182048-33E6KHU52"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775125182048-33E6KHU52"
+                },
+                "email": {
+                  "S": "afolayanomotolani30@gmail.com"
+                },
+                "title": {
+                  "S": "Mrs"
+                },
+                "impact": {
+                  "S": "jbhkjlsdknc msdkc"
+                },
+                "programId": {
+                  "S": "cancer-genomics"
+                },
+                "courseName": {
+                  "S": "CANCER GENOMICS"
+                },
+                "studentName": {
+                  "S": "Oyewole Daniel Oni"
+                },
+                "submittedAt": {
+                  "S": "2026-04-02T10:19:42.048Z"
+                },
+                "organization": {
+                  "S": "Hanguk"
+                },
+                "certificateId": {
+                  "S": "CERT-1775124633664-4AGKHZE5J"
+                },
+                "organizationId": {
+                  "S": "org-c4e7a07b-562d-4068-968c-7d8bee0cec2e-1767182844779"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775125346252-PNN85X1CM"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775125346252-PNN85X1CM"
+                },
+                "email": {
+                  "S": "afolayanomotolani30@gmail.com"
+                },
+                "title": {
+                  "S": "Mrs"
+                },
+                "impact": {
+                  "S": "jbhkjlsdknc msdkc"
+                },
+                "programId": {
+                  "S": "cancer-genomics"
+                },
+                "courseName": {
+                  "S": "CANCER GENOMICS"
+                },
+                "studentName": {
+                  "S": "Oyewole Daniel Oni"
+                },
+                "submittedAt": {
+                  "S": "2026-04-02T10:22:26.252Z"
+                },
+                "organization": {
+                  "S": "Hanguk"
+                },
+                "certificateId": {
+                  "S": "CERT-1775124633664-4AGKHZE5J"
+                },
+                "organizationId": {
+                  "S": "org-c4e7a07b-562d-4068-968c-7d8bee0cec2e-1767182844779"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775125876925-KAU4BYTNK"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775125876925-KAU4BYTNK"
+                },
+                "email": {
+                  "S": "afolayanomotolani30@gmail.com"
+                },
+                "title": {
+                  "S": "Mrs"
+                },
+                "impact": {
+                  "S": "jbhkjlsdknc msdkc"
+                },
+                "programId": {
+                  "S": "cancer-genomics"
+                },
+                "courseName": {
+                  "S": "CANCER GENOMICS"
+                },
+                "studentName": {
+                  "S": "Oyewole Daniel Oni"
+                },
+                "submittedAt": {
+                  "S": "2026-04-02T10:31:16.925Z"
+                },
+                "organization": {
+                  "S": "Hanguk"
+                },
+                "certificateId": {
+                  "S": "CERT-1775124633664-4AGKHZE5J"
+                },
+                "organizationId": {
+                  "S": "org-c4e7a07b-562d-4068-968c-7d8bee0cec2e-1767182844779"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775126163030-TSCIUGCSC"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775126163030-TSCIUGCSC"
+                },
+                "email": {
+                  "S": "afolayanomotolani30@gmail.com"
+                },
+                "title": {
+                  "S": "Mrs"
+                },
+                "impact": {
+                  "S": "jbhkjlsdknc msdkc"
+                },
+                "programId": {
+                  "S": "cancer-genomics"
+                },
+                "courseName": {
+                  "S": "CANCER GENOMICS"
+                },
+                "studentName": {
+                  "S": "Oyewole Daniel Oni"
+                },
+                "submittedAt": {
+                  "S": "2026-04-02T10:36:03.030Z"
+                },
+                "organization": {
+                  "S": "Hanguk"
+                },
+                "certificateId": {
+                  "S": "CERT-1775124633664-4AGKHZE5J"
+                },
+                "organizationId": {
+                  "S": "org-c4e7a07b-562d-4068-968c-7d8bee0cec2e-1767182844779"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775131516196-JJ949UZE0"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775131516196-JJ949UZE0"
+                },
+                "email": {
+                  "S": "afolayanomotolani30@gmail.com"
+                },
+                "title": {
+                  "S": "Mrs"
+                },
+                "impact": {
+                  "S": "jbhkjlsdknc msdkc"
+                },
+                "programId": {
+                  "S": "cancer-genomics"
+                },
+                "courseName": {
+                  "S": "CANCER GENOMICS"
+                },
+                "studentName": {
+                  "S": "Oyewole Daniel Oni"
+                },
+                "submittedAt": {
+                  "S": "2026-04-02T12:05:16.196Z"
+                },
+                "organization": {
+                  "S": "Hanguk"
+                },
+                "certificateId": {
+                  "S": "CERT-1775124633664-4AGKHZE5J"
+                },
+                "organizationId": {
+                  "S": "org-c4e7a07b-562d-4068-968c-7d8bee0cec2e-1767182844779"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775131579222-BMB4DMJ7E"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775131579222-BMB4DMJ7E"
+                },
+                "email": {
+                  "S": "afolayanomotolani30@gmail.com"
+                },
+                "title": {
+                  "S": "Mrs"
+                },
+                "impact": {
+                  "S": "jbhkjlsdknc msdkc"
+                },
+                "programId": {
+                  "S": "cancer-genomics"
+                },
+                "courseName": {
+                  "S": "CANCER GENOMICS"
+                },
+                "studentName": {
+                  "S": "Oyewole Daniel Oni"
+                },
+                "submittedAt": {
+                  "S": "2026-04-02T12:06:19.222Z"
+                },
+                "organization": {
+                  "S": "Hanguk"
+                },
+                "certificateId": {
+                  "S": "CERT-1775124633664-4AGKHZE5J"
+                },
+                "organizationId": {
+                  "S": "org-c4e7a07b-562d-4068-968c-7d8bee0cec2e-1767182844779"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775131777158-1ZJWW8K69"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775131777158-1ZJWW8K69"
+                },
+                "email": {
+                  "S": "afolayanomotolani30@gmail.com"
+                },
+                "title": {
+                  "S": "Mrs"
+                },
+                "impact": {
+                  "S": "jbhkjlsdknc msdkc"
+                },
+                "programId": {
+                  "S": "cancer-genomics"
+                },
+                "courseName": {
+                  "S": "CANCER GENOMICS"
+                },
+                "studentName": {
+                  "S": "Oyewole Daniel Oni"
+                },
+                "submittedAt": {
+                  "S": "2026-04-02T12:09:37.158Z"
+                },
+                "organization": {
+                  "S": "Hanguk"
+                },
+                "certificateId": {
+                  "S": "CERT-1775124633664-4AGKHZE5J"
+                },
+                "organizationId": {
+                  "S": "org-c4e7a07b-562d-4068-968c-7d8bee0cec2e-1767182844779"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775132140555-KL111L9CJ"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775132140555-KL111L9CJ"
+                },
+                "email": {
+                  "S": "uhegwuchijioke@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "df"
+                },
+                "programId": {
+                  "S": "introduction-to-bioinformatics-bootcamp"
+                },
+                "courseName": {
+                  "S": "Introduction to Bioinformatics Bootcamp"
+                },
+                "studentName": {
+                  "S": "gfh"
+                },
+                "submittedAt": {
+                  "S": "2026-04-02T12:15:40.555Z"
+                },
+                "organization": {
+                  "S": "df"
+                },
+                "certificateId": {
+                  "S": "CERT-1775037885438-82RGGX585"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775135575400-5TBJP9MLB"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775135575400-5TBJP9MLB"
+                },
+                "email": {
+                  "S": "afolayanomotolani30@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "csdfgtfnc"
+                },
+                "programId": {
+                  "S": "cancer-genomics"
+                },
+                "courseName": {
+                  "S": "CANCER GENOMICS"
+                },
+                "studentName": {
+                  "S": "Oyewole Daniel Oni"
+                },
+                "submittedAt": {
+                  "S": "2026-04-02T13:12:55.400Z"
+                },
+                "organization": {
+                  "S": "Hanguk"
+                },
+                "certificateId": {
+                  "S": "CERT-1775124633664-4AGKHZE5J"
+                },
+                "organizationId": {
+                  "S": "org-c4e7a07b-562d-4068-968c-7d8bee0cec2e-1767182844779"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775136124208-PAHLDA1FH"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775136124208-PAHLDA1FH"
+                },
+                "email": {
+                  "S": "afolayanomotolani30@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "gfhjhkl;kjhgfdgxf"
+                },
+                "programId": {
+                  "S": "genomic-ml-data-modelling"
+                },
+                "courseName": {
+                  "S": "Genomic ML Data Modelling"
+                },
+                "studentName": {
+                  "S": "Omotolani Lydia Afolayan"
+                },
+                "submittedAt": {
+                  "S": "2026-04-02T13:22:04.208Z"
+                },
+                "organization": {
+                  "S": "Hanguk"
+                },
+                "certificateId": {
+                  "S": "CERT-1775136099411-OEJV33X9K"
+                },
+                "organizationId": {
+                  "S": "org-c4e7a07b-562d-4068-968c-7d8bee0cec2e-1767182844779"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775136266472-88IWNQPHQ"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775136266472-88IWNQPHQ"
+                },
+                "email": {
+                  "S": "afolayanomotolani30@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "gfhjhkl;kjhgfdgxf"
+                },
+                "programId": {
+                  "S": "genomic-ml-data-modelling"
+                },
+                "courseName": {
+                  "S": "Genomic ML Data Modelling"
+                },
+                "studentName": {
+                  "S": "Omotolani Lydia Afolayan"
+                },
+                "submittedAt": {
+                  "S": "2026-04-02T13:24:26.472Z"
+                },
+                "organization": {
+                  "S": "Hanguk"
+                },
+                "certificateId": {
+                  "S": "CERT-1775136099411-OEJV33X9K"
+                },
+                "organizationId": {
+                  "S": "org-c4e7a07b-562d-4068-968c-7d8bee0cec2e-1767182844779"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775136830522-7YYIAVWJC"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775136830522-7YYIAVWJC"
+                },
+                "email": {
+                  "S": "afolayanomotolani30@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "gfhjhkl;kjhgfdgxf"
+                },
+                "programId": {
+                  "S": "genomic-ml-data-modelling"
+                },
+                "courseName": {
+                  "S": "Genomic ML Data Modelling"
+                },
+                "studentName": {
+                  "S": "Omotolani Lydia Afolayan"
+                },
+                "submittedAt": {
+                  "S": "2026-04-02T13:33:50.522Z"
+                },
+                "organization": {
+                  "S": "Hanguk"
+                },
+                "certificateId": {
+                  "S": "CERT-1775136099411-OEJV33X9K"
+                },
+                "organizationId": {
+                  "S": "org-c4e7a07b-562d-4068-968c-7d8bee0cec2e-1767182844779"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775136991227-5O1U1T3Q9"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775136991227-5O1U1T3Q9"
+                },
+                "email": {
+                  "S": "afolayanomotolani30@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "gfhjhkl;kjhgfdgxf"
+                },
+                "programId": {
+                  "S": "genomic-ml-data-modelling"
+                },
+                "courseName": {
+                  "S": "Genomic ML Data Modelling"
+                },
+                "studentName": {
+                  "S": "Omotolani Lydia Afolayan"
+                },
+                "submittedAt": {
+                  "S": "2026-04-02T13:36:31.227Z"
+                },
+                "organization": {
+                  "S": "Hanguk"
+                },
+                "certificateId": {
+                  "S": "CERT-1775136099411-OEJV33X9K"
+                },
+                "organizationId": {
+                  "S": "org-c4e7a07b-562d-4068-968c-7d8bee0cec2e-1767182844779"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775137024762-31B2BMJ29"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775137024762-31B2BMJ29"
+                },
+                "email": {
+                  "S": "afolayanomotolani30@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "gfhjhkl;kjhgfdgxf"
+                },
+                "programId": {
+                  "S": "genomic-ml-data-modelling"
+                },
+                "courseName": {
+                  "S": "Genomic ML Data Modelling"
+                },
+                "studentName": {
+                  "S": "Omotolani Lydia Afolayan"
+                },
+                "submittedAt": {
+                  "S": "2026-04-02T13:37:04.762Z"
+                },
+                "organization": {
+                  "S": "Hanguk"
+                },
+                "certificateId": {
+                  "S": "CERT-1775136099411-OEJV33X9K"
+                },
+                "organizationId": {
+                  "S": "org-c4e7a07b-562d-4068-968c-7d8bee0cec2e-1767182844779"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775154589562-NIEM556YP"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775154589562-NIEM556YP"
+                },
+                "email": {
+                  "S": "adeniyiadebayo288@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "The class was enlighten, eye opening also it was interactive and the questions asked were all answered. kudos to the team and a big thank you the lecturers who put us through the classes and sessions."
+                },
+                "programId": {
+                  "S": "introduction-to-bioinformatics-bootcamp"
+                },
+                "courseName": {
+                  "S": "Introduction to Bioinformatics Bootcamp"
+                },
+                "studentName": {
+                  "S": "Adebayo Samuel Adeniyi"
+                },
+                "submittedAt": {
+                  "S": "2026-04-02T18:29:49.562Z"
+                },
+                "organization": {
+                  "S": "BABCOCK UNIVERSITY"
+                },
+                "certificateId": {
+                  "S": "CERT-1775037885438-82RGGX585"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775155445378-7M8Q6HLWE"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775155445378-7M8Q6HLWE"
+                },
+                "email": {
+                  "S": "myselfmvf386@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "The training was very insightful and helpful. \nIt provided me with the right leverage to further pursue my journey in bioinformatics."
+                },
+                "programId": {
+                  "S": "introduction-to-bioinformatics-bootcamp"
+                },
+                "courseName": {
+                  "S": "Introduction to Bioinformatics Bootcamp"
+                },
+                "studentName": {
+                  "S": "Francis Vilas Mensah"
+                },
+                "submittedAt": {
+                  "S": "2026-04-02T18:44:05.379Z"
+                },
+                "organization": {
+                  "S": "Kwame Nkrumah University of Science and Technology"
+                },
+                "certificateId": {
+                  "S": "CERT-1775037885438-82RGGX585"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

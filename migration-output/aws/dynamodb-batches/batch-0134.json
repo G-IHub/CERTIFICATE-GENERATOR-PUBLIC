@@ -1,0 +1,1171 @@
+{
+  "RequestItems": {
+    "certifyer-dev-kv": [
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1773819670317-DY89QQ4YY"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773819670317-DY89QQ4YY"
+                },
+                "email": {
+                  "S": "alimatumostafa20@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It was a great experience and I would recommend it anyone. Thank you to the fellow lecturers who taught this course."
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "Alimatu Mostafa"
+                },
+                "submittedAt": {
+                  "S": "2026-03-18T07:41:10.317Z"
+                },
+                "organization": {
+                  "S": "West African Centre for Cell Biology of Infectious Pathogens"
+                },
+                "certificateId": {
+                  "S": "CERT-1773749898351-VL1FSHIUN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1773826863088-RD42ADQ0M"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773826863088-RD42ADQ0M"
+                },
+                "email": {
+                  "S": "biotechs5798@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It's a good opportunity to avail information about the progress in metagenomics workflow for microbial profiling program."
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "Mehwish"
+                },
+                "submittedAt": {
+                  "S": "2026-03-18T09:41:03.088Z"
+                },
+                "testimonial": {
+                  "S": "It's best way to share awareness"
+                },
+                "organization": {
+                  "S": "Virtual University of Pakistan Alumni"
+                },
+                "certificateId": {
+                  "S": "CERT-1773749898351-VL1FSHIUN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1773826918233-W1XIP6QXH"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773826918233-W1XIP6QXH"
+                },
+                "email": {
+                  "S": "eberechukwuanioke13@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It was very unique and impactful. Thank you for the opportunity."
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "Eberechukwu Samuela Anioke"
+                },
+                "submittedAt": {
+                  "S": "2026-03-18T09:41:58.233Z"
+                },
+                "organization": {
+                  "S": "Medical laboratory science"
+                },
+                "certificateId": {
+                  "S": "CERT-1773749898351-VL1FSHIUN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1773828349010-D1BDW7K7B"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773828349010-D1BDW7K7B"
+                },
+                "email": {
+                  "S": "oreoluwagloryjoshua@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "I’ve been impacted with the lessons,I’ve been able to learn a lot from this program,I understood meta genomics better"
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "Joshua Oreoluwa"
+                },
+                "submittedAt": {
+                  "S": "2026-03-18T10:05:49.010Z"
+                },
+                "testimonial": {
+                  "S": "No"
+                },
+                "organization": {
+                  "S": "Helix Biogen Institute"
+                },
+                "certificateId": {
+                  "S": "CERT-1773749898351-VL1FSHIUN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1773828564392-G3I1MF0XU"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773828564392-G3I1MF0XU"
+                },
+                "email": {
+                  "S": "oreoluwagloryjoshua@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "I’ve been able to understand meta genomics ,I’ve gained a lot of knowledge in this field"
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "Joshua Oreoluwa Odeyon"
+                },
+                "submittedAt": {
+                  "S": "2026-03-18T10:09:24.392Z"
+                },
+                "testimonial": {
+                  "S": "No"
+                },
+                "organization": {
+                  "S": "Helix Biogen Institute"
+                },
+                "certificateId": {
+                  "S": "CERT-1773749898351-VL1FSHIUN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1773828837958-6IGX31VSH"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773828837958-6IGX31VSH"
+                },
+                "email": {
+                  "S": "oreoluwagloryjoshua@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Nil"
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "Joshua Oreoluwa Odeyon"
+                },
+                "submittedAt": {
+                  "S": "2026-03-18T10:13:57.958Z"
+                },
+                "testimonial": {
+                  "S": "Nil"
+                },
+                "organization": {
+                  "S": "Helix Biogen"
+                },
+                "certificateId": {
+                  "S": "CERT-1773749898351-VL1FSHIUN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1773829413208-5RV8S9PFI"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773829413208-5RV8S9PFI"
+                },
+                "email": {
+                  "S": "ramzanmicro9@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Overall good training and I learnt bioinformatics tool that used in genetic study"
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "muhammad ramzan"
+                },
+                "submittedAt": {
+                  "S": "2026-03-18T10:23:33.208Z"
+                },
+                "testimonial": {
+                  "S": "Add topics like primer blast how to confirm already published primers and how check band size by using NCBI tools"
+                },
+                "organization": {
+                  "S": "University of veterinary and animal sciences Lahore"
+                },
+                "certificateId": {
+                  "S": "CERT-1773749898351-VL1FSHIUN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1773830272526-LBHDTRFBP"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773830272526-LBHDTRFBP"
+                },
+                "email": {
+                  "S": "oreelisha13@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "It was wonderful and it helped broaden my knowledge on meta genomics and bioinformatics"
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "Ore Elisha Kehinde"
+                },
+                "submittedAt": {
+                  "S": "2026-03-18T10:37:52.526Z"
+                },
+                "organization": {
+                  "S": "Mountain Top university"
+                },
+                "certificateId": {
+                  "S": "CERT-1773749898351-VL1FSHIUN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1773830566474-53LSTCAQR"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773830566474-53LSTCAQR"
+                },
+                "email": {
+                  "S": "oreelisha13@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "It was enlightening and wonderful, broadening my knowledge on meta genomics and bioinformatics"
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "Ore Elisha Kehinde"
+                },
+                "submittedAt": {
+                  "S": "2026-03-18T10:42:46.474Z"
+                },
+                "organization": {
+                  "S": "Mountain Top university"
+                },
+                "certificateId": {
+                  "S": "CERT-1773749898351-VL1FSHIUN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1773831794317-91YJAWJRL"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773831794317-91YJAWJRL"
+                },
+                "email": {
+                  "S": "ohemujohn6@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Powerful, Educative and Enlightened"
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "Ohemu John Ojodomo"
+                },
+                "submittedAt": {
+                  "S": "2026-03-18T11:03:14.317Z"
+                },
+                "testimonial": {
+                  "S": "Metagenomics program is good"
+                },
+                "organization": {
+                  "S": "Nasarawa State University Keffi Nigeria"
+                },
+                "certificateId": {
+                  "S": "CERT-1773749898351-VL1FSHIUN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1773832604871-LYFBG5ZS7"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773832604871-LYFBG5ZS7"
+                },
+                "email": {
+                  "S": "ohemujohn6@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Educative and insightful"
+                },
+                "programId": {
+                  "S": "data-driven-health:-bridging-bioinformatics-and-pharmacology-for-effective-interventions."
+                },
+                "courseName": {
+                  "S": "Data-Driven Health: Bridging Bioinformatics and Pharmacology for Effective Interventions."
+                },
+                "studentName": {
+                  "S": "Ohemu John Ojodomo"
+                },
+                "submittedAt": {
+                  "S": "2026-03-18T11:16:44.871Z"
+                },
+                "testimonial": {
+                  "S": "Powerful program"
+                },
+                "organization": {
+                  "S": "Nasarawa State University Keffi Nigeria"
+                },
+                "certificateId": {
+                  "S": "CERT-1771337529539-AAGJGCXEY"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1773834009767-W3XDN5DNE"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773834009767-W3XDN5DNE"
+                },
+                "title": {
+                  "S": "Prof"
+                },
+                "impact": {
+                  "S": "ddd"
+                },
+                "programId": {
+                  "S": "biocoding-bootcamp"
+                },
+                "courseName": {
+                  "S": "Biocoding Bootcamp"
+                },
+                "studentName": {
+                  "S": "ddd"
+                },
+                "submittedAt": {
+                  "S": "2026-03-18T11:40:09.767Z"
+                },
+                "organization": {
+                  "S": "dd"
+                },
+                "certificateId": {
+                  "S": "CERT-1773759227057-D96ZBUJF7"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1773834070409-GTU0WI4D7"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773834070409-GTU0WI4D7"
+                },
+                "title": {
+                  "S": "Prof"
+                },
+                "impact": {
+                  "S": "ddd"
+                },
+                "programId": {
+                  "S": "biocoding-bootcamp"
+                },
+                "courseName": {
+                  "S": "Biocoding Bootcamp"
+                },
+                "studentName": {
+                  "S": "ffg"
+                },
+                "submittedAt": {
+                  "S": "2026-03-18T11:41:10.409Z"
+                },
+                "organization": {
+                  "S": "ddd"
+                },
+                "certificateId": {
+                  "S": "CERT-1773759817780-52GNSUHZX"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1773835475500-WA3UKYL0F"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773835475500-WA3UKYL0F"
+                },
+                "email": {
+                  "S": "clementchilambe81@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "It was indeed helpful"
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "Clement Chilambe"
+                },
+                "submittedAt": {
+                  "S": "2026-03-18T12:04:35.500Z"
+                },
+                "organization": {
+                  "S": "Mulungushi University"
+                },
+                "certificateId": {
+                  "S": "CERT-1773749898351-VL1FSHIUN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1773836235367-ZVOS151P2"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773836235367-ZVOS151P2"
+                },
+                "email": {
+                  "S": "chijiokeuhegwu@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "fff"
+                },
+                "programId": {
+                  "S": "biocoding-bootcamp"
+                },
+                "courseName": {
+                  "S": "2-month Virtual Biocoding Bootcamp"
+                },
+                "studentName": {
+                  "S": "hjh"
+                },
+                "submittedAt": {
+                  "S": "2026-03-18T12:17:15.367Z"
+                },
+                "organization": {
+                  "S": "vvvv"
+                },
+                "certificateId": {
+                  "S": "CERT-1773759817780-52GNSUHZX"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1773839379023-3BB37TWA2"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773839379023-3BB37TWA2"
+                },
+                "email": {
+                  "S": "chijiokeuhegwu@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "r"
+                },
+                "programId": {
+                  "S": "biocoding-bootcamp"
+                },
+                "courseName": {
+                  "S": "2-month Virtual Biocoding Bootcamp"
+                },
+                "studentName": {
+                  "S": "Genomac Holdings"
+                },
+                "submittedAt": {
+                  "S": "2026-03-18T13:09:39.023Z"
+                },
+                "organization": {
+                  "S": "Genomachub"
+                },
+                "certificateId": {
+                  "S": "CERT-1773759817780-52GNSUHZX"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1773840458390-LYDCXH8IT"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773840458390-LYDCXH8IT"
+                },
+                "email": {
+                  "S": "koleoshoemmanueltolu06@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "It really exposed me to some computer codes"
+                },
+                "programId": {
+                  "S": "biocoding-bootcamp"
+                },
+                "courseName": {
+                  "S": "2-month Virtual Biocoding Bootcamp"
+                },
+                "studentName": {
+                  "S": "EMMANUEL TOLULOPE KOLEOSHO"
+                },
+                "submittedAt": {
+                  "S": "2026-03-18T13:27:38.390Z"
+                },
+                "organization": {
+                  "S": "Personal"
+                },
+                "certificateId": {
+                  "S": "CERT-1773759817780-52GNSUHZX"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1773840474544-4BPC72OMW"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773840474544-4BPC72OMW"
+                },
+                "email": {
+                  "S": "preciousishaku24@gmail.com"
+                },
+                "title": {
+                  "S": "Mrs"
+                },
+                "impact": {
+                  "S": "It was impactful."
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "Precious Hauwa Ishaku"
+                },
+                "submittedAt": {
+                  "S": "2026-03-18T13:27:54.544Z"
+                },
+                "organization": {
+                  "S": "Bingham University Karu,"
+                },
+                "certificateId": {
+                  "S": "CERT-1773749898351-VL1FSHIUN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1773840543711-ACE8QRRKJ"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773840543711-ACE8QRRKJ"
+                },
+                "email": {
+                  "S": "olatundebch@gmail.com"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "Educative and interesting"
+                },
+                "programId": {
+                  "S": "biocoding-bootcamp"
+                },
+                "courseName": {
+                  "S": "2-month Virtual Biocoding Bootcamp"
+                },
+                "studentName": {
+                  "S": "Ahmed Olatunde"
+                },
+                "submittedAt": {
+                  "S": "2026-03-18T13:29:03.711Z"
+                },
+                "organization": {
+                  "S": "Abubakar Tafawa Balewa University"
+                },
+                "certificateId": {
+                  "S": "CERT-1773759817780-52GNSUHZX"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1773840633712-39MKTD4N3"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773840633712-39MKTD4N3"
+                },
+                "email": {
+                  "S": "shepherdineri@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "The experience is fascinating"
+                },
+                "programId": {
+                  "S": "biocoding-bootcamp"
+                },
+                "courseName": {
+                  "S": "2-month Virtual Biocoding Bootcamp"
+                },
+                "studentName": {
+                  "S": "Ineri Shepherd"
+                },
+                "submittedAt": {
+                  "S": "2026-03-18T13:30:33.713Z"
+                },
+                "organization": {
+                  "S": "Federal University of Technology Owerri"
+                },
+                "certificateId": {
+                  "S": "CERT-1773759817780-52GNSUHZX"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1773840988717-FWS4B0ZLA"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773840988717-FWS4B0ZLA"
+                },
+                "email": {
+                  "S": "ochayisunday@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "This program is truely inspiring. It has helped to drive away the fear of coding and spur my interest to dive deeper into bioinformatics"
+                },
+                "programId": {
+                  "S": "biocoding-bootcamp"
+                },
+                "courseName": {
+                  "S": "2-month Virtual Biocoding Bootcamp"
+                },
+                "studentName": {
+                  "S": "Ochayi, Sunday Akpah"
+                },
+                "submittedAt": {
+                  "S": "2026-03-18T13:36:28.717Z"
+                },
+                "organization": {
+                  "S": "Federal Medical Centre"
+                },
+                "certificateId": {
+                  "S": "CERT-1773759817780-52GNSUHZX"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1773841046580-6OL8BY81I"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773841046580-6OL8BY81I"
+                },
+                "email": {
+                  "S": "ashwinismj@gmail.com"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "Good, lot more to learn"
+                },
+                "programId": {
+                  "S": "biocoding-bootcamp"
+                },
+                "courseName": {
+                  "S": "2-month Virtual Biocoding Bootcamp"
+                },
+                "studentName": {
+                  "S": "Ashwini Somayaji"
+                },
+                "submittedAt": {
+                  "S": "2026-03-18T13:37:26.580Z"
+                },
+                "organization": {
+                  "S": "M S Ramaiah University of Applied Sciences"
+                },
+                "certificateId": {
+                  "S": "CERT-1773759817780-52GNSUHZX"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1773841754201-2UV9BEGK7"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773841754201-2UV9BEGK7"
+                },
+                "email": {
+                  "S": "samina.chalkoo4@gmail.com"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "Great experience"
+                },
+                "programId": {
+                  "S": "biocoding-bootcamp"
+                },
+                "courseName": {
+                  "S": "2-month Virtual Biocoding Bootcamp"
+                },
+                "studentName": {
+                  "S": "Dr.Sameena Chalkoo"
+                },
+                "submittedAt": {
+                  "S": "2026-03-18T13:49:14.201Z"
+                },
+                "organization": {
+                  "S": "Amity University, Dubai"
+                },
+                "certificateId": {
+                  "S": "CERT-1773759817780-52GNSUHZX"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1773841972326-5R9ZWS69V"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773841972326-5R9ZWS69V"
+                },
+                "email": {
+                  "S": "abdullahi.st@unilorin.edu.ng"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "No one understands how much the training has impacted me. The lecturers deserve all the praise."
+                },
+                "programId": {
+                  "S": "biocoding-bootcamp"
+                },
+                "courseName": {
+                  "S": "2-month Virtual Biocoding Bootcamp"
+                },
+                "studentName": {
+                  "S": "Sa'ad Abdullahi"
+                },
+                "submittedAt": {
+                  "S": "2026-03-18T13:52:52.326Z"
+                },
+                "organization": {
+                  "S": "University of Ilorin,"
+                },
+                "certificateId": {
+                  "S": "CERT-1773759817780-52GNSUHZX"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1773842221826-JV10EBJFJ"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1773842221826-JV10EBJFJ"
+                },
+                "email": {
+                  "S": "abdullahi.st@unilorin.edu.ng"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "No one understands how much the training has impacted me. The lecturers deserve all the praise."
+                },
+                "programId": {
+                  "S": "biocoding-bootcamp"
+                },
+                "courseName": {
+                  "S": "2-month Virtual Biocoding Bootcamp"
+                },
+                "studentName": {
+                  "S": "Sa'ad Toyin Abdullahi"
+                },
+                "submittedAt": {
+                  "S": "2026-03-18T13:57:01.826Z"
+                },
+                "organization": {
+                  "S": "University of Ilorin,"
+                },
+                "certificateId": {
+                  "S": "CERT-1773759817780-52GNSUHZX"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

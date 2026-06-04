@@ -1,0 +1,1078 @@
+{
+  "RequestItems": {
+    "certifyer-dev-kv": [
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780299336593-B83VYN4MB"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780299336593-B83VYN4MB"
+                },
+                "email": {
+                  "S": "cynthiafeck6@gmail.com"
+                },
+                "title": {
+                  "S": "Mrs"
+                },
+                "impact": {
+                  "S": "Good"
+                },
+                "courseName": {
+                  "S": "LinkedIn Locals Bamenda"
+                },
+                "studentName": {
+                  "S": "Kabi Ngeah Nora"
+                },
+                "submittedAt": {
+                  "S": "2026-06-01T07:35:36.593Z"
+                },
+                "organization": {
+                  "S": "LinkedIn Locals"
+                },
+                "certificateId": {
+                  "S": "CERT-1780297095030-AGWYMEXN1"
+                },
+                "organizationId": {
+                  "S": "org-80f0d6d3-127d-497a-807d-41c1804800fd-1780291956400"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780299488995-49GBTU7FY"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780299488995-49GBTU7FY"
+                },
+                "email": {
+                  "S": "cynthiafeck6@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Good"
+                },
+                "courseName": {
+                  "S": "LinkedIn Locals Bamenda"
+                },
+                "studentName": {
+                  "S": "Doh Yulambe Mika-iyll"
+                },
+                "submittedAt": {
+                  "S": "2026-06-01T07:38:08.995Z"
+                },
+                "organization": {
+                  "S": "LinkedIn Locals"
+                },
+                "certificateId": {
+                  "S": "CERT-1780297095030-AGWYMEXN1"
+                },
+                "organizationId": {
+                  "S": "org-80f0d6d3-127d-497a-807d-41c1804800fd-1780291956400"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780299599843-GSUVIKGLB"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780299599843-GSUVIKGLB"
+                },
+                "email": {
+                  "S": "cynthiafeck6@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Good"
+                },
+                "courseName": {
+                  "S": "LinkedIn Locals Bamenda"
+                },
+                "studentName": {
+                  "S": "Ashangafac God bless"
+                },
+                "submittedAt": {
+                  "S": "2026-06-01T07:39:59.843Z"
+                },
+                "organization": {
+                  "S": "LinkedIn Locals"
+                },
+                "certificateId": {
+                  "S": "CERT-1780297095030-AGWYMEXN1"
+                },
+                "organizationId": {
+                  "S": "org-80f0d6d3-127d-497a-807d-41c1804800fd-1780291956400"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780299682344-80D0270U7"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780299682344-80D0270U7"
+                },
+                "email": {
+                  "S": "cynthiafeck6@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Good"
+                },
+                "courseName": {
+                  "S": "LinkedIn Locals Bamenda"
+                },
+                "studentName": {
+                  "S": "Termaine Dufe"
+                },
+                "submittedAt": {
+                  "S": "2026-06-01T07:41:22.344Z"
+                },
+                "organization": {
+                  "S": "LinkedIn Locals"
+                },
+                "certificateId": {
+                  "S": "CERT-1780297095030-AGWYMEXN1"
+                },
+                "organizationId": {
+                  "S": "org-80f0d6d3-127d-497a-807d-41c1804800fd-1780291956400"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780299765430-VC9XSNNRU"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780299765430-VC9XSNNRU"
+                },
+                "email": {
+                  "S": "cynthiafeck6@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Good"
+                },
+                "courseName": {
+                  "S": "LinkedIn Locals Bamenda"
+                },
+                "studentName": {
+                  "S": "Majouo Sylviane"
+                },
+                "submittedAt": {
+                  "S": "2026-06-01T07:42:45.430Z"
+                },
+                "organization": {
+                  "S": "LinkedIn Locals"
+                },
+                "certificateId": {
+                  "S": "CERT-1780297095030-AGWYMEXN1"
+                },
+                "organizationId": {
+                  "S": "org-80f0d6d3-127d-497a-807d-41c1804800fd-1780291956400"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780299834271-AMDFOKB8R"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780299834271-AMDFOKB8R"
+                },
+                "email": {
+                  "S": "cynthiafeck6@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Good"
+                },
+                "courseName": {
+                  "S": "LinkedIn Locals Bamenda"
+                },
+                "studentName": {
+                  "S": "Ivoline Nsakje"
+                },
+                "submittedAt": {
+                  "S": "2026-06-01T07:43:54.271Z"
+                },
+                "organization": {
+                  "S": "LinkedIn Locals"
+                },
+                "certificateId": {
+                  "S": "CERT-1780297095030-AGWYMEXN1"
+                },
+                "organizationId": {
+                  "S": "org-80f0d6d3-127d-497a-807d-41c1804800fd-1780291956400"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780299933771-SBK0LXPFC"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780299933771-SBK0LXPFC"
+                },
+                "email": {
+                  "S": "cynthiafeck6@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Good"
+                },
+                "courseName": {
+                  "S": "LinkedIn Locals Bamenda"
+                },
+                "studentName": {
+                  "S": "Mbouemboue Dokou Karl"
+                },
+                "submittedAt": {
+                  "S": "2026-06-01T07:45:33.771Z"
+                },
+                "organization": {
+                  "S": "LinkedIn Locals"
+                },
+                "certificateId": {
+                  "S": "CERT-1780297095030-AGWYMEXN1"
+                },
+                "organizationId": {
+                  "S": "org-80f0d6d3-127d-497a-807d-41c1804800fd-1780291956400"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780300012287-OYMC5UR8G"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780300012287-OYMC5UR8G"
+                },
+                "email": {
+                  "S": "cynthiafeck6@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Good"
+                },
+                "courseName": {
+                  "S": "LinkedIn Locals Bamenda"
+                },
+                "studentName": {
+                  "S": "Ngew Huldih kembonen"
+                },
+                "submittedAt": {
+                  "S": "2026-06-01T07:46:52.287Z"
+                },
+                "organization": {
+                  "S": "LinkedIn Locals"
+                },
+                "certificateId": {
+                  "S": "CERT-1780297095030-AGWYMEXN1"
+                },
+                "organizationId": {
+                  "S": "org-80f0d6d3-127d-497a-807d-41c1804800fd-1780291956400"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780300092716-XHEGZT0NC"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780300092716-XHEGZT0NC"
+                },
+                "email": {
+                  "S": "cynthiafeck6@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Good"
+                },
+                "courseName": {
+                  "S": "LinkedIn Locals Bamenda"
+                },
+                "studentName": {
+                  "S": "Munki Yoland"
+                },
+                "submittedAt": {
+                  "S": "2026-06-01T07:48:12.716Z"
+                },
+                "organization": {
+                  "S": "LinkedIn Locals"
+                },
+                "certificateId": {
+                  "S": "CERT-1780297095030-AGWYMEXN1"
+                },
+                "organizationId": {
+                  "S": "org-80f0d6d3-127d-497a-807d-41c1804800fd-1780291956400"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780300167298-RP56HB2T8"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780300167298-RP56HB2T8"
+                },
+                "email": {
+                  "S": "cynthiafeck6@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Good"
+                },
+                "courseName": {
+                  "S": "LinkedIn Locals Bamenda"
+                },
+                "studentName": {
+                  "S": "Forfeyin Victory Alembom"
+                },
+                "submittedAt": {
+                  "S": "2026-06-01T07:49:27.298Z"
+                },
+                "organization": {
+                  "S": "LinkedIn Locals"
+                },
+                "certificateId": {
+                  "S": "CERT-1780297095030-AGWYMEXN1"
+                },
+                "organizationId": {
+                  "S": "org-80f0d6d3-127d-497a-807d-41c1804800fd-1780291956400"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780300249036-7AZG62YQH"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780300249036-7AZG62YQH"
+                },
+                "email": {
+                  "S": "cynthiafeck6@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Good"
+                },
+                "courseName": {
+                  "S": "LinkedIn Locals Bamenda"
+                },
+                "studentName": {
+                  "S": "Bam Priestly Nanghe"
+                },
+                "submittedAt": {
+                  "S": "2026-06-01T07:50:49.036Z"
+                },
+                "organization": {
+                  "S": "LinkedIn Locals"
+                },
+                "certificateId": {
+                  "S": "CERT-1780297095030-AGWYMEXN1"
+                },
+                "organizationId": {
+                  "S": "org-80f0d6d3-127d-497a-807d-41c1804800fd-1780291956400"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780300329144-6XB8794CN"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780300329144-6XB8794CN"
+                },
+                "email": {
+                  "S": "cynthiafeck6@gmail.com"
+                },
+                "title": {
+                  "S": "Mrs"
+                },
+                "impact": {
+                  "S": "Good"
+                },
+                "courseName": {
+                  "S": "LinkedIn Locals Bamenda"
+                },
+                "studentName": {
+                  "S": "Gam Britney yung"
+                },
+                "submittedAt": {
+                  "S": "2026-06-01T07:52:09.144Z"
+                },
+                "organization": {
+                  "S": "LinkedIn Locals"
+                },
+                "certificateId": {
+                  "S": "CERT-1780297095030-AGWYMEXN1"
+                },
+                "organizationId": {
+                  "S": "org-80f0d6d3-127d-497a-807d-41c1804800fd-1780291956400"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780300396580-XXLBUPDX8"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780300396580-XXLBUPDX8"
+                },
+                "email": {
+                  "S": "cynthiafeck6@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Good"
+                },
+                "courseName": {
+                  "S": "LinkedIn Locals Bamenda"
+                },
+                "studentName": {
+                  "S": "Kumah Evangeline"
+                },
+                "submittedAt": {
+                  "S": "2026-06-01T07:53:16.580Z"
+                },
+                "organization": {
+                  "S": "LinkedIn Locals"
+                },
+                "certificateId": {
+                  "S": "CERT-1780297095030-AGWYMEXN1"
+                },
+                "organizationId": {
+                  "S": "org-80f0d6d3-127d-497a-807d-41c1804800fd-1780291956400"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780300457880-SJGJ1Y6J7"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780300457880-SJGJ1Y6J7"
+                },
+                "email": {
+                  "S": "cynthiafeck6@gmail.com"
+                },
+                "title": {
+                  "S": "Mrs"
+                },
+                "impact": {
+                  "S": "Good"
+                },
+                "courseName": {
+                  "S": "LinkedIn Locals Bamenda"
+                },
+                "studentName": {
+                  "S": "Njoh marie Noel"
+                },
+                "submittedAt": {
+                  "S": "2026-06-01T07:54:17.880Z"
+                },
+                "organization": {
+                  "S": "LinkedIn Locals"
+                },
+                "certificateId": {
+                  "S": "CERT-1780297095030-AGWYMEXN1"
+                },
+                "organizationId": {
+                  "S": "org-80f0d6d3-127d-497a-807d-41c1804800fd-1780291956400"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780300528846-CWTSXNWS6"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780300528846-CWTSXNWS6"
+                },
+                "email": {
+                  "S": "cynthiafeck6@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Good"
+                },
+                "courseName": {
+                  "S": "LinkedIn Locals Bamenda"
+                },
+                "studentName": {
+                  "S": "Kabi Vera"
+                },
+                "submittedAt": {
+                  "S": "2026-06-01T07:55:28.846Z"
+                },
+                "organization": {
+                  "S": "LinkedIn Locals"
+                },
+                "certificateId": {
+                  "S": "CERT-1780297095030-AGWYMEXN1"
+                },
+                "organizationId": {
+                  "S": "org-80f0d6d3-127d-497a-807d-41c1804800fd-1780291956400"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780300612105-4WD0NIV26"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780300612105-4WD0NIV26"
+                },
+                "email": {
+                  "S": "cynthiafeck6@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Good"
+                },
+                "courseName": {
+                  "S": "LinkedIn Locals Bamenda"
+                },
+                "studentName": {
+                  "S": "Cedrick Check"
+                },
+                "submittedAt": {
+                  "S": "2026-06-01T07:56:52.105Z"
+                },
+                "organization": {
+                  "S": "LinkedIn Locals"
+                },
+                "certificateId": {
+                  "S": "CERT-1780297095030-AGWYMEXN1"
+                },
+                "organizationId": {
+                  "S": "org-80f0d6d3-127d-497a-807d-41c1804800fd-1780291956400"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780300685554-KPZHB70P2"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780300685554-KPZHB70P2"
+                },
+                "email": {
+                  "S": "cynthiafeck6@gmail.com"
+                },
+                "title": {
+                  "S": "Mrs"
+                },
+                "impact": {
+                  "S": "Good"
+                },
+                "courseName": {
+                  "S": "LinkedIn Locals Bamenda"
+                },
+                "studentName": {
+                  "S": "Njong Gracious"
+                },
+                "submittedAt": {
+                  "S": "2026-06-01T07:58:05.554Z"
+                },
+                "organization": {
+                  "S": "LinkedIn Locals"
+                },
+                "certificateId": {
+                  "S": "CERT-1780297095030-AGWYMEXN1"
+                },
+                "organizationId": {
+                  "S": "org-80f0d6d3-127d-497a-807d-41c1804800fd-1780291956400"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780300781768-VI4S2PQDK"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780300781768-VI4S2PQDK"
+                },
+                "email": {
+                  "S": "cynthiafeck6@gmail.com"
+                },
+                "title": {
+                  "S": "Mrs"
+                },
+                "impact": {
+                  "S": "Good"
+                },
+                "courseName": {
+                  "S": "LinkedIn Locals Bamenda"
+                },
+                "studentName": {
+                  "S": "Njond Gracious"
+                },
+                "submittedAt": {
+                  "S": "2026-06-01T07:59:41.768Z"
+                },
+                "organization": {
+                  "S": "LinkedIn Locals"
+                },
+                "certificateId": {
+                  "S": "CERT-1780297095030-AGWYMEXN1"
+                },
+                "organizationId": {
+                  "S": "org-80f0d6d3-127d-497a-807d-41c1804800fd-1780291956400"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780300870003-MNFK002X8"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780300870003-MNFK002X8"
+                },
+                "email": {
+                  "S": "cynthiafeck6@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Good"
+                },
+                "courseName": {
+                  "S": "LinkedIn Locals Bamenda"
+                },
+                "studentName": {
+                  "S": "Ndifor Favour"
+                },
+                "submittedAt": {
+                  "S": "2026-06-01T08:01:10.003Z"
+                },
+                "organization": {
+                  "S": "LinkedIn Locals"
+                },
+                "certificateId": {
+                  "S": "CERT-1780297095030-AGWYMEXN1"
+                },
+                "organizationId": {
+                  "S": "org-80f0d6d3-127d-497a-807d-41c1804800fd-1780291956400"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780300925239-NLLAGT7UH"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780300925239-NLLAGT7UH"
+                },
+                "email": {
+                  "S": "cynthiafeck6@gmail.com"
+                },
+                "title": {
+                  "S": "Mrs"
+                },
+                "courseName": {
+                  "S": "LinkedIn Locals Bamenda"
+                },
+                "studentName": {
+                  "S": "Kumah Faith"
+                },
+                "submittedAt": {
+                  "S": "2026-06-01T08:02:05.239Z"
+                },
+                "organization": {
+                  "S": "LinkedIn Locals"
+                },
+                "certificateId": {
+                  "S": "CERT-1780297095030-AGWYMEXN1"
+                },
+                "organizationId": {
+                  "S": "org-80f0d6d3-127d-497a-807d-41c1804800fd-1780291956400"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780301013153-TFMPV6QMZ"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780301013153-TFMPV6QMZ"
+                },
+                "email": {
+                  "S": "cynthiafeck6@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Good"
+                },
+                "courseName": {
+                  "S": "LinkedIn Locals Bamenda"
+                },
+                "studentName": {
+                  "S": "Ful Precious Fuien"
+                },
+                "submittedAt": {
+                  "S": "2026-06-01T08:03:33.153Z"
+                },
+                "organization": {
+                  "S": "LinkedIn Locals"
+                },
+                "certificateId": {
+                  "S": "CERT-1780297095030-AGWYMEXN1"
+                },
+                "organizationId": {
+                  "S": "org-80f0d6d3-127d-497a-807d-41c1804800fd-1780291956400"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780301104048-WJOYVFU55"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780301104048-WJOYVFU55"
+                },
+                "email": {
+                  "S": "cynthiafeck6@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Good"
+                },
+                "courseName": {
+                  "S": "LinkedIn Locals Bamenda"
+                },
+                "studentName": {
+                  "S": "Vadgansin Rawlings"
+                },
+                "submittedAt": {
+                  "S": "2026-06-01T08:05:04.048Z"
+                },
+                "organization": {
+                  "S": "LinkedIn Locals"
+                },
+                "certificateId": {
+                  "S": "CERT-1780297095030-AGWYMEXN1"
+                },
+                "organizationId": {
+                  "S": "org-80f0d6d3-127d-497a-807d-41c1804800fd-1780291956400"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780301203577-U6V8ND1TN"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780301203577-U6V8ND1TN"
+                },
+                "email": {
+                  "S": "cynthiafeck6@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Good"
+                },
+                "courseName": {
+                  "S": "LinkedIn Locals Bamenda"
+                },
+                "studentName": {
+                  "S": "Manta Felicity Forbeneh"
+                },
+                "submittedAt": {
+                  "S": "2026-06-01T08:06:43.577Z"
+                },
+                "organization": {
+                  "S": "LinkedIn Locals"
+                },
+                "certificateId": {
+                  "S": "CERT-1780297095030-AGWYMEXN1"
+                },
+                "organizationId": {
+                  "S": "org-80f0d6d3-127d-497a-807d-41c1804800fd-1780291956400"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780301304158-NDW6WQ5FL"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780301304158-NDW6WQ5FL"
+                },
+                "email": {
+                  "S": "cynthiafeck6@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Good"
+                },
+                "courseName": {
+                  "S": "LinkedIn Locals Bamenda"
+                },
+                "studentName": {
+                  "S": "Tabe Takoa  Marvel Ayamoh"
+                },
+                "submittedAt": {
+                  "S": "2026-06-01T08:08:24.158Z"
+                },
+                "organization": {
+                  "S": "LinkedIn Locals"
+                },
+                "certificateId": {
+                  "S": "CERT-1780297095030-AGWYMEXN1"
+                },
+                "organizationId": {
+                  "S": "org-80f0d6d3-127d-497a-807d-41c1804800fd-1780291956400"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1780301376840-8911IV7PD"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1780301376840-8911IV7PD"
+                },
+                "email": {
+                  "S": "cynthiafeck6@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "Good"
+                },
+                "courseName": {
+                  "S": "LinkedIn Locals Bamenda"
+                },
+                "studentName": {
+                  "S": "Prine Joshua Fonyuy"
+                },
+                "submittedAt": {
+                  "S": "2026-06-01T08:09:36.840Z"
+                },
+                "organization": {
+                  "S": "LinkedIn Locals"
+                },
+                "certificateId": {
+                  "S": "CERT-1780297095030-AGWYMEXN1"
+                },
+                "organizationId": {
+                  "S": "org-80f0d6d3-127d-497a-807d-41c1804800fd-1780291956400"
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

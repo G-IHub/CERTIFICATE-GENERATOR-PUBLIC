@@ -1,0 +1,1162 @@
+{
+  "RequestItems": {
+    "certifyer-dev-kv": [
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775434113488-JMNZLO0GV"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775434113488-JMNZLO0GV"
+                },
+                "email": {
+                  "S": "emmaconsults22@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "I GAINED NEW KNOWLEDGE"
+                },
+                "programId": {
+                  "S": "introduction-to-bioinformatics-bootcamp"
+                },
+                "courseName": {
+                  "S": "Introduction to Bioinformatics Bootcamp"
+                },
+                "studentName": {
+                  "S": "EMMANUEL M. OBENG BEKOE"
+                },
+                "submittedAt": {
+                  "S": "2026-04-06T00:08:33.488Z"
+                },
+                "organization": {
+                  "S": "CSIR-WATER RESEARCH INSTITUTE"
+                },
+                "certificateId": {
+                  "S": "CERT-1775037885438-82RGGX585"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775458496387-F1949RNEH"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775458496387-F1949RNEH"
+                },
+                "email": {
+                  "S": "bukkymimi27@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It has been educating and informative"
+                },
+                "programId": {
+                  "S": "data-driven-health:-bridging-bioinformatics-and-pharmacology-for-effective-interventions."
+                },
+                "courseName": {
+                  "S": "Data-Driven Health: Bridging Bioinformatics and Pharmacology for Effective Interventions."
+                },
+                "studentName": {
+                  "S": "Mudi Oluwabukola Aminat"
+                },
+                "submittedAt": {
+                  "S": "2026-04-06T06:54:56.387Z"
+                },
+                "organization": {
+                  "S": "Federal University of health science, Ila orangun, Osun state Nigeria"
+                },
+                "certificateId": {
+                  "S": "CERT-1771337529539-AAGJGCXEY"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775511410982-VBD46EQ3B"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775511410982-VBD46EQ3B"
+                },
+                "email": {
+                  "S": "folamiabarnabas@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "It was a worthwhile experience"
+                },
+                "programId": {
+                  "S": "data-driven-health:-bridging-bioinformatics-and-pharmacology-for-effective-interventions."
+                },
+                "courseName": {
+                  "S": "Data-Driven Health: Bridging Bioinformatics and Pharmacology for Effective Interventions."
+                },
+                "studentName": {
+                  "S": "Barnabas Ipinnuoluwa Folami-A"
+                },
+                "submittedAt": {
+                  "S": "2026-04-06T21:36:50.982Z"
+                },
+                "organization": {
+                  "S": "Bingham University Nigeria"
+                },
+                "certificateId": {
+                  "S": "CERT-1771337529539-AAGJGCXEY"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775559920859-UTSYCAEUO"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775559920859-UTSYCAEUO"
+                },
+                "email": {
+                  "S": "uhegwuchijioke@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "fg"
+                },
+                "programId": {
+                  "S": "introduction-to-bioinformatics-bootcamp"
+                },
+                "courseName": {
+                  "S": "Introduction to Bioinformatics Bootcamp"
+                },
+                "studentName": {
+                  "S": "Chijioke Uhegwu"
+                },
+                "submittedAt": {
+                  "S": "2026-04-07T11:05:20.859Z"
+                },
+                "organization": {
+                  "S": "Genomachub"
+                },
+                "certificateId": {
+                  "S": "CERT-1775037885438-82RGGX585"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775584313096-O4W23GI2L"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775584313096-O4W23GI2L"
+                },
+                "email": {
+                  "S": "Rachaelene66@gmail.com"
+                },
+                "title": {
+                  "S": "Mrs"
+                },
+                "impact": {
+                  "S": "Helps scientists to discover diseases causing micro organisms to their environment"
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "Racheal Ene Agbo"
+                },
+                "submittedAt": {
+                  "S": "2026-04-07T17:51:53.096Z"
+                },
+                "testimonial": {
+                  "S": "Microbial diversity"
+                },
+                "organization": {
+                  "S": "Genomic institute"
+                },
+                "certificateId": {
+                  "S": "CERT-1773749898351-VL1FSHIUN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775584690628-GPIDHZ27V"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775584690628-GPIDHZ27V"
+                },
+                "email": {
+                  "S": "Rachaelene66@gmail.com"
+                },
+                "title": {
+                  "S": "Mrs"
+                },
+                "impact": {
+                  "S": "Discover diseases causing microbes in health related filed and its environment"
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "Rachael Ene Agbo"
+                },
+                "submittedAt": {
+                  "S": "2026-04-07T17:58:10.628Z"
+                },
+                "testimonial": {
+                  "S": "Microbial diversity"
+                },
+                "organization": {
+                  "S": "Genomic institute"
+                },
+                "certificateId": {
+                  "S": "CERT-1773749898351-VL1FSHIUN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775585153737-2BAVUY83A"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775585153737-2BAVUY83A"
+                },
+                "email": {
+                  "S": "Rachaelene66@gmail.com"
+                },
+                "title": {
+                  "S": "Mrs"
+                },
+                "impact": {
+                  "S": "Disease-causing microbes\n\t•\tEnvironmental and health-related microbial patterns"
+                },
+                "programId": {
+                  "S": "hands-on-metagenomics-workflow-for-microbial-profiling"
+                },
+                "courseName": {
+                  "S": "Hands-on Metagenomics Workflow for Microbial Profiling"
+                },
+                "studentName": {
+                  "S": "Rachael Ene Ogbu"
+                },
+                "submittedAt": {
+                  "S": "2026-04-07T18:05:53.737Z"
+                },
+                "testimonial": {
+                  "S": "Microbial diversity"
+                },
+                "organization": {
+                  "S": "Genomac institute"
+                },
+                "certificateId": {
+                  "S": "CERT-1773749898351-VL1FSHIUN"
+                },
+                "organizationId": {
+                  "S": "org-6f2a98c9-0301-4f56-99aa-2a35f5fc843a-1769522657447"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775640242304-K9AXG0YDI"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775640242304-K9AXG0YDI"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "Great"
+                },
+                "programId": {
+                  "S": "amr-genomics-with-r-(beginner-crash-course)"
+                },
+                "courseName": {
+                  "S": "AMR Genomics with R (Beginner crash course)"
+                },
+                "studentName": {
+                  "S": "Blessing A"
+                },
+                "submittedAt": {
+                  "S": "2026-04-08T09:24:02.304Z"
+                },
+                "organization": {
+                  "S": "Ennovate Lab"
+                },
+                "certificateId": {
+                  "S": "CERT-1775639874946-DXG1KC1IB"
+                },
+                "organizationId": {
+                  "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775640323108-JRWDFOMXE"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775640323108-JRWDFOMXE"
+                },
+                "title": {
+                  "S": "Dr"
+                },
+                "impact": {
+                  "S": "Great"
+                },
+                "programId": {
+                  "S": "amr-genomics-with-r-(beginner-crash-course)"
+                },
+                "courseName": {
+                  "S": "AMR Genomics with R Program (Beginner crash course)"
+                },
+                "studentName": {
+                  "S": "Blessing"
+                },
+                "submittedAt": {
+                  "S": "2026-04-08T09:25:23.108Z"
+                },
+                "organization": {
+                  "S": "Ennovate Lab"
+                },
+                "certificateId": {
+                  "S": "CERT-1775639874946-DXG1KC1IB"
+                },
+                "organizationId": {
+                  "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775641102977-BS4FEMPYS"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775641102977-BS4FEMPYS"
+                },
+                "email": {
+                  "S": "mofeoluwablessing99@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "letter"
+                },
+                "programId": {
+                  "S": "cancer-genomics"
+                },
+                "courseName": {
+                  "S": "Cancer Genomics"
+                },
+                "studentName": {
+                  "S": "Blessing Mofeoluwa"
+                },
+                "submittedAt": {
+                  "S": "2026-04-08T09:38:22.977Z"
+                },
+                "organization": {
+                  "S": "Genomac"
+                },
+                "certificateId": {
+                  "S": "CERT-1769596896015-AFY6XATCO"
+                },
+                "organizationId": {
+                  "S": "org-1cab9388-5728-4646-9178-26dc1fa778fa-1769444130796"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775641112425-E9V83FG1K"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775641112425-E9V83FG1K"
+                },
+                "email": {
+                  "S": "afolabipelumi44@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "Insightful"
+                },
+                "programId": {
+                  "S": "train-the-trainers-initiative-in-genomics-&-bioinformatics"
+                },
+                "courseName": {
+                  "S": "Train-the-Trainers Initiative in Genomics & Bioinformatics"
+                },
+                "studentName": {
+                  "S": "Afolabi Oluwapelumi Ope"
+                },
+                "submittedAt": {
+                  "S": "2026-04-08T09:38:32.425Z"
+                },
+                "organization": {
+                  "S": "Babcock University"
+                },
+                "certificateId": {
+                  "S": "CERT-1773157668544-F5P2KMI6M"
+                },
+                "organizationId": {
+                  "S": "org-ac3a7511-dcc4-4bdc-98b4-dba877f4a8a8-1773054353118"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775641508868-Y0DJNTE8A"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775641508868-Y0DJNTE8A"
+                },
+                "email": {
+                  "S": "romokemi1@gmail.com"
+                },
+                "title": {
+                  "S": "Mrs"
+                },
+                "impact": {
+                  "S": "It was impactful \nMany thanks to the organizers"
+                },
+                "programId": {
+                  "S": "amr-genomics-with-r-(beginner-crash-course)"
+                },
+                "courseName": {
+                  "S": "AMR Genomics with R Program (Beginner crash course)"
+                },
+                "studentName": {
+                  "S": "Romoke Izekor"
+                },
+                "submittedAt": {
+                  "S": "2026-04-08T09:45:08.868Z"
+                },
+                "testimonial": {
+                  "S": "Please let the videos remain accessable for some of us that are slow learner."
+                },
+                "organization": {
+                  "S": "NIMR"
+                },
+                "certificateId": {
+                  "S": "CERT-1775639874946-DXG1KC1IB"
+                },
+                "organizationId": {
+                  "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775641545993-ICVVOTC1W"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775641545993-ICVVOTC1W"
+                },
+                "email": {
+                  "S": "blessedaseda@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "It was very insighful and practical"
+                },
+                "programId": {
+                  "S": "amr-genomics-with-r-(beginner-crash-course)"
+                },
+                "courseName": {
+                  "S": "AMR Genomics with R Program (Beginner crash course)"
+                },
+                "studentName": {
+                  "S": "Blessed Aseda"
+                },
+                "submittedAt": {
+                  "S": "2026-04-08T09:45:45.993Z"
+                },
+                "organization": {
+                  "S": "KNUST"
+                },
+                "certificateId": {
+                  "S": "CERT-1775639874946-DXG1KC1IB"
+                },
+                "organizationId": {
+                  "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775641774282-GTOONPQUH"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775641774282-GTOONPQUH"
+                },
+                "email": {
+                  "S": "cosmasnwaeze19@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "I learnt the basic understanding of R in Biological Data Analysis"
+                },
+                "programId": {
+                  "S": "amr-genomics-with-r-(beginner-crash-course)"
+                },
+                "courseName": {
+                  "S": "AMR Genomics with R Program (Beginner crash course)"
+                },
+                "studentName": {
+                  "S": "NWAEZE Cosmas Kelechi"
+                },
+                "submittedAt": {
+                  "S": "2026-04-08T09:49:34.282Z"
+                },
+                "organization": {
+                  "S": "ISIFC"
+                },
+                "certificateId": {
+                  "S": "CERT-1775639874946-DXG1KC1IB"
+                },
+                "organizationId": {
+                  "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775643278098-UFXG150M9"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775643278098-UFXG150M9"
+                },
+                "email": {
+                  "S": "chideraegbunine68@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "This program equipped me with the practical skills using R for data analytics in AMR genomics I highly recommend to other researchers or lectures seeking to integrate data analytics into genomics"
+                },
+                "programId": {
+                  "S": "amr-genomics-with-r-(beginner-crash-course)"
+                },
+                "courseName": {
+                  "S": "AMR Genomics with R Program (Beginner crash course)"
+                },
+                "studentName": {
+                  "S": "Egbunine Chidera Veronica"
+                },
+                "submittedAt": {
+                  "S": "2026-04-08T10:14:38.098Z"
+                },
+                "organization": {
+                  "S": "Bsc Microbiology, Chukwuemeka Odumegu Ojukwu University"
+                },
+                "certificateId": {
+                  "S": "CERT-1775639874946-DXG1KC1IB"
+                },
+                "organizationId": {
+                  "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775643325049-012KK0WGL"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775643325049-012KK0WGL"
+                },
+                "email": {
+                  "S": "uhegwuchijioke@gmail.com"
+                },
+                "title": {
+                  "S": "Prof"
+                },
+                "impact": {
+                  "S": "df"
+                },
+                "programId": {
+                  "S": "introduction-to-bioinformatics-bootcamp"
+                },
+                "courseName": {
+                  "S": "Introduction to Bioinformatics Bootcamp"
+                },
+                "studentName": {
+                  "S": "Chijioke Uhegwu"
+                },
+                "submittedAt": {
+                  "S": "2026-04-08T10:15:25.049Z"
+                },
+                "organization": {
+                  "S": "Genomachub"
+                },
+                "certificateId": {
+                  "S": "CERT-1775037885438-82RGGX585"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775643681330-WV8Y81XJD"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775643681330-WV8Y81XJD"
+                },
+                "email": {
+                  "S": "romokemi1@gmail.com"
+                },
+                "title": {
+                  "S": "Mrs"
+                },
+                "impact": {
+                  "S": "The training was impactful \nMany thanks to the organizers"
+                },
+                "programId": {
+                  "S": "amr-genomics-with-r-(beginner-crash-course)"
+                },
+                "courseName": {
+                  "S": "AMR Genomics with R Program (Beginner crash course)"
+                },
+                "studentName": {
+                  "S": "Izekor Tawakalitu Romoke"
+                },
+                "submittedAt": {
+                  "S": "2026-04-08T10:21:21.330Z"
+                },
+                "testimonial": {
+                  "S": "Please let the videos remain accessable for some of us that are slow learner"
+                },
+                "organization": {
+                  "S": "NIMR"
+                },
+                "certificateId": {
+                  "S": "CERT-1775639874946-DXG1KC1IB"
+                },
+                "organizationId": {
+                  "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775643919087-2QSUSHC74"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775643919087-2QSUSHC74"
+                },
+                "email": {
+                  "S": "awodokunomobolanle@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "This R crash course was truly impactful and filled with valuable new knowledge for me. The tutor delivered excellently, even within the two-day session. Truly a detailed and thorough instructor."
+                },
+                "programId": {
+                  "S": "amr-genomics-with-r-(beginner-crash-course)"
+                },
+                "courseName": {
+                  "S": "AMR Genomics with R Program (Beginner crash course)"
+                },
+                "studentName": {
+                  "S": "Awodokun Olanrewaju Omobolanle"
+                },
+                "submittedAt": {
+                  "S": "2026-04-08T10:25:19.087Z"
+                },
+                "organization": {
+                  "S": "Ekiti State University"
+                },
+                "certificateId": {
+                  "S": "CERT-1775639874946-DXG1KC1IB"
+                },
+                "organizationId": {
+                  "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775644192620-FMHE6P7F4"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775644192620-FMHE6P7F4"
+                },
+                "email": {
+                  "S": "awodokunomobolanle@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "The R crash course was truly impactful and filled with valuable knowledge for me.The tutor delivered excellently, even within the 2 day session. Truly a detailed and thorough instructor"
+                },
+                "programId": {
+                  "S": "amr-genomics-with-r-(beginner-crash-course)"
+                },
+                "courseName": {
+                  "S": "AMR Genomics with R Program (Beginner crash course)"
+                },
+                "studentName": {
+                  "S": "Awodokun Olanrewaju Omobolanle"
+                },
+                "submittedAt": {
+                  "S": "2026-04-08T10:29:52.620Z"
+                },
+                "organization": {
+                  "S": "Ekiti State University"
+                },
+                "certificateId": {
+                  "S": "CERT-1775639874946-DXG1KC1IB"
+                },
+                "organizationId": {
+                  "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775644315753-NKG8MZU18"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775644315753-NKG8MZU18"
+                },
+                "email": {
+                  "S": "awodokunomobolanle@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It was a great experience"
+                },
+                "programId": {
+                  "S": "biocoding-bootcamp"
+                },
+                "courseName": {
+                  "S": "2-month Virtual Biocoding Bootcamp"
+                },
+                "studentName": {
+                  "S": "Awodokun Olanrewaju Omobolanle"
+                },
+                "submittedAt": {
+                  "S": "2026-04-08T10:31:55.753Z"
+                },
+                "organization": {
+                  "S": "Ekiti State University"
+                },
+                "certificateId": {
+                  "S": "CERT-1773759817780-52GNSUHZX"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775644343372-SG0PD1CKO"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775644343372-SG0PD1CKO"
+                },
+                "email": {
+                  "S": "uhegwuchijioke@gmail.com"
+                },
+                "title": {
+                  "S": "Prof"
+                },
+                "impact": {
+                  "S": "fg"
+                },
+                "programId": {
+                  "S": "introduction-to-bioinformatics-bootcamp"
+                },
+                "courseName": {
+                  "S": "Introduction to Bioinformatics Bootcamp"
+                },
+                "studentName": {
+                  "S": "Chijioke Uhegwu"
+                },
+                "submittedAt": {
+                  "S": "2026-04-08T10:32:23.372Z"
+                },
+                "organization": {
+                  "S": "Genomachub"
+                },
+                "certificateId": {
+                  "S": "CERT-1775037885438-82RGGX585"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775644635954-VG1HJCW4Q"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775644635954-VG1HJCW4Q"
+                },
+                "email": {
+                  "S": "tomisinmaryo@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "The program was enlightening"
+                },
+                "programId": {
+                  "S": "amr-genomics-with-r-(beginner-crash-course)"
+                },
+                "courseName": {
+                  "S": "AMR Genomics with R Program (Beginner crash course)"
+                },
+                "studentName": {
+                  "S": "Olatunde Tomisin Mary"
+                },
+                "submittedAt": {
+                  "S": "2026-04-08T10:37:15.954Z"
+                },
+                "organization": {
+                  "S": "Federal University of Agriculture Abeokuta"
+                },
+                "certificateId": {
+                  "S": "CERT-1775639874946-DXG1KC1IB"
+                },
+                "organizationId": {
+                  "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775645808188-18LAHT2J7"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775645808188-18LAHT2J7"
+                },
+                "email": {
+                  "S": "josephibok2k@gmail.com"
+                },
+                "title": {
+                  "S": "Mr"
+                },
+                "impact": {
+                  "S": "It’s was impactful and encouraging"
+                },
+                "programId": {
+                  "S": "introduction-to-bioinformatics-bootcamp"
+                },
+                "courseName": {
+                  "S": "Introduction to Bioinformatics Bootcamp"
+                },
+                "studentName": {
+                  "S": "Joseph Eyo Ibok"
+                },
+                "submittedAt": {
+                  "S": "2026-04-08T10:56:48.188Z"
+                },
+                "organization": {
+                  "S": "University of Calabar, Calabar"
+                },
+                "certificateId": {
+                  "S": "CERT-1775037885438-82RGGX585"
+                },
+                "organizationId": {
+                  "S": "org-09b6c345-0ec4-4cd9-a23d-bd3b67c15110-1773756251401"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775646010311-2S4CYTSSP"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775646010311-2S4CYTSSP"
+                },
+                "email": {
+                  "S": "zonia.bashir129@gmail.com"
+                },
+                "title": {
+                  "S": "Miss"
+                },
+                "impact": {
+                  "S": "It was great experience getting to know how to use R studio for the different purposes and i would highly recommend it to others that want to learn about  R studio"
+                },
+                "programId": {
+                  "S": "amr-genomics-with-r-(beginner-crash-course)"
+                },
+                "courseName": {
+                  "S": "AMR Genomics with R Program (Beginner crash course)"
+                },
+                "studentName": {
+                  "S": "Zonia Bashir"
+                },
+                "submittedAt": {
+                  "S": "2026-04-08T11:00:10.311Z"
+                },
+                "organization": {
+                  "S": "University of the Punjab, Lahore"
+                },
+                "certificateId": {
+                  "S": "CERT-1775639874946-DXG1KC1IB"
+                },
+                "organizationId": {
+                  "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "PutRequest": {
+          "Item": {
+            "key": {
+              "S": "testimonial:TEST-1775646832193-TZEOPY3O8"
+            },
+            "value": {
+              "M": {
+                "id": {
+                  "S": "TEST-1775646832193-TZEOPY3O8"
+                },
+                "title": {
+                  "S": "Mrs"
+                },
+                "impact": {
+                  "S": "It was insightful"
+                },
+                "programId": {
+                  "S": "amr-genomics-with-r-(beginner-crash-course)"
+                },
+                "courseName": {
+                  "S": "AMR Genomics with R Program (Beginner crash course)"
+                },
+                "studentName": {
+                  "S": "Adebayo Oluwaseyi Modupe"
+                },
+                "submittedAt": {
+                  "S": "2026-04-08T11:13:52.193Z"
+                },
+                "organization": {
+                  "S": "Kogi State Polytechnic"
+                },
+                "certificateId": {
+                  "S": "CERT-1775639874946-DXG1KC1IB"
+                },
+                "organizationId": {
+                  "S": "org-4464bbca-3855-41c2-83cf-ae82c34b5579-1775563575226"
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

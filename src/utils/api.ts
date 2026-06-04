@@ -29,9 +29,10 @@ export const authApi = {
     fullName: string;
     organizationName?: string;
   }, retries = 3) => {
+    let timeoutId: any;
     try {
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout for cold starts
+      timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout for cold starts
       
       const response = await fetch(`${API_BASE_URL}/auth/signup`, {
         method: 'POST',
@@ -39,7 +40,6 @@ export const authApi = {
         body: JSON.stringify(data),
         signal: controller.signal,
       });
-      clearTimeout(timeoutId);
       
       if (!response.ok) {
         const error = await response.json();
@@ -57,13 +57,16 @@ export const authApi = {
       }
       
       throw error;
+    } finally {
+      if (timeoutId) clearTimeout(timeoutId);
     }
   },
 
   signIn: async (data: { email: string; password: string }, retries = 3) => {
+    let timeoutId: any;
     try {
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout for cold starts
+      timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout for cold starts
       
       const response = await fetch(`${API_BASE_URL}/auth/signin`, {
         method: 'POST',
@@ -71,7 +74,6 @@ export const authApi = {
         body: JSON.stringify(data),
         signal: controller.signal,
       });
-      clearTimeout(timeoutId);
       
       if (!response.ok) {
         const error = await response.json();
@@ -89,6 +91,8 @@ export const authApi = {
       }
       
       throw error;
+    } finally {
+      if (timeoutId) clearTimeout(timeoutId);
     }
   },
 
@@ -107,16 +111,16 @@ export const authApi = {
   },
 
   getSession: async (token: string, retries = 2) => {
+    let timeoutId: any;
     try {
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+      timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout for cold starts
       
       const response = await fetch(`${API_BASE_URL}/auth/session`, {
         method: 'GET',
         headers: getAuthHeaders(token),
         signal: controller.signal,
       });
-      clearTimeout(timeoutId);
       
       if (!response.ok) {
         const error = await response.json();
@@ -133,6 +137,8 @@ export const authApi = {
       }
       
       throw error;
+    } finally {
+      if (timeoutId) clearTimeout(timeoutId);
     }
   },
 };

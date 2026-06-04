@@ -1085,6 +1085,7 @@ export default function AdminDashboard({
         certificatePriceMinor: genMonetizationEnabled && genMonetizationPrice ? Math.round(parseFloat(genMonetizationPrice) * 100) : 0,
         certificatePriceUSDMinor: genMonetizationEnabled && genMonetizationPriceUSD ? Math.round(parseFloat(genMonetizationPriceUSD) * 100) : 0,
         linkedProductId: genLinkedProductId || undefined,
+        themeColors: genThemeColors ?? null,
       } as any);
 
       // Check if response has certificates

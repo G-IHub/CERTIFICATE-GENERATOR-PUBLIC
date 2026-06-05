@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect } from "react";
 import type { ThemeColors } from "../../types/theme";
 import upperUrl from "../../assets/UpperShape.png";
 import bottomUrl from "../../assets/BottomShape.png";
@@ -57,6 +57,17 @@ export default function CertificateTemplate7({
     ? "w-full mx-auto origin-center overflow-visible flex justify-center"
     : "min-w-[1056px] flex justify-center items-center";
 
+  useEffect(() => {
+    const fontId = "bodoni";
+    if (!document.getElementById(fontId)) {
+      const link = document.createElement("link");
+      link.id = fontId;
+      link.rel = "stylesheet";
+      link.href =
+        "https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&display=swap";
+      document.head.appendChild(link);
+    }
+  }, []);
 
   // formatted date
   const formattedDate = new Date(date).toLocaleDateString("en-US", {
@@ -66,12 +77,14 @@ export default function CertificateTemplate7({
   });
 
   // Determine which logo(s) to use
-  const logo1 = organizationLogos && organizationLogos[0]?.url
-    ? organizationLogos[0]
-    : null;
-  const logo2 = organizationLogos && organizationLogos[1]?.url
-    ? organizationLogos[1]
-    : null;
+  const logo1 =
+    organizationLogos && organizationLogos[0]?.url
+      ? organizationLogos[0]
+      : null;
+  const logo2 =
+    organizationLogos && organizationLogos[1]?.url
+      ? organizationLogos[1]
+      : null;
   const fallbackLogo = organizationLogo;
 
   return (
@@ -83,21 +96,21 @@ export default function CertificateTemplate7({
         <img
           src={upperUrl}
           alt="Upper shape"
-          className="absolute top-0 left-0 w-56 z-10"
+          className="absolute top-0 left-0 w-[240px] z-30"
         />
         <img
           src={bottomUrl}
           alt="Bottom shape"
-          className="absolute bottom-0 right-0 w-56 z-10"
+          className="absolute bottom-0 right-0 w-[240px] z-30"
         />
         <img
           src={patternUrl}
           alt="Pattern"
-          className="absolute z-0 top-0 w-full h-full opacity-70"
+          className="absolute z-0 top-0 w-full h-full opacity-90"
         />
 
         <div
-          className="text-center flex flex-col gap-5 items-center w-full z-40 border-2 p-2"
+          className="text-center flex flex-col gap-4 items-center w-full z-20 border-2 p-2"
           style={{ borderColor: themeColors?.secondary ?? "#fdba74" }}
         >
           {/* <img src={organizationLogo} alt="logo" className="w-1/9" /> */}
@@ -147,30 +160,31 @@ export default function CertificateTemplate7({
             This Certificate is Proudly Presented to:
           </p>
           <p
-            className="w-1/2 text-center border-b font-semibold text-3xl tracking-wider"
+            className="w-auto text-center border-b-2 font-semibold text-5xl tracking-wider font-[bodoni]"
             style={{ borderColor: themeColors?.primary ?? "#f97316" }}
           >
             {recipientName}
           </p>
-          <p className="text-xs -mt-2 -mb-2 text-black">
-            {/* For participating in the program: */}
-          </p>
-          <p className="text-xs -mt-2 -mb-4 font-bold text-lg text-black">
-            {courseTitle}
-          </p>
-          <p className="max-w-xl text-sm">{description}</p>
 
-          <p className="font-bold text-black -mt-5">Date: {formattedDate} </p>
+          <p className="max-w-xl text-lg">
+            {description}{" "}
+            <span className="font-bold text-black">{courseTitle}</span>{" "}
+            organized by <b>{organizationName}</b>{" "}
+          </p>
 
-          <div className="flex gap-10 w-full items-center justify-center z-50 -mt-5">
+          <p className="font-bold text-black -mt-4">Date: {formattedDate} </p>
+
+          <div className="flex gap-10 w-full items-center justify-center z-50 mt-4">
             <div className="space-y-2">
               <div className="border-b w-40 flex justify-center items-center">
-                <img
-                  src={signatureUrl1}
-                  alt=""
-                  className="w-24 h-16 object-contain"
-                  style={{ marginBottom: -12 }}
-                />
+                {signatureUrl1 && (
+                  <img
+                    src={signatureUrl1}
+                    alt={signatoryName1}
+                    className="w-24 h-16 object-contain"
+                    style={{ marginBottom: -12 }}
+                  />
+                )}
               </div>
               <div className="space-y-0">
                 <p
@@ -191,12 +205,14 @@ export default function CertificateTemplate7({
 
             <div className="space-y-2">
               <div className="border-b w-40 flex justify-center items-center">
-                <img
-                  src={signatureUrl2}
-                  alt=""
-                  className="w-24 h-16 object-contain"
-                  style={{ marginBottom: -12 }}
-                />
+                {signatureUrl2 && (
+                  <img
+                    src={signatureUrl2}
+                    alt={signatoryName2}
+                    className="w-24 h-16 object-contain"
+                    style={{ marginBottom: -12 }}
+                  />
+                )}
               </div>
               <div className="space-y-0">
                 <p

@@ -7,10 +7,9 @@ import patternUrl from "../../assets/Pattern.png";
 import ribbonUrl from "../../assets/RIBBON.png";
 
 interface CertificateTemplate2Props {
-  header1?: string;
+
   courseTitle?: string;
   header?: string;
-  subheader?: string;
   recipientName?: string;
   description?: string;
   date: string;
@@ -19,6 +18,7 @@ interface CertificateTemplate2Props {
   centerLogoUrl?: string;
   organizationLogo?: string;
   organizationLogos?: Logo[];
+  organizationName?: string;
   patternUrl?: string;
   signatoryName1?: string;
   signatoryTitle1?: string;
@@ -33,15 +33,14 @@ interface CertificateTemplate2Props {
 }
 
 export default function CertificateTemplate2({
-  header,
   courseTitle,
-  header1 = "CERTIFICATE",
-  subheader = "Of Excellence",
+  header,
   recipientName = "Name Surname",
   description,
   date,
   organizationLogo,
   organizationLogos,
+  organizationName = "Organization Name",
   isPreview = false,
   signatoryName1 = "Oluwaseyi Abraham Olawale",
   signatoryTitle1 = "CEO of Genomac Holdings",
@@ -56,12 +55,12 @@ export default function CertificateTemplate2({
   const scale = mode === "student" ? "transform-scale-[0.3]" : "transform-scale-100";
 
   useEffect(() => {
-    const fontId = "momo-signature-font";
+    const fontId = "bodoni";
     if (!document.getElementById(fontId)) {
       const link = document.createElement("link");
       link.id = fontId;
       link.rel = "stylesheet";
-      link.href = "https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap";
+      link.href = "https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&display=swap";
       document.head.appendChild(link);
     }
   }, []);
@@ -138,24 +137,24 @@ export default function CertificateTemplate2({
 
         <div className="text-center flex flex-col gap-8 items-center w-full z-30 mt-14">
           <div className="flex flex-col items-center gap-2">
-            <h1 className="text-5xl font-medium">{header1}</h1>
+            <h1 className="text-5xl uppercase font-medium">{header?.split(" ")[0] || "Certificate"}</h1>
             <p className="text-xl uppercase font-bold tracking-widest">
-              {subheader}
+              {header?.split(" ")[1] || "Certificate"}  {header?.split(" ")[2] || "Certificate"} 
             </p>
           </div>
 
-          <p className="font-medium uppercase text-sm">
-            This Certificate is Proudly Presented to:
+          <p className="font-medium uppercase text-sm -mt-4">
+            This Certificate is Proudly Presented to
           </p>
 
-          <p className="w-1/2 text-center border-b font-semibold text-3xl tracking-wider" style={{ borderColor: themeColors?.primary ?? '#f97316' }}>
+          <p className="w-1/2 text-center border-b font-semibold text-3xl tracking-wider font-[bodoni]" style={{ borderColor: themeColors?.primary ?? '#f97316' }}>
             {recipientName}
           </p>
 
           <p className="max-w-xl text-sm text-center px-4 -mt-5">
-            {description}
+            {description} <span className="text-sm font-bold">{courseTitle}</span> Organized by {organizationName}
           </p>
-          <p className="-mt-7 text-xl font-bold">{courseTitle}</p>
+          
 
           <p className="text-sm text-gray-500 -mt-7 font-bold">{formattedDate}</p>
 

@@ -39,8 +39,6 @@ const PLATFORM_ADMIN_EMAILS = [
   "admin@gihub.com",
   "admin@g-ihub.com",
   "platform@admin.com",
-  "adewuyigoodness1@gmail.com",
-  "genomacinnovationhub@gmail.com",
 ];
 
 // Middleware - Configure CORS to allow all requests
@@ -5089,8 +5087,6 @@ const isPlatformAdmin = async (authHeader: string | null): Promise<boolean> => {
     "admin@gihub.com",
     "admin@g-ihub.com",
     "platform@admin.com",
-    "adewuyigoodness1@gmail.com",
-    "genomacinnovationhub@gmail.com",
   ];
 
   const isAdmin = adminEmails.includes(user.email?.toLowerCase() || "");

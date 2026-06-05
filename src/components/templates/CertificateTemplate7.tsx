@@ -129,8 +129,7 @@ export default function CertificateTemplate7({
               <img
                 src={organizationLogo}
                 alt="Logo"
-                className="w-16 h-16 object-contain"
-                style={{ width: 100, height: 100 }}
+                className="w-24 h-24 object-contain"
               />
             )}
 
@@ -148,13 +147,14 @@ export default function CertificateTemplate7({
               <div className="hidden"></div>
             )}
           </div>
-          <div className="flex flex-col items-center gap-2">
+          <div className="flex flex-col items-center gap-2 -mt-6">
             <h1 className="text-5xl font-medium uppercase">
               {header?.split(" ")[0] || "CERTIFICATE"}
             </h1>
-            <p className="text-xl uppercase font-bold tracking-widest">
-              {header?.split(" ").slice(1).join(" ") || "Of Completion"}
-            </p>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 160" width="100%" height="100%">
+              <polygon points="40,30 960,30 910,80 960,130 40,130 90,80" fill="#FF6600" />
+              <text x="500" y="97" className="text-[52px] uppercase font-bold tracking-widest" text-anchor="middle" fill="#000000">{header?.split(" ")[1] || "Certificate"}  {header?.split(" ")[2] || "Certificate"}</text>
+            </svg>
           </div>
           <p className="font-bold tracking-tighter text-sm uppercase">
             This Certificate is Proudly Presented to:

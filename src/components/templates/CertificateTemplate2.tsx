@@ -136,11 +136,12 @@ export default function CertificateTemplate2({
         />
 
         <div className="text-center flex flex-col gap-8 items-center w-full z-30 mt-14">
-          <div className="flex flex-col items-center gap-2">
+          <div className="flex flex-col items-center">
             <h1 className="text-5xl uppercase font-medium">{header?.split(" ")[0] || "Certificate"}</h1>
-            <p className="text-xl uppercase font-bold tracking-widest">
-              {header?.split(" ")[1] || "Certificate"}  {header?.split(" ")[2] || "Certificate"} 
-            </p>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 160" width="100%" height="100%">
+              <polygon points="40,30 960,30 910,80 960,130 40,130 90,80" fill="#FF6600" />
+              <text x="500" y="97" className="text-[52px] uppercase font-bold tracking-widest" text-anchor="middle" fill="#000000">{header?.split(" ")[1] || "Certificate"}  {header?.split(" ")[2] || "Certificate"}</text>
+            </svg>
           </div>
 
           <p className="font-medium uppercase text-sm -mt-4">

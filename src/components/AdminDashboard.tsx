@@ -1046,6 +1046,28 @@ export default function AdminDashboard({
       return;
     }
 
+    let currentAllowedEmails = [...genAllowedEmails];
+    if (genRestrictDownload && genEmailInput.trim()) {
+      const email = genEmailInput.trim().toLowerCase();
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        toast.error("Please enter a valid email address in the input field");
+        return;
+      }
+      if (!currentAllowedEmails.includes(email)) {
+        currentAllowedEmails.push(email);
+        setGenAllowedEmails(currentAllowedEmails);
+        setGenEmailInput("");
+      }
+    }
+
+    if (genRestrictDownload && currentAllowedEmails.length === 0) {
+      toast.error(
+        "Please add at least one allowed email or disable download restrictions",
+      );
+      return;
+    }
+
     setGenIsGenerating(true);
 
     try {
@@ -1063,8 +1085,8 @@ export default function AdminDashboard({
 
       console.log("🔒 Certificate generation with restrictions:", {
         restrictDownload: genRestrictDownload,
-        allowedEmails: genAllowedEmails,
-        allowedEmailsCount: genAllowedEmails.length,
+        allowedEmails: currentAllowedEmails,
+        allowedEmailsCount: currentAllowedEmails.length,
       });
 
       // Generate new certificate
@@ -1080,7 +1102,7 @@ export default function AdminDashboard({
         logos: logos.length > 0 ? logos : undefined,
         students: undefined,
         restrictDownload: genRestrictDownload,
-        allowedEmails: genAllowedEmails,
+        allowedEmails: currentAllowedEmails,
         monetizationEnabled: genMonetizationEnabled,
         certificatePriceMinor: genMonetizationEnabled && genMonetizationPrice ? Math.round(parseFloat(genMonetizationPrice) * 100) : 0,
         certificatePriceUSDMinor: genMonetizationEnabled && genMonetizationPriceUSD ? Math.round(parseFloat(genMonetizationPriceUSD) * 100) : 0,
@@ -1197,6 +1219,28 @@ export default function AdminDashboard({
       return;
     }
 
+    let currentAllowedEmails = [...genAllowedEmails];
+    if (genRestrictDownload && genEmailInput.trim()) {
+      const email = genEmailInput.trim().toLowerCase();
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        toast.error("Please enter a valid email address in the input field");
+        return;
+      }
+      if (!currentAllowedEmails.includes(email)) {
+        currentAllowedEmails.push(email);
+        setGenAllowedEmails(currentAllowedEmails);
+        setGenEmailInput("");
+      }
+    }
+
+    if (genRestrictDownload && currentAllowedEmails.length === 0) {
+      toast.error(
+        "Please add at least one allowed email or disable download restrictions",
+      );
+      return;
+    }
+
     setGenIsGenerating(true);
 
     const generateAndSave = async () => {
@@ -1256,7 +1300,7 @@ export default function AdminDashboard({
                 completionDate: s.completionDate || genCompletionDate,
               })),
               restrictDownload: genRestrictDownload,
-              allowedEmails: genAllowedEmails,
+              allowedEmails: currentAllowedEmails,
               monetizationEnabled: genMonetizationEnabled,
               certificatePriceMinor: genMonetizationEnabled && genMonetizationPrice ? Math.round(parseFloat(genMonetizationPrice) * 100) : 0,
               certificatePriceUSDMinor: genMonetizationEnabled && genMonetizationPriceUSD ? Math.round(parseFloat(genMonetizationPriceUSD) * 100) : 0,
@@ -3061,7 +3105,7 @@ export default function AdminDashboard({
                                       onClick={() =>
                                         setShowBulkImport(!showBulkImport)
                                       }
-                                      className="flex items-center gap-2"
+                                      className="flex items-center gap-2 cursor-pointer"
                                     >
                                       <Upload className="w-4 h-4" />
                                       Bulk Import
@@ -3077,7 +3121,7 @@ export default function AdminDashboard({
                                         type="button"
                                         variant="outline"
                                         size="sm"
-                                        className="flex items-center gap-2"
+                                        className="flex items-center gap-2 cursor-pointer"
                                         onClick={(e) => {
                                           e.preventDefault();
                                           (
@@ -3500,7 +3544,7 @@ export default function AdminDashboard({
                                 // Clear previous results when going back to start new generation
                                 setGenGeneratedCertificates([]);
                               }}
-                              className="flex-1"
+                              className="flex-1 cursor-pointer"
                             >
                               Back to Template
                             </Button>
@@ -3511,7 +3555,7 @@ export default function AdminDashboard({
                                 !genCertificateHeader.trim() ||
                                 !genCourseName.trim()
                               }
-                              className="flex-1"
+                              className="flex-1 cursor-pointer"
                             >
                               {genIsGenerating ? (
                                 <>
@@ -3537,11 +3581,11 @@ export default function AdminDashboard({
                             <div>
                               <CardTitle className="flex items-center gap-2">
                                 <CheckCircle className="w-5 h-5 text-green-600" />
-                                Certificate Links Generated Successfully
+                                Certificate Link Generated Successfully
                               </CardTitle>
                               <CardDescription>
                                 {genGeneratedCertificates.length} certificate
-                                link(s) created. Share these with students to
+                                link created. Share this link with students to
                                 access their certificates.
                               </CardDescription>
                             </div>
@@ -3549,11 +3593,13 @@ export default function AdminDashboard({
                               <Button
                                 variant="outline"
                                 onClick={genExportCertificateList}
+                                className="border border-gray-700 cursor-pointer"
                               >
                                 <Download className="w-4 h-4 mr-2" />
                                 Export List
                               </Button>
                               <Button
+                                className="cursor-pointer"
                                 onClick={() => {
                                   setGenActiveTab("setup");
                                   setGenGeneratedCertificates([]);
@@ -3603,6 +3649,7 @@ export default function AdminDashboard({
                                       <Button
                                         size="sm"
                                         variant="outline"
+                                        className="cursor-pointer"
                                         onClick={() => {
                                           genCopyCertificateUrl(
                                             cert.certificateUrl,
@@ -3615,6 +3662,7 @@ export default function AdminDashboard({
                                       </Button>
                                       <Button
                                         size="sm"
+                                        className="cursor-pointer"
                                         onClick={(e) => {
                                           const fullUrl =
                                             buildFullCertificateUrl(

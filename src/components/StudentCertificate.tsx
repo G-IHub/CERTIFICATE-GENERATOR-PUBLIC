@@ -483,7 +483,14 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
             }
           }
 
-          if (!cert.studentName) {
+          const isEmailVerified = sessionStorage.getItem(`ctfy_verified_email_${cert.id}`) === "true";
+          const needsVerification = cert.restrictDownload && !isEmailVerified;
+
+          if (!cert.studentName || needsVerification) {
+            // Prefill student details if available on the certificate
+            if (cert.studentName) setEnteredName(cert.studentName);
+            if (cert.email) setEnteredEmail(cert.email);
+
             // Check if returning from a successful Paystack payment for this cert
             const savedCertId = sessionStorage.getItem("ctfy_buyer_cert");
             const savedName = sessionStorage.getItem("ctfy_buyer_name");
@@ -1014,11 +1021,16 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
           return;
         }
         const emailLower = enteredEmail.trim().toLowerCase();
-        const allowedEmails = certificate.allowedEmails || [];
-        if (!allowedEmails.includes(emailLower)) {
+        const allowedEmails = (certificate.allowedEmails || []).map((e) => e.trim().toLowerCase());
+        const certEmailLower = certificate.email?.trim().toLowerCase();
+
+        if (!allowedEmails.includes(emailLower) && certEmailLower !== emailLower) {
           toast.error("Sorry, you are not authorized to access this certificate. Please contact your instructor if you believe this is an error.");
           return;
         }
+
+        // Save verification in session storage to remember across reloads/nav
+        sessionStorage.setItem(`ctfy_verified_email_${certificate.id}`, "true");
       }
 
       setIsSubmitting(true);

@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:build/assets/TestimonialsView-B40xReGN.js
-import{w as e,r as t,x as s,t as a,j as i,y as l,C as r,g as n,M as c,z as d,u as m,b as o,c as x,D as h,E as j,l as p,G as u,H as N,I as g,f as y,U as f,v as b}from"./index-B5u4gc8-.js";
-========
-import{w as e,r as t,x as s,t as a,j as i,y as l,C as r,g as n,M as c,z as d,u as m,b as o,c as x,D as h,E as j,l as p,G as u,H as N,I as g,f as y,U as f,v as b}from"./index-07kxdQGi.js";
->>>>>>>> 018016b7b857e34daf73a5695f69cbfdfccc6000:build/assets/TestimonialsView-4hfhYfhf.js
+import{w as e,r as t,x as s,t as a,j as i,y as l,C as r,g as n,M as c,z as d,u as m,b as o,c as x,D as h,E as j,l as p,G as u,H as N,I as g,f as y,U as f,v as b}from"./index-4DpYB-dE.js";
 /**
  * @license lucide-react v0.487.0 - ISC
  *

@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:build/assets/DigitalProductsPage-DzufB22p.js
-import{w as e,r as s,j as t,C as a,g as r,i as l,ac as i,l as n,_ as c,ad as d,ae as o,F as x,f as h,af as m,ag as p,t as g,ah as u,a0 as b,ai as j,a1 as f,a2 as N,aj as y,a3 as v,z as w,p as k,a as C}from"./index-B5u4gc8-.js";
-========
-import{w as e,r as s,j as t,C as a,g as r,i as l,ac as i,l as n,_ as c,ad as d,ae as o,F as x,f as h,af as m,ag as p,t as g,ah as u,a0 as b,ai as j,a1 as f,a2 as N,aj as y,a3 as v,z as w,p as k,a as C}from"./index-07kxdQGi.js";
->>>>>>>> 018016b7b857e34daf73a5695f69cbfdfccc6000:build/assets/DigitalProductsPage-CbgG6AQ9.js
+import{w as e,r as s,j as t,C as a,g as r,i as l,ac as i,l as n,_ as c,ad as d,ae as o,F as x,f as h,af as m,ag as p,t as g,ah as u,a0 as b,ai as j,a1 as f,a2 as N,aj as y,a3 as v,z as w,p as k,a as C}from"./index-4DpYB-dE.js";
 /**
  * @license lucide-react v0.487.0 - ISC
  *

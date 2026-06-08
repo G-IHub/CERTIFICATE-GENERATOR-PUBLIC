@@ -153,14 +153,14 @@ export default function CertificateTemplate7({
             </h1>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 160" width="100%" height="100%">
               <polygon points="40,30 960,30 910,80 960,130 40,130 90,80" fill="#FF6600" />
-              <text x="500" y="97" className="text-[52px] uppercase font-bold tracking-widest" text-anchor="middle" fill="#000000">{header?.split(" ")[1] || "Certificate"}  {header?.split(" ")[2] || "Certificate"}</text>
+              <text x="500" y="97" font-size="52" font-weight="700" text-transform="uppercase" className="uppercase tracking-widest" text-anchor="middle" fill="#000000">{header?.split(" ")[1] || "Certificate"}  {header?.split(" ")[2] || "Certificate"}</text>
             </svg>
           </div>
           <p className="font-bold tracking-tighter text-sm uppercase">
             This Certificate is Proudly Presented to:
           </p>
           <p
-            className="w-auto text-center border-b-2 font-semibold text-5xl tracking-wider font-[bodoni]"
+            className="w-auto text-center border-b-2 font-semibold text-3xl tracking-wider font-[bodoni]"
             style={{ borderColor: themeColors?.primary ?? "#f97316" }}
           >
             {recipientName}
@@ -176,7 +176,7 @@ export default function CertificateTemplate7({
 
           <div className="flex gap-10 w-full items-center justify-center z-50 mt-4">
             <div className="space-y-2">
-              <div className="border-b w-40 flex justify-center items-center">
+              <div className="border-b border-black w-40 flex justify-center items-center">
                 {signatureUrl1 && (
                   <img
                     src={signatureUrl1}
@@ -188,8 +188,8 @@ export default function CertificateTemplate7({
               </div>
               <div className="space-y-0">
                 <p
-                  className="text-center text-sm font-medium"
-                  style={{ color: themeColors?.primary ?? "#f97316" }}
+                  className="text-center text-sm font-medium text-orange-500"
+                  // style={{ color: themeColors?.primary ?? "#f97316" }}
                 >
                   {signatoryName1 || "Oluwaseyi Abraham Olawale"}
                 </p>
@@ -204,7 +204,7 @@ export default function CertificateTemplate7({
             </div>
 
             <div className="space-y-2">
-              <div className="border-b w-40 flex justify-center items-center">
+              <div className="border-b border-black w-40 flex justify-center items-center">
                 {signatureUrl2 && (
                   <img
                     src={signatureUrl2}
@@ -216,8 +216,8 @@ export default function CertificateTemplate7({
               </div>
               <div className="space-y-0">
                 <p
-                  className="text-center text-sm font-medium"
-                  style={{ color: themeColors?.primary ?? "#f97316" }}
+                  className="text-center text-sm font-medium text-orange-500"
+                  // style={{ color: themeColors?.primary ?? "#f97316" }}
                 >
                   {signatoryName2 || "Gloria Adegbole"}
                 </p>

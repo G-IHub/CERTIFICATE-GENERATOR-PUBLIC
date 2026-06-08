@@ -28,6 +28,12 @@ import {
   SelectValue,
 } from "./ui/select";
 import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu";
+import {
   Building2,
   Users,
   Award,
@@ -53,6 +59,8 @@ import {
   BookOpen,
   Trash2,
   Wallet,
+  Copy,
+  Download,
 } from "lucide-react";
 import { toast } from "sonner";
 import { publicAnonKey, projectId } from "../utils/supabase/info";
@@ -63,6 +71,7 @@ import PlatformTrackingView from "./PlatformTrackingView";
 import TemplateVisibilityManager from "./TemplateVisibilityManager";
 import { BlogManagement } from "./admin/BlogManagement";
 import AdminPayoutManagement from "./AdminPayoutManagement";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "./ui/tabs";
 import MonetizationPage from "./MonetizationPage";
 
 interface PlatformAdminPanelProps {
@@ -153,8 +162,8 @@ export default function PlatformAdminPanel({
   const [organizations, setOrganizations] = useState<Organization[]>([]);
   const [users, setUsers] = useState<User[]>([]);
   const [certificates, setCertificates] = useState<Certificate[]>([]);
-  const [adminStats, setAdminStats] = useState<any | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
+  const [orgSearchTerm, setOrgSearchTerm] = useState("");
   const [activityFilter, setActivityFilter] = useState<
     "all" | "active" | "inactive"
   >("all");
@@ -300,15 +309,6 @@ export default function PlatformAdminPanel({
         certificatesGeneratedToday: certsToday,
       });
 
-      // After loading platform data, also refresh aggregated admin stats
-      try {
-        await loadAdminStats();
-      } catch (err) {
-        console.warn(
-          "Could not load admin stats after platform data load",
-          err,
-        );
-      }
     } catch (error: any) {
       console.error("Error loading platform data:", error);
       toast.error("Failed to load platform data: " + error.message);
@@ -320,58 +320,6 @@ export default function PlatformAdminPanel({
 
   useEffect(() => {
     loadPlatformData();
-  }, [accessToken]);
-
-  // Load aggregated admin stats from backend
-  const loadAdminStats = async () => {
-    try {
-      const authHeader = accessToken ?? publicAnonKey;
-      console.log(
-        "🔐 loadAdminStats: adminEmail=",
-        adminEmail,
-        "hasAccessToken=",
-        !!accessToken,
-      );
-      const res = await fetch(
-        `https://${projectId}.supabase.co/functions/v1/make-server-a611b057/admin/stats`,
-        {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${authHeader}`,
-            "Content-Type": "application/json",
-          },
-        },
-      );
-      console.log("📡 Admin stats response status:", res.status);
-      if (!res.ok) {
-        let errData: any = null;
-        try {
-          errData = await res.json();
-        } catch (e) {
-          // ignore
-        }
-        console.error("Admin stats fetch failed", res.status, errData);
-        toast.error(
-          `Failed to load analytics: ${errData?.error || res.status}`,
-        );
-        return;
-      }
-
-      const data = await res.json();
-      console.log("✅ Admin stats fetched:", data);
-      console.log("➡️ adminStats payload:", data?.stats);
-      if (data?.stats) {
-        setAdminStats(data.stats);
-      } else {
-        console.warn("Admin stats response missing stats payload", data);
-      }
-    } catch (error: any) {
-      console.error("Failed to load admin stats:", error);
-    }
-  };
-
-  useEffect(() => {
-    loadAdminStats();
   }, [accessToken]);
 
   const handleRefresh = async () => {
@@ -480,6 +428,107 @@ export default function PlatformAdminPanel({
       hour: "2-digit",
       minute: "2-digit",
     });
+  };
+
+  // Filter organizations for email export tab
+  const filteredOrgsForEmails = organizations.filter(
+    (org) =>
+      org.name?.toLowerCase().includes(orgSearchTerm.toLowerCase()) ||
+      org.ownerEmail?.toLowerCase().includes(orgSearchTerm.toLowerCase()) ||
+      org.shortName?.toLowerCase().includes(orgSearchTerm.toLowerCase())
+  );
+
+  const copyAllOrgEmails = () => {
+    try {
+      const uniqueEmails = Array.from(
+        new Set(
+          filteredOrgsForEmails
+            .map((org) => org.ownerEmail?.trim())
+            .filter(Boolean)
+        )
+      );
+
+      if (uniqueEmails.length === 0) {
+        toast.error("No email addresses to copy");
+        return;
+      }
+
+      const emailsString = uniqueEmails.join(", ");
+      navigator.clipboard.writeText(emailsString);
+      toast.success(`Copied ${uniqueEmails.length} unique email addresses to clipboard`);
+    } catch (error) {
+      console.error("Failed to copy emails:", error);
+      toast.error("Failed to copy email addresses");
+    }
+  };
+
+  const downloadOrgsCSV = () => {
+    try {
+      const headers = ["Organization ID", "Name", "Short Name", "Owner Email", "Joined Date"];
+      const rows = filteredOrgsForEmails.map((org) => [
+        org.id,
+        org.name,
+        org.shortName || "",
+        org.ownerEmail || "",
+        org.createdAt ? new Date(org.createdAt).toLocaleDateString("en-US") : "",
+      ]);
+
+      const csvContent = [
+        headers.join(","),
+        ...rows.map((row) => row.map(val => `"${val.replace(/"/g, '""')}"`).join(",")),
+      ].join("\n");
+
+      const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+      const link = document.createElement("a");
+      const url = URL.createObjectURL(blob);
+      link.setAttribute("href", url);
+      link.setAttribute(
+        "download",
+        `organization_emails_${new Date().toISOString().split("T")[0]}.csv`
+      );
+      link.style.visibility = "hidden";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      toast.success("Organization emails exported as CSV");
+    } catch (error) {
+      console.error("Failed to download CSV:", error);
+      toast.error("Failed to download CSV");
+    }
+  };
+
+  const downloadOrgsJSON = () => {
+    try {
+      const data = filteredOrgsForEmails.map((org) => ({
+        id: org.id,
+        name: org.name,
+        shortName: org.shortName || "",
+        ownerEmail: org.ownerEmail || "",
+        createdAt: org.createdAt,
+      }));
+
+      const jsonContent = JSON.stringify(data, null, 2);
+      const blob = new Blob([jsonContent], {
+        type: "application/json;charset=utf-8;",
+      });
+      const link = document.createElement("a");
+      const url = URL.createObjectURL(blob);
+      link.setAttribute("href", url);
+      link.setAttribute(
+        "download",
+        `organization_emails_${new Date().toISOString().split("T")[0]}.json`
+      );
+      link.style.visibility = "hidden";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      toast.success("Organization emails exported as JSON");
+    } catch (error) {
+      console.error("Failed to download JSON:", error);
+      toast.error("Failed to download JSON");
+    }
   };
 
   // Filter organizations based on search and activity, then sort
@@ -1006,141 +1055,326 @@ export default function PlatformAdminPanel({
           )}
 
           {activeView === "organizations" && (
-            <div>
-              {/* Filter Controls */}
-              <div className="mb-4">
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="relative flex-1">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
-                    <Input
-                      placeholder="Search organizations..."
-                      value={searchTerm}
-                      onChange={(e) => setSearchTerm(e.target.value)}
-                      className="pl-9 h-9 text-sm"
-                    />
-                  </div>
-                  <Select
-                    value={activityFilter}
-                    onValueChange={(value: any) => setActivityFilter(value)}
-                  >
-                    <SelectTrigger className="w-[180px] h-9 text-sm">
-                      <SelectValue placeholder="Filter Activity" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="all">All Organizations</SelectItem>
-                      <SelectItem value="active">Active (Generated Certs)</SelectItem>
-                      <SelectItem value="inactive">Inactive (No Certs)</SelectItem>
-                    </SelectContent>
-                  </Select>
+            <Tabs defaultValue="directory" className="w-full">
+              <TabsList className="mb-4">
+                <TabsTrigger value="directory" className="cursor-pointer">
+                  Organization Directory
+                </TabsTrigger>
+                <TabsTrigger value="emails" className="cursor-pointer">
+                  Email Export
+                </TabsTrigger>
+              </TabsList>
 
-                  <Select
-                    value={sortOrder}
-                    onValueChange={(value: any) => setSortOrder(value)}
-                  >
-                    <SelectTrigger className="w-[180px] h-9 text-sm">
-                      <SelectValue placeholder="Sort By" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="newest">Newest First</SelectItem>
-                      <SelectItem value="oldest">Oldest First</SelectItem>
-                      <SelectItem value="name">Name (A-Z)</SelectItem>
-                      <SelectItem value="most_certificates">Most Certificates</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div className="flex items-center gap-4 text-xs text-gray-500">
-                  <span className="flex items-center gap-1.5">
-                    <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                    {organizations.filter((o) => certificates.some((c) => c.organizationId === o.id)).length} Active
-                  </span>
-                  <span className="flex items-center gap-1.5">
-                    <div className="w-2 h-2 rounded-full bg-gray-400"></div>
-                    {organizations.filter((o) => !certificates.some((c) => c.organizationId === o.id)).length} Inactive
-                  </span>
-                  <span className="text-gray-400">•</span>
-                  <span>{filteredOrganizations.length} shown</span>
-                </div>
-              </div>
-
-
-
-              {filteredOrganizations.length === 0 ? (
-                <Card>
-                  <CardContent className="text-center py-10">
-                    <Building2 className="w-10 h-10 text-gray-400 mx-auto mb-3" />
-                    <p className="text-sm text-gray-500">
-                      {searchTerm
-                        ? "No organizations found matching your search"
-                        : "No organizations yet"}
-                    </p>
-                  </CardContent>
-                </Card>
-              ) : (
-                <div className="space-y-2.5">
-                  {filteredOrganizations.map((org) => (
-                    <Card
-                      key={org.id}
-                      className="border-gray-200 hover:border-gray-300 transition-colors"
+              <TabsContent value="directory" className="space-y-4">
+                {/* Filter Controls */}
+                <div className="mb-4">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="relative flex-1">
+                      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                      <Input
+                        placeholder="Search organizations..."
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        className="pl-9 h-9 text-sm"
+                      />
+                    </div>
+                    <Select
+                      value={activityFilter}
+                      onValueChange={(value: any) => setActivityFilter(value)}
                     >
-                      <CardContent className="flex items-center gap-4 p-5">
-                        <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden border border-gray-100">
-                          {org.logo ? (
-                            <img
-                              src={org.logo}
-                              alt={org.name}
-                              className="w-full h-full object-cover"
-                            />
-                          ) : (
-                            <Building2 className="w-6 h-6 text-gray-400" />
-                          )}
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center gap-2 mb-1">
-                            <h3 className="text-base font-medium text-gray-900 truncate">
-                              {org.name}
-                            </h3>
-                            {isNew(org.createdAt) && (
-                              <Badge
-                                variant="outline"
-                                className="bg-green-50 text-green-700 border-green-200 flex-shrink-0 text-xs px-2"
-                              >
-                                NEW
-                              </Badge>
+                      <SelectTrigger className="w-[180px] h-9 text-sm">
+                        <SelectValue placeholder="Filter Activity" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="all">All Organizations</SelectItem>
+                        <SelectItem value="active">Active (Generated Certs)</SelectItem>
+                        <SelectItem value="inactive">Inactive (No Certs)</SelectItem>
+                      </SelectContent>
+                    </Select>
+
+                    <Select
+                      value={sortOrder}
+                      onValueChange={(value: any) => setSortOrder(value)}
+                    >
+                      <SelectTrigger className="w-[180px] h-9 text-sm">
+                        <SelectValue placeholder="Sort By" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="newest">Newest First</SelectItem>
+                        <SelectItem value="oldest">Oldest First</SelectItem>
+                        <SelectItem value="name">Name (A-Z)</SelectItem>
+                        <SelectItem value="most_certificates">Most Certificates</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="flex items-center gap-4 text-xs text-gray-500">
+                    <span className="flex items-center gap-1.5">
+                      <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                      {organizations.filter((o) => certificates.some((c) => c.organizationId === o.id)).length} Active
+                    </span>
+                    <span className="flex items-center gap-1.5">
+                      <div className="w-2 h-2 rounded-full bg-gray-400"></div>
+                      {organizations.filter((o) => !certificates.some((c) => c.organizationId === o.id)).length} Inactive
+                    </span>
+                    <span className="text-gray-400">•</span>
+                    <span>{filteredOrganizations.length} shown</span>
+                  </div>
+                </div>
+
+                {filteredOrganizations.length === 0 ? (
+                  <Card>
+                    <CardContent className="text-center py-10">
+                      <Building2 className="w-10 h-10 text-gray-400 mx-auto mb-3" />
+                      <p className="text-sm text-gray-500">
+                        {searchTerm
+                          ? "No organizations found matching your search"
+                          : "No organizations yet"}
+                      </p>
+                    </CardContent>
+                  </Card>
+                ) : (
+                  <div className="space-y-2.5">
+                    {filteredOrganizations.map((org) => (
+                      <Card
+                        key={org.id}
+                        className="border-gray-200 hover:border-gray-300 transition-colors"
+                      >
+                        <CardContent className="flex items-center gap-4 p-5">
+                          <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-gray-100 flex items-center justify-center overflow-hidden border border-gray-100">
+                            {org.logo ? (
+                              <img
+                                src={org.logo}
+                                alt={org.name}
+                                className="w-full h-full object-cover"
+                              />
+                            ) : (
+                              <Building2 className="w-6 h-6 text-gray-400" />
                             )}
                           </div>
-                          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-gray-500">
-                            <span className="flex items-center gap-1.5">
-                              <Mail className="w-3.5 h-3.5 text-gray-400" />
-                              {org.ownerEmail || "No email"}
-                            </span>
-                            <span className="flex items-center gap-1.5">
-                              <Award className="w-3.5 h-3.5 text-gray-400" />
-                              {certificates.filter((c) => c.organizationId === org.id).length} certificate(s)
-                            </span>
-                            <span className="flex items-center gap-1.5">
-                              <Calendar className="w-3.5 h-3.5 text-gray-400" />
-                              Joined {formatDate(org.createdAt)}
-                            </span>
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center gap-2 mb-1">
+                              <h3 className="text-base font-medium text-gray-900 truncate">
+                                {org.name}
+                              </h3>
+                              {isNew(org.createdAt) && (
+                                <Badge
+                                  variant="outline"
+                                  className="bg-green-50 text-green-700 border-green-200 flex-shrink-0 text-xs px-2"
+                                >
+                                  NEW
+                                </Badge>
+                              )}
+                            </div>
+                            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-gray-500">
+                              <span className="flex items-center gap-1.5">
+                                <Mail className="w-3.5 h-3.5 text-gray-400" />
+                                {org.ownerEmail || "No email"}
+                              </span>
+                              <span className="flex items-center gap-1.5">
+                                <Award className="w-3.5 h-3.5 text-gray-400" />
+                                {certificates.filter((c) => c.organizationId === org.id).length} certificate(s)
+                              </span>
+                              <span className="flex items-center gap-1.5">
+                                <Calendar className="w-3.5 h-3.5 text-gray-400" />
+                                Joined {formatDate(org.createdAt)}
+                              </span>
+                            </div>
                           </div>
+                          <div className="flex items-center gap-2 flex-shrink-0 ml-4">
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={() => handleDeleteOrganization(org)}
+                              className="text-xs h-9 px-3 text-red-600 hover:text-red-700 hover:bg-red-50 border-red-200 transition-colors cursor-pointer"
+                              title="Delete organization"
+                            >
+                              <Trash2 className="w-4 h-4 mr-2" />
+                              Delete
+                            </Button>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
+                )}
+              </TabsContent>
+
+              <TabsContent value="emails" className="space-y-4">
+                {/* Org Statistics */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <Card>
+                    <CardContent className="p-6">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <p className="text-sm text-gray-600">Total Organizations</p>
+                          <p className="text-3xl font-bold text-gray-900 mt-1">
+                            {organizations.length}
+                          </p>
                         </div>
-                        <div className="flex items-center gap-2 flex-shrink-0 ml-4">
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={() => handleDeleteOrganization(org)}
-                            className="text-xs h-9 px-3 text-red-600 hover:text-red-700 hover:bg-red-50 border-red-200 transition-colors"
-                            title="Delete organization"
-                          >
-                            <Trash2 className="w-4 h-4 mr-2" />
-                            Delete
-                          </Button>
+                        <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                          <Building2 className="w-6 h-6 text-primary" />
                         </div>
-                      </CardContent>
-                    </Card>
-                  ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card>
+                    <CardContent className="p-6">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <p className="text-sm text-gray-600">Organizations with Email</p>
+                          <p className="text-3xl font-bold text-gray-900 mt-1">
+                            {organizations.filter((o) => o.ownerEmail).length}
+                          </p>
+                        </div>
+                        <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                          <Mail className="w-6 h-6 text-primary" />
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card>
+                    <CardContent className="p-6">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <p className="text-sm text-gray-600">Unique Owner Emails</p>
+                          <p className="text-3xl font-bold text-gray-900 mt-1">
+                            {new Set(organizations.map((o) => o.ownerEmail).filter(Boolean)).size}
+                          </p>
+                        </div>
+                        <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                          <Users className="w-6 h-6 text-primary" />
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
                 </div>
-              )}
-            </div>
+
+                {/* Search and Actions */}
+                <Card>
+                  <CardHeader>
+                    <div className="flex items-center justify-between">
+                      <CardTitle className="flex items-center gap-2">
+                        <Building2 className="w-5 h-5" />
+                        Organization Email Addresses
+                      </CardTitle>
+                      <div className="flex gap-2">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="gap-2 cursor-pointer"
+                          onClick={copyAllOrgEmails}
+                        >
+                          <Copy className="w-4 h-4" />
+                          Copy All Emails
+                        </Button>
+                        <DropdownMenu>
+                          <DropdownMenuTrigger asChild>
+                            <Button variant="outline" size="sm" className="gap-2 cursor-pointer">
+                              <Download className="w-4 h-4" />
+                              Export
+                            </Button>
+                          </DropdownMenuTrigger>
+                          <DropdownMenuContent align="end">
+                            <DropdownMenuItem onClick={downloadOrgsCSV} className="cursor-pointer">
+                              <Download className="w-4 h-4 mr-2" />
+                              Download as CSV
+                            </DropdownMenuItem>
+                            <DropdownMenuItem onClick={downloadOrgsJSON} className="cursor-pointer">
+                              <Download className="w-4 h-4 mr-2" />
+                              Download as JSON
+                            </DropdownMenuItem>
+                          </DropdownMenuContent>
+                        </DropdownMenu>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="mb-4">
+                      <div className="relative">
+                        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                        <Input
+                          placeholder="Search by name, slug, or email..."
+                          value={orgSearchTerm}
+                          onChange={(e) => setOrgSearchTerm(e.target.value)}
+                          className="pl-9"
+                        />
+                      </div>
+                      <p className="text-xs text-gray-500 mt-2">
+                        Showing {filteredOrgsForEmails.length} of {organizations.length} organizations
+                      </p>
+                    </div>
+
+                    {filteredOrgsForEmails.length === 0 ? (
+                      <div className="text-center py-8">
+                        <Building2 className="w-12 h-12 text-gray-400 mx-auto mb-3" />
+                        <p className="text-sm text-gray-500">
+                          {orgSearchTerm
+                            ? "No organizations found matching your search"
+                            : "No organizations registered yet"}
+                        </p>
+                      </div>
+                    ) : (
+                      <div className="space-y-2">
+                        {filteredOrgsForEmails.map((org) => (
+                          <Card key={org.id} className="hover:shadow-sm transition-shadow">
+                            <CardContent className="p-4">
+                              <div className="flex items-center justify-between">
+                                <div className="flex items-center gap-3 flex-1 min-w-0">
+                                  <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <Building2 className="w-4 h-4 text-primary" />
+                                  </div>
+                                  <div className="flex-1 min-w-0">
+                                    <div className="flex items-center gap-2 mb-1">
+                                      <h4 className="font-semibold text-gray-900 text-sm truncate font-medium">
+                                        {org.name}
+                                      </h4>
+                                      {org.shortName && (
+                                        <Badge variant="outline" className="text-xs">
+                                          {org.shortName}
+                                        </Badge>
+                                      )}
+                                    </div>
+                                    <div className="flex items-center gap-3 text-xs text-gray-500">
+                                      <span className="flex items-center gap-1">
+                                        <Mail className="w-3 h-3" />
+                                        {org.ownerEmail || "No email address"}
+                                      </span>
+                                      <span className="flex items-center gap-1">
+                                        <Calendar className="w-3 h-3" />
+                                        Joined {org.createdAt ? new Date(org.createdAt).toLocaleDateString("en-US", {
+                                          year: "numeric",
+                                          month: "short",
+                                          day: "numeric",
+                                        }) : "N/A"}
+                                      </span>
+                                    </div>
+                                  </div>
+                                </div>
+                                {org.ownerEmail && (
+                                  <Button
+                                    size="sm"
+                                    variant="ghost"
+                                    className="h-8 px-2 cursor-pointer text-gray-500 hover:text-primary"
+                                    onClick={() => {
+                                      navigator.clipboard.writeText(org.ownerEmail || "");
+                                      toast.success("Email copied to clipboard");
+                                    }}
+                                  >
+                                    <Copy className="w-4 h-4" />
+                                  </Button>
+                                )}
+                              </div>
+                            </CardContent>
+                          </Card>
+                        ))}
+                      </div>
+                    )}
+                  </CardContent>
+                </Card>
+              </TabsContent>
+            </Tabs>
           )}
 
           {/* Users view removed — no longer needed */}

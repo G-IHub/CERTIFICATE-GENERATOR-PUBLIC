@@ -5105,54 +5105,39 @@ app.get("/make-server-a611b057/admin/stats", async (c) => {
     }
 
     // Get all organizations - filter out null/undefined values
-    const allOrgs = await kv.getByPrefix("org:");
-    console.log("📊 Admin Stats - Raw orgs from KV:", allOrgs.length);
+    // Get all admin stats data in parallel
+    const [allOrgs, allCerts, allTemplates, allPayments, allTestimonials, subscriptionList] = await Promise.all([
+      kv.getByPrefix("org:"),
+      kv.getByPrefix("cert:"),
+      kv.getByPrefix("globaltemplate:"),
+      kv.getByPrefix("payment:"),
+      kv.getByPrefix("testimonial:"),
+      (async () => {
+        const list = [];
+        for await (const entry of kv.list({ prefix: "subscription:org:" })) {
+          list.push(entry);
+        }
+        return list;
+      })(),
+    ]);
+
     const organizations = allOrgs.filter((org) => org && org.id);
-    console.log("📊 Admin Stats - Valid organizations:", organizations.length);
-
-    // Get all certificates - filter out null/undefined values
-    const allCerts = await kv.getByPrefix("cert:");
-    console.log("📊 Admin Stats - Raw certs from KV:", allCerts.length);
     const certificates = allCerts.filter((cert) => cert && cert.id);
-    console.log("📊 Admin Stats - Valid certificates:", certificates.length);
-
-    // Get all templates - filter out null/undefined values
-    const allTemplates = await kv.getByPrefix("globaltemplate:");
-    console.log(" Admin Stats - Raw templates from KV:", allTemplates.length);
-    const templates = allTemplates.filter(
-      (template) => template && template.id,
-    );
-    console.log("📊 Admin Stats - Valid templates:", templates.length);
-
-    // Get all payments - filter out null/undefined values
-    const allPayments = await kv.getByPrefix("payment:");
-    console.log("📊 Admin Stats - Raw payments from KV:", allPayments.length);
+    const templates = allTemplates.filter((template) => template && template.id);
     const payments = allPayments.filter((payment) => payment && payment.id);
-    console.log("📊 Admin Stats - Valid payments:", payments.length);
-
-    // Get all testimonials - filter out null/undefined values
-    const allTestimonials = await kv.getByPrefix("testimonial:");
-    console.log(
-      "📊 Admin Stats - Raw testimonials from KV:",
-      allTestimonials.length,
-    );
-    const testimonials = allTestimonials.filter(
-      (testimonial) => testimonial && testimonial.id,
-    );
-    console.log("📊 Admin Stats - Valid testimonials:", testimonials.length);
+    const testimonials = allTestimonials.filter((testimonial) => testimonial && testimonial.id);
 
     // Calculate stats with safe access
-    // Check for premium using subscription data
-    const premiumOrgs = await Promise.all(
-      organizations.map(async (org) => {
-        const subscription = await kv.get(`subscription:org:${org.id}`);
-        return (
-          subscription &&
-          subscription.status === "active" &&
-          subscription.plan !== "free"
-        );
-      }),
-    );
+    // Check for premium using subscription data from pre-fetched list
+    const premiumOrgs = organizations.map((org) => {
+      const subEntry = subscriptionList.find((s) => s.key === `subscription:org:${org.id}`);
+      const subscription = subEntry ? subEntry.value : null;
+      return (
+        subscription &&
+        subscription.status === "active" &&
+        subscription.plan !== "free"
+      );
+    });
     const premiumCount = premiumOrgs.filter(Boolean).length;
     const freeCount = organizations.length - premiumCount;
 
@@ -7385,24 +7370,25 @@ app.get("/make-server-a611b057/admin/platform-data", async (c) => {
   try {
     console.log("🔐 Platform admin data request");
 
-    // Get all organizations
-    const allOrgs = await kv.getByPrefix("org:");
+    // Get all platform data in parallel
+    const [allOrgs, allUsers, allCerts, subscriptionList, allTestimonials] = await Promise.all([
+      kv.getByPrefix("org:"),
+      kv.getByPrefix("user:"),
+      kv.getByPrefix("cert:"),
+      (async () => {
+        const list = [];
+        for await (const entry of kv.list({ prefix: "subscription:org:" })) {
+          list.push(entry);
+        }
+        return list;
+      })(),
+      kv.getByPrefix("testimonial:"),
+    ]);
+
     console.log("📊 Total organizations:", allOrgs.length);
-
-    // Get all users
-    const allUsers = await kv.getByPrefix("user:");
     console.log("👥 Total users:", allUsers.length);
-
-    // Get all certificates
-    const allCerts = await kv.getByPrefix("cert:");
     console.log("🎓 Total certificates:", allCerts.length);
-
-    // Get all subscriptions
-    const allSubscriptions = await kv.getByPrefix("subscription:");
-    console.log("💳 Total subscriptions:", allSubscriptions.length);
-
-    // Get all testimonials
-    const allTestimonials = await kv.getByPrefix("testimonial:");
+    console.log("💳 Total subscriptions loaded:", subscriptionList.length);
     console.log("💬 Total testimonials:", allTestimonials.length);
 
     // Filter out invalid data and ensure unique IDs
@@ -7414,37 +7400,36 @@ app.get("/make-server-a611b057/admin/platform-data", async (c) => {
     );
 
     // Enrich organizations with owner email and subscription data
-    const enrichedOrgs = await Promise.all(
-      validOrgs.map(async (org) => {
-        // Find the owner user
-        const ownerUser = validUsers.find((u) => u.id === org.ownerId);
+    const enrichedOrgs = validOrgs.map((org) => {
+      // Find the owner user
+      const ownerUser = validUsers.find((u) => u.id === org.ownerId);
 
-        // Get subscription for this organization - USE CORRECT KEY FORMAT
-        const subscription = await kv.get(`subscription:org:${org.id}`);
+      // Find subscription from pre-fetched list
+      const subEntry = subscriptionList.find((s) => s.key === `subscription:org:${org.id}`);
+      const subscription = subEntry ? subEntry.value : null;
 
-        if (subscription) {
-          console.log(`✅ Found subscription for ${org.name}:`, {
-            plan: subscription.plan,
-            status: subscription.status,
-            expiryDate: subscription.expiryDate,
-          });
-        }
+      if (subscription) {
+        console.log(`✅ Found subscription for ${org.name}:`, {
+          plan: subscription.plan,
+          status: subscription.status,
+          expiryDate: subscription.expiryDate,
+        });
+      }
 
-        return {
-          id: org.id,
-          name: org.name || "Unnamed Organization",
-          shortName: org.shortName || "",
-          logo: org.logo || "",
-          primaryColor: org.primaryColor || "#ea580c",
-          ownerId: org.ownerId || "",
-          ownerEmail: ownerUser?.email || null,
-          createdAt: org.createdAt || new Date().toISOString(),
-          courses: org.courses || [],
-          settings: org.settings || null,
-          subscription: subscription || null,
-        };
-      }),
-    );
+      return {
+        id: org.id,
+        name: org.name || "Unnamed Organization",
+        shortName: org.shortName || "",
+        logo: org.logo || "",
+        primaryColor: org.primaryColor || "#ea580c",
+        ownerId: org.ownerId || "",
+        ownerEmail: ownerUser?.email || null,
+        createdAt: org.createdAt || new Date().toISOString(),
+        courses: org.courses || [],
+        settings: org.settings || null,
+        subscription: subscription || null,
+      };
+    });
 
     // Format users with defaults
     const formattedUsers = validUsers.map((user) => ({
@@ -8173,19 +8158,18 @@ app.get("/make-server-a611b057/admin/analytics", async (c) => {
   try {
     console.log("📊 Analytics request");
 
-    // Get all data from KV store
-    const allOrgs = (await kv.getByPrefix("org:")).filter(
-      (org) => org && org.id,
-    );
-    const allUsers = (await kv.getByPrefix("user:")).filter(
-      (user) => user && user.id,
-    );
-    const allCerts = (await kv.getByPrefix("cert:")).filter(
-      (cert) => cert && cert.id,
-    );
-    const allTestimonials = (await kv.getByPrefix("testimonial:")).filter(
-      (t) => t && t.id,
-    );
+    // Get all data from KV store in parallel
+    const [rawOrgs, rawUsers, rawCerts, rawTestimonials] = await Promise.all([
+      kv.getByPrefix("org:"),
+      kv.getByPrefix("user:"),
+      kv.getByPrefix("cert:"),
+      kv.getByPrefix("testimonial:"),
+    ]);
+
+    const allOrgs = rawOrgs.filter((org) => org && org.id);
+    const allUsers = rawUsers.filter((user) => user && user.id);
+    const allCerts = rawCerts.filter((cert) => cert && cert.id);
+    const allTestimonials = rawTestimonials.filter((t) => t && t.id);
 
     console.log(
       `📊 Data loaded: ${allOrgs.length} orgs, ${allUsers.length} users, ${allCerts.length} certs`,

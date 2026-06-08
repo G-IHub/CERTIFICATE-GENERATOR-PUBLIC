@@ -7386,24 +7386,25 @@ app.get("/make-server-a611b057/admin/platform-data", async (c) => {
   try {
     console.log("🔐 Platform admin data request");
 
-    // Get all organizations
-    const allOrgs = await kv.getByPrefix("org:");
+    // Get all platform data in parallel
+    const [allOrgs, allUsers, allCerts, subscriptionList, allTestimonials] = await Promise.all([
+      kv.getByPrefix("org:"),
+      kv.getByPrefix("user:"),
+      kv.getByPrefix("cert:"),
+      (async () => {
+        const list = [];
+        for await (const entry of kv.list({ prefix: "subscription:org:" })) {
+          list.push(entry);
+        }
+        return list;
+      })(),
+      kv.getByPrefix("testimonial:"),
+    ]);
+
     console.log("📊 Total organizations:", allOrgs.length);
-
-    // Get all users
-    const allUsers = await kv.getByPrefix("user:");
     console.log("👥 Total users:", allUsers.length);
-
-    // Get all certificates
-    const allCerts = await kv.getByPrefix("cert:");
     console.log("🎓 Total certificates:", allCerts.length);
-
-    // Get all subscriptions
-    const allSubscriptions = await kv.getByPrefix("subscription:");
-    console.log("💳 Total subscriptions:", allSubscriptions.length);
-
-    // Get all testimonials
-    const allTestimonials = await kv.getByPrefix("testimonial:");
+    console.log("💳 Total subscriptions loaded:", subscriptionList.length);
     console.log("💬 Total testimonials:", allTestimonials.length);
 
     // Filter out invalid data and ensure unique IDs

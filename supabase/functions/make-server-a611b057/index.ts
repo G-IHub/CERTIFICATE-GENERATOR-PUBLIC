@@ -5204,7 +5204,7 @@ app.get("/make-server-a611b057/admin/organizations", async (c) => {
       const orgCerts = await kv.getByPrefix(`cert:${org.id}:`);
 
       // Get course count
-      const courseCount = org.courses?.length || 0;
+      const courseCount = (org.courses || org.programs || []).length;
 
       // Get owner's email if ownerId exists
       let ownerEmail = "";
@@ -5233,7 +5233,7 @@ app.get("/make-server-a611b057/admin/organizations", async (c) => {
         plan: org.plan || "free",
         certificateCount: orgCerts.length,
         courseCount: courseCount,
-        courses: org.courses || [],
+        courses: org.courses || org.programs || [],
         createdAt: org.createdAt || new Date().toISOString(),
         ownerId: org.ownerId || "",
         ownerEmail: ownerEmail,
@@ -7425,7 +7425,7 @@ app.get("/make-server-a611b057/admin/platform-data", async (c) => {
         ownerId: org.ownerId || "",
         ownerEmail: ownerUser?.email || null,
         createdAt: org.createdAt || new Date().toISOString(),
-        courses: org.courses || [],
+        courses: org.courses || org.programs || [],
         settings: org.settings || null,
         subscription: subscription || null,
       };
@@ -8159,11 +8159,18 @@ app.get("/make-server-a611b057/admin/analytics", async (c) => {
     console.log("📊 Analytics request");
 
     // Get all data from KV store in parallel
-    const [rawOrgs, rawUsers, rawCerts, rawTestimonials] = await Promise.all([
+    const [rawOrgs, rawUsers, rawCerts, rawTestimonials, subscriptionList] = await Promise.all([
       kv.getByPrefix("org:"),
       kv.getByPrefix("user:"),
       kv.getByPrefix("cert:"),
       kv.getByPrefix("testimonial:"),
+      (async () => {
+        const list = [];
+        for await (const entry of kv.list({ prefix: "subscription:org:" })) {
+          list.push(entry);
+        }
+        return list;
+      })(),
     ]);
 
     const allOrgs = rawOrgs.filter((org) => org && org.id);
@@ -8172,7 +8179,7 @@ app.get("/make-server-a611b057/admin/analytics", async (c) => {
     const allTestimonials = rawTestimonials.filter((t) => t && t.id);
 
     console.log(
-      `📊 Data loaded: ${allOrgs.length} orgs, ${allUsers.length} users, ${allCerts.length} certs`,
+      `📊 Data loaded: ${allOrgs.length} orgs, ${allUsers.length} users, ${allCerts.length} certs`
     );
 
     // Calculate time ranges
@@ -8197,12 +8204,24 @@ app.get("/make-server-a611b057/admin/analytics", async (c) => {
     // Organization analytics
     const organizationAnalytics = allOrgs.map((org: any) => {
       const orgCerts = allCerts.filter(
-        (cert: any) => cert.organizationId === org.id,
+        (cert: any) => cert.organizationId === org.id
       );
       const orgTestimonials = allTestimonials.filter(
-        (t: any) => t.organizationId === org.id,
+        (t: any) => t.organizationId === org.id
       );
-      const orgCourses = org.courses || [];
+      const orgCourses = org.courses || org.programs || [];
+
+      // Find the owner user to get their actual email
+      const ownerUser = allUsers.find((u: any) => u.id === org.ownerId);
+      const ownerEmail = ownerUser?.email || "";
+
+      // Find subscription from pre-fetched list
+      const subEntry = subscriptionList.find((s) => s.key === `subscription:org:${org.id}`);
+      const subscription = subEntry ? subEntry.value : null;
+      const isPremium =
+        subscription &&
+        subscription.status === "active" &&
+        subscription.plan !== "free";
 
       // Template usage for this org
       const orgTemplateUsage: { [key: string]: number } = {};
@@ -8224,12 +8243,12 @@ app.get("/make-server-a611b057/admin/analytics", async (c) => {
       // Time-based metrics
       const certsThisWeek = orgCerts.filter((cert: any) => {
         const certDate = new Date(cert.createdAt || cert.generatedAt || 0);
-        return certDate >= weekAgo;
+        return certDate.getTime() >= weekAgo.getTime();
       }).length;
 
       const certsThisMonth = orgCerts.filter((cert: any) => {
         const certDate = new Date(cert.createdAt || cert.generatedAt || 0);
-        return certDate >= monthAgo;
+        return certDate.getTime() >= monthAgo.getTime();
       }).length;
 
       // Calculate days active
@@ -8237,8 +8256,8 @@ app.get("/make-server-a611b057/admin/analytics", async (c) => {
       const daysActive = Math.max(
         1,
         Math.floor(
-          (now.getTime() - createdDate.getTime()) / (1000 * 60 * 60 * 24),
-        ),
+          (now.getTime() - createdDate.getTime()) / (1000 * 60 * 60 * 24)
+        )
       );
 
       // Last active (most recent certificate or creation date)
@@ -8258,11 +8277,9 @@ app.get("/make-server-a611b057/admin/analytics", async (c) => {
         name: org.name,
         shortName: org.shortName,
         logo: org.logo,
-        ownerEmail: org.ownerEmail || "",
+        ownerEmail: ownerEmail,
         createdAt: org.createdAt,
-        isPremium:
-          org.subscription?.status === "active" &&
-          org.subscription?.plan !== "free",
+        isPremium,
         totalCertificates: orgCerts.length,
         totalCourses: orgCourses.length,
         totalTestimonials: orgTestimonials.length,
@@ -8281,26 +8298,27 @@ app.get("/make-server-a611b057/admin/analytics", async (c) => {
     // User analytics
     const userAnalytics = allUsers.map((user: any) => {
       const userCerts = allCerts.filter(
-        (cert: any) => cert.createdBy === user.id,
+        (cert: any) => cert.createdBy === user.id || cert.organizationId === user.organizationId
       );
       const userOrg = allOrgs.find(
-        (org: any) => org.id === user.organizationId,
+        (org: any) => org.id === user.organizationId
       );
 
       // Courses created by user
-      const userCourses =
-        userOrg?.courses?.filter((prog: any) => prog.createdBy === user.id) ||
-        [];
+      const userOrgCourses = userOrg?.courses || userOrg?.programs || [];
+      const userCourses = userOrgCourses.filter(
+        (prog: any) => prog.createdBy === user.id || !prog.createdBy
+      );
 
       // Time-based metrics
       const certsThisWeek = userCerts.filter((cert: any) => {
         const certDate = new Date(cert.createdAt || cert.generatedAt || 0);
-        return certDate >= weekAgo;
+        return certDate.getTime() >= weekAgo.getTime();
       }).length;
 
       const certsThisMonth = userCerts.filter((cert: any) => {
         const certDate = new Date(cert.createdAt || cert.generatedAt || 0);
-        return certDate >= monthAgo;
+        return certDate.getTime() >= monthAgo.getTime();
       }).length;
 
       // Calculate days active
@@ -8308,8 +8326,8 @@ app.get("/make-server-a611b057/admin/analytics", async (c) => {
       const daysActive = Math.max(
         1,
         Math.floor(
-          (now.getTime() - createdDate.getTime()) / (1000 * 60 * 60 * 24),
-        ),
+          (now.getTime() - createdDate.getTime()) / (1000 * 60 * 60 * 24)
+        )
       );
 
       // Last login (use last certificate creation or user creation)
@@ -8337,16 +8355,16 @@ app.get("/make-server-a611b057/admin/analytics", async (c) => {
         daysActive,
         certificatesThisWeek: certsThisWeek,
         certificatesThisMonth: certsThisMonth,
-        mostActiveDay: "N/A", // Could be calculated with more detailed tracking
+        mostActiveDay: "N/A",
       };
     });
 
     // Platform stats
     const activeOrgsThisWeek = organizationAnalytics.filter(
-      (org) => org.certificatesThisWeek > 0,
+      (org) => org.certificatesThisWeek > 0
     ).length;
     const activeUsersThisWeek = userAnalytics.filter(
-      (user) => user.certificatesThisWeek > 0,
+      (user) => user.certificatesThisWeek > 0
     ).length;
     const avgCertificatesPerOrg =
       allOrgs.length > 0 ? allCerts.length / allOrgs.length : 0;
@@ -8366,7 +8384,7 @@ app.get("/make-server-a611b057/admin/analytics", async (c) => {
     };
 
     console.log(
-      `✅ Analytics generated: ${organizationAnalytics.length} orgs, ${userAnalytics.length} users`,
+      `✅ Analytics generated: ${organizationAnalytics.length} orgs, ${userAnalytics.length} users`
     );
 
     return c.json({
@@ -8378,7 +8396,7 @@ app.get("/make-server-a611b057/admin/analytics", async (c) => {
     console.error("❌ Error generating analytics:", error);
     return c.json(
       { error: `Server error generating analytics: ${error}` },
-      500,
+      500
     );
   }
 });

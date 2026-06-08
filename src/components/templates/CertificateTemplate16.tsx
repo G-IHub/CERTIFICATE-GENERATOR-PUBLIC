@@ -86,6 +86,17 @@ export default function CertificateTemplate16({
     : null;
   const fallbackLogo = organizationLogo;
 
+  const isDefaultPrimary = !themeColors?.primary || themeColors.primary === "__default__";
+  const isDefaultSecondary = !themeColors?.secondary || themeColors.secondary === "__default__";
+  const isDefaultText = !themeColors?.text || themeColors.text === "__default__";
+  const isDefaultBg = !themeColors?.background || themeColors.background === "__default__";
+
+  const primaryColor = isDefaultPrimary ? "#AD814B" : themeColors.primary;
+  const secondaryColor = isDefaultSecondary ? (isDefaultPrimary ? "#B4814A" : themeColors.primary) : themeColors.secondary;
+  const textColor = isDefaultText ? "#3A3D3D" : themeColors.text;
+  const bgColor = isDefaultBg ? "#FFFFFF" : themeColors.background;
+  const outerBg = isDefaultBg ? "#2A2D30" : themeColors.background;
+
   return (
     <div className={containerClass}
     style={{ transform: `scale(${scale})`, backgroundColor: "transparent" }}>
@@ -95,19 +106,20 @@ export default function CertificateTemplate16({
         style={{
           width: "800px",
           height: "600px",
-          background: "#2A2D30",
+          background: outerBg,
         }}
       >
         <div
-          className="bg-white w-full p-2 rounded-lg relative overflow-hidden"
-          style={{ border: "4px solid #AD814B" }}
+          className="w-full p-2 rounded-lg relative overflow-hidden"
+          style={{ border: `4px solid ${primaryColor}`, background: bgColor }}
         >
           <div
-            className="bg-transparent w-full h-full rounded-lg px-20 flex flex-col items-center gap-10 text-center text-[#3A3D3D]"
+            className="bg-transparent w-full h-full rounded-lg px-20 flex flex-col items-center gap-10 text-center"
             style={{
               paddingTop: "48px",
               paddingBottom: "48px",
               fontFamily: "'Libre Baskerville', serif",
+              color: textColor,
             }}
           >
             {/* Logos */}
@@ -150,7 +162,7 @@ export default function CertificateTemplate16({
             <div className="">
               <h1
                 className="text-3xl font-bold uppercase"
-                style={{ color: "#B4814A", lineHeight: "36px" }}
+                style={{ color: secondaryColor, lineHeight: "36px" }}
               >
                 {header || "Distinction"}
               </h1>
@@ -162,10 +174,12 @@ export default function CertificateTemplate16({
 
               {/* Recipient Name */}
               <p
-                className="text-2xl border-b border-[#7E7F79] pb-4 text-gray-600"
+                className="text-2xl border-b pb-4 text-gray-600"
                 style={{
                   fontFamily: "'Momo Signature', cursive",
                   marginTop: -20,
+                  borderColor: primaryColor,
+                  color: textColor,
                 }}
               >
                 {recipientName}
@@ -199,11 +213,11 @@ export default function CertificateTemplate16({
                       />
                     )}
                     {!signatureUrl1 && (
-                      <div className="w-32 border-b-2 border-gray-400 mb-2" />
+                      <div className="w-32 border-b-2 mb-2" style={{ borderColor: primaryColor }} />
                     )}
                     <div
                       className="text-sm font-bold"
-                      style={{ color: "#4D4D4D" }}
+                      style={{ color: textColor }}
                     >
                       {signatoryName1}
                     </div>
@@ -227,11 +241,11 @@ export default function CertificateTemplate16({
                       />
                     )}
                     {!signatureUrl2 && (
-                      <div className="w-32 border-b-2 border-gray-400 mb-2" />
+                      <div className="w-32 border-b-2 mb-2" style={{ borderColor: primaryColor }} />
                     )}
                     <div
                       className="text-sm font-bold"
-                      style={{ color: "#4D4D4D" }}
+                      style={{ color: textColor }}
                     >
                       {signatoryName2}
                     </div>
@@ -250,7 +264,7 @@ export default function CertificateTemplate16({
                     <div className="text-xs font-bold ">Date</div>
                     <div
                       className="text-sm font-medium"
-                      style={{ color: "#4D4D4D" }}
+                      style={{ color: textColor }}
                     >
                       {formattedDate || "DATE"}
                     </div>

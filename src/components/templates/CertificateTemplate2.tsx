@@ -2,8 +2,9 @@ import { useEffect } from "react";
 import type { ThemeColors } from "../../types/theme";
 import type { Logo } from "../../App";
 import topShapeUrl from "../../assets/upper_shape.png";
-import centerLogoUrl from "../../assets/logo2b.png";
+// import centerLogoUrl from "../../assets/logo2b.png";
 import patternUrl from "../../assets/Pattern.png";
+import hexagonUrl from "../../assets/HEXAGON.png";
 import ribbonUrl from "../../assets/RIBBON.png";
 
 interface CertificateTemplate2Props {
@@ -132,15 +133,20 @@ export default function CertificateTemplate2({
         <img
           src={patternUrl}
           alt="Pattern"
-          className="absolute z-0 top-0 w-150 h-full opacity-70"
+          className="absolute z-0 top-0 w-full h-full opacity-70"
         />
+        {/* <img
+          src={hexagonUrl}
+          alt="Pattern"
+          className="absolute z-0 top-0 w-950 h-full opacity-50"
+        /> */}
 
         <div className="text-center flex flex-col gap-8 items-center w-full z-30 mt-14">
           <div className="flex flex-col items-center">
             <h1 className="text-5xl uppercase font-medium">{header?.split(" ")[0] || "Certificate"}</h1>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 160" width="100%" height="100%">
               <polygon points="40,30 960,30 910,80 960,130 40,130 90,80" fill="#FF6600" />
-              <text x="500" y="97" className="text-[52px] uppercase font-bold tracking-widest" text-anchor="middle" fill="#000000">{header?.split(" ")[1] || "Certificate"}  {header?.split(" ")[2] || "Certificate"}</text>
+              <text x="500" y="97" font-size="52" font-weight="700" text-transform="uppercase" className="tracking-widest" text-anchor="middle" fill="#000000">{header?.split(" ")[1] || "Certificate"}  {header?.split(" ")[2] || "Certificate"}</text>
             </svg>
           </div>
 
@@ -148,7 +154,7 @@ export default function CertificateTemplate2({
             This Certificate is Proudly Presented to
           </p>
 
-          <p className="w-1/2 text-center border-b font-semibold text-3xl tracking-wider font-[bodoni]" style={{ borderColor: themeColors?.primary ?? '#f97316' }}>
+          <p className="w-auto text-center border-b font-semibold text-3xl tracking-wider font-[bodoni]" style={{ borderColor: themeColors?.primary ?? '#f97316' }}>
             {recipientName}
           </p>
 
@@ -162,7 +168,7 @@ export default function CertificateTemplate2({
           <div className="flex gap-10 w-full items-center justify-center">
             {signatoryName1 && (
               <div className="space-y-2">
-                <p className="border-b w-40 text-center tracking-wide font-[Great_Vibes]">
+                <div className="border-b border-black w-40 flex justify-center">
                   {signatureUrl1 && (
                     <img
                       src={signatureUrl1}
@@ -171,7 +177,7 @@ export default function CertificateTemplate2({
                       style={{ marginBottom: -12 }}
                     />
                   )}
-                </p>
+                </div>
                 <div className="space-y-0">
                   <p className="text-center text-sm font-medium" style={{ color: themeColors?.primary ?? '#f97316' }}>
                     {signatoryName1}
@@ -189,7 +195,7 @@ export default function CertificateTemplate2({
 
             {signatoryName2 && (
               <div className="space-y-2">
-                <p className="border-b w-40 text-center tracking-wide font-[Great_Vibes]">
+                <div className="border-b border-black w-40 flex justify-center">
                   {signatureUrl2 && (
                     <img
                       src={signatureUrl2}
@@ -198,7 +204,7 @@ export default function CertificateTemplate2({
                       style={{ marginBottom: -12 }}
                     />
                   )}
-                </p>
+                </div>
                 <div className="space-y-0">
                   <p className="text-center text-sm font-medium" style={{ color: themeColors?.primary ?? '#f97316' }}>
                     {signatoryName2}

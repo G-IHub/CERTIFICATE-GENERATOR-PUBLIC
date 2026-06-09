@@ -329,9 +329,9 @@ export const certificateApi = {
     
     const data = await response.json();
     console.log('📥 Certificate retrieved:', {
-      id: data.id,
-      restrictDownload: data.restrictDownload,
-      allowedEmails: data.allowedEmails,
+      id: data.certificate?.id,
+      restrictDownload: data.certificate?.restrictDownload,
+      allowedEmails: data.certificate?.allowedEmails,
     });
     return data;
   },

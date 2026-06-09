@@ -48,6 +48,9 @@ import {
   Shield,
   ImageIcon,
   Palette,
+  Plus,
+  XCircle,
+  AlertTriangle,
 } from "lucide-react";
 import CertificateThemePicker from "./CertificateThemePicker";
 import type { ThemeColors } from "../types/theme";
@@ -281,6 +284,28 @@ export default function CertificateGenerationModal({
       return;
     }
 
+    let currentAllowedEmails = [...allowedEmails];
+    if (restrictDownload && emailInput.trim()) {
+      const email = emailInput.trim().toLowerCase();
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        toast.error("Please enter a valid email address in the input field");
+        return;
+      }
+      if (!currentAllowedEmails.includes(email)) {
+        currentAllowedEmails.push(email);
+        setAllowedEmails(currentAllowedEmails);
+        setEmailInput("");
+      }
+    }
+
+    if (restrictDownload && currentAllowedEmails.length === 0) {
+      toast.error(
+        "Please add at least one allowed email or disable download restrictions",
+      );
+      return;
+    }
+
     setIsGenerating(true);
 
     try {
@@ -318,7 +343,7 @@ export default function CertificateGenerationModal({
         customTemplateConfig: templateConfig,
         signatories: selectedSignatoryDetails,
         restrictDownload: restrictDownload,
-        allowedEmails: allowedEmails,
+        allowedEmails: currentAllowedEmails,
         monetizationEnabled: monetizationEnabled,
         certificatePriceMinor: monetizationEnabled && monetizationPrice ? Math.round(parseFloat(monetizationPrice) * 100) : 0,
         certificateCurrency: monetizationCurrency,
@@ -997,6 +1022,136 @@ export default function CertificateGenerationModal({
                         </Card>
                       </div>
                     )}
+
+                  {/* Restricted Certificate Downloads */}
+                  <div className="space-y-3 pt-4 border-t">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <Label className="font-semibold text-sm">Restrict Certificate Downloads</Label>
+                        <p className="text-xs text-gray-500 mt-0.5">Only allow specific email addresses to download certificates</p>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setRestrictDownload(v => !v);
+                          if (!restrictDownload) {
+                            setAllowedEmails([]);
+                            setEmailInput("");
+                          }
+                        }}
+                        className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none ${restrictDownload ? "bg-indigo-600" : "bg-gray-200"}`}
+                      >
+                        <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${restrictDownload ? "translate-x-6" : "translate-x-1"}`} />
+                      </button>
+                    </div>
+
+                    {restrictDownload && (
+                      <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-4 space-y-3">
+                        <Alert className="bg-orange-50 border-orange-200">
+                          <Shield className="h-4 w-4 text-orange-600" />
+                          <AlertDescription className="text-sm text-gray-700">
+                            When enabled, only students with email addresses in the approved list can download certificates. Students will need to verify their email before downloading.
+                          </AlertDescription>
+                        </Alert>
+
+                        {/* Email input */}
+                        <div className="space-y-2">
+                          <Label htmlFor="allowedEmails" className="text-sm">
+                            Approved Email Addresses
+                          </Label>
+                          <div className="flex gap-2">
+                            <Input
+                              id="allowedEmails"
+                              type="email"
+                              placeholder="student@example.com"
+                              value={emailInput}
+                              onChange={(e) => setEmailInput(e.target.value)}
+                              onKeyPress={(e) => {
+                                if (e.key === "Enter") {
+                                  e.preventDefault();
+                                  const email = emailInput.trim().toLowerCase();
+                                  if (email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                                    if (!allowedEmails.includes(email)) {
+                                      setAllowedEmails([...allowedEmails, email]);
+                                      setEmailInput("");
+                                      toast.success("Email added to approved list");
+                                    } else {
+                                      toast.error("Email already in list");
+                                    }
+                                  } else {
+                                    toast.error("Please enter a valid email address");
+                                  }
+                                }
+                              }}
+                              className="flex-1 bg-white"
+                            />
+                            <Button
+                              type="button"
+                              onClick={() => {
+                                const email = emailInput.trim().toLowerCase();
+                                if (email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                                  if (!allowedEmails.includes(email)) {
+                                    setAllowedEmails([...allowedEmails, email]);
+                                    setEmailInput("");
+                                    toast.success("Email added to approved list");
+                                  } else {
+                                    toast.error("Email already in list");
+                                  }
+                                } else {
+                                  toast.error("Please enter a valid email address");
+                                }
+                              }}
+                            >
+                              <Plus className="w-4 h-4" />
+                            </Button>
+                          </div>
+                          <p className="text-xs text-gray-500">
+                            Press Enter or click + to add an email to the approved list
+                          </p>
+                        </div>
+
+                        {/* Email list */}
+                        {allowedEmails.length > 0 && (
+                          <div className="space-y-2">
+                            <Label className="text-sm text-gray-700 font-medium">
+                              {allowedEmails.length} {allowedEmails.length === 1 ? "email" : "emails"} approved
+                            </Label>
+                            <div className="max-h-40 overflow-y-auto border rounded-lg p-2 bg-white space-y-1">
+                              {allowedEmails.map((email, index) => (
+                                <div
+                                  key={index}
+                                  className="flex items-center justify-between bg-gray-50 px-3 py-1.5 rounded border text-sm"
+                                >
+                                  <span className="text-gray-700">{email}</span>
+                                  <Button
+                                    type="button"
+                                    variant="ghost"
+                                    size="sm"
+                                    onClick={() => {
+                                      setAllowedEmails(allowedEmails.filter((_, i) => i !== index));
+                                      toast.success("Email removed from approved list");
+                                    }}
+                                    className="h-6 w-6 p-0 text-red-600 hover:text-red-700 hover:bg-red-50"
+                                  >
+                                    <XCircle className="w-4 h-4" />
+                                  </Button>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+
+                        {allowedEmails.length === 0 && (
+                          <Alert className="bg-yellow-50 border-yellow-200">
+                            <AlertTriangle className="h-4 w-4 text-yellow-600" />
+                            <AlertDescription className="text-sm text-gray-700">
+                              No approved emails yet. Add at least one email address to enable download restrictions.
+                            </AlertDescription>
+                          </Alert>
+                        )}
+                      </div>
+                    )}
+                  </div>
 
                   {/* Monetization */}
                   <div className="space-y-3 pt-4 border-t">

@@ -157,7 +157,22 @@ export function EditCertificateModal({
       return;
     }
 
-    if (restrictDownload && allowedEmails.length === 0) {
+    let currentAllowedEmails = [...allowedEmails];
+    if (restrictDownload && emailInput.trim()) {
+      const email = emailInput.trim().toLowerCase();
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        toast.error("Please enter a valid email address in the input field");
+        return;
+      }
+      if (!currentAllowedEmails.includes(email)) {
+        currentAllowedEmails.push(email);
+        setAllowedEmails(currentAllowedEmails);
+        setEmailInput("");
+      }
+    }
+
+    if (restrictDownload && currentAllowedEmails.length === 0) {
       toast.error(
         "Please add at least one allowed email or disable download restrictions",
       );
@@ -183,7 +198,7 @@ export function EditCertificateModal({
         template: certificate.template,
         signatories: signatories.length > 0 ? signatories : undefined,
         restrictDownload,
-        allowedEmails,
+        allowedEmails: currentAllowedEmails,
         themeColors: themeColors ?? null,
       });
 

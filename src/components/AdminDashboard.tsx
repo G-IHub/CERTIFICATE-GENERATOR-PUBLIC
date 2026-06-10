@@ -1819,12 +1819,19 @@ export default function AdminDashboard({
                     id: "monetise",
                     name: "Monetise",
                     icon: CreditCard,
+                    badge: "NEW",
                   },
                   // {
                   //   id: "billing",
                   //   name: "Billing",
                   //   icon: CreditCard,
                   // },
+                  {
+                    id: "digital-products",
+                    name: "Digital Products",
+                    icon: ShoppingBag,
+                    badge: "NEW",
+                  },
                   {
                     id: "settings",
                     name: "Settings",
@@ -1848,7 +1855,12 @@ export default function AdminDashboard({
                       }`}
                     >
                       <Icon className="w-5 h-5 flex-shrink-0" />
-                      <span className="truncate">{item.name}</span>
+                      <span className="truncate">{item.name}
+                          {item.badge && (
+                            <span className="bg-indigo-100 text-indigo-700 text-[10px] font-bold px-1.5 py-0.5 rounded-full ml-1">
+                              {item.badge}
+                            </span>
+                          )}</span>
                     </button>
                   );
                 })}

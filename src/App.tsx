@@ -40,6 +40,7 @@ import SEOHead from "./components/SEOHead";
 import VerificationPage from "./components/VerificationPage";
 import StorefrontPage from "./components/StorefrontPage";
 import ProductAccessPage from "./components/ProductAccessPage";
+import ProductLandingPage from "./components/ProductLandingPage";
 
 const defaultOrgLogo = "https://via.placeholder.com/256x256.png?text=Org+Logo";
 
@@ -943,6 +944,9 @@ export default function App() {
 
           {/* Digital Products storefront — public */}
           <Route path="/store/:orgId" element={<StorefrontPage />} />
+
+          {/* Digital Products product landing page — public */}
+          <Route path="/store/:orgId/:productId" element={<ProductLandingPage />} />
 
           {/* Digital Products access page — post-payment */}
           <Route path="/access/:reference" element={<ProductAccessPage />} />

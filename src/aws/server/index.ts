@@ -10465,15 +10465,22 @@ app.post(
           const certRecord = {
             id: certificateId,
             organizationId: purchase.orgId,
-            templateId: product.certificateTemplateId,
-            recipientName: purchase.buyerName,
-            recipientEmail: purchase.buyerEmail,
+            template: product.certificateTemplateId,
+            studentName: purchase.buyerName,
+            email: purchase.buyerEmail,
             courseName: product.title,
-            issuedAt: now,
+            completionDate: now,
+            generatedAt: now,
+            status: "active",
+            downloadCount: 0,
+            restrictDownload: false,
+            monetizationEnabled: false,
+            paymentStatus: "paid",
+            paidAt: now,
             source: "digital_product_purchase",
             purchaseReference: reference,
           };
-          await kv.set(`certificate:${certificateId}`, certRecord);
+          await kv.set(`cert:${certificateId}`, certRecord);
           updatedPurchase.certificateId = certificateId;
           await kv.set(`product_purchase:${reference}`, updatedPurchase);
         } catch (_e) {
@@ -10536,7 +10543,7 @@ app.get(
       // Certificate info
       let certificate: any = null;
       if (purchase.certificateId) {
-        certificate = await kv.get(`certificate:${purchase.certificateId}`);
+        certificate = await kv.get(`cert:${purchase.certificateId}`);
       }
 
       return c.json({

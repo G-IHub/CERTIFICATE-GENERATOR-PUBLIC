@@ -317,6 +317,7 @@ export default function TemplatesPage({
                     customTemplateConfig={
                       template.type === "custom" ? template.config : undefined
                     }
+                    themeColors={template.config?.colors}
                   />
                 </PreviewWrapper>
               </TemplateErrorBoundary>
@@ -454,6 +455,7 @@ export default function TemplatesPage({
                     customTemplateConfig={
                       preview.type === "custom" ? preview.config : undefined
                     }
+                    themeColors={preview.config?.colors}
                   />
                 </PreviewWrapper>
               </TemplateErrorBoundary>

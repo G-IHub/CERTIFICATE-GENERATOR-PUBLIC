@@ -150,38 +150,38 @@ export default function CertificateGenerationModal({
     currentUserOrganization?.settings?.signatories || [];
 
   // IMMEDIATE DEBUG - Log signatory state
-  console.log(
-    "🔥 SIGNATORY DEBUG - availableSignatories:",
-    availableSignatories,
-  );
-  console.log(
-    "🔥 SIGNATORY DEBUG - availableSignatories.length:",
-    availableSignatories.length,
-  );
-  console.log(
-    "🔥 SIGNATORY DEBUG - Will render signatory UI?",
-    availableSignatories.length > 0,
-  );
+  // console.log(
+  //   "🔥 SIGNATORY DEBUG - availableSignatories:",
+  //   availableSignatories,
+  // );
+  // console.log(
+  //   "🔥 SIGNATORY DEBUG - availableSignatories.length:",
+  //   availableSignatories.length,
+  // );
+  // console.log(
+  //   "🔥 SIGNATORY DEBUG - Will render signatory UI?",
+  //   availableSignatories.length > 0,
+  // );
 
   // Debug logging
-  useEffect(() => {
-    console.log("=== CERTIFICATE GENERATION MODAL DEBUG ===");
-    console.log("currentOrganization:", currentOrganization);
-    console.log("organizations array:", organizations);
-    console.log("currentUserOrganization:", currentUserOrganization);
-    console.log(
-      "currentUserOrganization.settings:",
-      currentUserOrganization?.settings,
-    );
-    console.log("availableSignatories:", availableSignatories);
-    console.log("availableSignatories.length:", availableSignatories.length);
-    console.log("==========================================");
-  }, [
-    currentOrganization,
-    organizations,
-    currentUserOrganization,
-    availableSignatories,
-  ]);
+  // useEffect(() => {
+  //   console.log("=== CERTIFICATE GENERATION MODAL DEBUG ===");
+  //   console.log("currentOrganization:", currentOrganization);
+  //   console.log("organizations array:", organizations);
+  //   console.log("currentUserOrganization:", currentUserOrganization);
+  //   console.log(
+  //     "currentUserOrganization.settings:",
+  //     currentUserOrganization?.settings,
+  //   );
+  //   console.log("availableSignatories:", availableSignatories);
+  //   console.log("availableSignatories.length:", availableSignatories.length);
+  //   console.log("==========================================");
+  // }, [
+  //   currentOrganization,
+  //   organizations,
+  //   currentUserOrganization,
+  //   availableSignatories,
+  // ]);
 
   // Load available logos from organization settings
   useEffect(() => {

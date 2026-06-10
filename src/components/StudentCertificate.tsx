@@ -712,7 +712,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
             signatoryName2={certificate.signatories?.[1]?.name}
             signatoryTitle2={certificate.signatories?.[1]?.title}
             signatureUrl2={certificate.signatories?.[1]?.signatureUrl}
-            themeColors={certificate.themeColors || undefined}
+            themeColors={certificate.themeColors || templateConfig?.colors || undefined}
             certificateId={certificate.id}
           />
         </div>,
@@ -1259,7 +1259,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
                           signatoryName2={certificate.signatories?.[1]?.name}
                           signatoryTitle2={certificate.signatories?.[1]?.title}
                           signatureUrl2={certificate.signatories?.[1]?.signatureUrl}
-                          themeColors={certificate.themeColors || undefined}
+                          themeColors={certificate.themeColors || templateConfig?.colors || undefined}
                           certificateId={certificate.id}
                         />
                       </div>

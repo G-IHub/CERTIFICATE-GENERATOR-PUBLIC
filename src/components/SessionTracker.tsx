@@ -102,7 +102,7 @@ export default function SessionTracker({
       }
 
       console.log(
-        `⏱️ Session time synced: ${sessionDuration}s for org ${organizationId}`,
+        `Session time synced: ${sessionDuration}s for org ${organizationId}`,
       );
     } catch (error) {
       console.error("Failed to sync session time:", error);

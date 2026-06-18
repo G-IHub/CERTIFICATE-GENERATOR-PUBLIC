@@ -19,6 +19,9 @@ interface CertificateTemplate39Props {
   signatoryName2?: string;
   signatoryTitle2?: string;
   signatureUrl2?: string;
+  signatoryName3?: string;
+  signatoryTitle3?: string;
+  signatureUrl3?: string;
   mode?: "student" | "template-selection";
   certificateId?: string;
   themeColors?: ThemeColors;
@@ -40,6 +43,9 @@ export default function CertificateTemplate39({
   signatoryName2,
   signatoryTitle2,
   signatureUrl2,
+  signatoryName3,
+  signatoryTitle3,
+  signatureUrl3,
   themeColors,
 }: CertificateTemplate39Props) {
   const ref = useRef<HTMLDivElement>(null);
@@ -94,11 +100,14 @@ export default function CertificateTemplate39({
             className="w-10 h-10 object-contain"
           />
         )}
-        <div className="text-center">
-          <p className="text-sm font-bold tracking-wide m-0" style={{ color: text }}>
+        {/* <div className="text-center">
+          <p
+            className="text-sm font-bold tracking-wide m-0"
+            style={{ color: text }}
+          >
             {organizationName}
           </p>
-        </div>
+        </div> */}
       </div>
 
       {/* Decorative triangles - Right side */}
@@ -411,7 +420,10 @@ export default function CertificateTemplate39({
       <div className="absolute inset-10 flex flex-col justify-center items-center text-center gap-10 z-30">
         {/* Certificate Title */}
         <div>
-          <p className="text-5xl font-medium tracking-widest uppercase mb-2" style={{ color: text }}>
+          <p
+            className="text-5xl font-medium tracking-widest uppercase mb-2"
+            style={{ color: text }}
+          >
             {header?.split(" ")[0] || "CERTIFICATE"}
           </p>
           <p className="text-4xl font-bold uppercase" style={{ color: text }}>
@@ -420,12 +432,17 @@ export default function CertificateTemplate39({
         </div>
 
         {/* Subtitle */}
-        <p className="text-sm" style={{ color: text }}>This Certificate is Presented to:</p>
+        <p className="text-sm" style={{ color: text }}>
+          This Certificate is Presented to:
+        </p>
 
         {/* Recipient Info */}
         <div className="flex flex-col gap-4 items-center text-center w-full">
           {/* Student Name with underline */}
-          <div className="w-full border-b-2 pb-2" style={{ borderColor: primary }}>
+          <div
+            className="w-full border-b-2 pb-2"
+            style={{ borderColor: primary }}
+          >
             <div
               style={{
                 fontSize: "40px",
@@ -439,26 +456,35 @@ export default function CertificateTemplate39({
           </div>
 
           {/* Description */}
-          <p className="max-w-4/5 text-xs font-bold text-center leading-relaxed" style={{ color: text }}>
-            This Is To Certify That The Above-Mentioned Individual Has Completed
-            A Three-Months Training In{" "}
+          <p
+            className="max-w-4/5 text-xs font-bold text-center leading-relaxed"
+            style={{ color: text }}
+          >
+            {description}{" "}
             <span style={{ color: primary }}>
-              {courseTitle || "PERSONALIZED RESEARCH TRAINING IN TRANSCRIPTOMINCS"}
+              {courseTitle ||
+                ""}
             </span>{" "}
             Organized by {organizationName}.
           </p>
 
           {/* Date */}
-          <p className="text-xs font-semibold border px-4 py-2" style={{ color: text, borderColor: text }}>
+          <p
+            className="text-xs font-semibold border px-4 py-2"
+            style={{ color: text, borderColor: text }}
+          >
             Held on: {date}
           </p>
         </div>
 
         {/* Signatures */}
-        <div className="flex gap-10 w-full justify-center items-center">
+        <div className="flex gap-10 ml-10 w-full justify-center items-center">
           {/* Signature 1 */}
           <div className="flex flex-col gap-2 items-center">
-            <div className="border-b w-40 text-center min-h-10" style={{ borderColor: secondary }}>
+            <div
+              className="border-b w-40 text-center min-h-10"
+              style={{ borderColor: secondary }}
+            >
               {signatureUrl1 && (
                 <img
                   src={signatureUrl1}
@@ -467,7 +493,10 @@ export default function CertificateTemplate39({
                 />
               )}
             </div>
-            <div className="text-center text-xs font-semibold" style={{ color: text }}>
+            <div
+              className="text-center text-xs font-semibold"
+              style={{ color: text }}
+            >
               <p className="uppercase m-0 mb-0.5">{signatoryName1}</p>
               <p className="m-0">{signatoryTitle1}</p>
             </div>
@@ -475,7 +504,10 @@ export default function CertificateTemplate39({
 
           {/* Signature 2 */}
           <div className="flex flex-col gap-2 items-center">
-            <div className="border-b w-40 text-center min-h-10" style={{ borderColor: secondary }}>
+            <div
+              className="border-b w-40 text-center min-h-10"
+              style={{ borderColor: secondary }}
+            >
               {signatureUrl2 && (
                 <img
                   src={signatureUrl2}
@@ -484,9 +516,35 @@ export default function CertificateTemplate39({
                 />
               )}
             </div>
-            <div className="text-center text-xs font-semibold" style={{ color: text }}>
+            <div
+              className="text-center text-xs font-semibold"
+              style={{ color: text }}
+            >
               <p className="uppercase m-0 mb-0.5">{signatoryName2}</p>
               <p className="m-0">{signatoryTitle2}</p>
+            </div>
+          </div>
+
+          {/* Signature 3 */}
+          <div className="flex flex-col gap-2 items-center">
+            <div
+              className="border-b w-40 text-center min-h-10"
+              style={{ borderColor: secondary }}
+            >
+              {signatureUrl3 && (
+                <img
+                  src={signatureUrl3}
+                  alt="Signature 3"
+                  className="h-16 ml-5 object-contain"
+                />
+              )}
+            </div>
+            <div
+              className="text-center text-xs font-semibold"
+              style={{ color: text }}
+            >
+              <p className="uppercase m-0 mb-0.5">{signatoryName3}</p>
+              <p className="m-0">{signatoryTitle3}</p>
             </div>
           </div>
         </div>

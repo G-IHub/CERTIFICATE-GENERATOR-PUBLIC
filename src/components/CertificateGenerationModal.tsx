@@ -812,7 +812,7 @@ export default function CertificateGenerationModal({
                       <Label>Certificate Signatories</Label>
                       <p className="text-xs text-gray-500 mb-3">
                         Select the signatories who should appear on this
-                        certificate (up to 2)
+                        certificate (up to 4)
                       </p>
                       <div className="space-y-2 border rounded-lg p-4 bg-gray-50">
                         {availableSignatories.map((signatory: any) => (
@@ -827,10 +827,10 @@ export default function CertificateGenerationModal({
                               )}
                               onChange={(e) => {
                                 if (e.target.checked) {
-                                  // Limit to 2 signatories
-                                  if (selectedSignatories.length >= 2) {
+                                  // Limit to 4 signatories
+                                  if (selectedSignatories.length >= 4) {
                                     toast.error(
-                                      "You can only select up to 2 signatories per certificate",
+                                      "You can only select up to 4 signatories per certificate",
                                     );
                                     return;
                                   }
@@ -1007,6 +1007,42 @@ export default function CertificateGenerationModal({
                                       availableSignatories.find(
                                         (s: any) =>
                                           s.id === selectedSignatories[1],
+                                      )?.signatureUrl
+                                    }
+                                    signatoryName3={
+                                      availableSignatories.find(
+                                        (s: any) =>
+                                          s.id === selectedSignatories[2],
+                                      )?.name
+                                    }
+                                    signatoryTitle3={
+                                      availableSignatories.find(
+                                        (s: any) =>
+                                          s.id === selectedSignatories[2],
+                                      )?.title
+                                    }
+                                    signatureUrl3={
+                                      availableSignatories.find(
+                                        (s: any) =>
+                                          s.id === selectedSignatories[2],
+                                      )?.signatureUrl
+                                    }
+                                    signatoryName4={
+                                      availableSignatories.find(
+                                        (s: any) =>
+                                          s.id === selectedSignatories[3],
+                                      )?.name
+                                    }
+                                    signatoryTitle4={
+                                      availableSignatories.find(
+                                        (s: any) =>
+                                          s.id === selectedSignatories[3],
+                                      )?.title
+                                    }
+                                    signatureUrl4={
+                                      availableSignatories.find(
+                                        (s: any) =>
+                                          s.id === selectedSignatories[3],
                                       )?.signatureUrl
                                     }
                                     themeColors={themeColors}

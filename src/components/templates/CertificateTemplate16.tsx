@@ -19,6 +19,9 @@ interface CertificateTemplate16Props {
   signatoryName2?: string;
   signatoryTitle2?: string;
   signatureUrl2?: string;
+  signatoryName3?: string;
+  signatoryTitle3?: string;
+  signatureUrl3?: string;
   mode?: "student" | "template-selection";
   themeColors?: ThemeColors;
 }
@@ -39,6 +42,9 @@ export default function CertificateTemplate16({
   signatoryName2,
   signatoryTitle2,
   signatureUrl2,
+  signatoryName3,
+  signatoryTitle3,
+  signatureUrl3,
   mode = "student",
   themeColors,
 }: CertificateTemplate16Props) {
@@ -252,6 +258,34 @@ export default function CertificateTemplate16({
                     {signatoryTitle2 && (
                       <div className="text-xs font-medium">
                         {signatoryTitle2}
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {/* Signature 3 - Always show if name is provided */}
+                {signatoryName3 && (
+                  <div className="flex flex-col items-center text-center">
+                    {signatureUrl3 && (
+                      <img
+                        src={signatureUrl3}
+                        alt={signatoryName3}
+                        className="w-24 h-16 object-contain"
+                        style={{ marginBottom: -12 }}
+                      />
+                    )}
+                    {!signatureUrl3 && (
+                      <div className="w-32 border-b-2 mb-2" style={{ borderColor: primaryColor }} />
+                    )}
+                    <div
+                      className="text-sm font-bold"
+                      style={{ color: textColor }}
+                    >
+                      {signatoryName3}
+                    </div>
+                    {signatoryTitle3 && (
+                      <div className="text-xs font-medium">
+                        {signatoryTitle3}
                       </div>
                     )}
                   </div>

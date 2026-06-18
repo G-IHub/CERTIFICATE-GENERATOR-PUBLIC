@@ -63,6 +63,12 @@ interface CertificateRendererProps {
   signatoryName2?: string;
   signatoryTitle2?: string;
   signatureUrl2?: string;
+  signatoryName3?: string;
+  signatoryTitle3?: string;
+  signatureUrl3?: string;
+  signatoryName4?: string;
+  signatoryTitle4?: string;
+  signatureUrl4?: string;
   certificateId?: string;
   themeColors?: ThemeColors;
 }
@@ -85,6 +91,12 @@ export default function CertificateRenderer({
   signatoryName2,
   signatoryTitle2,
   signatureUrl2,
+  signatoryName3,
+  signatoryTitle3,
+  signatureUrl3,
+  signatoryName4,
+  signatoryTitle4,
+  signatureUrl4,
   certificateId,
   themeColors,
 }: CertificateRendererProps) {
@@ -124,6 +136,12 @@ export default function CertificateRenderer({
     signatoryName2,
     signatoryTitle2,
     signatureUrl2,
+    signatoryName3,
+    signatoryTitle3,
+    signatureUrl3,
+    signatoryName4,
+    signatoryTitle4,
+    signatureUrl4,
     certificateId,
     themeColors: resolvedTheme,
   };

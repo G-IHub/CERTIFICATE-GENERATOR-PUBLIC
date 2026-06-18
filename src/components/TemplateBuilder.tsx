@@ -99,7 +99,7 @@ interface CustomTemplateConfig {
     sealIcon: "award" | "shield" | "star" | "crown" | "hexagon";
     sealPosition: "bottom-right" | "bottom-left" | "top-right" | "center";
     watermarkOpacity: number;
-    signatureCount: 1 | 2 | 3;
+    signatureCount: 1 | 2 | 3 | 4;
   };
 }
 
@@ -455,8 +455,8 @@ const TemplateBuilder: React.FC<TemplateBuilderProps> = ({
                 <Separator />
                 <div>
                   <Label className="text-sm">Number of Signatures</Label>
-                  <div className="grid grid-cols-3 gap-2 mt-2">
-                    {[1, 2, 3].map((num) => (
+                  <div className="grid grid-cols-4 gap-2 mt-2">
+                    {[1, 2, 3, 4].map((num) => (
                       <Button
                         key={num}
                         variant={
@@ -862,7 +862,9 @@ const TemplateBuilder: React.FC<TemplateBuilderProps> = ({
                             ? "grid-cols-1"
                             : config.elements.signatureCount === 2
                             ? "grid-cols-2"
-                            : "grid-cols-3"
+                            : config.elements.signatureCount === 3
+                            ? "grid-cols-3"
+                            : "grid-cols-4"
                         }`}
                       >
                         {Array.from({

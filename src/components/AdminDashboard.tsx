@@ -2727,6 +2727,80 @@ export default function AdminDashboard({
                                     </SelectContent>
                                   </Select>
                                 </div>
+
+                                {/* Third Signatory */}
+                                <div className="space-y-2">
+                                  <Label
+                                    htmlFor="genSignatory3"
+                                    className="text-sm"
+                                  >
+                                    Third Signatory
+                                  </Label>
+                                  <Select
+                                    value={genSelectedSignatories[2] || ""}
+                                    onValueChange={(value) => {
+                                      const newSignatories = [
+                                        ...genSelectedSignatories,
+                                      ];
+                                      newSignatories[2] = value;
+                                      setGenSelectedSignatories(newSignatories);
+                                    }}
+                                  >
+                                    <SelectTrigger id="genSignatory3">
+                                      <SelectValue placeholder="Select third signatory" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                      <SelectItem value="none">None</SelectItem>
+                                      {genAvailableSignatories.map(
+                                        (sig: any) => (
+                                          <SelectItem
+                                            key={sig.id}
+                                            value={sig.id}
+                                          >
+                                            {sig.name} - {sig.title}
+                                          </SelectItem>
+                                        ),
+                                      )}
+                                    </SelectContent>
+                                  </Select>
+                                </div>
+
+                                {/* Fourth Signatory */}
+                                <div className="space-y-2">
+                                  <Label
+                                    htmlFor="genSignatory4"
+                                    className="text-sm"
+                                  >
+                                    Fourth Signatory
+                                  </Label>
+                                  <Select
+                                    value={genSelectedSignatories[3] || ""}
+                                    onValueChange={(value) => {
+                                      const newSignatories = [
+                                        ...genSelectedSignatories,
+                                      ];
+                                      newSignatories[3] = value;
+                                      setGenSelectedSignatories(newSignatories);
+                                    }}
+                                  >
+                                    <SelectTrigger id="genSignatory4">
+                                      <SelectValue placeholder="Select fourth signatory" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                      <SelectItem value="none">None</SelectItem>
+                                      {genAvailableSignatories.map(
+                                        (sig: any) => (
+                                          <SelectItem
+                                            key={sig.id}
+                                            value={sig.id}
+                                          >
+                                            {sig.name} - {sig.title}
+                                          </SelectItem>
+                                        ),
+                                      )}
+                                    </SelectContent>
+                                  </Select>
+                                </div>
                               </div>
                             ) : (
                               <Alert>
@@ -3531,6 +3605,48 @@ export default function AdminDashboard({
                                               (s: any) =>
                                                 s.id ===
                                                 genSelectedSignatories[1],
+                                            )?.signatureUrl
+                                          }
+                                          signatoryName3={
+                                            genAvailableSignatories.find(
+                                              (s: any) =>
+                                                s.id ===
+                                                genSelectedSignatories[2],
+                                            )?.name
+                                          }
+                                          signatoryTitle3={
+                                            genAvailableSignatories.find(
+                                              (s: any) =>
+                                                s.id ===
+                                                genSelectedSignatories[2],
+                                            )?.title
+                                          }
+                                          signatureUrl3={
+                                            genAvailableSignatories.find(
+                                              (s: any) =>
+                                                s.id ===
+                                                genSelectedSignatories[2],
+                                            )?.signatureUrl
+                                          }
+                                          signatoryName4={
+                                            genAvailableSignatories.find(
+                                              (s: any) =>
+                                                s.id ===
+                                                genSelectedSignatories[3],
+                                            )?.name
+                                          }
+                                          signatoryTitle4={
+                                            genAvailableSignatories.find(
+                                              (s: any) =>
+                                                s.id ===
+                                                genSelectedSignatories[3],
+                                            )?.title
+                                          }
+                                          signatureUrl4={
+                                            genAvailableSignatories.find(
+                                              (s: any) =>
+                                                s.id ===
+                                                genSelectedSignatories[3],
                                             )?.signatureUrl
                                           }
                                           themeColors={genThemeColors}

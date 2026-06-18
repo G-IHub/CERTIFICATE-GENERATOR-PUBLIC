@@ -644,7 +644,7 @@ const CertificateTemplate: React.FC<CertificateTemplateProps> = ({
             {/* Signature section */}
             {hasSignatories ? (
               <div className="flex gap-4 justify-center">
-                {settings!.signatories!.slice(0, 2).map((signatory) => (
+                {settings!.signatories!.slice(0, 4).map((signatory) => (
                   <div key={signatory.id} className="text-center">
                     {signatory.signatureUrl && (
                       <div className="h-8 mb-1 flex items-center justify-center">
@@ -699,7 +699,7 @@ const CertificateTemplate: React.FC<CertificateTemplateProps> = ({
             {/* Signatories Section */}
             {hasSignatories ? (
               <div className="flex gap-8 px-8">
-                {settings!.signatories!.slice(0, 2).map((signatory) => (
+                {settings!.signatories!.slice(0, 4).map((signatory) => (
                   <div key={signatory.id} className="text-center">
                     {signatory.signatureUrl && (
                       <div className="h-12 mb-2 flex items-center justify-center">

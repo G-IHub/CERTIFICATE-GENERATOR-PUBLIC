@@ -39,6 +39,7 @@ import { authApi } from "../utils/api";
 import { isAdminEmail } from "../utils/adminConfig";
 import { supabase } from "../utils/supabase/client";
 import { projectId, publicAnonKey } from "../utils/supabase/info";
+import { setCookie } from "../utils/cookieUtils";
 import logo from "../assets/logo.png";
 import { useNavigate } from "react-router-dom";
 
@@ -150,9 +151,10 @@ export default function AuthPage({
         }
       }
 
-      // Store access token in localStorage
+      // Store access token in localStorage and cross-subdomain cookie
       console.log("💾 Storing access token in localStorage...");
       localStorage.setItem("accessToken", response.accessToken);
+      setCookie("accessToken", response.accessToken);
 
       toast.success("Welcome back! Signed in successfully");
       console.log("✅ Calling onLogin with user:", response.user?.email);
@@ -446,8 +448,9 @@ export default function AuthPage({
         }
       }
 
-      // Store access token in localStorage
+      // Store access token in localStorage and cross-subdomain cookie
       localStorage.setItem("accessToken", response.accessToken);
+      setCookie("accessToken", response.accessToken);
 
       toast.success("Account created successfully! Welcome aboard!");
       onSignUp({

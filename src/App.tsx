@@ -35,6 +35,7 @@ import { toast, Toaster } from "sonner";
 import { isAdminEmail } from "./utils/adminConfig";
 import { isOrgPremium } from "./utils/subscriptionUtils";
 import { isTokenExpired, getTokenRemainingTime } from "./utils/tokenUtils";
+import { getCookie, setCookie, deleteCookie } from "./utils/cookieUtils";
 import SEOTestPage from "./components/SEOTestPage";
 import SEOHead from "./components/SEOHead";
 import VerificationPage from "./components/VerificationPage";
@@ -206,7 +207,13 @@ export default function App() {
   // Check for existing session on mount — runs immediately, does NOT wait for health check
   useEffect(() => {
     const checkSession = async () => {
-      const token = localStorage.getItem("accessToken");
+      let token = localStorage.getItem("accessToken");
+      if (!token) {
+        token = getCookie("accessToken");
+        if (token) {
+          localStorage.setItem("accessToken", token);
+        }
+      }
 
       if (token) {
         try {
@@ -339,6 +346,7 @@ export default function App() {
           if (response.accessToken) {
             console.log("✅ Session refreshed successfully");
             localStorage.setItem("accessToken", response.accessToken);
+            setCookie("accessToken", response.accessToken);
             setAccessToken(response.accessToken);
 
             // Optional: Update current user if returned
@@ -526,6 +534,7 @@ export default function App() {
       // Error during logout
     } finally {
       localStorage.removeItem("accessToken");
+      deleteCookie("accessToken");
       setAccessToken(null);
       setCurrentUser(null);
       setOrganizations([]);

@@ -7,6 +7,7 @@ import { createClient } from "jsr:@supabase/supabase-js@2";
 import * as kv from "./kv_store.tsx";
 import * as blog from "./blog.tsx";
 import * as analytics from "./analytics.tsx";
+import * as academy from "./academy.tsx";
 
 // Load local .env during development so Deno.env.get(...) picks up values
 // Note: Commented out to avoid Deno.readTextFileSync warnings
@@ -10639,6 +10640,9 @@ app.route("/make-server-a611b057/blog", blog.default);
 
 // Analytics routes - mount the analytics app
 app.route("/make-server-a611b057/analytics", analytics.default);
+
+// Academy routes - mount the academy learning platform app
+app.route("/make-server-a611b057/academy", academy.default);
 
 Deno.serve(app.fetch);
 

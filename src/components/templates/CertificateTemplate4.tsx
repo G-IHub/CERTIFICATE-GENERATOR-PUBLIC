@@ -58,7 +58,7 @@ export default function CertificateTemplate4({
 
   const containerClass = isPreview
     ? "w-full mx-auto origin-center overflow-visible flex justify-center"
-    : "min-w-[1056px] flex justify-center items-center";
+    : "min-w-[800px] flex justify-center items-center";
 
   // formatted date
   const formattedDate = new Date(date).toLocaleDateString("en-US", {
@@ -138,7 +138,7 @@ export default function CertificateTemplate4({
                 </div>
               </div>
             ) : (
-              <div>
+              <div className="flex flex-col justify-center items-center" >
                 <img
                   src={organizationLogo}
                   alt="Logo"

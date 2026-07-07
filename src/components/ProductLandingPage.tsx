@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router";
 import { AlertCircle } from "lucide-react";
 import { projectId, publicAnonKey } from "../utils/supabase/info";
@@ -47,7 +47,7 @@ interface OrgInfo {
 
 function useWindowWidth() {
   const [width, setWidth] = useState(
-    typeof window !== "undefined" ? window.innerWidth : 1200
+    typeof window !== "undefined" ? window.innerWidth : 1200,
   );
   useEffect(() => {
     const handler = () => setWidth(window.innerWidth);
@@ -65,9 +65,18 @@ function dollarDisplay(cents: number) {
 }
 
 const TYPE_GRADIENTS: Record<string, { bg: string; textColor: string }> = {
-  bundle: { bg: "linear-gradient(135deg, #FFE6D5, #FFA56E)", textColor: "#2A2A2E" },
-  video:  { bg: "linear-gradient(135deg, #1E1E22, #3a3a40)",  textColor: "#ffffff" },
-  pdf:    { bg: "linear-gradient(135deg, #FFF4ED, #FFCAA7)",  textColor: "#2A2A2E" },
+  bundle: {
+    bg: "linear-gradient(135deg, #FFE6D5, #FFA56E)",
+    textColor: "#2A2A2E",
+  },
+  video: {
+    bg: "linear-gradient(135deg, #1E1E22, #3a3a40)",
+    textColor: "#ffffff",
+  },
+  pdf: {
+    bg: "linear-gradient(135deg, #FFF4ED, #FFCAA7)",
+    textColor: "#2A2A2E",
+  },
 };
 
 const TYPE_LABELS: Record<string, string> = {
@@ -80,18 +89,38 @@ const DOT_GRID_SVG = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/20
 
 function ShieldIcon() {
   return (
-    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+    <svg
+      width="13"
+      height="13"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
     </svg>
   );
 }
 
 function ShareIcon() {
   return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
-      <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
-      <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <circle cx="18" cy="5" r="3" />
+      <circle cx="6" cy="12" r="3" />
+      <circle cx="18" cy="19" r="3" />
+      <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+      <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
     </svg>
   );
 }
@@ -99,47 +128,92 @@ function ShareIcon() {
 function TypeIcon({ type }: { type: string }) {
   if (type === "pdf") {
     return (
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-        <polyline points="14 2 14 8 20 8"/>
+      <svg
+        width="14"
+        height="14"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+        <polyline points="14 2 14 8 20 8" />
       </svg>
     );
   }
   if (type === "video") {
     return (
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-        <polygon points="23 7 16 12 23 17 23 7"/>
-        <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+      <svg
+        width="14"
+        height="14"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <polygon points="23 7 16 12 23 17 23 7" />
+        <rect x="1" y="5" width="15" height="14" rx="2" ry="2" />
       </svg>
     );
   }
   return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-      <polyline points="21 8 21 21 3 21 3 8"/>
-      <rect x="1" y="3" width="22" height="5"/>
-      <line x1="10" y1="12" x2="14" y2="12"/>
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <polyline points="21 8 21 21 3 21 3 8" />
+      <rect x="1" y="3" width="22" height="5" />
+      <line x1="10" y1="12" x2="14" y2="12" />
     </svg>
   );
 }
 
 function CheckIcon() {
   return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F25C0B" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-      <polyline points="20 6 9 17 4 12"/>
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#F25C0B"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <polyline points="20 6 9 17 4 12" />
     </svg>
   );
 }
 
 function StarIcon({ size = 11 }: { size?: number }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" stroke="none">
-      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      stroke="none"
+    >
+      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
     </svg>
   );
 }
 
 export default function ProductLandingPage() {
-  const { orgId, productId } = useParams<{ orgId: string; productId: string }>();
+  const { orgId, productId } = useParams<{
+    orgId: string;
+    productId: string;
+  }>();
   const [org, setOrg] = useState<OrgInfo | null>(null);
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
@@ -151,6 +225,8 @@ export default function ProductLandingPage() {
   const [paying, setPaying] = useState(false);
   const [payError, setPayError] = useState("");
   const [copied, setCopied] = useState(false);
+  const [showExpandedDescription, setShowExpandedDescription] = useState(false);
+  const fullDescriptionRef = useRef<HTMLDivElement | null>(null);
 
   const width = useWindowWidth();
 
@@ -172,9 +248,12 @@ export default function ProductLandingPage() {
     const load = async () => {
       setLoading(true);
       try {
-        const res = await fetch(`${API_BASE}/store/${orgId}/products/${productId}`, {
-          headers: { Authorization: `Bearer ${publicAnonKey}` },
-        });
+        const res = await fetch(
+          `${API_BASE}/store/${orgId}/products/${productId}`,
+          {
+            headers: { Authorization: `Bearer ${publicAnonKey}` },
+          },
+        );
         if (!res.ok) {
           const d = await res.json();
           throw new Error(d.error || "Product not found");
@@ -206,11 +285,17 @@ export default function ProductLandingPage() {
     setPaying(true);
     setPayError("");
     try {
-      const res = await fetch(`${API_BASE}/digital-products/${product.id}/purchase/initialize`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Authorization: `Bearer ${publicAnonKey}` },
-        body: JSON.stringify({ orgId, buyerEmail, buyerName, currency }),
-      });
+      const res = await fetch(
+        `${API_BASE}/digital-products/${product.id}/purchase/initialize`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${publicAnonKey}`,
+          },
+          body: JSON.stringify({ orgId, buyerEmail, buyerName, currency }),
+        },
+      );
       if (!res.ok) {
         const d = await res.json();
         throw new Error(d.error || "Payment initialization failed");
@@ -276,12 +361,36 @@ export default function ProductLandingPage() {
         }}
       >
         <div style={{ textAlign: "center", maxWidth: 400 }}>
-          <AlertCircle style={{ width: 48, height: 48, color: "#F25C0B", margin: "0 auto 16px", display: "block" }} />
-          <h2 style={{ fontSize: 20, fontWeight: 600, color: "#0E0E10", marginBottom: 8 }}>Product not found</h2>
-          <p style={{ color: "#5C5C63", fontSize: 14, marginBottom: 20 }}>{error}</p>
+          <AlertCircle
+            style={{
+              width: 48,
+              height: 48,
+              color: "#F25C0B",
+              margin: "0 auto 16px",
+              display: "block",
+            }}
+          />
+          <h2
+            style={{
+              fontSize: 20,
+              fontWeight: 600,
+              color: "#0E0E10",
+              marginBottom: 8,
+            }}
+          >
+            Product not found
+          </h2>
+          <p style={{ color: "#5C5C63", fontSize: 14, marginBottom: 20 }}>
+            {error}
+          </p>
           <a
             href={`/store/${orgId}`}
-            style={{ color: "#F25C0B", fontWeight: 600, textDecoration: "none", fontSize: 14 }}
+            style={{
+              color: "#F25C0B",
+              fontWeight: 600,
+              textDecoration: "none",
+              fontSize: 14,
+            }}
           >
             ← Back to Store
           </a>
@@ -293,12 +402,33 @@ export default function ProductLandingPage() {
   const gradient = TYPE_GRADIENTS[product.type] || TYPE_GRADIENTS.bundle;
   const hasCert = !!product.certificateTemplateId;
   const hasBothPrices = product.priceNGN > 0 && product.priceUSD > 0;
+
+  const handleSeeMoreDescription = () => {
+    setShowExpandedDescription(true);
+    requestAnimationFrame(() => {
+      fullDescriptionRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    });
+  };
+
+  const descriptionPreview =
+    product.description && product.description.length > 140
+      ? `${product.description.slice(0, 140)}...`
+      : product.description;
   const productUrl = `https://certifyer.online/store/${orgId}/${productId}`;
   const year = new Date().getFullYear();
   const isMobile = width < 840;
 
   return (
-    <div style={{ minHeight: "100vh", background: "#F8F8F9", fontFamily: "'Geist', system-ui, sans-serif" }}>
+    <div
+      style={{
+        minHeight: "100vh",
+        background: "#F8F8F9",
+        fontFamily: "'Geist', system-ui, sans-serif",
+      }}
+    >
       <style>{`
         @keyframes spin { to { transform: rotate(360deg); } }
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
@@ -343,9 +473,25 @@ export default function ProductLandingPage() {
                 flexShrink: 0,
               }}
             >
-              <span style={{ color: "#fff", fontWeight: 800, fontSize: 13, fontFamily: "'Fraunces', Georgia, serif" }}>C</span>
+              <span
+                style={{
+                  color: "#fff",
+                  fontWeight: 800,
+                  fontSize: 13,
+                  fontFamily: "'Fraunces', Georgia, serif",
+                }}
+              >
+                C
+              </span>
             </div>
-            <span style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 600, fontSize: 16, color: "#0E0E10" }}>
+            <span
+              style={{
+                fontFamily: "'Fraunces', Georgia, serif",
+                fontWeight: 600,
+                fontSize: 16,
+                color: "#0E0E10",
+              }}
+            >
               Certifyer
             </span>
           </div>
@@ -362,22 +508,38 @@ export default function ProductLandingPage() {
             }}
           >
             <ShieldIcon />
-            <span style={{ fontSize: 12, fontWeight: 500, color: "#5C5C63" }}>Secure store · Paystack verified</span>
+            <span style={{ fontSize: 12, fontWeight: 500, color: "#5C5C63" }}>
+              Secure store · Paystack verified
+            </span>
           </div>
         </div>
       </nav>
 
       {/* ── Breadcrumb ── */}
       <div style={{ maxWidth: 1140, margin: "0 auto", padding: "16px 24px 0" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13, color: "#84848C" }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 8,
+            fontSize: 13,
+            color: "#84848C",
+          }}
+        >
           <a
             href={`/store/${orgId}`}
-            style={{ color: "#5C5C63", textDecoration: "none", fontWeight: 500 }}
+            style={{
+              color: "#5C5C63",
+              textDecoration: "none",
+              fontWeight: 500,
+            }}
           >
             {org?.name}
           </a>
           <span style={{ color: "#B6B6BC" }}>›</span>
-          <span style={{ color: "#0E0E10", fontWeight: 500 }}>{product.title}</span>
+          <span style={{ color: "#0E0E10", fontWeight: 500 }}>
+            {product.title}
+          </span>
         </div>
       </div>
 
@@ -395,7 +557,6 @@ export default function ProductLandingPage() {
       >
         {/* ── LEFT column ── */}
         <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
-
           {/* Product cover */}
           <div
             style={{
@@ -410,7 +571,12 @@ export default function ProductLandingPage() {
               <img
                 src={product.thumbnailUrl}
                 alt={product.title}
-                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  display: "block",
+                }}
               />
             ) : (
               <div
@@ -450,7 +616,19 @@ export default function ProductLandingPage() {
                   {product.title}
                 </span>
                 {product.coverSubtitle && (
-                  <div style={{ position: "relative", zIndex: 2, marginTop: 16, fontSize: 13, fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "#B33B00", textAlign: "center" }}>
+                  <div
+                    style={{
+                      position: "relative",
+                      zIndex: 2,
+                      marginTop: 16,
+                      fontSize: 13,
+                      fontWeight: 600,
+                      letterSpacing: "0.14em",
+                      textTransform: "uppercase",
+                      color: "#B33B00",
+                      textAlign: "center",
+                    }}
+                  >
                     {product.coverSubtitle}
                   </div>
                 )}
@@ -459,7 +637,15 @@ export default function ProductLandingPage() {
           </div>
 
           {/* Type badge row */}
-          <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap", marginTop: -16 }}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 10,
+              flexWrap: "wrap",
+              marginTop: -16,
+            }}
+          >
             <span
               style={{
                 display: "inline-flex",
@@ -495,7 +681,20 @@ export default function ProductLandingPage() {
               </span>
             )}
             {product.level && (
-              <span style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "6px 12px", borderRadius: 999, background: "#FFF4ED", color: "#B33B00", border: "1px solid #FFE6D5", fontSize: 12, fontWeight: 600 }}>
+              <span
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 6,
+                  padding: "6px 12px",
+                  borderRadius: 999,
+                  background: "#FFF4ED",
+                  color: "#B33B00",
+                  border: "1px solid #FFE6D5",
+                  fontSize: 12,
+                  fontWeight: 600,
+                }}
+              >
                 {product.level}
               </span>
             )}
@@ -518,17 +717,18 @@ export default function ProductLandingPage() {
 
           {/* Product description */}
           {product.description && (
-            <p
-              style={{
-                fontSize: 18,
-                color: "#5C5C63",
-                margin: 0,
-                lineHeight: 1.65,
-                marginTop: -16,
-              }}
-            >
-              {product.description}
-            </p>
+            <div ref={fullDescriptionRef} style={{ marginTop: -16 }}>
+              <p
+                style={{
+                  fontSize: 18,
+                  color: "#5C5C63",
+                  margin: 0,
+                  lineHeight: 1.65,
+                }}
+              >
+                {product.description}
+              </p>
+            </div>
           )}
 
           {/* Seller row */}
@@ -559,19 +759,40 @@ export default function ProductLandingPage() {
                 }}
               >
                 {org?.logo ? (
-                  <img src={org.logo} alt={org.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                  <img
+                    src={org.logo}
+                    alt={org.name}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
                 ) : (
-                  <span style={{ color: "#fff", fontWeight: 800, fontSize: 16, fontFamily: "'Fraunces', Georgia, serif" }}>
+                  <span
+                    style={{
+                      color: "#fff",
+                      fontWeight: 800,
+                      fontSize: 16,
+                      fontFamily: "'Fraunces', Georgia, serif",
+                    }}
+                  >
                     {org?.name?.[0] || "?"}
                   </span>
                 )}
               </div>
               <div>
                 <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
-                  <span style={{ fontWeight: 600, fontSize: 14, color: "#0E0E10" }}>{org?.name}</span>
+                  <span
+                    style={{ fontWeight: 600, fontSize: 14, color: "#0E0E10" }}
+                  >
+                    {org?.name}
+                  </span>
                   <span style={{ fontSize: 12, color: "#F25C0B" }}>✓</span>
                 </div>
-                <div style={{ fontSize: 12, color: "#84848C" }}>Verified seller</div>
+                <div style={{ fontSize: 12, color: "#84848C" }}>
+                  Verified seller
+                </div>
               </div>
             </div>
             <a
@@ -589,7 +810,9 @@ export default function ProductLandingPage() {
           </div>
 
           {/* What you get */}
-          {(product.files.length > 0 || product.links.length > 0 || hasCert) && (
+          {(product.files.length > 0 ||
+            product.links.length > 0 ||
+            hasCert) && (
             <div>
               <h2
                 style={{
@@ -602,7 +825,9 @@ export default function ProductLandingPage() {
               >
                 What you get
               </h2>
-              <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+              <div
+                style={{ display: "flex", flexDirection: "column", gap: 12 }}
+              >
                 {product.files.map((f, i) => (
                   <div
                     key={i}
@@ -629,15 +854,33 @@ export default function ProductLandingPage() {
                         color: "#F25C0B",
                       }}
                     >
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                        <polyline points="14 2 14 8 20 8"/>
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2.2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                        <polyline points="14 2 14 8 20 8" />
                       </svg>
                     </div>
                     <div style={{ flex: 1 }}>
-                      <div style={{ fontSize: 14, fontWeight: 500, color: "#0E0E10" }}>{f.name}</div>
+                      <div
+                        style={{
+                          fontSize: 14,
+                          fontWeight: 500,
+                          color: "#0E0E10",
+                        }}
+                      >
+                        {f.name}
+                      </div>
                       <div style={{ fontSize: 12.5, color: "#84848C" }}>
-                        {f.description || `${(f.size / 1024).toFixed(0)} KB · downloadable`}
+                        {f.description ||
+                          `${(f.size / 1024).toFixed(0)} KB · downloadable`}
                       </div>
                     </div>
                     <span
@@ -683,13 +926,37 @@ export default function ProductLandingPage() {
                         color: "#ffffff",
                       }}
                     >
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                        <polygon points="23 7 16 12 23 17 23 7"/>
-                        <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2.2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <polygon points="23 7 16 12 23 17 23 7" />
+                        <rect
+                          x="1"
+                          y="5"
+                          width="15"
+                          height="14"
+                          rx="2"
+                          ry="2"
+                        />
                       </svg>
                     </div>
                     <div style={{ flex: 1 }}>
-                      <div style={{ fontSize: 14, fontWeight: 500, color: "#0E0E10" }}>{l.label || "Video lesson"}</div>
+                      <div
+                        style={{
+                          fontSize: 14,
+                          fontWeight: 500,
+                          color: "#0E0E10",
+                        }}
+                      >
+                        {l.label || "Video lesson"}
+                      </div>
                       <div style={{ fontSize: 12.5, color: "#84848C" }}>
                         {l.meta || "Access link · no expiry"}
                       </div>
@@ -735,14 +1002,35 @@ export default function ProductLandingPage() {
                         color: "#059669",
                       }}
                     >
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                        <circle cx="12" cy="8" r="6"/>
-                        <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2.2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <circle cx="12" cy="8" r="6" />
+                        <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" />
                       </svg>
                     </div>
                     <div style={{ flex: 1 }}>
-                      <div style={{ fontSize: 14, fontWeight: 500, color: "#0E0E10" }}>Certificate of Completion · Verifiable</div>
-                      <div style={{ fontSize: 12, color: "#84848C", marginTop: 2 }}>Auto-issued on purchase · QR-verifiable</div>
+                      <div
+                        style={{
+                          fontSize: 14,
+                          fontWeight: 500,
+                          color: "#0E0E10",
+                        }}
+                      >
+                        Certificate of Completion · Verifiable
+                      </div>
+                      <div
+                        style={{ fontSize: 12, color: "#84848C", marginTop: 2 }}
+                      >
+                        Auto-issued on purchase · QR-verifiable
+                      </div>
                     </div>
                     <span
                       style={{
@@ -761,42 +1049,104 @@ export default function ProductLandingPage() {
                   </div>
                 )}
 
-                {product.files.length === 0 && product.links.length === 0 && !hasCert && (
-                  <div
-                    style={{
-                      padding: "16px 20px",
-                      background: "#F8F8F9",
-                      border: "1.5px solid #E5E5E8",
-                      borderRadius: 12,
-                      fontSize: 14,
-                      color: "#84848C",
-                    }}
-                  >
-                    Access granted after purchase
-                  </div>
-                )}
+                {product.files.length === 0 &&
+                  product.links.length === 0 &&
+                  !hasCert && (
+                    <div
+                      style={{
+                        padding: "16px 20px",
+                        background: "#F8F8F9",
+                        border: "1.5px solid #E5E5E8",
+                        borderRadius: 12,
+                        fontSize: 14,
+                        color: "#84848C",
+                      }}
+                    >
+                      Access granted after purchase
+                    </div>
+                  )}
               </div>
             </div>
           )}
 
           {/* Learning Outcomes */}
-          {product.outcomes && product.outcomes.filter(o => o.trim()).length > 0 && (
-            <div style={{ marginBottom: 44 }}>
-              <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 600, fontSize: 26, letterSpacing: "-0.02em", color: "#0E0E10", marginBottom: 18 }}>
-                By the end, you'll be able to
-              </h2>
-              <div style={{ display: "grid", gridTemplateColumns: width < 640 ? "1fr" : "repeat(2, 1fr)", gap: 12 }}>
-                {product.outcomes.filter(o => o.trim()).map((outcome, i) => (
-                  <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 12, padding: "16px 18px", border: "1px solid #E5E5E8", borderRadius: 14, background: "white" }}>
-                    <div style={{ width: 22, height: 22, borderRadius: "50%", background: "#F25C0B", display: "grid", placeItems: "center", color: "white", flexShrink: 0, marginTop: 1 }}>
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                    </div>
-                    <div style={{ fontSize: 14, color: "#2A2A2E", lineHeight: 1.45 }}>{outcome}</div>
-                  </div>
-                ))}
+          {product.outcomes &&
+            product.outcomes.filter((o) => o.trim()).length > 0 && (
+              <div style={{ marginBottom: 44 }}>
+                <h2
+                  style={{
+                    fontFamily: "'Fraunces', Georgia, serif",
+                    fontWeight: 600,
+                    fontSize: 26,
+                    letterSpacing: "-0.02em",
+                    color: "#0E0E10",
+                    marginBottom: 18,
+                  }}
+                >
+                  By the end, you'll be able to
+                </h2>
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: width < 640 ? "1fr" : "repeat(2, 1fr)",
+                    gap: 12,
+                  }}
+                >
+                  {product.outcomes
+                    .filter((o) => o.trim())
+                    .map((outcome, i) => (
+                      <div
+                        key={i}
+                        style={{
+                          display: "flex",
+                          alignItems: "flex-start",
+                          gap: 12,
+                          padding: "16px 18px",
+                          border: "1px solid #E5E5E8",
+                          borderRadius: 14,
+                          background: "white",
+                        }}
+                      >
+                        <div
+                          style={{
+                            width: 22,
+                            height: 22,
+                            borderRadius: "50%",
+                            background: "#F25C0B",
+                            display: "grid",
+                            placeItems: "center",
+                            color: "white",
+                            flexShrink: 0,
+                            marginTop: 1,
+                          }}
+                        >
+                          <svg
+                            width="12"
+                            height="12"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="3"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
+                            <polyline points="20 6 9 17 4 12" />
+                          </svg>
+                        </div>
+                        <div
+                          style={{
+                            fontSize: 14,
+                            color: "#2A2A2E",
+                            lineHeight: 1.45,
+                          }}
+                        >
+                          {outcome}
+                        </div>
+                      </div>
+                    ))}
+                </div>
               </div>
-            </div>
-          )}
+            )}
 
           {/* FAQ */}
           <div>
@@ -817,10 +1167,10 @@ export default function ProductLandingPage() {
                   q: "How do I access the product after I pay?",
                   a: "After Paystack confirms, you'll receive secure access links instantly. Links don't expire — lifetime access.",
                 },
-                {
-                  q: "Is the certificate verifiable by employers?",
-                  a: "Yes. Each certificate has a unique ID and QR code anyone can verify instantly.",
-                },
+                // {
+                //   q: "Is the certificate verifiable by employers?",
+                //   a: "Yes. Each certificate has a unique ID and QR code anyone can verify instantly.",
+                // },
                 {
                   q: "What payment methods are accepted?",
                   a: "Paystack supports debit cards, bank transfers, USSD, and mobile money.",
@@ -837,7 +1187,12 @@ export default function ProductLandingPage() {
                     borderBottom: "1.5px solid #E5E5E8",
                     borderLeft: "1.5px solid #E5E5E8",
                     borderRight: "1.5px solid #E5E5E8",
-                    borderRadius: i === 0 ? "12px 12px 0 0" : i === 3 ? "0 0 12px 12px" : "0",
+                    borderRadius:
+                      i === 0
+                        ? "12px 12px 0 0"
+                        : i === 3
+                          ? "0 0 12px 12px"
+                          : "0",
                     background: "#ffffff",
                     overflow: "hidden",
                   }}
@@ -855,7 +1210,16 @@ export default function ProductLandingPage() {
                     }}
                   >
                     {faq.q}
-                    <span style={{ color: "#84848C", flexShrink: 0, fontSize: 18, lineHeight: 1 }}>+</span>
+                    <span
+                      style={{
+                        color: "#84848C",
+                        flexShrink: 0,
+                        fontSize: 18,
+                        lineHeight: 1,
+                      }}
+                    >
+                      +
+                    </span>
                   </summary>
                   <div
                     style={{
@@ -894,7 +1258,12 @@ export default function ProductLandingPage() {
             }}
           >
             {/* Price block */}
-            <div style={{ padding: "24px 24px 20px", borderBottom: "1px solid #F1F1F3" }}>
+            <div
+              style={{
+                padding: "24px 24px 20px",
+                borderBottom: "1px solid #F1F1F3",
+              }}
+            >
               {/* Currency toggle */}
               {hasBothPrices && (
                 <div
@@ -921,7 +1290,10 @@ export default function ProductLandingPage() {
                         fontWeight: currency === c ? 600 : 400,
                         fontSize: 13,
                         cursor: "pointer",
-                        boxShadow: currency === c ? "0 1px 4px rgba(0,0,0,0.08)" : "none",
+                        boxShadow:
+                          currency === c
+                            ? "0 1px 4px rgba(0,0,0,0.08)"
+                            : "none",
                         transition: "all 0.15s ease",
                         fontFamily: "'Geist', system-ui, sans-serif",
                       }}
@@ -932,63 +1304,46 @@ export default function ProductLandingPage() {
                 </div>
               )}
 
-              {/* Main price */}
-              {currency === "NGN" && product.priceNGN > 0 ? (
-                <>
-                  <div
+              {product.description && (
+                <div style={{ marginTop: 16 }}>
+                  <p
                     style={{
-                      fontFamily: "'Fraunces', Georgia, serif",
-                      fontSize: 40,
-                      fontWeight: 700,
-                      color: "#0E0E10",
-                      lineHeight: 1,
+                      fontSize: 12,
+                      color: "#5C5C63",
+                      margin: 0,
+                      lineHeight: 1.65,
                     }}
                   >
-                    {nairaDisplay(product.priceNGN)}
-                  </div>
-                  {product.priceUSD > 0 && (
-                    <div style={{ fontSize: 13, color: "#84848C", marginTop: 6 }}>
-                      or {dollarDisplay(product.priceUSD)} USD
-                    </div>
+                    {descriptionPreview}
+                  </p>
+                  {product.description.length > 200 && (
+                    <button
+                      type="button"
+                      onClick={handleSeeMoreDescription}
+                      style={{
+                        marginTop: 8,
+                        padding: 0,
+                        border: "none",
+                        background: "transparent",
+                        color: "#B33B00",
+                        fontSize: 12,
+                        fontWeight: 600,
+                        cursor: "pointer",
+                        fontFamily: "'Geist', system-ui, sans-serif",
+                      }}
+                    >
+                      {showExpandedDescription ? "See full details" : "See more"}
+                    </button>
                   )}
-                </>
-              ) : currency === "USD" && product.priceUSD > 0 ? (
-                <>
-                  <div
-                    style={{
-                      fontFamily: "'Fraunces', Georgia, serif",
-                      fontSize: 40,
-                      fontWeight: 700,
-                      color: "#0E0E10",
-                      lineHeight: 1,
-                    }}
-                  >
-                    {dollarDisplay(product.priceUSD)}
-                  </div>
-                  {product.priceNGN > 0 && (
-                    <div style={{ fontSize: 13, color: "#84848C", marginTop: 6 }}>
-                      or {nairaDisplay(product.priceNGN)} NGN
-                    </div>
-                  )}
-                </>
-              ) : !product.priceNGN && !product.priceUSD ? (
-                <div
-                  style={{
-                    fontFamily: "'Fraunces', Georgia, serif",
-                    fontSize: 40,
-                    fontWeight: 700,
-                    color: "#84848C",
-                    lineHeight: 1,
-                  }}
-                >
-                  Free
                 </div>
-              ) : null}
+              )}
             </div>
 
             {/* Form block */}
             <div style={{ padding: "22px 24px" }}>
-              <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+              <div
+                style={{ display: "flex", flexDirection: "column", gap: 14 }}
+              >
                 {/* Full name */}
                 <div>
                   <label
@@ -1018,8 +1373,12 @@ export default function ProductLandingPage() {
                       color: "#0E0E10",
                       background: "#ffffff",
                     }}
-                    onFocus={(e) => (e.currentTarget.style.borderColor = "#F25C0B")}
-                    onBlur={(e) => (e.currentTarget.style.borderColor = "#E5E5E8")}
+                    onFocus={(e) =>
+                      (e.currentTarget.style.borderColor = "#F25C0B")
+                    }
+                    onBlur={(e) =>
+                      (e.currentTarget.style.borderColor = "#E5E5E8")
+                    }
                   />
                 </div>
 
@@ -1052,8 +1411,12 @@ export default function ProductLandingPage() {
                       color: "#0E0E10",
                       background: "#ffffff",
                     }}
-                    onFocus={(e) => (e.currentTarget.style.borderColor = "#F25C0B")}
-                    onBlur={(e) => (e.currentTarget.style.borderColor = "#E5E5E8")}
+                    onFocus={(e) =>
+                      (e.currentTarget.style.borderColor = "#F25C0B")
+                    }
+                    onBlur={(e) =>
+                      (e.currentTarget.style.borderColor = "#E5E5E8")
+                    }
                   />
                 </div>
 
@@ -1070,42 +1433,125 @@ export default function ProductLandingPage() {
                       padding: "10px 14px",
                     }}
                   >
-                    <AlertCircle style={{ width: 15, height: 15, color: "#DC2626", flexShrink: 0 }} />
-                    <span style={{ fontSize: 13, color: "#DC2626" }}>{payError}</span>
+                    <AlertCircle
+                      style={{
+                        width: 15,
+                        height: 15,
+                        color: "#DC2626",
+                        flexShrink: 0,
+                      }}
+                    />
+                    <span style={{ fontSize: 13, color: "#DC2626" }}>
+                      {payError}
+                    </span>
                   </div>
                 )}
 
-                {/* Pay button */}
-                <button
-                  onClick={handlePay}
-                  disabled={paying}
-                  style={{
-                    width: "100%",
-                    padding: "14px 0",
-                    borderRadius: 12,
-                    background: paying ? "#B6B6BC" : "#F25C0B",
-                    color: "#ffffff",
-                    fontWeight: 700,
-                    fontSize: 15,
-                    border: "none",
-                    cursor: paying ? "not-allowed" : "pointer",
-                    fontFamily: "'Geist', system-ui, sans-serif",
-                    boxShadow: paying ? "none" : "0 4px 16px rgba(242,92,11,0.30)",
-                    transition: "background 0.15s ease, box-shadow 0.15s ease",
-                  }}
-                  onMouseEnter={(e) => {
-                    if (!paying) {
-                      (e.currentTarget as HTMLButtonElement).style.background = "#D94F08";
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    if (!paying) {
-                      (e.currentTarget as HTMLButtonElement).style.background = "#F25C0B";
-                    }
-                  }}
-                >
-                  {paying ? "Redirecting to Paystack…" : "Proceed to pay →"}
-                </button>
+                <div className="flex justify-between items-center gap-20 mt-5">
+                  {/* Main price */}
+                  {currency === "NGN" && product.priceNGN > 0 ? (
+                    <>
+                      <div
+                        style={{
+                          fontFamily: "'Fraunces', Georgia, serif",
+                          fontSize: 20,
+                          fontWeight: 700,
+                          color: "#0E0E10",
+                          lineHeight: 1,
+                        }}
+                      >
+                        {nairaDisplay(product.priceNGN)}
+                      </div>
+                      {product.priceUSD > 0 && (
+                        <div
+                          style={{
+                            fontSize: 13,
+                            color: "#84848C",
+                            marginTop: 6,
+                          }}
+                        >
+                          {/* or {dollarDisplay(product.priceUSD)} USD */}
+                        </div>
+                      )}
+                    </>
+                  ) : currency === "USD" && product.priceUSD > 0 ? (
+                    <>
+                      <div
+                        style={{
+                          fontFamily: "'Fraunces', Georgia, serif",
+                          fontSize: 20,
+                          fontWeight: 700,
+                          color: "#0E0E10",
+                          lineHeight: 1,
+                        }}
+                      >
+                        {dollarDisplay(product.priceUSD)}
+                      </div>
+                      {product.priceNGN > 0 && (
+                        <div
+                          style={{
+                            fontSize: 13,
+                            color: "#84848C",
+                            marginTop: 6,
+                          }}
+                        >
+                          {/* or {nairaDisplay(product.priceNGN)} NGN */}
+                        </div>
+                      )}
+                    </>
+                  ) : !product.priceNGN && !product.priceUSD ? (
+                    <div
+                      style={{
+                        fontFamily: "'Fraunces', Georgia, serif",
+                        fontSize: 40,
+                        fontWeight: 700,
+                        color: "#84848C",
+                        lineHeight: 1,
+                      }}
+                    >
+                      Free
+                    </div>
+                  ) : null}
+
+                  {/* Pay button */}
+                  <button
+                    onClick={handlePay}
+                    disabled={paying}
+                    style={{
+                      width: "100%",
+                      padding: "14px 0",
+                      borderRadius: 12,
+                      background: paying ? "#B6B6BC" : "#F25C0B",
+                      color: "#ffffff",
+                      fontWeight: 700,
+                      fontSize: 15,
+                      border: "none",
+                      cursor: paying ? "not-allowed" : "pointer",
+                      fontFamily: "'Geist', system-ui, sans-serif",
+                      boxShadow: paying
+                        ? "none"
+                        : "0 4px 16px rgba(242,92,11,0.30)",
+                      transition:
+                        "background 0.15s ease, box-shadow 0.15s ease",
+                    }}
+                    onMouseEnter={(e) => {
+                      if (!paying) {
+                        (
+                          e.currentTarget as HTMLButtonElement
+                        ).style.background = "#D94F08";
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!paying) {
+                        (
+                          e.currentTarget as HTMLButtonElement
+                        ).style.background = "#F25C0B";
+                      }
+                    }}
+                  >
+                    {paying ? "Redirecting to Paystack…" : "Proceed →"}
+                  </button>
+                </div>
 
                 {/* Secure footer */}
                 <div
@@ -1125,7 +1571,7 @@ export default function ProductLandingPage() {
             </div>
 
             {/* Buy extras */}
-            <div
+            {/* <div
               style={{
                 background: "#F8F8F9",
                 borderTop: "1px solid #F1F1F3",
@@ -1146,7 +1592,7 @@ export default function ProductLandingPage() {
                   {item}
                 </div>
               ))}
-            </div>
+            </div> */}
           </div>
 
           {/* Share block */}
@@ -1230,7 +1676,8 @@ export default function ProductLandingPage() {
         }}
       >
         <p style={{ fontSize: 13, color: "#84848C", margin: "0 0 6px" }}>
-          © {year} {org?.name} · All products and certificates issued through this store.
+          © {year} {org?.name} · All products and certificates issued through
+          this store.
         </p>
         <p style={{ fontSize: 12, color: "#B6B6BC", margin: 0 }}>
           ● Powered by{" "}
@@ -1238,7 +1685,11 @@ export default function ProductLandingPage() {
             href="https://certifyer.online"
             target="_blank"
             rel="noopener noreferrer"
-            style={{ color: "#F25C0B", fontWeight: 600, textDecoration: "none" }}
+            style={{
+              color: "#F25C0B",
+              fontWeight: 600,
+              textDecoration: "none",
+            }}
           >
             Certifyer
           </a>

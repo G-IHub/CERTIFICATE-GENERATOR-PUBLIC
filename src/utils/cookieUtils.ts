@@ -15,12 +15,16 @@ export const setCookie = (
   expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
   
   // Format cookie string
-  let cookieStr = `${encodeURIComponent(name)}=${encodeURIComponent(value)}; expires=${expires.toUTCString()}; path=/; SameSite=Lax; Secure`;
+  let cookieStr = `${encodeURIComponent(name)}=${encodeURIComponent(value)}; expires=${expires.toUTCString()}; path=/; SameSite=Lax`;
   
-  // Use domain if we are on a real host (not localhost)
   const hostname = window.location.hostname;
-  if (domain && !hostname.includes('localhost') && !hostname.includes('127.0.0.1')) {
-    cookieStr += `; domain=${domain}`;
+  const isLocal = hostname.includes('localhost') || hostname.includes('127.0.0.1');
+  
+  if (!isLocal) {
+    cookieStr += '; Secure';
+    if (domain) {
+      cookieStr += `; domain=${domain}`;
+    }
   }
   
   document.cookie = cookieStr;
@@ -44,11 +48,16 @@ export const getCookie = (name: string): string | null => {
  * Delete a cookie by forcing it to expire immediately.
  */
 export const deleteCookie = (name: string, domain: string = '.certifyer.online'): void => {
-  let cookieStr = `${encodeURIComponent(name)}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; SameSite=Lax; Secure`;
+  let cookieStr = `${encodeURIComponent(name)}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; SameSite=Lax`;
   
   const hostname = window.location.hostname;
-  if (domain && !hostname.includes('localhost') && !hostname.includes('127.0.0.1')) {
-    cookieStr += `; domain=${domain}`;
+  const isLocal = hostname.includes('localhost') || hostname.includes('127.0.0.1');
+  
+  if (!isLocal) {
+    cookieStr += '; Secure';
+    if (domain) {
+      cookieStr += `; domain=${domain}`;
+    }
   }
   
   document.cookie = cookieStr;

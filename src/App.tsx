@@ -188,6 +188,48 @@ function PasswordResetRedirect() {
   return null;
 }
 
+const AuthRedirectHandler: React.FC<{ defaultPath: string }> = ({ defaultPath }) => {
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const redirectParam = searchParams.get("redirect");
+  
+  useEffect(() => {
+    if (redirectParam) {
+      try {
+        const parsed = new URL(redirectParam);
+        const hostname = parsed.hostname;
+        // Verify subdomain/domain safety (only allow localhost/127.0.0.1 or certifyer.online subdomains)
+        if (
+          hostname === "localhost" ||
+          hostname === "127.0.0.1" ||
+          hostname.endsWith(".certifyer.online") ||
+          hostname === "certifyer.online"
+        ) {
+          window.location.replace(redirectParam);
+          return;
+        }
+      } catch (e) {
+        // Handle relative paths
+        if (redirectParam.startsWith("/")) {
+          window.location.replace(window.location.origin + redirectParam);
+          return;
+        }
+      }
+    }
+    // Fallback locally inside the SPA
+    window.location.replace(window.location.origin + defaultPath);
+  }, [redirectParam, defaultPath]);
+
+  return (
+    <div className="flex h-screen justify-center items-center bg-background">
+      <div className="text-center">
+        <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-primary mx-auto mb-4"></div>
+        <h3 className="text-lg font-semibold text-foreground">Redirecting back to platform...</h3>
+      </div>
+    </div>
+  );
+};
+
 export default function App() {
   // Authentication state
   const [currentUser, setCurrentUser] = useState<UserAccount | null>(null);
@@ -723,9 +765,9 @@ export default function App() {
             element={
               currentUser ? (
                 isPlatformAdmin ? (
-                  <Navigate to="/platform-admin" replace />
+                  <AuthRedirectHandler defaultPath="/platform-admin" />
                 ) : (
-                  <Navigate to="/dashboard" replace />
+                  <AuthRedirectHandler defaultPath="/dashboard" />
                 )
               ) : (
                 <AuthPage
@@ -743,9 +785,9 @@ export default function App() {
             element={
               currentUser ? (
                 isPlatformAdmin ? (
-                  <Navigate to="/platform-admin" replace />
+                  <AuthRedirectHandler defaultPath="/platform-admin" />
                 ) : (
-                  <Navigate to="/dashboard" replace />
+                  <AuthRedirectHandler defaultPath="/dashboard" />
                 )
               ) : (
                 <AuthPage

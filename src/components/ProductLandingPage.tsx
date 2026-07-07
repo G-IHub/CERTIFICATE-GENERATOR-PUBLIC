@@ -1447,7 +1447,7 @@ export default function ProductLandingPage() {
                   </div>
                 )}
 
-                <div className="flex justify-between items-center gap-20 mt-5">
+                <div className="flex justify-between items-center mt-5">
                   {/* Main price */}
                   {currency === "NGN" && product.priceNGN > 0 ? (
                     <>
@@ -1518,7 +1518,7 @@ export default function ProductLandingPage() {
                     onClick={handlePay}
                     disabled={paying}
                     style={{
-                      width: "100%",
+                      width: "40%",
                       padding: "14px 0",
                       borderRadius: 12,
                       background: paying ? "#B6B6BC" : "#F25C0B",

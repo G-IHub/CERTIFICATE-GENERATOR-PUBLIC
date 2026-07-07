@@ -60,8 +60,8 @@ app.options("*", (c) => c.text("", 204));
 // Initialize Supabase client
 const getSupabaseClient = () => {
   return createClient(
-    Deno.env.get("SUPABASE_URL")!,
-    Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
+    (Deno.env.get("SUPABASE_URL") || "").trim(),
+    (Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") || "").trim(),
   );
 };
 
@@ -9952,21 +9952,20 @@ const generatePurchaseRef = (): string => {
 
 // Generate a signed Supabase Storage URL
 const getSignedUrl = async (storagePath: string): Promise<string> => {
-  const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
-  const serviceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
-  const bucket = "digital-products";
-  const url = `${supabaseUrl}/storage/v1/object/sign/${bucket}/${encodeURIComponent(storagePath)}`;
-  const res = await fetch(url, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${serviceKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ expiresIn: 3600 }),
-  });
-  if (!res.ok) return "";
-  const data = await res.json();
-  return `${supabaseUrl}/storage/v1${data.signedURL}`;
+  try {
+    const supabase = getSupabaseClient();
+    const { data, error } = await supabase.storage
+      .from("digital-products")
+      .createSignedUrl(storagePath, 3600);
+    if (error || !data) {
+      console.error("Error creating signed URL:", error);
+      return "";
+    }
+    return data.signedUrl;
+  } catch (e) {
+    console.error("Exception in getSignedUrl:", e);
+    return "";
+  }
 };
 
 // POST /digital-products/upload — upload a file to storage
@@ -9982,41 +9981,27 @@ app.post("/make-server-a611b057/digital-products/upload", async (c) => {
     if (!file || !orgId)
       return c.json({ error: "file and orgId are required" }, 400);
 
-    const supabaseUrl = Deno.env.get("SUPABASE_URL") ?? "";
-    const serviceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "";
+    const supabase = getSupabaseClient();
 
     // Try to create the bucket (ignore error if already exists)
-    await fetch(`${supabaseUrl}/storage/v1/bucket`, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${serviceKey}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        id: "digital-products",
-        name: "digital-products",
-        public: false,
-      }),
+    await supabase.storage.createBucket("digital-products", {
+      public: false,
     }); // ignore errors - bucket may already exist
 
-    // Upload the file
+    // Upload the file using the Supabase client SDK
     const storagePath = `${orgId}/${Date.now()}_${file.name.replace(/\s+/g, "_")}`;
     const arrayBuffer = await file.arrayBuffer();
-    const uploadRes = await fetch(
-      `${supabaseUrl}/storage/v1/object/digital-products/${storagePath}`,
-      {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${serviceKey}`,
-          "Content-Type": file.type || "application/octet-stream",
-          "x-upsert": "false",
-        },
-        body: arrayBuffer,
-      },
-    );
-    if (!uploadRes.ok) {
-      const err = await uploadRes.text();
-      return c.json({ error: err }, 400);
+
+    const { data: uploadData, error: uploadError } = await supabase.storage
+      .from("digital-products")
+      .upload(storagePath, arrayBuffer, {
+        contentType: file.type || "application/octet-stream",
+        upsert: false,
+      });
+
+    if (uploadError) {
+      console.log("Upload error:", uploadError);
+      return c.json({ error: uploadError.message }, 400);
     }
 
     return c.json({ storagePath, name: file.name, size: file.size }, 200);

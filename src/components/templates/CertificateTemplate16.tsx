@@ -139,6 +139,9 @@ export default function CertificateTemplate16({
                 <img src={logo2.url} alt="Logo" className="w-16 h-16 object-contain" />
               )}
             </div>
+            <div className="-mt-10" >
+              <p className="text-md font-bold" style={{ color: textColor }}>{organizationName}</p>
+            </div>
             <img
               src={floral}
               alt=""

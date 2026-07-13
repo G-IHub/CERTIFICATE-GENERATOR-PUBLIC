@@ -116,7 +116,7 @@ export default function CertificateTemplate1({
               <div className="hidden"></div>
             )}
           </div>
-          <div className="text-lg/6">
+          {/* <div className="text-lg/6">
             <p className="m-0 font-bold">
               {organizationName?.split(" ")[0] || "Genomac"}
             </p>
@@ -127,7 +127,7 @@ export default function CertificateTemplate1({
               {organizationName?.split(" ").slice(1).join(" ") ||
                 "Services & Consult"}
             </p>
-          </div>
+          </div> */}
         </div>
 
         {/* Decorative triangles - Right side */}

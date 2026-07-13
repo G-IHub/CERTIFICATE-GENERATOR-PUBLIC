@@ -464,7 +464,7 @@ export default function CertificateTemplate1({
               <div
                 style={{
                   fontSize: "40px",
-                  fontFamily: "'Great Vibes', cursive",
+                  // fontFamily: "'Great Vibes', cursive",
                 }}
                 className="m-0"
               >
@@ -474,7 +474,7 @@ export default function CertificateTemplate1({
 
             <p
               className="font-medium text-2xl"
-              style={{ fontFamily: "cursive", marginTop: -10 }}
+              style={{ marginTop: -10 }}
             >
               {courseTitle || "Course Title"}
             </p>

@@ -91,6 +91,16 @@ export default function CertificateTemplate17({
   const hasSignature1 = signatoryName1 || signatoryTitle1 || signatureUrl1;
   const hasSignature2 = signatoryName2 || signatoryTitle2 || signatureUrl2;
 
+  const isDefaultPrimary = !themeColors?.primary || themeColors.primary === "__default__";
+  const isDefaultSecondary = !themeColors?.secondary || themeColors.secondary === "__default__";
+  const isDefaultText = !themeColors?.text || themeColors.text === "__default__";
+  const isDefaultBg = !themeColors?.background || themeColors.background === "__default__";
+
+  const primaryColor = isDefaultPrimary ? "#581c87" : themeColors.primary;
+  const secondaryColor = isDefaultSecondary ? (isDefaultPrimary ? "#F472B6" : themeColors.primary) : themeColors.secondary;
+  const textColor = isDefaultText ? "#000000" : themeColors.text;
+  const bgColor = isDefaultBg ? "#FFFFFF" : themeColors.background;
+
   return (
     <div
       className={containerClass}
@@ -98,17 +108,22 @@ export default function CertificateTemplate17({
     >
       <div
         ref={ref}
-        className="shadow-sm bg-white py-10 rounded-sm flex items-center justify-center relative"
+        className="shadow-sm py-10 rounded-sm flex items-center justify-center relative"
         style={{
           width: "800px",
           height: "600px",
           paddingLeft: "",
           // paddingRight: "300px",
-          background: "white",
+          background: bgColor,
           // marginLeft: "-270px",
         }}
       >
-        <div className="relative w-[200px] h-[600px] flex flex-col overflow-hidden z-10 bg-gradient-to-b from-pink-400 via-purple-900 to-purple-900">
+        <div
+          className="relative w-[200px] h-[600px] flex flex-col overflow-hidden z-10"
+          style={{
+            background: `linear-gradient(to bottom, ${secondaryColor}, ${primaryColor}, ${primaryColor})`
+          }}
+        >
           <div className="flex pt-4">
             <div className="mx-auto">
               <div className="flex">
@@ -146,31 +161,44 @@ export default function CertificateTemplate17({
           </div>
         </div>
 
-        <div className="w-[856px] h-[600px] relative bg-white overflow-hidden">
+        <div
+          className="w-[856px] h-[600px] relative overflow-hidden"
+          style={{ backgroundColor: bgColor }}
+        >
           <img
             src={watermark}
             alt="genes"
             className="absolute w-full h-full opacity-20 z-0 object-cover"
           />
           <div className="w-full h-full px-8 py-6 relative z-10 flex flex-col">
-            <div className="p-4 bg-purple-900 text-white text-3xl text-center tracking-widest uppercase">
+            <div
+              className="p-4 text-white text-3xl text-center tracking-widest uppercase"
+              style={{ backgroundColor: primaryColor }}
+            >
               {header || "CERTIFICATE OF Participation"}
             </div>
 
-            <div className="font-base text-center text-black mt-8 italic text-lg">
+            <div
+              className="font-base text-center mt-8 italic text-lg"
+              style={{ color: textColor }}
+            >
               This Certificate is Presented to:
             </div>
 
             <div
               id="name"
-              className="capitalize border-b-4 border-purple-900 pb-2 text-center text-purple-900 mx-[60px] mt-16 text-3xl font-bold"
+              className="capitalize border-b-4 pb-2 text-center mx-[60px] mt-16 text-3xl font-bold"
+              style={{ color: primaryColor, borderColor: primaryColor }}
             >
               {recipientName}
             </div>
 
-            <p className="capitalize h-[160px] py-6 text-center text-black font-base text-sm leading-relaxed">
+            <p
+              className="capitalize h-[160px] py-6 text-center font-base text-sm leading-relaxed"
+              style={{ color: textColor }}
+            >
               {description}
-              <span className="font-bold uppercase text-black">
+              <span className="font-bold uppercase" style={{ color: textColor }}>
                 {" "}
                 {courseTitle}{" "}
               </span>
@@ -210,11 +238,11 @@ export default function CertificateTemplate17({
                     {!signatureUrl1 && (
                       <div className="w-32 border-b-2 border-gray-400 mb-2" />
                     )}
-                    <div className="text-sm font-bold text-black">
+                    <div className="text-sm font-bold" style={{ color: textColor }}>
                       {signatoryName1}
                     </div>
                     {signatoryTitle1 && (
-                      <div className="text-xs font-medium">
+                      <div className="text-xs font-medium" style={{ color: textColor }}>
                         {signatoryTitle1}
                       </div>
                     )}
@@ -238,11 +266,11 @@ export default function CertificateTemplate17({
                     {!signatureUrl2 && (
                       <div className="w-32 border-b-2 border-gray-400 mb-2" />
                     )}
-                    <div className="text-sm font-bold text-black">
+                    <div className="text-sm font-bold" style={{ color: textColor }}>
                       {signatoryName2}
                     </div>
                     {signatoryTitle2 && (
-                      <div className="text-xs font-medium">
+                      <div className="text-xs font-medium" style={{ color: textColor }}>
                         {signatoryTitle2}
                       </div>
                     )}
@@ -253,8 +281,8 @@ export default function CertificateTemplate17({
                 {date && (
                   <div className="flex flex-col items-center text-center px-2">
                     <div className="w-32 mt-7 mb-2" />
-                    <div className="text-xs font-bold ">Date</div>
-                    <div className="text-sm font-medium text-black">
+                    <div className="text-xs font-bold" style={{ color: textColor }}>Date</div>
+                    <div className="text-sm font-medium" style={{ color: textColor }}>
                       {formattedDate || "DATE"}
                     </div>
                   </div>

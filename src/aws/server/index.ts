@@ -8793,7 +8793,7 @@ app.delete("/make-server-a611b057/monetization/products/:id", async (c) => {
     if (!product) return c.json({ error: "Product not found" }, 404);
     if (product.sellerId !== user.id)
       return c.json({ error: "Forbidden" }, 403);
-    await kv.delete(`product:${product.id}`);
+    await kv.del(`product:${product.id}`);
     return c.json({ success: true });
   } catch (e) {
     return c.json({ error: `Server error: ${e}` }, 500);
@@ -10195,7 +10195,7 @@ app.delete("/make-server-a611b057/digital-products/:productId", async (c) => {
     if (!org || org.ownerId !== user.id)
       return c.json({ error: "Unauthorized" }, 403);
 
-    await kv.delete(`product:${orgId}:${productId}`);
+    await kv.del(`product:${orgId}:${productId}`);
 
     // Remove from index
     const ids = ((await kv.get(`org_products:${orgId}`)) as string[]) || [];

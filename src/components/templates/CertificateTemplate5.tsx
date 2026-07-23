@@ -65,7 +65,7 @@ export default function CertificateTemplate5({
 
   const containerClass = isPreview
     ? "w-full mx-auto origin-center overflow-visible flex justify-center"
-    : "min-w-[1056px] flex justify-center items-center";
+    : "min-w-[800px] flex justify-center items-center";
 
   // Determine which logo(s) to use
   const logo1 = organizationLogos && organizationLogos[0]?.url

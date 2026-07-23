@@ -99,10 +99,10 @@ export default function CertificateTemplate5({
 
         <div className="flex flex-col gap-8 z-30 w-9/12 mt-30">
           <div>
-            <h1 className="text-4xl" style={{ fontFamily: "'Manufacturing Consent', sans-serif", color: themeColors?.primary ?? '#14532d' }}>
+            <h1 className="text-3xl" style={{ fontFamily: "'Manufacturing Consent', sans-serif", color: themeColors?.primary ?? '#14532d' }}>
               {header}
             </h1>
-            <p className="text-3xl font-semibold tracking-tight">{courseTitle}</p>
+            <p className="text-2xl font-semibold tracking-tight">{courseTitle}</p>
           </div>
 
           <p className="font-medium -mt-5 text-xs px-4 py-2 text-white w-1/2" style={{ background: `linear-gradient(to right, ${themeColors?.primary ?? '#14532d'}, ${themeColors?.secondary ?? '#16a34a'})` }}>
@@ -110,7 +110,7 @@ export default function CertificateTemplate5({
           </p>
 
           <div className="space-y-2">
-            <p className="w-full border-b-2 font-semibold text-4xl tracking-wider" style={{ borderColor: themeColors?.secondary ?? '#16a34a' }}>{recipientName}</p>
+            <p className="w-full border-b-2 font-semibold text-2xl tracking-wider" style={{ borderColor: themeColors?.secondary ?? '#16a34a' }}>{recipientName}</p>
             <p className="max-w-xl text-sm">{description}</p>
             <div className="text-sm text-black font-bold">{formattedDate}</div>
           </div>

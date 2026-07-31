@@ -70,16 +70,18 @@ export default function CertificateTemplate11({
       "https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900";
     document.head.appendChild(link3);
 
-  // Determine which logo(s) to use
-  const logo1 = organizationLogos && organizationLogos[0]?.url
-    ? organizationLogos[0]
-    : null;
-  const logo2 = organizationLogos && organizationLogos[1]?.url
-    ? organizationLogos[1]
-    : null;
-  const fallbackLogo = organizationLogo;
+    // Determine which logo(s) to use
+    const logo1 =
+      organizationLogos && organizationLogos[0]?.url
+        ? organizationLogos[0]
+        : null;
+    const logo2 =
+      organizationLogos && organizationLogos[1]?.url
+        ? organizationLogos[1]
+        : null;
+    const fallbackLogo = organizationLogo;
 
-      return () => {
+    return () => {
       document.head.removeChild(link1);
       document.head.removeChild(link2);
       document.head.removeChild(link3);
@@ -92,6 +94,17 @@ export default function CertificateTemplate11({
     month: "long",
     day: "numeric",
   });
+
+  // Determine which logo(s) to use
+  const logo1 =
+    organizationLogos && organizationLogos[0]?.url
+      ? organizationLogos[0]
+      : null;
+  const logo2 =
+    organizationLogos && organizationLogos[1]?.url
+      ? organizationLogos[1]
+      : null;
+  const fallbackLogo = organizationLogo;
 
   return (
     <div
@@ -112,6 +125,28 @@ export default function CertificateTemplate11({
         <img src={Vector} alt="" className="absolute z-0 opacity-80" />
         <img src={Flag} alt="" className="absolute top-0 right-5" />
         <div className="flex flex-col items-center gap-10 z-10">
+          <div className="absolute left-10 top-8 z-10 flex items-center gap-3">
+            {logo1 ? (
+              <img
+                src={logo1.url}
+                alt={logo1.name || "Logo"}
+                className="w-16 h-16 object-contain"
+              />
+            ) : fallbackLogo ? (
+              <img
+                src={fallbackLogo}
+                alt="Logo"
+                className="w-16 h-16 object-contain"
+              />
+            ) : null}
+            {logo2 ? (
+              <img
+                src={logo2.url}
+                alt="Logo"
+                className="w-16 h-16 object-contain"
+              />
+            ) : null}
+          </div>
           <div className="flex flex-col gap-10 text-center">
             <div
               className="space-y-2"

@@ -50,7 +50,7 @@ export default function CertificateTemplate13({
 
   const containerClass = isPreview
     ? "w-full mx-auto origin-center overflow-visible flex justify-center"
-    : "min-w-[1056px] flex justify-center items-center";
+    : "min-w-[800px] flex justify-center items-center";
 
   useEffect(() => {
     const link1 = document.createElement("link");

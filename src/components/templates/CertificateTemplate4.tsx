@@ -202,27 +202,31 @@ export default function CertificateTemplate4({
           </p>
 
           <div className="flex gap-10 w-full items-center justify-center z-50 -mt-5">
-            <div className="space-y-2">
-              <div className="border-b w-40 flex justify-center items-center">
-                <img
-                  src={signatureUrl1}
-                  alt=""
-                  className="w-24 h-16 object-contain"
-                  style={{ marginBottom: -12 }}
-                />
+            {signatoryName1 && (
+              <div className="space-y-2">
+                <div className="border-b w-40 flex justify-center items-center">
+                  {signatureUrl1 && (
+                    <img
+                      src={signatureUrl1}
+                      alt=""
+                      className="w-24 h-16 object-contain"
+                      style={{ marginBottom: -12 }}
+                    />
+                  )}
+                </div>
+                <div className="space-y-0">
+                  <p
+                    className="text-center text-sm font-medium"
+                    style={{ color: themeColors?.primary ?? "#f97316" }}
+                  >
+                    {signatoryName1}
+                  </p>
+                  <p className="text-center text-[9px] italic font-medium">
+                    {signatoryTitle1}
+                  </p>
+                </div>
               </div>
-              <div className="space-y-0">
-                <p
-                  className="text-center text-sm font-medium"
-                  style={{ color: themeColors?.primary ?? "#f97316" }}
-                >
-                  {signatoryName1 || "Oluwaseyi Abraham Olawale"}
-                </p>
-                <p className="text-center text-[9px] italic font-medium">
-                  {signatoryTitle1 || "CEO of Genomac Holdings"}
-                </p>
-              </div>
-            </div>
+            )}
 
             <div className="w-16 h-16 relative">
               <div
@@ -239,27 +243,31 @@ export default function CertificateTemplate4({
               />
             </div>
 
-            <div className="space-y-2">
-              <div className="border-b w-40 flex justify-center items-center">
-                <img
-                  src={signatureUrl2}
-                  alt=""
-                  className="w-24 h-16 object-contain"
-                  style={{ marginBottom: -12 }}
-                />
+            {signatoryName2 && (
+              <div className="space-y-2">
+                <div className="border-b w-40 flex justify-center items-center">
+                  {signatureUrl2 && (
+                    <img
+                      src={signatureUrl2}
+                      alt=""
+                      className="w-24 h-16 object-contain"
+                      style={{ marginBottom: -12 }}
+                    />
+                  )}
+                </div>
+                <div className="space-y-0">
+                  <p
+                    className="text-center text-sm font-medium"
+                    style={{ color: themeColors?.primary ?? "#f97316" }}
+                  >
+                    {signatoryName2}
+                  </p>
+                  <p className="text-center text-[9px] italic font-medium">
+                    {signatoryTitle2}
+                  </p>
+                </div>
               </div>
-              <div className="space-y-0">
-                <p
-                  className="text-center text-sm font-medium"
-                  style={{ color: themeColors?.primary ?? "#f97316" }}
-                >
-                  {signatoryName2 || "Gloria Adegbole"}
-                </p>
-                <p className="text-center text-[9px] italic font-medium">
-                  {signatoryTitle2 || "Director of G-I Hub"}
-                </p>
-              </div>
-            </div>
+            )}
           </div>
         </div>
       </div>

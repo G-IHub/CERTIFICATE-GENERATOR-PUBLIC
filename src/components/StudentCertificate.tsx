@@ -486,7 +486,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
           const isEmailVerified = sessionStorage.getItem(`ctfy_verified_email_${cert.id}`) === "true";
           const needsVerification = cert.restrictDownload && !isEmailVerified;
 
-          if (!cert.studentName || needsVerification) {
+          if (!cert.studentName || !cert.email || needsVerification) {
             // Prefill student details if available on the certificate
             if (cert.studentName) setEnteredName(cert.studentName);
             if (cert.email) setEnteredEmail(cert.email);
@@ -1021,11 +1021,17 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
         return;
       }
 
+      if (!enteredEmail.trim()) {
+        toast.error("Please enter your email address");
+        return;
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(enteredEmail.trim())) {
+        toast.error("Please enter a valid email address");
+        return;
+      }
       if (certificate.restrictDownload) {
-        if (!enteredEmail.trim()) {
-          toast.error("Email address is required for this certificate");
-          return;
-        }
         const emailLower = enteredEmail.trim().toLowerCase();
         const allowedEmails = (certificate.allowedEmails || []).map((e) => e.trim().toLowerCase());
         const certEmailLower = certificate.email?.trim().toLowerCase();
@@ -1138,11 +1144,11 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
             <form onSubmit={handleFormSubmit} className="space-y-4" key="certificate-name-form">
               <div>
                 <label htmlFor="studentName" className="block text-sm font-medium text-gray-700 mb-2">Full Name <span className="text-red-500">*</span></label>
-                <input id="studentName" type="text" value={enteredName} onChange={(e) => setEnteredName(e.target.value)} placeholder="Enter your full name" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" autoFocus disabled={isSubmitting} />
+                <input id="studentName" type="text" value={enteredName} onChange={(e) => setEnteredName(e.target.value)} placeholder="Enter your full name" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" autoFocus disabled={isSubmitting} required />
               </div>
               <div>
-                <label htmlFor="studentEmail" className="block text-sm font-medium text-gray-700 mb-2">Email Address {certificate.restrictDownload && <span className="text-red-500">*</span>}</label>
-                <input id="studentEmail" type="email" value={enteredEmail} onChange={(e) => setEnteredEmail(e.target.value)} placeholder="your.email@example.com" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" disabled={isSubmitting} required={certificate.restrictDownload} />
+                <label htmlFor="studentEmail" className="block text-sm font-medium text-gray-700 mb-2">Email Address <span className="text-red-500">*</span></label>
+                <input id="studentEmail" type="email" value={enteredEmail} onChange={(e) => setEnteredEmail(e.target.value)} placeholder="your.email@example.com" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" disabled={isSubmitting} required />
               </div>
               <div className="border-t pt-4 mt-4">
                 <h3 className="text-sm font-semibold text-gray-900 mb-3">Your Feedback (Optional)</h3>
@@ -1168,7 +1174,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
                   </div>
                 </div>
               </div>
-              <Button type="submit" className="w-full" disabled={!enteredName.trim() || isSubmitting || (certificate.restrictDownload && !enteredEmail.trim())}>
+              <Button type="submit" className="w-full" disabled={!enteredName.trim() || !enteredEmail.trim() || isSubmitting}>
                 {isSubmitting ? "Submitting..." : "View My Certificate"}
               </Button>
             </form>

@@ -4267,9 +4267,19 @@ function generateRandomColor() {
   return colors[Math.floor(Math.random() * colors.length)];
 }
 
-// Try to load billing settings from environment variables first, fall back to KV store
+// Load billing settings: prioritize KV store (admin configured) first, then fall back to environment variables
 async function getBillingSettings() {
   try {
+    const kvSettings = await kv.get("billing:settings").catch(() => null);
+    if (
+      kvSettings &&
+      kvSettings.paystackSecretKey &&
+      kvSettings.paystackPublicKey
+    ) {
+      console.log("🔐 Using Paystack keys from KV store (admin configured)");
+      return { ...kvSettings, fromEnv: false };
+    }
+
     const secret =
       Deno.env.get("PAYSTACK_SECRET_KEY") || Deno.env.get("PAYSTACK_SECRET");
     const pub =
@@ -4277,8 +4287,6 @@ async function getBillingSettings() {
 
     if (secret && pub) {
       console.log("🔐 Using Paystack keys from environment variables");
-      // Keep plans in KV if present, but env-based keys take precedence
-      const kvSettings = await kv.get("billing:settings").catch(() => null);
       return {
         paystackSecretKey: secret,
         paystackPublicKey: pub,
@@ -4287,10 +4295,8 @@ async function getBillingSettings() {
       };
     }
 
-    // Fallback to KV-stored billing settings
-    const settings = await kv.get("billing:settings").catch(() => null);
-    if (!settings) return null;
-    return { ...settings, fromEnv: false };
+    if (kvSettings) return { ...kvSettings, fromEnv: false };
+    return null;
   } catch (err) {
     console.error("Error reading billing settings:", err);
     return null;
@@ -7995,28 +8001,22 @@ app.post("/make-server-a611b057/admin/billing/settings", async (c) => {
     // Determine current source of billing keys
     const current = await getBillingSettings();
 
-    // If keys are provided via environment, disallow updating the keys via this admin endpoint
-    if (current?.fromEnv) {
-      console.log(
-        "⚠️ Attempt to change keys, but keys are set via environment variables",
-      );
-      return c.json(
-        {
-          error:
-            "Paystack keys are managed via environment variables and cannot be updated via this endpoint",
-        },
-        400,
-      );
-    }
+    // Preserve existing keys if new ones are not provided in this update request
+    const paystackSecretKey =
+      settings.paystackSecretKey || current?.paystackSecretKey;
+    const paystackPublicKey =
+      settings.paystackPublicKey || current?.paystackPublicKey;
 
     // Validate settings
-    if (!settings.paystackSecretKey || !settings.paystackPublicKey) {
+    if (!paystackSecretKey || !paystackPublicKey) {
       return c.json({ error: "Paystack keys are required" }, 400);
     }
 
     // Ensure plans have defaults if not provided
     const billingData = {
       ...settings,
+      paystackSecretKey,
+      paystackPublicKey,
       plans: settings.plans || {
         premium_monthly: {
           name: "Premium Monthly",
@@ -8582,10 +8582,13 @@ Crawl-delay: 1
 const PLATFORM_FEE_PERCENT = 7; // 7% platform cut
 
 const getPaystackKey = async (): Promise<string> => {
-  const fromEnv = Deno.env.get("PAYSTACK_SECRET_KEY");
-  if (fromEnv) return fromEnv;
   const settings = (await kv.get("billing:settings")) as any;
-  return settings?.paystackSecretKey || "";
+  if (settings?.paystackSecretKey) return settings.paystackSecretKey;
+  return (
+    Deno.env.get("PAYSTACK_SECRET_KEY") ||
+    Deno.env.get("PAYSTACK_SECRET") ||
+    ""
+  );
 };
 
 const generateTxnRef = (): string => {
